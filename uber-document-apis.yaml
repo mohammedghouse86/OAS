@@ -1,0 +1,544 @@
+openapi: 3.0.0
+info:
+  title: TMS Document APIs
+  description: |
+    APIs to search and download shipment related documents.
+
+    Environment specific base urls -
+
+    **UAT** - **uatapi.uberfreight.com**
+
+    **PROD** - **api.uberfreight.com**
+  version: v1
+servers:
+  - url: https://uatapi.uberfreight.com/tp-api/document
+security:
+  - OAuth2: []
+paths:
+  /v2/healthCheck:
+    get:
+      tags:
+        - Document
+      summary: Health check
+      description: |
+        This API is used to validate connectivity with Transplace Document APIs.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: healthCheckUsingGET
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+        500:
+          description: Internal error occurred. Trace id provided for reference. Please
+            try again later.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v2/search:
+    get:
+      tags:
+        - Document
+      summary: Searches documents for given criteria, either (startDate and endDate)
+        or one of tpLoadNumber/proNumber/bolNumber is required input parameter.
+      description: |
+        This API is used to search uploaded document images based on search criteria.
+
+        **Required Field(s)** - Either dates (startDate and endDate) OR
+        one of (tpLoadNumber or proNumber or bolNumber).
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: searchDocumentsUsingGET
+      parameters:
+        - name: startDate
+          in: query
+          description: Start date yyyy-MM-dd
+          schema:
+            type: string
+        - name: endDate
+          in: query
+          description: End date yyyy-MM-dd
+          schema:
+            type: string
+        - name: docType
+          in: query
+          description: Default document types supported are BOL, POD. To search on additional doc types, will need additional approvals and configuration. Please contact your transplace representative for assistance.
+          schema:
+            type: string
+            enum:
+                - AIR_FREIGHT_PACKING_LIST
+                - AUTH_DOC
+                - BOL
+                - BOND
+                - BOND_REQUIRED
+                - BROK_CARRIER_INVOICE
+                - CARRIER_INVOICE
+                - CARTON_LABEL
+                - CERTIFICATE_OF_ORIGIN
+                - CMR
+                - CN22_CN23_FORM
+                - COMMERCIAL_INVOICE
+                - CUSTOMER_BOL
+                - CUSTOMER_POD
+                - CUSTOMER_RECEIPT
+                - DANGEROUS_GOODS_DECLARATION
+                - DECLARATION_PAGE
+                - DETENTION_DOCUMENT
+                - EEI_EXPORT_DECLARATION
+                - FDA_INSTRUCTIONS
+                - INSURANCE_FAX
+                - LOADING_INSTRUCTIONS
+                - LUMPER_RECEIPT
+                - MEAT_INSTRUCTIONS
+                - MSDS
+                - NAFTA_USMCA_CERTIFICATE_OF_ORIGIN
+                - NAFTA_USMCA_COMMERCIAL_INVOICE
+                - OTHER
+                - PACKING_LIST
+                - PALLET_RECEIPT
+                - PERMIT
+                - PHOTOS
+                - POD
+                - SCALE_TICKET
+                - SPOT_RATE_CARR_FAX
+                - SPOT_RATE_CUST_FAX
+                - SUPPLIER_DOCUMENT
+                - TRAILER_INSPECTION
+                - TRAILER_INTERCHANGE_AGREEMENT
+                - UNLOADING_INSTRUCTIONS
+                - WASHOUT_SLIP
+        - name: scac
+          in: query
+          description: Carrier identifier
+          schema:
+            type: string
+        - name: tpLoadNumber
+          in: query
+          description: Uniquely identifies a shipment load
+          schema:
+            type: integer
+            format: int64
+        - name: bolNumber
+          in: query
+          description: Bill Of Lading number
+          schema:
+            type: string
+        - name: proNumber
+          in: query
+          description: Pro Number
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchDocResponse'
+        400:
+          description: This is a bad request. Invalid Data provided to search documents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        401:
+          description: Invalid request - missing critical information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+        500:
+          description: Internal error occurred. Trace id provided for reference. Please
+            try again later.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v2/{documentId}/download:
+    get:
+      tags:
+        - Document
+      summary: Download a document for a given documentId, Document Id is mandatory and
+        should be passed as path param
+      description:  |
+        This API is used to download an uploaded document image for a given documentId.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: getDocumentUsingGET
+      parameters:
+        - name: documentId
+          in: path
+          description: If documentId is not available then use Search Document API (/v2/search) to fetch documentId and then proceed to Download Document API.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DownloadDocResponse'
+        400:
+          description: This is a bad request. Invalid Data provided to download document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        401:
+          description: Invalid request - missing critical information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        403:
+          description: Access to Document data is Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        404:
+          description: Not Found
+          content: {}
+        500:
+          description: Internal error occurred. Trace id provided for reference. Please
+            try again later.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v2/generate-document:
+    get:
+      tags:
+        - Document
+      summary: Download a document by specifying the required documentType along with meId and/or refValue. All parameters must be provided as query parameters, and documentType is mandatory.
+      description:  |
+        This API is used to download a generated document for a given documentType, meId and/or refValue.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: getDocumentUsingGET
+      parameters:
+        - name: documentType
+          in: query
+          description: Document Type
+          schema:
+            type: string
+            enum:
+              - MANIFEST
+              - PLACARD
+              - LOADING_INSTRUCTIONS
+              - CUSTOMER_RECEIPT
+              - CARRIER_NOTIFICATION
+              - PACKINGLIST
+              - COMMERCIAL_INVOICE
+        - name: meId
+          in: query
+          description: ME Id
+          schema:
+            type: integer
+            format: int64
+        - name: refValue
+          in: query
+          description: Reference Value
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneratedDocumentResponse'
+        400:
+          description: This is a bad request. Invalid Data provided to download document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        401:
+          description: Invalid request - missing critical information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        403:
+          description: Access to Document data is Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        404:
+          description: Not Found
+          content: {}
+        500:
+          description: Internal error occurred. Trace id provided for reference. Please
+            try again later.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+components:
+  schemas:
+    HealthCheckResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        data:
+          description: HealthCheck response returned by the service.
+          $ref: "#/components/schemas/HealthCheckMessage"
+      description: HealthCheck Response returned
+    HealthCheckMessage:
+      type: object
+      properties:
+        environment:
+          type: string
+          example: prod
+          description: Hosted environment
+      description: Health Check Message
+    ErrorApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        errors:
+          type: array
+          description: Error list
+          items:
+            $ref: "#/components/schemas/ApiError"
+      description: Error response returned
+    ApiError:
+      type: object
+      properties:
+        type:
+          type: string
+          example: INTERNAL_SERVER_ERROR
+          description: Error Type
+        message:
+          type: string
+          example: Internal error occurred. Trace id provided for reference. Please try again later.
+          description: Error message
+      description: API Error Info
+    SearchDocResultRow:
+      type: object
+      properties:
+        customer:
+          type: string
+        documentId:
+          type: integer
+          format: int64
+        documentType:
+          type: string
+        scac:
+          type: string
+        tpLoadNumber:
+          type: integer
+          format: int64
+        uploadedDate:
+          type: string
+      description: Search Document Details
+    SearchDocResults:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Search Limit Message
+        searchResults:
+          type: array
+          description: List of Documents Details
+          items:
+            "$ref": "#/components/schemas/SearchDocResultRow"
+      description: Search Response Data
+    SearchDocResponse:
+      type: object
+      properties:
+        data:
+          description: Response Data
+          "$ref": "#/components/schemas/SearchDocResults"
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+      description: Search Documents Response Data
+    DocumentDetails:
+      type: object
+      properties:
+        base64Content:
+          type: string
+        customer:
+          type: string
+        documentId:
+          type: integer
+          format: int64
+        documentType:
+          description: Default document types supported are BOL, POD. To download additional doc types, will need additional approvals and configuration. Please contact your transplace representative for assistance.
+          type: string
+          enum:
+          - AIR_FREIGHT_PACKING_LIST
+          - AUTH_DOC
+          - BOL
+          - BOND
+          - BOND_REQUIRED
+          - BROK_CARRIER_INVOICE
+          - CARRIER_INVOICE
+          - CARTON_LABEL
+          - CERTIFICATE_OF_ORIGIN
+          - CMR
+          - CN22_CN23_FORM
+          - COMMERCIAL_INVOICE
+          - CUSTOMER_BOL
+          - CUSTOMER_POD
+          - CUSTOMER_RECEIPT
+          - DANGEROUS_GOODS_DECLARATION
+          - DECLARATION_PAGE
+          - DETENTION_DOCUMENT
+          - EEI_EXPORT_DECLARATION
+          - FDA_INSTRUCTIONS
+          - INSURANCE_FAX
+          - LOADING_INSTRUCTIONS
+          - LUMPER_RECEIPT
+          - MEAT_INSTRUCTIONS
+          - MSDS
+          - NAFTA_USMCA_CERTIFICATE_OF_ORIGIN
+          - NAFTA_USMCA_COMMERCIAL_INVOICE
+          - OTHER
+          - PACKING_LIST
+          - PALLET_RECEIPT
+          - PERMIT
+          - PHOTOS
+          - POD
+          - SCALE_TICKET
+          - SPOT_RATE_CARR_FAX
+          - SPOT_RATE_CUST_FAX
+          - SUPPLIER_DOCUMENT
+          - TRAILER_INSPECTION
+          - TRAILER_INTERCHANGE_AGREEMENT
+          - UNLOADING_INSTRUCTIONS
+          - WASHOUT_SLIP
+        mimeType:
+          type: string
+        scac:
+          type: string
+        uploadedDate:
+          type: string
+      description: Document Details
+    DownloadDocResponse:
+      type: object
+      properties:
+        data:
+          description: Response Data
+          "$ref": "#/components/schemas/DocumentDetails"
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+      description: Download Response returned
+    GeneratedDocumentResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        data:
+          "$ref": "#/components/schemas/Document"
+    Document:
+      type: object
+      properties:
+        base64Document:
+          type: string
+        documentType:
+          type: string
+      description: Generated Document Details
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 with Client Credentials grant type
+      flows:
+        clientCredentials:
+          tokenUrl: https://uatapi.uberfreight.com/oauth2/accesstoken
+          scopes: {}

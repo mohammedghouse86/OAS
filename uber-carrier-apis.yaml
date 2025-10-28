@@ -1,0 +1,2009 @@
+openapi: 3.0.0
+info:
+  title: TMS Carrier APIs
+  description: |
+    APIs for carriers to respond to tenders, update status and participate in auctions.
+
+    Environment specific base urls -
+
+    **UAT** - **uatapi.uberfreight.com**
+
+    **PROD** - **api.uberfreight.com**
+  version: v1
+servers:
+- url: https://uatapi.uberfreight.com/tp-api/carrier
+security:
+- OAuth2: []
+tags:
+- name: health
+- name: carrier
+paths:
+  /v2/healthCheck:
+    get:
+      tags:
+      - health
+      summary: Health Check API
+      description: |
+        This API is used to validate connectivity with Transplace Carrier APIs.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-GET-healthCheck-DIRECT-healthCheck.uat
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v2/carrier-shipment-status:
+    post:
+      tags:
+      - carrier
+      summary: Carrier Shipment Status API
+      description: |
+        This API is used by carriers to update shipment status and provide tracking information.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-POST-carrier-carrier-shipment-status-KAFKA-tms.inboundDocument.uat
+      requestBody:
+        description: Carrier shipment status from carrier
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierShipmentStatus'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CarrierShipmentStatus'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+      x-codegen-request-body-name: body
+  /v2/auction/placebid:
+    post:
+      tags:
+      - carrier
+      summary: Place a new bid for a Carrier Auction
+      description: |
+        This API is used by carriers participating on a Transplace Auction to submit a bid on the auction with their bidding amount and participating SCAC. Bids can be submitted for only one auction at a time. Upon placing the bid, carriers will receive a bid response indicating if the bid was successful or not.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: submitNewBidUsingPOST
+      requestBody:
+        description: bidRequest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BidRequest'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BidSuccessResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/RestResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/RestResponse'
+      x-codegen-request-body-name: body
+  /v2/auction/search:
+    post:
+      tags:
+      - carrier
+      summary: Search and return a list of Auctions
+      description: |
+        This API is used by carriers participating in Transplace Auctions to search for auctions. Search criteria like auctionIds or date range can be used. Based on the search criteria, the auctions would be returned in the response.
+
+        **Required Field(s)** - Either auctionIds OR any one of the auction date fields.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: auctionSearchUsingPOST
+      requestBody:
+        description: auctionSearchRequest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuctionSearchRequest'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuctionSearchResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/RestResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/RestResponse'
+  /v2/tender-accept-reject:
+    post:
+      tags:
+      - carrier
+      summary: Carrier Tender Accept/Reject API
+      description: |
+        This API is used by carriers to respond to load tendered
+        with tender accept or tender reject for a load.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-POST-carrier-v2-tender-accept-reject-KAFKA-tms.inboundDocument.uat
+      requestBody:
+        description: Carrier Tender Accept/Reject from carrier
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenderAcceptReject'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TenderAcceptReject'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v2/upload-document:
+    post:
+      tags:
+      - carrier
+      summary: Carrier Upload Document API
+      description: |
+        This API is used by carriers to upload carrier related documents.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: uploadDocumentUsingPOST
+      requestBody:
+        description: Carrier Upload Document Details from carrier
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadDocRequest'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadDocResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        403:
+          description: Access to Upload Document is Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+components:
+  schemas:
+    HealthCheckResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        data:
+          description: HealthCheck response returned by the service.
+          $ref: "#/components/schemas/HealthCheckMessage"
+      description: HealthCheck Response returned
+      xml:
+        name: healthCheckResponse
+    HealthCheckMessage:
+      type: object
+      properties:
+        environment:
+          type: string
+          example: prod
+          description: Hosted environment
+      description: Health Check Message
+    ErrorApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        errors:
+          type: array
+          description: Error list
+          items:
+            $ref: "#/components/schemas/ApiError"
+      xml:
+        name: errorResponse
+      description: Error response returned
+    ApiError:
+      type: object
+      properties:
+        type:
+          type: string
+          example: INTERNAL_SERVER_ERROR
+          description: Error Type
+        message:
+          type: string
+          example: Internal error occurred. Trace id provided for reference. Please try again later.
+          description: Error message
+      description: API Error Info
+    CarrierShipmentStatus:
+      required:
+      - scac
+      - shipmentLookupReferenceName
+      - shipmentLookupReferenceValue
+      type: object
+      properties:
+        domainId:
+          type: integer
+          description: Customer Domain Id provided by Transplace. Optional.
+          format: int64
+          example: 123456789
+        accountId:
+          type: integer
+          description: Customer Account Id provided by Transplace. Optional.
+          format: int64
+          example: 123456789
+        loadId:
+          type: integer
+          description: The Transplace load Id. If not provided, the load will be looked
+            up using primary reference name/value
+          format: int64
+          example: 123456789
+        shipmentLookupReferenceName:
+          type: string
+          description: Name of the reference to use for looking up the load.
+          example: SHIP ID
+        shipmentLookupReferenceValue:
+          type: string
+          description: Reference value used to lookup the load.
+          example: ABC123456789
+        scac:
+          type: string
+          description: Standard Carrier Alpha Code. Max length 10.
+        powerId:
+          type: string
+          description: The Power Unit or Tractor Id. Max length 30.
+        containerId:
+          type: string
+          description: The Container/Trailer Id. Max length 32.
+        equipmentType:
+          type: string
+          description: Transplace equipment type code, such as DRYVAN, REEFER, TANKER.
+            Max length 30.
+        modeType:
+          type: string
+          description: 'Mode Type. Possible values: AIR=Air, INTERMODAL=Intermodal,
+            LTL=LTL, OCEAN=Ocean, PARCEL=Parcel, RAIL=Rail, TRUCK=TL'
+          enum:
+          - TRUCK
+          - RAIL
+          - INTERMODAL
+          - LTL
+          - AIR
+          - OCEAN
+          - PARCEL
+        transitSpeed:
+          type: string
+          description: 'Transit Speed. Possible values: DAY_DEFINITE=Day Definite,
+            DEFERRED_3_TO_5_DAY=Deferred 3-5 Day, ECONOMY=Economy, EXPEDITED=Expedited,
+            EXPEDITED_2ND_DAY=Expedited 2nd Day, EXPEDITED_3_DAY=Expedited 3rd Day,
+            EXPEDITED_3_TO_5_DAY=Expedited 3-5 Day, GUARANTEE=Guarantee, KOSHER=Kosher,
+            KOSHER_EXPEDITED=Kosher Expedited, MILK_RUN=Milk Run, OVERNIGHT=Overnight,
+            PARCEL_GROUND=Parcel Ground, SHUTTLE=Shuttle, SHUTTLE_HALF_DAY=Shuttle
+            Half Day, SHUTTLE_X2=Shuttle X2, SHUTTLE_X3=Shuttle X3, SOLO=Standard,
+            STANDARD_LTL=Standard LTL, STANDARD_TL=Standard TL, TEAM=Premium, TIME_DEFINITE=Time
+            Definite'
+          enum:
+          - DAY_DEFINITE
+          - DEFERRED_3_TO_5_DAY
+          - ECONOMY
+          - EXPEDITED
+          - EXPEDITED_2ND_DAY
+          - EXPEDITED_3_DAY
+          - EXPEDITED_3_TO_5_DAY
+          - GUARANTEE
+          - KOSHER
+          - KOSHER_EXPEDITED
+          - MILK_RUN
+          - OVERNIGHT
+          - PARCEL_GROUND
+          - SHUTTLE
+          - SHUTTLE_HALF_DAY
+          - SHUTTLE_X2
+          - SHUTTLE_X3
+          - SOLO
+          - STANDARD_LTL
+          - STANDARD_TL
+          - TEAM
+          - TIME_DEFINITE
+        carrierReference:
+          type: string
+        brokerageCarrierSCAC:
+          type: string
+          description: Brokerage Standard Carrier Alpha Code. Max length 10.
+        parcelServiceLevel:
+          type: string
+          description: 'Parcel service level. Possible values: ALTM Ground, ATS Ground
+            Expedited, ATS Ground by 10:00, ATS Next Day by 3:00, ATS Next Day by
+            Noon, ATS Second Day, CANPAR Express, CANPAR Ground, CANPAR International,
+            CANPAR Select, CANPAR USA, CANPAR USA Select, DHL Express Worldwide, Expedited
+            Parcel, Express, FedEx 1Day Freight, FedEx 2 Day, FedEx 2Day Freight,
+            FedEx 2nd Day AM, FedEx 3Day Freight, FedEx Custom Critical, FedEx Economy,
+            FedEx Express Saver, FedEx First Overnight, FedEx First Overnight Freight,
+            FedEx Ground, FedEx Ground US to Canada, FedEx Home Delivery, FedEx Intl
+            Economy, FedEx Intl Economy Freight, FedEx Intl First, FedEx Intl Priority,
+            FedEx Intl Priority Freight, FedEx Priority Overnight, FedEx SmartPost,
+            FedEx Smartpost, FedEx Standard Overnight, Loomis Can Ground, Loomis Can
+            Xpress 6pm, Loomis Can Xpress 9am, Loomis Can Xpress Noon, Misc Service,
+            Pur Express Overnight, Pur Ground, Regular Parcel, UPS 2nd Day Air, UPS
+            2nd Day Air A.M., UPS 3 Day Select, UPS Expedited, UPS Express, UPS Express
+            Early A.M., UPS Ground, UPS Hundredweight Service, UPS Next Day Air, UPS
+            Next Day Air Early AM, UPS Next Day Air Saver, UPS Saver, UPS Standard,
+            UPS Standard (Canada), UPS Worldwide Expedited, UPS Worldwide Express,
+            UPS Worldwide Express Plus, UPS Worldwide Saver'
+        voyage:
+          type: string
+          example: EP988W
+          description: Voyage. Max length 30.
+        vessel:
+          type: string
+          example: CMA CGM ROSSINI
+          description: Vessel. Max length 30.
+        ssLineCarrier:
+          type: string
+          example: Maersk, CMA, K-LINE, Happag LLoyd etc.
+          description: Steamship line vessel operating carrier. Max length 30.
+        oceanContainerType:
+          type: string
+          example: FCL
+          description: Ocean Container Type. Max length 16.
+        portOfLoading:
+          type: string
+          example: Los Angeles, CA
+          description: Port of Loading. Max length 100.
+        portOfDischarge:
+          type: string
+          example: NHAVA SHEVA, IN
+          description: Port of Discharge. Max length 100.
+        senderId:
+          type: string
+          description: Used to identify the sender and set the CheckCallChannelType
+          example: VIZION
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShipmentStatusStop'
+        checkCalls:
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckCall'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        references:
+          type: array
+          description: "This field can be used to update reference values on the load,\
+            \ or provide additional lookup references."
+          items:
+            $ref: "#/components/schemas/Reference"
+      description: Carrier Shipment Status
+    RestResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Success status of request received with either true or false
+          example: true
+        errors:
+          type: array
+          description: Error list
+          items:
+            $ref: '#/components/schemas/Error'
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          description: Total specifies number of items if response data is a list
+          format: int32
+          example: 1
+      description: Response returned
+    AckMessage:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message with success acknowledgment
+      description: Ack Message
+    AckMessageResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        data:
+          description: Ack response returned by the service.
+          $ref: "#/components/schemas/AckMessage"
+      description: Acknowledgement Response returned
+      xml:
+        name: ackMessageResponse
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Error Type
+          example: BAD_REQUEST
+        message:
+          type: string
+          description: Error message
+          example: 'Validation failed: Found 5 constraint violations.'
+      description: Error Info
+    ShipmentStatusStop:
+      required:
+      - sequenceNumber
+      type: object
+      properties:
+        sequenceNumber:
+          type: integer
+          format: int64
+        type:
+          type: string
+          description: 'Stop Type. Possible values: PICKUP, DROPOFF, INTERLINE'
+          enum:
+          - PICKUP
+          - DROPOFF
+          - INTERLINE
+        externalAppointmentNumber:
+          type: string
+        location:
+          $ref: '#/components/schemas/Location'
+        comments:
+          type: array
+          items:
+            type: string
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        references:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+        supportInfos:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportInfo'
+      description: Shipment Status Stop
+    CheckCall:
+      required:
+      - type
+      type: object
+      properties:
+        stopSequenceNumber:
+          type: integer
+          format: int64
+        type:
+          type: string
+          description: 'Check call type. Possible values: APP_CHANGE=Appointment Change,
+            ARRIVAL=Arrival, CHECK_CALL=Check Call, DEPARTURE=Departure, DISPATCHED=Dispatched,
+            EAR_APP_CHANGE=Appointment Earliest Change, ETA=ETA, GOODS_ISSUED=Goods
+            Issued, LAT_APP_CHANGE=Appointment Latest Change, LOADED=Loaded, PARENT=Parent,
+            UNLOADED=Unloaded'
+          enum:
+          - APP_CHANGE
+          - ARRIVAL
+          - CHECK_CALL
+          - DEPARTURE
+          - DISPATCHED
+          - EAR_APP_CHANGE
+          - ETA
+          - GOODS_ISSUED
+          - LAT_APP_CHANGE
+          - LOADED
+          - PARENT
+          - UNLOADED
+        weight:
+          type: number
+          description: Weight adjustment
+          format: double
+        weightUOM:
+          type: string
+          description: 'Weight adjustment Unit Unit of Measure. Possible values: GR=Grams,
+            HW=Hundred Weight, KG=Kilograms, LBS=Pounds, OZ=Ounces, TONE=Tonnes, TONL=Long
+            Ton (British Ton), TONS=Tons'
+          enum:
+          - KG
+          - LBS
+          - TONS
+          - HW
+          - OZ
+          - GR
+          - TONE
+          - TONL
+        handlingUnit:
+          type: number
+          description: Handling Unit adjustment
+          format: double
+        handlingUnitUOM:
+          type: string
+          description: "Handling Unit Unit of Measure. Possible values: AY=Assembly,\
+            \ BBD=Bulk Bin Disposable, BBR=Bulk Bin Returnable, BD=Bundle, BEAM=Beam,\
+            \ BG=Bag, BGW=Billable Gross Weight, BIN=Bin, BK=Bucket, BL=Bales, BLK=Blank,\
+            \ BLOCK=Block, BO=Bottle, BR=Barrel, BS=Basket, BX=Box, C=Centimeters,\
+            \ CA=Case, CARBOY=Carboy, CBC=Containers of Bulk Cargo, CC=Cubic Centimeter,\
+            \ CF=Cubic Feet, CG=Card, CI=Cubic Inches, CM=Cubic Meter, CN=Can, CNB=Container,\
+            \ LT. WGT. 8x8x20 Foot Air, CND=Container, Commercial Highway Lift, CNT=Container,\
+            \ COI=Coil, CQ=Cartridge, CRT=Crate, CS=Cassete, CTN=Carton, CTO=Configure\
+            \ To Order Units, CU=Cuts, CUBITAINER=Cubitainer, CW=Hundred Weight, CY=Cubic\
+            \ Yard, CYL=Cylinder, DBK=Dry Bulk, DELCAN=Delcan, DR=Drum, DW=Dewar,\
+            \ DZ=Dozen, EA=Each, ECF=Equivalent Case Factor, FSU=Floor Space Units,\
+            \ FT=Feet, GA=Gallon, GAYLORD=Gaylord, GOH=Garment on Hangers, GR=Gram,\
+            \ GY=Gross Yard, HAF=HD A Frame, HF=Hundred Feet, HG=Hectogram, HO=Hopper,\
+            \ HR=Hours, HSF=Hundred Square Feet, HSL=Half Slab, HU=Hundreds, HUL=Half\
+            \ Pallet, IM=Impressions, IN=Inches, IW=Inch-Width Roll, JO=Joint, JR=Jar,\
+            \ K=Kilograms, KEG=Keg, KG=Kilograms, KM=Kilometers, KT=Kit, LAF=LTL A\
+            \ Frame, LB=Pound, LF=Linear Feet, LINE=Line, LM=Linear Meters, LOOSE=Loose,\
+            \ LOT=Lot, LT=Liter, LY=Lineal Yard, MF=Thousand Feet, MF2=Thousands of\
+            \ Square Yards, MG=Metric Gross Ton, MK=Marker, ML=Milliliter, MLG=Milligram,\
+            \ MS=Thousand square inch, MSC=Misc, MT=Meters, MX=Mixed, MY=Thousand\
+            \ Yard, OCT=Octabin, OP=2-PK, OZ=Ounce, P3=3-PK, P4=4-PK, P5=5-PK, P6=6-PK,\
+            \ P8=8-PK, PAF=Pallet - 4 Way, PAL=Pail, PAT=Pallet - 2 Way, PB=Polyethylene\
+            \ Bags, PCS=Piece, PD=Pad, PH=Pack, PKG=Package, PL=Pallet Layer, PLN=Pipeline,\
+            \ PLT=Pallet, PLTTK=Pallet Tank, PR=Pair, PRT=Part, PT=Pint, QP=Quarter\
+            \ Pallet, QT=Quart, RA=Rails, RAK=Rack, RC=Roll Change, REL=Reel, RL=Roll,\
+            \ RM=Ream, SF=Square Feet, SH=Sheet, SI=Square Inches, SK=Sack, SLB=Slab,\
+            \ SLGBG=Sling Bag, SM=Square Meter, SO=Spool, SQYD=Square Yard, SS=Slipsheets,\
+            \ SSK=Supersacks, ST=Set, STE=Stere, SV=Skid, TB=Tube, TE=Totes, TH=Per\
+            \ Thousand, TI=Thousand Inch, TK=Tank, TL=Truckload, TON=Ton, TONL=Long\
+            \ Ton (British Ton), TONNE=Metric Tonnes, TONNER=Tonner, TP=10-PK, TU=Thousands\
+            \ of Yards, TUB=Tub, TW=Thousand Sheets, TY=Tray, UL=Pallet/Unit Load,\
+            \ UN=Unit, UNP=Unpacked, VI=Vial, WRP=Wrapped, YD=Yard, YT=Tens of Yards"
+          enum:
+          - AY
+          - BBD
+          - BBR
+          - BD
+          - BEAM
+          - BG
+          - BGW
+          - BIN
+          - BK
+          - BL
+          - BLK
+          - BLOCK
+          - BO
+          - BR
+          - BS
+          - BX
+          - C
+          - CA
+          - CARBOY
+          - CBC
+          - CC
+          - CF
+          - CG
+          - CI
+          - CM
+          - CN
+          - CNB
+          - CND
+          - CNT
+          - COI
+          - CQ
+          - CRT
+          - CS
+          - CTN
+          - CTO
+          - CU
+          - CUBITAINER
+          - CW
+          - CY
+          - CYL
+          - DBK
+          - DELCAN
+          - DR
+          - DW
+          - DZ
+          - EA
+          - ECF
+          - FSU
+          - FT
+          - GA
+          - GAYLORD
+          - GOH
+          - GR
+          - GY
+          - HAF
+          - HF
+          - HG
+          - HO
+          - HR
+          - HSF
+          - HSL
+          - HU
+          - HUL
+          - IM
+          - IN
+          - IW
+          - JO
+          - JR
+          - K
+          - KEG
+          - KG
+          - KM
+          - KT
+          - LAF
+          - LB
+          - LF
+          - LINE
+          - LM
+          - LOOSE
+          - LOT
+          - LT
+          - LY
+          - MF
+          - MF2
+          - MG
+          - MK
+          - ML
+          - MLG
+          - MS
+          - MSC
+          - MT
+          - MX
+          - MY
+          - OCT
+          - OP
+          - OZ
+          - P3
+          - P4
+          - P5
+          - P6
+          - P8
+          - PAF
+          - PAL
+          - PAT
+          - PB
+          - PCS
+          - PD
+          - PH
+          - PKG
+          - PL
+          - PLN
+          - PLT
+          - PLTTK
+          - PR
+          - PRT
+          - PT
+          - QP
+          - QT
+          - RA
+          - RAK
+          - RC
+          - REL
+          - RL
+          - RM
+          - SF
+          - SH
+          - SI
+          - SK
+          - SLB
+          - SLGBG
+          - SM
+          - SO
+          - SQYD
+          - SS
+          - SSK
+          - ST
+          - STE
+          - SV
+          - TB
+          - TE
+          - TH
+          - TI
+          - TK
+          - TL
+          - TON
+          - TONL
+          - TONNE
+          - TONNER
+          - TP
+          - TU
+          - TUB
+          - TW
+          - TY
+          - UL
+          - UN
+          - UNP
+          - VI
+          - WRP
+          - YD
+          - YT
+        cube:
+          type: number
+          format: double
+        cubeUOM:
+          type: string
+          description: "Cube of Measure. Possible values: BR=Barrel, C=Centimeters,CCM=Cubic Centimeters, CF=Cubic Feet, CI=Cubic Inches, CM=Cubic Meter, DM3=Cubic Decimeter,GAL=Gallons,KL=Kiloliter,LT=Liters,MCF=Thousand Cubic Feet,PCT=Percent,SI=Square Inches"
+          enum:
+          - BR
+          - C
+          - CCM
+          - CF
+          - CI
+          - CM
+          - DM3
+          - GAL
+          - KL
+          - LT
+          - MCF
+          - PCT
+          - SI
+        reasonCode:
+          type: string
+          description: 'The reason for the update. Possible values: A1=Missed Delivery,
+            A2=Incorrect Address, A3=Indirect Delivery, A4=KDC Not Ready, A5=Unable
+            to Locate, A6=Address Corrected - Delivery Attempted, A7=Alternate Carrier
+            Failure Carrier Related, A8=KDC No Appointment Available, A9=KDC VAS not
+            ready, AA=Mis-sort, AB=Carrier Capacity, AC=Alternate Carrier Failure,
+            AD=Customer Requested Future Delivery, AE=Restricted Articles Unacceptable,
+            AF=Accident, AG=Consignee Related, AH=Driver Related, AI=Mechanical Breakdown,
+            AJ=Other Carrier Related, AK=Damaged, Rewrapped in Hub, AL=Previous Stop,
+            AM=Shipper Related, AN=Holiday - Closed, AO=Weather or Natural Disaster
+            Related, AP=Awaiting Export, AQ=Recipient Unavailable - Delivery Delayed,
+            AR=Improper International Paperwork, AS=Hold Due to Customs Documentation
+            Problems, AT=Unable to Contact Recipient for Broker Information, AU=Civil
+            Event Related Delay, AV=Exceeds Service Limitations, AW=Past Cut-off Time,
+            AX=Insufficient Pick-up Time, AY=Missed Pick-up, AZ=Alternate Carrier
+            Delivered, B1=Consignee Closed, B2=Trap for Customer, B4=Held for Payment,
+            B5=Held for Consignee, B8=Improper Unloading Facility or Equipment, B9=Receiving
+            Time Restricted, BA=Buffered Arrival, BB=Held per Shipper, BC=Missing
+            Documents, BD=Border Clearance, BE=Road Conditions, BF=Carrier Keying
+            Error, BG=Other, BH=Insufficient Time to Complete Delivery, BI=Cartage
+            Agent, BJ=Customer Wanted Earlier Delivery, BK=Prearranged Appointment,
+            BL=Held for Protective Service, BM=Flatcar Shortage, BN=Failed to Release
+            Billing, BO=Railroad Failed to Meet Schedule, BP=Load Shifted, BQ=Shipment
+            Overweight, BR=Train Derailment, BS=Refused by Customer, BT=Returned to
+            Shipper, C1=Waiting for Customer Pick-up, C2=Credit Hold, C3=Suspended
+            at Customer Request, C4=Customer Vacation, C5=Customer Strike, C6=Waiting
+            Shipping Instructions, C7=Waiting for Customer Specified Carrier, C8=Collect
+            on Delivery Required, C9=Cash Not Available From Consignee, CA=Customs
+            (Import or Export), CB=No Requested Arrival Date Provided by Shipper,
+            CC=No Requested Arrival Time Provided by Shipper, CD=Customer Changed,
+            CF=Customer First Available, CI=CARP Issue - Edit/Cancel ISA, CX=CARP
+            Technical Issue, CY=24/48 Hour Pickup Appt Required, CZ=CARP Issue - ISA
+            Confirmation Not Received, D1=Carrier Dispatch Error, D2=Driver Not Available,
+            DD_BD=Border Delay, DD_CA=Amazon Cancelled Shipment, DD_CC=Did Not Receive
+            ISA Confirmation, DD_CI=CARP Portal Would Not Accept ARN, DD_CP=Capacity,
+            DD_TD=Transit Delay, DD_TR=Traffic, DD_TT=Insufficient Transit Times,
+            DD_VD=Vendor Caused: Vendor Delay, DD_XF=Traffic Caused By FC, DO=DOT
+            Inspection, DP_AM=Vendor Requested Pickup Reschedule, DP_CA=Amazon Cancelled
+            Shipment, DP_CT=Capacity Issue, DP_DC=Shipped Via Different Carrier, DP_DI=DSP
+            Coordination of ISAs Between FCs, DP_DS=Non Daily Service Area, DP_FR=FC
+            Rescheduled Appointment, DP_LD=Vendor Loading Delay, DP_NF=No Freight
+            at Pickup, DP_RR=Delay in Receiving Tender, DP_SC=Delay Submitting CARP
+            to Amazon, DP_TP=Incorrect Tender Pick Up Information, DP_TR=Traffic,
+            DP_VC=Vendor Cancelled Pickup, DP_VL=Vendor Closed, DP_VN=Vendor Requires
+            48hr Notice, DP_VS=No Vendor Response When Scheduling Pick Up, DP_VV=Previous
+            Amazon Vendor Load Delay, DY=FC Load Delay-Late DMS/YMS Depart, F1=Non-Express
+            Clearance Delay, F2=International Non-carrier Delay, FD=FC Misreported
+            Deleted Appointment, FI=FC Load Delay-FC Admin Issues, FR=FC Misreported
+            Freight Redirect, HB=Held Pending Appointment, K1=Arrived at Customs,
+            LC=Lack of Capacity, MD=Medical, MI=Missing or Invalid Reason Code, MP_OF=Other
+            - Off schedule alert from Macropoint, MP_ON=Other - On schedule alert
+            from Macropoint, NA=Normal Appointment, NS=Normal Status, O1=OTC Combo
+            Orders, O2=OTC Late Delivery Note, P1=Processing Delay, P2=Waiting Inspection,
+            P3=Production Falldown, P4=Held for Full Carrier Load, PL=FC Load Delay
+            - Physical Loading Issues, PN=Prior Non-Amazon Load, RC=Reconsigned, RR=Delay
+            in Receiving Routing Email, S1=Delivery Shortage, SD=Shipment Delayed,
+            T1=Tractor With Sleeper Car Not Available, T2=Tractor, Conventional, Not
+            Available, T3=Trailer not Available, T4=Trailer Not Usable Due to Prior
+            Product, T5=Trailer Class Not Available, T6=Trailer Volume Not Available,
+            T7=Insufficient Delivery Time, TA=FC Load Delay - TOC Admin Error, TU=FC
+            Load Delay - Truck Utilization, X1=Carrier Turn Back, X2=Carrier Accepted
+            in Erro, X3=Client Canceled Load, X4=Client Requests Different Carrier,
+            X5=Client Change-Carrier May/May Not Meet Requirement, X6=Combined/Consolidated
+            Shipment, X7=Receiver Related, XX=Shipper Routing Violation, Z10=Customer - Planning Error/Production Change'
+          enum:
+          - A1
+          - A2
+          - A3
+          - A4
+          - A5
+          - A6
+          - A7
+          - A8
+          - A9
+          - AA
+          - AB
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AH
+          - AI
+          - AJ
+          - AK
+          - AL
+          - AM
+          - AN
+          - AO
+          - AP
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AV
+          - AW
+          - AX
+          - AY
+          - AZ
+          - B1
+          - B2
+          - B4
+          - B5
+          - B8
+          - B9
+          - BA
+          - BB
+          - BC
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BK
+          - BL
+          - BM
+          - BN
+          - BO
+          - BP
+          - BQ
+          - BR
+          - BS
+          - BT
+          - C1
+          - C2
+          - C3
+          - C4
+          - C5
+          - C6
+          - C7
+          - C8
+          - C9
+          - CA
+          - CB
+          - CC
+          - CD
+          - CF
+          - CI
+          - CX
+          - CY
+          - CZ
+          - D1
+          - D2
+          - DD_BD
+          - DD_CA
+          - DD_CC
+          - DD_CI
+          - DD_CP
+          - DD_TD
+          - DD_TR
+          - DD_TT
+          - DD_VD
+          - DD_XF
+          - DO
+          - DP_AM
+          - DP_CA
+          - DP_CT
+          - DP_DC
+          - DP_DI
+          - DP_DS
+          - DP_FR
+          - DP_LD
+          - DP_NF
+          - DP_RR
+          - DP_SC
+          - DP_TP
+          - DP_TR
+          - DP_VC
+          - DP_VL
+          - DP_VN
+          - DP_VS
+          - DP_VV
+          - DY
+          - F1
+          - F2
+          - FD
+          - FI
+          - FR
+          - HB
+          - K1
+          - LC
+          - MD
+          - MI
+          - MP_OF
+          - MP_ON
+          - NA
+          - NS
+          - O1
+          - O2
+          - P1
+          - P2
+          - P3
+          - P4
+          - PL
+          - PN
+          - RC
+          - RR
+          - S1
+          - SD
+          - T1
+          - T2
+          - T3
+          - T4
+          - T5
+          - T6
+          - T7
+          - TA
+          - TU
+          - X1
+          - X2
+          - X3
+          - X4
+          - X5
+          - X6
+          - X7
+          - XX
+          - Z10
+        secondaryReasonCode:
+          type: string
+        reasonDescription:
+          type: string
+        loadUnloadActivityType:
+          type: string
+          description: 'Load/Unload activity type. Possible values: LIVELOAD=Live
+            Load, PRELOADED=Pre-Loaded, DRIVERLOAD=Driver Load, DRIVERUNLOAD=Driver
+            Unload, LIVEUNLOAD=Live Unload, DROP=Drop'
+          enum:
+          - LIVELOAD
+          - PRELOADED
+          - DRIVERLOAD
+          - DRIVERUNLOAD
+          - LIVEUNLOAD
+          - DROP
+        dateTime:
+          type: string
+          description: The date and time of the event in yyyy-MM-dd HH:mm format
+          example: 2020-12-31 23:59
+        timeZone:
+          type: string
+          description: The time zone GMT offset, such as GMT-06:00 or GMT+10:00
+          example: GMT-06:00
+        lastKnownPosition:
+          type: string
+        statusCode:
+          type: string
+          description: 'Status code. Max length 10. For example: X6, X1, X3, D1, AF,
+            AG, CD, CP, X4, P1, X2, XB, AB, AV, NS, AJ, SD, X9, AA, S1'
+        secondaryStatusCode:
+          type: string
+          description: Secondary status code. Max length 64.
+        statusDescription:
+          type: string
+          description: Status description. Max length 1000.
+        latitude:
+          type: string
+        longitude:
+          type: string
+        distanceToNextEvent:
+          type: number
+          description: Distance to next event in miles
+          format: double
+        address:
+          $ref: '#/components/schemas/Address'
+        locationName:
+          type: string
+          description: Check call location name. Max length 50.
+        driverFirstName:
+          type: string
+          description: Driver first name. Max length 40.
+        driverLastName:
+          type: string
+          description: Driver last name. Max length 60.
+        driverPhone:
+          type: string
+          description: Driver phone number. Max length 30.
+        temperature:
+          type: number
+          description: Current reefer container temperature
+          format: double
+        temperatureUOM:
+          type: string
+          description: 'Temperature Unit Unit of Measure. Possible values: F=Fahrenheit,
+            C=Celsius'
+          enum:
+          - F
+          - C
+        comments:
+          type: array
+          description: Max single comment length is 2000
+          items:
+            type: string
+        trackingNumber:
+          type: string
+          description: Tracking number
+        containerNumber:
+          type: string
+          example: ULX-12345795
+          description: Container number. Max length 30.
+      description: Check Call
+    Contact:
+      required:
+      - name
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - ACCOUNT
+          - BILL_TO
+          - BUYER
+          - CARRIER
+          - LOCATION
+          - SELLER
+          - SOLICITOR
+        name:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        title:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        phoneNumber:
+          type: string
+        phoneExtension:
+          type: string
+        faxNumber:
+          type: string
+        email:
+          type: string
+      description: Contact
+    Location:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Transplace location Id
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        faxNumber:
+          type: string
+        contact:
+          $ref: '#/components/schemas/Contact'
+      description: Location
+    Reference:
+      required:
+      - name
+      - value
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+          enum:
+          - LOOKUP
+          - UPDATE
+      description: Reference
+    SupportInfo:
+      required:
+      - name
+      - value
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      description: Support Information
+    Address:
+      required:
+      - address1
+      - city
+      - zip
+      type: object
+      properties:
+        address1:
+          type: string
+          description: Address line 1. Max length 55
+        address2:
+          type: string
+        address3:
+          type: string
+        city:
+          type: string
+          description: City name. Max length 50
+        county:
+          type: string
+        state:
+          type: string
+          description: State code. Max length 2. Example, TX
+        zip:
+          type: string
+          description: ZIP/Postal code. Max length 12
+        country:
+          type: string
+          description: Country code. Max length 3. Example, USA
+        latitude:
+          type: string
+        longitude:
+          type: string
+      description: Address
+    BidRequest:
+      required:
+      - auctionId
+      - bidAmount
+      - scac
+      type: object
+      properties:
+        auctionId:
+          type: integer
+          description: Auction to place a bid for
+          format: int64
+          example: 3256278
+        bidAmount:
+          type: number
+          description: Bid Amount
+          format: double
+          example: 200.0
+        bidCurrency:
+          type: string
+          description: Curreny for the bid amount
+          example: USD
+        bidderEmail:
+          type: string
+          description: Bidder email
+          example: abc@xyz.com
+        bidderPhone:
+          type: string
+          description: Bidder Phone Number
+          example: 1234567890
+        scac:
+          type: string
+          description: Valid SCAC to be used for bidding
+          example: 0CCC
+        underlyingCarrier:
+          type: string
+          description: Underlying Carrier
+          example: SCAC
+        underlyingCarrierName:
+          type: string
+          description: Underlying Carrier Name
+          example: Carrier Name
+        underlyingBid:
+          type: number
+          description: Underlying Bid amount
+          format: double
+          example: 200.0
+        technologyFees:
+          type: number
+          description: Technology Fees amount
+          format: double
+          example: 100.0
+        underlyingCarrierScore:
+          type: string
+          description: Underlying Carrier Score
+          example: value
+        notes:
+          type: string
+          description: Notes
+          example: notes
+      description: Place Bid Request Information
+    BidSuccessResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: Response data list
+          items:
+            "$ref": "#/components/schemas/BidSuccessData"
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies the number of items returned
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+      description: Place Bid Response returned
+    BidSuccessData:
+      type: object
+      properties:
+        auctionId:
+          type: integer
+          format: int64
+          description: Auction Id
+        message:
+          type: string
+          example: Bid on Auction was submitted successfully
+          description: Success message
+      description: Success Response Information
+    TenderAcceptReject:
+      required:
+      - action
+      - scac
+      type: object
+      properties:
+        domainId:
+          type: integer
+          description: Customer Domain Id provided by Transplace.
+          format: int64
+          example: 123456789
+        accountId:
+          type: integer
+          description: Customer Account Id provided by Transplace.
+          format: int64
+          example: 123456789
+        shipmentLookupReferenceName:
+          type: string
+          description: Name of the reference to use for looking up the load.
+          example: SHIP ID
+        shipmentLookupReferenceValue:
+          type: string
+          description: Reference value used to lookup the load.
+          example: ABC123456789
+        scac:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: Standard Carrier Alpha Code. Max length 10.
+        action:
+          type: string
+          description: 'The action to be taken. Possible values: ACCEPT = Carrier
+            advice accept, REJECT= Carrier Advice reject'
+          enum:
+          - ACCEPT
+          - REJECT
+        equipmentNumber:
+          type: string
+          description: Trailer/Container Id number
+        loadId:
+          type: integer
+          description: The Transplace load Id. If not provided, the load will be looked
+            up using primaryReferenceName/Value
+          format: int64
+          example: 123456789
+        reasonCode:
+          type: string
+          description: 'The Carrier Removal Reason code, Possible values are AF =
+            _Accident, AH = Driver Related, AJ = Other Carrier Related, AM = Shipper
+            Related, AO = Weather or Natural Disaster Related, AY = Missed Pick-up,
+            BE = Road Conditions, BG = Other, D1 = Carrier Dispatch Error, D2 = Driver
+            Not Available, T3 = Trailer not Available, XX = Shipper Routing Violation,
+            AC = Alternate Carrier Failure, X1 = Carrier Turn Back, X2 = Carrier Accepted
+            in Error, X3 = Client Canceled Load, X4 = Client Requests Different Carrier,
+            X5 = Client Change-Carrier May/May Not Meet Requirement, X6 = Combined/Consolidated
+            Shipment, X7 = Receiver Related '
+          enum:
+          - AF
+          - AH
+          - AJ
+          - AM
+          - AO
+          - AY
+          - BE
+          - BG
+          - D1
+          - D2
+          - T3
+          - XX
+          - AC
+          - X1
+          - X2
+          - X3
+          - X4
+          - X5
+          - X6
+          - X7
+        brokerageCarrier:
+          type: string
+          description: Brokerage Standard Carrier Alpha Code. Max length 10.
+        references:
+          type: array
+          description: level references. Must include at least the primary reference.
+          items:
+            $ref: '#/components/schemas/Reference'
+        amount:
+          type: number
+          description: Rate Amount
+          format: double
+        rateType:
+          type: string
+          description: 'Rate Type. Possible values: CONTRACT, SPOT'
+          enum:
+          - CONTRACT
+          - SPOT
+        parcelPackageResponses:
+          type: "array"
+          description: "List of parcel packages"
+          items:
+            $ref: "#/components/schemas/ParcelPackageResponse"
+      description: Carrier Tender Accept/Reject
+    ParcelPackageResponse:
+      type: "object"
+      properties:
+        freightId:
+          type: "integer"
+          format: "int64"
+          example: 123456
+          description: "Summary freight id"
+        references:
+          type: "array"
+          description: "Include references if present."
+          items:
+            $ref: "#/components/schemas/Reference"
+        supportInfos:
+          type: "array"
+          description: "Include supportInfos if present."
+          items:
+            $ref: "#/components/schemas/SupportInfo"
+        label:
+          type: "string"
+          example: "https://u.tspl.co/abc"
+          description: "Label"
+      description: "Parcel Package Response"
+    AuctionSearchRequest:
+      type: object
+      properties:
+        accounts:
+          type: array
+          description: Accounts to be used for matching Auctions
+          example:
+          - TEST1
+          items:
+            type: string
+        auctionIds:
+          type: array
+          description: List of Auction ids to be searched
+          example:
+          - "123456"
+          items:
+            type: integer
+            format: int64
+        auctionStatus:
+          type: array
+          description: Auction Status
+          example:
+          - Running
+          items:
+            type: string
+            enum:
+            - Running
+            - Cancelled
+            - Ended
+            - Awarded
+        bidStatus:
+          type: array
+          description: Auction Bid Status
+          example:
+          - Bid
+          items:
+            type: string
+            enum:
+            - None
+            - Watch
+            - Bid
+            - Declined
+            - Rejected
+        closeEndDate:
+          type: string
+          description: Auction Close End date YYYY-MM-DD HH:mm
+          example: 2020-12-20 08:00
+        closeStartDate:
+          type: string
+          description: Auction Close Start date YYYY-MM-DD HH:mm
+          example: 2020-12-20 08:00
+        destinationCity:
+          type: string
+          description: Auction destination city
+          example: IVY HILL
+        destinationCountry:
+          type: string
+          description: Auction destination country
+          example: USA
+        destinationEndDate:
+          type: string
+          description: Auction Destination End date YYYY-MM-DD HH:mm
+          example: 2020-12-20 08:00
+        destinationRadius:
+          type: number
+          description: Auction destination radius
+          format: double
+          example: 50.0
+        destinationStartDate:
+          type: string
+          description: Auction Destination Start date YYYY-MM-DD HH:mm
+          example: 2020-12-20 08:00
+        destinationState:
+          type: string
+          description: Auction destination state
+          example: AR
+        destinationZip:
+          type: string
+          description: Auction destination Zip
+          example: "12345"
+        equipmentLength:
+          type: number
+          description: Equipment Length
+          format: double
+          example: 50.0
+        equipmentTypes:
+          type: array
+          description: Auction Equipment Types
+          example:
+          - Dry Van
+          - Flat Bed
+          items:
+            type: string
+        openEndDate:
+          type: string
+          description: Auction Open End date YYYY-MM-DD HH:mm
+          example: 2020-12-20 08:00
+        openStartDate:
+          type: string
+          description: Auction Open Start date YYYY-MM-DD HH:mm
+          example: 2020-12-20 08:00
+        originCity:
+          type: string
+          description: Auction origin city
+          example: IVY HILL
+        originCountry:
+          type: string
+          description: Auction origin country
+          example: USA
+        originEndDate:
+          type: string
+          description: Auction Origin End date YYYY-MM-DD HH:mm
+          example: 2020-12-20 08:00
+        originRadius:
+          type: number
+          description: Auction origin radius
+          format: double
+          example: 25.0
+        originStartDate:
+          type: string
+          description: Auction Origin Start date YYYY-MM-DD HH:mm
+          example: 2020-12-20 08:00
+        originState:
+          type: string
+          description: Auction origin state
+          example: AR
+        originZip:
+          type: string
+          description: Auction origin Zip
+          example: "38118"
+        scac:
+          type: string
+          description: 'SCAC to be used for Auction Search '
+          example: 0CCC
+        searchType:
+          type: string
+          description: Specifies the type of Auction Search
+          example: MY BIDS
+          enum:
+          - MY BIDS
+          - ALL BIDS
+      description: Auction Search Request Information
+    AuctionSearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: Auction Search Response data list
+          items:
+            $ref: '#/components/schemas/AuctionSearchDetails'
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies the number of items returned
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+      description: Response returned
+    Currency:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "USD"
+          description: "Currency code"
+        description:
+          type: string
+          example: "US Dollar"
+          description: "Description of the currency"
+        id:
+          type: integer
+          example: 100349
+          description: "Unique identifier for the currency"
+        monetaryId:
+          type: integer
+          example: 100285
+          description: "Monetary identifier"
+        sid:
+          type: string
+          example: "USD"
+          description: "Short identifier for the currency"
+        i18nDescription:
+          type: string
+          example: "US Dollar"
+          description: "Internationalized description of the currency"
+    AuctionSearchDetails:
+      type: object
+      properties:
+        account:
+          type: string
+          example: TEST_ACC
+          description: Auction account name
+        auctionId:
+          type: integer
+          format: int64
+          example: 212831
+          description: Auction ID
+        auctionType:
+          type: string
+          example: OPEN
+          description: Auction Type
+        bestBidAmount:
+          type: string
+          example: 200 USD
+          description: Best or lowest bid placed on the Auction so far
+        bidStatus:
+          type: string
+          example: BID
+          description: Bid status
+        comments:
+          type: array
+          description: Comments
+          items:
+            $ref: '#/components/schemas/Comment'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        deliveryDateEarliest:
+          type: string
+          example: '12/20/2020 17:00'
+          description: Auction Earliest Delivery Date
+        deliveryDateLatest:
+          type: string
+          example: '12/20/2020 17:00'
+          description: Auction Latest Delivery Date
+        destinationCityState:
+          type: string
+          example: 'FRISCO, TX'
+          description: Auction Destination City State
+        destinationName:
+          type: string
+          example: DESTINATION TEST
+          description: Auction Destination Location Name
+        distance:
+          type: string
+          example: 100 MI
+          description: Total distance of the Auction load
+        equipmentType:
+          type: array
+          description: Equipment Type of the Auction load
+          items:
+            type: string
+        hazmat:
+          type: string
+          example: 'N'
+          description: Indicates if the Auction is on a hazmat load
+        intermediateStops:
+          type: array
+          description: Provides intermediate stop details if exists on Auction
+          items:
+            $ref: '#/components/schemas/IntermediateLocation'
+        maxBid:
+          type: string
+          example: 100 USD
+          description: Indicates the next possible bid that could be placed on Auction
+        mode:
+          type: string
+          example: LTL
+          description: Auction Mode Type
+        originCityState:
+          type: string
+          example: 'FRISCO, TX'
+          description: Auction Origin City State
+        originName:
+          type: string
+          example: ORIGIN TEST
+          description: Auction Origin Location Name
+        pickupDateEarliest:
+          type: string
+          example: '12/20/2020 08:00'
+          description: Auction Earliest Pickup Date
+        pickupDateLatest:
+          type: string
+          example: '12/20/2020 08:00'
+          description: Auction Latest Pickup Date
+        startDate:
+          type: string
+          example: '12/20/2020 08:00'
+          description: Auction Start Date
+        status:
+          type: string
+          example: RUNNING
+          description: Auction Status
+        stops:
+          type: integer
+          format: int64
+          example: 2
+          description: Denotes the number of intermediate stops existing on Auction
+        tankerEndorsement:
+          type: string
+          example: 'N'
+          description: Indicates if the Auction is on a Tanker Endorsed load
+        timeLeft:
+          type: string
+          description: Time left to Place a bid on this Auction
+        weight:
+          type: string
+          example: 5000 LBS
+          description: Total weight of the Auction load
+        yourBids:
+          type: array
+          description: Includes previous bid information for that carrier if exists
+          items:
+            $ref: '#/components/schemas/YourBid'
+      description: Auction Search Detail Information
+    IntermediateLocation:
+      type: object
+      properties:
+        cityStateZip:
+          type: string
+          description: Address1, City, State, Zip and Country for the Intermediate
+            location of Auction load
+          example: 3010 GAYLORD PARKWAY, FRISCO, TX, 75034, USA
+        earliestAppointment:
+          type: string
+          example: '12/20/2020 08:00'
+          description: Earliest appointment date for the Intermediate location
+        latestAppointment:
+          type: string
+          example: '12/20/2020 08:00'
+          description: Latest appointment date for the Intermediate location
+    YourBid:
+      type: object
+      properties:
+        bidAmount:
+          type: number
+          format: double
+          example: 200
+          description: Amount bid by the carrier
+        contractAmount:
+          type: number
+          format: double
+          example: 500
+          description: Contracted Amount of the carrier. Exists only for Contracted Auctions
+        createdDate:
+          type: string
+          example: '12/20/2020 08:00'
+          description: Bid created date
+        scac:
+          type: string
+          example: TEST
+          description: SCAC for which the bid was placed
+    Comment:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Comment Date
+          example: 12/20/2020 08:00
+        type:
+          type: string
+          description: Comment Type
+          example: CARRIER
+        value:
+          type: string
+          description: Comment Text
+          example: Call 1-800-111-2222 upon arrival
+    UploadDocRequest:
+      type: object
+      properties:
+        documentType:
+          type: string
+          example: BOL
+          description: |-
+            The following values are allowed:
+            BOL, POD, AUTH_DOC, CARRIER_INVOICE, CUSTOMER_BOL, CUSTOMER_POD, CUSTOMER_RECEIPT, INSURANCE_FAX, LUMPER_RECEIPT, OTHER, PALLET_RECEIPT, PERMIT, SCALE_TICKET, SPOT_RATE_CARR_FAX, SPOT_RATE_CUST_FAX, WASHOUT_SLIP, FDA_INSTRUCTIONS, MEAT_INSTRUCTIONS, LOADING_INSTRUCTIONS, UNLOADING_INSTRUCTIONS, TRAILER_INTERCHANGE_AGREEMENT, TRAILER_INSPECTION, PHOTOS, CMR, DETENTION_DOCUMENT
+        fileDataByteArray:
+          type: array
+          description: File content as byte array
+          items:
+            type: string
+            format: byte
+        fileName:
+          type: string
+          description: Name of file to be uploaded
+        scac:
+          type: string
+          example: ABCD
+          description: Standard Carrier Alpha Code
+        transplaceLoadNumber:
+          type: integer
+          format: int64
+          example: 123456789
+          description: Transplace specific load number also referred as mode execution Id (meId)
+      description: Upload Document Request Data
+    UploadDocResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UploadDocMessage'
+        success:
+          type: boolean
+          description: Success status of request received with either true or false
+          example: true
+        total:
+          type: integer
+          description: Total specifies number of items if response data is a list
+          format: int32
+          example: 1
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+      description: Upload Document Response Data
+    UploadDocMessage:
+      type: object
+      properties:
+        transplaceLoadNumber:
+          type: integer
+          description: Transplace specific load number(meId) of uploaded document
+          format: int64
+          example: 123456789
+        uploadedDocFileName:
+          type: string
+          description: Uploaded Document File Name
+        uploadedDocSCAC:
+          type: string
+          description: Uploaded Document SCAC
+          example: ABCD
+        uploadedDocType:
+          type: string
+          description: Uploaded Document Type
+          example: BOL
+      description: Upload Document Response Details
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 with Client Credentials grant type
+      flows:
+        clientCredentials:
+          tokenUrl: https://uatapi.uberfreight.com/oauth2/accesstoken
+          scopes: {}

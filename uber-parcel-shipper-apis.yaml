@@ -1,0 +1,1713 @@
+openapi: 3.0.3
+info:
+  title: UF Parcel Shipper APIs
+  description: |
+    APIs for Shippers to Integrate with Uber Freight Parcel Services
+
+    Environment specific base urls -
+
+    **UAT** - **uatapi.uberfreight.com**
+
+    **PROD** - **api.uberfreight.com**
+  version: v1
+servers:
+  - url: https://uatapi.uberfreight.com/tp-api/parcel/shipper
+security:
+  - OAuth2: []
+tags:
+  - name: health
+  - name: shipper
+  - name: tracking
+  - name: webhooks
+paths:
+  /v2/health-check:
+    get:
+      tags:
+        - health
+      summary: Health Check API
+      description: |
+        This API is used to validate connectivity with UF Shipper APIs.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-GET-healthCheck-DIRECT-healthCheck.uat
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v2/package-details:
+    post:
+      tags:
+        - shipper
+      summary: Package Details API
+      description: |
+        This API is used to submit a Parcel Packages Details.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-POST-customer-post-shipper-package-details-KAFKA-parcel.shipper.inboundDocumentt.uat
+      requestBody:
+        description: Package details posted by customer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackageDetailsRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PackageDetailsRequest'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v3/package-details:
+    post:
+      tags:
+        - shipper
+      summary: v3 Package Details API
+      description: |
+        This API is used to submit a Parcel Packages Details.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-POST-customer-post-shipper-package-details-v3-KAFKA-parcel.shipper.inboundDocumentt.uat
+      requestBody:
+        description: Package details posted by customer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackageDetailsRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PackageDetailsRequest'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+
+    put:
+      tags:
+        - shipper
+      summary: v3 Package Details update API
+      description: |
+        This API is used to update a Parcel Packages Details.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-PUT-customer-post-shipper-package-details-v3-KAFKA-parcel.shipper.inboundDocumentt.uat
+      requestBody:
+        description: Package details update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackageDetailsRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PackageDetailsRequest'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v2/shipment-status:
+    post:
+      tags:
+        - shipper
+      summary: Shipment Status API
+      description: |
+        This API is used to submit Shipment Status Request.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-POST-customer-post-goods-issued-KAFKA-tms.inboundDocument.uat
+      requestBody:
+        description: Goods issued posted by customer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentStatusRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ShipmentStatusRequest'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v3/shipment-status:
+    post:
+      tags:
+        - shipper
+      summary: v3 Shipment Status API
+      description: |
+        This API is used to submit Shipment Status Request.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-v3-POST-customer-post-goods-issued-KAFKA-tms.inboundDocument.uat
+      requestBody:
+        description: Goods issued posted by customer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentStatusRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ShipmentStatusRequest'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v3/package-details/{packageId}:
+    delete:
+      tags:
+        - shipper
+      summary: delete package API
+      description: |
+        This API is used to delete a package.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: delete-package
+      parameters:
+        - name: packageId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+
+  /v3/package-details/label:
+    get:
+      tags:
+        - shipper
+      summary: fetch Label  API
+      description: |
+        This API is used to fetch Label.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: fetchLabel
+      parameters:
+        - name: packageId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: unique id of the package
+
+        - name: trackingId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: trackingId of the package
+
+        - name: labelFormat
+          in: query
+          required: true
+          schema:
+            type: string
+          description: expected label format ZPL
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseModelLabelResponse'
+  /v3/rates:
+    post:
+      tags:
+        - shipper
+      summary: Rates  API
+      description: |
+        This API is used to  Fetch Rates.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-POST-rate-KAFKA-tms.inboundDocument.uat
+      requestBody:
+        description: Rates
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RateRequest'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseModelRateResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseModelRateResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v3/shipments:
+    post:
+      tags:
+        - shipper
+      summary: Create Shipment  API
+      description: |
+        This API is used to  Create Shipment.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-POST-create-shipment-KAFKA-tms.inboundDocument.uat
+      requestBody:
+        description: Create Shipment
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ApiResponseModelShipmentResponse'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseModelShipmentResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseModelShipmentResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v3/tracking/events:
+    get:
+      tags:
+        - tracking
+      summary: Query Tracking Events
+      description: Retrieve parcel tracking events by either **trackingId** or **packageId**. Optionally return only the last event.
+      operationId: queryTrackingEvents
+      parameters:
+        - name: packageId
+          in: query
+          description: Fetch events for this package ID
+          required: false
+          schema:
+            type: string
+        - name: trackingId
+          in: query
+          description: Fetch events for this tracking ID (takes precedence)
+          required: false
+          schema:
+            type: string
+        - name: lastOnly
+          in: query
+          description: If `true`, return only the most recent event
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Fetched Tracking Events successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchTrackingEventsApiResponse'
+        '400':
+          description: Bad Request – one of `trackingId` or `packageId` must be provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '500':
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /v3/webhook:
+    get:
+      tags:
+        - webhooks
+      summary: Query existing webhook subscription
+      description: Retrieve the configured webhook URL and subscribed events.
+      operationId: queryWebhook
+      responses:
+        200:
+          description: Webhook found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookInfoResponse'
+        400:
+          description: No Webhook Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+              examples:
+                noWebhook:
+                  summary: No webhook found
+                  value:
+                    errors:
+                      - type: NOT_FOUND
+                        message: No Webhook Found
+                    traceId: trace-id-123
+                    total: 0
+                    success: false
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+    post:
+      tags:
+        - webhooks
+      summary: Register a new webhook
+      description: |
+        Create a webhook subscription.
+        Fails if a webhook already exists
+      operationId: registerWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInfo'
+      responses:
+        200:
+          description: Webhook created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+              examples:
+                success:
+                  summary: Webhook created
+                  value:
+                    success: true
+                    data:
+                      message: "Webhook created successfully"
+                    traceId: "trace-id-123"
+                    total: 1
+        400:
+          description: A webhook already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+              examples:
+                alreadyExists:
+                  summary: Duplicate subscription error
+                  value:
+                    errors:
+                      - type: BAD_REQUEST
+                        message: "A Webhook already exists"
+                    traceId: "trace-id-123"
+                    total: 0
+                    success: false
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+    put:
+      tags:
+        - webhooks
+      summary: Update an existing webhook
+      description: |
+        Update the webhook URL and subscribed events.  
+        Fails with 404 if no webhook is already registered.  
+      operationId: updateWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInfo'
+      responses:
+        200:
+          description: Webhook updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+              examples:
+                success:
+                  summary: Updated subscription
+                  value:
+                    success: true
+                    data:
+                      message: "Webhook updated successfully"
+                    traceId: "trace-id-123"
+                    total: 1
+        400:
+          description: No Webhook Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+              examples:
+                noWebhook:
+                  summary: Missing subscription error
+                  value:
+                    errors:
+                      - type: NOT_FOUND
+                        message: "No Webhook Found"
+                    traceId: "trace-id-123"
+                    total: 0
+                    success: false
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+    delete:
+      tags:
+        - webhooks
+      summary: Delete all webhooks
+      description: Remove every webhook subscription.
+      operationId: deleteAllWebhooks
+      responses:
+        200:
+          description: All webhooks deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+              examples:
+                deletedAll:
+                  summary: Deletion confirmation
+                  value:
+                    success: true
+                    data:
+                      message: "Request is Successful. Trace id provided for future reference"
+                    traceId: "trace-id-123"
+                    total: 1
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+
+components:
+  schemas:
+    HealthCheckResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        data:
+          description: HealthCheck response returned by the service.
+          $ref: "#/components/schemas/HealthCheckMessage"
+      description: HealthCheck Response returned
+      xml:
+        name: healthCheckResponse
+    HealthCheckMessage:
+      type: object
+      properties:
+        environment:
+          type: string
+          example: prod
+          description: Hosted environment
+      description: Health Check Message
+    ErrorApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        errors:
+          type: array
+          description: Error list
+          items:
+            $ref: "#/components/schemas/ApiError"
+      xml:
+        name: errorResponse
+      description: Error response returned
+    ApiError:
+      type: object
+      properties:
+        type:
+          type: string
+          example: INTERNAL_SERVER_ERROR
+          description: Error Type
+        message:
+          type: string
+          example: Internal error occurred. Trace id provided for reference. Please try again later.
+          description: Error message
+      description: API Error Info
+    AckMessage:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message with success acknowledgment
+      description: Ack Message
+    AckMessageResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        data:
+          description: Ack response returned by the service.
+          $ref: "#/components/schemas/AckMessage"
+      description: Acknowledgement Response returned
+      xml:
+        name: ackMessageResponse
+    BasePackage:
+      required:
+        - destinationLocation
+        - dimensions
+        - originLocation
+        - returnLocation
+        - packageId
+        - requestedDeliveryDateTime
+        - requestedPickupDateTime
+        - weight
+        - weightUOM
+      type: object
+      properties:
+        packageId:
+          type: string
+          description: Unique package Id and accepts up to 128 Characters
+          example: "#1234567"
+        weight:
+          type: number
+          description: Package Weight
+          format: double
+          example: 50.0
+        weightUOM:
+          type: string
+          description: Weight Unit Of Measure
+          example: LBS
+          enum:
+            - KG
+            - LBS
+            - OZ
+        requestedDeliveryDateTime:
+          type: string
+          description: Package Delivery Date Time and supported format yyyy-MM-ddTHH:mm:ssZ
+          example: 2024-12-12T13:45:22Z
+        requestedPickupDateTime:
+          type: string
+          description: Package Pickup Date Time and supported format yyyy-MM-ddTHH:mm:ssZ
+          example: 2024-12-12T13:45:22Z
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        originLocation:
+          $ref: '#/components/schemas/ParcelLocation'
+        destinationLocation:
+          $ref: '#/components/schemas/ParcelLocation'
+        returnLocation:
+          $ref: '#/components/schemas/ParcelLocation'
+        cartonGroupingId:
+          type: string
+          description: Carton Grouping Id and accepts up to 128 Characters
+        notes:
+          type: string
+          description: Notes and accepts up to 1024 Characters
+        declareValue:
+          type: number
+          description: Declare Value  must be a positive value and accepts up to 5 decimals
+          format: double
+        trackingId:
+          type: string
+          description: Tracking Id and accepts up to 128 Characters
+        label:
+          type: string
+          description: Label
+        lineItems:
+          type: array
+          description: Line Items and 1024 characters are allowed for each item
+          items:
+            type: string
+        orderId:
+          type: string
+          description: orderId for the package and accepts up to 128 Characters
+        labelType:
+          type: string
+          enum:
+            - ZPL
+          description: expected label format
+          example: ZPL
+        isHazmat:
+          type: boolean
+          description: flag to decide hazmat packages
+        hazmat: {
+          $ref: '#/components/schemas/Hazmat'
+        }
+        shipOptions:
+          type: array
+          description: Array of Ship Options
+          items:
+            type: string
+            enum:
+              - ADULT_SIGNATURE_CONFIRMATION
+              - COMMERCIAL
+              - DELIVERY_CONFIRMATION
+              - RESIDENTIAL
+              - SATURDAY_DELIVERY
+              - SIGNATURE_CONFIRMATION
+              - SIGNATURE_WAIVER
+              - SATURDAY_PICKUP
+              - DIRECT_SIGNATURE
+              - INDIRECT_SIGNATURE
+              - UPS_ADDITIONAL_HANDLING
+          example: [SIGNATURE_CONFIRMATION, SIGNATURE_WAIVER, SATURDAY_PICKUP, UPS_ADDITIONAL_HANDLING]
+      description: Package
+    Dimensions:
+      required:
+        - height
+        - length
+        - uom
+        - width
+      type: object
+      properties:
+        length:
+          type: number
+          description: Length of a Package
+          format: double
+          example: 10.0
+        width:
+          type: number
+          description: Width of a Package
+          format: double
+          example: 10.0
+        height:
+          type: number
+          description: Height of a Package
+          format: double
+          example: 10.0
+        uom:
+          type: string
+          description: "Unit of Measure Ex: IN, FT, CM, M"
+          example: IN
+          enum:
+            - FT
+            - IN
+            - CM
+            - M
+      description: Package Dimensions
+    ParcelContact:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Contact Name and accepts up to 255 Characters
+        phone:
+          type: string
+          description: Contact Phone Number and accepts up to 32 Characters
+          example: 555-555-5555
+      description: Describes contact information
+    ParcelLocation:
+      required:
+        - address1
+        - city
+        - country
+        - name
+        - postalCode
+        - state
+      type: object
+      properties:
+        locationCode:
+          type: string
+          description: Location Code and accepts up to 32 Characters
+        name:
+          type: string
+          description: Location Name and accepts up to 255 Characters
+        address1:
+          type: string
+          description: Address Line 1 and accepts up to 150 Characters
+        address2:
+          type: string
+          description: Address Line 2 and accepts up to 150 Characters
+        address3:
+          type: string
+          description: Address Line 3 and accepts up to 150 Characters
+        city:
+          type: string
+          description: City , accepts up to 128 Characters
+        state:
+          type: string
+          description: State  and accepts up to 2 Characters
+        postalCode:
+          type: string
+          description: Postal Code and accepts up to 32 Characters
+        country:
+          type: string
+          description: Country and accepts up to 3 Characters
+        latitude:
+          type: number
+          description: Latitude
+          format: double
+          example: 54.49623846
+        longitude:
+          type: number
+          description: Longitude
+          format: double
+          example: -54.49623846
+        addressType:
+          type: string
+          description: "Address Type (COMMERCIAL, RESIDENTIAL)"
+          example: COMMERCIAL
+          enum:
+            - COMMERCIAL
+            - RESIDENTIAL
+        contact:
+          $ref: '#/components/schemas/ParcelContact'
+    PackageDetailsRequest:
+      required:
+        - packages
+        - accountId
+        - domainId
+      type: object
+      properties:
+        accountId:
+          type: number
+          description: AccountId will be provided by Uber Freight
+        domainId:
+          type: number
+          description: DomainId will be provided by Uber Freight
+        packages:
+          type: array
+          description: List of Packages
+          items:
+            $ref: '#/components/schemas/BasePackage'
+      description: Inbound API used from Shipper to Inform Uber freight about Package
+        Details to be picked
+    LabelResponse:
+      type: object
+      properties:
+        packageId:
+          type: string
+          description: unique id of the package
+        trackingId:
+          type: string
+          description: trackingId of the package
+        label:
+          type: string
+          description: Label in Base64 encoded string format
+        labelFormat:
+          type: string
+          description: expected label format ZPL
+          enum:
+            - ZPL
+    ApiResponseModelLabelResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/LabelResponse'
+        traceId:
+          type: string
+        total:
+          type: integer
+          format: int32
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiError'
+    ShipmentRequest:
+      type: object
+      required:
+        - shipments
+        - shipSourceType
+        - accountId
+        - domainId
+      properties:
+        shipSourceType:
+          type: string
+          enum:
+            - PACKAGE_IDS
+            - PACKAGE_DETAILS
+            - RATE_REQUEST_UUID
+        accountId:
+          type: number
+          description: AccountId will be provided by Uber Freight
+        domainId:
+          type: number
+          description: DomainId will be provided by Uber Freight
+        label:
+          type: boolean
+          description: flag to generate label
+        labelFormat:
+          type: string
+          enum:
+            - ZPL
+          description: expected label format
+          example: ZPL
+        shipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+    Shipment:
+      type: object
+      properties:
+        packageIds:
+          type: array
+          description: packageIds for shipment
+          items:
+            type: string
+        packages:
+          type: array
+          description: packages details
+          items:
+            $ref: '#/components/schemas/BasePackage'
+        rateRequestUuid:
+          type: string
+          description: rateRequestUuid obtained from Rate API response
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        serviceLevel:
+          type: string
+          description: Service Level for the shipment
+        carrier:
+          type: string
+          description: Carrier for the shipment
+    RateRequest:
+      type: object
+      required:
+        - packageSourceType
+        - rateRequestType
+        - accountId
+        - domainId
+      properties:
+        packageSourceType:
+          type: string
+          enum:
+            - PACKAGE_IDS
+            - PACKAGE_DETAILS
+        rateRequestType:
+          type: string
+          enum:
+            - ALL_RATES
+            - BEST_RATE
+        accountId:
+          type: number
+          description: AccountId will be provided by Uber Freight
+        domainId:
+          type: number
+          description: DomainId will be provided by Uber Freight
+        packageIds:
+          type: array
+          description: packageIds for shipment
+          items:
+            type: string
+        packages:
+          type: array
+          description: packages details
+          items:
+            $ref: '#/components/schemas/BasePackage'
+        serviceLevel:
+          type: string
+          description: Service Level
+        carrier:
+          type: string
+          description: Carrier
+    ApiResponseModelShipmentResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/ShipmentResponse'
+        traceId:
+          type: string
+        total:
+          type: integer
+          format: int32
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiError'
+    ShipmentResponse: {
+      type: object,
+      properties: {
+        shipments: {
+          type: array,
+          items: {
+            $ref: '#/components/schemas/ShipmentDetails'
+          }
+        }
+      }
+    }
+    ShipmentDetails:
+      type: object
+      properties:
+        masterTrackingId:
+          type: string
+          description: trackingId of Multi cart packages
+        packageSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageSummary'
+        rate:
+          $ref: '#/components/schemas/Rate'
+    ApiResponseModelRateResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/RateResponse'
+        traceId:
+          type: string
+        total:
+          type: integer
+          format: int32
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiError'
+    RateResponse:
+      type: object
+      properties:
+        rateRequestUuid:
+            type: string
+            description: rateRequestUuid for the request
+            example: "550e8400-e29b-41d4-a716-446655440000"
+        rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
+    Rate:
+        type: object
+        properties:
+            isBestRate:
+              type: boolean
+              description: Flag to identify Best Rate
+            totalAmount:
+              type: number
+              description: Total Rate Amount
+              format: double
+            currency:
+              type: string
+              description: Currency Type
+              example: USD
+              enum:
+                - USD
+            serviceLevel:
+              type: string
+              description: Service Level
+            carrier:
+              type: string
+              description: Carrier
+            charges:
+              type: array
+              description: Array of Charges
+              items:
+                $ref: '#/components/schemas/Charge'
+    Charge:
+        type: object
+        properties:
+            chargeType:
+              type: string
+              description: Type of Charge
+              example: BASE_RATE
+              enum:
+                - BASE_RATE,
+                - FUEL_SURCHARGE,
+                - ACCESSORIAL
+            chargeAmount:
+              type: number
+              description: Charge Amount
+              format: double
+            surcharges:
+              type: array
+              description: Array of Surcharges
+              items:
+                $ref: '#/components/schemas/Surcharge'
+    Surcharge:
+        type: object
+        properties:
+            chargeType:
+              type: string
+              description: Type of Surcharge
+              example: RESIDENTIAL_DELIVERY_FEE
+              enum:
+                - RESIDENTIAL_DELIVERY_FEE
+                - DELIVERY_AREA_SURCHARGE
+                - EXTENDED_DELIVERY_AREA_SURCHARGE
+                - REMOTE_DELIVERY_AREA_SURCHARGE
+                - ADDITIONAL_HANDLING_DIMENSIONS
+                - ADDITIONAL_HANDLING_WEIGHT
+                - LARGE_PACKAGE_SURCHARGE
+                - PIN_REQUIRED
+                - SIGNATURE
+                - AGE_VERIFICATION
+                - PHOTO_ON_DELIVERY
+                - HIGH_VALUE_SHIPMENT_FEE
+            chargeAmount:
+              type: number
+              description: Surcharge Amount
+              format: double
+    Hazmat:
+      type: object
+      properties:
+        unNumber:
+          type: string
+          description: unNumber that identify dangerous goods or hazardous substances
+        unClass:
+          type: string
+          description: classes help identify and manage the potential risks associated with transporting these materials
+        packingGroup:
+          type: string
+        shippingName:
+          type: string
+          description: shipper name
+        packagingType:
+          type: string
+        technicalName:
+          type: string
+          description: Describes the technical name of the product being shipped
+          example: Dry Ice is technically referred as Carbon Dioxide, Solid
+        commodityRegulationCode:
+          type: string
+          description: escribes the category in which the item being shipped falls under
+          example: Fully Regulated, Limited Quantities
+        unClassDescription:
+          type: string
+        packagingInstructions:
+          type: string
+          description: packaging Instructions
+          example : Avoid heat sources
+        productDescription:
+          type: string
+          description: hazmat product Description
+
+    ShipmentStatusRequest:
+      required:
+        - shipment
+      type: object
+      properties:
+        shipment:
+          $ref: '#/components/schemas/ParcelShipment'
+    PackageSummary:
+      type: object
+      properties:
+        packageId:
+          type: string
+          description: Unique package Id
+          example: "#1234567"
+        trackingId:
+          type: string
+          description: trackingId of the package
+        label:
+          type: string
+          description: Label in Base64 encoded string format
+        labelFormat:
+          type: string
+          description: expected label format ZPL
+          enum:
+            - ZPL
+        expectedPickupDateTime:
+          type: string
+          description: Expected Package Pickup Date Time and supported format yyyy-MM-ddTHH:mm:ssZ
+          example: 2024-12-12T13:45:22Z
+        expectedDeliveryDateTime:
+          type: string
+          description: Expected Package Delivery Date Time and supported format yyyy-MM-ddTHH:mm:ssZ
+          example: 2024-12-13T13:45:22Z
+        carrierTrackingSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierTrackingSummary'
+    CarrierTrackingSummary:
+      type: object
+      description: Describes Carrier Tracking Summary
+      properties:
+        trackingId:
+          type: string
+          description: trackingId
+        carrier:
+          type: string
+          description: carrier name
+    ParcelShipment:
+      required:
+        - eventTimestamp
+        - eventType
+        - loadIdentifier
+        - packageIds
+      type: object
+      properties:
+        loadIdentifier:
+          type: number
+        packageIds:
+          type: array
+          items:
+            type: string
+        trailerNumber:
+          type: string
+        eventType:
+          type: string
+          enum:
+            - TRAILER_LOADING
+            - TRAILER_DEPARTED
+        eventTimestamp:
+          type: string
+          description: Supported format yyyy-MM-ddTHH:mm:ssZ
+          example: 2024-12-12T13:45:22Z
+    WebhookInfoResponse:
+      type: object
+      required:
+        - success
+        - data
+        - traceId
+        - total
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/WebhookInfo'
+        traceId:
+          type: string
+          description: Trace id for this request. Can be used for tracking and debugging.
+        total:
+          type: integer
+          format: int32
+          description: 1 if a webhook is present, 0 otherwise
+    WebhookInfo:
+      type: object
+      required:
+        - webhookUrl
+        - events
+      properties:
+        webhookUrl:
+          type: string
+          format: uri
+          description: URL to which parcel events will be delivered
+        events:
+          type: array
+          description: |
+            List of subscribed parcel events, 
+            callers of this endpoint can use "v1/parcel:*" to enable all event types.
+            Accepted values are:
+              - "v1/parcel:*"
+              - "v1/parcel:shipment_created"
+              - "v1/parcel:departed_origin"
+              - "v1/parcel:arrived_carrier_facility"
+              - "v1/parcel:received_carrier_facility"
+              - "v1/parcel:departed_carrier_facility"
+              - "v1/parcel:dispatched_for_delivery"
+              - "v1/parcel:delivered"
+              - "v1/parcel:undeliverable"
+              - "v1/parcel:returned_to_carrier_facility"
+              - "v1/parcel:proof_of_delivery"
+              - "v1/parcel:cancelled"
+              - "v1/parcel:package_lost"
+              - "v1/parcel:return_to_shipper_initiated"
+              - "v1/parcel:return_received_carrier_facility"
+              - "v1/parcel:dispatched_for_return"
+              - "v1/parcel:returned"
+              - "v1/parcel:parcel_discarded"
+          items:
+            type: string
+            enum:
+              - "v1/parcel:*"
+              - "v1/parcel:shipment_created"
+              - "v1/parcel:departed_origin"
+              - "v1/parcel:arrived_carrier_facility"
+              - "v1/parcel:received_carrier_facility"
+              - "v1/parcel:departed_carrier_facility"
+              - "v1/parcel:dispatched_for_delivery"
+              - "v1/parcel:delivered"
+              - "v1/parcel:undeliverable"
+              - "v1/parcel:returned_to_carrier_facility"
+              - "v1/parcel:proof_of_delivery"
+              - "v1/parcel:cancelled"
+              - "v1/parcel:package_lost"
+              - "v1/parcel:return_to_shipper_initiated"
+              - "v1/parcel:return_received_carrier_facility"
+              - "v1/parcel:dispatched_for_return"
+              - "v1/parcel:returned"
+              - "v1/parcel:parcel_discarded"
+      description: Details of a webhook subscription
+    FetchTrackingEventsApiResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessApiResponseBase'
+        - type: object
+          properties:
+            data:
+              type: array
+              description: List of parcel tracking events
+              items:
+                $ref: '#/components/schemas/ParcelTrackingEvent'
+      description: >
+        Standard success wrapper for tracking events retrieval.
+    ParcelTrackingEvent:
+      type: object
+      required:
+        - event_type
+        - event_datetime
+        - parcel_uuid
+      properties:
+        event_type:
+          type: string
+          description: |
+            The event name/type, list of subscribed parcel events.
+            Possible values are:
+              - "v1/parcel:shipment_created"
+              - "v1/parcel:departed_origin"
+              - "v1/parcel:arrived_carrier_facility"
+              - "v1/parcel:received_carrier_facility"
+              - "v1/parcel:departed_carrier_facility"
+              - "v1/parcel:dispatched_for_delivery"
+              - "v1/parcel:delivered"
+              - "v1/parcel:undeliverable"
+              - "v1/parcel:returned_to_carrier_facility"
+              - "v1/parcel:proof_of_delivery"
+              - "v1/parcel:cancelled"
+              - "v1/parcel:package_lost"            
+              - "v1/parcel:return_to_shipper_initiated"
+              - "v1/parcel:return_received_carrier_facility"
+              - "v1/parcel:dispatched_for_return"
+              - "v1/parcel:returned"
+              - "v1/parcel:parcel_discarded"
+          example: v1/parcel:delivered
+        event_datetime:
+          type: string
+          format: date-time
+          description: Timestamp when the event occurred in ISO-8601 format
+          example: 2025-03-28T12:20:10Z
+        expected_delivery_date:
+          type: string
+          format: date-time
+          description: Expected delivery date in ISO-8601 format
+          example: 2025-03-31T12:20:99Z
+        parcel_uuid:
+          type: string
+          format: uuid
+          description: Parcel UUID
+          example: 0195dcd0-40a0-7a42-a51d-680dd0ad3bdb
+        package_id:
+          type: string
+          description: Business package identifier
+          example: HZ001UF5520848816615
+        tracking_id:
+          type: string
+          description: Business tracking identifier
+          example: HZ001UF5520848816615
+        city:
+          type: string
+          description: City where the event took place
+        state:
+          type: string
+          description: State where the event took place
+        latitude:
+          type: number
+          format: double
+          nullable: true
+          description: Geographic latitude
+        longitude:
+          type: number
+          format: double
+          nullable: true
+          description: Geographic longitude
+        delivery_verifications:
+          type: array
+          description: All available proof of delivery URLs
+          items:
+            type: string
+            format: uri
+        exception_reason_code:
+          type: string
+          nullable: true
+          description: Code for any exception/failure
+        exception_reason_code_notes:
+          type: string
+          nullable: true
+          description: Additional notes on exception
+        exception_damage_package_verifications:
+          type: array
+          description: Any damaged‑package verification codes
+          items:
+            type: string
+    SuccessApiResponseBase:
+      type: object
+      required:
+        - success
+        - traceId
+        - total
+      properties:
+        success:
+          type: boolean
+          example: true
+        traceId:
+          type: string
+          description: Correlation / trace identifier
+        total:
+          type: integer
+          format: int32
+          description: Number of items in `data`
+
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 with Client Credentials grant type
+      flows:
+        clientCredentials:
+          tokenUrl: https://uatapi.uberfreight.com/oauth2/accesstoken
+          scopes: {}

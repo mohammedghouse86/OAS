@@ -1,0 +1,2129 @@
+openapi: 3.0.0
+info:
+  title: TMS CustomsHub APIs
+  description: |
+    APIs related to Customs.
+    
+    Environment specific base urls -
+    
+    **UAT** - **uatapi.uberfreight.com**
+    
+    **PROD** - **api.uberfreight.com**
+  version: v1
+servers:
+  - url: https://uatapi.uberfreight.com/tp-api/customshub
+security:
+  - OAuth2: []
+tags:
+  - name: health
+  - name: customshub
+paths:
+  /v2/healthCheck:
+    get:
+      tags:
+        - health
+      summary: Customs Events Health Check API
+      description: |
+        This API is used to validate connectivity with Customs Hub APIs.
+        
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+        
+        Environment specific base urls -
+        
+        **UAT** - **uatapi.uberfreight.com**
+        
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-GET-healthCheck-DIRECT-healthCheck.uat
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheck_successResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unsupportedMediaTypeError'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+  /reports/v2/healthCheck:
+    get:
+      tags:
+        - health
+      summary: Customs Reports Health Check API
+      description: |
+        This API is used to validate connectivity with Customs Reports APIs.
+        
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+        
+        Environment specific base urls -
+        
+        **UAT** - **uatapi.uberfreight.com**
+        
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-GET-reports-healthCheck-DIRECT-reports-healthCheck.uat
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HearthBeat_successResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unsupportedMediaTypeError'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+
+  /v2/meData:
+    post:
+      tags:
+        - customshub
+      summary: Customs Events Received API
+      description: |
+        This API is used to send Customs Events.
+        
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+        
+        Environment specific base urls - 
+        
+        **UAT** - **uatapi.uberfreight.com**
+        
+        **PROD** - **api.uberfreight.com**
+      operationId: "inbound-uat-REST-POST-customshub-v2-meData-RESThttp:--uatcustomshub.transplace.com-api-MEData"
+      requestBody:
+        description: Sends Customs Events with a timestamp to Transplace TMS!
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeDataRequest'
+        required: true
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MEData_successResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/badRequestErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '406':
+          description: Not Acceptable
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content: {}
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+  /reports/v2/ReporteIVAporNumeroParte:
+    post:
+      tags:
+        - customshub
+      summary: Customs Reports API
+      description: |
+        This API is used to get Customs Reports.
+        
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+        
+        Environment specific base urls - 
+        
+        **UAT** - **uatapi.uberfreight.com**
+        
+        **PROD** - **api.uberfreight.com**
+      operationId: "inbound-uat-REST-POST-customshub-reports-v2-ReporteIVAporNumeroParte-RESThttp:--uatcustomreports.transplace.com-api-ReporteIVAporNumeroParte"
+      requestBody:
+        description: Request body for ReporteIVAporNumeroParte
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomReportsRequest'
+        required: true
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReporteIVAporNumeroParte_successResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/badRequestErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '406':
+          description: Not Acceptable
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content: {}
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+  /reports/v2/socioscomerciales/post_archivo_validacionSHCP:
+    post:
+      tags:
+        - SociosComerciales
+      summary: Get SHCP validation
+      requestBody:
+        description: parametros Request required
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parametros'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeSuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeBadRequestErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notFoundErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '406':
+          description: Not Acceptable
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content: {}
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+  /reports/v2/socioscomerciales/post_archivo_respuestavalidacionSHCP:
+    post:
+      tags:
+        - SociosComerciales
+      summary: Get SHCP validation response
+      requestBody:
+        description: parametros Request required
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parametros'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeSuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeBadRequestErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notFoundErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '406':
+          description: Not Acceptable
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content: {}
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+  /reports/v2/socioscomerciales/post_archivo_pago:
+    post:
+      tags:
+        - SociosComerciales
+      summary: Get archivo pago
+      requestBody:
+        description: parametros Request required
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parametros'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeSuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeBadRequestErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notFoundErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '406':
+          description: Not Acceptable
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content: {}
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+  /reports/v2/socioscomerciales/post_archivo_respuesta_pago:
+    post:
+      tags:
+        - SociosComerciales
+      summary: respuesta archivo pago
+      requestBody:
+        description: parametros Request required
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parametros'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeSuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeBadRequestErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notFoundErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '406':
+          description: Not Acceptable
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content: {}
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+  /reports/v2/socioscomerciales/post_archivo_anexo24:
+    post:
+      tags:
+        - SociosComerciales
+      summary: Get anexo 24
+      requestBody:
+        description: Parametros Request required
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Parametros'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponseAnexo'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeBadRequestErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notFoundErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '406':
+          description: Not Acceptable
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content: {}
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+  /anexo24/v2/salida:
+    post:
+      tags:
+        - anexo24
+      summary: Get Anexo 24 Salida
+      requestBody:
+        description: Retrieves Anexo 24 Salida between two specified dates
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FechaRequestApi'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/A24SalidaRespuesta'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeBadRequestErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notFoundErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '406':
+          description: Not Acceptable
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content: {}
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+  /anexo24/v2/entrada:
+    post:
+      tags:
+        - anexo24
+      summary: Get Anexo 24 Entrada
+      requestBody:
+        description: Retrieves Anexo 24 Entrada between two specified dates
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FechaRequestApi'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/A24EntradaRespuesta'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeBadRequestErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notFoundErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '406':
+          description: Not Acceptable
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content: {}
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+  /v2/bols/{doc_numero}:
+    get:
+      tags:
+        - aduasis
+      summary: Get BOL information
+      description: Retrieves BOL information from scanned pdf document
+      parameters:
+        - name: doc_numero
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BolsRespuesta'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sociosComercialeBadRequestErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notFoundErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedErrorResponse'
+        '406':
+          description: Not Acceptable
+          content: {}
+        '415':
+          description: Unsupported Media Type
+          content: {}
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internalServerErrorResponse'
+components:
+  schemas:
+    MEData_successResponse:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: 54be082f-ab1e-4e45-9cc1-3092c0c9e6f9
+        success:
+          type: string
+          description: result of request
+          example: true
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/MEdata"
+        total:
+          type: number
+      description: Success response for MEData
+    HealthCheck_successResponse:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: 54be082f-ab1e-4e45-9cc1-3092c0c9e6f9
+        success:
+          type: string
+          description: result of request
+          example: true
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/HCdata"
+        total:
+          type: number
+      description: Success response from the api
+
+    MEdata:
+      type: object
+      properties:
+        ME:
+          type: string
+          description: ME Number of response
+          example: 012345678
+        CarrierId:
+          type: string
+          description: Id of carrier
+          example: "Id: 012345678"
+        CarrierName:
+          type: string
+          description: Carrier Name
+          example: Carrier Name
+        TrackingId:
+          type: string
+          description: Tracking id
+          example: "Id: 012345678"
+        Reference:
+          type: string
+          description: Reference of event
+          example: Reference
+        StatusCode:
+          type: string
+          description: Code of Status
+          example: Code
+        StatusDate:
+          type: string
+          description: Date of Status
+          example: "2018-15-09"
+    HCdata:
+      type: object
+      properties:
+        environment:
+          type: string
+          description: ME Number of response
+          example: 012345678
+        status:
+          type: string
+          description: Id of carrier
+          example: "Id: 012345678"
+        APIVersion:
+          type: string
+          description: Carrier Name
+          example: Carrier Name
+        appName:
+          type: string
+          description: Tracking id
+          example: "Id: 012345678"
+    MeDataRequest:
+      type: object
+      required:
+        - ME
+        - CarrierId
+        - Reference
+        - StatusCode
+        - StatusDate
+      properties:
+        ME:
+          type: string
+          description: Unique identifier for Transplace Load Number (ME). Max length 20.
+          example: "000000000"
+        CarrierID:
+          type: string
+          description: Must always be an empty string ('') if data is sent on this node the request will fail Max length 20.
+          example: ""
+        CarrierName:
+          type: string
+          description: This is optional
+          example: ""
+        TrackingId:
+          type: string
+          description: This is optional
+          example: ""
+        Reference:
+          type: string
+          description: Client custom reference, can be empty (''). Max length 12.
+          example: Test001
+        StatusCode:
+          type: string
+          description: 'Custom event. Possible values: MX2 = Paperwork received by broker from shipper MX3 = Broker Notified Freight at the Border MX4 = Broker paperwork reported complete MX5 = Broker tends paperwork to drayage company MX6 = Cleared Mexico Customs MX7 = Cleared US customs Z0 = FDA Cleared Z1 = Missing / Unappropriated paperwork Z2 = US entry Complete Z3 = Electronic ACE Manifest complete Z4 = MX Customs Inspection Z5 = US Customs Intensive Z6 = Under CHB inspection Z7 = Cleared CHB inspection Z8 = EEI Electronic Export Information complete or In-Bond Cancelled Z9 = CAN Customs Cleared'
+          example: Z2
+          enum:
+            - MX2
+            - MX3
+            - MX4
+            - MX5
+            - MX6
+            - MX7
+            - Z0
+            - Z1
+            - Z2
+            - Z3
+            - Z4
+            - Z5
+            - Z6
+            - Z7
+            - Z8
+            - Z9
+        StatusDate:
+          type: string
+          description: Date/time of when the event ocurred, must be on ISO 8601 2019-10-04T12:15:05 format Max length 19.
+          example: '2019-10-04T12:15:05'
+    CustomReportsRequest:
+      type: object
+      properties:
+        FechaInicial:
+          type: string
+          description: Start date (Pedimento payment date). The date format should be:YYYY-MM-dd.
+          example: "2021-09-23"
+        FechaFinal:
+          type: string
+          description: End date (Pedimento payment date). The date format should be:YYYY-MM-dd. The date range can not exceed 31 days.
+          example: "2021-09-23"
+        RFCCliente:
+          type: string
+          description:  RFC Client( Must be available for get data report )
+          example: "SMO1809112J6"
+          enum:
+            - SIE931112PA1
+            - SMO1809112J6
+            - SPP1702289AA
+      description : Request body for ReporteIVAporNumeroParte
+    ReporteIVAporNumeroParte_successResponse:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: 54be082f-ab1e-4e45-9cc1-3092c0c9e6f9
+        success:
+          type: string
+          description: Result of request.
+          example: true
+          enum:
+            - true
+            - false
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Reportdata"
+        total:
+          type: integer
+          description : Total record count from API Response.
+          example: 1
+      description: Success response for ReporteIVAporNumeroParte
+    HearthBeat_successResponse:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: 54be082f-ab1e-4e45-9cc1-3092c0c9e6f9
+        success:
+          type: boolean
+          description: Result of request
+          example: true
+          enum:
+            - true
+            - false
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/HBdata"
+        total:
+          type: integer
+          description : Total record count from API Response
+          example: 1
+      description: Success response from the API.
+    HBdata:
+      type: object
+      properties:
+        App Name:
+          type: string
+          description: App Name
+          example: "CustomerReportsAPI"
+        Status:
+          type: string
+          description: Status of the request
+          example: "OK"
+        Environment:
+          type: string
+          description: Environment
+          example: "UAT"
+          enum:
+            - UAT
+            - PRODUCCION
+    Reportdata:
+      type: object
+      properties:
+        Patente:
+          type: string
+          description: Patente del pedimento.
+          example: "3153"
+        Pedimento:
+          type: string
+          description: Numero de pedimento
+          example: "1000001"
+        Aduana:
+          type: string
+          description: Aduana del pedimento
+          example: "240"
+        Tipo de Operacion:
+          type: string
+          description: Tipo de operacion.
+          example: "IMPORTACION"
+          enum:
+            - "IMPORTACION"
+            - "EXPORTACION"
+            - "RECTIFICACION"
+        Clave de Pedimento:
+          type: string
+          description: Clave de Pedimento ( Revisar Claves de pedimento del Apendice 2 del Anexo 22)
+          example: "A1"
+        Fecha de Pago:
+          type: string
+          description: Fecha del pago del pedimento
+          example: "05/03/2021"
+        Guia Master:
+          type: string
+          description: Guia Master. Possible values:"N/A" = Empty data.
+          example: "GuiaM"
+          enum:
+            - "N/A"
+        Guia House:
+          type: string
+          description: Guia House.  Possible values:"N/A" = Empty data.
+          example: "GuiaH"
+          enum:
+            - "N/A"
+        Partida:
+          type: string
+          description: Partida del pedimento
+          example: "1"
+        Fraccion:
+          type: string
+          description: Fraccion MX
+          example: "73202005"
+        NICO:
+          type: string
+          description: NICO de la Fraccion
+          example: "01"
+        Descripcion:
+          type: string
+          description: Desccripcion de material
+          example: "MUELLE HELICOIDAL"
+        Numero de Parte:
+          type: string
+          description: Numero de parte de Factura Comercial
+          example: "A7B91501324314"
+        Numero de Serie:
+          type: string
+          description: Serie del Numero de Parte. Possible values:"N/A" = Empty data.
+          example: "N/A"
+        Marca:
+          type: string
+          description: Marca del Numero de Parte. Possible values:"N/A" = Empty data.
+          example: "N/A"
+        Modelo:
+          type: string
+          description: Modelo del Numero de Parte. Possible values:"N/A" = Empty data.
+          example: "N/A"
+        Valor Aduana:
+          type: string
+          description: Valor en Aduana
+          example: "45"
+        Valor Comercial:
+          type: string
+          description: Valor Comercial
+          example: "45"
+        Valor Dolares:
+          type: string
+          description: Valor en Dolares
+          example: "3317.23"
+        Proveedor:
+          type: string
+          description: Proveedor de la Factura comercial
+          example: "NEWCOMB SPRING OF CAROLINA"
+        Factura:
+          type: string
+          description: Factura comercial
+          example: "60106913"
+        OC:
+          type: string
+          description: Orden de compra. Possible values:"N/A" = Empty data.
+          example: "4800989051"
+        CEBE:
+          type: string
+          description: CEBE de la operacion ( Observaciones a nivel pedimento )
+          example: "P10308000"
+        Pais de Origen:
+          type: string
+          description: Pais de origen del Numero de Parte
+          example: "USA"
+        TL(SI O NO):
+          type: string
+          description: Aplicacion de preferencia por Numero de Parte.
+          example: "SI"
+          enum:
+            - "SI"
+            - "NO"
+        TL Aplicado:
+          type: string
+          description: Tipo de TLC Aplicado por Pais de Origen. Possible values:"N/A" = Empty data.
+          example: "TLCAN"
+          enum:
+            - "TLCAN"
+            - "TLCUE"
+            - "N/A"
+        IVA:
+          type: string
+          description: Clave de contribucion ( IVA )
+          example: "6616.770807"
+        IGI:
+          type: string
+          description: Clave de contribucion ( IGI )
+          example: "0.000000"
+        PRV:
+          type: string
+          description: Clave de contribucion ( PREV )
+          example: "63.773543"
+        IVA PRV:
+          type: string
+          description: Clave de contribucion ( IVA PRV )
+          example: "10.097478"
+        DTA:
+          type: string
+          description: Clave de contribucion ( DTA )
+          example: "0.000000"
+        Multa:
+          type: string
+          description: Clave de contribucion ( Multa )
+          example: "0.000000"
+        Rec:
+          type: string
+          description: Clave de contribucion ( REC )
+          example: "0.000000"
+        CC:
+          type: string
+          description: Clave de contribucion ( C.C. )
+          example: "0.000000"
+        Total Pagado:
+          type: string
+          description: Total Pagado
+          example: "0.000000"
+        Custom:
+          type: string
+          description: Nombre del Custom de la operacion de SIEMENS ( Observaciones a nivel pedimento )
+          example: "Nombres AppellidoPaterno Apellido Materno"
+        Linea de Captura:
+          type: string
+          description: Linea de captura del Banco
+          example: "032104ZWLXP0000X000"
+        RFC:
+          type: string
+          description: Clave Unica de Registro del Cliente ( RFC )
+          example: "SIE931112PA1"
+      description : Success ReporteIVAporNumeroParte API Response data
+    Parametros:
+      type: object
+      properties:
+        aduana:
+          type: string
+          nullable: true
+          description: customs number (2 digits).
+          example: "24"
+        patente:
+          type: string
+          nullable: true
+          description: patent number (4 digits).
+          example: "1764"
+        pedimento:
+          type: string
+          nullable: true
+          description: pedimento number (official customs document, 7 digits).
+          example: "3000011"
+        fechaini:
+          type: string
+          nullable: true
+          description: Start date (Pedimento payment date). The date format should be:YYYY-MM-dd.
+          example: "2023-12-01"
+        fechafin:
+          type: string
+          nullable: true
+          description: End date (Pedimento payment date). The date format should be:YYYY-MM-dd. The date range can not exceed 31 days.
+          example: "2023-12-10"
+      additionalProperties: false
+    parametros:
+      type: object
+      properties:
+        aduana:
+          type: string
+          nullable: true
+          description: customs number (2 digits).
+          example: "24"
+        patente:
+          type: string
+          nullable: true
+          description: patent number (4 digits).
+          example: "1764"
+        pedimento:
+          type: string
+          nullable: true
+          description: pedimento number (official customs document, 7 digits).
+          example: "3000011"
+        fechaini:
+          type: string
+          nullable: true
+          description: Start date (Pedimento payment date). The date format should be:YYYY-MM-dd.
+          example: "2023-12-01"
+        fechafin:
+          type: string
+          nullable: true
+          description: End date (Pedimento payment date). The date format should be:YYYY-MM-dd. The date range can not exceed 31 days.
+          example: "2023-12-10"
+      additionalProperties: false
+    sociosComercialeSuccessResponse:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: ID-TPUATAPI-1734326305969-V879omLalVIn
+        success:
+          type: string
+          description: Result of request.
+          example: true
+          enum:
+            - true
+            - false
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/sociosComercialeReportdata"
+        total:
+          type: integer
+          description : Total record count from API Response.
+          example: 1
+      description: Success response for post_archivo_validacionSHCP, post_archivo_pago, post_archivo_respuestavalidacionSHCP, post_archivo_respuesta_pago
+    sociosComercialeReportdata:
+      type: object
+      properties:
+        registros:
+          type: array
+          items:
+            $ref: "#/components/schemas/data"
+          description: registros.
+      description : Success API Response array
+    data:
+      type: object
+      properties:
+        registro:
+          type: string
+          description: registro.
+          example: "20000001000000000000135"
+      description : Success API Response data
+    successResponseAnexo:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: ID-TPUATAPI-1734326305969-V879omLalVIn
+        success:
+          type: string
+          description: Result of request.
+          example: true
+          enum:
+            - true
+            - false
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Reportanexo"
+        total:
+          type: integer
+          description : Total record count from API Response.
+          example: 1
+      description: Success response for post_archivo_anexo24
+    Reportanexo:
+      type: object
+      properties:
+        registro:
+          type: array
+          items:
+          $ref: "#/components/schemas/anexo"
+          description: registros.
+      description : Success API Response array
+    anexo:
+      type: object
+      properties:
+        numero_Pedimento:
+          type: string
+          description: numero de Pedimento.
+          example: "1764-3016351"
+        aduana:
+          type: string
+          description: aduana
+          example: "24"
+        seccion_Aduanera:
+          type: string
+          description: seccion Aduanera
+          example: "0"
+        pedimento:
+          type: string
+          description: pedimento completo
+          example: "240-1764-3016351"
+        patente:
+          type: string
+          description: patente del pedimento
+          example: "1764"
+        tipo_Operacion:
+          type: string
+          description: Tipo de operacion
+          example: "2"
+          enum:
+            - 1 - "IMPORTACION"
+            - 2 - "EXPORTACION"
+        clave_Pedimento:
+          type: string
+          description: Clave de Pedimento
+          example: "A1"
+        fecha_Pago:
+          type: string
+          description: Fecha del pago del pedimento
+          example: "2023-08-02"
+        tipo_Cambio_Ped:
+          type: string
+          description: Tipo de cambio aplicado
+          example: "16.730300"
+        secuencia_Ped:
+          type: string
+          description: Secuencia del pedimento
+          example: "1.0"
+        factor_incrementable:
+          type: string
+          description: factor incrementable
+          example: ""
+        pedimento_Original:
+          type: string
+          description: pedimento original
+          example: ""
+        clave_Ped_Original:
+          type: string
+          description: clave del Pedimento Original
+          example: ""
+        factura:
+          type: string
+          description: factura
+          example: "47408379-74FD-465F-9B22-3EA09671CA4E"
+        partida_Factura:
+          type: string
+          description: partida factura
+          example: "1.0"
+        incoterms:
+          type: string
+          description: incoterms
+          example: "CIP"
+        cove:
+          type: string
+          description: cove
+          example: "COVE2360GCDZ5"
+        tipo_Cambio_Factura:
+          type: string
+          description: tipo de cambio factura
+          example: "16.789200"
+        fecha_Factura:
+          type: string
+          description: fecha factura
+          example: "2023-07-18"
+        cliente_Proveedor":
+          type: string
+          description: nombre del cliente/proveedor
+          example: "NOVUS INTERNATIONAL, INC."
+        fraccion:
+          type: string
+          description: numero de fraccion
+          example: "29309099"
+        fraccio_Nico:
+          type: string
+          description: nico de la fraccion
+          example: "00"
+        pais_OD:
+          type: string
+          description: pais origen
+          example: "USA"
+        pais_CV:
+          type: string
+          description: pais vendedor
+          example: "USA"
+        numero_de_Parte:
+          type: string
+          description: numero de parte
+          example: "20002846"
+        decripcion_de_Parte:
+          type: string
+          description: descripcion
+          example: "0"
+        decripcion_Parte_Ing:
+          type: string
+          description: descripcion en ingles
+          example: "0"
+        cantidad_Factura:
+          type: string
+          description: cantidad en factura
+          example: "1500.00000"
+        uM_Factura:
+          type: string
+          description: unidad de medida
+          example: "1"
+        cantidad_Comercial:
+          type: string
+          description: cantidad comercial
+          example: "1500.000"
+        unidad_Comercial:
+          type: string
+          description: unidad comercial
+          example: "1"
+        cantidad_Tarifa:
+          type: string
+          description: cantidad
+          example: "1500.00000"
+        unidad_Tarifa:
+          type: string
+          description: unidad tarifa
+          example: "01"
+        valor_Comercial:
+          type: string
+          description: valor comercial
+          example: "134512.00000000000"
+        valor_Dolares:
+          type: string
+          description: valor en dolares
+          example: "8040.0000000000000"
+        valor_Aduanal_usd:
+          type: string
+          description: valor en aduana
+          example: "8040.023191"
+        valor_Agregado:
+          type: string
+          description: valor agregado
+          example: "0"
+        peso_Neto:
+          type: string
+          description: peso neto
+          example: "1500.00000000000"
+        peso_Bruto:
+          type: string
+          description: peso bruto
+          example: "1"
+        igie:
+          type: string
+          description: Clave de contribucion (IGI)
+          example: "0.00000000000"
+        tasa_gravamen:
+          type: string
+          description: tasa gravament
+          example: "NORMAL"
+        fP_IGI:
+          type: string
+          description: IGI
+          example: "0"
+        tipo_Tasa_IGI:
+          type: string
+          description: tipo de tasa IGI
+          example: "0.00000"
+        iva:
+          type: string
+          description: Clave de contribucion (IVA)
+          example: "0.00000000000"
+        tasa_IVA:
+          type: string
+          description: tasa de IVA
+          example: "16"
+        fP_IVA:
+          type: string
+          description: IVA
+          example: "0"
+        bultos:
+          type: string
+          description: cantidad de bultos
+          example: "S/M S/N 2 BULTO(S)"
+        pedimento_Impo:
+          type: string
+          description: pedimento importacion
+          example: ""
+        factura_Impo:
+          type: string
+          description: factura importacion
+          example: ""
+        partida_Impo:
+          type: string
+          description: partida importacion
+          example: ""
+        marca:
+          type: string
+          description: marca
+          example: "#x20;"
+        modelo:
+          type: string
+          description: modelo
+          example: "#x20;"
+        serie:
+          type: string
+          description: serie
+          example: "8518981"
+        nico:
+          type: string
+          description: nico
+          example: "99"
+      description : Success API Response data
+    badRequestErrorResponse:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: ID-TPUATAPI-1734326305969-V879omLalVIn
+        success:
+          type: string
+          description: Result of request
+          example: false
+          enum:
+            - true
+            - false
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/badRequestError"
+        total:
+          type: integer
+          description : Total record count from API Response.
+          example: 0
+      description: Error response from the API
+    badRequestError:
+      type: object
+      properties:
+        Type:
+          type: string
+          description: Error type according HTTP Status Code
+          example: "BAD_REQUEST"
+        Message:
+          type: string
+          description: Response message with details of type error.
+          example: "bad request reason"
+      description: Error data response from the API
+    sociosComercialeBadRequestErrorResponse:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: ID-TPUATAPI-1734326305969-V879omLalVIn
+        success:
+          type: string
+          description: Result of request
+          example: false
+          enum:
+            - true
+            - false
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/badRequestError"
+        total:
+          type: integer
+          description : Total record count from API Response.
+          example: 0
+      description: Error response from the API
+    sociosComercialeBadRequestError:
+      type: object
+      properties:
+        Type:
+          type: string
+          description: Error type according HTTP Status Code
+          example: "BAD_REQUEST"
+        Message:
+          type: string
+          description: Response message with details of type error.
+          example: "Aduana not included in body"
+          enum:
+            - No body found in request.
+            - Initial Date not included in body.
+            - Final Date not included in body.
+            - Patente not included in body.
+            - Aduana not included in body.
+            - Pedimento not included in body.
+      description: Error data response from the API
+    notFoundErrorResponse:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: ID-TPUATAPI-1734326305969-V879omLalVIn
+        success:
+          type: string
+          description: Result of request
+          example: false
+          enum:
+            - true
+            - false
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/notFoundRequestError"
+        total:
+          type: integer
+          description : Total record count from API Response.
+          example: 0
+      description: Error response from the API
+    notFoundRequestError:
+      type: object
+      properties:
+        Type:
+          type: string
+          description: Error type according HTTP Status Code
+          example: NOT_FOUND
+        Message:
+          type: string
+          description: Response message with details of type error.
+          example: "Requested URL not found."
+      description: Error data response from the API
+    unauthorizedErrorResponse:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: ID-TPUATAPI-1734326305969-V879omLalVIn
+        success:
+          type: string
+          description: Result of request
+          example: false
+          enum:
+            - true
+            - false
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/unauthorizedRequestError"
+        total:
+          type: integer
+          description : Total record count from API Response.
+          example: 0
+      description: Error response from the API
+    unauthorizedRequestError:
+      type: object
+      properties:
+        Type:
+          type: string
+          description: Error type according HTTP Status Code
+          example: "UNAUTHORIZED"
+          enum:
+            - UNAUTHORIZED
+        Message:
+          type: string
+          description: Response message with details of type error.
+          example: "Authorization failed to access"
+      description: Error data response from the API
+    internalServerErrorResponse:
+      type: object
+      properties:
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: ID-TPUATAPI-1734326305969-V879omLalVIn
+        success:
+          type: string
+          description: Result of request
+          example: false
+          enum:
+            - true
+            - false
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/internalServerRequestError"
+        total:
+          type: integer
+          description : Total record count from API Response.
+          example: 0
+      description: Error response from the API
+    internalServerRequestError:
+      type: object
+      properties:
+        Type:
+          type: string
+          description: Error type according HTTP Status Code
+          example: "INTERNAL_SERVER_ERROR"
+        Message:
+          type: string
+          description: Response message with details of type error.
+          example: "Internal error occurred. Trace id provided for reference. Please try again later."
+      description: Error data response from the API
+    unsupportedMediaTypeError:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Response message with details of type error.
+          example: "The request contains an entity body but no Content-Type header. The inferred media type 'application/octet-stream' is not supported for this resource."
+      description: Error data response from the API
+    FechaRequestApi:
+      type: object
+      properties:
+        par_cliente:
+          type: string
+        par_fecha_ini:
+          type: string
+          format: date
+          example: "2024-11-01"
+        par_fecha_fin:
+          type: string
+          format: date
+          example: "2024-11-15"
+      additionalProperties: false
+    A24EntradaRespuesta:
+      type: object
+      properties:
+        success:
+          type: string
+          description: Result of request.
+          example: true
+          enum:
+            - true
+            - false
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/A24Entrada'
+          nullable: true
+        total:
+          type: integer
+          format: int32
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: ID-TPUATAPI-1734326305969-V879omLalVIn
+      additionalProperties: false
+    A24Entrada:
+      type: object
+      properties:
+        pedimento:
+          type: string
+          nullable: true
+        aduanas:
+          type: string
+          nullable: true
+        fecha:
+          type: string
+          nullable: true
+        tipoDeCambio:
+          type: string
+          nullable: true
+        iva:
+          type: string
+          nullable: true
+        claveDePedimento:
+          type: string
+          nullable: true
+        fletes:
+          type: string
+          nullable: true
+        seguros:
+          type: string
+          nullable: true
+        embalajes:
+          type: string
+          nullable: true
+        otros:
+          type: string
+          nullable: true
+        dta:
+          type: string
+          nullable: true
+        valorComercialMNPedimento:
+          type: string
+          nullable: true
+        valorAduanaMNPedimento:
+          type: string
+          nullable: true
+        observaciones:
+          type: string
+          nullable: true
+        descargoPorFechaFactura:
+          type: string
+          nullable: true
+        recibidaDe:
+          type: string
+          nullable: true
+        notaInterna1PedimentoEncabezado:
+          type: string
+          nullable: true
+        prevalidacion:
+          type: string
+          nullable: true
+        factura:
+          type: string
+          nullable: true
+        codigoProveedor:
+          type: string
+          nullable: true
+        fechaFactura:
+          type: string
+          nullable: true
+        factorMoneda:
+          type: string
+          nullable: true
+        numeroDeParte:
+          type: string
+          nullable: true
+        tipoDeBien:
+          type: string
+          nullable: true
+        fraccionPartidaPedimento:
+          type: string
+          nullable: true
+        tasa:
+          type: string
+          nullable: true
+        tipoTasa:
+          type: string
+          nullable: true
+        unidad:
+          type: string
+          nullable: true
+        precioUnitario:
+          type: string
+          nullable: true
+        cantidad:
+          type: string
+          nullable: true
+        origen:
+          type: string
+          nullable: true
+        vendedor:
+          type: string
+          nullable: true
+        notaInterna1PedimentoDetalle:
+          type: string
+          nullable: true
+        formaDePagoIGI:
+          type: string
+          nullable: true
+        incoterm:
+          type: string
+          nullable: true
+        tratado:
+          type: string
+          nullable: true
+        pagoimpuestosparaTLCAN:
+          type: string
+          nullable: true
+        pagoimpuestosparaTLCUEM:
+          type: string
+          nullable: true
+        pagoimpuestosparaTLCAELC:
+          type: string
+          nullable: true
+        justificacionParaNoPagarImpuestoEnTLCAN:
+          type: string
+          nullable: true
+        justificacionParaNoPagarEmpuestoEnTLCUEM:
+          type: string
+          nullable: true
+        justificacionParaNoPagarEmpuestoEnTLCAELC:
+          type: string
+          nullable: true
+        idEB:
+          type: string
+          nullable: true
+        calculoParaPartidasEB:
+          type: string
+          nullable: true
+        enConsignacion:
+          type: string
+          nullable: true
+        revision:
+          type: string
+          nullable: true
+        notaInterna2PedimentoDetalle:
+          type: string
+          nullable: true
+        cove:
+          type: string
+          nullable: true
+        multas:
+          type: string
+          nullable: true
+        recargos:
+          type: string
+          nullable: true
+        notaInterna2PedimentoEncabezado:
+          type: string
+          nullable: true
+        cnt:
+          type: string
+          nullable: true
+        secuencia:
+          type: string
+          nullable: true
+        factorDeConversion:
+          type: string
+          nullable: true
+        unidadTarifa:
+          type: string
+          nullable: true
+        cantidadTarifa:
+          type: string
+          nullable: true
+        formaDePagoIVAPartida:
+          type: string
+          nullable: true
+        fechaEntrada:
+          type: string
+          nullable: true
+        regimen:
+          type: string
+          nullable: true
+        tipoDeOperacion:
+          type: string
+          nullable: true
+        identificadorPC:
+          type: string
+          nullable: true
+        identificadorIM:
+          type: string
+          nullable: true
+        ieps:
+          type: string
+          nullable: true
+        formaDePagoIEPS:
+          type: string
+          nullable: true
+        ivA_PRV:
+          type: string
+          nullable: true
+        nico:
+          type: string
+          nullable: true
+        fraccionPartidaPedimentoPuntos:
+          type: string
+          nullable: true
+        descripcion:
+          type: string
+          nullable: true
+        moneda:
+          type: string
+          nullable: true
+        valor_Moneda_Facturacion:
+          type: string
+          nullable: true
+        valor_Dolares:
+          type: string
+          nullable: true
+        igI_MN_Pedimento:
+          type: string
+          nullable: true
+        identificador_MS:
+          type: string
+          nullable: true
+        transporte_Decrementables:
+          type: string
+          nullable: true
+        seguro_Decrementables:
+          type: string
+          nullable: true
+        carga:
+          type: string
+          nullable: true
+        descarga:
+          type: string
+          nullable: true
+        otros_Decrementables:
+          type: string
+          nullable: true
+        referencia:
+          type: string
+          nullable: true
+      additionalProperties: false
+    A24SalidaRespuesta:
+      type: object
+      properties:
+        success:
+          type: string
+          description: Result of request.
+          example: true
+          enum:
+            - true
+            - false
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/A24Salida'
+          nullable: true
+        total:
+          type: integer
+          format: int32
+        traceId:
+          type: string
+          description: TraceId orginated in API Gateway, it is unique for each request.
+          example: ID-TPUATAPI-1734326305969-V879omLalVIn
+      additionalProperties: false
+    A24Salida:
+      type: object
+      properties:
+        pedimento:
+          type: string
+          nullable: true
+        aduana:
+          type: string
+          nullable: true
+        fecha:
+          type: string
+          nullable: true
+        tipoDeCambio:
+          type: string
+          nullable: true
+        iva:
+          type: string
+          nullable: true
+        clave:
+          type: string
+          nullable: true
+        dta:
+          type: string
+          nullable: true
+        valorComercialMNPedimento:
+          type: string
+          nullable: true
+        observaciones:
+          type: string
+          nullable: true
+        descargoPorFechaFactura:
+          type: string
+          nullable: true
+        transfiere:
+          type: string
+          nullable: true
+        notaInterna1PedimentoEncabezado:
+          type: string
+          nullable: true
+        prevalidacion:
+          type: string
+          nullable: true
+        multas:
+          type: string
+          nullable: true
+        recargos:
+          type: string
+          nullable: true
+        factura:
+          type: string
+          nullable: true
+        codigoCliente:
+          type: string
+          nullable: true
+        fechaFactura:
+          type: string
+          nullable: true
+        factorMoneda:
+          type: string
+          nullable: true
+        producto:
+          type: string
+          nullable: true
+        tipo:
+          type: string
+          nullable: true
+        fraccionPartidaPedimento:
+          type: string
+          nullable: true
+        unidad:
+          type: string
+          nullable: true
+        precioUnitario:
+          type: string
+          nullable: true
+        cantidad:
+          type: string
+          nullable: true
+        destino:
+          type: string
+          nullable: true
+        comprador:
+          type: string
+          nullable: true
+        notaInterna1PedimentoDetalle:
+          type: string
+          nullable: true
+        incoterm:
+          type: string
+          nullable: true
+        valorAgregadoPartida:
+          type: string
+          nullable: true
+        idEB:
+          type: string
+          nullable: true
+        calculoParaPartidasEB:
+          type: string
+          nullable: true
+        notaInterna2PedimentoEncabezado:
+          type: string
+          nullable: true
+        idStTLCAN:
+          type: string
+          nullable: true
+        idSU20TLCUEM:
+          type: string
+          nullable: true
+        idSU20TLCAELC:
+          type: string
+          nullable: true
+        certificadoEUR1:
+          type: string
+          nullable: true
+        cove:
+          type: string
+          nullable: true
+        tpl:
+          type: string
+          nullable: true
+        iddT22:
+          type: string
+          nullable: true
+        cnt:
+          type: string
+          nullable: true
+        notaInterna2PedimentoDetalle:
+          type: string
+          nullable: true
+        secuencia:
+          type: string
+          nullable: true
+        factorDeConversion:
+          type: string
+          nullable: true
+        unidadTarifa:
+          type: string
+          nullable: true
+        cantidadTarifa:
+          type: string
+          nullable: true
+        fechaPresentacion:
+          type: string
+          nullable: true
+        regimen:
+          type: string
+          nullable: true
+        tipoDeOperacion:
+          type: string
+          nullable: true
+        identificadorPC:
+          type: string
+          nullable: true
+        identificadorIM:
+          type: string
+          nullable: true
+        nico:
+          type: string
+          nullable: true
+        destinatarioFactura:
+          type: string
+          nullable: true
+        fraccionPartidaPedimentoPuntos:
+          type: string
+          nullable: true
+        descripcion:
+          type: string
+          nullable: true
+        ivA_PRV:
+          type: string
+          nullable: true
+        moneda:
+          type: string
+          nullable: true
+        valor_Moneda_Facturacion:
+          type: string
+          nullable: true
+        valor_Dolares:
+          type: string
+          nullable: true
+        igI_MN_Pedimento:
+          type: string
+          nullable: true
+        identificador_MS:
+          type: string
+          nullable: true
+        transporte_Decrementables:
+          type: string
+          nullable: true
+        carga:
+          type: string
+          nullable: true
+        descarga:
+          type: string
+          nullable: true
+        otros_Decrementables:
+          type: string
+          nullable: true
+        referencia:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BolModel:
+      type: object
+      properties:
+        doc_tipo:
+          type: string
+          nullable: true
+        doc_numero:
+          type: string
+          nullable: true
+        doc_fecha:
+          type: string
+          nullable: true
+        doc_cliente:
+          type: string
+          nullable: true
+        doc_proveedor:
+          type: string
+          nullable: true
+        doc_carrier:
+          type: string
+          nullable: true
+        doc_origen:
+          type: string
+          nullable: true
+        doc_destino:
+          type: string
+          nullable: true
+        doc_consignatario:
+          type: string
+          nullable: true
+        doc_total_paletas:
+          type: string
+          nullable: true
+        doc_peso_kgs:
+          type: string
+          nullable: true
+        doc_peso_lbs:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BolsRespuesta:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BolModel'
+          nullable: true
+        total:
+          type: integer
+          format: int32
+        traceId:
+          type: string
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 with Client Credentials grant type
+      flows:
+        clientCredentials:
+          tokenUrl: https://uatapi.uberfreight.com/oauth2/accesstoken
+          scopes: {}

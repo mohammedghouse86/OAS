@@ -1,0 +1,2264 @@
+openapi: 3.0.2
+info:
+  title: Instant Quote and Tender APIs - Brokerage [Uber Tech Stack]
+  version: "1.0"
+  description: |
+    ## Overview
+    We provide REST APIs for instant quoting, tendering, updating, and canceling of brokerage loads. This document is a reference guide for these endpoints.<br><br>
+    While the documentation can be found here at developer.uberfreight.com, these endpoints are hosted on the Uber Tech Stack, which means the **urls use the root api.uber.com and you will need to create a developer account at developer.uber.com to authenticate**. This also means you will not be able to use the "Authorize" or "Try this API" capability within developer.uberfreight.com for these APIs. <br><br>
+    The quoting endpoint for v1 is to be *deprecated* **`v1/.../quotes` The v2 quoting api `v2/.../quotes` supports LTL,IMDL,FTL quoting**. Both FTL and LTL use `v1/.../tenders` for tendering. <br><br>
+    Contact us at [ufapisupport@uberfreight.com]() with any queries.<br><br>
+    ## API Application Onboarding
+    Oauth2 Bearer token is required for all endpoints. Follow the steps below to onboard to the Uber Developer Platform:<br />
+      1. Go to [https://developer.uber.com](https://developer.uber.com) and click Sign In on the top right.<br />
+      2. Sign up for a developer account. You will be redirected to https://developer.uber.com/dashboard/.<br />
+      3. **Do not click Create Application on the home screen**. Instead, use this [Create Hybrid Application Link](https://developer.uber.com/dashboard/other-applications/create-application) to create the correct application type.<br /> *To navigate manually, open the dropdown below Create Application on the top left and choose Other Applications. Another Create Application button will show up on top right. Click on it and follow the on-screen directions and fill in the necessary fields to create the app.*<br />
+      4. In the left side bar, click on Members. Add [andrew.ly@uber.com]() and [zhengyang.zhang@uberfreight.com]() as admins by using the Add Member button on the right bottom. (Andrew and Sabrina are from our integrations team and will help with any troubleshooting)<br />
+      5. Note the client_id and the client_secret listed at the top of the dashboard page for the app. These should be securely stored and not shared. Send the following email:<br />
+          - TO: [ufapisupport@uberfreight.com]()
+          - SUBJECT: Please grant access for freight.loads scope
+          - BODY: Application Client ID: Your client_id from developer.uber.com, ex: -J9IIeHFaKb7DkRZ, Company name: Your company name, ex: Acme Widgets Inc
+      6. We will respond to your email within 2 business days.
+      7. Once the scope is granted, we will provide you a test customer_id to test with.
+
+
+      Once the scopes have been granted, generate an auth token following the developer.uber.com instructions for [POST /token](https://developer.uber.com/docs/riders/references/api/v2/token-post). All endpoints in this Freight API require “client_credentials” grant types.<br><br>**Note**: You will always call the same production endpoint to get a token. The resulting token can be used to make quote and tender calls in **both sandbox and production** environments.<br><br>Example manual curl:
+      ``` shell
+      curl
+        -X POST
+        -F 'client_id=<CLIENT_ID>'\
+        -F 'client_secret=<CLIENT_SECRET>'\
+        -F 'grant_type=client_credentials'\
+        -F 'scope="freight.loads"'\
+        "https://login.uber.com/oauth/v2/token"
+      ```
+      [Pass the access token received in the response](https://developer.uber.com/docs/riders/guides/authentication/user-access-token#step-4-use-bearer-token) in the header of all API requests. For this demo, ping POST /v1/freight/loads/quotes. A successful response indicates that you’re on-boarded to use the API!
+
+      ``` bash
+      curl -X POST \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer <TOKEN>" \
+        -d "{}" \
+        "https://sandbox-api.uber.com/v1/freight/loads/quotes"
+    ```
+
+    ## Environments
+    **Sandbox** - sandbox-api.uber.com <br>
+    **Production** - api.uber.com
+servers:
+  - url: https://sandbox-api.uber.com
+    description: sandbox
+  - url: https://api.uber.com
+    description: production
+security:
+  - Oauth2: [freight.loads]
+
+components:
+  examples:
+    tenderMin:
+      summary: Tender example 2
+      value:
+        load_id: LOAD_ID
+        tender_id: TENDER_ID
+        customer_id: TEST_CUSTOMER_ID
+        uber_quote_uuid: 509f4c49-bf06-4609-9b24-6a3d54c32c4e
+        stops:
+          - sequence_number: 1
+            type: PICKUP
+            mode: LIVE
+            facility:
+              name: Building 1
+              address:
+                line1: 123 Main St
+                line2: Unit 1
+                city: San Jose
+                principal_subdivision: CA
+                postal_code: "95002"
+                country: USA
+            notes: Pickup notes here
+            appointment:
+              status: SCHEDULED
+              start_time_utc: 1672869872
+              end_time_utc: 1672869872
+            items:
+              - purchase_order_id: po_123
+                package_count:
+                  type: PALLET
+                  count: 10
+                weight:
+                  amount: 1200.34
+                  unit: KG
+                name: Beer
+                special_handling_types:
+                  - STK
+          - sequence_number: 2
+            type: DROPOFF
+            mode: LIVE
+            facility:
+              name: Building 2
+              address:
+                line1: 456 Broadway
+                city: San Francisco
+                principal_Subdivision: CA
+                postal_code: "94102"
+                country: USA
+            appointment:
+              status: SCHEDULED
+              start_time_utc: 1672956272
+              end_time_utc: 1672956272
+            items:
+              - purchase_order_id: po_123
+                package_count:
+                  type: PALLET
+                  count: 10
+                weight:
+                  amount: 1200.34
+                  unit: KG
+                name: Beer
+                special_handling_types:
+                  - STK
+
+  schemas:
+    quote:
+      type: object
+      properties:
+        quote_id:
+          type: string
+          description: "Unique identifier for the quote from the TMS’s perspective.\n   * `Recommendation` : Use combination of timestamp and shipment id to enforce uniqueness. e.g. 1672581600_PO123456"
+          example: 1672581600_PO123456
+        customer_id:
+          type: string
+          description: >-
+            Unique identifier for the customer (shipper) from the TMS’s
+            perspective.
+          example: TESTONLY
+        originator_id:
+          type: string
+          description: Unique identifier for the TMS system associated with the customer.
+          example: My TMS
+        scac:
+          type: string
+          description: Scac code identifying Uber Freight from a TMS perspective.
+          example: UBER
+        reference_numbers:
+          type: array
+          description: UF-defined reference codes to facilitate the load tender.
+          items:
+            $ref: '#/components/schemas/referenceNumber'
+        requirements:
+          type: object
+          description: The top-level requirements for the load.
+          $ref: '#/components/schemas/requirements'
+        stops:
+          type: array
+          description: The stops that will occur to facilitate the load.
+          items:
+            $ref: '#/components/schemas/stop'
+        quote_type:
+          type: string
+          description: >-
+            Value for what type of rate we will return. Default if null is
+            all-in (linehaul and fuel) - if specified to be “LHR_ONLY”, then it
+            will be linehaul only.
+          example: LHR_ONLY
+      required:
+        - quote_id
+        - customer_id
+        - stops
+    quoteRequestv2:
+      type: object
+      properties:
+        quote_id:
+          type: string
+          description: "Unique identifier for the quote from the TMS’s perspective.\n   * `Recommendation` : Use combination of timestamp and shipment id to enforce uniqueness. e.g. 1672581600_PO123456"
+          example: 1672581600_PO123456
+        customer_id:
+          type: string
+          description: >-
+            Unique identifier for the customer (shipper) from the TMS’s
+            perspective.
+          example: TESTONLY
+        originator_id:
+          type: string
+          description: Unique identifier for the TMS system associated with the customer.
+          example: My TMS
+        scac:
+          type: string
+          description: Scac code identifying Uber Freight from a TMS perspective.
+          example: UBER
+        reference_numbers:
+          type: array
+          description: UF-defined reference codes to facilitate the load tender. Only `TMS`, `MSI`, `MPO`, `AON`, `BOL`, and `SID` are supported for v2/quote endpoint
+          items:
+            $ref: "#/components/schemas/referenceNumber"
+        requirements:
+          type: object
+          description: The top-level requirements for the load.
+          $ref: "#/components/schemas/requirements"
+        stops:
+          type: array
+          description: The stops that will occur to facilitate the load.
+          items:
+            $ref: "#/components/schemas/stop"
+        quote_type:
+          type: string
+          description: >-
+            Value for what type of rate we will return. Default if null is
+            all-in (linehaul and fuel) - if specified to be “LHR_ONLY”, then it
+            will be linehaul only.
+          example: LHR_ONLY
+        shipping_modes:
+          type: array
+          description: The mode of transportation for fulfillment of the load.
+          items:
+            type: string
+            enum:
+              - FTL
+              - LTL
+      required:
+        - quote_id
+        - customer_id
+        - stops
+        - shipping_modes
+    quoteResponsev2:
+      type: array
+      items:
+        type: object
+        properties:
+          carrier_name:
+            description: Name of the carrier hauling the load
+            type: string
+          shipping_mode:
+            description: The mode of transportation for fulfillment of the load
+            type: string
+          service_level:
+            description: The level of service provided by the carrier
+            type: string
+          uber_quote_id:
+            description: The quote identifier required when booking loads with uber freight
+            type: string
+          expiration_time_utc:
+            description: Time after qhich the quote expires and a requote is required for booking
+            type: number
+          transit_estimate:
+            $ref: "#/components/schemas/transitEstimate"
+          rate_details:
+            $ref: "#/components/schemas/pricingInfo"
+    referenceNumber:
+      type: object
+      properties:
+        type:
+          $ref: "#/components/schemas/referenceNumberType"
+        value:
+          type: string
+          description: Ref number Value
+    referenceNumberType:
+      type: string
+      enum:
+        - TMS
+        - MSI
+        - MPO
+        - SLN
+        - PRO
+        - PUN
+        - DLN
+        - GCN
+        - AON
+        - BOL
+        - SID
+        - PON
+      description: |
+        | Code | Description |
+        | ---- | ----------- |
+        | TMS| TMS ID/ Load Number |
+        | MSI| Master Shipment Number; shipper's reference |
+        | MPO| Master PO Number; consignee's reference |
+        | SLN| Seal number |
+        | PRO| Carrier PRO |
+        | PUN| Pickup number |
+        | DLN| Delivery number |
+        | GCN| Gate check in number |
+        | AON| Appointment number / Confirmation number |
+        | BOL| Bill of Lading number |
+        | SID| Shipment order number |
+        | PON| Purchase order number |
+    requirements:
+      type: object
+      properties:
+        vehicle_type:
+          type: string
+          enum:
+            - DRY
+            - REFRIGERATED
+            - FLATBED
+          description: |
+            Defaults to “DRY”
+            | Vehicle Type | FTL | LTL | IMDL |
+            | ------------ | --- | --- | ---  |
+            | DRY          | Y   | Y   | Y    |
+            | REFRIGERATED | Y   | N   | N    | 
+            | FLATBED      | Y   | N   | N    |
+        weight:
+          $ref: "#/components/schemas/weight"
+        temperature_limit:
+          $ref: "#/components/schemas/temperatureLimit"
+        package_count:
+          $ref: "#/components/schemas/packageCount"
+        piece_count:
+          $ref: "#/components/schemas/pieceCount"
+        special_handling_types:
+          $ref: "#/components/schemas/specialHandlingTypes"
+    weight:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          description: The amount of weight.
+          example: 35000.01
+        unit:
+          type: string
+          description: The unit for the weight. One of “KG” (kilograms) or “LB” (pounds).
+          enum:
+            - LB
+            - KG
+      description: >-
+        The top-level combined weight of the load. If provided, the value will
+        take precedence over any weights provided with individual Items.
+    temperatureLimit:
+      type: object
+      properties:
+        min:
+          type: integer
+          description: The minimum temperature, if applicable.
+        max:
+          type: integer
+          description: The maximum temperature, if applicable.
+          example: 100
+        precool_temperature:
+          type: integer
+          description: >-
+            Temperature that the trailer needs to be cooled to before loading
+            can begin.
+          example: -5
+        operating_instructions:
+          type: string
+          enum:
+            - CONTINUOUS
+            - CYCLE
+          description: >-
+            One of “CONTINUOUS” or “CYCLE”. Continuous means that the
+            temperature has to be constant the entire time, and cycle means that
+            the temperature can fluctuate.
+        unit:
+          type: string
+          enum:
+            - F
+            - C
+      description: The range of required temperatures.
+    packageCount:
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            The type of package. Values - BAG, BALE, BOX, BUNDLE, CASE, CRATE,
+            CARTON, DRUM, FLOOR, GAYLORD, LOOSE, PALLET, PIECE, ROLL, SKID,
+            SPOOL, TANK, TOTE, WRAPPED, OTHER
+          enum:
+            - BAG
+            - BALE
+            - BOX
+            - BUNDLE
+            - CASE
+            - CRATE
+            - CARTON
+            - DRUM
+            - FLOOR
+            - GAYLORD
+            - LOOSE
+            - PALLET
+            - PIECE
+            - ROLL
+            - SKID
+            - SPOOL
+            - TANK
+            - TOTE
+            - WRAPPED
+            - OTHER
+          example: PALLET
+        count:
+          type: integer
+          example: 20
+          description: The number of packages of this type.
+      description: >-
+        The top-level packaging requirements. This field only applies if there
+        is a single package type used. A mix of package types at the item level
+        would leave this field null. Ex- for 50 cases of beer bottles in 5
+        pallets, count will be 5 and type will be PALLET
+    pieceCount:
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            The type of package. Values - BAG, BALE, BOX, BUNDLE, CASE, CRATE,
+            CARTON, DRUM, FLOOR, GAYLORD, LOOSE, PALLET, PIECE, ROLL, SKID,
+            SPOOL, TANK, TOTE, WRAPPED, OTHER
+          enum:
+            - BAG
+            - BALE
+            - BOX
+            - BUNDLE
+            - CASE
+            - CRATE
+            - CARTON
+            - DRUM
+            - FLOOR
+            - GAYLORD
+            - LOOSE
+            - PALLET
+            - PIECE
+            - ROLL
+            - SKID
+            - SPOOL
+            - TANK
+            - TOTE
+            - WRAPPED
+            - OTHER
+          example: PALLET
+        count:
+          type: integer
+          example: 20
+          description: The number of packages of this type.
+      description: >-
+        Handling type and count. Ex- for 50 cases of beer bottles in 5 pallets.
+        count will be 50 and type will be CASE
+    specialHandlingTypes:
+      type: string
+      enum:
+        - HVY
+        - LGT
+        - HVA
+        - LVA
+        - DNS
+        - STK
+        - NST
+        - DAM
+        - LRG
+        - LOW
+        - VOL
+        - HZD
+        - PAL
+        - ODI
+        - HOT
+      example: HZD
+      description: |
+        | Value | Description        | FTL | LTL                        |
+        | ----- | ------------------ | --- | -------------------------- |
+        | HVY   | HEAVY_FREIGHT      | Y   | N                          |
+        | LGT   | LIGHT_FREIGHT      | Y   | N                          |
+        | HVA   | HIGH_VALUE         | Y   | N                          |
+        | LVA   | LOW_COST           | Y   | N                          |
+        | DNS   | DENSELY_PACKAGED   | Y   | N                          |
+        | STK   | STACKABLE          | Y   | Y (item level)             |
+        | NST   | NON_STACKABLE      | Y   | N                          |
+        | DAM   | EASILY_DAMAGED     | Y   | N                          |
+        | LRG   | LARGE              | Y   | N                          |
+        | LOW   | VERY_LOW           | Y   | N                          |
+        | VOL   | EXTREMELY_VOLATILE | Y   | N                          |
+        | HZD   | HAZARDOUS          | Y   | Y (item level)             |
+        | PAL   | PALLETIZED         | Y   | N                          |
+        | ODI   | OVER_DIMENSION     | Y   | Y                          |
+        | HOT   | HOT_LOAD           | Y   | N                          |
+        | FZP   | FREEZE_PROTECTION  | N   | Y (requirement level)      |
+    stop:
+      type: object
+      properties:
+        sequence_number:
+          type: integer
+          description: >-
+            The sequence number of the stop. Determines the ordering of the
+            stops for the load.
+          example: 1
+        type:
+          type: string
+          enum:
+            - PICKUP
+            - DROPOFF
+          description: >-
+            One of “PICKUP” or “DROPOFF”. If there is a pickup and dropoff at a
+            single location, it needs to be designated as two separate stops.
+        mode:
+          type: string
+          enum:
+            - LIVE
+            - DROP
+          description: One of “LIVE” or “DROP”. DROP quoting is disabled by default. Please align with your account manager and sales rep if DROP quoting is needed.
+        stop_requirements:
+          type: array
+          description: Specify the requirements for the stops. **Applicable for LTL loads only**. Please add in each stop when needed, you can add multiple requirements in the array from allowed values. Allowed values ["UNKNOWN", "INSIDE_HANDLING", "LIFTGATE_REQUIRED", "LIMITED_ACCESS", "NOTIFY_CONSIGNEE", "MILITARY_ACCESS", "RESIDENTIAL_LOCATION", "TRADESHOW", "SCHOOL_LOCATION", "SORTING_AND_SEGREGATING", "APPOINTMENT_REQUIRED", "AIRPORT_LOCATION", "CONTAINER_FREIGHT_STATION", "GROCERY_WAREHOUSE", "DRIVER_ASSIST"]
+          items:
+            type: string
+            enum:
+              - "INSIDE_HANDLING"
+              - "LIFT_GATE_REQUIRED"
+              - "LIMITED_ACCESS"
+              - "NOTIFY_CONSIGNEE"
+              - "MILITARY_ACCESS"
+              - "RESIDENTIAL_LOCATION"
+              - "TRADESHOW"
+              - "SCHOOL_LOCATION"
+              - "SORTING_AND_SEGREGATING"
+              - "APPOINTMENT_REQUIRED"
+              - "AIRPORT_LOCATION"
+              - "CONTAINER_FREIGHT_STATION"
+              - "GROCERY_WAREHOUSE"
+
+        facility:
+          $ref: "#/components/schemas/facility"
+        notes:
+          type: string
+          description: A freeform text field to provide stop-level notes to the carrier. The note will be shown on rate confirmation
+          example: notes here
+        reference_numbers:
+          $ref: "#/components/schemas/referenceNumber"
+        appointment:
+          $ref: "#/components/schemas/appointment"
+        items:
+          $ref: "#/components/schemas/items"
+      required:
+        - sequence_number
+        - type
+        - mode
+        - facility
+        - appointment
+        - items
+    facility:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Descriptive name for the facility.
+          example: Uber Freight - Chicago
+        address:
+          $ref: "#/components/schemas/address"
+        contact:
+          $ref: "#/components/schemas/contact"
+      required:
+        - name
+        - address
+      description: The facility at which the stop is occurring.
+    address:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: Line 1 of the address.
+          example: address line 1
+        line2:
+          type: string
+          description: Line 2 of the address.
+          example: address line 2
+        city:
+          type: string
+          description: City of the address.
+          example: Chicago
+        principal_subdivision:
+          type: string
+          description: >-
+            Principal subdivision of the address. In the USA, this would be the
+            state; in Canada, the province, etc. Uses the ISO 3166-2 standard.
+          example: IL
+        postal_code:
+          type: string
+          example: "60607"
+          description: 5-digit postal code.
+        country:
+          type: string
+          example: USA
+          description: Country of the address. Uses the ISO 3166-1 standard.
+      description: The facility’s physical address.
+      required:
+        - line1
+        - city
+        - principal_subdivision
+        - postal_code
+        - country
+    appointment:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - NEEDED
+            - SCHEDULED
+          description: "   *\t`NEEDED`\t-\tNo existing data around scheduling for this particular load. Shipment needs to be scheduled by UF.\n   *\t`SCHEDULED`\t-\tLoad has been requested and confirmed.\n"
+        start_time_utc:
+          type: integer
+          description: >-
+            Unix UTC epoch timestamp in seconds. The start time of the
+            appointment window.
+        end_time_utc:
+          type: integer
+          description: >-
+            Unix UTC epoch timestamp in seconds. The end time of the appointment
+            window.
+      description: >-
+        The range of times for which this stop is scheduled or planned. Required
+        for ALL stops
+      required:
+        - start_time_utc
+        - end_time_utc
+    items:
+      type: array
+      items:
+        $ref: "#/components/schemas/item"
+      description: The items being picked up or dropped off at this stop.
+    item:
+      type: object
+      properties:
+        purchase_order_id:
+          type: string
+          description: >-
+            Identifying number for Purchase Order (as typically assigned by the
+            purchaser/receiver).
+          example: PO123
+        name:
+          type: string
+          description: A human-readable description of the item.
+          example: Uber Freight 500ml Bottled Water
+        package_count:
+          $ref: "#/components/schemas/item.packageCount"
+        piece_count:
+          $ref: "#/components/schemas/item.pieceCount"
+        weight:
+          $ref: "#/components/schemas/item.weight"
+        special_handling_types:
+          $ref: "#/components/schemas/specialHandlingTypes"
+        dimensions:
+          $ref: "#/components/schemas/item.dimensions"
+        freight_class:
+          $ref: "#/components/schemas/item.freightClass"
+        hazardous_details:
+          $ref: "#/components/schemas/item.hazardousDetails"
+      required:
+        - name
+    item.packageCount:
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            The type of package. Values - BAG, BALE, BOX, BUNDLE, CASE, CRATE,
+            CARTON, DRUM, FLOOR, GAYLORD, LOOSE, PALLET, PIECE, ROLL, SKID,
+            SPOOL, TANK, TOTE, WRAPPED, OTHER
+          enum:
+            - BAG
+            - BALE
+            - BOX
+            - BUNDLE
+            - CASE
+            - CRATE
+            - CARTON
+            - DRUM
+            - FLOOR
+            - GAYLORD
+            - LOOSE
+            - PALLET
+            - PIECE
+            - ROLL
+            - SKID
+            - SPOOL
+            - TANK
+            - TOTE
+            - WRAPPED
+            - OTHER
+          example: PALLET
+        count:
+          type: integer
+          example: 5
+          description: The number of packages of this type.
+      description: The number/type of packages that are part of this item. e.g. 5 PALLET
+    item.pieceCount:
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            The type of package. Values - BAG, BALE, BOX, BUNDLE, CASE, CRATE,
+            CARTON, DRUM, FLOOR, GAYLORD, LOOSE, PALLET, PIECE, ROLL, SKID,
+            SPOOL, TANK, TOTE, WRAPPED, OTHER
+          enum:
+            - BAG
+            - BALE
+            - BOX
+            - BUNDLE
+            - CASE
+            - CRATE
+            - CARTON
+            - DRUM
+            - FLOOR
+            - GAYLORD
+            - LOOSE
+            - PALLET
+            - PIECE
+            - ROLL
+            - SKID
+            - SPOOL
+            - TANK
+            - TOTE
+            - WRAPPED
+            - OTHER
+          example: PALLET
+        count:
+          type: integer
+          example: 20
+          description: The number of packages of this type.
+      description: Handling type / count - e.g 50 CASE of water bottles.
+    item.weight:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          description: The amount of weight.
+          example: 300.01
+        unit:
+          type: string
+          description: The unit for the weight. One of “KG” (kilograms) or “LB” (pounds).
+          enum:
+            - LB
+            - KG
+      description: >-
+        The weight of the item. If the load-level Weight is provided (in
+        Requirements), then the load-level weight will take precedence.**IMPORTANT NOTE FOR LTL** - Weight at item level should be total weight of the items not per item. Eg, if quantity is 3 it should be the total weight of the 3 items not of 1.
+    tenderRequest:
+      type: object
+      properties:
+        load_id:
+          type: string
+          description: Unique identifier for the load from the TMS’s perspective.
+        tender_id:
+          type: string
+          description: Unique identifier for the tender from the TMS’s perspective, if applicable.
+        customer_id:
+          type: string
+          description: Unique identifier for the customer (shipper) from the TMS’s perspective.
+        originator_id:
+          type: string
+          description: Unique identifier for the TMS system associated with the customer.
+        scac:
+          type: string
+          description: Scac code identifying Uber Freight from a TMS perspective.
+        tender_expiration_utc:
+          type: integer
+          description: "Unix UTC epoch timestamp in seconds. Time by which Uber needs to respond with a ACCEPT / DECLINE decision. If Uber does not respond within the specified time, TMS should interpret this as a DECLINE and tender the load to the next carrier in the routing guide."
+        uber_quote_uuid:
+          type: string
+          description: "UUID generated for a quote created in a previous call to POST /freight/quote. Providing this UUID will guarantee the price from the quote, if the load parameters have not been materially changed, and the quote has not expired. Shipper-defined reference codes to facilitate the load tender. Required for LTL"
+        reference_numbers:
+          type: array
+          description: UF-defined reference codes to facilitate the load tender. Some of the reference number types may not be supported for LTL tenders
+          items:
+            $ref: "#/components/schemas/referenceNumber"
+        notes:
+          type: string
+          description: A freeform text field to provide load-level notes to the carrier. This will not be displayed for the driver
+        requirements:
+          type: object
+          description: The top-level requirements for the load.
+          $ref: "#/components/schemas/requirements"
+        stops:
+          type: array
+          description: The stops that will occur to facilitate the load.
+          items:
+            $ref: "#/components/schemas/stop"
+        accessorial_charges:
+          type: array
+          description: Accessorial charges specified by the customer, if any.
+          items:
+            $ref: "#/components/schemas/accessorialCharge"
+        billing_party:
+          type: object
+          description: Party responsible for payment.
+          properties:
+            billing_id:
+              type: string
+              description: Unique identifier of the billing party.
+            name:
+              type: string
+              description: Name of the billing party.
+            address:
+              $ref: "#/components/schemas/address"
+        payment_method:
+          type: string
+          description: "Code identifying payment method for transportation charges. One of:\n   * `PP` - Prepaid by seller\n   * `CC` - Collect\n   * `TP` - Third party pay\n   * `PB` - Customer pick-up/back-haul."
+          enum:
+            - PP
+            - CC
+            - TP
+            - PB
+        shipping_mode:
+          type: string
+          enum:
+            - LTL
+            - FTL
+          description: Mode of trsnasportaion of the load
+        pricing_controls:
+          type: object
+          $ref: "#/components/schemas/set_pricing_controls"
+      required:
+        - load_id
+        - customer_id
+        - requirements
+        - stops
+    accessorialCharge:
+      type: object
+      description: Accessorial charges specified by the customer, if any.
+      properties:
+        type:
+          type: string
+          enum:
+            - “DRIVER_ASSIST”
+            - “DRIVER_INCENTIVE”
+            - “EQUIPMENT_RENTAL”
+            - “EXPEDITED_TEAM_SERVICE”, “FUEL_SURCHARGE”
+            - “HAZMAT”
+            - “LAYOVER”
+            - “LUMPER”
+            - “MULTI_STOP_CHARGE”
+            - “OTHER”
+            - “OUT_OF_ROUTE_MILEAGE” “RECONSIGNMENT”
+            - “TONU”
+            - “TWIC_ESCORT”
+            - “DETENTION_UNLOADING”, “SCALING_CHARGE”
+            - “TIER_PRICING”
+            - “LIQUOR_PERMIT”
+            - “PRE_LOADING_CHARGE”, “ON_TIME_INCENTIVE”
+            - “LATE_FEE”
+            - “EXTRA_STOP_CHARGE”
+            - “TRAILER_WASH”
+            - “PALLET_EXCHANGE_FEE”, “HOLIDAY_DELIVERY”
+            - “WEEKEND_DELIVERY” “TRADE_SHOW_DELIVERY” “INSIDE_DELIVERY” “PALLET_JACK_DELIVERY”
+            - ”STORAGE_FEE”
+            - “LIFTGATE_CHARGE”
+            - “TOLL_CHARGE”
+            - “EXCESSIVE_VALUE_CHARGE” “TRAILER_RELOCATION” “TRAILER_DETENTION”
+            - “BOBTAIL_FEE”
+            - “TRAILER_RENTAL_FEE”
+            - “FLAT_RATE”
+            - “NON_ACCOMODATING_FEE” “RETURNED_LOAD”
+            - “DETENTION_LOADING”.
+        charge:
+          $ref: "#/components/schemas/money"
+    money:
+      type: object
+      description: The amount of the charge.
+      properties:
+        amount:
+          type: integer
+          description: Amount of money in the currency’s lowest denomination (i.e. cents for USD).
+        currency_code:
+          type: string
+          description: ISO 4217 currency code.
+    item.freightClass:
+      description: Required for LTL quoting/tendering
+      type: string
+      enum:
+        - "50"
+        - "55"
+        - "60"
+        - "65"
+        - "70"
+        - "77.5"
+        - "85"
+        - "92.5"
+        - "100"
+        - "110"
+        - "125"
+        - "150"
+        - "175"
+        - "200"
+        - "250"
+        - "300"
+        - "400"
+        - "500"
+    item.dimensions:
+      description: Required for LTL rating/tendering
+      type: object
+      properties:
+        length:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+        unit:
+          type: string
+          enum:
+            - IN
+            - CM
+      required:
+        - length
+        - width
+        - height
+        - unit
+    item.hazardousDetails:
+      description: Required when tendering a LTL load with hazmat items
+      type: object
+      properties:
+        un_number:
+          description: un/na number for the item.
+          type: string
+        package_group:
+          type: string
+          enum:
+            - I
+            - II
+            - III
+        hazmat_class:
+          type: string
+          enum:
+            - "1"
+            - "1.1"
+            - "1.2"
+            - "1.3"
+            - "1.4"
+            - "1.5"
+            - "1.6"
+            - "2"
+            - "2.1"
+            - "2.2"
+            - "2.3"
+            - "3"
+            - "4"
+            - "4.1"
+            - "4.2"
+            - "4.3"
+            - "5"
+            - "5.1"
+            - "5.2"
+            - "5.5"
+            - "6"
+            - "6.1"
+            - "7"
+            - "1.3G"
+            - "1.4G"
+            - "1.4S"
+            - "2.3(2.1)"
+            - "3(8)"
+            - "3(6.1)"
+            - "5.1(3)"
+            - "5.1(6.1.8)"
+            - "5.1(8)"
+            - "5.2(8)"
+            - "6.1(5.1)"
+            - "6.1(3)"
+            - "8"
+            - "8(3)"
+            - "8(5.1)"
+            - "8(6.1)"
+            - "8.3"
+            - "9"
+        proper_shipping_name:
+          type: string
+          description: shipping name for the item
+        emergency_contact:
+          $ref: "#/components/schemas/contact"
+      required:
+        - proper_shipping_name
+        - hazmat_class
+        - un_number
+        - package_group
+        - emergency_contact
+    contact:
+      description: Required when using NOTIFY_CONSIGNEE stop requirement and tendering hazardous materials
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone_number:
+          type: string
+        email_address:
+          type: string
+      required:
+        - first_name
+        - last_name
+        - phone_number
+    lineItem:
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+        charge:
+          $ref: "#/components/schemas/money"
+    pricingInfo:
+      description: Breakdown of the rate, provided by Uber Freight
+      properties:
+        all_in_rate:
+          $ref: "#/components/schemas/money"
+        line_items:
+          type: array
+          items:
+            $ref: "#/components/schemas/lineItem"
+    duration:
+      description: Duration defines the length of time, that denotes the time of haul.
+      properties:
+        value:
+          type: number
+        unit:
+          type: string
+          enum:
+            - DAY
+            - HOUR
+            - MINUTE
+    transitEstimate:
+      description: The estimated timeline for the fulfillment of the load
+      properties:
+        duration:
+          $ref: "#/components/schemas/duration"
+        estimated_pickup_time_utc:
+          type: number
+        estimated_dropoff_time_utc:
+          type: number
+    pricing_type:
+      type: string
+      enum:
+        - DYNAMIC
+      description: |
+        The type of pricing option to be used for the load. Only
+      nullable: false
+    load_priority:
+      type: string
+      enum:
+        - LOW
+        - NORMAL
+        - HIGH
+        - CRITICAL
+    rate_status:
+      type: string
+      enum:
+        - MARKETPLACE
+        - BOOKED
+        - FINALIZED
+    line_item_type:
+      type: string
+      enum:
+        - FUEL_SURCHARGE
+        - SERVICE_FEE
+    line_item:
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/money'
+        type:
+          $ref: '#/components/schemas/line_item_type'
+    pricing:
+      type: object
+      required:
+        - all_in_rate
+      properties:
+        all_in_rate:
+          $ref: '#/components/schemas/money'
+    set_pricing:
+      type: object
+      description: set a max price on a load in terms of an all in rate or carrier rate
+      oneOf:
+        - $ref: '#/components/schemas/all_in_rate'
+        - $ref: '#/components/schemas/carrier_rate'
+    set_pricing_controls:
+      type: object
+      description: Pricing controls for loads, only available to Market Access or Broker Access customers
+      required:
+        - pricingType
+      properties:
+        pricing_type:
+          $ref: '#/components/schemas/pricing_type'
+        max_price:
+          $ref: '#/components/schemas/set_pricing'
+        priority:
+          $ref: '#/components/schemas/load_priority'
+    all_in_rate:
+      type: object
+      description: amount of money that the load provider pays to uber freight if the load is covered
+      properties:
+        all_in_rate:
+          $ref: '#/components/schemas/money'
+    carrier_rate:
+      type: object
+      description: amount of money that the carrier is offered i.e. excluding UF service fee
+      properties:
+        carrier_rate:
+          $ref: '#/components/schemas/money'
+  securitySchemes:
+    Oauth2:
+      type: oauth2
+      description: >-
+        Please make sure you have a valid app onboarded and scope granted.
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.uber.com/oauth/v2/token
+          scopes:
+            freight.loads: Uber Freight load operations
+
+paths:
+  /v1/freight/loads/quotes:
+    post:
+      tags:
+        - Quote
+      summary: Get an instant quote
+      description: |
+        This endpoint is to be *deprecated* please use the v2 for FTL quoting
+        Get an instant quote by specifying the load information in the request body.<br />
+        Additional notes: <br />
+        1. For a valid request with a quote_id, an uber_quote_uuid is returned. For a subsequent request with the same quote_id, the same uber_quote_uuid is returned when the expiration_time_utc is still valid. If the expiration_time_utc has elapsed, then a new uber_quote_uuid is returned
+        2. Clients can plan for retries (with retry count and retry interval) for 500 error responses.
+        3. We advise you to provide as much information about the shipment as possible, that ensures you get the best quote possible.
+        4. The "Try this API" feature is not supported for this API. Please complete testing in a separate client such as Postman
+      operationId: QuoteRequest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/quote"
+            examples:
+              quoteMax:
+                summary: Quote - Detailed
+                value:
+                  quote_id: 1672581600_TESTPO123456
+                  customer_id: TEST_CUSTOMER_ID
+                  reference_numbers:
+                    - type: MSI
+                      value: zzz123
+                  requirements:
+                    vehicle_type: REFRIGERATED
+                    weight:
+                      amount: 1200.34
+                      unit: KG
+                    temperature_limit:
+                      min: 0
+                      max: 10
+                      operating_instructions: CONTINUOUS
+                      unit: C
+                    package_count:
+                      type: PALLET
+                      count: 10
+                  stops:
+                    - sequence_number: 1
+                      type: PICKUP
+                      mode: LIVE
+                      facility:
+                        name: Building 1
+                        address:
+                          line1: 123 Main St
+                          line2: Unit 1
+                          city: San Jose
+                          principal_subdivision: CA
+                          postal_code: "95002"
+                          country: USA
+                      notes: Pickup notes here
+                      reference_numbers:
+                        - type: PUN
+                          value: pickupnumber1122
+                      appointment:
+                        status: NEEDED
+                        start_time_utc: 152918000
+                        end_time_utc: 152919000
+                      items:
+                        - purchase_order_id: item_123
+                          package_count:
+                            type: PALLET
+                            count: 10
+                          weight:
+                            amount: 1200.34
+                            unit: KG
+                          name: Beer
+                          special_handling_types:
+                            - STK
+                    - sequence_number: 2
+                      type: DROPOFF
+                      mode: LIVE
+                      facility:
+                        name: Building 2
+                        address:
+                          line1: 456 Broadway
+                          city: San Francisco
+                          principal_subdivision: CA
+                          postal_code: "94102"
+                          country: USA
+                      notes: Dropoff notes here
+                      reference_numbers:
+                        - type: DLN
+                          value: delivery1234
+                      appointment:
+                        status: NEEDED
+                        start_time_utc: 152928000
+                        end_time_utc: 152929000
+                      items:
+                        - purchase_order_id: item_123
+                          package_count:
+                            type: PALLET
+                            count: 10
+                          weight:
+                            amount: 1200.34
+                            unit: KG
+                          name: Beer
+                          special_handling_types:
+                            - STK
+              quoteMin:
+                summary: Quote - Simple
+                value:
+                  quote_id: 1672581600_TESTPO123456
+                  customer_id: TEST_CUSTOMER_ID
+                  stops:
+                    - sequence_number: 1
+                      type: PICKUP
+                      mode: LIVE
+                      facility:
+                        name: Building 1
+                        address:
+                          line1: 123 Main St
+                          line2: Unit 1
+                          city: San Jose
+                          principal_subdivision: CA
+                          postal_code: "95002"
+                          country: USA
+                      appointment:
+                        status: NEEDED
+                        start_time_utc: 1671771591
+                        end_time_utc: 1671771591
+                    - sequence_number: 2
+                      type: DROPOFF
+                      mode: LIVE
+                      facility:
+                        name: Building 2
+                        address:
+                          line1: 456 Broadway
+                          city: San Francisco
+                          principal_subdivision: CA
+                          postal_code: "94102"
+                          country: USA
+                      appointment:
+                        status: NEEDED
+                        start_time_utc: 1671836422
+                        end_time_utc: 1671836422
+      responses:
+        "200":
+          description: Returns a quote object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uber_quote_uuid:
+                    type: string
+                    description: >-
+                      The Uber Freight-generated UUID for the quote that was created. This
+                      UUID will be passed into the request to POST /loads in order to
+                      guarantee the price returned here.
+                  price:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        description: "Amount of money in the currency’s lowest denomination (i.e. cents for USD)."
+                      currency_code:
+                        type: string
+                        description: "ISO 4217 currency code."
+                  expiration_time_utc:
+                    type: string
+                    description: "Unix UTC epoch timestamp in seconds. The time by which the API call to tender a load must be made in order for this quote to be guaranteed."
+                  status:
+                    type: string
+                    description: "Whether or not the load can be quoted. One of “ACCEPT” or “REJECT”."
+                  notes:
+                    type: string
+                    description: "Human-readable notes."
+                  uber_quote_id:
+                    type: string
+                    description: "The Uber Freight-generated 10-digit ID for the quote that was created. This ID can be passed into the request to POST /loads in order to guarantee the price returned here."
+              example:
+                uber_quote_uuid: 59120da4-c844-4502-a468-cca8e4018bd5
+                price:
+                  amount: 100000
+                  currency_code: USD
+                expiration_time_utc: 1529107809
+                status: ACCEPT
+                notes: "Expiration time: Jan 1 2019"
+
+        "400":
+          description: |
+            **The below table contains the 400 codes that this API may return**
+              Please refer to the description for detail
+
+            | Code             |
+            | ---------------- |
+            | required_field_missing|
+            | invalid_field_data|
+            | invalid_customer_id|
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code various depending on the specific error
+                    enum:
+                      - required_field_missing
+                      - invalid_field_data
+                      - invalid_customer_id
+                  message:
+                    type: string
+                    description: Describes the error reason. The description various
+                    example: Missing load_id
+              example:
+                code: required_field_missing
+                message: Missing quote_id
+        "403":
+          description: The request was successfully authenticated but doesn’t have the right authorization to access this resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "request_unauthorized"
+                  message:
+                    type: string
+                    example: "The request was successfully authenticated but doesn’t have the right authorization to access this resource."
+        '429':
+          description: There is a limit of 10 requests per second, any more will result in an HTTP 429 error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "rate_limit_exceeded_customer"
+                  message:
+                    type: string
+                    example: "CreateOpportunity per-customer rate limit exceeded"
+        "500":
+          description: Returns 500 error if unknown error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "internal_server_error"
+                  message:
+                    type: string
+                    example: "An unknown error has occurred."
+
+  /v2/freight/loads/quotes:
+    post:
+      tags:
+        - Quote
+      summary: Get an instant quote v2 (LTL)
+      description: |
+        Get an instant quote (LTL, FTL, IMDL) by specifying the load information in the request body.<br />
+        Additional notes: <br />
+        1. Shipping modes supported are LTL, FTL, IMDL
+        1. Current LTL shipping mode is not compatible with FTL/IMDL quotes. LTL and FLT/IMDL quotes have to be requested in 2 separate requests.
+        2. Clients can plan for retries (with retry count and retry interval) for 500 error responses.
+        3. We advise you to provide as much information about the shipment as possible, that ensures you get the best quote possible.
+        4. The "Try this API" feature is not supported for this API. Please complete testing in a separate client such as Postman
+      operationId: QuoteRequest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/quoteRequestv2"
+            example:
+              quote_id: TEST_QUOTE_ID
+              customer_id: TEST
+              shipping_modes:
+              - LTL
+              requirements:
+                vehicle_type: DRY
+              stops:
+              - sequence_number: 1
+                type: PICKUP
+                mode: LIVE
+                facility:
+                  name: Pickup In Aberdeen
+                  address:
+                    line1: 2213 Port Industrial Rd
+                    city: Aberdeen
+                    principal_subdivision: WA
+                    postal_code: '98520'
+                    country: USA
+                appointment:
+                  status: NEEDED
+                  start_time_utc: 1683652366
+                  end_time_utc: 1683652366
+                items:
+                - package_count:
+                    type: PALLET
+                    count: 5
+                  name: package
+                  special_handling_types:
+                  - STK
+                  freight_class: "55"
+                  weight:
+                    amount: 10
+                    unit: LB
+                  dimensions:
+                    length: 12
+                    width: 12
+                    height: 12
+                    unit: IN
+              - sequence_number: 2
+                type: DROPOFF
+                mode: LIVE
+                facility:
+                  name: zzyyshdsnn
+                  address:
+                    line1: 1524 20th St
+                    city: San Francisco
+                    principal_subdivision: CA
+                    postal_code: '94107'
+                    country: USA
+                appointment:
+                  status: NEEDED
+                  start_time_utc: 1683763200
+                  end_time_utc: 1683763200
+                items:
+                - package_count:
+                    type: PALLET
+                    count: 5
+                  name: package
+                  special_handling_types:
+                  - STK
+                  freight_class: "55"
+                  weight:
+                    amount: 10
+                    unit: LB
+                  dimensions:
+                    length: 12
+                    width: 12
+                    height: 12
+                    unit: IN
+
+
+      responses:
+        "200":
+          description: Returns a quote object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/quoteResponsev2"
+              example:
+                - carrier_name: Transport Fast Carrier
+                  shipping_mode: LTL
+                  service_level: STANDARD
+                  uber_quote_id: 0f638bcc-e5af-4275-bfaq-4a8acd79e2d9
+                  rate_details:
+                    all_in_rate:
+                      amount: 65385
+                      currency_code: USD
+                    line_items:
+                    - type: Linehaul
+                      charge:
+                        amount: 39104
+                        currency_code: USD
+                      description: Total Linehaul
+                    - type: Fuel
+                      charge:
+                        amount: 17771
+                        currency_code: USD
+                      description: Fuel Surcharge
+                    - type: Accessorial
+                      charge:
+                        amount: 8510
+                        currency_code: USD
+                      description: High Cost
+                  transit_estimate:
+                    duration:
+                      value: 2
+                      unit: DAY
+                    estimated_pickup_time_utc: 1683652366
+                    estimated_dropoff_time_utc: 1683763200
+        "400":
+          description: |
+            **The below table contains the 400 codes that this API may return**
+              Please refer to the description for detail
+
+            | Code             |
+            | ---------------- |
+            | required_field_missing|
+            | invalid_field_data|
+            | invalid_customer_id|
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code various depending on the specific error
+                    enum:
+                      - required_field_missing
+                      - invalid_field_data
+                      - invalid_customer_id
+                  message:
+                    type: string
+                    description: Describes the error reason. The description various
+                    example: Missing load_id
+              example:
+                code: required_field_missing
+                message: Missing quote_id
+        "403":
+          description: The request was successfully authenticated but doesn’t have the right authorization to access this resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "request_unauthorized"
+                  message:
+                    type: string
+                    example: "The request was successfully authenticated but doesn’t have the right authorization to access this resource."
+        "429":
+          description: There is a limit of 10 (5 for LTL) requests per second, any more will result in an HTTP 429 error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "rate_limit_exceeded_customer"
+                  message:
+                    type: string
+                    example: "CreateOpportunity per-customer rate limit exceeded"
+        "500":
+          description: Returns 500 error if unknown error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "internal_server_error"
+                  message:
+                    type: string
+                    example: "An unknown error has occurred."
+
+  /v1/freight/loads/tenders:
+    post:
+      tags:
+        - Tender
+      summary: Tender a load to Uber Freight
+      description: |
+        Notes for clients:
+        1. Sending the same request twice will result in a 400 error for the second request if response for the first one is 201 CREATED.
+        2. Clients can plan for retries (with retry count and retry interval) for 500 error responses.
+        3. For stop location addresses, address is required and latitude and longitude are optional.
+        4. The "Try this API" feature is not supported for this API. Please complete testing in a separate client such as Postman
+      operationId: TenderRequest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/tenderRequest"
+            examples:
+              tenderMax:
+                summary: Tender example 1
+                value:
+                  load_id: abc123
+                  tender_id: def456
+                  customer_id: CUSTOMER_123
+                  tender_expiration_utc: 1529105678
+                  uber_quote_uuid: 59120da4-c844-4502-a468-cca8e4018bd5
+                  reference_numbers:
+                    - type: MSI
+                      value: zzz123
+                    - type: TMS
+                      value: aaa2233
+                  notes: Special load-level instructions here
+                  requirements:
+                    vehicle_type: REFRIGERATED
+                    weight:
+                      amount: 1200.34
+                      unit: KG
+                    temperature_limit:
+                      min: 0
+                      max: 10
+                      unit: C
+                    package_count:
+                      type: PALLET
+                      count: 10
+                  accessorial_charges:
+                    - type: FUEL_SURCHARGE
+                      charge:
+                        amount: 5000
+                        currency_code: USD
+                  stops:
+                    - sequence_number: 1
+                      type: PICKUP
+                      mode: LIVE
+                      facility:
+                        name: Building 1
+                        address:
+                          line1: 123 Main St
+                          line2: Unit 1
+                          city: San Jose
+                          principal_subdivision: CA
+                          postal_code: "95002"
+                          country: USA
+                      notes: Pickup notes here
+                      reference_numbers:
+                        - type: PUN
+                          value: zzz123456
+                      appointment:
+                        status: SCHEDULED
+                        start_time_utc: 152918000
+                        end_time_utc: 152919000
+                      items:
+                        - purchase_order_id: po_123
+                          package_count:
+                            type: PALLET
+                            count: 10
+                          weight:
+                            amount: 1200.34
+                            unit: KG
+                          name: Beer
+                          special_handling_types:
+                            - STK
+                    - sequence_number: 2
+                      type: DROPOFF
+                      mode: LIVE
+                      facility:
+                        name: Building 2
+                        address:
+                          line1: 456 Broadway
+                          city: San Francisco
+                          principal_Subdivision: CA
+                          postal_code: "94102"
+                          country: USA
+                      notes: Dropoff notes here
+                      reference_numbers:
+                        - type: DLN
+                          value: dln123456
+                      appointment:
+                        status: SCHEDULED
+                        start_time_utc: 152928000
+                        end_time_utc: 152929000
+                      items:
+                        - purchase_order_id: po_123
+                          package_count:
+                            type: PALLET
+                            count: 10
+                          weight:
+                            amount: 1200.34
+                            unit: KG
+                          name: Beer
+                          special_handling_types:
+                            - STK
+              tenderMin:
+                summary: Tender example 2
+                value:
+                  load_id: LOAD_ID
+                  tender_id: TENDER_ID
+                  customer_id: TEST_CUSTOMER_ID
+                  uber_quote_uuid: 509f4c49-bf06-4609-9b24-6a3d54c32c4e
+                  stops:
+                    - sequence_number: 1
+                      type: PICKUP
+                      mode: LIVE
+                      facility:
+                        name: Building 1
+                        address:
+                          line1: 123 Main St
+                          line2: Unit 1
+                          city: San Jose
+                          principal_subdivision: CA
+                          postal_code: "95002"
+                          country: USA
+                      notes: Pickup notes here
+                      appointment:
+                        status: SCHEDULED
+                        start_time_utc: 1672869872
+                        end_time_utc: 1672869872
+                      items:
+                        - purchase_order_id: po_123
+                          package_count:
+                            type: PALLET
+                            count: 10
+                          weight:
+                            amount: 1200.34
+                            unit: KG
+                          name: Beer
+                          special_handling_types:
+                            - STK
+                    - sequence_number: 2
+                      type: DROPOFF
+                      mode: LIVE
+                      facility:
+                        name: Building 2
+                        address:
+                          line1: 456 Broadway
+                          city: San Francisco
+                          principal_Subdivision: CA
+                          postal_code: "94102"
+                          country: USA
+                      appointment:
+                        status: SCHEDULED
+                        start_time_utc: 1672956272
+                        end_time_utc: 1672956272
+                      items:
+                        - purchase_order_id: po_123
+                          package_count:
+                            type: PALLET
+                            count: 10
+                          weight:
+                            amount: 1200.34
+                            unit: KG
+                          name: Beer
+                          special_handling_types:
+                            - STK
+              tenderLTL:
+                summary: Tender Example LTL
+                value:
+                  load_id: LOAD_ID
+                  uber_quote_id: uber_quote_id
+                  customer_id: TEST_CUSTOMER_ID
+                  shipping_mode: LTL
+                  requirements:
+                    vehicle_type: DRY
+                  stops:
+                  - sequence_number: 1
+                    type: PICKUP
+                    mode: LIVE
+                    facility:
+                      name: Building 1
+                      address:
+                        line1: 123 Main St
+                        line2: Unit 1
+                        city: San Jose
+                        principal_subdivision: CA
+                        postal_code: '95002'
+                        country: USA
+                    appointment:
+                      status: NEEDED
+                      start_time_utc: 1683223637
+                      end_time_utc: 1683223637
+                    items:
+                    - package_count:
+                        type: PALLET
+                        count: 5
+                      name: package
+                      special_handling_types:
+                      - STK
+                      freight_class: CLASS_55
+                      weight:
+                        amount: 10
+                        unit: LB
+                      dimensions:
+                        length: 12
+                        width: 12
+                        height: 12
+                        unit: INCHES
+                    - package_count:
+                        type: PALLET
+                        count: 5
+                      name: package2
+                      special_handling_types:
+                      - STK
+                      freight_class: CLASS_55
+                      weight:
+                        amount: 10
+                        unit: LB
+                      dimensions:
+                        length: 12
+                        width: 12
+                        height: 12
+                        unit: INCHES
+                  - sequence_number: 2
+                    type: DROPOFF
+                    mode: LIVE
+                    facility:
+                      name: Building 2
+                      address:
+                        line1: 456 Broadway
+                        city: San Francisco
+                        principal_subdivision: CA
+                        postal_code: '94133'
+                        country: USA
+                    items:
+                    - package_count:
+                        type: PALLET
+                        count: 5
+                      name: package
+                      special_handling_types:
+                      - STK
+                      freight_class: CLASS_55
+                      weight:
+                        amount: 10
+                        unit: LB
+                      dimensions:
+                        length: 12
+                        width: 12
+                        height: 12
+                        unit: INCHES
+                    - package_count:
+                        type: PALLET
+                        count: 5
+                      name: package2
+                      special_handling_types:
+                      - STK
+                      freight_class: CLASS_55
+                      weight:
+                        amount: 10
+                        unit: LB
+                      dimensions:
+                        length: 12
+                        width: 12
+                        height: 12
+                        unit: INCHES
+              tenderWithPricingControls:
+                summary: Tender with pricing controls
+                value:
+                  load_id: abc123
+                  tender_id: def456
+                  customer_id: CUSTOMER_123
+                  tender_expiration_utc: 1529105678
+                  uber_quote_uuid: 59120da4-c844-4502-a468-cca8e4018bd5
+                  reference_numbers:
+                    - type: MSI
+                      value: zzz123
+                    - type: TMS
+                      value: aaa2233
+                  notes: Special load-level instructions here
+                  requirements:
+                    vehicle_type: REFRIGERATED
+                    weight:
+                      amount: 1200.34
+                      unit: KG
+                    temperature_limit:
+                      min: 0
+                      max: 10
+                      unit: C
+                    package_count:
+                      type: PALLET
+                      count: 10
+                  accessorial_charges:
+                    - type: FUEL_SURCHARGE
+                      charge:
+                        amount: 5000
+                        currency_code: USD
+                  pricing_controls:
+                    pricing_type: "DYNAMIC"
+                    max_price:
+                      all_in_rate:
+                        amount: 10000
+                        currency: "USD"
+                    priority: "LOW"
+                  stops:
+                    - sequence_number: 1
+                      type: PICKUP
+                      mode: LIVE
+                      facility:
+                        name: Building 1
+                        address:
+                          line1: 123 Main St
+                          line2: Unit 1
+                          city: San Jose
+                          principal_subdivision: CA
+                          postal_code: "95002"
+                          country: USA
+                      notes: Pickup notes here
+                      reference_numbers:
+                        - type: PUN
+                          value: zzz123456
+                      appointment:
+                        status: SCHEDULED
+                        start_time_utc: 152918000
+                        end_time_utc: 152919000
+                      items:
+                        - purchase_order_id: po_123
+                          package_count:
+                            type: PALLET
+                            count: 10
+                          weight:
+                            amount: 1200.34
+                            unit: KG
+                          name: Beer
+                          special_handling_types:
+                            - STK
+                    - sequence_number: 2
+                      type: DROPOFF
+                      mode: LIVE
+                      facility:
+                        name: Building 2
+                        address:
+                          line1: 456 Broadway
+                          city: San Francisco
+                          principal_Subdivision: CA
+                          postal_code: "94102"
+                          country: USA
+                      notes: Dropoff notes here
+                      reference_numbers:
+                        - type: DLN
+                          value: dln123456
+                      appointment:
+                        status: SCHEDULED
+                        start_time_utc: 152928000
+                        end_time_utc: 152929000
+                      items:
+                        - purchase_order_id: po_123
+                          package_count:
+                            type: PALLET
+                            count: 10
+                          weight:
+                            amount: 1200.34
+                            unit: KG
+                          name: Beer
+                          special_handling_types:
+                            - STK
+
+      responses:
+        "201":
+          description: Returns the load id from Uber Freight system
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uber_load_id:
+                    type: string
+                    description: The Uber Freight-generated ID for the load that was created. Also the PRO number
+                    example: "2398479238"
+                  uber_load_uuid:
+                    type: string
+                    description: The Uber Freight-generated UUID for the load that was created.
+                    example: "a6af4a78-c886-4a7c-89a8-2bcc51bb8b01"
+              example:
+                uber_load_id: "2398479238"
+                uber_load_uuid: a6af4a78-c886-4a7c-89a8-2bcc51bb8b01
+        "400":
+          description: |
+            **The below table contains the 400 codes that this API may return**
+              Please refer to the description for detail
+
+            | Code             |
+            | ---------------- |
+            | required_field_missing|
+            | invalid_field_data|
+            | invalid_customer_id|
+            | load_id_already_exists|
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code various depending on the specific error
+                    enum:
+                      - required_field_missing
+                      - invalid_field_data
+                      - invalid_customer_id
+                  message:
+                    type: string
+                    description: Describes the error reason. The description various
+                    example: Missing load_id
+        "403":
+          description: The request was successfully authenticated but doesn’t have the right authorization to access this resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "request_unauthorized"
+                  message:
+                    type: string
+                    example: "The request was successfully authenticated but doesn’t have the right authorization to access this resource."
+        '429':
+          description: There is a limit of 10 requests per second, any more will result in an HTTP 429 error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "rate_limit_exceeded_customer"
+                  message:
+                    type: string
+                    example: "CreateOpportunity per-customer rate limit exceeded"
+        '500':
+          description: Returns 500 error if unknown error occurred. Usually due to one or more item missing in pickup/dropoff stops. Please make sure all items has a pickup and dropoff stop.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "internal_server_error"
+                  message:
+                    type: string
+                    example: "An unknown error has occurred."
+
+  /v1/freight/loads/tenders/{uf_load_id}:
+    put:
+      tags:
+        - Change Tender
+      summary: Updates a load if the load is available to be updated
+      description: |
+        Notes for clients:
+          1. If the same request is passed in multiple times, the PUT request will be processed repeatedly in a stateless manner and 204 NO CONTENT response is sent if the processing is successful.
+          2. Clients can plan for retries (with retry count and retry interval) for 500 error responses.
+          3. For stop location addresses, address is required and latitude and longitude are optional.
+          4. The "Try this API" feature is not supported for this API. Please complete testing in a separate client such as Postman
+      operationId: ChangeTenderRequest
+      parameters:
+        - in: path
+          name: uf_load_id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/tenderRequest"
+            examples:
+              tenderMax:
+                summary: Tender example 1
+                value:
+                  load_id: abc123
+                  tender_id: def456
+                  customer_id: CUSTOMER_123
+                  tender_expiration_utc: 1529105678
+                  uber_quote_uuid: 59120da4-c844-4502-a468-cca8e4018bd5
+                  reference_numbers:
+                    - type: MSI
+                      value: zzz123
+                    - type: TMS
+                      value: aaa2233
+                  notes: Special load-level instructions here
+                  requirements:
+                    vehicle_type: REFRIGERATED
+                    weight:
+                      amount: 1200.34
+                      unit: KG
+                    temperature_limit:
+                      min: 0
+                      max: 10
+                      unit: C
+                    package_count:
+                      type: PALLET
+                      count: 10
+                  accessorial_charges:
+                    - type: FUEL_SURCHARGE
+                      charge:
+                        amount: 5000
+                        currency_code: USD
+                  stops:
+                    - sequence_number: 1
+                      type: PICKUP
+                      mode: LIVE
+                      facility:
+                        name: Building 1
+                        address:
+                          line1: 123 Main St
+                          line2: Unit 1
+                          city: San Jose
+                          principal_subdivision: CA
+                          postal_code: "95002"
+                          country: USA
+                      notes: Pickup notes here
+                      reference_numbers:
+                        - type: PUN
+                          value: zzz123456
+                      appointment:
+                        status: SCHEDULED
+                        start_time_utc: 152918000
+                        end_time_utc: 152919000
+                      items:
+                        - purchase_order_id: po_123
+                          package_count:
+                            type: PALLET
+                            count: 10
+                          weight:
+                            amount: 1200.34
+                            unit: KG
+                          name: Beer
+                          special_handling_types:
+                            - STK
+                    - sequence_number: 2
+                      type: DROPOFF
+                      mode: LIVE
+                      facility:
+                        name: Building 2
+                        address:
+                          line1: 456 Broadway
+                          city: San Francisco
+                          principal_Subdivision: CA
+                          postal_code: "94102"
+                          country: USA
+                      notes: Dropoff notes here
+                      reference_numbers:
+                        - type: DLN
+                          value: dln123456
+                      appointment:
+                        status: SCHEDULED
+                        start_time_utc: 152928000
+                        end_time_utc: 152929000
+                      items:
+                        - purchase_order_id: po_123
+                          package_count:
+                            type: PALLET
+                            count: 10
+                          weight:
+                            amount: 1200.34
+                            unit: KG
+                          name: Beer
+                          special_handling_types:
+                            - STK
+      responses:
+        "204":
+          description: Returns 204 if the load is succesfully updated
+        "400":
+          description: |
+            **The below table contains the 400 codes that this API may return**
+              Please refer to the description for detail
+
+            | Code             |
+            | ---------------- |
+            | required_field_missing|
+            | invalid_field_data|
+            | invalid_customer_id|
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: if `required_action`, please contact your Uber Freight representative to resolve
+                    enum:
+                      - required_field_missing
+                      - invalid_field_data
+                      - invalid_customer_id
+                      - required_action
+                  message:
+                    type: string
+                    description: Describes the error reason
+                    example: Missing load_id
+        "403":
+          description: The request was successfully authenticated but doesn’t have the right authorization to access this resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "request_unauthorized"
+                  message:
+                    type: string
+                    example: "The request was successfully authenticated but doesn’t have the right authorization to access this resource."
+        "404":
+          description: Returns 404 error if Uber load ID not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "invalid_uber_load_id"
+                  description:
+                    type: string
+                    example: "Uber load ID not found."
+        "429":
+          description: There is a limit of 10 (5 for LTL) requests per second, any more will result in an HTTP 429 error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "rate_limit_exceeded_customer"
+                  message:
+                    type: string
+                    example: "CreateOpportunity per-customer rate limit exceeded"
+        "500":
+          description: Returns 500 error if unknown error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "internal_server_error"
+                  message:
+                    type: string
+                    example: "An unknown error has occurred."
+    delete:
+      tags:
+        - Cancel Tender
+      summary: Cancels a load if the load is available to be cancelled
+      description: |
+        Notes for clients:
+        1. If the same request is passed in twice, the DELETE request will return a a 204 if a 204 OK was sent for the first request. We allow the same cancel request to be sent multiple times
+        2. Clients can plan for retries (with retry count and retry interval) for 500 error responses.
+        3. The "Try this API" feature is not supported for this API. Please complete testing in a separate client such as Postman
+      operationId: DeleteTenderRequest
+      parameters:
+        - in: path
+          name: uf_load_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        "404":
+          description: Returns 404 error if Uber load ID not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "invalid_uber_load_id"
+                  message:
+                    type: string
+                    example: "Uber load ID not found."
+        "500":
+          description: Returns 500 error if unknown error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "internal_server_error"
+                  message:
+                    type: string
+                    example: "An unknown error has occurred."

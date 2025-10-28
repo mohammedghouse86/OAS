@@ -1,0 +1,866 @@
+openapi: 3.0.2
+info:
+  title: Carrier APIs
+  version: '1.0'
+  description: |
+    # Overview
+    Uber Freight offers an extensive suite of APIs to enable carriers of all sizes (fleets, on-premise/cloud TMS systems etc.) to automate load search, booking and tracking. This document is a reference guide for these APIs. For any API questions, please contact us here: [ufapisupport@uberfreight.com]()
+
+    # Scopes and Endpoints throughout Load Life Cycle
+    | Usecase   | Description | When to use? (Load Status) | Endpoint| Scope |
+    | ----------| --------| --------| --------| --------|
+    | Search    | Search loads| Available | POST v1/freight/carriers/loads/search | freight.carriers.loads / freight.carriers.users.loads* |
+    | Book      | Book loads| Book | POST v1/freight/carriers/loads/book| freight.carriers.loads / freight.carriers.users.loads* |
+    | Asset     | Update truck/trailer information | Anytime post booking | POST /v1/freight/carriers/loads/asset| freight.carriers.assets |
+    | Tracking  | Share real-time tracking information for loads| Pre-PickUp, In-transit, Drop Off| POST /v1/freight/carriers/loads/tracking| freight.carriers.tracking |
+
+    *see Authentication section for more info
+    ## API Onboarding
+    ### Authentication
+    #### For Sandbox
+    1. Email [ufapisupport@uberfreight.com]() with your business name, use case, and developer email account to be added as a developer to our test application(s). Please note the developer email account must have been registered with Uber and is also listed as a freight dispatcher/driver in your carrier profile, if not please let us know in the email.
+    We advise you to use a non-personal email account for this integration. You should expect to receive a response from us within two business days. The test app will be onboarded depending on the usecase
+    2. Once you hear back from us, log in to [https://developer.uber.com]() and go to the test application to retrieve the Client ID and Client Secret,
+    you will be able to generate bearer token on the Uber developer platform or in you development environment using Oauth2.
+    We will inform you what appropriate scope(s) to use.
+    #### For Production
+    Follow the steps below to onboard to the Uber Developer Platform:<br>
+    1. If you have an existing Uber Freight account that is a “Dispatcher” or “Driver-Dispatcher” type:
+        * Go to [https://developer.uber.com](https://developer.uber.com) and click **Sign In** on the top right. Sign in with your Uber Freight account. We advise you to use a non-personal email account for this integration.
+        * If you see the error message “Confirm your mobile number” please follow the steps in (2) below.
+    2. If you do not have an existing Uber Freight account:<br>
+        * Email [ufapisupport@uberfreight.com]() with your Carrier Name (ex: Bob’s Trucking Inc), business email address, and a mobile cell phone number that can receive text messages. We advise you to use a non-personal business email account for this integration.
+        * Once you have received confirmation of your account creation, go to [https://developer.uber.com](https://developer.uber.com) and click **Sign In** on the top right.
+    3. Click Register App to create a new developer app. Follow the on-screen directions and fill in the necessary fields.
+        * **Optional**: Add additional team members who will access documentation. Add the additional team members with “Admin” level access, making sure to submit by clicking the + symbol.
+        Note: These email addresses will also need to be associated with Uber Freight accounts.
+    4. Note the client_id and the client_secret listed at the top of the dashboard page for the app.
+    These should be securely stored and not shared. Send the following email:
+        - **TO**: [ufapisupport@uberfreight.com]()
+        - **SUBJECT**: Please grant access for << scope >> scope
+        - **BODY**:<br>
+            Application Name: The name you gave your app, ex: Bob’s App<br>
+            Application Client ID: Your client_id, ex: J9IIeHFaKb7DkRZ<br>
+            Company name: Your company’s website, ex:  https://bobstrucking.com
+    5. We will grant access to your production app and respond to your email within 2 business days.
+   
+    ## Environments
+    **Sandbox** - sandbox-api.uber.com <br>
+    **Production** - api.uber.com
+
+servers:
+  - url: https://sandbox-api.uber.com
+    description: sandbox
+  - url: https://api.uber.com
+    description: production
+
+
+paths:
+  /oauth/v2/token:
+    post:
+      tags:
+        - Generate Bearer Token
+      servers:
+        - url: https://login.uber.com
+      summary: "Url: https://login.uber.com. Receive a Bearer token"
+      description: |
+        * For *authorization code* flow, an extra step is required to get an authorization code. Please follow the [Authentication Doc](https://developer.uber.com/docs/riders/references/api/v2/authorize-get)
+        1. Once the scopes have been granted, you can generate a Bearer token on developer platform or in you program.
+        2. Pass the Bearer token received in the Authorization header of all API requests.
+        3. Token expires in 30 days
+      operationId: TokenRequest
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  description: required
+                client_secret:
+                  type: string
+                  description: required
+                grant_type:
+                  type: string
+                  description: client_credentials or authorization_code
+                  example: client_credentials
+                scope:
+                  type: string
+                  description: required
+                  example: carriers.loads
+                redirect_uri:
+                  type: string
+                  description: Used for authorization code flow. The URI we will redirect back to after an authorization by the resource owner. The base of the URI must match the redirect_uri used during the registration of your application.
+                code:
+                  type: string
+                  description: authorization_code if authorization code flow
+              required:
+                - client_id
+                - client_secret
+                - grant_type
+                - scope
+      responses:
+        '200':
+          description: Returns a quote object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    example: sample_token
+                  token_type:
+                    type: string
+                    example: Bearer
+                  expires_in:
+                    type: integer
+                    example: 3600
+                  scope:
+                    type: string
+                    example: carriers.loads
+
+  /v1/freight/carriers/loads/search:
+    post:
+      tags:
+        - Search & Book
+      summary: Search available loads
+      security:
+        - Oauth2: [freight.carriers.loads, freight.carriers.users.loads]
+      description: |
+        ### Notes for clients:<br>
+          We don’t reveal loads of which the pickup time has passed. If nothing returns please change the `date_start` to a recent timestamp (can be now),
+          and `date_end` to a timestamp that is a few days in the future.
+          You can use [https://currentmillis.com/]() to get proper timestamps.
+
+          If `drop_off_dead_head` field in response `CarrierLoad` struct does not appear,
+          make sure you have included a `destination_filter` in the `carrier_load_search_filters`.
+
+          Passing latitude 0 and longitude 0 in `source_filter.center_location` equals not setting source filter.
+          If at the same `time destination_filter` is properly set, you can search loads that start from anywhere and the dropoff is your destination.
+          In that case you will only have `drop_off_dead_head`.
+
+          Search returns an array of `CarrierLoad` objects. In example 1 "page_size" is set to 1, so only one CarrierLoad is in the response.
+          Since there are actually more than 1 CarrierLoads returned, the response also contains a `continuous_token`.
+          If its value is passed in the request (see example-continuousToken), the returned array of CarrierLoads will start from the 2nd CarrierLoad
+          had all returned CarrierLoads been included in the array.
+
+        ### Rate Limit
+        The rate limit is 10 requests per second for both the Search and Book APIs.
+
+        ### Page Limit
+        We have a max pageSize limit on Search API. The maximum number of loads one search would return is 100.
+        If your request passes in a pageSize that is less than or equal to 100 the API will respect that.
+        But if the pageSize from your request is greater than 100, it will be hardcoded to 100 internally.
+
+        If you are using the continuous token returned by the API to get the next page, then this change should not affect your application.
+        You just need to issue more requests to get the same amount of loads as before.
+        ### Testing
+        The "Try this API" feature is not supported for this API. Please complete testing in a separate client such as Postman
+      operationId: SearchLoad
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+            examples:
+              example1:
+                value:
+                  carrier_load_search_filters:
+                    source_filter:
+                      center_location:
+                        latitude: 37.7749
+                        longitude: -122.4194
+                      radius: 450
+                    destination_filter:
+                      center_location:
+                        latitude: 32.7767
+                        longitude: -96.797
+                      radius: 450
+                    equipment_filter:
+                      equipment_types:
+                        - VAN
+                        - REFRIGERATED
+                    start_time_filter:
+                      date_end: 1637494400000
+                      date_start: 1616371200000
+                  page_size: 1
+              example-continuousToken:
+                value:
+                  carrier_load_search_filters:
+                    source_filter:
+                      center_location:
+                        latitude: 37.7749
+                        longitude: -122.4194
+                      radius: 450
+                    destination_filter:
+                      center_location:
+                        latitude: 32.7767
+                        longitude: -96.797
+                      radius: 450
+                    equipment_filter:
+                      equipment_types:
+                        - VAN
+                        - REFRIGERATED
+                    start_time_filter:
+                      date_end: 1637494400000
+                      date_start: 1616371200000
+                  page_size: 1
+                  continuous_token: DwABCwAAAAEAAAAkYzA5MmI1YWQtNGEyNS00NjdiLTg5ZTMtZTQzY2FmNGVjMDRlCwACAAAAJGMwOTJiNWFkLTRhMjUtNDY3Yi04OWUzLWU0M2NhZjRlYzA0ZQQAA0EdofAAAAAACgAEAAABeYHsCAAEAAVAd2+NIha4TAQABkBzgRFTs9kiCAAHAAAsawQACEAlQAOs/TmXCwAJAAAAJDBiOTM0YTUzLWQyMWYtNGI5My1hOTgxLWI3MTRhMDk3OGIyMggACgAAAAUA
+      responses:
+        '200':
+            description: Returns the list of loads that meets the search criteria
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    carrier_loads:
+                      type: array
+                      description: Required fields; List of CarrierLoad objects
+                      items:
+                        $ref: '#/components/schemas/CarrierLoad'
+                    continuous_token:
+                      type: string
+                      description: Optional field; Token to know what’s next page is
+                  required:
+                    - carrier_loads
+                example:
+                  carrier_loads:
+                    - carrier_load_id: c092b5ad-4a25-467b-89e3-e43caf4ec04e
+                      stops:
+                        - carrier_load_stop_id: 81ffe112-209c-4202-ae47-9f945e0ccc5b
+                          location_text: Fontana, CA
+                          stop_task_type: PURCHASE_ORDER_PICKUP
+                          appointment_start_time: '2021-05-19T22:00:00.000Z'
+                          appointment_end_time: '2021-05-19T22:00:00.000Z'
+                          commodity: Consumer Goods
+                          formatted_address: 5565 Sierra Avenue, Fontana, CA 92336, US
+                          note: |-
+                            [pick-up]
+                            - Please ensure the POD is signed and dated prior to leaving the receiver.
+                            - Load may be floor loaded or palletized
+                            Strict delivery and pickup appointments
+                          packaging_type: Other
+                          latitude: 34.1528
+                          longitude: -117.43361
+                          facility_name: LG Electronics
+                          facility_rating: '4.5'
+                        - carrier_load_stop_id: 4359cd81-b9a1-4a85-913e-83d8523c4541
+                          location_text: Kansas City, KS
+                          stop_task_type: PURCHASE_ORDER_DROPOFF
+                          appointment_start_time: '2021-05-22T07:30:00.000Z'
+                          appointment_end_time: '2021-05-22T07:30:00.000Z'
+                          commodity: Consumer Goods
+                          formatted_address: 1601 Village West Pkwy, Kansas City, KS 66111, US
+                          note: |-
+                            [drop-off]
+                            - **DRIVER ASSIST MAY BE REQUIRED AT RECEIVER - $60; PLEASE LET UBER TEAM KNOW UPON ARRIVAL IF REQUIRED**
+                            - STRICT DELIVERY APPOINTMENT
+                            Strict delivery and pickup appointments
+                          packaging_type: Other
+                          latitude: 39.1246479
+                          longitude: -94.8188235
+                          facility_name: Nebraska Furniture Mart
+                          facility_rating: '4.7'
+                      trailer_type: Van
+                      dead_head: 427mi
+                      carrier_load_content_hash: c3766508c166bba0bb4b56c4bf98eb1e
+                      carrier_load_properties:
+                        price: $5200
+                        distance: 1556mi
+                        weight: 11371 lb
+                        rate_per_distance: $3.34/mi
+                      carrier_load_external_id: '6449910180'
+                      drop_off_dead_head: 492mi
+                  continuous_token: DwABCwAAAAEAAAAkYzA5MmI1YWQtNGEyNS00NjdiLTg5ZTMtZTQzY2FmNGVjMDRlCwACAAAAJGMwOTJiNWFkLTRhMjUtNDY3Yi04OWUzLWU0M2NhZjRlYzA0ZQQAA0EdofAAAAAACgAEAAABeYHsCAAEAAVAd2+NIha4TAQABkBzgRFTs9kiCAAHAAAsawQACEAlQAOs/TmXCwAJAAAAJGM3YzU3MTdiLWFmMzgtNDJiNi1iMzRlLTJhNDFkYjQ5ODEwNwgACgAAAAUA
+        '400':
+          description: |
+            **Common 400 Errors**|
+            | ---------------- |
+            | Example1: Wrong field name (e.g. Using "sce_filter" instead of "source_filter")|
+            | Example2: Bad enum value for fields (e.g. uses “V” instead of “VAN” in "equipment_types")|
+            | Example3: Empty request (e.g. missing required field “carrier_load_search_filters”)|
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                example1:
+                  value:
+                    error: "Could not parse json: key 'source_filter' is required"
+                example2:
+                  value:
+                    error: "Could not parse json: unknown enum value 'V' for ExternalTmsEquipmentType"
+                example3:
+                  value:
+                    error: "key 'carrier_load_search_filters' is required"
+  /v1/freight/carriers/loads/book:
+    post:
+      tags:
+        - Search & Book
+      summary: Book available loads
+      security:
+        - Oauth2: [freight.carriers.loads, freight.carriers.users.loads]
+      description: |
+        After you do a successful search you can then pass the “carrier_load_id” and “carrier_load_content_hash” from the search results to the book API to book a carrier load.
+
+        In order to improve the tracking experience, we suggest the carrier provide the truck or trailer number(in equipment_identifier field)  in the BookLoad request.
+        ### Testing
+        The "Try this API" feature is not supported for this API. Please complete testing in a separate client such as Postman
+      operationId: BookLoad
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookRequest'
+            example:
+              carrier_load_id: '9680951100'
+              carrier_load_content_hash: 66307281a858d2223111d1ef787e79e8
+              asset:
+                type: TRUCK_NUMBER
+                value: truck4321
+      responses:
+        '200':
+          description: |
+            Returns a `carrier_load` object if successfully booked.
+
+            Returns `error_type: CARRIER_LOAD_CHANGED_ERROR` if you book again using the same request. The request is legit but the content hash changed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  carrier_load:
+                    $ref: '#/components/schemas/CarrierLoad'
+                  error_type:
+                    type: string
+              examples:
+                response-success:
+                  value:
+                    carrier_load:
+                      carrier_load_id: bfba4230-9bca-46e3-9af7-062367b9e557
+                      stops:
+                        - carrier_load_stop_id: ce33a2bd-6e4a-4f99-b325-fc6191f73d6f
+                          location_text: San Francisco, CA
+                          stop_task_type: PURCHASE_ORDER_PICKUP
+                          appointment_start_time: '2020-02-16T17:07:00.000Z'
+                          appointment_end_time: '2020-02-16T17:07:00.000Z'
+                          commodity: Poly Moldings
+                          formatted_address: 721 Market St, San Francisco, CA 94103, USA
+                          note: Can deliver straight through if driver arrives by 1500 at receiver<br/><br/>Shipper FCFS 0600-1400
+                          packaging_type: Pallet
+                        - carrier_load_stop_id: 827958f9-d249-434c-911e-714e17022641
+                          location_text: Houston, TX
+                          stop_task_type: PURCHASE_ORDER_DROPOFF
+                          appointment_start_time: '2020-02-17T17:07:00.000Z'
+                          appointment_end_time: '2020-02-17T17:07:00.000Z'
+                          commodity: Poly Moldings
+                          formatted_address: 1722 California St, Houston, TX 77006, USA
+                          note: can deliver straight (day it loaded) if driver has the hours. FCFS 0800-1500.
+                          packaging_type: Pallet
+                      trailer_type: Van
+                      carrier_load_properties:
+                        price: $770
+                        distance: 1923mi
+                        weight: 15000 lb
+                        rate_per_distance: $0.40/mi
+                      carrier_load_external_id: '8929414445'
+                response_error:
+                  value:
+                    error_type: CARRIER_LOAD_CHANGED_ERROR
+        '400':
+          description: Empty request -- missing required field “carrier_load_id”
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Could not parse json: key 'carrier_load_id' is required"
+
+        '500':
+          description: Book using a bad carrier load ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal_server_error
+                  message:
+                    type: string
+                    example: We have experienced a problem.
+
+  /v1/freight/carriers/loads/asset:
+    post:
+      tags:
+        - Asset
+      summary: provide and update truck and trailer numbers for a given booked load
+      security:
+        - Oauth2: [freight.carriers.asset]
+      description: |
+        ### Rate Limit
+        The rate limit is 10 requests per second for the Asset API.
+        ### Testing
+        The "Try this API" feature is not supported for this API. Please complete testing in a separate client such as Postman
+      operationId: Asset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetRequest'
+            example:
+              carrier_load_id: '7165588793'
+              carrier_scac: null
+              asset:
+                type: TRAILER_NUMBER
+                value: trailer222
+      responses:
+        '200':
+          description: 200 response will return an empty response body which indicates **success**
+        '400':
+          description: |
+            **Common 400 Errors**|
+            | ---------------- |
+            | ParamsError: Indicates error in parameters|
+            | NotFoundError: Load is not found|
+            | InternalError: Internal error|
+            | AuthorizationError / PermissionDeniedError: Token is invalid or carrier user is not properly configured with OAuth Application|
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Could not parse json: key 'carrier_load_id' is required"
+
+
+  /v1/freight/carriers/loads/tracking:
+    post:
+      tags:
+        - Tracking
+      summary: post tracking updates
+      security:
+        - Oauth2: [freight.carriers.tracking]
+      description: |
+        Push real-time tracking information (location, temperature, emission, and etc) for Uber Freight loads.
+
+        **Rate Limit**
+
+        The rate limit is 5 requests per second for tracking APIs.
+        ### Testing
+        The "Try this API" feature is not supported for this API. Please complete testing in a separate client such as Postman
+
+      operationId: Tracking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackingRequest'
+            example:
+              carrier_id:
+                type: US_DOT
+                value: '12345678'
+              locations:
+                - load_id: '12345678'
+                  asset:
+                    type: TRUCK_NUMBER
+                    value: T1234
+                  location:
+                    latitude: 47.608013
+                    longitude: -122.335167
+                    altitude: 200.531234
+                    speed: 55.345783
+                    heading: 90
+                    horizontal_accuracy: 93.987572
+                    vertical_accuracy: 95.012345
+                    timestamp: '2022-08-04T16:54:59Z'
+      responses:
+        '204':
+          description: success - no content
+        '400':
+          description: |
+            **Common 400 Errors**|
+            | ---------------- |
+            | Example1: Missing required field (e.g. Missing carrier_id.value in the request)|
+            | Example2: Bad enum type for "carrier_id.type" (e.g. Below request uses “US_DOTNUM” instead of “US_DOT” )|
+            | Example3: Bad format for “locations.location.timestamp” (e.g. Below request uses invalid ISO8601 timestamp “2022-08-04T16:54:59Z+08:00”)|
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Could not parse json: key 'carrier_load_id' is required"
+                  code:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                example1:
+                  value:
+                    error: 'Could not parse json: Unable to unmarshal request json: Key: ''UploadCarrierFleetLocationsReq.CarrierIdentifier.Value'' Error:Field validation for ''Value'' failed on the ''required'' tag'
+                example2:
+                  value:
+                    error:
+                    type: string
+                    example: "Could not parse json: carrier_fleet_tracking.UploadCarrierFleetLocationsReq.CarrierIdentifier: carrier.CarrierIdentifier.Value: Type: unmarshalerDecoder: unknown enum value 'US_DOTNUM' for..."
+                example3:
+                  value:
+                    code: bad_request
+                    message: invalid time '2022-08-04T16:54:59Z+08:00'. Time must be in format of '2006-01-02T15:04:05Z07:00'
+
+
+components:
+  schemas:
+    SearchRequest:
+      type: object
+      properties:
+        carrier_load_search_filters:
+          type: object
+          description: Required field; Define what search criteria is
+          properties:
+            source_filter:
+              $ref: '#/components/schemas/LocationRadiusFilter'
+            equipment_filter:
+              $ref: '#/components/schemas/EquipmentFilter'
+            start_time_filter:
+              type: object
+              properties:
+                date_start:
+                  type: integer
+                  format: int64
+                  description: Epoch timestamp in millisecond
+                date_end:
+                  type: integer
+                  format: int64
+                  description: Epoch timestamp in millisecond
+            destination_filter:
+              $ref: '#/components/schemas/LocationRadiusFilter'
+          required:
+            - source_filter
+            - equipment_filter
+            - start_time_filter
+        page_size:
+          type: integer
+          description: Number of carrier loads returned from one page. Default value 100. We have a max pageSize limit on Search API. The maximum number of loads one search would return is 100. If your request passes in a pageSize that is less than or equal to 100 the API will respect that. But if the pageSize from your request is greater than 100, it will be hardcoded to 100 internally.
+        continuous_token:
+          type: string
+          description: Token to know what’s next page is
+        sort_type:
+          type: string
+          description: |
+            Default sort is by load pickup date. Also support sort by deadhead:
+            * If you search with just origin, the results are sorted by pickup deadhead in asc order, grouped by load pickup date in origin’s local time
+            * If you search with just destination, the results are sorted by dropoff deadhead in asc order, grouped by load pickup date in origin’s local time
+            * If you search with both a origin and destination, the results are sorted by pickup deadhead in asc order, grouped by load pickup date in origin’s local time
+          enum:
+            - UNKNOWN
+            - DEADHEAD
+      required:
+        - carrier_load_search_filters
+    LocationRadiusFilter:
+      type: object
+      properties:
+        center_location:
+          $ref: '#/components/schemas/Coordinate'
+        radius:
+          type: number
+          format: double
+          description: default 200
+      required:
+        - center_location
+    Coordinate:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+      required:
+        - latitude
+        - longitude
+    EquipmentFilter:
+      type: object
+      description: default UNKNOWN
+      properties:
+        equipment_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/EquipmentType'
+      required:
+        - equipment_types
+    EquipmentType:
+      type: string
+      example: VAN
+      enum:
+        - UNKNOWN
+        - VAN
+        - REFRIGERATED
+        - CONTAINER
+        - FLAT_BED
+        - POWER_ONLY
+        - DECK
+        - TAUTLINER
+        - TANKER
+        - CONESTOGA
+        - MEGATRAILER
+        - ROADTRAIN
+        - JUMBO
+        - TILT
+        - BOX
+    CarrierLoad:
+      type: object
+      properties:
+        carrier_load_id:
+          type: string
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierLoadStop'
+        trailer_type:
+          type: string
+        dead_head:
+          type: string
+          description: pickup deadhead, depend on the search location
+        carrier_load_content_hash:
+          type: string
+        carrier_load_properties:
+          type: object
+          properties:
+            price:
+              type: string
+            distance:
+              type: string
+            weight:
+              type: string
+            pre_cool_temp:
+              type: string
+            min_temp:
+              type: string
+            max_temp:
+              type: string
+            rate_per_distance:
+              type: string
+        carrier_load_external_id:
+          type: string
+        drop_off_dead_head:
+          type: string
+          description: drop off deadhead
+      required:
+        - carrier_load_id
+        - stops
+    CarrierLoadStop:
+      type: object
+      properties:
+        carrier_load_stop_id:
+          type: string
+        location_text:
+          type: string
+        stop_task_type:
+          type: string
+          enum:
+            - UNKNOWN
+            - PURCHASE_ORDER_PICKUP
+            - PURCHASE_ORDER_DROPOFF
+            - TRAILER_PICKUP
+            - TRAILER_DROPOFF
+        appointment_start_time:
+          type: integer
+          format: int64
+          description: Epoch timestamp in millisecond
+        appointment_end_time:
+          type: integer
+          format: int64
+          description: Epoch timestamp in millisecond
+        commodity:
+          type: string
+        formatted_address:
+          type: string
+        note:
+          type: string
+        packaging_type:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        facility_name:
+          type: string
+        facility_rating:
+          type: string
+      required:
+        - location_text
+        - stop_task_type
+    BookRequest:
+      type: object
+      properties:
+        carrier_load_id:
+          type: string
+          description: Required field; Identifier of a carrier load; available in search API response
+        carrier_load_content_hash:
+          type: string
+          description: |
+            Carrier load content hash;
+            field to make sure the carrier load you booked is the one up to date;
+        carrier_scac:
+          type: string
+        asset:
+          $ref: '#/components/schemas/Asset'
+      required:
+        - carrier_load_id
+        - carrier_load_content_hash
+    Asset:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - TRUCK_NUMBER
+            - TRAILER_NUMBER
+        value:
+          type: string
+          description: The value for the truck or trailer number
+      required:
+        - type
+        - value
+    AssetRequest:
+      type: object
+      properties:
+        carrier_load_id:
+          type: string
+        carrier_scac:
+          type: string
+        asset:
+          $ref: '#/components/schemas/Asset'
+      required:
+        - carrier_load_id
+        - carrier_scac
+    TrackingRequest:
+      type: object
+      properties:
+        carrier_id:
+          type: object
+          properties:
+            type:
+              type: string
+              description: |
+                Indicates the type of freight or transportation identifier associated with the carrier. It must be one of the below types,
+                * US_DOT
+              enum:
+                - US_DOT
+            value:
+              type: string
+              description: Value of carrier identifier
+          required:
+            - type
+            - value
+        locations:
+          type: array
+          description: List of tracking updates for a given shipment, which include location data, load id, device, and asset details.
+          items:
+            $ref: '#/components/schemas/Locations'
+      required:
+        - carrier_id
+        - locations
+    Locations:
+      type: object
+      properties:
+        load_id:
+          type: string
+          description: Identifier of a freight shipment. It’s an external identifier
+        asset:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - MOBILE_PHONE_NUMBER
+                - TRUCK_NUMBER
+                - TRAILER_NUMBER
+                - LICENSE_PLATE
+                - DEVICE_ID
+              description: |
+                Indicates the source of GPS collection. It must be one of the below types,<br>
+                - `MOBILE_PHONE_NUMBER` - use it if GPS pings are reported through phone (e.g. mobile App, manual phonecalls)
+                - `TRUCK_NUMBER` - use it if GPS pings are tracked through ELD devices or other sensors located with truck/tractor
+                - `TRAILER_NUMBER` - use it if GPS pings are tracked through trailer sensors
+                - `LICENSE_PLATE` - use it if GPS pings are tracked through license_plate
+                - `DEVICE_ID` - use it if GPS pings are tracked through other hardware devices
+            value:
+              type: string
+              description: Value of device identifier
+        location:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              description: In the format of ISO8601, e.g. “2022-08-04T16:54:59Z”
+            latitude:
+              type: number
+              format: double
+            longitude:
+              type: number
+              format: double
+            altitude:
+              type: number
+              format: double
+            speed:
+              type: number
+              format: double
+            heading:
+              type: number
+              format: double
+              description: Standard positional attribute. It refers to current orientation relative to magnetic or true north
+            horizontal_accuracy:
+              type: number
+              format: double
+              description: Standard positional attribute. It refers to the radius of the circle of unknown around a true point, in meters.
+            vertical_accuracy:
+              type: number
+              format: double
+              description: Standard positional attribute. It refers to the radius of the circle of unknown around a true point, in meters.
+          required:
+            - timestamp
+            - latitude
+            - longitude
+      required:
+        - load_id
+        - location
+
+  securitySchemes:
+    Oauth2:
+      type: oauth2
+      description: >-
+        Please make sure you have a valid app onboarded and scope granted.
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.uber.com/oauth/v2/token
+          scopes:
+            freight.carriers.loads: Search & book
+            freight.carriers.asset: Update asset
+            freight.carriers.tracking: Send tracking updates
+        authorizationCode:
+          authorizationUrl: https://login.uber.com/oauth/v2/authorize
+          tokenUrl: https://login.uber.com/oauth/v2/token
+          scopes:
+            freight.carriers.users.loads: Search & book
+

@@ -1,0 +1,1067 @@
+openapi: 3.0.3
+info:
+  title: Orloe Supplier APIs
+  description: |
+    APIs for Suppliers to integrate with the Orloe system for acknowledging created orders and updating shipping instructions with actual quantities shipped.
+
+    Environment specific base urls -
+
+    **UAT** - **uatapi.uberfreight.com**
+
+    **PROD** - **api.uberfreight.com**
+  version: v1
+servers:
+  - url: https://uatapi.uberfreight.com/tp-api/inbound-client
+security:
+  - OAuth2: []
+tags:
+  - name: health
+  - name: inbound-client-orloe
+paths:
+  /v2/healthCheck:
+    get:
+      tags:
+        - health
+      summary: Health Check API
+      description: |
+        This API is used to validate connectivity with UF Orloe Supplier APIs.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-GET-healthCheck-DIRECT-healthCheck.uat
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /orloe/supplier/v1/asn:
+    post:
+      tags:
+        - inbound-client-orloe
+      summary: ASN API
+      description: |
+        This API is used by suppliers to submit shipment ASN data to Orloe.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-POST-inbound-client-orloe-supplier-v1-asn-KAFKA-orloe.supplier.inboundDocument.uat
+      requestBody:
+        description: Package details posted by customer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RouteDetails'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /orloe/supplier/v1/order-acknowledgement:
+    post:
+      tags:
+        - inbound-client-orloe
+      summary: Order Acknowledgement API
+      description: |
+        This API is used by Suppliers submit purchase order acknowledgements/to Orloe.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: inbound-uat-REST-POST-inbound-client-orloe-supplier-v1-order-acknowledgement-KAFKA-orloe.supplier.inboundDocument.uat
+      requestBody:
+        description: Goods issued posted by customer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/POAcknowledgement'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/POAcknowledgement'
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AckMessageResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+components:
+  schemas:
+    HealthCheckResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        data:
+          $ref: "#/components/schemas/HealthCheckMessage"
+      description: HealthCheck Response returned
+      xml:
+        name: healthCheckResponse
+    HealthCheckMessage:
+      type: object
+      properties:
+        environment:
+          type: string
+          example: prod
+          description: Hosted environment
+      description: Health Check Message
+    ErrorApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        errors:
+          type: array
+          description: Error list
+          items:
+            $ref: "#/components/schemas/ApiError"
+      xml:
+        name: errorResponse
+      description: Error response returned
+    ApiError:
+      type: object
+      properties:
+        type:
+          type: string
+          example: INTERNAL_SERVER_ERROR
+          description: Error Type
+        message:
+          type: string
+          example: Internal error occurred. Trace id provided for reference. Please try again later.
+          description: Error message
+      description: API Error Info
+    AckMessage:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Request received. Trace id provided for future reference.
+          description: Response message with success acknowledgment
+      description: Ack Message
+    AckMessageResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: Success status of request received with either true or false
+        traceId:
+          type: string
+          example: ID-TPPRODAPI-1621542663189-UwxRtgodixHH
+          description: Trace id for this request. Can be used for tracking and debugging purposes. Max. Field Length - 100 characters
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total specifies number of items if response data is a list
+        data:
+          $ref: "#/components/schemas/AckMessage"
+      description: Acknowledgement Response returned
+      xml:
+        name: ackMessageResponse
+    POAcknowledgement:
+      required:
+        - orderNumber
+        - sku
+      type: object
+      properties:
+        acknowledgementId:
+          type: integer
+          format: int32
+        orderNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: Order Number
+        line:
+          maxLength: 255
+          minLength: 0
+          type: string
+        release:
+          maxLength: 255
+          minLength: 0
+          type: string
+        sku:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: SKU
+        newPiecePrice:
+          type: number
+          format: double
+        newQuantity:
+          type: number
+          format: double
+        newDueDate:
+          type: string
+          description: New Due Date in YYYY-mm-dd format
+          example: 2023-10-01
+      description: PO Acknowledgement
+    RouteDetails:
+      required:
+        - routeId
+        - stop
+      type: object
+      properties:
+        routeId:
+          type: integer
+          description: Route ID
+          format: int32
+        name:
+          maxLength: 25
+          minLength: 0
+          type: string
+        externalId:
+          maxLength: 20
+          minLength: 0
+          type: string
+        modeExecutionId:
+          maxLength: 255
+          minLength: 0
+          type: string
+        routeType:
+          maxLength: 30
+          minLength: 0
+          type: string
+        routeStructure:
+          maxLength: 255
+          minLength: 0
+          type: string
+        routeStatus:
+          maxLength: 25
+          minLength: 0
+          type: string
+        plannedCarrierName:
+          maxLength: 255
+          minLength: 0
+          type: string
+        totalMiles:
+          type: integer
+          format: int32
+        proNumber:
+          maxLength: 20
+          minLength: 0
+          type: string
+        totalTime:
+          maxLength: 15
+          minLength: 0
+          type: string
+        driveTime:
+          maxLength: 15
+          minLength: 0
+          type: string
+        totalCost:
+          type: number
+          format: double
+        plannedCost:
+          type: number
+          format: double
+        uploadedPlannedCost:
+          type: number
+          format: double
+        sealNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+        containerNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+        billingStatus:
+          maxLength: 3
+          minLength: 0
+          type: string
+        paymentStatus:
+          maxLength: 3
+          minLength: 0
+          type: string
+        invoiceAmount:
+          type: number
+          format: double
+        mode:
+          maxLength: 30
+          minLength: 0
+          type: string
+        serviceLevel:
+          maxLength: 50
+          minLength: 0
+          type: string
+        equipmentGroup:
+          maxLength: 45
+          minLength: 0
+          type: string
+        paymentTerms:
+          maxLength: 30
+          minLength: 0
+          type: string
+        invoiceNumber:
+          maxLength: 30
+          minLength: 0
+          type: string
+        trailerNumber:
+          maxLength: 30
+          minLength: 0
+          type: string
+        tractorNumber:
+          maxLength: 30
+          minLength: 0
+          type: string
+        isEdi:
+          type: boolean
+        carrierTrackingLivingStatus:
+          maxLength: 10
+          minLength: 0
+          type: string
+        tmsTrackingLink:
+          maxLength: 255
+          minLength: 0
+          type: string
+        routeRef1:
+          maxLength: 255
+          minLength: 0
+          type: string
+        routeRef2:
+          maxLength: 255
+          minLength: 0
+          type: string
+        routeRef3:
+          maxLength: 255
+          minLength: 0
+          type: string
+        routeRef4:
+          maxLength: 255
+          minLength: 0
+          type: string
+        routeRef5:
+          maxLength: 255
+          minLength: 0
+          type: string
+        stop:
+          $ref: '#/components/schemas/StopDetails'
+      description: Describes Route level details of shipment
+    StopDetails:
+      required:
+        - shipment
+      type: object
+      properties:
+        stopId:
+          type: integer
+          format: int32
+        sequenceNumber:
+          type: integer
+          format: int32
+        eta:
+          type: string
+          description: Estimated time of arrival at the stop in YYYY-mm-dd HH:ii:ss
+            format
+          example: 2023-10-01 12:00:00
+        etd:
+          type: string
+          description: Estimated time of departure at the stop in YYYY-mm-dd HH:ii:ss
+            format
+          example: 2023-10-01 12:00:00
+        uta:
+          type: string
+          description: Updated time of arrival at the stop in YYYY-mm-dd HH:ii:ss
+            format
+          example: 2023-10-01 12:00:00
+        utd:
+          type: string
+          description: Updated time of departure at the stop in YYYY-mm-dd HH:ii:ss
+            format
+          example: 2023-10-01 12:00:00
+        ata:
+          type: string
+          description: Actual time of arrival at the stop in YYYY-mm-dd HH:ii:ss format
+          example: 2023-10-01 12:00:00
+        atd:
+          type: string
+          description: Actual time of departure at the stop in YYYY-mm-dd HH:ii:ss
+            format
+          example: 2023-10-01 12:00:00
+        reason:
+          maxLength: 60
+          minLength: 0
+          type: string
+        stopStatus:
+          maxLength: 25
+          minLength: 0
+          type: string
+        milesFromPreviousStop:
+          type: integer
+          format: int32
+        pickupNumber:
+          maxLength: 30
+          minLength: 0
+          type: string
+        dockNumber:
+          maxLength: 30
+          minLength: 0
+          type: string
+        stopRef1:
+          maxLength: 255
+          minLength: 0
+          type: string
+        stopRef2:
+          maxLength: 255
+          minLength: 0
+          type: string
+        stopRef3:
+          maxLength: 255
+          minLength: 0
+          type: string
+        stopRef4:
+          maxLength: 255
+          minLength: 0
+          type: string
+        stopRef5:
+          maxLength: 255
+          minLength: 0
+          type: string
+        shipment:
+          $ref: '#/components/schemas/ShipmentDetails'
+      description: Describes Stop level details of shipment
+    ShipmentDetails:
+      required:
+        - orders
+        - shipmentId
+      type: object
+      properties:
+        shipmentId:
+          type: integer
+          description: Shipment ID
+          format: int32
+        actualPallets:
+          type: integer
+          format: int32
+        actualNonMixedPallets:
+          type: integer
+          format: int32
+        actualMixedPallets:
+          type: integer
+          format: int32
+        actualVolume:
+          type: integer
+          format: int32
+        actualWeight:
+          type: number
+          format: double
+        actualSpots:
+          type: integer
+          format: int32
+        availableDate:
+          type: string
+          description: Available Date in YYYY-mm-dd format
+          example: 2023-10-01
+        bolNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+        bolSpecialInstructions:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+        plannedFreightClass:
+          type: number
+          enum:
+            - 50
+            - 55
+            - 60
+            - 65
+            - 70
+            - 77.5
+            - 85
+            - 92.5
+            - 100
+            - 110
+            - 125
+            - 150
+            - 175
+            - 200
+            - 250
+            - 300
+            - 400
+            - 500
+        ratedFreightClass:
+          type: number
+          enum:
+            - 50
+            - 55
+            - 60
+            - 65
+            - 70
+            - 77.5
+            - 85
+            - 92.5
+            - 100
+            - 110
+            - 125
+            - 150
+            - 175
+            - 200
+            - 250
+            - 300
+            - 400
+            - 500
+        actualFreightClass:
+          type: number
+          enum:
+            - 50
+            - 55
+            - 60
+            - 65
+            - 70
+            - 77.5
+            - 85
+            - 92.5
+            - 100
+            - 110
+            - 125
+            - 150
+            - 175
+            - 200
+            - 250
+            - 300
+            - 400
+            - 500
+        containerNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+        hazmatClass:
+          maxLength: 20
+          minLength: 0
+          type: string
+        hazmatDescription:
+          maxLength: 300
+          minLength: 0
+          type: string
+        hazmatPackageGroup:
+          type: string
+        hazmatUnNumber:
+          maxLength: 4
+          minLength: 0
+          type: string
+        glCode:
+          maxLength: 100
+          minLength: 0
+          type: string
+        isException:
+          type: boolean
+        isHazmat:
+          type: boolean
+        isTempControlled:
+          type: boolean
+        minDueDate:
+          type: string
+          description: Min Due Date in YYYY-mm-dd format
+          example: 2023-10-01
+        minTemp:
+          maximum: 99999
+          minimum: -99999
+          type: integer
+          format: int32
+        maxTemp:
+          maximum: 99999
+          minimum: -99999
+          type: integer
+          format: int32
+        packingListNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+        plannedPallets:
+          type: integer
+          format: int32
+        plannedSpots:
+          type: integer
+          format: int32
+        plannedVolume:
+          type: integer
+          format: int32
+        plannedWeight:
+          type: number
+          format: double
+        plannedLength:
+          type: integer
+          format: int32
+        plannedWidth:
+          type: integer
+          format: int32
+        plannedHeight:
+          type: integer
+          format: int32
+        isStackable:
+          type: boolean
+        netWeight:
+          type: number
+          format: double
+        grossWeight:
+          type: integer
+          format: int32
+        bookingNumber:
+          maxLength: 30
+          minLength: 0
+          type: string
+        shipmentType:
+          maxLength: 60
+          minLength: 0
+          type: string
+        shipmentStatus:
+          maxLength: 25
+          minLength: 0
+          type: string
+        shipmentRef1:
+          maxLength: 255
+          minLength: 0
+          type: string
+        shipmentRef2:
+          maxLength: 255
+          minLength: 0
+          type: string
+        shipmentRef3:
+          maxLength: 255
+          minLength: 0
+          type: string
+        shipmentRef4:
+          maxLength: 255
+          minLength: 0
+          type: string
+        shipmentRef5:
+          maxLength: 255
+          minLength: 0
+          type: string
+        orders:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          description: List of orders contained on this shipment
+          items:
+            $ref: '#/components/schemas/OrderDetails'
+      description: Describes Shipment level details of shipment
+    OrderDetails:
+      required:
+        - actualQuantity
+        - orderNumber
+        - sku
+      type: object
+      properties:
+        orderNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: Order Number
+        line:
+          maxLength: 255
+          minLength: 0
+          type: string
+        release:
+          maxLength: 255
+          minLength: 0
+          type: string
+        sku:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: SKU
+        actualQuantity:
+          type: number
+          description: Actual Quantity
+          format: double
+        actualPallets:
+          type: number
+          format: double
+        revisedQuantity:
+          type: number
+          format: double
+        actualSpots:
+          type: number
+          format: double
+        actualVolumes:
+          type: number
+          format: double
+        actualWeight:
+          type: number
+          format: double
+        availableDate:
+          type: string
+          description: Available Date in YYYY-mm-dd format
+          example: 2023-10-01
+        isRecovered:
+          type: boolean
+        category:
+          maxLength: 255
+          minLength: 0
+          type: string
+        originName:
+          maxLength: 100
+          minLength: 0
+          type: string
+        originCode:
+          maxLength: 50
+          minLength: 0
+          type: string
+        originAddress1:
+          maxLength: 100
+          minLength: 0
+          type: string
+        originAddress2:
+          maxLength: 100
+          minLength: 0
+          type: string
+        originAddressCity:
+          maxLength: 50
+          minLength: 0
+          type: string
+        originAddressState:
+          maxLength: 50
+          minLength: 0
+          type: string
+        originAddressPostalCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+        originAddressCountry:
+          maxLength: 3
+          minLength: 0
+          type: string
+        destinationName:
+          maxLength: 100
+          minLength: 0
+          type: string
+        destinationCode:
+          maxLength: 50
+          minLength: 0
+          type: string
+        destinationAddress1:
+          maxLength: 100
+          minLength: 0
+          type: string
+        destinationAddress2:
+          maxLength: 100
+          minLength: 0
+          type: string
+        destinationAddressCity:
+          maxLength: 50
+          minLength: 0
+          type: string
+        destinationAddressState:
+          maxLength: 50
+          minLength: 0
+          type: string
+        destinationAddressPostalCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+        destinationAddressCountry:
+          maxLength: 3
+          minLength: 0
+          type: string
+        contactEmail:
+          maxLength: 255
+          minLength: 0
+          type: string
+        contactId:
+          type: integer
+          format: int32
+        contactName:
+          maxLength: 255
+          minLength: 0
+          type: string
+        contactPhone:
+          maxLength: 255
+          minLength: 0
+          type: string
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+        dueDate:
+          type: string
+          description: Due Date in YYYY-mm-dd format
+          example: 2023-10-01
+        plannedFreightClass:
+          type: number
+          enum:
+            - 50
+            - 55
+            - 60
+            - 65
+            - 70
+            - 77.5
+            - 85
+            - 92.5
+            - 100
+            - 110
+            - 125
+            - 150
+            - 175
+            - 200
+            - 250
+            - 300
+            - 400
+            - 500
+        actualFreightClass:
+          type: number
+          enum:
+            - 50
+            - 55
+            - 60
+            - 65
+            - 70
+            - 77.5
+            - 85
+            - 92.5
+            - 100
+            - 110
+            - 125
+            - 150
+            - 175
+            - 200
+            - 250
+            - 300
+            - 400
+            - 500
+        requiredMode:
+          maxLength: 255
+          minLength: 0
+          type: string
+        requiredEquipmentGroup:
+          maxLength: 255
+          minLength: 0
+          type: string
+        derivedShipmentType:
+          maxLength: 255
+          minLength: 0
+          type: string
+        pfepCalculatedPallets:
+          type: number
+          format: double
+        pfepCalculatedSpots:
+          type: number
+          format: double
+        pfepCalculatedVolume:
+          type: number
+          format: double
+        pfepCalculatedWeight:
+          type: number
+          format: double
+        isBonded:
+          type: boolean
+        isSupplierPay:
+          type: boolean
+        isExpedite:
+          type: boolean
+        glCode:
+          maxLength: 255
+          minLength: 0
+          type: string
+        hazmatClass:
+          maxLength: 255
+          minLength: 0
+          type: string
+        hazmatDescription:
+          maxLength: 255
+          minLength: 0
+          type: string
+        hazmatPackageGroup:
+          type: string
+          enum:
+            - I
+            - II
+            - III
+        hazmatUnNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+        isHazmat:
+          type: boolean
+        isTempControlled:
+          type: boolean
+        maxTemp:
+          type: integer
+          format: int32
+        minTemp:
+          type: integer
+          format: int32
+        plannedPallets:
+          type: number
+          format: double
+        plannedQuantity:
+          type: number
+          format: double
+        plannedSpots:
+          type: number
+          format: double
+        plannedVolume:
+          type: number
+          format: double
+        plannedWeight:
+          type: number
+          format: double
+        price:
+          type: number
+          format: double
+        orderRef1:
+          maxLength: 255
+          minLength: 0
+          type: string
+        orderRef2:
+          maxLength: 255
+          minLength: 0
+          type: string
+        orderRef3:
+          maxLength: 255
+          minLength: 0
+          type: string
+        orderRef4:
+          maxLength: 255
+          minLength: 0
+          type: string
+        orderRef5:
+          maxLength: 255
+          minLength: 0
+          type: string
+        status:
+          maxLength: 255
+          minLength: 0
+          type: string
+        uniqueId:
+          maxLength: 255
+          minLength: 0
+          type: string
+        weightUom:
+          maxLength: 255
+          minLength: 0
+          type: string
+        packIds:
+          type: array
+          items:
+            type: string
+      description: Describes Order level details of shipment
+
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 with Client Credentials grant type
+      flows:
+        clientCredentials:
+          tokenUrl: https://uatapi.uberfreight.com/oauth2/accesstoken
+          scopes: {}

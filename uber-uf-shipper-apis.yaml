@@ -1,0 +1,445 @@
+openapi: 3.0.2
+info:
+  title: Transparent Real-time Procurement APIs
+  version: '1'
+  description: | 
+   ## Overview
+    We provide REST APIs for shippers to update pricing controls and obtain rate data. This document is a reference guide for these endpoints.<br><br>
+    Contact us at [ufapisupport@uberfreight.com]() with any queries.
+    ## API Application Onboarding
+    Oauth2 Bearer token is required for all endpoints. Follow the steps below to onboard to the Uber Developer Platform:<br />
+      1. Go to [https://developer.uber.com](https://developer.uber.com) and click Sign In on the top right.<br />
+      2. Sign in with an Uber Rider account. Note: Consider creating a new Rider account using non-personal credentials so that the account is not tied to a real person. You will be redirected to https://developer.uber.com/dashboard/.<br />
+      3. Click Create Application to create a new developer app. Follow the on-screen directions and fill in the necessary fields.<br />
+      4. In the left side bar, click on Members. Add [andrew.ly@uber.com]() and [rhoch@uber.com]() as admins by using the Add Member button on the right bottom. (Andrew and Rob are from our integrations team and will help with any troubleshooting)<br />
+      5. Note the client_id and the client_secret listed at the top of the dashboard page for the app. These should be securely stored and not shared. Send the following email:<br />
+          - TO: [ufapisupport@uberfreight.com]()
+          - SUBJECT: Please grant access for freight.loads scope
+          - BODY: Application Client ID: Your client_id from developer.uber.com, ex: -J9IIeHFaKb7DkRZ, Company name: Your company name, ex: Acme Widgets Inc
+      6. We will respond to your email within 2 business days.
+      7. Once the scope is granted, we will provide you a test customer_id to test with
+      
+    ## Environments
+    **Sandbox** - sandbox-api.uber.com <br> 
+    **Production** - api.uber.com
+servers:
+  - url: https://sandbox-api.uber.com/v1/freight/loads
+    description: Sandbox
+  - url: https://api.uber.com/v1/freight/loads
+    description: Production
+paths:
+  /tenders/{loadID}/pricingcontrols:
+    get:
+      operationId: getPricingControls
+      summary: Get the pricing controls set on the tender
+      parameters:
+        - name: loadID
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/loadID'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_pricing_controls_response'
+        '400':
+          description: Params error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Authentication Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Authorization Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Load not found error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '429':
+          description: Rate limit exceeded error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    put:
+      operationId: set_pricing_controls
+      summary: Set the pricing controls set on the tender
+      parameters:
+        - name: loadID
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/loadID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/set_pricing_controls_request'
+            examples:
+              dynamic pricing with priority:
+                description: Dynamic Pricing, changing only load priority
+                value:
+                  pricing_controls:
+                    pricing_type: DYNAMIC
+                    load_priority: HIGH
+              dynamic pricing with max price:
+                description: Dynamic Pricing, changing only load priority
+                value:
+                  pricing_controls:
+                    pricingType: DYNAMIC
+                    max_price:
+                      all_in_rate:
+                        amount: 123400
+                        currency_code: USD
+              dynamic pricing with both max price and priority:
+                description: Dynamic Pricing, changing only load priority
+                value:
+                  pricing_controls:
+                    pricing_type: DYNAMIC
+                    max_price:
+                      all_in_rate:
+                        amount: 56700
+                        currency_code: USD
+                    load_priority: CRITICAL
+              manual pricing:
+                description: Dynamic Pricing, changing only load priority
+                value:
+                  pricing_controls:
+                    pricing_type: MANUAL
+                    manual_price:
+                      all_in_rate:
+                        amount: 99900
+                        currencyCode: USD
+      responses:
+        '204':
+          description: Successful operation
+        '400':
+          description: Params error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Authentication Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Authorization Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Load not found error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '429':
+          description: Rate limit exceeded error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /tenders/{loadID}/shipperpricing:
+    get:
+      operationId: get_shipper_price
+      summary: Get the current shipper pricing for the tender
+      parameters:
+        - name: loadID
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/loadID'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_shipper_pricing'
+        '400':
+          description: Params error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Authentication Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Authorization Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Load not found error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '429':
+          description: Rate limit exceeded error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /tenders/{loadID}/pricingbenchmark:
+    get:
+      operationId: getPricingBenchmark
+      summary: Get the pricing benchmarks for the given load
+      parameters:
+        - name: loadID
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/loadID'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_loads_tenders_pricing_benchmark_response'
+        '400':
+          description: Params error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Authentication Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Authorization Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Load not found error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '429':
+          description: Rate limit exceeded error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+components:
+  schemas:
+    loadID:
+      type: string
+      minLength: 10
+      maxLength: 10
+      description: uber_loadID returned by the API on create load
+    pricing_type:
+      type: string
+      enum:
+        - DYNAMIC
+        - MANUAL
+      nullable: false
+    load_priority:
+      type: string
+      enum:
+        - LOW
+        - NORMAL
+        - HIGH
+        - CRITICAL
+    rate_status:
+      type: string
+      enum:
+        - MARKETPLACE
+        - BOOKED
+        - FINALIZED
+    money:
+      type: object
+      required:
+        - amount
+        - currency_code
+      properties:
+        amount:
+          type: integer
+          minimum: 0
+        currency_code:
+          type: string
+          enum:
+            - USD
+    line_item_type:
+      type: string
+      enum:
+        - FUEL_SURCHARGE
+        - SERVICE_FEE
+    line_item:
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/money'
+        type:
+          $ref: '#/components/schemas/line_item_type'
+    pricing:
+      type: object
+      required:
+        - all_in_rate
+      properties:
+        all_in_rate:
+          $ref: '#/components/schemas/money'
+    set_pricing:
+      type: object
+      required:
+        - all_in_rate
+      properties:
+        all_in_rate:
+          $ref: '#/components/schemas/money'
+    set_pricing_controls:
+      type: object
+      required:
+        - pricingType
+      properties:
+        pricing_type:
+          $ref: '#/components/schemas/pricing_type'
+        max_price:
+          $ref: '#/components/schemas/set_pricing'
+        load_priority:
+          $ref: '#/components/schemas/load_priority'
+        manual_price:
+          $ref: '#/components/schemas/set_pricing'
+    get_pricing_controls_response:
+      type: object
+      required:
+        - pricing_type
+      properties:
+        pricing_type:
+          $ref: '#/components/schemas/pricing_type'
+        max_price:
+          $ref: '#/components/schemas/pricing'
+        load_priority:
+          $ref: '#/components/schemas/load_priority'
+        manual_price:
+          $ref: '#/components/schemas/pricing'
+    set_pricing_controls_request:
+      type: object
+      properties:
+        pricing_controls:
+          $ref: '#/components/schemas/set_pricing_controls'
+    get_shipper_pricing:
+      type: object
+      required:
+        - pricing
+        - rate_status
+      properties:
+        pricing:
+          $ref: '#/components/schemas/pricing'
+        rate_status:
+          $ref: '#/components/schemas/rate_status'
+    benchmark_confidence:
+      type: string
+      enum:
+        - LOW
+        - MEDIUM
+        - HIGH
+    benchmark_duration:
+      type: string
+      enum:
+        - DAY_90
+        - DAY_180
+        - DAY_365
+    pricing_range:
+      type: object
+      properties:
+        expected:
+          $ref: '#/components/schemas/pricing'
+        low:
+          $ref: '#/components/schemas/pricing'
+        high:
+          $ref: '#/components/schemas/pricing'
+    historical_benchmark:
+      type: object
+      properties:
+        historical_rate_avg:
+          $ref: '#/components/schemas/pricing'
+        market_rate_avg:
+          $ref: '#/components/schemas/pricing'
+        benchmark_confidence:
+          $ref: '#/components/schemas/benchmark_confidence'
+        benchmark_duration:
+          $ref: '#/components/schemas/benchmark_duration'
+        updated_at:
+          type: integer
+    get_loads_tenders_pricing_benchmark_response:
+      type: object
+      properties:
+        historical_benchmark:
+          $ref: '#/components/schemas/historical_benchmark'
+        estimated_price_range:
+          $ref: '#/components/schemas/pricing_range'
+    error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 with Client Credentials grant type
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.uber.com/oauth/v2/token
+          scopes: {freight.loads}
+security:
+  - OAuth2: []

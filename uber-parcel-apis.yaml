@@ -1,0 +1,1855 @@
+openapi: 3.0.0
+info:
+  title: Parcel APIs
+  description: |
+    Parcel APIs lets you manage all of your shipping needs. Use these APIs to Create shipments, Get labels, Manifest and Cancel shipment.
+
+    Environment specific base urls -
+
+    **UAT** - **uatapi.uberfreight.com**
+
+    **PROD** - **api.uberfreight.com**
+  version: v1
+servers:
+  - url: https://uatapi.uberfreight.com/tp-api/parcel
+security:
+  - OAuth2: []
+tags:
+  - name: health
+  - name: parcel
+paths:
+  /v1/health-check:
+    get:
+      tags:
+        - health
+      summary: Health Check API
+      description: |
+        This API is used to validate connectivity with Uber Freight Parcel APIs.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: healthCheck
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+        406:
+          description: Not Acceptable
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/shipping/create-shipunit:
+    post:
+      tags:
+        - parcel
+      summary: Create Ship Unit API
+      description: |
+        This API is used to insert carton information into UberFreight.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: createShipUnit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateShipUnitRequest"
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateShipUnitResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/shipping/load-shipunit:
+    post:
+      tags:
+        - parcel
+      summary: Load Ship Unit API
+      description: |
+        This API is used to load list of cartons of a trailer in UberFreight.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: loadShipUnit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/LoadShipUnitRequest"
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoadShipUnitResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/shipping/cancel-shipunit:
+    post:
+      tags:
+        - parcel
+      summary: Cancel Ship Unit API
+      description: |
+        This API is used to cancel orders. UberFreight will delete the orders from the system before the orders are shipped. More than one carton can be canceled at a time.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: cancelShipUnit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CancelShipUnitRequest"
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelShipUnitResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/label/get-label:
+    post:
+      tags:
+        - parcel
+      summary: Label API
+      description: |
+        This API is used to get label data in ZPL encrypted with base64 format after a shipment is created. You can use this API to reprint label on an existing carton.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: getLabel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/LabelRequest"
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabelResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/rating/rate-shipunit:
+    post:
+      tags:
+        - parcel
+      summary: Rate Ship Unit API
+      description: |
+        This API is used to rate shop a carton.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: rateShipUnit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/RateShipUnitRequest"
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateShipUnitResponse'
+        201:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateShipUnitResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/rating/ratecase:
+    post:
+      tags:
+        - parcel
+      summary: Rate Case API
+      description: |
+        This API is used to rate shop a carton across multiple rates from carriers and service levels provided in case.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: rateCase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/RateCaseRequest"
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateCaseResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/manifest/carrier:
+    post:
+      tags:
+        - parcel
+      summary: Manifest Carrier API
+      description: |
+        This API is used to manifest carrier in UberFreight. 
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: manifestCarrier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ManifestCarrierRequest"
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManifestCarrierResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManifestErrorSchema'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManifestErrorResponse'
+  /v1/manifest/trailer:
+    post:
+      tags:
+        - parcel
+      summary: Manifest Trailer API
+      description: |
+        This API is used to manifest trailer in UberFreight.
+
+        \"Try this API\" feature in this portal supports only JSON requests to UAT environment.
+
+        Environment specific base urls -
+
+        **UAT** - **uatapi.uberfreight.com**
+
+        **PROD** - **api.uberfreight.com**
+      operationId: manifestTrailer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ManifestTrailerRequest"
+        required: true
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManifestTrailerResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManifestErrorSchema'
+        406:
+          description: Not Acceptable
+          content: {}
+        415:
+          description: Unsupported media type
+          content: {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManifestErrorResponse'
+components:
+  schemas:
+    HealthCheckResponse:
+      type: object
+      properties:
+        OverallStatus-GetShippingAPI:
+          type: string
+          nullable: false
+          example: Healthy
+    CreateShipLabel:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        outputType:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        error:
+          $ref: '#/components/schemas/Error'
+      additionalProperties: false
+    CreateShipDimension:
+      type: object
+      properties:
+        length:
+          type: number
+          description: "Host-populated length of carton.\r\nType: Numeric (10,4)"
+          format: double
+        width:
+          type: number
+          description: "Host-populated width of carton.\r\nType: Numeric (10,4)"
+          format: double
+        height:
+          type: number
+          description: "Host-populated height of carton.\r\nType: Numeric (10,4)"
+          format: double
+      additionalProperties: false
+    CreateShipHazardousShipUnit:
+      type: object
+      properties:
+        titleOfSignatory:
+          type: string
+          description: Specify the Title of the signatory responsible for the dangerous goods shipment.
+          nullable: true
+        nameOfSignatory:
+          type: string
+          description: Specify the Name of the signatory responsible for the dangerous goods shipment.
+          nullable: true
+        placeOfSignatory:
+          type: string
+          description: Specify the Place of the signatory responsible for the dangerous goods shipment.
+          nullable: true
+        emergencyContact:
+          type: string
+          description: Telephone number to use for contact in the event of an emergency.
+          nullable: true
+        cargoAircraftOnly:
+          type: boolean
+          description: When true indicates that the package can be transported only on a cargo aircraft.
+          nullable: true
+        hazardousShipUnitItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateShipHazardousShipUnitItems'
+          nullable: true
+      additionalProperties: false
+    CreateShipHazardousShipUnitItems:
+      type: object
+      properties:
+        hazardousClassID:
+          type: string
+          nullable: true
+        quantity:
+          type: number
+          format: double
+          nullable: true
+        unitOfMeasure:
+          type: string
+          nullable: true
+        packageCount:
+          type: integer
+          format: int32
+        packageType:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        hazardClass:
+          type: string
+          nullable: true
+        idNumber:
+          type: string
+          nullable: true
+        packingGroup:
+          type: string
+          nullable: true
+        quantityType:
+          type: string
+          nullable: true
+        packingInstructions:
+          type: string
+          nullable: true
+        concatenated:
+          type: string
+          nullable: true
+        registrantId:
+          type: string
+          nullable: true
+        label:
+          type: string
+          nullable: true
+        packing:
+          type: string
+          nullable: true
+        techName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InternationalShipUnit:
+      type: object
+      properties:
+        cI_AdditionalComments:
+          type: string
+          description: "Field for comments for commercial invoice. This value is passed through; whatever is put here will print on the commercial invoice.\r\nMax 300 characters."
+          nullable: true
+        cO_GenerationType:
+          type: string
+          description: "The system generate the Certificate of Origin. If it is generated by Scandata then ‘SHIPPING SYSTEM’ is the value to use. \r\nMax 15 characters."
+          nullable: true
+        cI_GenerationType:
+          type: string
+          description: "The system generate the Commercail Invoice. If it is generated by Scandata then ‘SHIPPING SYSTEM’is the value to use.\r\nMax 15 characters."
+          nullable: true
+        cI_ReasonForExport:
+          type: string
+          description: "VALUES : Gift, Inter-Company Data, Repair, Return, Sale, Sample, Other Used by the commercial invoice.\r\nMax 35 characters."
+          nullable: true
+        cI_TermsOfSale:
+          type: string
+          description: " Values – Description (pass value only): CFR – Cost and Freight, CIF – Cost Insurance and Freight, CIP - Carriage and Insurance Paid,\r\nCPT  - Carriage Paid To,DAF – Delivered Duty Paid, DDP Delivered Duty Paid, DDU Delivered Duty Unpaid, DEQ – Delivered Ex Quay,\r\nDES – Delivered Ex Ship, EXQ - Ex Works, FAS  - Free Along Side, FCA - Free Carrier, FOB - Free On Board.\r\nMax 3 characters."
+          nullable: true
+        paymentTerms:
+          type: string
+          description: "VALUES: Cash In Advance, Letter Of Credit, Confirmed Irrevocable Credit, Unconfirmed Irrevocable Credit, Sight Draft,Time Draft,Open Account.\r\nMax 35 characters."
+          nullable: true
+        seD_XTNSuffixNumber:
+          type: string
+          nullable: true
+        seD_FTRExemptionNumber:
+          type: string
+          description: "FTRS Exemption Number. \r\nMax 32 characters."
+          nullable: true
+        receiverTaxID:
+          type: string
+          nullable: true
+        totalValue:
+          type: number
+          format: double
+          nullable: true
+        apofpo:
+          type: boolean
+        internationalShipUnitItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/InternationalShipUnitItem'
+          nullable: true
+      additionalProperties: false
+    InternationalShipUnitItem:
+      required:
+        - cI_Weight
+      type: object
+      properties:
+        exportClassID:
+          type: string
+          description: "Unique identifier links to EXPORT_CLASSES.\r\nMax 20 Characters."
+          nullable: true
+        masterItemID:
+          type: string
+          description: SKU.Max 20 Characters.
+          nullable: true
+        itemDescription:
+          type: string
+          description: "Description of commodity item WM will populate with concatenated value of item description and item fabric description.\r\nMax 150 Characters."
+          nullable: true
+        cI_LineNumber:
+          type: integer
+          description: "Commercial Invoice Line Number Each item in carton will have a unique sequence number(1-n).\r\nType: Integer"
+          format: int32
+          nullable: true
+        cI_OriginISOCountryNumber:
+          type: string
+          description: "ISO Country Number for country of manufacture, production or growth of any article Item’s “worst case” country of origin.\r\nMax 3 Characters."
+          nullable: true
+        cI_Quantity:
+          type: integer
+          description: "Quantity in order. Quantity of item in carton.\r\nType: Integer."
+          format: int32
+          nullable: true
+        cI_QuantityUM:
+          type: string
+          description: Unit of Measure. Max 20 Characters.
+          nullable: true
+        cI_UnitPrice:
+          type: number
+          description: "Unit Price – cost of item Either CI_Quantity, CI_QuantityUM, and CI_UnitPrice OR CI_TotalAmount need to be passed. Retail Price for each unit in US dollars.\r\nType: Money"
+          format: double
+          nullable: true
+        cI_Weight:
+          type: number
+          description: "Unit Weight. Weight of each unit.\r\nType: Integer(10,4)."
+          format: double
+          nullable: true
+        totalAmount:
+          type: number
+          description: "Unit Price * Quantity. CI_TotalAmount need to be passed. Sum(CI_UnitPrice).\r\nType: Money"
+          format: double
+          nullable: true
+      additionalProperties: false
+    ReferenceNotes:
+      type: object
+      properties:
+        referenceNoteLevel:
+          type: string
+          nullable: true
+        referenceNoteType:
+          type: string
+          nullable: true
+        referenceNote:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CreateShipAddress:
+      required:
+        - city
+        - class
+        - country
+        - individualName
+        - phoneNumber
+        - state
+        - streetAddress
+        - zIPCode
+      type: object
+      properties:
+        class:
+          type: string
+          nullable: true
+        addressCode:
+          type: string
+          nullable: true
+        addressType:
+          type: string
+          nullable: true
+        individualName:
+          type: string
+          description: "Individual Name of the address.\r\nMax 60 characters."
+          nullable: true
+        companyName:
+          type: string
+          description: "Company Name of the address.\r\nMax 60 characters."
+          nullable: true
+        streetAddress:
+          type: string
+          description: "Street Address.\r\nMax 60 characters."
+          nullable: true
+        address1:
+          type: string
+          description: "Additional Address Line 1.\r\nMax 60 characters."
+          nullable: true
+        address2:
+          type: string
+          description: "Additional Address Line 2.\r\nMax 60 characters."
+          nullable: true
+        address3:
+          type: string
+          description: "Additional Address Line 3.\r\nMax 60 characters."
+          nullable: true
+        city:
+          type: string
+          description: City of the Address. Max 60 characters.
+          nullable: true
+        state:
+          type: string
+          description: State of the Address. Max 3 characters
+          nullable: true
+        zipCode:
+          type: string
+          description: ZipCode of the Address.Max 15 characters
+          nullable: true
+        country:
+          type: string
+          description: Country of the Address.Max 45 characters.
+          nullable: true
+        phoneNumber:
+          type: string
+          description: Phone Number. Max 25 characters.
+          nullable: true
+        faxNumber:
+          type: string
+          description: Fax Number. Max 25 characters.
+          nullable: true
+        emailAddress:
+          type: string
+          description: Email Address. Max 120 characters.
+          nullable: true
+      additionalProperties: false
+    CustomLabelData:
+      type: object
+      properties:
+        labelTag1:
+          type: string
+          nullable: true
+        labelData1:
+          type: string
+          nullable: true
+        labelTag2:
+          type: string
+          nullable: true
+        labelData2:
+          type: string
+          nullable: true
+        labelTag3:
+          type: string
+          nullable: true
+        labelData3:
+          type: string
+          nullable: true
+        labelTag4:
+          type: string
+          nullable: true
+        labelData4:
+          type: string
+          nullable: true
+        labelTag5:
+          type: string
+          nullable: true
+        labelData5:
+          type: string
+          nullable: true
+        labelTag6:
+          type: string
+          nullable: true
+        labelData6:
+          type: string
+          nullable: true
+        labelTag7:
+          type: string
+          nullable: true
+        labelData7:
+          type: string
+          nullable: true
+        labelTag8:
+          type: string
+          nullable: true
+        labelData8:
+          type: string
+          nullable: true
+        labelTag9:
+          type: string
+          nullable: true
+        labelData9:
+          type: string
+          nullable: true
+        labelTag10:
+          type: string
+          nullable: true
+        labelData10:
+          type: string
+          nullable: true
+        labelTag11:
+          type: string
+          nullable: true
+        labelData11:
+          type: string
+          nullable: true
+        labelTag12:
+          type: string
+          nullable: true
+        labelData12:
+          type: string
+          nullable: true
+        labelTag13:
+          type: string
+          nullable: true
+        labelData13:
+          type: string
+          nullable: true
+        labelTag14:
+          type: string
+          nullable: true
+        labelData14:
+          type: string
+          nullable: true
+        labelTag15:
+          type: string
+          nullable: true
+        labelData15:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DataXml:
+      type: object
+      properties:
+        customLabelData:
+          $ref: '#/components/schemas/CustomLabelData'
+      additionalProperties: false
+    CreateShipUnitRequest:
+      required:
+        - addresses
+        - shipVia
+        - weight
+      type: object
+      properties:
+        cartonNumber:
+          type: string
+          description: "Unique # for the carton unit. \r\nMax 25 characters"
+          nullable: true
+        shippingOptions:
+          type: array
+          items:
+            type: string
+          description: "Concatenated string of shipping option codes.\r\nMax 20 characters"
+          nullable: true
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateShipAddress'
+          description: 'Defines From, To and Return ship address. Options - DELIVER_TO,SHIPPER,RETURN'
+          nullable: true
+        referenceNotes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceNotes'
+          nullable: true
+        internationalShipUnit:
+          $ref: '#/components/schemas/InternationalShipUnit'
+        hazardousShipUnit:
+          $ref: '#/components/schemas/CreateShipHazardousShipUnit'
+        orderNumber:
+          type: string
+          description: "Order number to which the carton unit is associated.\r\nMax 10 characters."
+          nullable: true
+        distributionCenter:
+          type: string
+          description: "Populated with the pre-configured ID of the shipping DC (host will default to a pre-configured value unless server is managing data for multiple distribution centers)\r\nThis field is REQUIRED for inhouse create shipment and not using external API.\r\nMax 20 characters"
+          nullable: true
+        billingAccountID:
+          type: string
+          description: "Populated with the pre-configured ID for the billing information to be used for the carton (this value, if populated, will be used)\r\n**Required if DC is null or Call is for external API/Carrier API.\r\nMax 20 characters."
+          nullable: true
+        alternateBillingAccountID:
+          type: string
+          description: "Alternate billing account.\r\nMax 20 characters."
+          nullable: true
+        status:
+          type: string
+          description: "Populated with a pre-determined Status value to indicate what the production system should do with the carton record (process it, cancel it, etc.).\r\nMax 20 characters."
+          nullable: true
+        carrierID:
+          type: string
+          description: "Pre-configured ID of carrier assigned to the carton.  This field is REQUIRED if ShipVia is not used.\r\nMax 20 characters."
+          nullable: true
+        shipMethodID:
+          type: string
+          description: "Pre-configured shipmethod assigned to the carton. This field is REQUIRED if ShipVia is not used.\r\nMax 20 characters."
+          nullable: true
+        customerID:
+          type: string
+          description: "Populated with the pre-configured ID for the customer to which the carton is associated (if BillingAccountID is not populated but this value is, the configured billing information for the associated customer will be used).\r\nMax 20 characters."
+          nullable: true
+        locationID:
+          type: string
+          nullable: true
+        cartonName:
+          type: string
+          description: "Populated with a pre-configured pointer to a record in the STANDARD_CARTON_TABLE that holds the dimensional (and possible default shipping option) information.\r\nMax 20 characters."
+          nullable: true
+        requestedDeliveryDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        estimatedShipmentDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        deliverToISOCountryNumber:
+          type: string
+          description: "Set when the SHIP_UNITS record is created in the database based on the country as set in the ship for address record. Would have to be downloaded when ship unit records are downloaded, or set during parsing. Default 840.\r\nMax 3 characters."
+          nullable: true
+        shipPointID:
+          type: string
+          description: "ID associated with physical ship point of carton.\r\nMax 10 characters."
+          nullable: true
+        weight:
+          type: number
+          description: "Host-populated weight of carton.\r\nType: Numeric (10,4)"
+          format: double
+        dimension:
+          $ref: '#/components/schemas/CreateShipDimension'
+        shipVia:
+          type: string
+          description: "The code used to determine carrier shipmthod.\r\nMax 20 characters."
+          nullable: true
+        declaredValue:
+          type: number
+          description: "Money value to be used to declared the value of the carton.\r\nType: Money"
+          format: double
+          nullable: true
+        labelOutputFileType:
+          type: string
+          nullable: true
+        dataXml:
+          $ref: '#/components/schemas/DataXml'
+        packUserID:
+          type: string
+          nullable: true
+        packWorkStationID:
+          type: string
+          nullable: true
+        shipmentPackageSequence:
+          type: integer
+          format: int32
+          nullable: true
+        shipmentPackageCount:
+          type: integer
+          format: int32
+          nullable: true
+        shipmentID:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CreateShipUnitResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          nullable: true
+        result:
+          type: string
+          nullable: true
+        errorNumber:
+          type: integer
+          format: int32
+          nullable: true
+        errorDescription:
+          type: string
+          nullable: true
+        cartonNumber:
+          type: string
+          nullable: true
+        distributionCenter:
+          type: string
+          nullable: true
+        shippingOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        shipVia:
+          type: string
+          nullable: true
+        carrierID:
+          type: string
+          nullable: true
+        shipMethodID:
+          type: string
+          nullable: true
+        trackingNumber:
+          type: string
+          nullable: true
+        zoneCode:
+          type: integer
+          format: int32
+          nullable: true
+        totalCharge:
+          type: number
+          format: double
+          nullable: true
+        expectedDeliveryDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateShipLabel'
+          nullable: true
+        reports:
+          type: string
+          format: binary
+          nullable: true
+      additionalProperties: false
+    LoadShipUnits:
+      type: object
+      properties:
+        cartonNumber:
+          type: string
+          nullable: true
+        result:
+          type: string
+          nullable: true
+        errorMessage:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LoadShipUnit:
+      type: object
+      properties:
+        cartonNumber:
+          type: string
+          nullable: true
+        weight:
+          type: number
+          format: double
+          nullable: true
+        length:
+          type: number
+          format: double
+          nullable: true
+        width:
+          type: number
+          format: double
+          nullable: true
+        height:
+          type: number
+          format: double
+          nullable: true
+        outboundPalletID:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LoadShipUnitRequest:
+      type: object
+      properties:
+        distributionCenter:
+          type: string
+          nullable: true
+        trailerNumber:
+          type: string
+          nullable: true
+        carrierTrailerNumber:
+          type: string
+          nullable: true
+        carrierID:
+          type: string
+          nullable: true
+        loadShipUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadShipUnit'
+          nullable: true
+      additionalProperties: false
+    LoadShipUnitResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          nullable: true
+        distributionCenter:
+          type: string
+          nullable: true
+        trailerNumber:
+          type: string
+          nullable: true
+        carrierID:
+          type: string
+          nullable: true
+        totalUnitCount:
+          type: integer
+          format: int32
+        totalUnitWeight:
+          type: number
+          format: double
+        loadShipUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadShipUnits'
+          nullable: true
+      additionalProperties: false
+    ShipUnitResponse:
+      type: object
+      properties:
+        cartonNumber:
+          type: string
+          nullable: true
+        result:
+          type: string
+          nullable: true
+        errorMessage:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CancelShipUnitRequest:
+      type: object
+      properties:
+        cartonNumbers:
+          type: array
+          items:
+            type: string
+          nullable: true
+        distributionCenter:
+          type: string
+          nullable: true
+        reasonCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CancelShipUnitResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          nullable: true
+        shipUnitResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShipUnitResponse'
+          nullable: true
+      additionalProperties: false
+    Label:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        outputType:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        error:
+          "$ref": "#/components/schemas/Error"
+      additionalProperties: false
+    LabelRequest:
+      type: object
+      properties:
+        cartonNumber:
+          type: string
+          nullable: true
+        distributionCenter:
+          type: string
+          nullable: true
+        labelOutputFileType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LabelResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          nullable: true
+        cartonNumber:
+          type: string
+          nullable: true
+        trackingNumber:
+          type: string
+          nullable: true
+        labels:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Label"
+          nullable: true
+      additionalProperties: false
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ErrorResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ErrorSchema:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          nullable: true
+        errors:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Error"
+          nullable: true
+      additionalProperties: false
+    HazardousShipUnitItem:
+      required:
+        - description
+        - hazardousClass
+        - hazardousClassID
+        - iDNumber
+        - label
+        - packageCount
+        - packageType
+        - packing
+        - packingGroup
+        - packingInstructions
+        - quantity
+        - quantityType
+        - registrantId
+        - techName
+        - unitOfMeasure
+      type: object
+      properties:
+        hazardousClassID:
+          type: string
+          nullable: true
+        quantity:
+          type: number
+          format: double
+          nullable: true
+        unitOfMeasure:
+          type: string
+          nullable: true
+        packageCount:
+          type: integer
+          format: int32
+        packageType:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        hazardousClass:
+          type: string
+          nullable: true
+        idNumber:
+          type: string
+          nullable: true
+        packingGroup:
+          type: string
+          nullable: true
+        registrantId:
+          type: string
+          nullable: true
+        quantityType:
+          type: string
+          nullable: true
+        packingInstructions:
+          type: string
+          nullable: true
+        label:
+          type: string
+          nullable: true
+        packing:
+          type: string
+          nullable: true
+        techName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    HazardousShipUnit:
+      required:
+        - cargoAircraftOnly
+        - emergencyContact
+        - nameOfSignatory
+        - placeOfSignatory
+        - titleOfSignatory
+      type: object
+      properties:
+        hazardousShipUnitItems:
+          type: array
+          items:
+            "$ref": "#/components/schemas/HazardousShipUnitItem"
+          nullable: true
+        cargoAircraftOnly:
+          type: boolean
+        titleOfSignatory:
+          type: string
+          nullable: true
+        nameOfSignatory:
+          type: string
+          nullable: true
+        placeOfSignatory:
+          type: string
+          nullable: true
+        emergencyContact:
+          type: string
+          nullable: true
+        concatenated:
+          type: string
+          nullable: true
+        batteryDetailMaterial:
+          type: string
+          nullable: true
+        batteryDetailPackaging:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Address:
+      required:
+        - city
+        - class
+        - country
+        - individualName
+        - state
+        - streetAddress
+        - zipCode
+      type: object
+      properties:
+        class:
+          type: string
+          nullable: true
+        addressCode:
+          type: string
+          nullable: true
+        addressType:
+          type: string
+          nullable: true
+        individualName:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        streetAddress:
+          type: string
+          nullable: true
+        address1:
+          type: string
+          nullable: true
+        address2:
+          type: string
+          nullable: true
+        address3:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        zipCode:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        faxNumber:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Dimension:
+      type: object
+      properties:
+        length:
+          type: number
+          description: "Host-populated length of carton.\r\nType: Numeric (10,4)"
+          format: double
+        width:
+          type: number
+          description: "Host-populated width of carton.\r\nType: Numeric (10,4)"
+          format: double
+        height:
+          type: number
+          description: "Host-populated height of carton.\r\nType: Numeric (10,4)"
+          format: double
+      additionalProperties: false
+    RateShipUnitRequest:
+      required:
+        - distributionCenter
+        - weight
+      type: object
+      properties:
+        distributionCenter:
+          type: string
+          nullable: true
+        shipPointID:
+          type: string
+          nullable: true
+        orderNumber:
+          type: string
+          nullable: true
+        requestedDeliveryDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        estimatedShipmentDatetime:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        shipVia:
+          type: string
+          nullable: true
+        declaredValue:
+          type: number
+          format: double
+          nullable: true
+        weight:
+          type: number
+          format: double
+        dimension:
+          "$ref": "#/components/schemas/Dimension"
+        addresses:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Address"
+          nullable: true
+        shippingOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        hazardousShipUnit:
+          "$ref": "#/components/schemas/HazardousShipUnit"
+      additionalProperties: false
+    RateShipUnitResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          nullable: true
+        shipVia:
+          type: string
+          nullable: true
+        carrierID:
+          type: string
+          nullable: true
+        shipMethodID:
+          type: string
+          nullable: true
+        shipPointID:
+          type: string
+          nullable: true
+        distributionCenter:
+          type: string
+          nullable: true
+        zoneCode:
+          type: string
+          nullable: true
+        totalCharge:
+          type: string
+          nullable: true
+        expectedDeliveryDateTime:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RateCase:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        distributionCenter:
+          type: string
+          description: DC at Case Level is Mandatory if DC at Root Level is not provided
+          nullable: true
+        shipVia:
+          type: string
+          description: The code used to determine carrier shipmthod. Max 20 Characters.
+          nullable: true
+        requestedDeliveryDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        shippingOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        weight:
+          type: number
+          format: double
+          nullable: true
+        length:
+          type: number
+          format: double
+          nullable: true
+        width:
+          type: number
+          format: double
+          nullable: true
+        height:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    ShipUnitCharges:
+      type: object
+      properties:
+        shippingOption:
+          type: string
+          nullable: true
+        charge:
+          type: number
+          format: double
+      additionalProperties: false
+    Charges:
+      type: object
+      properties:
+        shipUnitCharges:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ShipUnitCharges"
+          nullable: true
+      additionalProperties: false
+    SubCharge:
+      type: object
+      properties:
+        chargeType:
+          type: string
+          nullable: true
+        chargeTypeDescription:
+          type: string
+          nullable: true
+        charge:
+          type: number
+          format: double
+        currencyUOM:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RateCaseError:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RateCaseUnit:
+      type: object
+      properties:
+        caseId:
+          type: integer
+          format: int32
+        carrierId:
+          type: string
+          nullable: true
+        serviceLevel:
+          type: string
+          nullable: true
+        rateWeight:
+          type: number
+          format: double
+          nullable: true
+        totalCharge:
+          type: number
+          format: double
+          nullable: true
+        expectedDeliveryDateTime:
+          type: string
+          nullable: true
+        plannedPickupDateTime:
+          type: string
+          nullable: true
+        currencyUOM:
+          type: string
+          nullable: true
+        errors:
+          type: array
+          items:
+            "$ref": "#/components/schemas/RateCaseError"
+          nullable: true
+        itemizedCharges:
+          type: array
+          items:
+            "$ref": "#/components/schemas/SubCharge"
+          nullable: true
+        shipPointID:
+          type: string
+          nullable: true
+        shippingOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        zoneCode:
+          type: string
+          nullable: true
+        rateCharge:
+          type: number
+          format: double
+          nullable: true
+        charges:
+          "$ref": "#/components/schemas/Charges"
+      additionalProperties: false
+    RateCaseRequest:
+      type: object
+      properties:
+        distributionCenter:
+          type: string
+          nullable: true
+        shipPointID:
+          type: string
+          nullable: true
+        orderNumber:
+          type: string
+          nullable: true
+        requestedDeliveryDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        estimatedShipmentDatetime:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        shipVia:
+          type: string
+          nullable: true
+        declaredValue:
+          type: number
+          format: double
+          nullable: true
+        weight:
+          type: number
+          format: double
+        dimension:
+          "$ref": "#/components/schemas/Dimension"
+        addresses:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Address"
+          nullable: true
+        shippingOptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        hazardousShipUnit:
+          "$ref": "#/components/schemas/HazardousShipUnit"
+        cases:
+          type: array
+          items:
+            "$ref": "#/components/schemas/RateCase"
+          nullable: true
+      additionalProperties: false
+    RateCaseResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          nullable: true
+        accountId:
+          type: string
+          nullable: true
+        shipmentId:
+          type: string
+          nullable: true
+        cases:
+          type: array
+          items:
+            "$ref": "#/components/schemas/RateCaseUnit"
+          nullable: true
+      additionalProperties: false
+    ManifestError:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ManifestErrorResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          nullable: true
+        errorNumber:
+          type: integer
+          format: int32
+          nullable: true
+        errorDescription:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ManifestErrorSchema:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ManifestError"
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        total:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ManifestCarrierRequest:
+      type: object
+      properties:
+        carrierID:
+          type: string
+          nullable: true
+        distributionCenter:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ManifestCarrierResponse:
+      type: object
+      properties:
+        trailerNumber:
+          type: string
+          nullable: true
+        totalShipUnitCount:
+          type: integer
+          format: int32
+          nullable: true
+        totalWeight:
+          type: number
+          format: double
+          nullable: true
+        totalErrorCount:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Report:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        reportUrl:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ManifestTrailerRequest:
+      required:
+        - distributionCenter
+        - trailerNumber
+      type: object
+      properties:
+        trailerNumber:
+          type: string
+          nullable: true
+        distributionCenter:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ManifestTrailerResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          nullable: true
+        trailerNumber:
+          type: string
+          nullable: true
+        totalShipUnitCount:
+          type: integer
+          format: int32
+          nullable: true
+        totalWeight:
+          type: number
+          format: double
+          nullable: true
+        totalErrorCount:
+          type: integer
+          format: int32
+          nullable: true
+        report:
+          "$ref": "#/components/schemas/Report"
+      additionalProperties: false
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 with Client Credentials grant type
+      flows:
+        clientCredentials:
+          tokenUrl: https://uatapi.uberfreight.com/oauth2/accesstoken
+          scopes: {}
