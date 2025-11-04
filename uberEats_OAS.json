@@ -1,0 +1,3161 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Uber Eats from HAR",
+    "description": "OpenAPI generated from a HAR capture. Schemas and examples are inferred from the actual request/response payloads present in the HAR.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://www.ubereats.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "events",
+      "description": "Auto-generated tag from path segment \"events\"."
+    },
+    {
+      "name": "p",
+      "description": "Auto-generated tag from path segment \"p\"."
+    },
+    {
+      "name": "translations",
+      "description": "Auto-generated tag from path segment \"translations\"."
+    },
+    {
+      "name": "xp-parameters",
+      "description": "Auto-generated tag from path segment \"xp-parameters\"."
+    },
+    {
+      "name": "ramenphx",
+      "description": "Auto-generated tag from path segment \"ramenphx\"."
+    },
+    {
+      "name": "ramendca",
+      "description": "Auto-generated tag from path segment \"ramendca\"."
+    },
+    {
+      "name": "maps_provenance",
+      "description": "Auto-generated tag from path segment \"maps_provenance\"."
+    }
+  ],
+  "paths": {
+    "/_events": {
+      "post": {
+        "tags": [
+          "events"
+        ],
+        "summary": "POST /_events",
+        "operationId": "post_events",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2effe4ec-9ebf-4b97-bc71-ff511b9b41f2"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "text/plain; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "payload": {
+                          "type": "object",
+                          "properties": {
+                            "eventsFlushed": {
+                              "type": "object",
+                              "properties": {
+                                "page-load-latency-browser-event": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "m3:increment": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "m3:timing": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                }
+                              },
+                              "required": [
+                                "page-load-latency-browser-event",
+                                "m3:increment",
+                                "m3:timing"
+                              ]
+                            },
+                            "eventsSizes": {
+                              "type": "object",
+                              "properties": {
+                                "page-load-latency-browser-event": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  }
+                                },
+                                "m3:increment": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  }
+                                },
+                                "m3:timing": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "page-load-latency-browser-event",
+                                "m3:increment",
+                                "m3:timing"
+                              ]
+                            },
+                            "eventsRateLimited": {
+                              "type": "object",
+                              "properties": {
+                                "page-load-latency-browser-event": {
+                                  "type": "object",
+                                  "properties": {
+                                    "eps_warn": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    },
+                                    "eps_block": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    }
+                                  },
+                                  "required": [
+                                    "eps_warn",
+                                    "eps_block"
+                                  ]
+                                },
+                                "m3:increment": {
+                                  "type": "object",
+                                  "properties": {
+                                    "eps_warn": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    }
+                                  },
+                                  "required": [
+                                    "eps_warn"
+                                  ]
+                                },
+                                "m3:timing": {
+                                  "type": "object",
+                                  "properties": {
+                                    "eps_warn": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    }
+                                  },
+                                  "required": [
+                                    "eps_warn"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "page-load-latency-browser-event",
+                                "m3:increment",
+                                "m3:timing"
+                              ]
+                            },
+                            "eventsRecovered": {
+                              "type": "object",
+                              "properties": {
+                                "page-load-latency-browser-event": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                }
+                              },
+                              "required": [
+                                "page-load-latency-browser-event"
+                              ]
+                            },
+                            "eventsWaitingTimes": {
+                              "type": "object",
+                              "properties": {
+                                "page-load-latency-browser-event": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  }
+                                },
+                                "m3:increment": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  }
+                                },
+                                "m3:timing": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "page-load-latency-browser-event",
+                                "m3:increment",
+                                "m3:timing"
+                              ]
+                            },
+                            "size": {
+                              "type": "integer",
+                              "format": "int64"
+                            },
+                            "webEventsMeta": {
+                              "type": "object",
+                              "properties": {
+                                "device_info": {
+                                  "type": "object",
+                                  "properties": {
+                                    "app": {
+                                      "type": "object",
+                                      "properties": {}
+                                    },
+                                    "device": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string"
+                                        },
+                                        "os": {
+                                          "type": "string"
+                                        },
+                                        "osVersion": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "os",
+                                        "osVersion"
+                                      ]
+                                    },
+                                    "webview": {
+                                      "type": "object",
+                                      "properties": {}
+                                    }
+                                  },
+                                  "required": [
+                                    "app",
+                                    "device",
+                                    "webview"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "device_info"
+                              ]
+                            },
+                            "meta": {
+                              "type": "object",
+                              "properties": {
+                                "device": {
+                                  "type": "object",
+                                  "properties": {
+                                    "standalone": {
+                                      "type": "boolean"
+                                    },
+                                    "using_translation": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "required": [
+                                    "standalone",
+                                    "using_translation"
+                                  ]
+                                },
+                                "location": {
+                                  "type": "object",
+                                  "properties": {
+                                    "hostname": {
+                                      "type": "string"
+                                    },
+                                    "pathname": {
+                                      "type": "string"
+                                    },
+                                    "href": {
+                                      "type": "string"
+                                    },
+                                    "referrer": {
+                                      "type": "string"
+                                    },
+                                    "searchParams": {
+                                      "type": "object",
+                                      "properties": {
+                                        "fav": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "fav"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "hostname",
+                                    "pathname",
+                                    "href",
+                                    "referrer",
+                                    "searchParams"
+                                  ]
+                                },
+                                "time": {
+                                  "type": "object",
+                                  "properties": {
+                                    "event_start": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    }
+                                  },
+                                  "required": [
+                                    "event_start"
+                                  ]
+                                },
+                                "dimensions": {
+                                  "type": "object",
+                                  "properties": {
+                                    "screen_width": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    },
+                                    "screen_height": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    },
+                                    "viewport_width": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    },
+                                    "viewport_height": {
+                                      "type": "integer",
+                                      "format": "int64"
+                                    }
+                                  },
+                                  "required": [
+                                    "screen_width",
+                                    "screen_height",
+                                    "viewport_width",
+                                    "viewport_height"
+                                  ]
+                                },
+                                "build": {
+                                  "type": "object",
+                                  "properties": {
+                                    "git_ref": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "git_ref"
+                                  ]
+                                },
+                                "user_interaction": {
+                                  "type": "object",
+                                  "properties": {
+                                    "clicks": {
+                                      "type": "object",
+                                      "properties": {
+                                        "home": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "orders": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "home_feed": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "invite": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        },
+                                        "favorites": {
+                                          "type": "integer",
+                                          "format": "int64"
+                                        }
+                                      },
+                                      "required": [
+                                        "home",
+                                        "orders",
+                                        "home_feed",
+                                        "invite",
+                                        "favorites"
+                                      ]
+                                    },
+                                    "prev_tracking_id": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "clicks",
+                                    "prev_tracking_id"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "device",
+                                "location",
+                                "time",
+                                "dimensions",
+                                "build",
+                                "user_interaction"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "eventsFlushed",
+                            "eventsSizes",
+                            "eventsRateLimited",
+                            "eventsRecovered",
+                            "eventsWaitingTimes",
+                            "size",
+                            "webEventsMeta",
+                            "meta"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "payload"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "items"
+                ]
+              },
+              "example": {
+                "items": [
+                  {
+                    "type": "universal_events:event_queue_health",
+                    "payload": {
+                      "eventsFlushed": {
+                        "page-load-latency-browser-event": 3,
+                        "m3:increment": 2,
+                        "m3:timing": 2
+                      },
+                      "eventsSizes": {
+                        "page-load-latency-browser-event": [
+                          1071,
+                          1086,
+                          1070,
+                          1086,
+                          1073
+                        ],
+                        "m3:increment": [
+                          767,
+                          767
+                        ],
+                        "m3:timing": [
+                          776,
+                          776
+                        ]
+                      },
+                      "eventsRateLimited": {
+                        "page-load-latency-browser-event": {
+                          "eps_warn": 1,
+                          "eps_block": 1
+                        },
+                        "m3:increment": {
+                          "eps_warn": 1
+                        },
+                        "m3:timing": {
+                          "eps_warn": 1
+                        }
+                      },
+                      "eventsRecovered": {
+                        "page-load-latency-browser-event": 2
+                      },
+                      "eventsWaitingTimes": {
+                        "page-load-latency-browser-event": [
+                          15931,
+                          15931,
+                          8966,
+                          8919,
+                          8920
+                        ],
+                        "m3:increment": [
+                          5850,
+                          5804
+                        ],
+                        "m3:timing": [
+                          5485,
+                          5385
+                        ]
+                      },
+                      "size": 602,
+                      "webEventsMeta": {
+                        "device_info": {
+                          "app": {},
+                          "device": {
+                            "type": "desktop",
+                            "os": "windows",
+                            "osVersion": "10"
+                          },
+                          "webview": {}
+                        }
+                      },
+                      "meta": {
+                        "device": {
+                          "standalone": false,
+                          "using_translation": true
+                        },
+                        "location": {
+                          "hostname": "www.ubereats.com",
+                          "pathname": "/favorites",
+                          "href": "https://www.ubereats.com/favorites?fav=true",
+                          "referrer": "https://auth.uber.com/",
+                          "searchParams": {
+                            "fav": "true"
+                          }
+                        },
+                        "time": {
+                          "event_start": 1762236219857
+                        },
+                        "dimensions": {
+                          "screen_width": 1920,
+                          "screen_height": 1080,
+                          "viewport_width": 1433,
+                          "viewport_height": 911
+                        },
+                        "build": {
+                          "git_ref": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+                        },
+                        "user_interaction": {
+                          "clicks": {
+                            "home": 37,
+                            "orders": 35,
+                            "home_feed": 9,
+                            "invite": 26,
+                            "favorites": 20
+                          },
+                          "prev_tracking_id": "favorites"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/setRobotEventsV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/setRobotEventsV1",
+        "operationId": "post_p_api_setroboteventsv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "5ae1aecf-7d2e-49cf-bce4-2b7461b84e50"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string"
+                  },
+                  "payload": {
+                    "type": "object",
+                    "properties": {
+                      "shouldIndex": {
+                        "type": "boolean"
+                      },
+                      "shouldIndexOverride": {
+                        "type": "boolean"
+                      },
+                      "appVariant": {
+                        "type": "string"
+                      },
+                      "overrideAvoided": {
+                        "type": "boolean"
+                      },
+                      "isBot": {
+                        "type": "boolean"
+                      },
+                      "page": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "shouldIndex",
+                      "shouldIndexOverride",
+                      "appVariant",
+                      "overrideAvoided",
+                      "isBot",
+                      "page"
+                    ]
+                  }
+                },
+                "required": [
+                  "action",
+                  "payload"
+                ]
+              },
+              "example": {
+                "action": "rendered",
+                "payload": {
+                  "shouldIndex": false,
+                  "shouldIndexOverride": true,
+                  "appVariant": "eats",
+                  "overrideAvoided": false,
+                  "isBot": false,
+                  "page": "search-feed-desktop"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getDeliveryLocationsV2": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getDeliveryLocationsV2",
+        "operationId": "post_p_api_getdeliverylocationsv2",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "efec0f29-1f12-409c-9b1a-2f820eb556d1"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "locationTypes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "locationTypes"
+                ]
+              },
+              "example": {
+                "locationTypes": [
+                  "SUGGESTED"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getHomeV2": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getHomeV2",
+        "operationId": "post_p_api_gethomev2",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "245da48e-1c49-4bb3-8e30-8f1bec6bdd7c"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {}
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getCartsViewForEaterUuidV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getCartsViewForEaterUuidV1",
+        "operationId": "post_p_api_getcartsviewforeateruuidv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "997df50b-87e6-4dc1-849a-090edfc2be4b"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {}
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getOrderEntitiesV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getOrderEntitiesV1",
+        "operationId": "post_p_api_getorderentitiesv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "550b54fa-85b1-4534-8d35-ee1ee7e1e45f"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {}
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getDraftOrdersByEaterUuidV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getDraftOrdersByEaterUuidV1",
+        "operationId": "post_p_api_getdraftordersbyeateruuidv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "1281ae0d-332c-476a-abdb-d76a3a22d98b"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "removeAdapters": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "removeAdapters"
+                ]
+              },
+              "example": {
+                "removeAdapters": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getActiveOrdersV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getActiveOrdersV1",
+        "operationId": "post_p_api_getactiveordersv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "d76307c7-328e-457b-a516-920a151d63ae"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "orderUuid": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "timezone": {
+                    "type": "string"
+                  },
+                  "showAppUpsellIllustration": {
+                    "type": "boolean"
+                  },
+                  "isDirectTracking": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "orderUuid",
+                  "timezone",
+                  "showAppUpsellIllustration",
+                  "isDirectTracking"
+                ]
+              },
+              "example": {
+                "orderUuid": null,
+                "timezone": "Asia/Calcutta",
+                "showAppUpsellIllustration": true,
+                "isDirectTracking": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getSessionElapseV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getSessionElapseV1",
+        "operationId": "post_p_api_getsessionelapsev1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "891eb586-355e-4f84-a1dc-2aa0dd827fad"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {}
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getUserV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getUserV1",
+        "operationId": "post_p_api_getuserv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "ccd660f5-2aef-41f3-8481-98766c84d8e4"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {}
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getUserPromoDetailsV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getUserPromoDetailsV1",
+        "operationId": "post_p_api_getuserpromodetailsv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "42399a03-b54b-44c2-8d2d-62b0bfa8c7c8"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {}
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getPastOrdersV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getPastOrdersV1",
+        "operationId": "post_p_api_getpastordersv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "b1fb4512-85ea-4b05-8724-15f2d638e930"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "lastWorkflowUUID": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "lastWorkflowUUID"
+                ]
+              },
+              "example": {
+                "lastWorkflowUUID": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getFeedV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getFeedV1",
+        "operationId": "post_p_api_getfeedv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "d5540421-ccd9-4b7a-b0a0-00d4d1728f60"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cacheKey": {
+                    "type": "string"
+                  },
+                  "feedSessionCount": {
+                    "type": "object",
+                    "properties": {
+                      "announcementCount": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "announcementLabel": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "announcementCount",
+                      "announcementLabel"
+                    ]
+                  },
+                  "userQuery": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  },
+                  "startTime": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "endTime": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "carouselId": {
+                    "type": "string"
+                  },
+                  "sortAndFilters": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "billboardUuid": {
+                    "type": "string"
+                  },
+                  "feedProvider": {
+                    "type": "string"
+                  },
+                  "promotionUuid": {
+                    "type": "string"
+                  },
+                  "targetingStoreTag": {
+                    "type": "string"
+                  },
+                  "venueUUID": {
+                    "type": "string"
+                  },
+                  "selectedSectionUUID": {
+                    "type": "string"
+                  },
+                  "favorites": {
+                    "type": "string"
+                  },
+                  "vertical": {
+                    "type": "string"
+                  },
+                  "searchSource": {
+                    "type": "string"
+                  },
+                  "searchType": {
+                    "type": "string"
+                  },
+                  "keyName": {
+                    "type": "string"
+                  },
+                  "serializedRequestContext": {
+                    "type": "string"
+                  },
+                  "isUserInitiatedRefresh": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "cacheKey",
+                  "feedSessionCount",
+                  "userQuery",
+                  "date",
+                  "startTime",
+                  "endTime",
+                  "carouselId",
+                  "sortAndFilters",
+                  "billboardUuid",
+                  "feedProvider",
+                  "promotionUuid",
+                  "targetingStoreTag",
+                  "venueUUID",
+                  "selectedSectionUUID",
+                  "favorites",
+                  "vertical",
+                  "searchSource",
+                  "searchType",
+                  "keyName",
+                  "serializedRequestContext",
+                  "isUserInitiatedRefresh"
+                ]
+              },
+              "example": {
+                "cacheKey": "JTdCJTIyYWRkcmVzcyUyMiUzQSUyMjExJTJDJTIwMTEtMS04MzMlMkYxNCUyQyUyME1hbGxlcGFsbHklMjBSZCUyMiUyQyUyMnJlZmVyZW5jZSUyMiUzQSUyMkNoSUp6N1dYcEhhWHl6c1JWeU0xMjRJaG4yZyUyMiUyQyUyMnJlZmVyZW5jZVR5cGUlMjIlM0ElMjJnb29nbGVfcGxhY2VzJTIyJTJDJTIybGF0aXR1ZGUlMjIlM0ExNy4zODQ2MDQlMkMlMjJsb25naXR1ZGUlMjIlM0E3OC40NTg3NTklN0Q=/DELIVERY///0/0//JTVCJTVE/undefined//////HOME////////",
+                "feedSessionCount": {
+                  "announcementCount": 0,
+                  "announcementLabel": ""
+                },
+                "userQuery": "",
+                "date": "",
+                "startTime": 0,
+                "endTime": 0,
+                "carouselId": "",
+                "sortAndFilters": [],
+                "billboardUuid": "",
+                "feedProvider": "",
+                "promotionUuid": "",
+                "targetingStoreTag": "",
+                "venueUUID": "",
+                "selectedSectionUUID": "",
+                "favorites": "",
+                "vertical": "",
+                "searchSource": "",
+                "searchType": "",
+                "keyName": "",
+                "serializedRequestContext": "",
+                "isUserInitiatedRefresh": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/checkAndUpdateGratisV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/checkAndUpdateGratisV1",
+        "operationId": "post_p_api_checkandupdategratisv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "7dd6905b-7dbf-4d65-a0f0-0ce92df7cb07"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "entryPoint": {
+                    "type": "string"
+                  },
+                  "lastAction": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "entryPoint",
+                  "lastAction"
+                ]
+              },
+              "example": {
+                "entryPoint": "ENTRY_POINT_INVALID",
+                "lastAction": "LAST_ACTION_BROWSE_HOME_PAGE"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_translations": {
+      "post": {
+        "tags": [
+          "translations"
+        ],
+        "summary": "POST /_translations",
+        "operationId": "post_translations",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "5c1d71ae-c515-40fa-a057-1663ff69cc99"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "example": [
+                "components.search_feed_results_title"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/mapsSearchV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/mapsSearchV1",
+        "operationId": "post_p_api_mapssearchv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "23b44689-068c-4fab-b4b5-66034b5371c8"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              },
+              "example": {
+                "query": "new"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getDeliveryLocationV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getDeliveryLocationV1",
+        "operationId": "post_p_api_getdeliverylocationv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "27a18cf8-9dc5-49d0-a985-9680b5efdf0a"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "placeId": {
+                    "type": "string"
+                  },
+                  "provider": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "placeId",
+                  "provider",
+                  "source"
+                ]
+              },
+              "example": {
+                "placeId": "ChIJlzz5teWZyzsRWxqlHc4wEp0",
+                "provider": "google_places",
+                "source": "manual_auto_complete"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/setTargetLocationV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/setTargetLocationV1",
+        "operationId": "post_p_api_settargetlocationv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "6c051869-0707-4c8c-a008-6930fd3c2c76"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {}
+            }
+          }
+        }
+      }
+    },
+    "/xp-parameters": {
+      "post": {
+        "tags": [
+          "xp-parameters"
+        ],
+        "summary": "POST /xp-parameters",
+        "operationId": "post_xp-parameters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "b05d8df1-f965-4c3f-9af3-fd6a7b5be709"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getSearchHomeV2": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getSearchHomeV2",
+        "operationId": "post_p_api_getsearchhomev2",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "47a3d214-40ad-4582-a020-e18588c78a43"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dropPastOrders": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "dropPastOrders"
+                ]
+              },
+              "example": {
+                "dropPastOrders": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getProfilesForUserV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getProfilesForUserV1",
+        "operationId": "post_p_api_getprofilesforuserv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "cb6a1c28-36da-4a8f-84dd-4d579a7c844d"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {}
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getInstructionForLocationV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getInstructionForLocationV1",
+        "operationId": "post_p_api_getinstructionforlocationv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "c2ba7ffb-6fd2-439d-b0ed-bcbc18b08451"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "address": {
+                        "type": "object",
+                        "properties": {
+                          "address1": {
+                            "type": "string"
+                          },
+                          "address2": {
+                            "type": "string"
+                          },
+                          "aptOrSuite": {
+                            "type": "string"
+                          },
+                          "eaterFormattedAddress": {
+                            "type": "string"
+                          },
+                          "subtitle": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "uuid": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "address1",
+                          "address2",
+                          "aptOrSuite",
+                          "eaterFormattedAddress",
+                          "subtitle",
+                          "title",
+                          "uuid"
+                        ]
+                      },
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      },
+                      "reference": {
+                        "type": "string"
+                      },
+                      "referenceType": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "addressComponents": {
+                        "type": "object",
+                        "properties": {
+                          "city": {
+                            "type": "string"
+                          },
+                          "countryCode": {
+                            "type": "string"
+                          },
+                          "firstLevelSubdivisionCode": {
+                            "type": "string"
+                          },
+                          "postalCode": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "city",
+                          "countryCode",
+                          "firstLevelSubdivisionCode",
+                          "postalCode"
+                        ]
+                      },
+                      "categories": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "originType": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "address",
+                      "latitude",
+                      "longitude",
+                      "reference",
+                      "referenceType",
+                      "type",
+                      "addressComponents",
+                      "categories",
+                      "originType"
+                    ]
+                  }
+                },
+                "required": [
+                  "location"
+                ]
+              },
+              "example": {
+                "location": {
+                  "address": {
+                    "address1": "11, 11-1-833/14, Mallepally Rd",
+                    "address2": "Mahesh Nagar, New Mallepally, Hyderabad, Telangana",
+                    "aptOrSuite": "",
+                    "eaterFormattedAddress": "11, 11-1-833/14, Mallepally Rd, Mahesh Nagar, New Mallepally, Hyderabad, Telangana 500001, India",
+                    "subtitle": "Mahesh Nagar, New Mallepally, Hyderabad, Telangana",
+                    "title": "11, 11-1-833/14, Mallepally Rd",
+                    "uuid": ""
+                  },
+                  "latitude": 17.384604,
+                  "longitude": 78.458759,
+                  "reference": "ChIJz7WXpHaXyzsRVyM124Ihn2g",
+                  "referenceType": "google_places",
+                  "type": "google_places",
+                  "addressComponents": {
+                    "city": "Hyderabad",
+                    "countryCode": "IN",
+                    "firstLevelSubdivisionCode": "TS",
+                    "postalCode": "500001"
+                  },
+                  "categories": [
+                    "address_point"
+                  ],
+                  "originType": "user_autocomplete"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ramenphx/events/ack": {
+      "get": {
+        "tags": [
+          "ramenphx"
+        ],
+        "summary": "GET /ramenphx/events/ack",
+        "operationId": "get_ramenphx_events_ack",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "seq",
+            "schema": {
+              "type": "string"
+            },
+            "example": "1762235962"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-app-variant",
+            "schema": {
+              "type": "string"
+            },
+            "example": "ubereats"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eats_web"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-session",
+            "schema": {
+              "type": "string"
+            },
+            "example": "36978cd2-9c15-4c69-98fe-a5f5a59281ee"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-version",
+            "schema": {
+              "type": "string"
+            },
+            "example": "1.0.0"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-device",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eats-web"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-device-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0fcd04b2-6938-4aa6-b0d5-8d1567eb2bbb"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-device-language",
+            "schema": {
+              "type": "string"
+            },
+            "example": "en-US"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-origin",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eats-web"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-source",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eats-web"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ramendca/events/ack": {
+      "get": {
+        "tags": [
+          "ramendca"
+        ],
+        "summary": "GET /ramendca/events/ack",
+        "operationId": "get_ramendca_events_ack",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "seq",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-app-variant",
+            "schema": {
+              "type": "string"
+            },
+            "example": "ubereats"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eats_web"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-session",
+            "schema": {
+              "type": "string"
+            },
+            "example": "9f4246e2-34cd-4553-800f-b942d267817d"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-version",
+            "schema": {
+              "type": "string"
+            },
+            "example": "1.0.0"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-device",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eats-web"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-device-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0fcd04b2-6938-4aa6-b0d5-8d1567eb2bbb"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-device-language",
+            "schema": {
+              "type": "string"
+            },
+            "example": "en-US"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-origin",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eats-web"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-source",
+            "schema": {
+              "type": "string"
+            },
+            "example": "eats-web"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getSavingsV1": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getSavingsV1",
+        "operationId": "post_p_api_getsavingsv1",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "8048aa5a-31a5-450f-923f-eb0db129be0f"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              },
+              "example": {
+                "type": "ACCOUNT"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getDeliveryLocationV2": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getDeliveryLocationV2",
+        "operationId": "post_p_api_getdeliverylocationv2",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "92e2cf87-8c66-46ec-a076-e64358d559f0"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "placeId": {
+                    "type": "string"
+                  },
+                  "provider": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "placeId",
+                  "provider",
+                  "source"
+                ]
+              },
+              "example": {
+                "placeId": "ChIJz7WXpHaXyzsRVyM124Ihn2g",
+                "provider": "google_places",
+                "source": "manual_auto_complete"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/getAddressEntryFormV2": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/getAddressEntryFormV2",
+        "operationId": "post_p_api_getaddressentryformv2",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "e8d2c0e6-c02c-4592-a4f8-fe920a3c5604"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "referenceInfo": {
+                    "type": "object",
+                    "properties": {
+                      "placeID": {
+                        "type": "string"
+                      },
+                      "provider": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "placeID",
+                      "provider"
+                    ]
+                  }
+                },
+                "required": [
+                  "referenceInfo"
+                ]
+              },
+              "example": {
+                "referenceInfo": {
+                  "placeID": "ChIJz7WXpHaXyzsRVyM124Ihn2g",
+                  "provider": "google_places"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_maps_provenance": {
+      "post": {
+        "tags": [
+          "maps_provenance"
+        ],
+        "summary": "POST /_maps_provenance",
+        "operationId": "post_maps_provenance",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "96dc31da-9ae1-4a3c-a867-2b63dbd7dd6e"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sessionId": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "provenances": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "whyEngine": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "sessionId",
+                  "provenances",
+                  "whyEngine"
+                ]
+              },
+              "example": {
+                "sessionId": "bd9e5760-7081-439a-9832-cf89164a1198",
+                "provenances": [
+                  "PROVENANCE_GOOGLE_PLACES"
+                ],
+                "whyEngine": "COUNTRY_EXCEPTION"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_p/api/upsertDeliveryLocationV2": {
+      "post": {
+        "tags": [
+          "p"
+        ],
+        "summary": "POST /_p/api/upsertDeliveryLocationV2",
+        "operationId": "post_p_api_upsertdeliverylocationv2",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-csrf-token",
+            "schema": {
+              "type": "string"
+            },
+            "example": "x"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-client-gitref",
+            "schema": {
+              "type": "string"
+            },
+            "example": "90f51d66f59ae9481ab074c9496442ffcbf05472"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-request-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "f633f197-d8d3-4520-869d-a80aa94a9f5c"
+          },
+          {
+            "in": "header",
+            "name": "x-uber-session-id",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bd9e5760-7081-439a-9832-cf89164a1198"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Captured from HAR (200)",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "isTargetLocation": {
+                    "type": "boolean"
+                  },
+                  "analytics": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "dataSourceType": {
+                          "type": "string"
+                        },
+                        "dataSourceEndpoint": {
+                          "type": "string"
+                        },
+                        "dataSourceImpressionID": {
+                          "type": "string"
+                        },
+                        "cached": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "dataSourceType",
+                        "dataSourceEndpoint",
+                        "dataSourceImpressionID",
+                        "cached"
+                      ]
+                    }
+                  },
+                  "deliveryInstruction": {
+                    "type": "object",
+                    "properties": {
+                      "interactionType": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "interactionType"
+                    ]
+                  },
+                  "deliveryPayloadType": {
+                    "type": "string"
+                  },
+                  "selectedInteractionType": {
+                    "type": "string"
+                  },
+                  "referenceInfo": {
+                    "type": "object",
+                    "properties": {
+                      "placeID": {
+                        "type": "string"
+                      },
+                      "provider": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "placeID",
+                      "provider"
+                    ]
+                  },
+                  "addressInfo": {
+                    "type": "object",
+                    "properties": {
+                      "RESIDENCE_TYPE": {
+                        "type": "string"
+                      },
+                      "BUSINESS_NAME": {
+                        "type": "string"
+                      },
+                      "APT_OR_SUITE": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "RESIDENCE_TYPE",
+                      "BUSINESS_NAME",
+                      "APT_OR_SUITE"
+                    ]
+                  },
+                  "label": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "isTargetLocation",
+                  "analytics",
+                  "deliveryInstruction",
+                  "deliveryPayloadType",
+                  "selectedInteractionType",
+                  "referenceInfo",
+                  "addressInfo",
+                  "label"
+                ]
+              },
+              "example": {
+                "isTargetLocation": true,
+                "analytics": [
+                  {
+                    "dataSourceType": "PLACE_DETAILS",
+                    "dataSourceEndpoint": "",
+                    "dataSourceImpressionID": "",
+                    "cached": false
+                  }
+                ],
+                "deliveryInstruction": {
+                  "interactionType": "door_to_door"
+                },
+                "deliveryPayloadType": "USER_INPUT",
+                "selectedInteractionType": "door_to_door",
+                "referenceInfo": {
+                  "placeID": "ChIJz7WXpHaXyzsRVyM124Ihn2g",
+                  "provider": "google_places"
+                },
+                "addressInfo": {
+                  "RESIDENCE_TYPE": "BUSINESS",
+                  "BUSINESS_NAME": "g office",
+                  "APT_OR_SUITE": "suit 488"
+                },
+                "label": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {}
+}
