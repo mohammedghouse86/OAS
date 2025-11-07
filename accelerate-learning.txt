@@ -1,0 +1,417 @@
+# Accelerate Learning (inferred) GraphQL Schema (SDL)
+# NOTE: This schema is inferred from observed client operations.
+# Some fields, nullability, and enums are best-effort guesses and may need adjustment against the real server.
+
+scalar DateTime
+scalar JSON
+
+type Query {
+  # Dashboard / layout
+  widgets: [Widget!]!
+
+  # Teams
+  teams(itemsPerPage: Int!, page: Int!, filter: FilterTeamInput): TeamConnection
+  plannerTeams(itemsPerPage: Int!, page: Int!): TeamConnection
+
+  # Calendars and selections
+  userCalendars(schoolIds: [String], userRoleCode: String!, userTeamIds: [String]): UserCalendarConnection
+  calendarTemplates(calendarType: CalendarType, schoolIds: [String], userRoleCode: String!, itemsPerPage: Int = 9999): CalendarTemplateConnection
+  userSelection(id: ID!): UserSelection
+
+  # ACL / applications
+  applicationSettings: [ApplicationSetting!]!
+  aclApplications: [AclApplication!]!
+
+  # Users and admins
+  users(
+    page: Int
+    itemsPerPage: Int
+    fullName: String
+    type: UserTypeEnum
+    schoolId: String
+    id_list: [String]
+    active: Boolean = true
+    excludeCurrent: Boolean = false
+    purpose: UserPurposeEnum
+  ): UserConnection
+
+  systemAdmins(districtUuid: String!, itemsPerPage: Int = 1000, page: Int = 1): SystemAdminConnection
+
+  # Resources and icons
+  teacherResources(page: Int, perPage: Int, search: String, schoolIds: [String!]): TeacherResourceConnection
+  icons(itemsPerPage: Int, page: Int, filter: FilterIconInput): IconConnection
+
+  # Pacing / scope plans
+  pacingGuides(schoolIds: [String], userRoleCode: String!, userTeamIds: [String]): PacingGuideConnection
+  scopePlans(schoolIds: [String], userRoleCode: String!, userTeamIds: [String]): ScopePlanConnection
+
+  # Recently viewed
+  recentlyViewed(schoolId: String!): RecentlyViewed
+}
+
+type Mutation {
+  updateUser(input: UpdateUserInput!): UpdateUserPayload
+  createTeam(createTeamInput: CreateTeamInput!): CreateTeamPayload
+  updateTeam(updateTeamInput: UpdateTeamInput!): UpdateTeamPayload
+  createCalendar(input: CreateCalendarInput!): CreateCalendarPayload
+  updateUserSelection(input: UpdateUserSelectionInput!): UpdateUserSelectionPayload
+}
+
+# ---------- Shared / utility ----------
+
+type PaginationInfo {
+  itemsPerPage: Int
+  totalCount: Int
+  page: Int
+  totalPages: Int
+}
+
+# ---------- Widgets ----------
+
+type Widget {
+  h: Int
+  i: Int
+  id: ID
+  minH: Int
+  minW: Int
+  w: Int
+  x: Int
+  y: Int
+  expandedW: Int
+  expandedH: Int
+  collapsed: Boolean
+  type: String
+  config: JSON
+}
+
+# ---------- Teams ----------
+
+input FilterTeamInput {
+  archived: Boolean
+  membersActive: Boolean
+}
+
+type TeamConnection {
+  collection: [Team!]!
+  paginationInfo: PaginationInfo
+}
+
+type Team {
+  id: ID
+  name: String!
+  archived: Boolean
+  members: [User!]
+}
+
+input CreateTeamInput {
+  name: String!
+  members: [ID!]!
+  context: String
+}
+
+input UpdateTeamInput {
+  id: ID!
+  name: String
+  archived: Boolean
+  members: [ID!]
+}
+
+type CreateTeamPayload {
+  team: Team
+}
+
+type UpdateTeamPayload {
+  team: Team
+}
+
+# ---------- Users ----------
+
+enum UserTypeEnum {
+  staff
+  # Add other values if present on the server (e.g., student, admin)
+}
+
+enum UserPurposeEnum {
+  regular
+  # Add other values if present on the server
+}
+
+type UserConnection {
+  collection: [User!]!
+  paginationInfo: PaginationInfo
+}
+
+type User {
+  _id: ID
+  id: ID
+  firstName: String
+  lastName: String
+  username: String
+  gradeLevel: String
+  sisId: String
+}
+
+type UpdateUserPayload {
+  user: User
+}
+
+input UpdateUserInput {
+  id: ID!
+  # The real API appears to send this as a JSON-encoded string; if the server supports JSON, change this to JSON.
+  preferences: String
+}
+
+# ---------- Calendars ----------
+
+enum CalendarType {
+  Individual
+  Template
+}
+
+type UserCalendarConnection {
+  collection: [UserCalendar!]!
+}
+
+type UserCalendar {
+  _id: ID
+  name: String
+  calendarId: String
+  calendarType: CalendarType
+  isDefault: Boolean
+  isSelected: Boolean
+  editable: Boolean
+  userId: String
+  creator: String
+  userSelection: UserSelectionSettings
+}
+
+type UserSelectionSettings {
+  calendarSettingsPopup: Boolean
+  selectedCalendar: [String!]
+  viewMode: String
+}
+
+type CalendarTemplateConnection {
+  collection: [CalendarTemplate!]!
+}
+
+type CalendarTemplate {
+  _id: ID
+  id: ID
+  name: String
+  creator: String
+  calendarEntries: CalendarEntryConnection
+}
+
+type CalendarEntryConnection {
+  collection: [CalendarEntry!]!
+}
+
+type CalendarEntry {
+  id: ID
+  _id: ID
+  eventId: String
+  name: String
+  type: String
+  startDate: DateTime
+  endDate: DateTime
+  editable: Boolean
+}
+
+type Calendar {
+  _id: ID
+  name: String
+  pk: String
+}
+
+type CreateCalendarPayload {
+  calendar: Calendar
+}
+
+input DateRangeInput {
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+input CreateCalendarInput {
+  gradingPeriods: [DateRangeInput!]
+  lastDayOfSchool: [DateRangeInput!]
+  firstDayOfSchool: [DateRangeInput!]
+  calendarTemplateId: ID
+  name: String!
+  isDefault: Boolean
+  calendarType: CalendarType!
+  schoolIds: [String!]
+  userTeamIds: [String!]
+  userRoleCode: String!
+}
+
+# ---------- User selection ----------
+
+type UserSelection {
+  id: ID
+  _id: ID
+  notificationCalendar: Boolean
+  notificationPacingGuide: Boolean
+  version: Int
+  # The following fields are returned by updateUserSelection
+  viewMode: String
+  selectedCalendar: [String!]
+  selectedPacingGuide: [String!]
+  selectedScopePlan: [String!]
+}
+
+type UpdateUserSelectionPayload {
+  userSelection: UserSelection
+}
+
+input UpdateUserSelectionInput {
+  schoolIds: [String!]
+  userTeamIds: [String!]
+  userRoleCode: String!
+  selectedCalendar: [String!]
+  selectedPacingGuide: [String!]
+  selectedScopePlan: [String!]
+  viewMode: String
+}
+
+# ---------- ACL / Applications ----------
+
+type ApplicationSetting {
+  id: ID
+  value: String
+}
+
+type AclApplication {
+  name: String!
+  modules: [ApplicationModule!]!
+  schools: [AclSchool!]!
+}
+
+type AclSchool {
+  schoolIds: [String!]!
+  modules: [ApplicationModule!]!
+}
+
+type ApplicationModule {
+  name: String!
+  operations: [ApplicationOperation!]!
+  modules: [ApplicationModule!]!
+}
+
+type ApplicationOperation {
+  name: String!
+  behaviour: String
+  scopes: [String!]!
+}
+
+# ---------- Icons ----------
+
+input FilterIconInput {
+  type: String
+}
+
+type IconConnection {
+  collection: [Icon!]!
+}
+
+type Icon {
+  filePath: String
+  languageFilePath: [IconLanguageFile!]!
+}
+
+type IconLanguageFile {
+  languageCode: String!
+  filePath: String!
+}
+
+# ---------- Teacher Resources ----------
+
+type TeacherResourceConnection {
+  collection: [TeacherResource!]!
+}
+
+type TeacherResource {
+  displayName: String
+  id: ID
+  positionNumber: Int
+  projectId: String
+  sectionTitles: [String!]
+  metadata: JSON
+}
+
+# ---------- Pacing Guides ----------
+
+type PacingGuideConnection {
+  collection: [PacingGuide!]!
+}
+
+type PacingGuide {
+  id: ID
+  _id: ID
+  name: String
+  pacingGuideId: String
+  pacingGuideType: String
+  curriculumArea: String
+  grade: String
+  editable: Boolean
+  isSelected: Boolean
+  creator: String
+  schoolIds: [String!]
+  userId: String
+  scopeEditable: Boolean
+  scopes: ScopeConnection
+  version: Int
+}
+
+type ScopeConnection {
+  collection: [Scope!]!
+}
+
+type Scope {
+  _id: ID
+  id: ID
+  scopeId: String
+  name: String
+  instructionalDays: Int
+  version: Int
+}
+
+# ---------- Scope Plans ----------
+
+type ScopePlanConnection {
+  collection: [ScopePlan!]!
+}
+
+type ScopePlan {
+  _id: ID
+  id: ID
+  name: String
+  grade: String
+  curriculumArea: String
+  editable: Boolean
+  isSelected: Boolean
+  version: Int
+  scopePlanType: String
+  approachType: String
+  pacingGuideId: String
+}
+
+# ---------- Recently Viewed ----------
+
+type RecentlyViewed {
+  displayedNames: [String!]!
+  objectIds: [String!]!
+  projectIds: [String!]!
+}
+
+# ---------- System Admins ----------
+
+type SystemAdminConnection {
+  collection: [SystemAdmin!]!
+}
+
+type SystemAdmin {
+  firstName: String!
+  lastName: String!
+}
