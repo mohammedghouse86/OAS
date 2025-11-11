@@ -1,0 +1,477 @@
+openapi: 3.0.3
+info:
+  title: Code Canvas - Serverless API (generated from HAR)
+  version: 2025-11-11
+  description: Auto-generated from browsing session HAR. Endpoints under api-serverless-prod.code-canvas.com, deduplicated.
+servers:
+  -
+    url: "https://api-serverless-prod.code-canvas.com"
+tags:
+  -
+    name: auth
+  -
+    name: datadog
+  -
+    name: downloadRepositoryArchive
+  -
+    name: getChatCompletion
+  -
+    name: getFileDownloadURL
+  -
+    name: getReposList
+  -
+    name: getbranches
+  -
+    name: getdefaultbranch
+  -
+    name: getrepodata
+  -
+    name: stripe
+  -
+    name: user
+paths:
+  /api/stripe/balance:
+    get:
+      tags:
+        - stripe
+      summary: GET /api/stripe/balance
+      operationId: get_api_stripe_balance
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/stripe/balance-info:
+    get:
+      tags:
+        - stripe
+      summary: GET /api/stripe/balance-info
+      operationId: get_api_stripe_balance_info
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/stripe/create-checkout-session:
+    post:
+      tags:
+        - stripe
+      summary: POST /api/stripe/create-checkout-session
+      operationId: post_api_stripe_create_checkout_session
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                -
+                  type: string
+                -
+                  type: object
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/user/profile:
+    get:
+      tags:
+        - user
+      summary: GET /api/user/profile
+      operationId: get_api_user_profile
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+        304:
+          description: HTTP 304
+          content:
+            application/json:
+              schema:
+                type: object
+  /auth/login/success:
+    get:
+      tags:
+        - auth
+      summary: GET /auth/login/success
+      operationId: get_auth_login_success
+      parameters:
+        -
+          name: uid
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+        304:
+          description: HTTP 304
+          content:
+            application/json:
+              schema:
+                type: object
+  /auth/register-or-update-user:
+    post:
+      tags:
+        - auth
+      summary: POST /auth/register-or-update-user
+      operationId: post_auth_register_or_update_user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                -
+                  type: string
+                -
+                  type: object
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /auth/store-github-token:
+    post:
+      tags:
+        - auth
+      summary: POST /auth/store-github-token
+      operationId: post_auth_store_github_token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                -
+                  type: string
+                -
+                  type: object
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /auth/test-github-token:
+    post:
+      tags:
+        - auth
+      summary: POST /auth/test-github-token
+      operationId: post_auth_test_github_token
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /datadog/proxy/api/v2/replay:
+    post:
+      tags:
+        - datadog
+      summary: POST /datadog/proxy/api/v2/replay
+      operationId: post_datadog_proxy_api_v2_replay
+      parameters:
+        -
+          name: ddsource
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: ddtags
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dd-api-key
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dd-evp-origin-version
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dd-evp-origin
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dd-request-id
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: #/components/schemas/DatadogRumEvents
+      responses:
+        202:
+          description: HTTP 202
+          content:
+            application/json:
+              schema:
+                type: object
+  /datadog/proxy/api/v2/rum:
+    post:
+      tags:
+        - datadog
+      summary: POST /datadog/proxy/api/v2/rum
+      operationId: post_datadog_proxy_api_v2_rum
+      parameters:
+        -
+          name: ddsource
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: ddtags
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dd-api-key
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dd-evp-origin-version
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dd-evp-origin
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dd-request-id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: batch_time
+          in: query
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              $ref: #/components/schemas/DatadogRumEvents
+      responses:
+        202:
+          description: HTTP 202
+          content:
+            application/json:
+              schema:
+                type: object
+  /downloadRepositoryArchive:
+    post:
+      tags:
+        - downloadRepositoryArchive
+      summary: POST /downloadRepositoryArchive
+      operationId: post_downloadrepositoryarchive
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                -
+                  type: string
+                -
+                  type: object
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /getChatCompletion:
+    post:
+      tags:
+        - getChatCompletion
+      summary: POST /getChatCompletion
+      operationId: post_getchatcompletion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                -
+                  type: string
+                -
+                  type: object
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /getFileDownloadURL:
+    post:
+      tags:
+        - getFileDownloadURL
+      summary: POST /getFileDownloadURL
+      operationId: post_getfiledownloadurl
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                -
+                  type: string
+                -
+                  type: object
+      responses:
+        404:
+          description: HTTP 404
+          content:
+            application/json:
+              schema:
+                type: object
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /getReposList:
+    post:
+      tags:
+        - getReposList
+      summary: POST /getReposList
+      operationId: post_getreposlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                -
+                  type: string
+                -
+                  type: object
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /getbranches:
+    post:
+      tags:
+        - getbranches
+      summary: POST /getbranches
+      operationId: post_getbranches
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                -
+                  type: string
+                -
+                  type: object
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /getdefaultbranch:
+    post:
+      tags:
+        - getdefaultbranch
+      summary: POST /getdefaultbranch
+      operationId: post_getdefaultbranch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                -
+                  type: string
+                -
+                  type: object
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+  /getrepodata:
+    post:
+      tags:
+        - getrepodata
+      summary: POST /getrepodata
+      operationId: post_getrepodata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                -
+                  type: string
+                -
+                  type: object
+      responses:
+        200:
+          description: HTTP 200
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    DatadogRumEvents:
+      description: Datadog RUM batched events (often NDJSON with multiple JSON objects per line).
+      oneOf:
+        -
+          type: string
+          description: Raw NDJSON payload as text/plain.
+        -
+          type: array
+          items:
+            type: object
