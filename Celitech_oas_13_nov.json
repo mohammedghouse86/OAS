@@ -1,0 +1,2068 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Captured API Documentation",
+    "version": "1.0.0",
+    "description": "Auto-generated OpenAPI specification from captured network requests."
+  },
+  "servers": [
+    {
+      "url": "https://qa-celitech-landing-page-v3.vercel.app"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "GET /",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "parameters": [
+          {
+            "name": "_rsc",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "n1q49"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "age": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "39470"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "content-disposition": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "inline"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "br"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/x-component"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:55:34 GMT"
+              },
+              "etag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "W/\"441f79f6d98d3f1837218788d753ac3b\""
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Url"
+              },
+              "x-matched-path": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/index.rsc"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "HIT"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::cdb5q-1763006134170-cd57fc58156a"
+              }
+            },
+            "content": {
+              "text/x-component": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "options": {
+        "summary": "OPTIONS /",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "responses": {
+          "204": {
+            "description": "HTTP 204 response",
+            "headers": {
+              "access-control-allow-methods": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "OPTIONS, GET, HEAD"
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "age": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "39878"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "content-disposition": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "inline"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:55:34 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "x-matched-path": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "HIT"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::9jtb7-1763006134752-2edd5a3eb1d8"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "0"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/.well-known/vercel/jwe": {
+      "get": {
+        "summary": "GET /.well-known/vercel/jwe",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "responses": {
+          "204": {
+            "description": "HTTP 204 response",
+            "headers": {
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:55:34 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::2xwtn-1763006134355-59e5e73fc92a"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_vercel/insights/event": {
+      "post": {
+        "summary": "POST /_vercel/insights/event",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/install-your-esim?payment_intent=pi_3SSrSECewIvxqYAm0nTqTK4d&payment_intent_client_secret=pi_3SSrSECewIvxqYAm0nTqTK4d_secret_zfk6G14G5Od0wEdR5IWcIQxEf&redirect_status=succeeded"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763005556981
+                      },
+                      "en": {
+                        "type": "string",
+                        "example": "Completed Payment"
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/install-your-esim?payment_intent=pi_3SSrSECewIvxqYAm0nTqTK4d&payment_intent_client_secret=pi_3SSrSECewIvxqYAm0nTqTK4d_secret_zfk6G14G5Od0wEdR5IWcIQxEf&redirect_status=succeeded",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763005556981,
+                      "en": "Completed Payment"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006069803
+                      },
+                      "en": {
+                        "type": "string",
+                        "example": "Initiate Payment"
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006069803,
+                      "en": "Initiate Payment"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006111750
+                      },
+                      "en": {
+                        "type": "string",
+                        "example": "Initiate Payment"
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006111750,
+                      "en": "Initiate Payment"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/install-your-esim?payment_intent=pi_3SSrcrCewIvxqYAm0btro9j3&payment_intent_client_secret=pi_3SSrcrCewIvxqYAm0btro9j3_secret_sWcajD6m7uMxTOV5bU7y0hwtJ&redirect_status=succeeded"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006132605
+                      },
+                      "en": {
+                        "type": "string",
+                        "example": "Completed Payment"
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/install-your-esim?payment_intent=pi_3SSrcrCewIvxqYAm0btro9j3&payment_intent_client_secret=pi_3SSrcrCewIvxqYAm0btro9j3_secret_sWcajD6m7uMxTOV5bU7y0hwtJ&redirect_status=succeeded",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006132605,
+                      "en": "Completed Payment"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "o": "https://qa-celitech-landing-page-v3.vercel.app/install-your-esim?payment_intent=pi_3SSrSECewIvxqYAm0nTqTK4d&payment_intent_client_secret=pi_3SSrSECewIvxqYAm0nTqTK4d_secret_zfk6G14G5Od0wEdR5IWcIQxEf&redirect_status=succeeded",
+                "sv": "0.1.3",
+                "sdkn": "@vercel/analytics/react",
+                "sdkv": "1.3.1",
+                "ts": 1763005556981,
+                "en": "Completed Payment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/plain; charset=utf-8"
+              },
+              "cross-origin-resource-policy": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "cross-origin"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:55:34 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "x-ratelimit-limit": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "1000"
+              },
+              "x-ratelimit-remaining": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "999"
+              },
+              "x-ratelimit-reset": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "60"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "MISS"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::9jtb7-1763006134565-738df248bef7"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "2"
+              }
+            },
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_vercel/insights/view": {
+      "post": {
+        "summary": "POST /_vercel/insights/view",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/install-your-esim?payment_intent=pi_3SSrSECewIvxqYAm0nTqTK4d&payment_intent_client_secret=pi_3SSrSECewIvxqYAm0nTqTK4d_secret_zfk6G14G5Od0wEdR5IWcIQxEf&redirect_status=succeeded"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763005556262
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/install-your-esim?payment_intent=pi_3SSrSECewIvxqYAm0nTqTK4d&payment_intent_client_secret=pi_3SSrSECewIvxqYAm0nTqTK4d_secret_zfk6G14G5Od0wEdR5IWcIQxEf&redirect_status=succeeded",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763005556262
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/account"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763005584571
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/account",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763005584571
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006000970
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006000970
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/account"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006002701
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/account",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006002701
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006031159
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006031159
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006043137
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006043137
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/account"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006049709
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/account",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006049709
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006055647
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006055647
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/payment-details"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006069919
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/payment-details",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006069919
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006106659
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006106659
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/payment-details"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006111804
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/payment-details",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006111804
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "o": {
+                        "type": "string",
+                        "example": "https://qa-celitech-landing-page-v3.vercel.app/install-your-esim?payment_intent=pi_3SSrcrCewIvxqYAm0btro9j3&payment_intent_client_secret=pi_3SSrcrCewIvxqYAm0btro9j3_secret_sWcajD6m7uMxTOV5bU7y0hwtJ&redirect_status=succeeded"
+                      },
+                      "sv": {
+                        "type": "string",
+                        "example": "0.1.3"
+                      },
+                      "sdkn": {
+                        "type": "string",
+                        "example": "@vercel/analytics/react"
+                      },
+                      "sdkv": {
+                        "type": "string",
+                        "example": "1.3.1"
+                      },
+                      "ts": {
+                        "type": "number",
+                        "example": 1763006132138
+                      }
+                    },
+                    "example": {
+                      "o": "https://qa-celitech-landing-page-v3.vercel.app/install-your-esim?payment_intent=pi_3SSrcrCewIvxqYAm0btro9j3&payment_intent_client_secret=pi_3SSrcrCewIvxqYAm0btro9j3_secret_sWcajD6m7uMxTOV5bU7y0hwtJ&redirect_status=succeeded",
+                      "sv": "0.1.3",
+                      "sdkn": "@vercel/analytics/react",
+                      "sdkv": "1.3.1",
+                      "ts": 1763006132138
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "o": "https://qa-celitech-landing-page-v3.vercel.app/install-your-esim?payment_intent=pi_3SSrSECewIvxqYAm0nTqTK4d&payment_intent_client_secret=pi_3SSrSECewIvxqYAm0nTqTK4d_secret_zfk6G14G5Od0wEdR5IWcIQxEf&redirect_status=succeeded",
+                "sv": "0.1.3",
+                "sdkn": "@vercel/analytics/react",
+                "sdkv": "1.3.1",
+                "ts": 1763005556262
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/plain; charset=utf-8"
+              },
+              "cross-origin-resource-policy": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "cross-origin"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:55:34 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "x-ratelimit-limit": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "1000"
+              },
+              "x-ratelimit-remaining": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "999"
+              },
+              "x-ratelimit-reset": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "60"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "MISS"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::2zq7c-1763006134099-ecadaa566c2e"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "2"
+              }
+            },
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account": {
+      "get": {
+        "summary": "GET /account",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "parameters": [
+          {
+            "name": "_rsc",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "1l4ih"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "age": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "0"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "content-disposition": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "inline"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "br"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/x-component"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:54:11 GMT"
+              },
+              "etag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "W/\"297b3bf7c2b2497b728b33a9dec9735b\""
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Url"
+              },
+              "x-matched-path": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/account.rsc"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "HIT"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::9nnjm-1763006051495-934f4c284073"
+              }
+            },
+            "content": {
+              "text/x-component": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/account/{accountId}": {
+      "get": {
+        "summary": "GET /api/account/{accountId}",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the account resource.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "mohammedghouse86.backup@gmail.com"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "br"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:54:12 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Url"
+              },
+              "x-matched-path": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/api/account/list-purchases"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "BYPASS"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::iad1::7fxvr-1763006051718-aac58a32df7a"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/packages": {
+      "get": {
+        "summary": "GET /api/packages",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "parameters": [
+          {
+            "name": "currencyName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "USD"
+            }
+          },
+          {
+            "name": "destination",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "ASIA"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "2025-12-11"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "2025-11-13"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "age": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "0"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "br"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:55:08 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Url"
+              },
+              "x-matched-path": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/api/packages"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "MISS"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::iad1::lvrct-1763006108596-b5566b112786"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/packages/unique": {
+      "get": {
+        "summary": "GET /api/packages/unique",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "parameters": [
+          {
+            "name": "destinationISO",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "ASIA"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "2025-12-11"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "2025-11-13"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "age": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "0"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "br"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:55:08 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Url"
+              },
+              "x-matched-path": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/api/packages/unique"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "MISS"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::iad1::rnd6s-1763006108681-9d3e21e3d390"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{apiId}": {
+      "get": {
+        "summary": "GET /api/{apiId}",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "parameters": [
+          {
+            "name": "apiId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the api resource.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "paymentIntentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "pi_3SSrSECewIvxqYAm0nTqTK4d"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "age": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "0"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "br"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:55:34 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Url"
+              },
+              "x-matched-path": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/api/retrieve-payment-intent-metadata"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "MISS"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::iad1::b9k4c-1763006134157-72fbb2ff6f3f"
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "content-disposition": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "inline"
+              },
+              "etag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "W/\"82caff63d35d3ac2662392262ba5d0c1\""
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /api/{apiId}",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "parameters": [
+          {
+            "name": "apiId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the api resource.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "destinationISO": {
+                        "type": "string",
+                        "example": "ASIA"
+                      },
+                      "destinationName": {
+                        "type": "string",
+                        "example": "Asia (15 countries)*"
+                      },
+                      "startDate": {
+                        "type": "string",
+                        "example": "2025-11-13"
+                      },
+                      "endDate": {
+                        "type": "string",
+                        "example": "2025-12-11"
+                      },
+                      "dataLimitInGB": {
+                        "type": "number",
+                        "example": 0.5
+                      },
+                      "hCaptchaToken": {
+                        "type": "string",
+                        "example": "P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.haJwZACjZXhwzmkVVuOncGFzc2tlecUEchrVo4ShNGsiglX1YaAx-tNnCGVB4EGUQFZIh0j2iMUc6AlzX9vG2NodQLJsyrWyb4jxD56O0uKnxL6MhTutQmvA5bm0YAIQRcTUYZ66NjCVMrkilHh38dztC_jz5X2EaGcMQpsKh88YLGc8F4iRJ9BWawqEbVSQD2mncL8MLsObQZDToNTb2lMIH1tQA1ujVLeSzdj5qZ2Xq1q3WF_TIbNYONmWVVirpbevl7Vlg0QWrm3_Ji2CXImodRLWTZ2qGrNkG-dQc36p_jxzshILNjHMv8akQJiuc6TXi4VqK0gjmqN_aY2LkK0erE80nAeqS48kQh9gyIiXBXUS_oLRCJNleqz57CqpOeaG_kq9f8A9EB19GiT6w_YhAWfyOQ8zV_BIvsaKTtl3hkqA11KSLdHDn5Kmx27k84SoNQm0tfa00prq-BswHR0iRN20YHgHEynZr5Wb7MnYRq6e9ojYvnFEXUwgz8N95AbxoTetqAkULahqfTSyWa5GF8K-5q5JaqsyGSWG9LGH_pWZYhGYsvMyPnfVUG_aSGuHRuolrlKQZ2VxDILqsuUnwUjvi8eZrAHEW4sttgQzAP5TGYHcYfuCfeYJvMBLgz4-xrLufxMMH3MQCqHWx3jasTFwfThFRtuBjIWsxCm6gWy8ZEHRc1bxsdxfnRZ7eGMqe-w7b_dH5c3i5WRbhJYyIWxn5mbLtOzNEuuQNp9d87dJ27linLNoX4HFj5G8Byfwb6WKlyUGbj6cSofupBki4vsoCl8U8nIEb-2RKMGuXu11VMoJuE4PXvbjGNGhpo2SiM9M8l0LjukbAbXvEZjsdxtJXzR17IQSWCTxtY_mmWJLIx9OMq9tUn8s2DDVdXlkASPHeGfrD-Z-HrHCe-t1h2Pag1TmdrCCvM24zsfnKmWwWp465nn2Av02nV5Rf5ctdGLPRRzJ8Gm2_1Ab0BqDwOS44OLRMn8aWzkv9bMHkPPiDojHoTTGlM3hOlBDWhRrp85hUGCIcJGqVV4B_D5mtIYIz00SavfZcPXSGJBdSgJDpNmcMmP9kJ4hGAbi26ibcNHQAYuXjrt4X_A0EIqH4F-wwi3y2D57QjgID06dH_5xAqL_nkW0Vypd81o0NXPrdMhqWBhGxExCZSdUsyHue6qEKfSp4QSMyZxfZsNgLPe9X6tn7i3QWXowhlEoDREreTiiMvuy35sPxDjBETV3DFWiMvXIpGjWqDqx_OS2GHiTFj41sOOP2vHW3CmqHI_5EXZRgkFuL3xe3qO4cEGC6rnBHUcaeZY8rANgsmS2CUD0TJyGayEYoFJs_iyV0PPaYQETQC2x38TgzwvDMtUfvy6Fdi1YxGB0Odxkw1aZ7agHF1JW21uZAmagnKemvRvpywMJ_WoYnowWKTt6tlk8141vtopTlPuRZHZzyW0anRveNHANKj-iK1-oM63H7u1NgTUrrDfq14janbePHOzIjURqWTZYjuK_rVk03uv45SnV2wUq4EujU8q_lDwnxHc9coHOJ6hKsseia3KoNGJmYzEyY2Woc2hhcmRfaWTOD3Lqbw.C-yRVTVmqNBl-wipgyTdfpRNSAISzkFvpSMpp15qLno"
+                      },
+                      "code": {
+                        "type": "null"
+                      },
+                      "currency": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "USD"
+                          },
+                          "fullName": {
+                            "type": "string",
+                            "example": "United States Dollar"
+                          },
+                          "symbol": {
+                            "type": "string",
+                            "example": "US$"
+                          },
+                          "countryFlag": {
+                            "type": "string",
+                            "example": "US"
+                          }
+                        },
+                        "example": {
+                          "name": "USD",
+                          "fullName": "United States Dollar",
+                          "symbol": "US$",
+                          "countryFlag": "US"
+                        }
+                      },
+                      "iccid": {
+                        "type": "null"
+                      },
+                      "referenceId": {
+                        "type": "null"
+                      },
+                      "esimCount": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    },
+                    "example": {
+                      "destinationISO": "ASIA",
+                      "destinationName": "Asia (15 countries)*",
+                      "startDate": "2025-11-13",
+                      "endDate": "2025-12-11",
+                      "dataLimitInGB": 0.5,
+                      "hCaptchaToken": "P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.haJwZACjZXhwzmkVVuOncGFzc2tlecUEchrVo4ShNGsiglX1YaAx-tNnCGVB4EGUQFZIh0j2iMUc6AlzX9vG2NodQLJsyrWyb4jxD56O0uKnxL6MhTutQmvA5bm0YAIQRcTUYZ66NjCVMrkilHh38dztC_jz5X2EaGcMQpsKh88YLGc8F4iRJ9BWawqEbVSQD2mncL8MLsObQZDToNTb2lMIH1tQA1ujVLeSzdj5qZ2Xq1q3WF_TIbNYONmWVVirpbevl7Vlg0QWrm3_Ji2CXImodRLWTZ2qGrNkG-dQc36p_jxzshILNjHMv8akQJiuc6TXi4VqK0gjmqN_aY2LkK0erE80nAeqS48kQh9gyIiXBXUS_oLRCJNleqz57CqpOeaG_kq9f8A9EB19GiT6w_YhAWfyOQ8zV_BIvsaKTtl3hkqA11KSLdHDn5Kmx27k84SoNQm0tfa00prq-BswHR0iRN20YHgHEynZr5Wb7MnYRq6e9ojYvnFEXUwgz8N95AbxoTetqAkULahqfTSyWa5GF8K-5q5JaqsyGSWG9LGH_pWZYhGYsvMyPnfVUG_aSGuHRuolrlKQZ2VxDILqsuUnwUjvi8eZrAHEW4sttgQzAP5TGYHcYfuCfeYJvMBLgz4-xrLufxMMH3MQCqHWx3jasTFwfThFRtuBjIWsxCm6gWy8ZEHRc1bxsdxfnRZ7eGMqe-w7b_dH5c3i5WRbhJYyIWxn5mbLtOzNEuuQNp9d87dJ27linLNoX4HFj5G8Byfwb6WKlyUGbj6cSofupBki4vsoCl8U8nIEb-2RKMGuXu11VMoJuE4PXvbjGNGhpo2SiM9M8l0LjukbAbXvEZjsdxtJXzR17IQSWCTxtY_mmWJLIx9OMq9tUn8s2DDVdXlkASPHeGfrD-Z-HrHCe-t1h2Pag1TmdrCCvM24zsfnKmWwWp465nn2Av02nV5Rf5ctdGLPRRzJ8Gm2_1Ab0BqDwOS44OLRMn8aWzkv9bMHkPPiDojHoTTGlM3hOlBDWhRrp85hUGCIcJGqVV4B_D5mtIYIz00SavfZcPXSGJBdSgJDpNmcMmP9kJ4hGAbi26ibcNHQAYuXjrt4X_A0EIqH4F-wwi3y2D57QjgID06dH_5xAqL_nkW0Vypd81o0NXPrdMhqWBhGxExCZSdUsyHue6qEKfSp4QSMyZxfZsNgLPe9X6tn7i3QWXowhlEoDREreTiiMvuy35sPxDjBETV3DFWiMvXIpGjWqDqx_OS2GHiTFj41sOOP2vHW3CmqHI_5EXZRgkFuL3xe3qO4cEGC6rnBHUcaeZY8rANgsmS2CUD0TJyGayEYoFJs_iyV0PPaYQETQC2x38TgzwvDMtUfvy6Fdi1YxGB0Odxkw1aZ7agHF1JW21uZAmagnKemvRvpywMJ_WoYnowWKTt6tlk8141vtopTlPuRZHZzyW0anRveNHANKj-iK1-oM63H7u1NgTUrrDfq14janbePHOzIjURqWTZYjuK_rVk03uv45SnV2wUq4EujU8q_lDwnxHc9coHOJ6hKsseia3KoNGJmYzEyY2Woc2hhcmRfaWTOD3Lqbw.C-yRVTVmqNBl-wipgyTdfpRNSAISzkFvpSMpp15qLno",
+                      "code": null,
+                      "currency": {
+                        "name": "USD",
+                        "fullName": "United States Dollar",
+                        "symbol": "US$",
+                        "countryFlag": "US"
+                      },
+                      "iccid": null,
+                      "referenceId": null,
+                      "esimCount": 1
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "destinationISO": {
+                        "type": "string",
+                        "example": "ASIA"
+                      },
+                      "destinationName": {
+                        "type": "string",
+                        "example": "Asia (15 countries)*"
+                      },
+                      "startDate": {
+                        "type": "string",
+                        "example": "2025-11-13"
+                      },
+                      "endDate": {
+                        "type": "string",
+                        "example": "2025-12-11"
+                      },
+                      "dataLimitInGB": {
+                        "type": "number",
+                        "example": 0.5
+                      },
+                      "hCaptchaToken": {
+                        "type": "string",
+                        "example": "P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.haJwZACjZXhwzmkVVxWncGFzc2tlecUEfdH7GwLfmc9SJRDtRwyDA3Xgn85G4Tl-mrOYAqFFMBa-UxJyEkWqgM3IAwcTIEuKcJtM3DPXSsz1JCR2XBpYznabnFkrfMXNVTsweiIqGztOHDJOc8ES-wR-RXVumwk_xjVsjxvIrd21c9HTl7rNIQOIufXoZX4f3Sbur2i1UO3sMsk1511LJWDGXq05HG5FHN-sBKcv7iyNIM6P4EKPq7KVVWRhEid8S2WllBaBnp4SFIpUA-7s7xxybNUsoYQGGLyywyytaUyGaZhY95wddKQnJjjM_uxE2KBnbluxPfSIYvtLplC_tvKtmBEggxz1zJuXlygGzl3xX_eDFCPoKy5nN3iSxlEEDMjkwIU36I8V5Yp-6TOIgRVd6sjZegN2c3uV6bL26X3f9AHoZHD7Ue9tDBDjzf25CLfkxbYkAU-iiDWHb-YC9nf9Y0qcAtCjFcrsWp3QnJpLNlryk-9_TlIN41MpEA93Z-Ua31NfP-Dvjhl_mWExSoL9S363r_n6pfuco7VqBk86M0w8L3XhRtgRLwLqRj1rpJ8KOAHXX-CPwkhjS3JQYtlutHDUqmjG23Z3V88y4-CWHNxtn59nBk8YWFVWXPnQInObV4jYA16jRYKaO6s41F5aNnpPkD2QMlf4cT_nMDWWr1dpIvdA_NbwQ2nT3ilKGPpmpWXLd01r-hMj2-KK1uTEMkjmCHbTM0b8-bwaCH0iWhzjRE_qlR9wcNDNQ5kTNXcfUoOIdvTSMjyokAharIPbFXXmJ5o4kC-ksPS2XDs6fqVxghnjWsEIo_egc-zQQPXRcQutTRJCHDifq-Ev8PChUCdL9cCgBpx39yqwQg6aIbDUZ8xTHxF1qwfcFBxLKDx-Z5H-gofZGMzcZOCc-GhXqFeubcVwyPLetztl8MxAXenMjMzCG5_bezFzQGDg3uT-AhipHTtmenTNGowtp_pZbFw1lWBI7JNFWVFY8LO5DWDscPbnOvZzVQntK9tnkKfkKfLefrg4NjVLAJYxsgVpAqqo-eF1OSxsJvfTaA7gd2pCoSTRwVW30xeg5zFQKgLVG3TJydujeu7SnbXgbSppV2xKm_6RjkJT-m7ybNL9wr4aWTdL6Od4g6tFlee-64aNAQyj3RgVbm0aImKxcfL-BOgbnjhBk2xnUQV76vHZVas-QwIZOp5BGJB8WNnG5h1Dts6zjicuZXlqF-X_h2PiWByhDZYNsrVjBs305F2u_2WGbTJCNURTlGZ-h7jArmvv9suTQAZ_tjoIkNTRPJa83Bt6NfPCAnJnaMdxzwHMIDZoLY_SApdi2NtzX7z2VKZ8ygj9cBKXlQglePSu9Z8J230fxTsfDlgdTnMGUjw4jdBGmFue8MsepAMRuIXiJDO9N6hkCK61xg-lSSUhbuI1XcBIHhDxsAQlf1pQDtJDqJa10RlQDylBKVIfi-yySgzmyc38hjrtiXUYzJP1eCUYKWUVxVv6p2EGuUlBp7mC6VPb1CfVkgtTx6uglNdUjagxb_u42lloH0ZTllS4XGjWbxG1p6Jrcqg0NzIwMGI3NKhzaGFyZF9pZM4Pcupv.BGyR9s-2WKqWsoqixxE0LBwRrC2HCWzJwcrmaGDco0I"
+                      },
+                      "code": {
+                        "type": "null"
+                      },
+                      "currency": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "USD"
+                          },
+                          "fullName": {
+                            "type": "string",
+                            "example": "United States Dollar"
+                          },
+                          "symbol": {
+                            "type": "string",
+                            "example": "US$"
+                          },
+                          "countryFlag": {
+                            "type": "string",
+                            "example": "US"
+                          }
+                        },
+                        "example": {
+                          "name": "USD",
+                          "fullName": "United States Dollar",
+                          "symbol": "US$",
+                          "countryFlag": "US"
+                        }
+                      },
+                      "iccid": {
+                        "type": "null"
+                      },
+                      "referenceId": {
+                        "type": "null"
+                      },
+                      "esimCount": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    },
+                    "example": {
+                      "destinationISO": "ASIA",
+                      "destinationName": "Asia (15 countries)*",
+                      "startDate": "2025-11-13",
+                      "endDate": "2025-12-11",
+                      "dataLimitInGB": 0.5,
+                      "hCaptchaToken": "P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.haJwZACjZXhwzmkVVxWncGFzc2tlecUEfdH7GwLfmc9SJRDtRwyDA3Xgn85G4Tl-mrOYAqFFMBa-UxJyEkWqgM3IAwcTIEuKcJtM3DPXSsz1JCR2XBpYznabnFkrfMXNVTsweiIqGztOHDJOc8ES-wR-RXVumwk_xjVsjxvIrd21c9HTl7rNIQOIufXoZX4f3Sbur2i1UO3sMsk1511LJWDGXq05HG5FHN-sBKcv7iyNIM6P4EKPq7KVVWRhEid8S2WllBaBnp4SFIpUA-7s7xxybNUsoYQGGLyywyytaUyGaZhY95wddKQnJjjM_uxE2KBnbluxPfSIYvtLplC_tvKtmBEggxz1zJuXlygGzl3xX_eDFCPoKy5nN3iSxlEEDMjkwIU36I8V5Yp-6TOIgRVd6sjZegN2c3uV6bL26X3f9AHoZHD7Ue9tDBDjzf25CLfkxbYkAU-iiDWHb-YC9nf9Y0qcAtCjFcrsWp3QnJpLNlryk-9_TlIN41MpEA93Z-Ua31NfP-Dvjhl_mWExSoL9S363r_n6pfuco7VqBk86M0w8L3XhRtgRLwLqRj1rpJ8KOAHXX-CPwkhjS3JQYtlutHDUqmjG23Z3V88y4-CWHNxtn59nBk8YWFVWXPnQInObV4jYA16jRYKaO6s41F5aNnpPkD2QMlf4cT_nMDWWr1dpIvdA_NbwQ2nT3ilKGPpmpWXLd01r-hMj2-KK1uTEMkjmCHbTM0b8-bwaCH0iWhzjRE_qlR9wcNDNQ5kTNXcfUoOIdvTSMjyokAharIPbFXXmJ5o4kC-ksPS2XDs6fqVxghnjWsEIo_egc-zQQPXRcQutTRJCHDifq-Ev8PChUCdL9cCgBpx39yqwQg6aIbDUZ8xTHxF1qwfcFBxLKDx-Z5H-gofZGMzcZOCc-GhXqFeubcVwyPLetztl8MxAXenMjMzCG5_bezFzQGDg3uT-AhipHTtmenTNGowtp_pZbFw1lWBI7JNFWVFY8LO5DWDscPbnOvZzVQntK9tnkKfkKfLefrg4NjVLAJYxsgVpAqqo-eF1OSxsJvfTaA7gd2pCoSTRwVW30xeg5zFQKgLVG3TJydujeu7SnbXgbSppV2xKm_6RjkJT-m7ybNL9wr4aWTdL6Od4g6tFlee-64aNAQyj3RgVbm0aImKxcfL-BOgbnjhBk2xnUQV76vHZVas-QwIZOp5BGJB8WNnG5h1Dts6zjicuZXlqF-X_h2PiWByhDZYNsrVjBs305F2u_2WGbTJCNURTlGZ-h7jArmvv9suTQAZ_tjoIkNTRPJa83Bt6NfPCAnJnaMdxzwHMIDZoLY_SApdi2NtzX7z2VKZ8ygj9cBKXlQglePSu9Z8J230fxTsfDlgdTnMGUjw4jdBGmFue8MsepAMRuIXiJDO9N6hkCK61xg-lSSUhbuI1XcBIHhDxsAQlf1pQDtJDqJa10RlQDylBKVIfi-yySgzmyc38hjrtiXUYzJP1eCUYKWUVxVv6p2EGuUlBp7mC6VPb1CfVkgtTx6uglNdUjagxb_u42lloH0ZTllS4XGjWbxG1p6Jrcqg0NzIwMGI3NKhzaGFyZF9pZM4Pcupv.BGyR9s-2WKqWsoqixxE0LBwRrC2HCWzJwcrmaGDco0I",
+                      "code": null,
+                      "currency": {
+                        "name": "USD",
+                        "fullName": "United States Dollar",
+                        "symbol": "US$",
+                        "countryFlag": "US"
+                      },
+                      "iccid": null,
+                      "referenceId": null,
+                      "esimCount": 1
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "destinationISO": "ASIA",
+                "destinationName": "Asia (15 countries)*",
+                "startDate": "2025-11-13",
+                "endDate": "2025-12-11",
+                "dataLimitInGB": 0.5,
+                "hCaptchaToken": "P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.haJwZACjZXhwzmkVVuOncGFzc2tlecUEchrVo4ShNGsiglX1YaAx-tNnCGVB4EGUQFZIh0j2iMUc6AlzX9vG2NodQLJsyrWyb4jxD56O0uKnxL6MhTutQmvA5bm0YAIQRcTUYZ66NjCVMrkilHh38dztC_jz5X2EaGcMQpsKh88YLGc8F4iRJ9BWawqEbVSQD2mncL8MLsObQZDToNTb2lMIH1tQA1ujVLeSzdj5qZ2Xq1q3WF_TIbNYONmWVVirpbevl7Vlg0QWrm3_Ji2CXImodRLWTZ2qGrNkG-dQc36p_jxzshILNjHMv8akQJiuc6TXi4VqK0gjmqN_aY2LkK0erE80nAeqS48kQh9gyIiXBXUS_oLRCJNleqz57CqpOeaG_kq9f8A9EB19GiT6w_YhAWfyOQ8zV_BIvsaKTtl3hkqA11KSLdHDn5Kmx27k84SoNQm0tfa00prq-BswHR0iRN20YHgHEynZr5Wb7MnYRq6e9ojYvnFEXUwgz8N95AbxoTetqAkULahqfTSyWa5GF8K-5q5JaqsyGSWG9LGH_pWZYhGYsvMyPnfVUG_aSGuHRuolrlKQZ2VxDILqsuUnwUjvi8eZrAHEW4sttgQzAP5TGYHcYfuCfeYJvMBLgz4-xrLufxMMH3MQCqHWx3jasTFwfThFRtuBjIWsxCm6gWy8ZEHRc1bxsdxfnRZ7eGMqe-w7b_dH5c3i5WRbhJYyIWxn5mbLtOzNEuuQNp9d87dJ27linLNoX4HFj5G8Byfwb6WKlyUGbj6cSofupBki4vsoCl8U8nIEb-2RKMGuXu11VMoJuE4PXvbjGNGhpo2SiM9M8l0LjukbAbXvEZjsdxtJXzR17IQSWCTxtY_mmWJLIx9OMq9tUn8s2DDVdXlkASPHeGfrD-Z-HrHCe-t1h2Pag1TmdrCCvM24zsfnKmWwWp465nn2Av02nV5Rf5ctdGLPRRzJ8Gm2_1Ab0BqDwOS44OLRMn8aWzkv9bMHkPPiDojHoTTGlM3hOlBDWhRrp85hUGCIcJGqVV4B_D5mtIYIz00SavfZcPXSGJBdSgJDpNmcMmP9kJ4hGAbi26ibcNHQAYuXjrt4X_A0EIqH4F-wwi3y2D57QjgID06dH_5xAqL_nkW0Vypd81o0NXPrdMhqWBhGxExCZSdUsyHue6qEKfSp4QSMyZxfZsNgLPe9X6tn7i3QWXowhlEoDREreTiiMvuy35sPxDjBETV3DFWiMvXIpGjWqDqx_OS2GHiTFj41sOOP2vHW3CmqHI_5EXZRgkFuL3xe3qO4cEGC6rnBHUcaeZY8rANgsmS2CUD0TJyGayEYoFJs_iyV0PPaYQETQC2x38TgzwvDMtUfvy6Fdi1YxGB0Odxkw1aZ7agHF1JW21uZAmagnKemvRvpywMJ_WoYnowWKTt6tlk8141vtopTlPuRZHZzyW0anRveNHANKj-iK1-oM63H7u1NgTUrrDfq14janbePHOzIjURqWTZYjuK_rVk03uv45SnV2wUq4EujU8q_lDwnxHc9coHOJ6hKsseia3KoNGJmYzEyY2Woc2hhcmRfaWTOD3Lqbw.C-yRVTVmqNBl-wipgyTdfpRNSAISzkFvpSMpp15qLno",
+                "code": null,
+                "currency": {
+                  "name": "USD",
+                  "fullName": "United States Dollar",
+                  "symbol": "US$",
+                  "countryFlag": "US"
+                },
+                "iccid": null,
+                "referenceId": null,
+                "esimCount": 1
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "br"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:55:13 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=63072000; includeSubDomains; preload"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Url"
+              },
+              "x-matched-path": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/api/create-payment-intent"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "MISS"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::iad1::98nlp-1763006112955-6b73cb2b9a7a"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{param}": {
+      "get": {
+        "summary": "GET /{param}",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "qa-celitech-landing-page-v3.vercel.app"
+        ],
+        "parameters": [
+          {
+            "name": "_rsc",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "10ds7"
+            }
+          },
+          {
+            "name": "param",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the param resource.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "public, max-age=0, must-revalidate"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Thu, 13 Nov 2025 03:55:13 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Vercel"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Url"
+              },
+              "x-vercel-cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "HIT"
+              },
+              "x-vercel-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bom1::48nkp-1763006113708-a78ad43770d6"
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "age": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "0"
+              },
+              "content-disposition": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "inline"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "br"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/x-component"
+              },
+              "etag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "W/\"d4b38401bb6ae138c443f91bfdf8967d\""
+              },
+              "x-matched-path": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/payment-details.rsc"
+              }
+            },
+            "content": {
+              "text/x-component": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
