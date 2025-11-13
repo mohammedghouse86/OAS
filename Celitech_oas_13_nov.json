@@ -1162,23 +1162,14 @@
         }
       }
     },
-    "/api/account/{accountId}": {
+    "/api/account/list-purchase": {
       "get": {
-        "summary": "GET /api/account/{accountId}",
+        "summary": "GET /api/account/list-purchase",
         "description": "Auto-generated from observed network traffic.",
         "tags": [
           "qa-celitech-landing-page-v3.vercel.app"
         ],
         "parameters": [
-          {
-            "name": "accountId",
-            "in": "path",
-            "required": true,
-            "description": "Unique identifier for the account resource.",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "email",
             "in": "query",
@@ -1518,21 +1509,12 @@
     },
     "/api/{apiId}": {
       "get": {
-        "summary": "GET /api/{apiId}",
+        "summary": "GET /api/retrieve-payment-intent-metadata",
         "description": "Auto-generated from observed network traffic.",
         "tags": [
           "qa-celitech-landing-page-v3.vercel.app"
         ],
         "parameters": [
-          {
-            "name": "apiId",
-            "in": "path",
-            "required": true,
-            "description": "Unique identifier for the api resource.",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "paymentIntentId",
             "in": "query",
@@ -1645,7 +1627,7 @@
         }
       },
       "post": {
-        "summary": "POST /api/{apiId}",
+        "summary": "POST /api/create-payment-intent",
         "description": "Auto-generated from observed network traffic.",
         "tags": [
           "qa-celitech-landing-page-v3.vercel.app"
