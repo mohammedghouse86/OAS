@@ -787,7 +787,6 @@
                     "items": {
                       "type": "string"
                     }
-                  }
                 },
                 "required": [
                   "locationTypes"
