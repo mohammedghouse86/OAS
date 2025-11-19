@@ -1,5 +1,4 @@
-{
-  "openapi": "3.0.3",
+{"openapi": "3.0.3",
   "info": {
     "title": "Uber Eats from HAR",
     "description": "OpenAPI generated from a HAR capture. Schemas and examples are inferred from the actual request/response payloads present in the HAR.",
@@ -787,6 +786,7 @@
                     "items": {
                       "type": "string"
                     }
+                  }
                 },
                 "required": [
                   "locationTypes"
