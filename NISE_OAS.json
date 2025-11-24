@@ -1,0 +1,1286 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "NISE API",
+    "version": "1.0.0",
+    "description": "Auto-generated OpenAPI specification from captured network requests."
+  },
+  "servers": [
+    {
+      "url": "https://nise.acceleratelearning.com"
+    }
+  ],
+  "paths": {
+    "/admin/core/{coreId}": {
+      "get": {
+        "summary": "GET /admin/core/{coreId}",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "_",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "1763986673841"
+            }
+          },
+          {
+            "name": "_per_page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "10"
+            }
+          },
+          {
+            "name": "_sonata_admin",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "AliNise\\Bundle\\MainBundle\\Admin\\Calendar\\EventAdmin"
+            }
+          },
+          {
+            "name": "coreId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the core resource.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "client"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "scranton pennsylvania"
+            }
+          },
+          {
+            "name": "uniqid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "s69244cf77098a"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "HTTP 401 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:19:30 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:19:30 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=98"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "HTTP default response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/{adminId}/rules/list-all": {
+      "get": {
+        "summary": "GET /admin/{adminId}/rules/list-all",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the admin resource.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:23:00 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:23:00 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=91"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bundles/{bundleId}/js/pd_portal.js": {
+      "get": {
+        "summary": "GET /bundles/{bundleId}/js/pd_portal.js",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "bundleId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the bundle resource.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "598483"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:09 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "last-modified": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Tue, 12 Aug 2025 11:28:29 GMT"
+              },
+              "etag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"330-63c2956ec7020-gzip\""
+              },
+              "accept-ranges": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bytes"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Accept-Encoding"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "gzip"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "416"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=92"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/javascript"
+              }
+            },
+            "content": {
+              "text/javascript": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bundles/{bundleId}/js/user/profile_associated_location.js": {
+      "get": {
+        "summary": "GET /bundles/{bundleId}/js/user/profile_associated_location.js",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "bundleId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the bundle resource.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "598483"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:01 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "last-modified": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Tue, 12 Aug 2025 11:28:29 GMT"
+              },
+              "etag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"c14-63c2956ec77f0-gzip\""
+              },
+              "accept-ranges": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bytes"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Accept-Encoding"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "gzip"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "741"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=95"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/javascript"
+              }
+            },
+            "content": {
+              "text/javascript": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bundles/{bundleId}/js/user_profile.js": {
+      "get": {
+        "summary": "GET /bundles/{bundleId}/js/user_profile.js",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "bundleId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the bundle resource.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "598483"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:00 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "last-modified": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Tue, 12 Aug 2025 11:28:29 GMT"
+              },
+              "etag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"23d-63c2956ec77f0-gzip\""
+              },
+              "accept-ranges": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bytes"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Accept-Encoding"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "gzip"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "264"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=96"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/javascript"
+              }
+            },
+            "content": {
+              "text/javascript": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portal/badges": {
+      "get": {
+        "summary": "GET /portal/badges",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "_",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "1763986499694"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:43 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Set-Cookie, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin"
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "true"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:43 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=99"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portal/cart/orders": {
+      "get": {
+        "summary": "GET /portal/cart/orders",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "_",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "1763986499695"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:46 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Set-Cookie, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin"
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "true"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:46 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=95"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portal/feedback": {
+      "get": {
+        "summary": "GET /portal/feedback",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "_",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "1763986499693"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:28 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Set-Cookie, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin"
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "true"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:28 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=94"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portal/my-pd": {
+      "get": {
+        "summary": "GET /portal/my-pd",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "_",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "1763986499691"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:07 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Set-Cookie, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin"
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "true"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:07 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=93"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portal/portfolio": {
+      "get": {
+        "summary": "GET /portal/portfolio",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "_",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "1763986499692"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:16 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Set-Cookie, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin"
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "true"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:16 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=99"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portal/profile": {
+      "get": {
+        "summary": "GET /portal/profile",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "_",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "1763986499689"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:00 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Set-Cookie, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin"
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "true"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:17:00 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=98"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portal/profile/": {
+      "post": {
+        "summary": "POST /portal/profile/",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "nise.acceleratelearning.com"
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:16:59 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.52 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Set-Cookie, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin"
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "true"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 24 Nov 2025 12:16:59 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=100"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
