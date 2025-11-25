@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Captured API Documentation",
+    "title": "StemScopes3.5",
     "version": "1.0.0",
     "description": "Auto-generated OpenAPI specification from captured network requests."
   },
