@@ -1,0 +1,695 @@
+openapi: 3.0.3
+info:
+  title: "Kide Science – Inferred API"
+  version: 0.1.0
+  description: |
+    Inferred from frontend bundle (1.js). Paths are relative to the `/api` gateway on us.kidescience.com.
+    Methods and paths are based on Axios usage (ee.get/post/delete/put).
+    Schemas and parameters are approximate and should be reviewed / corrected.
+
+servers:
+  - url: https://us.kidescience.com/api
+
+paths:
+  /kjsd23:
+    post:
+      summary: Analytics / tracking events
+      description: Sends analytics / tracking data (page_view, click_link, open_menu, user_info, etc.).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Generic analytics event payload.
+      responses:
+        '200':
+          description: OK
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /reflections:
+    get:
+      summary: List reflections
+      description: Fetches reflections for the current user (optionally filtered by training, etc.).
+      responses:
+        '200':
+          description: List of reflections
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+    post:
+      summary: Create or update reflection
+      description: Creates or updates a reflection (trainingId, language, etc. are used in code).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Reflection payload; inferred to include at least trainingId and lang.
+      responses:
+        '200':
+          description: Reflection created or updated
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /unlock:
+    post:
+      summary: Unlock content
+      description: Unlocks a lesson or training.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: >
+                In code this is `{ lessonId, automatic }`.
+              properties:
+                lessonId:
+                  type: string
+                automatic:
+                  type: boolean
+              additionalProperties: true
+      responses:
+        '200':
+          description: Content unlocked
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /bookmarks:
+    get:
+      summary: List bookmarks
+      description: Returns bookmarks for the current user.
+      responses:
+        '200':
+          description: List of bookmarks
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /bookmarks/{lessonId}:
+    post:
+      summary: Add bookmark
+      description: Adds a bookmark for a lesson.
+      parameters:
+        - name: lessonId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the lesson to bookmark.
+      responses:
+        '200':
+          description: Bookmark added
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+    delete:
+      summary: Remove bookmark
+      description: Removes a bookmark for a lesson.
+      parameters:
+        - name: lessonId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID of the lesson to unbookmark.
+      responses:
+        '200':
+          description: Bookmark removed
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /trainings/{trainingId}:
+    get:
+      summary: Get training details
+      parameters:
+        - name: trainingId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Training identifier.
+      responses:
+        '200':
+          description: Training details
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /bundles/{bundleId}:
+    get:
+      summary: Get bundle details
+      parameters:
+        - name: bundleId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Bundle identifier.
+      responses:
+        '200':
+          description: Bundle details
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /printout/{bundleId}/{lessonId}/{language}:
+    get:
+      summary: Get printout PDF for a lesson
+      parameters:
+        - name: bundleId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lessonId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: language
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Language code (e.g. "en", "fi").
+      responses:
+        '200':
+          description: Printout PDF
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /printouts/{bundleId}/{language}:
+    get:
+      summary: Get collection of printouts
+      parameters:
+        - name: bundleId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: language
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List / bundle of printouts
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /lessons/{bundleId}:
+    get:
+      summary: List lessons in a bundle
+      parameters:
+        - name: bundleId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of lessons
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /lesson/{bundleId}/{lessonId}/{language}:
+    get:
+      summary: Get lesson details
+      parameters:
+        - name: bundleId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lessonId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: language
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lesson details
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /user/me:
+    get:
+      summary: Get current user profile
+      responses:
+        '200':
+          description: User profile
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /invite-info-from-registration-code/{code}:
+    get:
+      summary: Get invite information by registration code
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Registration code.
+      responses:
+        '200':
+          description: Invite info
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /join-organization-from-registration-code/{code}/{organizationId}:
+    post:
+      summary: Join organization using registration code
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Joined organization
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /invites:
+    get:
+      summary: List invites
+      responses:
+        '200':
+          description: List of invites
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+    post:
+      summary: Create invite
+      description: Inferred from payload `{"invitedEmail": "..."}` seen in logs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invitedEmail:
+                  type: string
+                  format: email
+              additionalProperties: true
+      responses:
+        '200':
+          description: Invite created
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /invites/{inviteId}:
+    delete:
+      summary: Cancel invite
+      parameters:
+        - name: inviteId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Invite cancelled
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /organization-members:
+    get:
+      summary: List organization members
+      responses:
+        '200':
+          description: List of members
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /organization-members/{memberId}:
+    delete:
+      summary: Remove organization member
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Member removed
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /account:
+    delete:
+      summary: Delete current account
+      responses:
+        '200':
+          description: Account deleted
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /additional-information:
+    post:
+      summary: Submit or update additional user information
+      description: In code this includes things like jobDescriptionChoice, schoolType, etc.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Additional profile information.
+              additionalProperties: true
+      responses:
+        '200':
+          description: Additional info saved
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /email-verification-code:
+    post:
+      summary: Verify email with a code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+              additionalProperties: true
+      responses:
+        '200':
+          description: Verification OK (code accepted)
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /resend-email-verification:
+    post:
+      summary: Resend email verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                language:
+                  type: string
+              additionalProperties: true
+      responses:
+        '200':
+          description: Email resent
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /report:
+    post:
+      summary: Report frontend error / diagnostics
+      description: In code it is called with `{ error, level, url }`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                level:
+                  type: string
+                url:
+                  type: string
+              additionalProperties: true
+      responses:
+        '200':
+          description: Error reported
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /estimate-loc:
+    get:
+      summary: Estimate user location
+      description: Geolocation helper endpoint used by frontend.
+      responses:
+        '200':
+          description: Geolocation info
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /register:
+    post:
+      summary: Register user with email/password
+      description: Payload is inferred from registration form (email, password, etc.).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Registration OK
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /register-with-ilt:
+    post:
+      summary: Register user via ILT provider
+      description: In code this uses `{ email, firstName, accessToken, language }`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  nullable: true
+                firstName:
+                  type: string
+                  nullable: true
+                accessToken:
+                  type: string
+                  nullable: true
+                language:
+                  type: string
+                  nullable: true
+              additionalProperties: true
+      responses:
+        '200':
+          description: Registration OK
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /verify-ilt-login:
+    post:
+      summary: Verify ILT login code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+              additionalProperties: true
+      responses:
+        '200':
+          description: Login verified
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /order/price/{planId}:
+    get:
+      summary: Get pricing information for a plan
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Price information
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /order/promotion-code/{code}:
+    get:
+      summary: Validate or fetch promotion code
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Promotion code info
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /order:
+    post:
+      summary: Create an order / checkout session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Order created
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /order/status/{orderId}:
+    get:
+      summary: Get order status
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status info
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /order/purchase-sent/{orderId}:
+    post:
+      summary: Mark order purchase analytics as sent
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Acknowledged
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /extras:
+    get:
+      summary: Get list of extras
+      responses:
+        '200':
+          description: Extras list
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /extras/standards:
+    get:
+      summary: Get mapping of extras standards
+      responses:
+        '200':
+          description: Standards mapping
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
+
+  /create-customer-portal-session:
+    post:
+      summary: Create billing customer portal session
+      description: Called without a body in the frontend.
+      responses:
+        '200':
+          description: Session created
+        '4XX':
+          description: Client error
+        '5XX':
+          description: Server error
