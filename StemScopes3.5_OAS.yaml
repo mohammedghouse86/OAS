@@ -1,0 +1,2340 @@
+openapi: 3.0.3
+info: 
+  title: "Stem Scopes 3.5 API"
+  version: 1.0.0
+  description: "OpenAPI document generated automatically from HAR traffic.\nParameters and request bodies are based on captured examples."
+servers: 
+  - url: "https://app-backend.acceleratelearning.com"
+  
+components:
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: authorization
+      
+paths: 
+  /students: 
+    get: 
+      summary: Auto generated from HAR (GET /students)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "teacherSections%2Cuser"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "fields%5Bstudent%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2CfirstName%2ClastName%2CmiddleName%2CexternalId%2CgradeLevels%2CsisId%2CstudentNumber%2CteacherSectionIds%2CteacherSections%2Cuser%2Cstatus%2Cdeleted%2Cdisabled"
+        - name: "fields%5BteacherSection%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname%2CgoogleSection"
+        - name: "fields%5Buser%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: externalPassword
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: deleted
+        - name: "filter%5B1%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B1%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: disabled
+        - name: "filter%5B2%5D%5Bvalue%5D%5B0%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "12"
+        - name: "filter%5B2%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: user.userGradeLevels.externalId
+        - name: "filter%5B2%5D%5Boperator%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: in
+        - name: sort
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "firstName%2ClastName"
+        - name: search
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: ""
+        - name: "filter%5B0%5D%5Boperator%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: is
+        - name: "filter%5B2%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+    post: 
+      summary: Auto generated from HAR (POST /students)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+      requestBody: 
+        required: true
+        content: 
+          "application/json;charset=UTF-8": 
+            schema: 
+              type: object
+              additionalProperties: true
+            example: 
+              teacherSectionId: "116"
+              student: 
+                userAttributes: 
+                  userGradeLevelsAttributes: 
+                    - externalId: "12"
+                  readableExternalPassword: "password!@#$123F"
+                  email: "jack@tester.com"
+                  username: jackdoe4586
+                sisId: "123"
+                studentNumber: NY
+                lastName: Doe
+                middleName: xyz
+                firstName: Jack
+  /teacher_section_assignments: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_section_assignments)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: districtMasterCalendarAssignment
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "116"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: teacherSectionId
+        - name: "filter%5B1%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B1%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: disabled
+        - name: "filter%5B2%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B2%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: deleted
+        - name: "filter%5B3%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B3%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: learningResourcesSubmission
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_widgets/latest_activity: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_widgets/latest_activity)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "25"
+        - name: "fields%5BactivityItem%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cpayload%2CpublishAt"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "116"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: senderId
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+    put: 
+      summary: Auto generated from HAR (PUT /students/1675)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+      requestBody: 
+        required: true
+        content: 
+          "application/json;charset=UTF-8": 
+            schema: 
+              type: object
+              additionalProperties: true
+            example: 
+              student: 
+                userAttributes: 
+                  userGradeLevelsAttributes: 
+                    - id: "1575"
+                      externalId: "12"
+                  email: "jack@tester.com"
+                  username: jackdoe4586
+                  id: "10512"
+                lastName: Doe
+                middleName: xyz9
+                firstName: Jack
+  /update_accessibility_settings: 
+    post: 
+      summary: Auto generated from HAR (POST /update_accessibility_settings)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+      requestBody: 
+        required: true
+        content: 
+          "application/json;charset=UTF-8": 
+            schema: 
+              type: object
+              additionalProperties: true
+            example: 
+              accTypeFace: serif
+              accTypeSize: medium
+              accTheme: null
+              accSpeechSpeed: regular
+              accSpeechHighlightWords: false
+  /curriculum_areas: 
+    get: 
+      summary: Auto generated from HAR (GET /curriculum_areas)
+      parameters: 
+        - name: "fields%5BcurriculumArea%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /curriculum_areas/preferences: 
+    get: 
+      summary: Auto generated from HAR (GET /curriculum_areas/preferences)
+      parameters: 
+        - name: "fields%5BcurriculumArea%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+    put: 
+      summary: Auto generated from HAR (PUT /teachers/8050)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+      requestBody: 
+        required: true
+        content: 
+          "application/json;charset=UTF-8": 
+            schema: 
+              type: object
+              additionalProperties: true
+            example: 
+              teacher: 
+                curriculumAreaIds: []
+                curriculumPreferencesIds: 
+                  - "1"
+                  - "2"
+                userAttributes: 
+                  id: "10044"
+                  defaultGrade: "100"
+                  studentsSortOrderType: last_name_first
+                  readableExternalPassword: "Acceleratelearning2025!"
+  /teacher_widgets/upcoming_lessons: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_widgets/upcoming_lessons)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "teacherSection%2Celement"
+        - name: "fields%5BplannedElement%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2CteacherSection%2Celement%2CstartDate%2CendDate"
+        - name: "fields%5BteacherSection%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: name
+        - name: "fields%5Belement%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "name%2CscopeId"
+        - name: startDate
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "2025-11-26"
+        - name: endDate
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "2025-12-03"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: teacherSection.deleted
+        - name: "filter%5B1%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B1%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: teacherSection.disabled
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_widgets/classes: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_widgets/classes)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: languages
+        - name: "fields%5BteacherSection%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname%2Cteachers%2CstudentsCount%2Clanguages%2CteacherNames"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: disabled
+        - name: "filter%5B1%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B1%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: deleted
+        - name: sort
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: name
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_sections/district_assignments: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_sections/district_assignments)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_widgets/district_assignments: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_widgets/district_assignments)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_widgets/bookmark_folders: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_widgets/bookmark_folders)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "teacherElementBookmarks.element.scope.topics%2CteacherScopeBookmarks.scope.topics"
+        - name: "fields%5BteacherBookmarkFolder%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname%2CteacherElementBookmarksCount%2CteacherScopeBookmarksCount%2CteacherScopeBookmarks%2CteacherElementBookmarks"
+        - name: "fields%5BteacherScopeBookmarks%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cscope"
+        - name: "fields%5BteacherElementBookmarks%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Celement"
+        - name: "fields%5Bscope%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname%2CcreatedAt%2Ctopics"
+        - name: "fields%5Belement%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cscope%2Cname"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: sort
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "-createdAt"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_widgets/dashboard_banner: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_widgets/dashboard_banner)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_widgets/announcements: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_widgets/announcements)
+      parameters: 
+        - name: "fields%5Bannouncement%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Ctext%2Ctitle%2Cimage%2Clocation"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /sections: 
+    get: 
+      summary: Auto generated from HAR (GET /sections)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: elements
+        - name: "fields%5Bsection%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname%2Celements%2Cposition"
+        - name: "fields%5Belement%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Ctitle%2Cname%2Cdisabled%2Cdeleted%2Clanguage%2CelementTypeImageUrl%2CelementTypeDescription%2CconnectedElementId%2ClanguageParentId%2CaudienceName%2CsectionOverview%2Cposition%2CconnectedLanguageId"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "713"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: scopeId
+        - name: "filter%5B1%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B1%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: deleted
+        - name: "filter%5B2%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B2%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: disabled
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_bookmark_folders: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_bookmark_folders)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: teacherScopeBookmarks
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_assessments/total_count: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_assessments/total_count)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_assessments: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_assessments)
+      parameters: 
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "fields%5BteacherAssessment%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname%2CstandardsSummary%2ClessonsSummary%2ClanguagesSummary%2CquestionsCountSummarySplit%2CcreatedAt%2Ceditable%2CsharedPending%2Cold%2CsharedTeacherName"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: disabled
+        - name: "filter%5B1%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B1%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: deleted
+        - name: "filter%5B2%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B2%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: sharedPending
+        - name: "filter%5B3%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: packageAssessmentId
+        - name: "filter%5B3%5D%5Boperator%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "null"
+        - name: sort
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: name
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+    post: 
+      summary: Auto generated from HAR (POST /teacher_assessments)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+      requestBody: 
+        required: true
+        content: 
+          "application/json;charset=UTF-8": 
+            schema: 
+              type: object
+              additionalProperties: true
+            example: 
+              name: g
+              assessmentBankQuestionAreaTokens: 
+                - "1"
+              assessmentBankQuestionLessonTokens: 
+                - "8064"
+              assessmentBankQuestionStandardTokens: []
+              assessmentBankQuestionTopicTokens: []
+              editionsForLessons: 
+                - California 3D
+              editionsForStandards: []
+              gradeLevels: []
+              hasSpanishTranslation: []
+              packageOnly: "false"
+              query: ""
+              questionTypes: []
+              tags: []
+              teacherAssessmentBankQuestionsAttributes: 
+                - assessmentBankQuestionId: "17283"
+  /teacher_assessments/draft: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_assessments/draft)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /assessment_bank_questions/grade_levels: 
+    get: 
+      summary: Auto generated from HAR (GET /assessment_bank_questions/grade_levels)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /assessment_bank_question_topics: 
+    get: 
+      summary: Auto generated from HAR (GET /assessment_bank_question_topics)
+      parameters: 
+        - name: "fields%5BassessmentBankQuestionTopic%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_assessments/available_questions: 
+    post: 
+      summary: Auto generated from HAR (POST /teacher_assessments/available_questions)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: packages
+        - name: "fields%5BassessmentBankQuestion%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "assessmentBankQuestionContentType%2CassessmentBankQuestionContent%2Cpackages%2CpartTypes%2CformId%2ChasSpanishTranslation%2CbloomsLevel%2CdepthOfKnowledge%2CdualCoded%2CgradeLevel%2ClessonLabels%2CstandardLabels%2CtagNames%2CtopicNames"
+        - name: "fields%5Bpackage%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: name
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "30"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+      requestBody: 
+        required: true
+        content: 
+          "application/json;charset=UTF-8": 
+            schema: 
+              type: object
+              additionalProperties: true
+            example: 
+              teacherAssessment: 
+                assessmentBankQuestionAreaTokens: []
+                assessmentBankQuestionLessonTokens: []
+                assessmentBankQuestionStandardTokens: []
+                assessmentBankQuestionTopicTokens: []
+                editionsForLessons: []
+                editionsForStandards: []
+                gradeLevels: []
+                hasSpanishTranslation: []
+                query: ""
+                questionTypes: []
+                tags: []
+                updateCounter: 0
+              packageOnly: "false"
+  /assessment_bank_question_standards/editions_for_standards: 
+    get: 
+      summary: Auto generated from HAR (GET /assessment_bank_question_standards/editions_for_standards)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /assessment_bank_question_standards: 
+    get: 
+      summary: Auto generated from HAR (GET /assessment_bank_question_standards)
+      parameters: 
+        - name: "fields%5BassessmentBankQuestionStandard%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Clabel"
+        - name: search
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: ""
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /assessment_bank_question_tags: 
+    get: 
+      summary: Auto generated from HAR (GET /assessment_bank_question_tags)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "50"
+        - name: "fields%5BassessmentBankQuestionTag%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /assessment_bank_question_lessons/editions_for_lessons: 
+    get: 
+      summary: Auto generated from HAR (GET /assessment_bank_question_lessons/editions_for_lessons)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /assessment_bank_question_lessons: 
+    get: 
+      summary: Auto generated from HAR (GET /assessment_bank_question_lessons)
+      parameters: 
+        - name: "fields%5BassessmentBankQuestionLessons%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Clabel"
+        - name: search
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: ""
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: "filter%5B0%5D%5Bvalue%5D%5B0%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "California%203D"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: edition
+        - name: "filter%5B0%5D%5Boperator%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: in
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+    put: 
+      summary: Auto generated from HAR (PUT /teacher_assessments/173)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+      requestBody: 
+        required: true
+        content: 
+          "application/json;charset=UTF-8": 
+            schema: 
+              type: object
+              additionalProperties: true
+            example: 
+              name: g
+              assessmentBankQuestionAreaTokens: 
+                - "1"
+              assessmentBankQuestionLessonTokens: 
+                - "8064"
+              assessmentBankQuestionStandardTokens: []
+              assessmentBankQuestionTopicTokens: []
+              editionsForLessons: 
+                - California 3D
+              editionsForStandards: []
+              gradeLevels: []
+              hasSpanishTranslation: []
+              packageOnly: "false"
+              query: ""
+              questionTypes: []
+              tags: []
+              id: "173"
+              administratePlan: no_type
+              draftAttributes: null
+              assessmentBankQuestionIds: 
+                - "17283"
+              teacherAssessmentBankQuestionsAttributes: 
+                - assessmentBankQuestionId: 17283
+  /highlights: 
+    get: 
+      summary: Auto generated from HAR (GET /highlights)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "173"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: teacherAssessmentId
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /comments: 
+    get: 
+      summary: Auto generated from HAR (GET /comments)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "173"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: teacherAssessmentId
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /standards/roots: 
+    get: 
+      summary: Auto generated from HAR (GET /standards/roots)
+      parameters: 
+        - name: "fields%5Bstandard%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname%2Cdescription%2CstandardTypeName%2CdisplayTheme%2CstandardBreadcrumbs%2Cposition%2Cdisabled%2Cdeleted"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /media_assets/activity_types: 
+    get: 
+      summary: Auto generated from HAR (GET /media_assets/activity_types)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /media_assets/category_types: 
+    get: 
+      summary: Auto generated from HAR (GET /media_assets/category_types)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /media_assets/count_by_entity: 
+    get: 
+      summary: Auto generated from HAR (GET /media_assets/count_by_entity)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /media_assets/news_entries: 
+    get: 
+      summary: Auto generated from HAR (GET /media_assets/news_entries)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: mediaTopic
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "9"
+        - name: "fields%5BmediaNewsItem%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname%2Ctitle%2Clink%2CpubDate%2CthumbnailUrl%2Cdescription"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: mediaTopicId
+        - name: sort
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "-pubDate"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /media_assets/recently_viewed: 
+    get: 
+      summary: Auto generated from HAR (GET /media_assets/recently_viewed)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "6"
+        - name: "fields%5BmediaAsset%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname%2Ccover%2CcontentType%2CpreviewDescription"
+        - name: sort
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "-createdAt"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /media_assets/count_by_topic: 
+    get: 
+      summary: Auto generated from HAR (GET /media_assets/count_by_topic)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /scope_filters: 
+    get: 
+      summary: Auto generated from HAR (GET /scope_filters)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /scopes/filter_selectors: 
+    get: 
+      summary: Auto generated from HAR (GET /scopes/filter_selectors)
+      parameters: 
+        - name: search
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: ""
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: "topicIds%5B0%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "438"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /scopes: 
+    get: 
+      summary: Auto generated from HAR (GET /scopes)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "30"
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "grade%2Ctopics%2CscopeGroups%2Cstandards"
+        - name: "fields%5Bscope%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname%2Cimage%2Cstarred%2Ctopics%2CscopeGroups%2Cgrade%2Cstandards%2CdisplayStandards"
+        - name: "fields%5BscopeGroup%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: banner
+        - name: "fields%5Bgrade%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: name
+        - name: "fields%5Btopic%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname"
+        - name: "fields%5Bstandard%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: name
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: disabled
+        - name: "filter%5B1%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B1%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: deleted
+        - name: "topicIds%5B0%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "438"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /lesson_plans: 
+    get: 
+      summary: Auto generated from HAR (GET /lesson_plans)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: plannedElements.element
+        - name: "fields%5BlessonPlan%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "name%2Cnotes%2CplannedElements"
+        - name: "fields%5BplannedElement%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "element%2CstartDate"
+        - name: "fields%5Belement%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "name%2CscopeId"
+        - name: "fields%5BteacherSection%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: name
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /teacher_sections: 
+    get: 
+      summary: Auto generated from HAR (GET /teacher_sections)
+      parameters: 
+        - name: "fields%5BteacherSection%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Cname"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: deleted
+        - name: "filter%5B1%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "false"
+        - name: "filter%5B1%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: disabled
+        - name: "filter%5B2%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "8050"
+        - name: "filter%5B2%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: teachers.id
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /planned_elements: 
+    get: 
+      summary: Auto generated from HAR (GET /planned_elements)
+      parameters: 
+        - name: include
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "districtMasterCalendarAssignment%2Celement%2Celement.scope.curriculumAreas"
+        - name: "fields%5Belement%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "name%2Ctitle%2CaudienceName%2Cscope%2CelementTypeDescription"
+        - name: "fields%5Bscope%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: name
+        - name: "fields%5BcurriculumArea%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: id
+        - name: "fields%5BdistrictMasterCalendarAssignment%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2Ckind"
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+        - name: "filter%5B0%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "116"
+        - name: "filter%5B0%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: teacherSectionId
+        - name: "filter%5B1%5D%5Bvalue%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "8050"
+        - name: "filter%5B1%5D%5Bfield%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: teacherId
+        - name: "fields%5BplannedElement%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "id%2CdistrictMasterCalendarAssignment"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /planned_elements/audience_options: 
+    get: 
+      summary: Auto generated from HAR (GET /planned_elements/audience_options)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
+  /planned_elements/record_types: 
+    get: 
+      summary: Auto generated from HAR (GET /planned_elements/record_types)
+      parameters: 
+        - name: "page%5Bnumber%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "1"
+        - name: "page%5Bsize%5D"
+          in: query
+          required: false
+          description: Auto detected from query string.
+          schema: 
+            type: string
+            example: "10000"
+      responses: 
+        "200": 
+          description: "Successful response (schema is generic, example not provided)."
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                additionalProperties: true
