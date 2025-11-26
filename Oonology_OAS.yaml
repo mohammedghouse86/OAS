@@ -1,0 +1,336 @@
+info:
+  title: Oonology Claims API (Sample)
+  version: 1.0.0
+  description: >
+    Sample REST-style contract for a claims management system.
+    This is a hypothetical REST API contract for illustration only;
+    the real Oonology Claims application uses Blazor Server over WebSockets
+    and does not expose an actual Swagger/OpenAPI specification.
+openapi: 3.0.3
+
+servers:
+  - url: https://claims.oonology.com/api
+
+paths:
+  /auth/login:
+    post:
+      summary: Log in and get an access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+              required: [email, password]
+      responses:
+        '200':
+          description: Logged in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: JWT or bearer token
+        '401':
+          description: Invalid credentials
+
+  /me:
+    get:
+      summary: Get current user profile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Current user info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Not authenticated
+
+  /claims:
+    get:
+      summary: List or search claims
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [open, closed, pending]
+        - in: query
+          name: policyNumber
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Paged list of claims
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Claim'
+                  total:
+                    type: integer
+    post:
+      summary: Create a new claim
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClaimCreate'
+      responses:
+        '201':
+          description: Claim created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Claim'
+        '400':
+          description: Invalid data
+
+  /claims/{claimId}:
+    get:
+      summary: Get a single claim by ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: claimId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Claim details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Claim'
+        '404':
+          description: Claim not found
+    patch:
+      summary: Update fields on a claim
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: claimId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClaimUpdate'
+      responses:
+        '200':
+          description: Updated claim
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Claim'
+        '404':
+          description: Claim not found
+
+  /claims/{claimId}/documents:
+    get:
+      summary: List documents attached to a claim
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: claimId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+    post:
+      summary: Upload a new document for a claim
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: claimId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Document uploaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+
+  /claims/{claimId}/documents/{documentId}:
+    get:
+      summary: Download a document
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: claimId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: documentId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Binary file content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Document not found
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        organization:
+          type: string
+
+    Claim:
+      type: object
+      properties:
+        id:
+          type: string
+        policyNumber:
+          type: string
+        status:
+          type: string
+          enum: [open, closed, pending]
+        claimantName:
+          type: string
+        lossDate:
+          type: string
+          format: date
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        description:
+          type: string
+
+    ClaimCreate:
+      type: object
+      properties:
+        policyNumber:
+          type: string
+        claimantName:
+          type: string
+        lossDate:
+          type: string
+          format: date
+        amount:
+          type: number
+        currency:
+          type: string
+        description:
+          type: string
+      required: [policyNumber, claimantName, lossDate, amount, currency]
+
+    ClaimUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [open, closed, pending]
+        amount:
+          type: number
+        description:
+          type: string
+
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        fileName:
+          type: string
+        contentType:
+          type: string
+        size:
+          type: integer
+        uploadedAt:
+          type: string
+          format: date-time
+        description:
+          type: string
