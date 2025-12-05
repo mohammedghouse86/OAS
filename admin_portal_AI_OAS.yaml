@@ -1,0 +1,811 @@
+openapi: 3.0.3
+info:
+  title: Stem Scopes 3.5 Admin Portal API from AI
+  version: 1.0.0
+  description: |
+    OpenAPI specification for the ALI Admin Portal admin endpoints.
+    These endpoints primarily return HTML admin pages and file downloads
+    (CSV, etc.), not JSON APIs.
+
+servers:
+  - url: https://n12119d170134.acceleratelearning.com
+    description: Production Admin Server
+
+tags:
+  - name: Dashboard
+    description: Admin dashboard and entry points
+  - name: Authentication
+    description: Login/logout and session management
+  - name: Import File Processing
+    description: District data import & export tools
+  - name: District Curriculum
+    description: District curriculum and assessment package management
+  - name: Staff Management
+    description: Staff records and notifications
+  - name: Student Management
+    description: Student records and sections
+  - name: School Management
+    description: District and school info
+  - name: System Preferences
+    description: District settings and LTI configuration
+  - name: End-of-Year Processing
+    description: End-of-year options and processing flows
+  - name: Reports
+    description: Reporting and analytics
+
+paths:
+  /admin/dashboard:
+    get:
+      tags: [Dashboard]
+      summary: Admin home dashboard (redirect/landing)
+      operationId: getDashboard
+      responses:
+        '200':
+          description: Dashboard HTML page
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/admindashboard:
+    get:
+      tags: [Dashboard]
+      summary: Admin main dashboard
+      operationId: getAdminDashboard
+      responses:
+        '200':
+          description: Admin dashboard HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/logout:
+    get:
+      tags: [Authentication]
+      summary: Logout and end current session
+      operationId: logout
+      responses:
+        '302':
+          description: Redirect after logout
+
+  # -------------------------
+  # End-of-Year Processing
+  # -------------------------
+  /admin/alidistrictmaster/main/endofyear/list:
+    get:
+      tags: [End-of-Year Processing]
+      summary: End-of-Year Processing list / status
+      operationId: listEndOfYear
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: End-of-year processing HTML page
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/alidistrictmaster/main/endofyear/eoy_options_step:
+    get:
+      tags: [End-of-Year Processing]
+      summary: End-of-year options step
+      operationId: getEndOfYearOptions
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: EOY options HTML form
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  # -------------------------
+  # Import File Processing
+  # -------------------------
+  /admin/app/schoolgradelevel/list:
+    get:
+      tags: [Import File Processing]
+      summary: District Grade Level Cross Reference list
+      operationId: listSchoolGradeLevels
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Grade level cross reference list HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/app/schoolgradelevel/create:
+    get:
+      tags: [Import File Processing]
+      summary: Create District Grade Level Cross Reference
+      operationId: getCreateSchoolGradeLevelForm
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Create grade level HTML form
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/integration/students/import:
+    get:
+      tags: [Import File Processing]
+      summary: Students Integration Console (import UI)
+      operationId: getStudentIntegrationConsole
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Student integration HTML page
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+    post:
+      tags: [Import File Processing]
+      summary: Import students file
+      operationId: importStudents
+      security:
+        - PHPSESSID: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Student CSV file to import
+      responses:
+        '302':
+          description: Redirect to integration journal or results
+        '400':
+          description: Validation or format error
+
+  /admin/integration/staff/import:
+    get:
+      tags: [Import File Processing]
+      summary: Staff Integration Console (import UI)
+      operationId: getStaffIntegrationConsole
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Staff integration HTML page
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+    post:
+      tags: [Import File Processing]
+      summary: Import staff file
+      operationId: importStaff
+      security:
+        - PHPSESSID: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Staff CSV file to import
+      responses:
+        '302':
+          description: Redirect to integration journal or results
+        '400':
+          description: Validation or format error
+
+  /admin/app/clientjobrole/list:
+    get:
+      tags: [Import File Processing]
+      summary: Client job roles list
+      operationId: listClientJobRoles
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Job role mapping HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/app/clientjobrole/create:
+    get:
+      tags: [Import File Processing]
+      summary: Create client job role
+      operationId: getCreateClientJobRoleForm
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Create job role HTML form
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/app/integration-journal/list:
+    get:
+      tags: [Import File Processing]
+      summary: Import results journal
+      operationId: listIntegrationJournal
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Integration journal HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/export/csv/student/list:
+    get:
+      tags: [Import File Processing]
+      summary: Student CSV export jobs
+      operationId: listStudentCsvExports
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Student export list HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/export/csv/student/create:
+    get:
+      tags: [Import File Processing]
+      summary: Create student CSV export job
+      operationId: getCreateStudentCsvExportForm
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Create student CSV export HTML form
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/export/csv/staff/list:
+    get:
+      tags: [Import File Processing]
+      summary: Staff CSV export jobs
+      operationId: listStaffCsvExports
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Staff export list HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/export/csv/staff/create:
+    get:
+      tags: [Import File Processing]
+      summary: Create staff CSV export job
+      operationId: getCreateStaffCsvExportForm
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Create staff CSV export HTML form
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/export/csv/log/list:
+    get:
+      tags: [Import File Processing]
+      summary: CSV export journal
+      operationId: listCsvExportLog
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: CSV export log HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  # -------------------------
+  # District Curriculum
+  # -------------------------
+  /admin/alidistrictmaster/main/districtassessment-package/list:
+    get:
+      tags: [District Curriculum]
+      summary: District Assessment Package Management list
+      operationId: listDistrictAssessmentPackages
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Assessment packages HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/alidistrictmaster/main/districtassessment-package/{id}/edit:
+    get:
+      tags: [District Curriculum]
+      summary: Edit district assessment package
+      operationId: editDistrictAssessmentPackage
+      security:
+        - PHPSESSID: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Assessment package ID
+        - name: uniqid
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Unique request identifier used by Sonata admin
+      responses:
+        '200':
+          description: Edit assessment package HTML form
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  # -------------------------
+  # Staff Management
+  # -------------------------
+  /admin/app/staff/list:
+    get:
+      tags: [Staff Management]
+      summary: Staff Manager list
+      operationId: listStaff
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Staff manager HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/app/staff/create:
+    get:
+      tags: [Staff Management]
+      summary: Create staff member
+      operationId: getCreateStaffForm
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Create staff HTML form
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/staff_email_notifications_settings/list:
+    get:
+      tags: [Staff Management]
+      summary: Staff email notification templates
+      operationId: listStaffEmailNotificationTemplates
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Staff notification templates HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/staff/login/notification/manager/list:
+    get:
+      tags: [Staff Management]
+      summary: Staff login email notifications
+      operationId: listStaffLoginNotifications
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Staff login notification manager HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  # -------------------------
+  # Student Management
+  # -------------------------
+  /admin/alidistrictmaster/main/student/list:
+    get:
+      tags: [Student Management]
+      summary: Student Manager list
+      operationId: listStudents
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Student manager HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/alidistrictmaster/main/student/create:
+    get:
+      tags: [Student Management]
+      summary: Create student
+      operationId: getCreateStudentForm
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Create student HTML form
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/app/course/list:
+    get:
+      tags: [Student Management]
+      summary: Sections (courses) list
+      operationId: listCourses
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Course/section list HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/app/course/create:
+    get:
+      tags: [Student Management]
+      summary: Create course/section
+      operationId: getCreateCourseForm
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Create course HTML form
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/app/offlinematerials-document/list:
+    get:
+      tags: [Student Management]
+      summary: Offline materials list
+      operationId: listOfflineMaterials
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Offline materials HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  # -------------------------
+  # School Management
+  # -------------------------
+  /admin/school/list:
+    get:
+      tags: [School Management]
+      summary: School information
+      operationId: listSchools
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: School information HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/app/district/list:
+    get:
+      tags: [School Management]
+      summary: District information
+      operationId: listDistrictInfo
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: District info HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  # -------------------------
+  # System Preferences
+  # -------------------------
+  /admin/alidistrictmaster/main/setting/list:
+    get:
+      tags: [System Preferences]
+      summary: District settings
+      operationId: listDistrictSettings
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: District settings HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/app/ltiscopegroupmapping/list:
+    get:
+      tags: [System Preferences]
+      summary: LTI Scope Group Mapping
+      operationId: listLtiScopeGroupMapping
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: LTI scope mapping HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/app/ltisetting/list:
+    get:
+      tags: [System Preferences]
+      summary: LTI Credentials
+      operationId: listLtiSettings
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: LTI settings HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/admin/app/lti_one_point_three_settings/list:
+    get:
+      tags: [System Preferences]
+      summary: LTI 1.3 Credentials
+      operationId: listLti13Settings
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: LTI 1.3 settings HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/alidistrictmaster/main/integration/credentials/list:
+    get:
+      tags: [System Preferences]
+      summary: Integration credentials
+      operationId: listIntegrationCredentials
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Integration credentials HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/alidistrictmaster/main/curriculum-area/list:
+    get:
+      tags: [System Preferences]
+      summary: Curriculum area mapping
+      operationId: listCurriculumAreas
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Curriculum area mapping HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  # -------------------------
+  # Reports
+  # -------------------------
+  /admin/alidistrictmaster/main/student/assignment/archive/list:
+    get:
+      tags: [Reports]
+      summary: Student Assignment Archives
+      operationId: listStudentAssignmentArchives
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Student assignment archives HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/alidistrictmaster/main/student/assignment/history/list:
+    get:
+      tags: [Reports]
+      summary: Student Assignment History
+      operationId: listStudentAssignmentHistory
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Student assignment history HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/alidistrictmaster/main/student/assignment/history/delete/list:
+    get:
+      tags: [Reports]
+      summary: Student History Deletion
+      operationId: listStudentHistoryDeletion
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Student history deletion HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/admin/alidistrictmaster/main/districtstudentanalysisreport/list:
+    get:
+      tags: [Reports]
+      summary: District Student Data Source Analysis Report
+      operationId: listDistrictStudentAnalysisReport
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: District student analysis report HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/license/list:
+    get:
+      tags: [Reports]
+      summary: License Information
+      operationId: listLicenses
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: License information HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/additional-license/list:
+    get:
+      tags: [Reports]
+      summary: Additional Licenses
+      operationId: listAdditionalLicenses
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: Additional licenses HTML list
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/alidistrictmaster/main/qrcode/district-report/list:
+    get:
+      tags: [Reports]
+      summary: District Summary QR Scan Product Utilization
+      operationId: listDistrictQrReports
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: District QR scan utilization HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+  /admin/alidistrictmaster/main/qrcode/school-report/list:
+    get:
+      tags: [Reports]
+      summary: School Summary QR Scan Product Utilization
+      operationId: listSchoolQrReports
+      security:
+        - PHPSESSID: []
+      responses:
+        '200':
+          description: School QR scan utilization HTML
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HtmlPage'
+
+components:
+  securitySchemes:
+    PHPSESSID:
+      type: apiKey
+      in: cookie
+      name: PHPSESSID
+      description: >
+        PHP session cookie for authenticated admin access.
+
+  schemas:
+    HtmlPage:
+      type: string
+      description: Raw HTML response body
+      example: "<!DOCTYPE html><html><head><title>Admin</title></head><body>...</body></html>"
+
+    CsvFile:
+      type: string
+      format: binary
+      description: CSV file download
+
+    ImportJobResult:
+      type: object
+      description: Conceptual representation of an import job result
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          enum: [student, staff]
+        status:
+          type: string
+          enum: [pending, running, completed, failed]
+        createdAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        totalRecords:
+          type: integer
+        successCount:
+          type: integer
+        errorCount:
+          type: integer

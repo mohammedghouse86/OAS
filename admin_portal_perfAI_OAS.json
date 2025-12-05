@@ -1,0 +1,4528 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Captured API Documentation",
+    "version": "1.0.0",
+    "description": "Auto-generated OpenAPI specification from captured network requests."
+  },
+  "servers": [
+    {
+      "url": "https://n12119d170134.acceleratelearning.com"
+    }
+  ],
+  "paths": {
+    "/admin/school/saveForm": {
+      "post": {
+        "summary": "POST /admin/school/saveForm",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "n12119d170134.acceleratelearning.com"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "wizard": {
+                    "type": "string",
+                    "example": "0"
+                  },
+                  "_sonata_csrf_token": {
+                    "type": "string",
+                    "example": "4b5077780471902d7e7baab.lj7-SA5SfiTvX4ml_S308a7MLfy5uxvHWKE35B18e3Q.3mS7DEgLOEeMacWQmF3AnsyqXMjfiy69bPNBjGwsGAH9Tqx7eQgucLwXyA"
+                  },
+                  "row": {
+                    "type": "object",
+                    "properties": {
+                      "2": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "California School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "California School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170137"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "California School",
+                          "name": "California School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170137",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "3": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Common Core Math School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Common Core Math School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170138"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Common Core Math School",
+                          "name": "Common Core Math School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170138",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "4": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Florida School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Florida School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170139"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Florida School",
+                          "name": "Florida School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170139",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "5": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Georgia School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Georgia School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170140"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Georgia School",
+                          "name": "Georgia School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170140",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "6": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Kansas School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Kansas School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170141"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Kansas School",
+                          "name": "Kansas School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170141",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "7": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Louisiana School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Louisiana School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170142"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Louisiana School",
+                          "name": "Louisiana School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170142",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "8": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Maryland School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Maryland School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170143"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Maryland School",
+                          "name": "Maryland School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170143",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "9": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Massachusetts School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Massachusetts School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170144"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Massachusetts School",
+                          "name": "Massachusetts School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170144",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "10": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Michigan School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Michigan School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170145"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Michigan School",
+                          "name": "Michigan School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170145",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "11": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Mississippi School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Mississippi School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170146"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Mississippi School",
+                          "name": "Mississippi School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170146",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "12": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "New Jersey School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "New Jersey School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170147"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "New Jersey School",
+                          "name": "New Jersey School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170147",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "13": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "New Mexico School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "New Mexico School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170148"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "New Mexico School",
+                          "name": "New Mexico School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170148",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "14": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "New York School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "New York School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170149"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "New York School",
+                          "name": "New York School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170149",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "15": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "NGSS 3D School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "NGSS 3D School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170150"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "NGSS 3D School",
+                          "name": "NGSS 3D School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170150",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "16": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "North Carolina School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "North Carolina School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170151"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "North Carolina School",
+                          "name": "North Carolina School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170151",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "17": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Ohio School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Ohio School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170152"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Ohio School",
+                          "name": "Ohio School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170152",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "18": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Oklahoma School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Oklahoma School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170153"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Oklahoma School",
+                          "name": "Oklahoma School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170153",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "19": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Oregon School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Oregon School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170154"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Oregon School",
+                          "name": "Oregon School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170154",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "20": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "South Carolina School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "South Carolina School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170155"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "South Carolina School",
+                          "name": "South Carolina School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170155",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "21": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Tennessee School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Tennessee School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170156"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Tennessee School",
+                          "name": "Tennessee School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170156",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "22": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Texas School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Texas School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170157"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Texas School",
+                          "name": "Texas School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170157",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "23": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Virginia School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Virginia School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170158"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Virginia School",
+                          "name": "Virginia School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170158",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "24": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "West Virginia School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "West Virginia School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170159"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "West Virginia School",
+                          "name": "West Virginia School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170159",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "25": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Wisconsin School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Wisconsin School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170160"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Wisconsin School",
+                          "name": "Wisconsin School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170160",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      },
+                      "26": {
+                        "type": "object",
+                        "properties": {
+                          "district": {
+                            "type": "string",
+                            "example": "ALI Main Train Server"
+                          },
+                          "globalClient": {
+                            "type": "string",
+                            "example": "Alabama School"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Alabama School"
+                          },
+                          "city": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "state": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "sisId": {
+                            "type": "string",
+                            "example": "170136"
+                          },
+                          "schoolType": {
+                            "type": "string",
+                            "example": "3"
+                          },
+                          "loginPriority": {
+                            "type": "string",
+                            "example": "100"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "Active"
+                          }
+                        },
+                        "example": {
+                          "district": "ALI Main Train Server",
+                          "globalClient": "Alabama School",
+                          "name": "Alabama School",
+                          "city": "",
+                          "state": "",
+                          "sisId": "170136",
+                          "schoolType": "3",
+                          "loginPriority": "100",
+                          "status": "Active"
+                        }
+                      }
+                    },
+                    "example": {
+                      "2": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "California School",
+                        "name": "California School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170137",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "3": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Common Core Math School",
+                        "name": "Common Core Math School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170138",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "4": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Florida School",
+                        "name": "Florida School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170139",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "5": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Georgia School",
+                        "name": "Georgia School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170140",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "6": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Kansas School",
+                        "name": "Kansas School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170141",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "7": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Louisiana School",
+                        "name": "Louisiana School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170142",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "8": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Maryland School",
+                        "name": "Maryland School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170143",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "9": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Massachusetts School",
+                        "name": "Massachusetts School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170144",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "10": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Michigan School",
+                        "name": "Michigan School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170145",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "11": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Mississippi School",
+                        "name": "Mississippi School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170146",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "12": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "New Jersey School",
+                        "name": "New Jersey School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170147",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "13": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "New Mexico School",
+                        "name": "New Mexico School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170148",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "14": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "New York School",
+                        "name": "New York School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170149",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "15": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "NGSS 3D School",
+                        "name": "NGSS 3D School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170150",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "16": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "North Carolina School",
+                        "name": "North Carolina School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170151",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "17": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Ohio School",
+                        "name": "Ohio School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170152",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "18": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Oklahoma School",
+                        "name": "Oklahoma School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170153",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "19": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Oregon School",
+                        "name": "Oregon School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170154",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "20": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "South Carolina School",
+                        "name": "South Carolina School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170155",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "21": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Tennessee School",
+                        "name": "Tennessee School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170156",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "22": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Texas School",
+                        "name": "Texas School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170157",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "23": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Virginia School",
+                        "name": "Virginia School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170158",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "24": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "West Virginia School",
+                        "name": "West Virginia School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170159",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "25": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Wisconsin School",
+                        "name": "Wisconsin School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170160",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      },
+                      "26": {
+                        "district": "ALI Main Train Server",
+                        "globalClient": "Alabama School",
+                        "name": "Alabama School",
+                        "city": "",
+                        "state": "",
+                        "sisId": "170136",
+                        "schoolType": "3",
+                        "loginPriority": "100",
+                        "status": "Active"
+                      }
+                    }
+                  },
+                  "firstname": {
+                    "type": "string",
+                    "example": "Security"
+                  },
+                  "lastname": {
+                    "type": "string",
+                    "example": "Admin"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "comments": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "file": {
+                    "type": "object",
+                    "properties": {},
+                    "example": {}
+                  }
+                },
+                "example": {
+                  "wizard": "0",
+                  "_sonata_csrf_token": "4b5077780471902d7e7baab.lj7-SA5SfiTvX4ml_S308a7MLfy5uxvHWKE35B18e3Q.3mS7DEgLOEeMacWQmF3AnsyqXMjfiy69bPNBjGwsGAH9Tqx7eQgucLwXyA",
+                  "row": {
+                    "2": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "California School",
+                      "name": "California School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170137",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "3": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Common Core Math School",
+                      "name": "Common Core Math School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170138",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "4": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Florida School",
+                      "name": "Florida School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170139",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "5": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Georgia School",
+                      "name": "Georgia School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170140",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "6": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Kansas School",
+                      "name": "Kansas School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170141",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "7": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Louisiana School",
+                      "name": "Louisiana School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170142",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "8": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Maryland School",
+                      "name": "Maryland School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170143",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "9": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Massachusetts School",
+                      "name": "Massachusetts School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170144",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "10": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Michigan School",
+                      "name": "Michigan School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170145",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "11": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Mississippi School",
+                      "name": "Mississippi School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170146",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "12": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "New Jersey School",
+                      "name": "New Jersey School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170147",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "13": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "New Mexico School",
+                      "name": "New Mexico School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170148",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "14": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "New York School",
+                      "name": "New York School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170149",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "15": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "NGSS 3D School",
+                      "name": "NGSS 3D School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170150",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "16": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "North Carolina School",
+                      "name": "North Carolina School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170151",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "17": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Ohio School",
+                      "name": "Ohio School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170152",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "18": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Oklahoma School",
+                      "name": "Oklahoma School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170153",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "19": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Oregon School",
+                      "name": "Oregon School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170154",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "20": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "South Carolina School",
+                      "name": "South Carolina School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170155",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "21": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Tennessee School",
+                      "name": "Tennessee School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170156",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "22": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Texas School",
+                      "name": "Texas School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170157",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "23": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Virginia School",
+                      "name": "Virginia School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170158",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "24": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "West Virginia School",
+                      "name": "West Virginia School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170159",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "25": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Wisconsin School",
+                      "name": "Wisconsin School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170160",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    },
+                    "26": {
+                      "district": "ALI Main Train Server",
+                      "globalClient": "Alabama School",
+                      "name": "Alabama School",
+                      "city": "",
+                      "state": "",
+                      "sisId": "170136",
+                      "schoolType": "3",
+                      "loginPriority": "100",
+                      "status": "Active"
+                    }
+                  },
+                  "firstname": "Security",
+                  "lastname": "Admin",
+                  "email": "",
+                  "comments": "",
+                  "file": {}
+                }
+              },
+              "example": {
+                "wizard": "0",
+                "_sonata_csrf_token": "4b5077780471902d7e7baab.lj7-SA5SfiTvX4ml_S308a7MLfy5uxvHWKE35B18e3Q.3mS7DEgLOEeMacWQmF3AnsyqXMjfiy69bPNBjGwsGAH9Tqx7eQgucLwXyA",
+                "row": {
+                  "2": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "California School",
+                    "name": "California School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170137",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "3": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Common Core Math School",
+                    "name": "Common Core Math School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170138",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "4": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Florida School",
+                    "name": "Florida School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170139",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "5": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Georgia School",
+                    "name": "Georgia School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170140",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "6": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Kansas School",
+                    "name": "Kansas School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170141",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "7": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Louisiana School",
+                    "name": "Louisiana School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170142",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "8": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Maryland School",
+                    "name": "Maryland School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170143",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "9": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Massachusetts School",
+                    "name": "Massachusetts School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170144",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "10": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Michigan School",
+                    "name": "Michigan School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170145",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "11": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Mississippi School",
+                    "name": "Mississippi School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170146",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "12": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "New Jersey School",
+                    "name": "New Jersey School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170147",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "13": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "New Mexico School",
+                    "name": "New Mexico School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170148",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "14": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "New York School",
+                    "name": "New York School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170149",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "15": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "NGSS 3D School",
+                    "name": "NGSS 3D School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170150",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "16": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "North Carolina School",
+                    "name": "North Carolina School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170151",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "17": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Ohio School",
+                    "name": "Ohio School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170152",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "18": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Oklahoma School",
+                    "name": "Oklahoma School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170153",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "19": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Oregon School",
+                    "name": "Oregon School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170154",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "20": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "South Carolina School",
+                    "name": "South Carolina School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170155",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "21": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Tennessee School",
+                    "name": "Tennessee School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170156",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "22": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Texas School",
+                    "name": "Texas School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170157",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "23": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Virginia School",
+                    "name": "Virginia School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170158",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "24": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "West Virginia School",
+                    "name": "West Virginia School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170159",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "25": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Wisconsin School",
+                    "name": "Wisconsin School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170160",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  },
+                  "26": {
+                    "district": "ALI Main Train Server",
+                    "globalClient": "Alabama School",
+                    "name": "Alabama School",
+                    "city": "",
+                    "state": "",
+                    "sisId": "170136",
+                    "schoolType": "3",
+                    "loginPriority": "100",
+                    "status": "Active"
+                  }
+                },
+                "firstname": "Security",
+                "lastname": "Admin",
+                "email": "",
+                "comments": "",
+                "file": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:07:34 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.58 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:07:34 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=80"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bundles/{bundleId}/images/logo.svg": {
+      "get": {
+        "summary": "GET /bundles/{bundleId}/images/logo.svg",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "n12119d170134.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "bundleId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the bundle resource.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:05:05 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.58 (Ubuntu)"
+              },
+              "last-modified": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Tue, 25 Jun 2024 14:53:52 GMT"
+              },
+              "etag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"1a2c-61bb810ea8000\""
+              },
+              "accept-ranges": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bytes"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "6700"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=78"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "image/svg+xml"
+              }
+            },
+            "content": {
+              "image/svg+xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/dashboard/embed-url": {
+      "post": {
+        "summary": "POST /data/dashboard/embed-url",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "n12119d170134.acceleratelearning.com"
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:04:45 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.58 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:04:45 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=99"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/dashboard/{dashboardId}/{widgetlistId}": {
+      "get": {
+        "summary": "GET /data/dashboard/{dashboardId}/{widgetlistId}",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "n12119d170134.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "dashboardId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the dashboard resource.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "widgetlistId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the widgetlist resource.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:05:06 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.58 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:05:06 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=80"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/filter/{filterId}": {
+      "get": {
+        "summary": "GET /data/filter/{filterId}",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "n12119d170134.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "0"
+            }
+          },
+          {
+            "name": "filterId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the filter resource.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:04:43 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.58 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:04:43 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=100"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/select": {
+      "get": {
+        "summary": "GET /data/select",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "n12119d170134.acceleratelearning.com"
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:05:05 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.58 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:05:05 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=82"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/widget/data": {
+      "post": {
+        "summary": "POST /data/widget/data",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "n12119d170134.acceleratelearning.com"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "widget": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 47
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "District Analytics"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "reloadText"
+                          },
+                          "column": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "size-h4-w4"
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": "light"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "App\\Widget\\QuickSightDashboardWidget"
+                          },
+                          "help": {
+                            "type": "null"
+                          },
+                          "newWindowAvailable": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "titleClass": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "rendered": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "loading": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        },
+                        "example": {
+                          "id": 47,
+                          "name": "District Analytics",
+                          "type": "reloadText",
+                          "column": 0,
+                          "size": "size-h4-w4",
+                          "color": "light",
+                          "code": "App\\Widget\\QuickSightDashboardWidget",
+                          "help": null,
+                          "newWindowAvailable": false,
+                          "titleClass": "",
+                          "rendered": false,
+                          "loading": true
+                        }
+                      },
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "dateFrom": {
+                            "type": "string",
+                            "example": "08/01/2025"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "dateTo": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          }
+                        },
+                        "example": {
+                          "dateFrom": "08/01/2025",
+                          "date": "12/04/2025",
+                          "dateTo": "12/04/2025"
+                        }
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "Asia/Kolkata"
+                      }
+                    },
+                    "example": {
+                      "widget": {
+                        "id": 47,
+                        "name": "District Analytics",
+                        "type": "reloadText",
+                        "column": 0,
+                        "size": "size-h4-w4",
+                        "color": "light",
+                        "code": "App\\Widget\\QuickSightDashboardWidget",
+                        "help": null,
+                        "newWindowAvailable": false,
+                        "titleClass": "",
+                        "rendered": false,
+                        "loading": true
+                      },
+                      "filters": {
+                        "dateFrom": "08/01/2025",
+                        "date": "12/04/2025",
+                        "dateTo": "12/04/2025"
+                      },
+                      "timezone": "Asia/Kolkata"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "widget": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 30
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Campaign Section Analytics (Grouped by Role)"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "radarChart"
+                          },
+                          "column": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "size-h2-w4"
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": "light"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "App\\Widget\\StaffAssessment\\RoleRadarChartWidget"
+                          },
+                          "help": {
+                            "type": "null"
+                          },
+                          "newWindowAvailable": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "titleClass": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "rendered": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "loading": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        },
+                        "example": {
+                          "id": 30,
+                          "name": "Campaign Section Analytics (Grouped by Role)",
+                          "type": "radarChart",
+                          "column": 0,
+                          "size": "size-h2-w4",
+                          "color": "light",
+                          "code": "App\\Widget\\StaffAssessment\\RoleRadarChartWidget",
+                          "help": null,
+                          "newWindowAvailable": false,
+                          "titleClass": "",
+                          "rendered": false,
+                          "loading": true
+                        }
+                      },
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "dateFrom": {
+                            "type": "string",
+                            "example": "08/01/2025"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "dateTo": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "campaign": {
+                            "type": "number",
+                            "example": 0
+                          }
+                        },
+                        "example": {
+                          "dateFrom": "08/01/2025",
+                          "date": "12/04/2025",
+                          "dateTo": "12/04/2025",
+                          "campaign": 0
+                        }
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "Asia/Kolkata"
+                      }
+                    },
+                    "example": {
+                      "widget": {
+                        "id": 30,
+                        "name": "Campaign Section Analytics (Grouped by Role)",
+                        "type": "radarChart",
+                        "column": 0,
+                        "size": "size-h2-w4",
+                        "color": "light",
+                        "code": "App\\Widget\\StaffAssessment\\RoleRadarChartWidget",
+                        "help": null,
+                        "newWindowAvailable": false,
+                        "titleClass": "",
+                        "rendered": false,
+                        "loading": true
+                      },
+                      "filters": {
+                        "dateFrom": "08/01/2025",
+                        "date": "12/04/2025",
+                        "dateTo": "12/04/2025",
+                        "campaign": 0
+                      },
+                      "timezone": "Asia/Kolkata"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "widget": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 31
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Campaign Section Analytics (Grouped by School)"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "radarChart"
+                          },
+                          "column": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "size-h2-w4"
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": "light"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "App\\Widget\\StaffAssessment\\SchoolRadarChartWidget"
+                          },
+                          "help": {
+                            "type": "null"
+                          },
+                          "newWindowAvailable": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "titleClass": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "rendered": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "loading": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        },
+                        "example": {
+                          "id": 31,
+                          "name": "Campaign Section Analytics (Grouped by School)",
+                          "type": "radarChart",
+                          "column": 0,
+                          "size": "size-h2-w4",
+                          "color": "light",
+                          "code": "App\\Widget\\StaffAssessment\\SchoolRadarChartWidget",
+                          "help": null,
+                          "newWindowAvailable": false,
+                          "titleClass": "",
+                          "rendered": false,
+                          "loading": true
+                        }
+                      },
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "dateFrom": {
+                            "type": "string",
+                            "example": "08/01/2025"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "dateTo": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "campaign": {
+                            "type": "number",
+                            "example": 0
+                          }
+                        },
+                        "example": {
+                          "dateFrom": "08/01/2025",
+                          "date": "12/04/2025",
+                          "dateTo": "12/04/2025",
+                          "campaign": 0
+                        }
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "Asia/Kolkata"
+                      }
+                    },
+                    "example": {
+                      "widget": {
+                        "id": 31,
+                        "name": "Campaign Section Analytics (Grouped by School)",
+                        "type": "radarChart",
+                        "column": 0,
+                        "size": "size-h2-w4",
+                        "color": "light",
+                        "code": "App\\Widget\\StaffAssessment\\SchoolRadarChartWidget",
+                        "help": null,
+                        "newWindowAvailable": false,
+                        "titleClass": "",
+                        "rendered": false,
+                        "loading": true
+                      },
+                      "filters": {
+                        "dateFrom": "08/01/2025",
+                        "date": "12/04/2025",
+                        "dateTo": "12/04/2025",
+                        "campaign": 0
+                      },
+                      "timezone": "Asia/Kolkata"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "widget": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 43
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "District Level Assessment Tool"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "districtAssessmentDistrictLevelTable"
+                          },
+                          "column": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "size-h2-w4"
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": "light"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "App\\Widget\\DistrictAssessment\\PackageAndDistrictLevelPackagesAnalyticTableWidget"
+                          },
+                          "help": {
+                            "type": "null"
+                          },
+                          "newWindowAvailable": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "titleClass": {
+                            "type": "string",
+                            "example": "header-blue"
+                          },
+                          "rendered": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "loading": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        },
+                        "example": {
+                          "id": 43,
+                          "name": "District Level Assessment Tool",
+                          "type": "districtAssessmentDistrictLevelTable",
+                          "column": 0,
+                          "size": "size-h2-w4",
+                          "color": "light",
+                          "code": "App\\Widget\\DistrictAssessment\\PackageAndDistrictLevelPackagesAnalyticTableWidget",
+                          "help": null,
+                          "newWindowAvailable": false,
+                          "titleClass": "header-blue",
+                          "rendered": false,
+                          "loading": true
+                        }
+                      },
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "dateFrom": {
+                            "type": "string",
+                            "example": "08/01/2025"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "dateTo": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          }
+                        },
+                        "example": {
+                          "dateFrom": "08/01/2025",
+                          "date": "12/04/2025",
+                          "dateTo": "12/04/2025"
+                        }
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "Asia/Kolkata"
+                      }
+                    },
+                    "example": {
+                      "widget": {
+                        "id": 43,
+                        "name": "District Level Assessment Tool",
+                        "type": "districtAssessmentDistrictLevelTable",
+                        "column": 0,
+                        "size": "size-h2-w4",
+                        "color": "light",
+                        "code": "App\\Widget\\DistrictAssessment\\PackageAndDistrictLevelPackagesAnalyticTableWidget",
+                        "help": null,
+                        "newWindowAvailable": false,
+                        "titleClass": "header-blue",
+                        "rendered": false,
+                        "loading": true
+                      },
+                      "filters": {
+                        "dateFrom": "08/01/2025",
+                        "date": "12/04/2025",
+                        "dateTo": "12/04/2025"
+                      },
+                      "timezone": "Asia/Kolkata"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "widget": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 44
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "District Level Assessment Package Analysis"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "districtLevelAndPackageAssessmentPackageAnalysisWidget"
+                          },
+                          "column": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "size-h2-w4"
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": "light"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "App\\Widget\\DistrictAssessment\\DistrictLevelAndPackageAssessmentPackageAnalysisWidget"
+                          },
+                          "help": {
+                            "type": "string",
+                            "example": "The graph below consist of the earliest date range the BOY Assessment was given and the last EOY Assessment. The average score of all scores of the BOY and EOY are displayed as well as the increase or decrease in scores."
+                          },
+                          "newWindowAvailable": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "titleClass": {
+                            "type": "string",
+                            "example": "header-blue"
+                          },
+                          "rendered": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "loading": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        },
+                        "example": {
+                          "id": 44,
+                          "name": "District Level Assessment Package Analysis",
+                          "type": "districtLevelAndPackageAssessmentPackageAnalysisWidget",
+                          "column": 0,
+                          "size": "size-h2-w4",
+                          "color": "light",
+                          "code": "App\\Widget\\DistrictAssessment\\DistrictLevelAndPackageAssessmentPackageAnalysisWidget",
+                          "help": "The graph below consist of the earliest date range the BOY Assessment was given and the last EOY Assessment. The average score of all scores of the BOY and EOY are displayed as well as the increase or decrease in scores.",
+                          "newWindowAvailable": false,
+                          "titleClass": "header-blue",
+                          "rendered": false,
+                          "loading": true
+                        }
+                      },
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "dateFrom": {
+                            "type": "string",
+                            "example": "08/01/2025"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "dateTo": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          }
+                        },
+                        "example": {
+                          "dateFrom": "08/01/2025",
+                          "date": "12/04/2025",
+                          "dateTo": "12/04/2025"
+                        }
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "Asia/Kolkata"
+                      }
+                    },
+                    "example": {
+                      "widget": {
+                        "id": 44,
+                        "name": "District Level Assessment Package Analysis",
+                        "type": "districtLevelAndPackageAssessmentPackageAnalysisWidget",
+                        "column": 0,
+                        "size": "size-h2-w4",
+                        "color": "light",
+                        "code": "App\\Widget\\DistrictAssessment\\DistrictLevelAndPackageAssessmentPackageAnalysisWidget",
+                        "help": "The graph below consist of the earliest date range the BOY Assessment was given and the last EOY Assessment. The average score of all scores of the BOY and EOY are displayed as well as the increase or decrease in scores.",
+                        "newWindowAvailable": false,
+                        "titleClass": "header-blue",
+                        "rendered": false,
+                        "loading": true
+                      },
+                      "filters": {
+                        "dateFrom": "08/01/2025",
+                        "date": "12/04/2025",
+                        "dateTo": "12/04/2025"
+                      },
+                      "timezone": "Asia/Kolkata"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "widget": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 21
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Assessment Analytics Tool"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "districtAssessmentGeneralTable"
+                          },
+                          "column": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "size-h2-w4"
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": "light"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "App\\Widget\\DistrictAssessment\\AssessmentGeneralWidget"
+                          },
+                          "help": {
+                            "type": "null"
+                          },
+                          "newWindowAvailable": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "titleClass": {
+                            "type": "string",
+                            "example": "header-blue"
+                          },
+                          "rendered": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "loading": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        },
+                        "example": {
+                          "id": 21,
+                          "name": "Assessment Analytics Tool",
+                          "type": "districtAssessmentGeneralTable",
+                          "column": 0,
+                          "size": "size-h2-w4",
+                          "color": "light",
+                          "code": "App\\Widget\\DistrictAssessment\\AssessmentGeneralWidget",
+                          "help": null,
+                          "newWindowAvailable": false,
+                          "titleClass": "header-blue",
+                          "rendered": false,
+                          "loading": true
+                        }
+                      },
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "dateFrom": {
+                            "type": "string",
+                            "example": "08/01/2025"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "dateTo": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "package": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "assessment": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "assignment": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_schools": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_grade_levels": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_teachers": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_students": {
+                            "type": "number",
+                            "example": 0
+                          }
+                        },
+                        "example": {
+                          "dateFrom": "08/01/2025",
+                          "date": "12/04/2025",
+                          "dateTo": "12/04/2025",
+                          "package": 0,
+                          "assessment": 0,
+                          "assignment": 0,
+                          "district_assessment_schools": 0,
+                          "district_assessment_grade_levels": 0,
+                          "district_assessment_teachers": 0,
+                          "district_assessment_students": 0
+                        }
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "Asia/Kolkata"
+                      }
+                    },
+                    "example": {
+                      "widget": {
+                        "id": 21,
+                        "name": "Assessment Analytics Tool",
+                        "type": "districtAssessmentGeneralTable",
+                        "column": 0,
+                        "size": "size-h2-w4",
+                        "color": "light",
+                        "code": "App\\Widget\\DistrictAssessment\\AssessmentGeneralWidget",
+                        "help": null,
+                        "newWindowAvailable": false,
+                        "titleClass": "header-blue",
+                        "rendered": false,
+                        "loading": true
+                      },
+                      "filters": {
+                        "dateFrom": "08/01/2025",
+                        "date": "12/04/2025",
+                        "dateTo": "12/04/2025",
+                        "package": 0,
+                        "assessment": 0,
+                        "assignment": 0,
+                        "district_assessment_schools": 0,
+                        "district_assessment_grade_levels": 0,
+                        "district_assessment_teachers": 0,
+                        "district_assessment_students": 0
+                      },
+                      "timezone": "Asia/Kolkata"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "widget": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 22
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Item Assessment Analytics"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "textWithCSV"
+                          },
+                          "column": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "size-h2-w4"
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": "light"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "App\\Widget\\DistrictAssessment\\AssessmentItemAnalyticsWidget"
+                          },
+                          "help": {
+                            "type": "null"
+                          },
+                          "newWindowAvailable": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "titleClass": {
+                            "type": "string",
+                            "example": "header-blue"
+                          },
+                          "rendered": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "loading": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        },
+                        "example": {
+                          "id": 22,
+                          "name": "Item Assessment Analytics",
+                          "type": "textWithCSV",
+                          "column": 0,
+                          "size": "size-h2-w4",
+                          "color": "light",
+                          "code": "App\\Widget\\DistrictAssessment\\AssessmentItemAnalyticsWidget",
+                          "help": null,
+                          "newWindowAvailable": false,
+                          "titleClass": "header-blue",
+                          "rendered": false,
+                          "loading": true
+                        }
+                      },
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "dateFrom": {
+                            "type": "string",
+                            "example": "08/01/2025"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "dateTo": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "package": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "assessment": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "assignment": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_schools": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_grade_levels": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_teachers": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_students": {
+                            "type": "number",
+                            "example": 0
+                          }
+                        },
+                        "example": {
+                          "dateFrom": "08/01/2025",
+                          "date": "12/04/2025",
+                          "dateTo": "12/04/2025",
+                          "package": 0,
+                          "assessment": 0,
+                          "assignment": 0,
+                          "district_assessment_schools": 0,
+                          "district_assessment_grade_levels": 0,
+                          "district_assessment_teachers": 0,
+                          "district_assessment_students": 0
+                        }
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "Asia/Kolkata"
+                      }
+                    },
+                    "example": {
+                      "widget": {
+                        "id": 22,
+                        "name": "Item Assessment Analytics",
+                        "type": "textWithCSV",
+                        "column": 0,
+                        "size": "size-h2-w4",
+                        "color": "light",
+                        "code": "App\\Widget\\DistrictAssessment\\AssessmentItemAnalyticsWidget",
+                        "help": null,
+                        "newWindowAvailable": false,
+                        "titleClass": "header-blue",
+                        "rendered": false,
+                        "loading": true
+                      },
+                      "filters": {
+                        "dateFrom": "08/01/2025",
+                        "date": "12/04/2025",
+                        "dateTo": "12/04/2025",
+                        "package": 0,
+                        "assessment": 0,
+                        "assignment": 0,
+                        "district_assessment_schools": 0,
+                        "district_assessment_grade_levels": 0,
+                        "district_assessment_teachers": 0,
+                        "district_assessment_students": 0
+                      },
+                      "timezone": "Asia/Kolkata"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "widget": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 37
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Assessment Analytics Tool"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "districtAssessmentGeneralTable"
+                          },
+                          "column": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "size-h2-w4"
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": "light"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "App\\Widget\\PackageAssessment\\AssessmentGeneralWidget"
+                          },
+                          "help": {
+                            "type": "null"
+                          },
+                          "newWindowAvailable": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "titleClass": {
+                            "type": "string",
+                            "example": "header-blue"
+                          },
+                          "rendered": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "loading": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        },
+                        "example": {
+                          "id": 37,
+                          "name": "Assessment Analytics Tool",
+                          "type": "districtAssessmentGeneralTable",
+                          "column": 0,
+                          "size": "size-h2-w4",
+                          "color": "light",
+                          "code": "App\\Widget\\PackageAssessment\\AssessmentGeneralWidget",
+                          "help": null,
+                          "newWindowAvailable": false,
+                          "titleClass": "header-blue",
+                          "rendered": false,
+                          "loading": true
+                        }
+                      },
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "dateFrom": {
+                            "type": "string",
+                            "example": "08/01/2025"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "dateTo": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "package": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "assessment": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "assignment": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_schools": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_grade_levels": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_teachers": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_students": {
+                            "type": "number",
+                            "example": 0
+                          }
+                        },
+                        "example": {
+                          "dateFrom": "08/01/2025",
+                          "date": "12/04/2025",
+                          "dateTo": "12/04/2025",
+                          "package": 0,
+                          "assessment": 0,
+                          "assignment": 0,
+                          "district_assessment_schools": 0,
+                          "district_assessment_grade_levels": 0,
+                          "district_assessment_teachers": 0,
+                          "district_assessment_students": 0
+                        }
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "Asia/Kolkata"
+                      }
+                    },
+                    "example": {
+                      "widget": {
+                        "id": 37,
+                        "name": "Assessment Analytics Tool",
+                        "type": "districtAssessmentGeneralTable",
+                        "column": 0,
+                        "size": "size-h2-w4",
+                        "color": "light",
+                        "code": "App\\Widget\\PackageAssessment\\AssessmentGeneralWidget",
+                        "help": null,
+                        "newWindowAvailable": false,
+                        "titleClass": "header-blue",
+                        "rendered": false,
+                        "loading": true
+                      },
+                      "filters": {
+                        "dateFrom": "08/01/2025",
+                        "date": "12/04/2025",
+                        "dateTo": "12/04/2025",
+                        "package": 0,
+                        "assessment": 0,
+                        "assignment": 0,
+                        "district_assessment_schools": 0,
+                        "district_assessment_grade_levels": 0,
+                        "district_assessment_teachers": 0,
+                        "district_assessment_students": 0
+                      },
+                      "timezone": "Asia/Kolkata"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "widget": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 38
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Item Assessment Analytics"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "textWithCSV"
+                          },
+                          "column": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "size-h2-w4"
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": "light"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "App\\Widget\\PackageAssessment\\AssessmentItemAnalyticsWidget"
+                          },
+                          "help": {
+                            "type": "null"
+                          },
+                          "newWindowAvailable": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "titleClass": {
+                            "type": "string",
+                            "example": "header-blue"
+                          },
+                          "rendered": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "loading": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        },
+                        "example": {
+                          "id": 38,
+                          "name": "Item Assessment Analytics",
+                          "type": "textWithCSV",
+                          "column": 0,
+                          "size": "size-h2-w4",
+                          "color": "light",
+                          "code": "App\\Widget\\PackageAssessment\\AssessmentItemAnalyticsWidget",
+                          "help": null,
+                          "newWindowAvailable": false,
+                          "titleClass": "header-blue",
+                          "rendered": false,
+                          "loading": true
+                        }
+                      },
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "dateFrom": {
+                            "type": "string",
+                            "example": "08/01/2025"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "dateTo": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "package": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "assessment": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "assignment": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_schools": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_grade_levels": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_teachers": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_students": {
+                            "type": "number",
+                            "example": 0
+                          }
+                        },
+                        "example": {
+                          "dateFrom": "08/01/2025",
+                          "date": "12/04/2025",
+                          "dateTo": "12/04/2025",
+                          "package": 0,
+                          "assessment": 0,
+                          "assignment": 0,
+                          "district_assessment_schools": 0,
+                          "district_assessment_grade_levels": 0,
+                          "district_assessment_teachers": 0,
+                          "district_assessment_students": 0
+                        }
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "Asia/Kolkata"
+                      }
+                    },
+                    "example": {
+                      "widget": {
+                        "id": 38,
+                        "name": "Item Assessment Analytics",
+                        "type": "textWithCSV",
+                        "column": 0,
+                        "size": "size-h2-w4",
+                        "color": "light",
+                        "code": "App\\Widget\\PackageAssessment\\AssessmentItemAnalyticsWidget",
+                        "help": null,
+                        "newWindowAvailable": false,
+                        "titleClass": "header-blue",
+                        "rendered": false,
+                        "loading": true
+                      },
+                      "filters": {
+                        "dateFrom": "08/01/2025",
+                        "date": "12/04/2025",
+                        "dateTo": "12/04/2025",
+                        "package": 0,
+                        "assessment": 0,
+                        "assignment": 0,
+                        "district_assessment_schools": 0,
+                        "district_assessment_grade_levels": 0,
+                        "district_assessment_teachers": 0,
+                        "district_assessment_students": 0
+                      },
+                      "timezone": "Asia/Kolkata"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "widget": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 39
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Assessment Performance Analytics"
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "textWithCSV"
+                          },
+                          "column": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "size-h2-w4"
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": "light"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "App\\Widget\\PackageAssessment\\AssessmentPerformanceAnalyticsWidget"
+                          },
+                          "help": {
+                            "type": "null"
+                          },
+                          "newWindowAvailable": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "titleClass": {
+                            "type": "string",
+                            "example": "header-blue"
+                          },
+                          "rendered": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "loading": {
+                            "type": "boolean",
+                            "example": true
+                          }
+                        },
+                        "example": {
+                          "id": 39,
+                          "name": "Assessment Performance Analytics",
+                          "type": "textWithCSV",
+                          "column": 0,
+                          "size": "size-h2-w4",
+                          "color": "light",
+                          "code": "App\\Widget\\PackageAssessment\\AssessmentPerformanceAnalyticsWidget",
+                          "help": null,
+                          "newWindowAvailable": false,
+                          "titleClass": "header-blue",
+                          "rendered": false,
+                          "loading": true
+                        }
+                      },
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "dateFrom": {
+                            "type": "string",
+                            "example": "08/01/2025"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "dateTo": {
+                            "type": "string",
+                            "example": "12/04/2025"
+                          },
+                          "package": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "assessment": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "assignment": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_schools": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_grade_levels": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_teachers": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "district_assessment_students": {
+                            "type": "number",
+                            "example": 0
+                          }
+                        },
+                        "example": {
+                          "dateFrom": "08/01/2025",
+                          "date": "12/04/2025",
+                          "dateTo": "12/04/2025",
+                          "package": 0,
+                          "assessment": 0,
+                          "assignment": 0,
+                          "district_assessment_schools": 0,
+                          "district_assessment_grade_levels": 0,
+                          "district_assessment_teachers": 0,
+                          "district_assessment_students": 0
+                        }
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": "Asia/Kolkata"
+                      }
+                    },
+                    "example": {
+                      "widget": {
+                        "id": 39,
+                        "name": "Assessment Performance Analytics",
+                        "type": "textWithCSV",
+                        "column": 0,
+                        "size": "size-h2-w4",
+                        "color": "light",
+                        "code": "App\\Widget\\PackageAssessment\\AssessmentPerformanceAnalyticsWidget",
+                        "help": null,
+                        "newWindowAvailable": false,
+                        "titleClass": "header-blue",
+                        "rendered": false,
+                        "loading": true
+                      },
+                      "filters": {
+                        "dateFrom": "08/01/2025",
+                        "date": "12/04/2025",
+                        "dateTo": "12/04/2025",
+                        "package": 0,
+                        "assessment": 0,
+                        "assignment": 0,
+                        "district_assessment_schools": 0,
+                        "district_assessment_grade_levels": 0,
+                        "district_assessment_teachers": 0,
+                        "district_assessment_students": 0
+                      },
+                      "timezone": "Asia/Kolkata"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "widget": {
+                  "id": 47,
+                  "name": "District Analytics",
+                  "type": "reloadText",
+                  "column": 0,
+                  "size": "size-h4-w4",
+                  "color": "light",
+                  "code": "App\\Widget\\QuickSightDashboardWidget",
+                  "help": null,
+                  "newWindowAvailable": false,
+                  "titleClass": "",
+                  "rendered": false,
+                  "loading": true
+                },
+                "filters": {
+                  "dateFrom": "08/01/2025",
+                  "date": "12/04/2025",
+                  "dateTo": "12/04/2025"
+                },
+                "timezone": "Asia/Kolkata"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:05:07 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.58 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:05:07 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=79"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/{dataId}": {
+      "get": {
+        "summary": "GET /data/{dataId}",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "n12119d170134.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "dataId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the data resource.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:05:05 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.58 (Ubuntu)"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, must-revalidate, private"
+              },
+              "expires": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:05:05 GMT"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=81"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "transfer-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/js/app.js": {
+      "get": {
+        "summary": "GET /js/app.js",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "n12119d170134.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:04:42 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.58 (Ubuntu)"
+              },
+              "last-modified": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 27 Aug 2021 06:33:01 GMT"
+              },
+              "etag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"31f-5ca84a7aa4140-gzip\""
+              },
+              "accept-ranges": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bytes"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Accept-Encoding"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "gzip"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "402"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=97"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/javascript"
+              }
+            },
+            "content": {
+              "text/javascript": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/js/widget/{widgetId}/revoke_assignment.js": {
+      "get": {
+        "summary": "GET /js/widget/{widgetId}/revoke_assignment.js",
+        "description": "Auto-generated from observed network traffic.",
+        "tags": [
+          "n12119d170134.acceleratelearning.com"
+        ],
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "1"
+            }
+          },
+          {
+            "name": "widgetId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the widget resource.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200 response",
+            "headers": {
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 05 Dec 2025 13:04:42 GMT"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Apache/2.4.58 (Ubuntu)"
+              },
+              "last-modified": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Wed, 04 May 2022 07:19:41 GMT"
+              },
+              "etag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\"7a9-5de2a72e29d40-gzip\""
+              },
+              "accept-ranges": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "bytes"
+              },
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Accept-Encoding"
+              },
+              "content-encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "gzip"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "647"
+              },
+              "keep-alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5, max=96"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Keep-Alive"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "text/javascript"
+              }
+            },
+            "content": {
+              "text/javascript": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
