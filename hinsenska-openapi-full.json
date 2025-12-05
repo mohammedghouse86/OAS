@@ -1,0 +1,570 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Hinsenska",
+    "version": "1.0.0",
+    "description": "Auto-generated from Postman collection with basic tags and schemas."
+  },
+  "servers": [
+    {
+      "url": "https://www.hisenseksa.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Cart",
+      "description": "Operations related to Cart."
+    },
+    {
+      "name": "Regional",
+      "description": "Operations related to Regional."
+    },
+    {
+      "name": "Soundbar",
+      "description": "Operations related to Soundbar."
+    },
+    {
+      "name": "Laser Tv Series",
+      "description": "Operations related to Laser Tv Series."
+    },
+    {
+      "name": "Laser Tv",
+      "description": "Operations related to Laser Tv."
+    },
+    {
+      "name": "My Account",
+      "description": "Operations related to My Account."
+    },
+    {
+      "name": "Shop",
+      "description": "Operations related to Shop."
+    },
+    {
+      "name": "Refrigerator Series",
+      "description": "Operations related to Refrigerator Series."
+    },
+    {
+      "name": "Laundry Series",
+      "description": "Operations related to Laundry Series."
+    },
+    {
+      "name": "Dishwasher Series",
+      "description": "Operations related to Dishwasher Series."
+    },
+    {
+      "name": "Chest Freezer Series",
+      "description": "Operations related to Chest Freezer Series."
+    },
+    {
+      "name": "Chest Freezer",
+      "description": "Operations related to Chest Freezer."
+    },
+    {
+      "name": "Certificate Download",
+      "description": "Operations related to Certificate Download."
+    }
+  ],
+  "paths": {
+    "/cart/": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "summary": "GET /cart/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "summary": "POST /cart/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CartRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regional": {
+      "get": {
+        "tags": [
+          "Regional"
+        ],
+        "summary": "GET /regional",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/regional/": {
+      "get": {
+        "tags": [
+          "Regional"
+        ],
+        "summary": "GET /regional/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/soundbar/2-1-ch-soundbar-hs2000/": {
+      "get": {
+        "tags": [
+          "Soundbar"
+        ],
+        "summary": "GET /soundbar/2-1-ch-soundbar-hs2000/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/laser-tv-series/": {
+      "get": {
+        "tags": [
+          "Laser Tv Series"
+        ],
+        "summary": "GET /laser-tv-series/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/laser-tv/": {
+      "get": {
+        "tags": [
+          "Laser Tv"
+        ],
+        "summary": "GET /laser-tv/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/laser-tv/px3-2/": {
+      "get": {
+        "tags": [
+          "Laser Tv"
+        ],
+        "summary": "GET /laser-tv/px3-2/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/my-account/": {
+      "get": {
+        "tags": [
+          "My Account"
+        ],
+        "summary": "GET /my-account/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/my-account/edit-account/": {
+      "post": {
+        "tags": [
+          "My Account"
+        ],
+        "summary": "POST /my-account/edit-account/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/MyAccountEditAccountRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "My Account"
+        ],
+        "summary": "GET /my-account/edit-account/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/my-account/orders/": {
+      "get": {
+        "tags": [
+          "My Account"
+        ],
+        "summary": "GET /my-account/orders/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/shop/": {
+      "get": {
+        "tags": [
+          "Shop"
+        ],
+        "summary": "GET /shop/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/my-account/wishlist/": {
+      "get": {
+        "tags": [
+          "My Account"
+        ],
+        "summary": "GET /my-account/wishlist/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/my-account/edit-address/": {
+      "get": {
+        "tags": [
+          "My Account"
+        ],
+        "summary": "GET /my-account/edit-address/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/my-account/edit-address/shipping/": {
+      "get": {
+        "tags": [
+          "My Account"
+        ],
+        "summary": "GET /my-account/edit-address/shipping/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "My Account"
+        ],
+        "summary": "POST /my-account/edit-address/shipping/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/MyAccountEditAddressShippingRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/my-account/edit-address/billing/": {
+      "get": {
+        "tags": [
+          "My Account"
+        ],
+        "summary": "GET /my-account/edit-address/billing/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "My Account"
+        ],
+        "summary": "POST /my-account/edit-address/billing/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/MyAccountEditAddressBillingRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/refrigerator-series/": {
+      "get": {
+        "tags": [
+          "Refrigerator Series"
+        ],
+        "summary": "GET /refrigerator-series/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/laundry-series/": {
+      "get": {
+        "tags": [
+          "Laundry Series"
+        ],
+        "summary": "GET /laundry-series/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/dishwasher-series/": {
+      "get": {
+        "tags": [
+          "Dishwasher Series"
+        ],
+        "summary": "GET /dishwasher-series/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/chest-freezer-series/": {
+      "get": {
+        "tags": [
+          "Chest Freezer Series"
+        ],
+        "summary": "GET /chest-freezer-series/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/chest-freezer": {
+      "get": {
+        "tags": [
+          "Chest Freezer"
+        ],
+        "summary": "GET /chest-freezer",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/certificate-download/": {
+      "get": {
+        "tags": [
+          "Certificate Download"
+        ],
+        "summary": "GET /certificate-download/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CartRequest": {
+        "type": "object",
+        "properties": {
+          "coupon_code": {
+            "type": "string"
+          },
+          "apply_coupon": {
+            "type": "string"
+          },
+          "woocommerce_apply_coupon_nonce": {
+            "type": "string"
+          },
+          "_wp_http_referer": {
+            "type": "string"
+          }
+        }
+      },
+      "MyAccountEditAccountRequest": {
+        "type": "object",
+        "properties": {
+          "account_first_name": {
+            "type": "string"
+          },
+          "account_last_name": {
+            "type": "string"
+          },
+          "account_email": {
+            "type": "string"
+          },
+          "billing_phone": {
+            "type": "string"
+          },
+          "save-account-details-nonce": {
+            "type": "string"
+          },
+          "_wp_http_referer": {
+            "type": "string"
+          },
+          "save_account_details": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "password_current": {
+            "type": "string"
+          },
+          "password_new": {
+            "type": "string"
+          },
+          "password_confirm": {
+            "type": "string"
+          }
+        }
+      },
+      "MyAccountEditAddressShippingRequest": {
+        "type": "object",
+        "properties": {
+          "shipping_first_name": {
+            "type": "string"
+          },
+          "shipping_last_name": {
+            "type": "string"
+          },
+          "shipping_company": {
+            "type": "string"
+          },
+          "shipping_country": {
+            "type": "string"
+          },
+          "shipping_address_1": {
+            "type": "string"
+          },
+          "shipping_address_2": {
+            "type": "string"
+          },
+          "shipping_city": {
+            "type": "string"
+          },
+          "shipping_postcode": {
+            "type": "string"
+          },
+          "save_address": {
+            "type": "string"
+          },
+          "woocommerce-edit-address-nonce": {
+            "type": "string"
+          },
+          "_wp_http_referer": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          }
+        }
+      },
+      "MyAccountEditAddressBillingRequest": {
+        "type": "object",
+        "properties": {
+          "billing_first_name": {
+            "type": "string"
+          },
+          "billing_last_name": {
+            "type": "string"
+          },
+          "billing_company": {
+            "type": "string"
+          },
+          "billing_country": {
+            "type": "string"
+          },
+          "billing_address_1": {
+            "type": "string"
+          },
+          "billing_city": {
+            "type": "string"
+          },
+          "billing_postcode": {
+            "type": "string"
+          },
+          "billing_phone": {
+            "type": "string"
+          },
+          "billing_email": {
+            "type": "string"
+          },
+          "save_address": {
+            "type": "string"
+          },
+          "woocommerce-edit-address-nonce": {
+            "type": "string"
+          },
+          "_wp_http_referer": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
