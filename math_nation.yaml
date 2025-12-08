@@ -1,0 +1,183 @@
+openapi: 3.0.3
+info:
+  title: Math Nation – GraphQL API
+  description: |
+    GraphQL API used by Accelerate Learning – Math Nation platform.
+    All operations are executed via a single GraphQL endpoint.
+  version: 1.0.0
+  contact:
+    name: Engineering Team
+servers:
+  - url: https://stem.acceleratelearning.com
+
+tags:
+  - name: Coursework
+  - name: Classes
+  - name: Students
+  - name: Videos
+  - name: Content
+  - name: OnRamp
+  - name: Assignments
+  - name: Resources
+  - name: Notes
+  - name: Users
+  - name: Reports
+
+paths:
+  /api/graphql:
+    post:
+      tags: [GraphQL]
+      summary: GraphQL API Endpoint
+      description: Executes GraphQL queries and mutations.
+      operationId: executeGraphQL
+      security:
+        - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GraphQLRequest"
+            examples:
+
+              getMnCoursework:
+                summary: Get Math Nation Coursework
+                value:
+                  query: |
+                    query getMnCoursework($itemsPerPage: Int, $classId: String) {
+                      mnCoursework(itemsPerPage: $itemsPerPage, classId: $classId) {
+                        resultSetJson
+                        nextToken
+                      }
+                    }
+                  variables:
+                    itemsPerPage: 900
+                    classId: "class-id"
+
+              getClassList:
+                summary: Get Class List
+                value:
+                  query: |
+                    query getClassList($teachersId: String, $schoolId: String) {
+                      classes(filter: {teachersId: $teachersId, schoolId: $schoolId}) {
+                        collection {
+                          _id
+                          name
+                          gradeOrCourse
+                        }
+                      }
+                    }
+                  variables:
+                    teachersId: "teacher-id"
+                    schoolId: "school-id"
+
+              createClass:
+                summary: Create Class
+                value:
+                  query: |
+                    mutation createClass($input: createClassInput!) {
+                      createClass(input: $input) {
+                        class {
+                          _id
+                        }
+                      }
+                    }
+                  variables:
+                    input:
+                      name: "IceBreak"
+                      gradeOrCourse: "MN Core Kindergarten"
+                      curriculumArea: "Math"
+                      schoolId: "school-id"
+
+              getStudents:
+                summary: Get Students
+                value:
+                  query: |
+                    query getStudents($teacherId: String!, $schoolId: String) {
+                      teacherStudents(filter: {teachersId: $teacherId, schoolId: $schoolId}) {
+                        collection {
+                          firstName
+                          lastName
+                        }
+                      }
+                    }
+                  variables:
+                    teacherId: "teacher-id"
+                    schoolId: "school-id"
+
+              getVideosList:
+                summary: Get Videos List
+                value:
+                  query: |
+                    query getVideosList($page: Int!, $itemsPerPage: Int!) {
+                      videos(page: $page, itemsPerPage: $itemsPerPage) {
+                        collection {
+                          id
+                          fileName
+                          videoUrl
+                        }
+                      }
+                    }
+                  variables:
+                    page: 1
+                    itemsPerPage: 1000
+
+      responses:
+        "200":
+          description: Successful GraphQL execution
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GraphQLResponse"
+        "400":
+          description: Invalid GraphQL query
+        "401":
+          description: Unauthorized
+
+components:
+  securitySchemes:
+    SessionCookie:
+      type: apiKey
+      in: cookie
+      name: SessionId
+
+  schemas:
+    GraphQLRequest:
+      type: object
+      required: [query]
+      properties:
+        query:
+          type: string
+          description: GraphQL query or mutation
+        variables:
+          type: object
+          additionalProperties: true
+
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/GraphQLError"
+
+    GraphQLError:
+      type: object
+      properties:
+        message:
+          type: string
+        locations:
+          type: array
+          items:
+            type: object
+            properties:
+              line:
+                type: integer
+              column:
+                type: integer
+        path:
+          type: array
+          items:
+            type: string
