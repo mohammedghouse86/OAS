@@ -1,0 +1,888 @@
+openapi: 3.0.3
+info:
+  title: Celitech Dashboard API (QA)
+  version: 1.0.0
+  description: |
+    OpenAPI specification inferred from browser HAR capture of the QA Celitech Partners Dashboard.
+    All endpoints, methods, and parameters come from the HAR file; response schemas are placeholders
+    and should be refined based on the actual API responses.
+
+servers:
+  - url: https://pqua916yy1.execute-api.us-east-1.amazonaws.com/qa
+    description: QA environment
+
+tags:
+  - name: Analytics
+    description: Analytics endpoints for purchases and usage
+  - name: Purchases
+    description: Purchases listing and lookups
+  - name: ESIM
+    description: eSIM lookup, codes, and history
+  - name: Connectivity
+    description: Connectivity and SIM status
+  - name: Brands
+    description: Email and network brand configuration
+  - name: Users
+    description: User management for the dashboard
+  - name: Metadata
+    description: Destinations, price list, QR code, and other metadata
+
+paths:
+  /analytics/purchases:
+    get:
+      tags: [Analytics]
+      summary: Get aggregated purchases analytics
+      description: Returns purchases analytics for a given date window.
+      operationId: getPurchasesAnalytics
+      parameters:
+        - name: afterDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Start date (inclusive) for analytics, e.g. 2025-11-10.
+        - name: beforeDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: End date (inclusive) for analytics, e.g. 2025-12-10.
+        - name: src
+          in: query
+          required: false
+          schema:
+            type: string
+            example: dashboard
+          description: Source identifier (observed value "dashboard").
+      responses:
+        '200':
+          description: Purchases analytics for the specified period.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsPurchasesResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /analytics/purchases/destination:
+    get:
+      tags: [Analytics]
+      summary: Get purchases analytics by destination
+      operationId: getPurchasesAnalyticsByDestination
+      parameters:
+        - $ref: '#/components/parameters/AfterDate'
+        - $ref: '#/components/parameters/BeforeDate'
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Aggregated purchases by destination.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsByDestinationResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /analytics/purchases/esim-status:
+    get:
+      tags: [Analytics]
+      summary: Get purchases analytics by eSIM status
+      operationId: getPurchasesAnalyticsByEsimStatus
+      parameters:
+        - $ref: '#/components/parameters/AfterDate'
+        - $ref: '#/components/parameters/BeforeDate'
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Aggregated purchases by eSIM status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsByEsimStatusResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /analytics/purchases/package:
+    get:
+      tags: [Analytics]
+      summary: Get purchases analytics by package
+      operationId: getPurchasesAnalyticsByPackage
+      parameters:
+        - $ref: '#/components/parameters/AfterDate'
+        - $ref: '#/components/parameters/BeforeDate'
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Aggregated purchases by package.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsByPackageResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /analytics/purchases/package-duration:
+    get:
+      tags: [Analytics]
+      summary: Get purchases analytics by package duration
+      operationId: getPurchasesAnalyticsByPackageDuration
+      parameters:
+        - $ref: '#/components/parameters/AfterDate'
+        - $ref: '#/components/parameters/BeforeDate'
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Aggregated purchases by package duration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsByPackageDurationResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /analytics/purchases/purchase-type:
+    get:
+      tags: [Analytics]
+      summary: Get purchases analytics by purchase type
+      operationId: getPurchasesAnalyticsByPurchaseType
+      parameters:
+        - $ref: '#/components/parameters/AfterDate'
+        - $ref: '#/components/parameters/BeforeDate'
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Aggregated purchases by purchase type.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsByPurchaseTypeResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /analytics/purchases/region:
+    get:
+      tags: [Analytics]
+      summary: Get purchases analytics by region
+      operationId: getPurchasesAnalyticsByRegion
+      parameters:
+        - $ref: '#/components/parameters/AfterDate'
+        - $ref: '#/components/parameters/BeforeDate'
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Aggregated purchases by region.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsByRegionResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /analytics/purchases/source:
+    get:
+      tags: [Analytics]
+      summary: Get purchases analytics by source
+      operationId: getPurchasesAnalyticsBySource
+      parameters:
+        - $ref: '#/components/parameters/AfterDate'
+        - $ref: '#/components/parameters/BeforeDate'
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Aggregated purchases by purchase source.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsBySourceResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /connectivity/sim/{iccid}/status:
+    get:
+      tags: [Connectivity]
+      summary: Get connectivity status for a SIM
+      operationId: getSimConnectivityStatus
+      parameters:
+        - name: iccid
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ICCID of the SIM (observed example "123").
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Connectivity status for the SIM.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimStatusResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /destinations:
+    get:
+      tags: [Metadata]
+      summary: List destinations
+      operationId: listDestinations
+      parameters:
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: List of available destinations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DestinationsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /email-brand:
+    get:
+      tags: [Brands]
+      summary: Get email brand configuration
+      operationId: getEmailBrand
+      parameters:
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Current email branding configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailBrandResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags: [Brands]
+      summary: Set email brand configuration
+      operationId: setEmailBrand
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailBrandRequest'
+      responses:
+        '200':
+          description: Email brand updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailBrandResponse'
+        '400':
+          description: Invalid email brand request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /network-brand:
+    get:
+      tags: [Brands]
+      summary: Get network brand configuration
+      operationId: getNetworkBrand
+      parameters:
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Current network branding configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkBrandResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags: [Brands]
+      summary: Set network brand configuration
+      operationId: setNetworkBrand
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NetworkBrandRequest'
+      responses:
+        '200':
+          description: Network brand updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkBrandResponse'
+        '400':
+          description: Invalid network brand request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /esim:
+    get:
+      tags: [ESIM]
+      summary: Lookup eSIM by ICCID
+      operationId: getEsim
+      parameters:
+        - name: iccid
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "123"
+          description: ICCID of the eSIM.
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: eSIM details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EsimResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /esim/{iccid}/codes:
+    get:
+      tags: [ESIM]
+      summary: Get eSIM codes
+      operationId: getEsimCodes
+      parameters:
+        - name: iccid
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "123"
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: eSIM activation codes for the given ICCID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EsimCodesResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /esim/{iccid}/history:
+    get:
+      tags: [ESIM]
+      summary: Get eSIM history
+      operationId: getEsimHistory
+      parameters:
+        - name: iccid
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "123"
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Historical events for the eSIM.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EsimHistoryResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /price-list:
+    get:
+      tags: [Metadata]
+      summary: Get price list
+      operationId: getPriceList
+      parameters:
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Price list for available products/packages.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /purchases:
+    get:
+      tags: [Purchases]
+      summary: List purchases
+      description: >
+        Lists purchases either by ICCID or by customer email. From the HAR, both
+        `iccid`-based and `email`-based queries are supported.
+      operationId: listPurchases
+      parameters:
+        - name: iccid
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter purchases by ICCID.
+        - name: email
+          in: query
+          required: false
+          schema:
+            type: string
+            format: email
+          description: Filter purchases by customer email.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+          description: Page size (observed value 50).
+        - name: src
+          in: query
+          required: false
+          schema:
+            type: string
+            example: dashboard
+          description: Source identifier (observed value "dashboard").
+      responses:
+        '200':
+          description: List of purchases.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchasesResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /purchases/email:
+    get:
+      tags: [Purchases]
+      summary: Get purchases email for an ICCID
+      operationId: getPurchaseEmailByIccid
+      parameters:
+        - name: iccid
+          in: query
+          required: true
+          schema:
+            type: string
+          description: ICCID of interest.
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: Email address associated with the ICCID purchases.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseEmailResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /qr-code:
+    get:
+      tags: [Metadata]
+      summary: Get QR code
+      operationId: getQrCode
+      parameters:
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: QR code payload used by the dashboard.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QrCodeResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /users:
+    get:
+      tags: [Users]
+      summary: List users
+      operationId: listUsers
+      parameters:
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: List of users visible in the dashboard.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /user:
+    post:
+      tags: [Users]
+      summary: Create or invite a user
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+      responses:
+        '200':
+          description: User created/invited successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Invalid user request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags: [Users]
+      summary: Delete a user
+      operationId: deleteUser
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+            format: email
+          description: Email of the user to delete.
+        - $ref: '#/components/parameters/Src'
+      responses:
+        '200':
+          description: User deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteUserResponse'
+        '400':
+          description: Invalid delete request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /user/role:
+    post:
+      tags: [Users]
+      summary: Update user role
+      operationId: updateUserRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRoleUpdateRequest'
+      responses:
+        '200':
+          description: User role updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Invalid user role update request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  parameters:
+    AfterDate:
+      name: afterDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+      description: Start date (inclusive) for analytics.
+    BeforeDate:
+      name: beforeDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+      description: End date (inclusive) for analytics.
+    Src:
+      name: src
+      in: query
+      required: false
+      schema:
+        type: string
+        example: dashboard
+      description: Source identifier, observed as "dashboard" in the HAR file.
+
+  schemas:
+    # Generic / shared
+    AnyJson:
+      type: object
+      description: |
+        Placeholder schema for JSON responses where the HAR did not include a body.
+        Replace with the actual structure when available.
+      additionalProperties: true
+
+    ErrorResponse:
+      type: object
+      description: Generic error response.
+      additionalProperties: true
+
+    # Analytics responses (placeholders)
+    AnalyticsPurchasesResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Aggregated purchases analytics.
+
+    AnalyticsByDestinationResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Purchases aggregated by destination.
+
+    AnalyticsByEsimStatusResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Purchases aggregated by eSIM status.
+
+    AnalyticsByPackageResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Purchases aggregated by package.
+
+    AnalyticsByPackageDurationResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Purchases aggregated by package duration.
+
+    AnalyticsByPurchaseTypeResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Purchases aggregated by purchase type.
+
+    AnalyticsByRegionResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Purchases aggregated by region.
+
+    AnalyticsBySourceResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Purchases aggregated by purchase source.
+
+    # ESIM-related
+    EsimResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: eSIM details for a given ICCID.
+
+    EsimCodesResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: eSIM activation codes.
+
+    EsimHistoryResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: History entries for a given eSIM.
+
+    # Connectivity
+    SimStatusResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Connectivity status for a SIM.
+
+    # Brand configuration
+    EmailBrandRequest:
+      type: object
+      required:
+        - emailBrand
+      properties:
+        emailBrand:
+          type: string
+          example: CELITECH9
+          description: Identifier or name of the email brand.
+        src:
+          type: string
+          example: dashboard
+          description: Source identifier (dashboard).
+    EmailBrandResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Current or updated email brand configuration.
+
+    NetworkBrandRequest:
+      type: object
+      required:
+        - networkBrand
+      properties:
+        networkBrand:
+          type: string
+          example: CELITECH9
+          description: Identifier or name of the network brand.
+        src:
+          type: string
+          example: dashboard
+          description: Source identifier (dashboard).
+    NetworkBrandResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Current or updated network brand configuration.
+
+    # Purchases
+    PurchasesResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Paginated list of purchases.
+
+    PurchaseEmailResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Email associated with a given ICCID.
+
+    # Metadata
+    DestinationsResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Destinations metadata.
+
+    PriceListResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Price list metadata.
+
+    QrCodeResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: QR code payload.
+
+    # Users
+    UserCreateRequest:
+      type: object
+      required:
+        - email
+        - role
+      properties:
+        email:
+          type: string
+          format: email
+          example: mohammedghouse86.backup@gmail.com
+          description: Email of the user to create/invite.
+        role:
+          type: string
+          example: user
+          description: Role to assign to the user.
+        src:
+          type: string
+          example: dashboard
+          description: Source identifier (dashboard).
+    UserRoleUpdateRequest:
+      type: object
+      required:
+        - email
+        - role
+      properties:
+        email:
+          type: string
+          format: email
+          example: fatima@perfai.ai
+          description: Email of the user whose role is to be updated.
+        role:
+          type: string
+          example: user
+          description: New role for the user.
+        src:
+          type: string
+          example: dashboard
+          description: Source identifier (dashboard).
+    UserResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: User object returned by user operations.
+
+    UserListResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: List of users.
+
+    DeleteUserResponse:
+      allOf:
+        - $ref: '#/components/schemas/AnyJson'
+      description: Result of delete user operation.
