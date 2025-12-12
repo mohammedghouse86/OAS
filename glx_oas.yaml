@@ -1,0 +1,185 @@
+openapi: 3.0.3
+info:
+  title: GLX Studio API
+  version: 1.0.0
+  description: Generated from Postman collection. Request/response schemas may be
+    incomplete; validate against live API.
+servers:
+- url: https://glxstudio.com
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: cookie
+      description: Cookie value used by the Postman collection ({{cookie}}).
+security:
+- cookieAuth: []
+paths:
+  /projects:
+    get:
+      summary: Projects
+      tags:
+      - GLX Studio
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        4XX:
+          description: Client Error
+        5XX:
+          description: Server Error
+  /home/workspaces:
+    get:
+      summary: Workspaces
+      tags:
+      - GLX Studio
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        4XX:
+          description: Client Error
+        5XX:
+          description: Server Error
+  /create-workspace:
+    post:
+      summary: create-workspace
+      tags:
+      - GLX Studio
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        4XX:
+          description: Client Error
+        5XX:
+          description: Server Error
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                iCreateWorkspace:
+                  type: string
+              required:
+              - title
+              - description
+              - iCreateWorkspace
+            example:
+              title: new Gtt workspace
+              description: ''
+              iCreateWorkspace: 'true'
+  /tasks:
+    get:
+      summary: Task
+      tags:
+      - GLX Studio
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        4XX:
+          description: Client Error
+        5XX:
+          description: Server Error
+  /media-library:
+    get:
+      summary: media-library
+      tags:
+      - GLX Studio
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        4XX:
+          description: Client Error
+        5XX:
+          description: Server Error
+  /admin/company/{id}:
+    get:
+      summary: /admin/company/{id}
+      tags:
+      - GLX Studio
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Resource identifier.
+      responses:
+        '200':
+          description: Success
+        4XX:
+          description: Client Error
+        5XX:
+          description: Server Error
+  /ajax:
+    post:
+      summary: addCompanyUser
+      tags:
+      - GLX Studio
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+        example: addCompanyUser
+      - name: companyid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '22822'
+      responses:
+        '200':
+          description: Success
+        4XX:
+          description: Client Error
+        5XX:
+          description: Server Error
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            example: firstName=Jack&lastName=Doe&email=jack%40tester.com&role=8
+    get:
+      summary: removeUser
+      tags:
+      - GLX Studio
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+        example: removeUserFromCompany
+      - name: userid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '1200361962548551'
+      - name: companyid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '22822'
+      responses:
+        '200':
+          description: Success
+        4XX:
+          description: Client Error
+        5XX:
+          description: Server Error
