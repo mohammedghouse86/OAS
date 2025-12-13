@@ -1,0 +1,1338 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GLX Studio /ajax",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://glxstudio.com/ajax"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_getWorkspaceCollaboratorsJSON_workspaceid_55043",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "getWorkspaceCollaboratorsJSON"
+          },
+          {
+            "name": "workspaceid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "55043"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=getWorkspaceCollaboratorsJSON&workspaceid=55043",
+        "x-server": "https://glxstudio.com/ajax"
+      },
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "post___action_GetWorkspacePreferences",
+        "summary": "POST /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "GetWorkspacePreferences"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "workspaceid=55043"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=GetWorkspacePreferences",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__fe707f1a": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_getWorkspaceMessageJSON_workspaceid_55043",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "getWorkspaceMessageJSON"
+          },
+          {
+            "name": "workspaceid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "55043"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=getWorkspaceMessageJSON&workspaceid=55043",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__5e2ad85f": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_accessedWorkspace_workspaceid_55043",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "accessedWorkspace"
+          },
+          {
+            "name": "workspaceid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "55043"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=accessedWorkspace&workspaceid=55043",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__a7da7a50": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_getWorkspaceAssetsJSON_parentid_0_workspaceid_55043",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "getWorkspaceAssetsJSON"
+          },
+          {
+            "name": "workspaceid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "55043"
+          },
+          {
+            "name": "parentid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=getWorkspaceAssetsJSON&parentid=0&workspaceid=55043",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__61b949c1": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "post___action_accountUpdateDetails",
+        "summary": "POST /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "accountUpdateDetails"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "username=ghouse+mohammed&firstname=ghouse+&lastname=mohammed&city=&state=-1&zip=&country=-1&phone=&email=mohammedghouse86.backup%40gmail.com&news=on"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=accountUpdateDetails",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__9865b1cf": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "post___action_accountUpdateSocial",
+        "summary": "POST /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "accountUpdateSocial"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "linkedInURL=&twitterURL=twitter.com&facebookURL="
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=accountUpdateSocial",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__bb9929c1": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "post___action_createProject",
+        "summary": "POST /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "createProject"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "title=Untitled+Project"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=createProject",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__9d8a2d2c": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_getProjectAssets_projectid_18811",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "getProjectAssets"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=getProjectAssets&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__74888542": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_getProjectComments_projectid_18811",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "getProjectComments"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=getProjectComments&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__d66d85d0": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_projectTimelineLoad_projectid_18811",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "projectTimelineLoad"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=projectTimelineLoad&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__ed5dfa11": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "post___action_projectAssetUploadRequest_projectid_18811",
+        "summary": "POST /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "projectAssetUploadRequest"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/default_post_Req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=projectAssetUploadRequest&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__fd713f0c": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "post___action_projectAssetUploadSuccess_projectid_18811",
+        "summary": "POST /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "projectAssetUploadSuccess"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "key=8c6d3323-652e-43f2-aadf-4fba2527dac9.mp4&uuid=8c6d3323-652e-43f2-aadf-4fba2527dac9&name=videoplayback.mp4&bucket=mm-test-accelerated-bucket&etag=%22c85b05bf94c2113aba7919bb6a47ddfd%22&Content-Disposition=attachment%3B+filename*%3Dutf-8''videoplayback.mp4&parentid=0"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=projectAssetUploadSuccess&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__dup__3098030c": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_getProjectAssets_projectid_18811_dup",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "getProjectAssets"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=getProjectAssets&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__82eee36d": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_getProjectRenders_projectid_18811",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "getProjectRenders"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=getProjectRenders&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__4518bdff": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "post___action_storybuilder_create",
+        "summary": "POST /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "storybuilder-create"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "userObjective=&projectid=18811&knowledgeFilesJSON=%5B%7B%22key%22%3A%22post_17655908472111515184612924139250161.tmp%22%2C%22filename%22%3A%22glx+prompt.txt%22%7D%5D&voiceid=ZF6FPAbjXT4488VcRRnw&language=en"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=storybuilder-create",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__a40feb35": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_storyAI_storyid_2453",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "storyAI"
+          },
+          {
+            "name": "storyid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2453"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=storyAI&storyid=2453",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__dup__bbab34a8": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_projectTimelineLoad_projectid_18811_dup",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "projectTimelineLoad"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=projectTimelineLoad&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__dup__c0de6ab5": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_getProjectComments_projectid_18811_dup",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "getProjectComments"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=getProjectComments&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__dup__7dc03128": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_storyAI_storyid_2453_dup",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "storyAI"
+          },
+          {
+            "name": "storyid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2453"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=storyAI&storyid=2453",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__dc333cb9": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_storyAI_projectStatus_checking_storyid_2453",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "storyAI"
+          },
+          {
+            "name": "storyid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2453"
+          },
+          {
+            "name": "projectStatus",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "checking"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=storyAI&projectStatus=checking&storyid=2453",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__dup__159b5e6f": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_storyAI_projectStatus_checking_storyid_2453_dup",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "storyAI"
+          },
+          {
+            "name": "storyid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2453"
+          },
+          {
+            "name": "projectStatus",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "checking"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=storyAI&projectStatus=checking&storyid=2453",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__eb592eac": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_checkBackgroundMusic_projectid_18811",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "checkBackgroundMusic"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=checkBackgroundMusic&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__dup__2c65fa04": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_checkBackgroundMusic_projectid_18811_dup",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "checkBackgroundMusic"
+          },
+          {
+            "name": "projectid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "18811"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=checkBackgroundMusic&projectid=18811",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__5ce6c082": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "post___action_addCompanyUser_companyid_22822",
+        "summary": "POST /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "addCompanyUser"
+          },
+          {
+            "name": "companyid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "22822"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "firstName=Jack&lastName=Doe&email=jack%40tester.com&role=8"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=addCompanyUser&companyid=22822",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__989f7133": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "post___action_updateCompanyRole",
+        "summary": "POST /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "updateCompanyRole"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "companyid=22822&roleid=125439&newRole=5"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=updateCompanyRole",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    },
+    "/__q__2b0a47d8": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "operationId": "get___action_removeUserFromCompany_companyid_22822_userid_1200361962548551",
+        "summary": "GET /",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "removeUserFromCompany"
+          },
+          {
+            "name": "userid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1200361962548551"
+          },
+          {
+            "name": "companyid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "22822"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP 200",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-originalPath": "/",
+        "x-querySignature": "action=removeUserFromCompany&companyid=22822&userid=1200361962548551",
+        "x-server": "https://glxstudio.com/ajax"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "default_post_Req": {
+        "type": "object",
+        "properties": {
+          "expiration": {
+            "type": "string"
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "acl": {
+                  "type": "string"
+                },
+                "bucket": {
+                  "type": "string"
+                },
+                "Content-Type": {
+                  "type": "string"
+                },
+                "success_action_status": {
+                  "type": "string"
+                },
+                "key": {
+                  "type": "string"
+                },
+                "Content-Disposition": {
+                  "type": "string"
+                },
+                "x-amz-meta-parentid": {
+                  "type": "string"
+                },
+                "x-amz-meta-qqfilename": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "acl",
+                "bucket",
+                "Content-Type",
+                "success_action_status",
+                "key",
+                "Content-Disposition",
+                "x-amz-meta-parentid",
+                "x-amz-meta-qqfilename"
+              ]
+            }
+          }
+        },
+        "required": [
+          "expiration",
+          "conditions"
+        ]
+      }
+    }
+  }
+}
