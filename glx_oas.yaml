@@ -1,138 +1,293 @@
 openapi: 3.0.3
 info:
-  title: GLX Studio API
+  title: GLX Studio APP
   version: 1.0.0
-  description: Generated from Postman collection. Request/response schemas may be
-    incomplete; validate against live API.
+  description: OpenAPI specification for GLX Studio
 servers:
 - url: https://glxstudio.com
-components:
-  securitySchemes:
-    cookieAuth:
-      type: apiKey
-      in: cookie
-      name: cookie
-      description: Cookie value used by the Postman collection ({{cookie}}).
-security:
-- cookieAuth: []
+tags:
+- name: Account
+- name: Admin
+- name: Ajax
+- name: Home
+- name: Media
+- name: Projects
+- name: Tasks
+- name: Workspaces
 paths:
   /projects:
     get:
-      summary: Projects
       tags:
-      - GLX Studio
+      - Projects
+      operationId: get_Projects
+      description: Projects.
       parameters: []
       responses:
         '200':
-          description: Success
-        4XX:
-          description: Client Error
-        5XX:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: Server Error
-  /home/workspaces:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /account/edit/details:
     get:
-      summary: Workspaces
       tags:
-      - GLX Studio
+      - Account
+      operationId: get_account_edit_details
+      description: /account/edit/details.
       parameters: []
       responses:
         '200':
-          description: Success
-        4XX:
-          description: Client Error
-        5XX:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: Server Error
-  /create-workspace:
-    post:
-      summary: create-workspace
-      tags:
-      - GLX Studio
-      parameters: []
-      responses:
-        '200':
-          description: Success
-        4XX:
-          description: Client Error
-        5XX:
-          description: Server Error
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                title:
-                  type: string
-                description:
-                  type: string
-                iCreateWorkspace:
-                  type: string
-              required:
-              - title
-              - description
-              - iCreateWorkspace
-            example:
-              title: new Gtt workspace
-              description: ''
-              iCreateWorkspace: 'true'
-  /tasks:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /project/{projectId}:
     get:
-      summary: Task
       tags:
-      - GLX Studio
-      parameters: []
-      responses:
-        '200':
-          description: Success
-        4XX:
-          description: Client Error
-        5XX:
-          description: Server Error
-  /media-library:
-    get:
-      summary: media-library
-      tags:
-      - GLX Studio
-      parameters: []
-      responses:
-        '200':
-          description: Success
-        4XX:
-          description: Client Error
-        5XX:
-          description: Server Error
-  /admin/company/{id}:
-    get:
-      summary: /admin/company/{id}
-      tags:
-      - GLX Studio
+      - Projects
+      operationId: get_projects_projectId
+      description: /projects/{projectId}.
       parameters:
-      - name: id
+      - name: projectId
         in: path
         required: true
         schema:
           type: string
-        description: Resource identifier.
+        description: Numeric identifier
       responses:
         '200':
-          description: Success
-        4XX:
-          description: Client Error
-        5XX:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: Server Error
-  /ajax:
-    post:
-      summary: addCompanyUser
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /home/workspaces:
+    get:
       tags:
-      - GLX Studio
+      - Home
+      operationId: get_Workspaces
+      description: Workspaces.
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /create-workspace:
+    post:
+      tags:
+      - Workspaces
+      operationId: post_create_workspace
+      description: create-workspace.
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_create_workspace_Request'
+  /tasks:
+    get:
+      tags:
+      - Tasks
+      operationId: get_Task
+      description: Task.
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /media-library:
+    get:
+      tags:
+      - Media
+      operationId: get_media_library
+      description: media-library.
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /admin/company/{companyId}:
+    get:
+      tags:
+      - Admin
+      operationId: get_admin_company_id
+      description: /admin/company/{id}.
+      parameters:
+      - name: companyId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Numeric identifier
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/addCompanyUser:
+    post:
+      tags:
+      - Ajax
+      operationId: post_addCompanyUser
+      description: 'addCompanyUser. Original request: /ajax?action=addCompanyUser.'
       parameters:
       - name: action
         in: query
         required: true
         schema:
           type: string
-        example: addCompanyUser
+          enum:
+          - addCompanyUser
+        description: Action name (fixed for this endpoint).
       - name: companyid
         in: query
         required: true
@@ -141,29 +296,48 @@ paths:
         example: '22822'
       responses:
         '200':
-          description: Success
-        4XX:
-          description: Client Error
-        5XX:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
             schema:
-              type: string
-            example: firstName=Jack&lastName=Doe&email=jack%40tester.com&role=8
+              $ref: '#/components/schemas/post_addCompanyUser_Request'
+  /ajax/removeUserFromCompany:
     get:
-      summary: removeUser
       tags:
-      - GLX Studio
+      - Ajax
+      operationId: get_removeUser
+      description: 'removeUser. Original request: /ajax?action=removeUserFromCompany.'
       parameters:
       - name: action
         in: query
         required: true
         schema:
           type: string
-        example: removeUserFromCompany
+          enum:
+          - removeUserFromCompany
+        description: Action name (fixed for this endpoint).
       - name: userid
         in: query
         required: true
@@ -178,8 +352,1834 @@ paths:
         example: '22822'
       responses:
         '200':
-          description: Success
-        4XX:
-          description: Client Error
-        5XX:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/getWorkspaceCollaboratorsJSON:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_getWorkspaceCollaborators
+      description: '/ajax getWorkspaceCollaborators. Original request: /ajax?action=getWorkspaceCollaboratorsJSON.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - getWorkspaceCollaboratorsJSON
+        description: Action name (fixed for this endpoint).
+      - name: workspaceid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '55043'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/getWorkspaceMessageJSON:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_getWorkspaceMessageJSON
+      description: '/ajax getWorkspaceMessageJSON. Original request: /ajax?action=getWorkspaceMessageJSON.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - getWorkspaceMessageJSON
+        description: Action name (fixed for this endpoint).
+      - name: workspaceid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '55043'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/accessedWorkspace:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_accessedWorkspace
+      description: '/ajax accessedWorkspace. Original request: /ajax?action=accessedWorkspace.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - accessedWorkspace
+        description: Action name (fixed for this endpoint).
+      - name: workspaceid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '55043'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/getWorkspaceAssetsJSON:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_getWorkspaceAssetsJSON
+      description: '/ajax getWorkspaceAssetsJSON. Original request: /ajax?action=getWorkspaceAssetsJSON.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - getWorkspaceAssetsJSON
+        description: Action name (fixed for this endpoint).
+      - name: workspaceid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '55043'
+      - name: parentid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/getProjectAssets:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_getProjectAssets
+      description: '/ajax getProjectAssets. Original request: /ajax?action=getProjectAssets.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - getProjectAssets
+        description: Action name (fixed for this endpoint).
+      - name: projectid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '18811'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/getProjectComments:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_getProjectComments
+      description: '/ajax getProjectComments. Original request: /ajax?action=getProjectComments.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - getProjectComments
+        description: Action name (fixed for this endpoint).
+      - name: projectid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '18811'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/projectTimelineLoad:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_projectTimelineLoad
+      description: '/ajax projectTimelineLoad. Original request: /ajax?action=projectTimelineLoad.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - projectTimelineLoad
+        description: Action name (fixed for this endpoint).
+      - name: projectid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '18811'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/getProjectRenders:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_getProjectRenders
+      description: '/ajax getProjectRenders. Original request: /ajax?action=getProjectRenders.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - getProjectRenders
+        description: Action name (fixed for this endpoint).
+      - name: projectid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '18811'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/storyAI:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_storyAI
+      description: '/ajax storyAI. Original request: /ajax?action=storyAI.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - storyAI
+        description: Action name (fixed for this endpoint).
+      - name: storyid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '2453'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/storyAI_storyid_projectStatus:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_storyAI_projectStatus
+      description: '/ajax storyAI projectStatus. Original request: /ajax?action=storyAI.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - storyAI
+        description: Action name (fixed for this endpoint).
+      - name: storyid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '2453'
+      - name: projectStatus
+        in: query
+        required: true
+        schema:
+          type: string
+        example: checking
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/checkBackgroundMusic:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_checkBackgroundMusic
+      description: '/ajax checkBackgroundMusic. Original request: /ajax?action=checkBackgroundMusic.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - checkBackgroundMusic
+        description: Action name (fixed for this endpoint).
+      - name: projectid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '18811'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/projectTimelineLoad_projectid:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_projectTimelineLoad
+      description: '/ajax projectTimelineLoad. Original request: /ajax?action=projectTimelineLoad.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - projectTimelineLoad
+        description: Action name (fixed for this endpoint).
+      - name: projectid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '18811'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/removeUserFromCompany_userid_companyid:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_removeUserFromCompany
+      description: '/ajax removeUserFromCompany. Original request: /ajax?action=removeUserFromCompany.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - removeUserFromCompany
+        description: Action name (fixed for this endpoint).
+      - name: userid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '1200361962548578'
+      - name: companyid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '22822'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/getMediaLibraryAssetsJSON:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_getMediaLibraryAssetsJSON
+      description: '/ajax getMediaLibraryAssetsJSON. Original request: /ajax?action=getMediaLibraryAssetsJSON.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - getMediaLibraryAssetsJSON
+        description: Action name (fixed for this endpoint).
+      - name: folderid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '0'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/getProjectRendersProgress:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_getProjectRendersProgress
+      description: '/ajax getProjectRendersProgress. Original request: /ajax?action=getProjectRendersProgress.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - getProjectRendersProgress
+        description: Action name (fixed for this endpoint).
+      - name: projectid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '18883'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/DeleteProjectAsset:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_DeleteProjectAsset
+      description: '/ajax DeleteProjectAsset. Original request: /ajax?action=DeleteProjectAsset.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DeleteProjectAsset
+        description: Action name (fixed for this endpoint).
+      - name: assetid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '63737'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/projectRenderDelete:
+    get:
+      tags:
+      - Ajax
+      operationId: get_ajax_projectRenderDelete
+      description: '/ajax projectRenderDelete. Original request: /ajax?action=projectRenderDelete.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - projectRenderDelete
+        description: Action name (fixed for this endpoint).
+      - name: renderid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '2705'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /ajax/projectAssetUploadRequest:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_projectAssetUploadRequest
+      description: '/ajax projectAssetUploadRequest. Original request: /ajax?action=projectAssetUploadRequest.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - projectAssetUploadRequest
+        description: Action name (fixed for this endpoint).
+      - name: projectid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '18811'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/post_ajax_projectAssetUploadRequest_Request'
+  /ajax/GetWorkspacePreferences:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_GetWorkspacePreferences
+      description: '/ajax GetWorkspacePreferences. Original request: /ajax?action=GetWorkspacePreferences.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - GetWorkspacePreferences
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/post_ajax_GetWorkspacePreferences_Request'
+  /ajax/accountUpdateDetails:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_accountUpdateDetails
+      description: '/ajax accountUpdateDetails. Original request: /ajax?action=accountUpdateDetails.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - accountUpdateDetails
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_accountUpdateDetails_Request'
+  /ajax/accountUpdateSocial:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_accountUpdateSocial
+      description: '/ajax accountUpdateSocial. Original request: /ajax?action=accountUpdateSocial.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - accountUpdateSocial
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_accountUpdateSocial_Request'
+  /ajax/createProject:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_createProject
+      description: '/ajax createProject. Original request: /ajax?action=createProject.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - createProject
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/post_ajax_createProject_Request'
+  /ajax/projectAssetUploadSuccess:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_projectAssetUploadSuccess
+      description: '/ajax projectAssetUploadSuccess. Original request: /ajax?action=projectAssetUploadSuccess.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - projectAssetUploadSuccess
+        description: Action name (fixed for this endpoint).
+      - name: projectid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '18820'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_projectAssetUploadSuccess_Request'
+  /ajax/storybuilder-create:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_storybuilder_create
+      description: '/ajax storybuilder-create. Original request: /ajax?action=storybuilder-create.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - storybuilder-create
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_storybuilder_create_Request'
+  /ajax/addCompanyUser_companyid:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_addCompanyUser
+      description: '/ajax addCompanyUser. Original request: /ajax?action=addCompanyUser.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - addCompanyUser
+        description: Action name (fixed for this endpoint).
+      - name: companyid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '22822'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_addCompanyUser_Request'
+  /ajax/updateCompanyRole:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_updateCompanyRole
+      description: '/ajax updateCompanyRole. Original request: /ajax?action=updateCompanyRole.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - updateCompanyRole
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_updateCompanyRole_Request'
+  /ajax/projectTimelineRender:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_projectTimelineRender
+      description: '/ajax projectTimelineRender. Original request: /ajax?action=projectTimelineRender.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - projectTimelineRender
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_projectTimelineRender_Request'
+  /ajax/addProjectAssets:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_addProjectAssets
+      description: '/ajax addProjectAssets. Original request: /ajax?action=addProjectAssets.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - addProjectAssets
+        description: Action name (fixed for this endpoint).
+      - name: projectid
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '18883'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_addProjectAssets_Request'
+  /ajax/projectTimelineSave:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_projectTimelineSave
+      description: '/ajax projectTimelineSave. Original request: /ajax?action=projectTimelineSave.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - projectTimelineSave
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_projectTimelineSave_Request'
+  /ajax/addProjectCollaborators:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_addProjectCollaborators
+      description: '/ajax addProjectCollaborators. Original request: /ajax?action=addProjectCollaborators.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - addProjectCollaborators
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_addProjectCollaborators_Request'
+  /ajax/addMediaLibraryFolder:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_addMediaLibraryFolder
+      description: '/ajax addMediaLibraryFolder. Original request: /ajax?action=addMediaLibraryFolder.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - addMediaLibraryFolder
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_addMediaLibraryFolder_Request'
+  /ajax/updateMediaLibraryFolderSettings:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_updateMediaLibraryFolderSettings
+      description: '/ajax updateMediaLibraryFolderSettings. Original request: /ajax?action=updateMediaLibraryFolderSettings.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - updateMediaLibraryFolderSettings
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_updateMediaLibraryFolderSettings_Request'
+  /ajax/getMediaLibraryFolderContents:
+    post:
+      tags:
+      - Ajax
+      operationId: post_ajax_getMediaLibraryFolderContents
+      description: '/ajax getMediaLibraryFolderContents. Original request: /ajax?action=getMediaLibraryFolderContents.'
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - getMediaLibraryFolderContents
+        description: Action name (fixed for this endpoint).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericJsonResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/post_ajax_getMediaLibraryFolderContents_Request'
+components:
+  securitySchemes:
+    cookieHeader:
+      type: apiKey
+      in: header
+      name: Cookie
+      description: Session cookie header used by the application.
+  schemas:
+    GenericJsonResponse:
+      type: object
+      additionalProperties: true
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+      additionalProperties: true
+    post_create_workspace_Request:
+      type: object
+      properties:
+        title:
+          type: string
+          example: new Gtt workspace
+        description:
+          type: string
+          example: ''
+        iCreateWorkspace:
+          type: string
+          example: 'true'
+      required:
+      - title
+      - description
+      - iCreateWorkspace
+    post_addCompanyUser_Request:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Jack
+        lastName:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: jack%40tester.com
+        role:
+          type: string
+          example: '8'
+      required:
+      - firstName
+      - lastName
+      - email
+      - role
+    post_ajax_projectAssetUploadRequest_Request:
+      type: object
+      properties:
+        expiration:
+          type: string
+        conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              acl:
+                type: string
+            required:
+            - acl
+      required:
+      - expiration
+      - conditions
+    post_ajax_GetWorkspacePreferences_Request:
+      type: string
+      example: workspaceid=55043
+    post_ajax_accountUpdateDetails_Request:
+      type: object
+      properties:
+        username:
+          type: string
+          example: ghouse+mohammed
+        firstname:
+          type: string
+          example: ghouse+6767
+        lastname:
+          type: string
+          example: mohammed
+        city:
+          type: string
+          example: ''
+        state:
+          type: string
+          example: '-1'
+        zip:
+          type: string
+          example: ''
+        country:
+          type: string
+          example: '-1'
+        phone:
+          type: string
+          example: ''
+        email:
+          type: string
+          example: mohammedghouse86.backup%40gmail.com
+        news:
+          type: string
+          example: 'on'
+      required:
+      - username
+      - firstname
+      - lastname
+      - city
+      - state
+      - zip
+      - country
+      - phone
+      - email
+      - news
+    post_ajax_accountUpdateSocial_Request:
+      type: object
+      properties:
+        linkedInURL:
+          type: string
+          example: yahoo.com
+        twitterURL:
+          type: string
+          example: twitter.com
+        facebookURL:
+          type: string
+          example: ''
+      required:
+      - linkedInURL
+      - twitterURL
+      - facebookURL
+    post_ajax_createProject_Request:
+      type: string
+      example: title=org1+Project
+    post_ajax_projectAssetUploadSuccess_Request:
+      type: object
+      properties:
+        key:
+          type: string
+          example: 8c6d3323-652e-43f2-aadf-4fba2527dac9.mp4
+        uuid:
+          type: string
+          example: 8c6d3323-652e-43f2-aadf-4fba2527dac9
+        name:
+          type: string
+          example: videoplayback.mp4
+        bucket:
+          type: string
+          example: mm-test-accelerated-bucket
+        etag:
+          type: string
+          example: '%22c85b05bf94c2113aba7919bb6a47ddfd%22'
+        Content-Disposition:
+          type: string
+          example: attachment%3B+filename*%3Dutf-8''videoplayback.mp4
+        parentid:
+          type: string
+          example: '0'
+      required:
+      - key
+      - uuid
+      - name
+      - bucket
+      - etag
+      - Content-Disposition
+      - parentid
+    post_ajax_storybuilder_create_Request:
+      type: object
+      properties:
+        userObjective:
+          type: string
+          example: ''
+        projectid:
+          type: string
+          example: '18811'
+        knowledgeFilesJSON:
+          type: string
+          example: '[{"key":"post_17655908472111515184612924139250161.tmp","filename":"glx prompt.txt"}]'
+        voiceid:
+          type: string
+          example: ZF6FPAbjXT4488VcRRnw
+        language:
+          type: string
+          example: en
+      required:
+      - userObjective
+      - projectid
+      - knowledgeFilesJSON
+      - voiceid
+      - language
+    post_ajax_addCompanyUser_Request:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Jack
+        lastName:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: jack%40tester.com
+        role:
+          type: string
+          example: '8'
+      required:
+      - firstName
+      - lastName
+      - email
+      - role
+    post_ajax_updateCompanyRole_Request:
+      type: object
+      properties:
+        companyid:
+          type: string
+          example: '22822'
+        roleid:
+          type: string
+          example: '125539'
+        newRole:
+          type: string
+          example: '5'
+      required:
+      - companyid
+      - roleid
+      - newRole
+    post_ajax_projectTimelineRender_Request:
+      type: object
+      properties:
+        projectid:
+          type: string
+          example: '18883'
+        title:
+          type: string
+          example: 'Introducing The Line: Vision of Neom City (Global Audience, English, Inspirational)'
+      required:
+      - projectid
+      - title
+    post_ajax_addProjectAssets_Request:
+      type: object
+      properties:
+        projectid:
+          type: string
+          example: '18883'
+        title:
+          type: string
+          example: 'Introducing The Line: Vision of Neom City (Global Audience, English, Inspirational)'
+      required:
+      - projectid
+      - title
+    post_ajax_projectTimelineSave_Request:
+      type: object
+      properties:
+        project:
+          type: string
+          example: '{"projectid":18883,"version":1,"timelineVisual":[{"clipid":"38224d25-370b-4f28-b0d3-d469266d0677","assetid":"63730","startTime":0,"query":"futuristic+skyline+dawn+light+cityscape+impossible+becomes+reality+future+vision+","duration":3.32625,"position":0,"transition":{"duration":0}},{"clipid":"ccb3eebe-2941-49af-9e17-41ea0b824bdc","assetid":"63731","startTime":3.32625,"query":"desert+landscape+technology+integration+seamless+architecture+nature+and+technology+intertwined+","duration":3.32625,"position":1,"transition":{"duration":0}},{"clipid":"7ea1181d-0826-4cdf-a117-b8c2cdd426a4","assetid":"63733","startTime":6.6525,"query":"urban+boundaries+expansive+city+city+meets+nature+boundaries+of+urban+life+redefined+","duration":3.32625,"position":2,"transition":{"duration":0}},{"clipid":"853d246d-c4b2-4df3-9ad7-647f45459832","assetid":"63736","startTime":9.97875,"query":"dramatic+pan+The+Line+reflective+glass+architecture+dawning+of+a+new+era+window+to+the+future+","duration":4.508696546052632,"position":3,"transition":{"duration":0}},{"clipid":"95a27ae0-5575-4756-9b26-7cfa345b5327","assetid":"63740","startTime":20.499041940789475,"query":"bustling+activity+innovation+people+hive+of+progress+pulse+of+tomorrow+","duration":2.2042516447368423,"position":4,"transition":{"duration":0}},{"clipid":"67a98752-17b5-43c2-80ed-0ed1b9a8708e","assetid":"63741","startTime":22.703293585526318,"query":"vision+for+tomorrow+built+for+humanity+pathway+to+future+canvas+of+innovation+","duration":2.5048314144736845,"position":5,"transition":{"duration":0}},{"clipid":"62127b96-eea5-4688-9fd7-9e11d88766bd","assetid":"63732","startTime":25.208125000000003,"query":"diverse+people+close-up+hopeful+expression+beginning+a+journey+window+to+the+future+","duration":2.499208653846154,"position":6,"transition":{"duration":0}},{"clipid":"8b01a681-c0a7-4761-bf4c-c5d0b1f558e5","assetid":"63734","startTime":27.707333653846156,"query":"digital+overlays+future+city+technology+glimpse+into+tomorrow+digital+horizon+","duration":2.7991136923076927,"position":7,"transition":{"duration":0}},{"clipid":"2329cae4-cd1a-4e4c-b8e4-c437ed573830","assetid":"63735","startTime":30.50644734615385,"query":"sunlight+hope+new+day+dawn+of+a+new+era+light+breaking+through+","duration":2.299271961538462,"position":8,"transition":{"duration":0}},{"clipid":"008dd89b-d7da-428d-b3c0-00e81c8a37f1","assetid":"63737","startTime":32.80571930769231,"query":"call-to-action+invitation+transition+stepping+into+the+future+open+doorway+","duration":2.7991136923076927,"position":9,"transition":{"duration":0}}],"timelineAudio":[{"clipid":"6ec596fa-95c1-4d29-bf70-fe10a2bfff3d","assetid":"63728","startTime":0,"position":0},{"clipid":"3e2bfb6e-5c21-43b8-8b9f-72614c385f8b","assetid":"63727","startTime":25.208125,"position":1}]}'
+      required:
+      - project
+    post_ajax_addProjectCollaborators_Request:
+      type: object
+      properties:
+        projectid:
+          type: string
+          example: '18883'
+        collaborators:
+          type: string
+          example: '[]'
+      required:
+      - projectid
+      - collaborators
+    post_ajax_addMediaLibraryFolder_Request:
+      type: object
+      properties:
+        name:
+          type: string
+          example: GMAN1
+        position:
+          type: string
+          example: '0'
+        parent_id:
+          type: string
+          example: '0'
+      required:
+      - name
+      - position
+      - parent_id
+    post_ajax_updateMediaLibraryFolderSettings_Request:
+      type: object
+      properties:
+        pk:
+          type: string
+          example: '2727'
+        name:
+          type: string
+          example: privateFolder
+        value:
+          type: string
+          example: 'false'
+      required:
+      - pk
+      - name
+      - value
+    post_ajax_getMediaLibraryFolderContents_Request:
+      type: object
+      properties:
+        folderid:
+          type: string
+          example: '788'
+      required:
+      - folderid
+security:
+- cookieHeader: []
