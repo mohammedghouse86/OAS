@@ -1,0 +1,479 @@
+openapi: 3.0.3
+info:
+  title: GLX Studio
+  version: 1.1.0
+  description: OpenAPI generated from the provided Postman collection. Request bodies
+    include examples derived from Postman payloads.
+servers:
+- url: https://glxstudio.com
+tags:
+- name: Account
+- name: Admin
+- name: Ajax
+- name: Create-workspace
+- name: Home
+- name: Media
+- name: Projects
+- name: Tasks
+paths:
+  /projects:
+    get:
+      tags:
+      - Projects
+      summary: Projects
+      operationId: get_projects
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /account/edit/details:
+    get:
+      tags:
+      - Account
+      summary: /account/edit/details
+      operationId: get_account_edit_details
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /project/{projectId}:
+    get:
+      tags:
+      - Projects
+      summary: /projects/{projectId}
+      operationId: get_project_projectId
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 19003
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /home/workspaces:
+    get:
+      tags:
+      - Home
+      summary: Workspaces
+      operationId: get_home_workspaces
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /create-workspace:
+    post:
+      tags:
+      - Create-workspace
+      summary: create-workspace
+      operationId: post_create_workspace
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: new Gtqt workspace
+                description:
+                  type: string
+                  example: ''
+                iCreateWorkspace:
+                  type: string
+                  example: 'true'
+              example:
+                title: new Gtqt workspace
+                description: ''
+                iCreateWorkspace: 'true'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Task
+      operationId: get_tasks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /media-library:
+    get:
+      tags:
+      - Media
+      summary: media-library
+      operationId: get_media_library
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /admin/company/{companyId}:
+    get:
+      tags:
+      - Admin
+      summary: /admin/company/{id}
+      operationId: get_admin_company_companyId
+      parameters:
+      - name: companyId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 22986
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /ajax:
+    post:
+      tags:
+      - Ajax
+      summary: /ajax getMediaLibraryFolderContents
+      operationId: post_ajax
+      parameters:
+      - name: action
+        in: query
+        required: false
+        schema:
+          type: string
+        example: getMediaLibraryFolderContents
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: folderid=0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+    get:
+      tags:
+      - Ajax
+      summary: /ajax projectRenderDelete
+      operationId: get_ajax
+      parameters:
+      - name: action
+        in: query
+        required: false
+        schema:
+          type: string
+        example: projectRenderDelete
+      - name: renderid
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2705'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+  /ajax/getProjectAssets:
+    get:
+      tags:
+      - Ajax
+      summary: /ajax getProjectAssets
+      operationId: get_ajax_getProjectAssets
+      parameters:
+      - name: action
+        in: query
+        required: false
+        schema:
+          type: string
+        example: getProjectAssets
+      - name: projectid
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '19003'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccess'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - cookieAuth: []
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: header
+      name: Cookie
+      description: Cookie header value used by the client (e.g., {{cookie}}).
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+      additionalProperties: true
+    GenericSuccess:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data: {}
+      additionalProperties: true
+security:
+- cookieAuth: []
