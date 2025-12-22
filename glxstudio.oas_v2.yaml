@@ -1,9 +1,11 @@
 openapi: 3.0.3
 info:
   title: GLX Studio
-  version: 1.1.0
-  description: OpenAPI generated from the provided Postman collection. Request bodies
-    include examples derived from Postman payloads.
+  version: 1.0.0
+  description: 'OpenAPI generated from the provided Postman collection (43 requests).
+    Note: many Postman requests are variants of the same HTTP path+method (e.g., /ajax
+    with different action/query/body). OpenAPI permits only one operation per path+method,
+    so variants are consolidated and listed under each operation description and x-postman-requests.'
 servers:
 - url: https://glxstudio.com
 tags:
@@ -20,7 +22,10 @@ paths:
     get:
       tags:
       - Projects
-      summary: Projects
+      summary: GET /projects
+      description: 'Postman request variants:
+
+        - Projects'
       operationId: get_projects
       responses:
         '200':
@@ -49,11 +54,16 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - Projects
   /account/edit/details:
     get:
       tags:
       - Account
-      summary: /account/edit/details
+      summary: GET /account/edit/details
+      description: 'Postman request variants:
+
+        - /account/edit/details'
       operationId: get_account_edit_details
       responses:
         '200':
@@ -82,19 +92,23 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - /account/edit/details
   /project/{projectId}:
     get:
       tags:
       - Projects
-      summary: /projects/{projectId}
+      summary: GET /project/{projectId}
+      description: 'Postman request variants:
+
+        - /projects/{projectId}'
       operationId: get_project_projectId
       parameters:
       - name: projectId
         in: path
         required: true
         schema:
-          type: integer
-        example: 19003
+          type: string
       responses:
         '200':
           description: OK
@@ -122,11 +136,16 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - /projects/{projectId}
   /home/workspaces:
     get:
       tags:
       - Home
-      summary: Workspaces
+      summary: GET /home/workspaces
+      description: 'Postman request variants:
+
+        - Workspaces'
       operationId: get_home_workspaces
       responses:
         '200':
@@ -155,14 +174,19 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - Workspaces
   /create-workspace:
     post:
       tags:
       - Create-workspace
-      summary: create-workspace
+      summary: POST /create-workspace
+      description: 'Postman request variants:
+
+        - create-workspace'
       operationId: post_create_workspace
       requestBody:
-        required: true
+        required: false
         content:
           multipart/form-data:
             schema:
@@ -208,11 +232,16 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - create-workspace
   /tasks:
     get:
       tags:
       - Tasks
-      summary: Task
+      summary: GET /tasks
+      description: 'Postman request variants:
+
+        - Task'
       operationId: get_tasks
       responses:
         '200':
@@ -241,11 +270,16 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - Task
   /media-library:
     get:
       tags:
       - Media
-      summary: media-library
+      summary: GET /media-library
+      description: 'Postman request variants:
+
+        - media-library'
       operationId: get_media_library
       responses:
         '200':
@@ -274,19 +308,23 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - media-library
   /admin/company/{companyId}:
     get:
       tags:
       - Admin
-      summary: /admin/company/{id}
+      summary: GET /admin/company/{companyId}
+      description: 'Postman request variants:
+
+        - /admin/company/{id}'
       operationId: get_admin_company_companyId
       parameters:
       - name: companyId
         in: path
         required: true
         schema:
-          type: integer
-        example: 22986
+          type: string
       responses:
         '200':
           description: OK
@@ -314,11 +352,48 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - /admin/company/{id}
   /ajax:
     post:
       tags:
       - Ajax
-      summary: /ajax getMediaLibraryFolderContents
+      summary: POST /ajax
+      description: 'Postman request variants:
+
+        - addCompanyUser (action=addCompanyUser)
+
+        - /ajax projectAssetUploadRequest (action=projectAssetUploadRequest)
+
+        - /ajax GetWorkspacePreferences (action=GetWorkspacePreferences)
+
+        - /ajax accountUpdateDetails (action=accountUpdateDetails)
+
+        - /ajax accountUpdateSocial (action=accountUpdateSocial)
+
+        - /ajax createProject (action=createProject)
+
+        - /ajax projectAssetUploadSuccess (action=projectAssetUploadSuccess)
+
+        - /ajax storybuilder-create (action=storybuilder-create)
+
+        - /ajax addCompanyUser (action=addCompanyUser)
+
+        - /ajax updateCompanyRole (action=updateCompanyRole)
+
+        - /ajax projectTimelineRender (action=projectTimelineRender)
+
+        - /ajax addProjectAssets (action=addProjectAssets)
+
+        - /ajax projectTimelineSave (action=projectTimelineSave)
+
+        - /ajax addProjectCollaborators (action=addProjectCollaborators)
+
+        - /ajax addMediaLibraryFolder (action=addMediaLibraryFolder)
+
+        - /ajax updateMediaLibraryFolderSettings (action=updateMediaLibraryFolderSettings)
+
+        - /ajax getMediaLibraryFolderContents (action=getMediaLibraryFolderContents)'
       operationId: post_ajax
       parameters:
       - name: action
@@ -326,14 +401,322 @@ paths:
         required: false
         schema:
           type: string
-        example: getMediaLibraryFolderContents
+          enum:
+          - GetWorkspacePreferences
+          - accountUpdateDetails
+          - accountUpdateSocial
+          - addCompanyUser
+          - addMediaLibraryFolder
+          - addProjectAssets
+          - addProjectCollaborators
+          - createProject
+          - getMediaLibraryFolderContents
+          - projectAssetUploadRequest
+          - projectAssetUploadSuccess
+          - projectTimelineRender
+          - projectTimelineSave
+          - storybuilder-create
+          - updateCompanyRole
+          - updateMediaLibraryFolderSettings
+        example: GetWorkspacePreferences
+      - name: companyid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: projectid
+        in: query
+        required: false
+        schema:
+          type: string
       requestBody:
-        required: true
+        required: false
         content:
+          application/x-www-form-urlencoded:
+            schema:
+              oneOf:
+              - type: object
+                properties:
+                  firstName:
+                    type: string
+                    example: Jack
+                  lastName:
+                    type: string
+                    example: Doe
+                  email:
+                    type: string
+                    example: jack@tester.com
+                  role:
+                    type: string
+                    example: '8'
+                example:
+                  firstName: Jack
+                  lastName: Doe
+                  email: jack@tester.com
+                  role: '8'
+              - type: object
+                properties:
+                  username:
+                    type: string
+                    example: ghouse mohammed
+                  firstname:
+                    type: string
+                    example: ghouse 6767
+                  lastname:
+                    type: string
+                    example: mohammed
+                  city:
+                    type: string
+                    example: ''
+                  state:
+                    type: string
+                    example: '-1'
+                  zip:
+                    type: string
+                    example: ''
+                  country:
+                    type: string
+                    example: '-1'
+                  phone:
+                    type: string
+                    example: ''
+                  email:
+                    type: string
+                    example: mohammedghouse86.backup@gmail.com
+                  news:
+                    type: string
+                    example: 'on'
+                example:
+                  username: ghouse mohammed
+                  firstname: ghouse 6767
+                  lastname: mohammed
+                  city: ''
+                  state: '-1'
+                  zip: ''
+                  country: '-1'
+                  phone: ''
+                  email: mohammedghouse86.backup@gmail.com
+                  news: 'on'
+              - type: object
+                properties:
+                  linkedInURL:
+                    type: string
+                    example: yahoo.com
+                  twitterURL:
+                    type: string
+                    example: twitter.com
+                  facebookURL:
+                    type: string
+                    example: ''
+                example:
+                  linkedInURL: yahoo.com
+                  twitterURL: twitter.com
+                  facebookURL: ''
+              - type: object
+                properties:
+                  key:
+                    type: string
+                    example: 8c6d3323-652e-43f2-aadf-4fba2527dac9.mp4
+                  uuid:
+                    type: string
+                    example: 8c6d3323-652e-43f2-aadf-4fba2527dac9
+                  name:
+                    type: string
+                    example: videoplayback.mp4
+                  bucket:
+                    type: string
+                    example: mm-test-accelerated-bucket
+                  etag:
+                    type: string
+                    example: '"c85b05bf94c2113aba7919bb6a47ddfd"'
+                  Content-Disposition:
+                    type: string
+                    example: attachment; filename*=utf-8''videoplayback.mp4
+                  parentid:
+                    type: string
+                    example: '0'
+                example:
+                  key: 8c6d3323-652e-43f2-aadf-4fba2527dac9.mp4
+                  uuid: 8c6d3323-652e-43f2-aadf-4fba2527dac9
+                  name: videoplayback.mp4
+                  bucket: mm-test-accelerated-bucket
+                  etag: '"c85b05bf94c2113aba7919bb6a47ddfd"'
+                  Content-Disposition: attachment; filename*=utf-8''videoplayback.mp4
+                  parentid: '0'
+              - type: object
+                properties:
+                  userObjective:
+                    type: string
+                    example: ''
+                  projectid:
+                    type: string
+                    example: '19008'
+                  knowledgeFilesJSON:
+                    type: string
+                    example: '[{"key":"post_17655908472111515184612924139250161.tmp","filename":"glx
+                      prompt.txt"}]'
+                  voiceid:
+                    type: string
+                    example: ZF6FPAbjXT4488VcRRnw
+                  language:
+                    type: string
+                    example: en
+                example:
+                  userObjective: ''
+                  projectid: '19008'
+                  knowledgeFilesJSON: '[{"key":"post_17655908472111515184612924139250161.tmp","filename":"glx
+                    prompt.txt"}]'
+                  voiceid: ZF6FPAbjXT4488VcRRnw
+                  language: en
+              - type: object
+                properties:
+                  firstName:
+                    type: string
+                    example: Jack
+                  lastName:
+                    type: string
+                    example: Doe
+                  email:
+                    type: string
+                    example: jack@tester.com
+                  role:
+                    type: string
+                    example: '8'
+                example:
+                  firstName: Jack
+                  lastName: Doe
+                  email: jack@tester.com
+                  role: '8'
+              - type: object
+                properties:
+                  companyid:
+                    type: string
+                    example: '22986'
+                  roleid:
+                    type: string
+                    example: '126043'
+                  newRole:
+                    type: string
+                    example: '8'
+                example:
+                  companyid: '22986'
+                  roleid: '126043'
+                  newRole: '8'
+              - type: object
+                properties:
+                  projectid:
+                    type: string
+                    example: '19009'
+                  title:
+                    type: string
+                    example: 'Introducing The Line: Vision of Neom City (Global Audience,
+                      English, Inspirational)'
+                example:
+                  projectid: '19009'
+                  title: 'Introducing The Line: Vision of Neom City (Global Audience,
+                    English, Inspirational)'
+              - type: object
+                properties:
+                  projectid:
+                    type: string
+                    example: '19009'
+                  title:
+                    type: string
+                    example: 'Introducing The Line: Vision of Neom City (Global Audience,
+                      English, Inspirational)'
+                example:
+                  projectid: '19009'
+                  title: 'Introducing The Line: Vision of Neom City (Global Audience,
+                    English, Inspirational)'
+              - type: object
+                properties:
+                  projectid:
+                    type: string
+                    example: '19003'
+                  collaborators:
+                    type: string
+                    example: '[]'
+                example:
+                  projectid: '19003'
+                  collaborators: '[]'
+              - type: object
+                properties:
+                  name:
+                    type: string
+                    example: GMAN1
+                  position:
+                    type: string
+                    example: '0'
+                  parent_id:
+                    type: string
+                    example: '0'
+                example:
+                  name: GMAN1
+                  position: '0'
+                  parent_id: '0'
+              - type: object
+                properties:
+                  pk:
+                    type: string
+                    example: '2732'
+                  name:
+                    type: string
+                    example: privateFolder
+                  value:
+                    type: string
+                    example: 'false'
+                example:
+                  pk: '2732'
+                  name: privateFolder
+                  value: 'false'
+          application/json:
+            schema:
+              type: object
+              properties:
+                expiration:
+                  type: string
+                  example: '2025-12-13T01:57:10.137Z'
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      acl:
+                        type: string
+                        example: private
+                    example:
+                      acl: private
+                  example:
+                  - acl: private
+                  - bucket: mm-test-accelerated-bucket
+                  - Content-Type: video/mp4
+                  - success_action_status: '200'
+                  - key: 8c6d3323-652e-43f2-aadf-4fba2527dac9.mp4
+                  - Content-Disposition: attachment; filename*=utf-8''videoplayback.mp4
+                  - x-amz-meta-parentid: '0'
+                  - x-amz-meta-qqfilename: videoplayback.mp4
+              example:
+                expiration: '2025-12-13T01:57:10.137Z'
+                conditions:
+                - acl: private
+                - bucket: mm-test-accelerated-bucket
+                - Content-Type: video/mp4
+                - success_action_status: '200'
+                - key: 8c6d3323-652e-43f2-aadf-4fba2527dac9.mp4
+                - Content-Disposition: attachment; filename*=utf-8''videoplayback.mp4
+                - x-amz-meta-parentid: '0'
+                - x-amz-meta-qqfilename: videoplayback.mp4
           text/plain:
             schema:
-              type: string
-              example: folderid=0
+              oneOf:
+              - type: string
+                example: workspaceid=55416
+              - type: string
+                example: title=org1+Project
+              - type: string
+                example: project={"projectid":19003,"version":1,"timelineVisual":[{"clipid":"38224d25-370b-4f28-b0d3-d469266d0677","assetid":"63730","startTime":0,"query":"futuristic+skyline+dawn+light+cityscape+impossible+becomes+reality+future+vision+","duration":3.32625,"position":0,"transition":{"duration":0}},{"clipid":"ccb3eebe-2941-49af-9e17-41ea0b824bdc","assetid":"63731","startTime":3.32625,"query":"desert+landscape+technology+integration+seamless+architecture+nature+and+technology+intertwined+","duration":3.32625,"position":1,"transition":{"duration":0}},{"clipid":"7ea1181d-0826-4cdf-a117-b8c2cdd426a4","assetid":"63733","startTime":6.6525,"query":"urban+boundaries+expansive+city+city+meets+nature+boundaries+of+urban+life+redefined+","duration":3.32625,"position":2,"transition":{"duration":0}},{"clipid":"853d246d-c4b2-4df3-9ad7-647f45459832","assetid":"63736","startTime":9.97875,"query":"dramatic+pan+The+Line+reflective+glass+architecture+dawning+of+a+new+era+window+to+the+future+","duration":4.508696546052632,"position":3,"transition":{"duration":0}},{"clipid":"95a27ae0-5575-4756-9b26-7cfa345b5327","assetid":"63740","startTime":20.499041940789475,"query":"bustling+activity+innovation+people+hive+of+progress+pulse+of+tomorrow+","duration":2.2042516447368423,"position":4,"transition":{"duration":0}},{"clipid":"67a98752-17b5-43c2-80ed-0ed1b9a8708e","assetid":"63741","startTime":22.703293585526318,"query":"vision+for+tomorrow+built+for+humanity+pathway+to+future+canvas+of+innovation+","duration":2.5048314144736845,"position":5,"transition":{"duration":0}},{"clipid":"62127b96-eea5-4688-9fd7-9e11d88766bd","assetid":"63732","startTime":25.208125000000003,"query":"diverse+people+close-up+hopeful+expression+beginning+a+journey+window+to+the+future+","duration":2.499208653846154,"position":6,"transition":{"duration":0}},{"clipid":"8b01a681-c0a7-4761-bf4c-c5d0b1f558e5","assetid":"63734","startTime":27.707333653846156,"query":"digital+overlays+future+city+technology+glimpse+into+tomorrow+digital+horizon+","duration":2.7991136923076927,"position":7,"transition":{"duration":0}},{"clipid":"2329cae4-cd1a-4e4c-b8e4-c437ed573830","assetid":"63735","startTime":30.50644734615385,"query":"sunlight+hope+new+day+dawn+of+a+new+era+light+breaking+through+","duration":2.299271961538462,"position":8,"transition":{"duration":0}},{"clipid":"008dd89b-d7da-428d-b3c0-00e81c8a37f1","assetid":"63737","startTime":32.80571930769231,"query":"call-to-action+invitation+transition+stepping+into+the+future+open+doorway+","duration":2.7991136923076927,"position":9,"transition":{"duration":0}}],"timelineAudio":[{"clipid":"6ec596fa-95c1-4d29-bf70-fe10a2bfff3d","assetid":"63728","startTime":0,"position":0},{"clipid":"3e2bfb6e-5c21-43b8-8b9f-72614c385f8b","assetid":"63727","startTime":25.208125,"position":1}]}
+              - type: string
+                example: folderid=0
       responses:
         '200':
           description: OK
@@ -361,10 +744,63 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - addCompanyUser
+      - /ajax projectAssetUploadRequest
+      - /ajax GetWorkspacePreferences
+      - /ajax accountUpdateDetails
+      - /ajax accountUpdateSocial
+      - /ajax createProject
+      - /ajax projectAssetUploadSuccess
+      - /ajax storybuilder-create
+      - /ajax addCompanyUser
+      - /ajax updateCompanyRole
+      - /ajax projectTimelineRender
+      - /ajax addProjectAssets
+      - /ajax projectTimelineSave
+      - /ajax addProjectCollaborators
+      - /ajax addMediaLibraryFolder
+      - /ajax updateMediaLibraryFolderSettings
+      - /ajax getMediaLibraryFolderContents
     get:
       tags:
       - Ajax
-      summary: /ajax projectRenderDelete
+      summary: GET /ajax
+      description: 'Postman request variants:
+
+        - removeUser (action=removeUserFromCompany)
+
+        - /ajax getWorkspaceCollaborators (action=getWorkspaceCollaboratorsJSON)
+
+        - /ajax getWorkspaceMessageJSON (action=getWorkspaceMessageJSON)
+
+        - /ajax accessedWorkspace (action=accessedWorkspace)
+
+        - /ajax getWorkspaceAssetsJSON (action=getWorkspaceAssetsJSON)
+
+        - /ajax getProjectComments (action=getProjectComments)
+
+        - /ajax projectTimelineLoad (action=projectTimelineLoad)
+
+        - /ajax getProjectRenders (action=getProjectRenders)
+
+        - /ajax storyAI (action=storyAI)
+
+        - /ajax storyAI projectStatus (action=storyAI)
+
+        - /ajax checkBackgroundMusic (action=checkBackgroundMusic)
+
+        - /ajax projectTimelineLoad (action=projectTimelineLoad)
+
+        - /ajax removeUserFromCompany (action=removeUserFromCompany)
+
+        - /ajax getMediaLibraryAssetsJSON (action=getMediaLibraryAssetsJSON)
+
+        - /ajax getProjectRendersProgress (action=getProjectRendersProgress)
+
+        - /ajax DeleteProjectAsset (action=DeleteProjectAsset)
+
+        - /ajax projectRenderDelete (action=projectRenderDelete)'
       operationId: get_ajax
       parameters:
       - name: action
@@ -372,13 +808,72 @@ paths:
         required: false
         schema:
           type: string
-        example: projectRenderDelete
+          enum:
+          - DeleteProjectAsset
+          - accessedWorkspace
+          - checkBackgroundMusic
+          - getMediaLibraryAssetsJSON
+          - getProjectComments
+          - getProjectRenders
+          - getProjectRendersProgress
+          - getWorkspaceAssetsJSON
+          - getWorkspaceCollaboratorsJSON
+          - getWorkspaceMessageJSON
+          - projectRenderDelete
+          - projectTimelineLoad
+          - removeUserFromCompany
+          - storyAI
+        example: DeleteProjectAsset
+      - name: userid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: companyid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: workspaceid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: parentid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: projectid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: storyid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: projectStatus
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: folderid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: assetid
+        in: query
+        required: false
+        schema:
+          type: string
       - name: renderid
         in: query
         required: false
         schema:
           type: string
-        example: '2705'
       responses:
         '200':
           description: OK
@@ -406,11 +901,32 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - removeUser
+      - /ajax getWorkspaceCollaborators
+      - /ajax getWorkspaceMessageJSON
+      - /ajax accessedWorkspace
+      - /ajax getWorkspaceAssetsJSON
+      - /ajax getProjectComments
+      - /ajax projectTimelineLoad
+      - /ajax getProjectRenders
+      - /ajax storyAI
+      - /ajax storyAI projectStatus
+      - /ajax checkBackgroundMusic
+      - /ajax projectTimelineLoad
+      - /ajax removeUserFromCompany
+      - /ajax getMediaLibraryAssetsJSON
+      - /ajax getProjectRendersProgress
+      - /ajax DeleteProjectAsset
+      - /ajax projectRenderDelete
   /ajax/getProjectAssets:
     get:
       tags:
       - Ajax
-      summary: /ajax getProjectAssets
+      summary: GET /ajax/getProjectAssets
+      description: 'Postman request variants:
+
+        - /ajax getProjectAssets (action=getProjectAssets)'
       operationId: get_ajax_getProjectAssets
       parameters:
       - name: action
@@ -418,13 +934,14 @@ paths:
         required: false
         schema:
           type: string
+          enum:
+          - getProjectAssets
         example: getProjectAssets
       - name: projectid
         in: query
         required: false
         schema:
           type: string
-        example: '19003'
       responses:
         '200':
           description: OK
@@ -452,6 +969,8 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
       - cookieAuth: []
+      x-postman-requests:
+      - /ajax getProjectAssets
 components:
   securitySchemes:
     cookieAuth:
