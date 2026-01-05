@@ -1,0 +1,74 @@
+# Auto-generated from sample request/response captures
+# Source of truth for argument types: GraphQL operation variable definitions
+# Input field shapes inferred from sample variables when available
+
+schema {
+  query: Query
+}
+
+type Query {
+  baseDistrictAssignments(filter: BaseDistrictAssignmentsFilter!): DistrictBaseAssignmentsType
+  schools(filter: [SchoolFilter], itemsPerPage: Int, order: [SchoolFilter_order], page: Int): SchoolPageConnection
+}
+
+enum SchoolFilter_order {
+  _PLACEHOLDER
+}
+
+input BaseDistrictAssignmentsFilter {
+  schoolIds: [ID]
+}
+
+input SchoolFilter {
+  districtId: ID
+  id_list: [ID]
+  name: String
+}
+
+type District {
+  globalName: String
+  id: ID
+  state: String
+}
+
+type DistrictBaseAssignmentsType {
+  collection: [DistrictBaseAssignmentType]
+}
+
+type DistrictBaseAssignmentType {
+  assignType: String
+  daId: ID
+  districtId: ID
+  endDate: String
+  name: String
+  schoolGradeLevels: [SchoolGradeLevels]
+  startDate: String
+}
+
+type School {
+  _id: ID
+  city: String
+  district: District
+  globalName: String
+  id: ID
+  localName: String
+  mathNationId: String
+  name: String
+}
+
+type SchoolGradeLevels {
+  gradeLevels: [String]
+  school: School
+  schoolId: ID
+}
+
+type SchoolPageConnection {
+  collection: [School]
+  paginationInfo: SchoolPaginationInfo
+}
+
+type SchoolPaginationInfo {
+  itemsPerPage: Int
+  lastPage: Int
+  totalCount: Int
+}
