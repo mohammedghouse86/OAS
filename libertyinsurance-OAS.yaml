@@ -1,0 +1,736 @@
+openapi: 3.0.3
+info:
+  title: libertyinsurance App
+  version: 1.0.0
+servers:
+  - url: https://www.libertyinsurance.in
+tags:
+  - name: api
+  - name: default
+  - name: eum
+  - name: footer.html
+  - name: footermobile.html
+  - name: header.html
+  - name: id
+  - name: j
+  - name: log
+  - name: products
+paths:
+  /products/Login/GetLoginOTPEnc:
+    get:
+      tags:
+        - products
+      summary: GET /products/Login/GetLoginOTPEnc
+      operationId: get_products_Login_GetLoginOTPEnc
+      parameters:
+        - name: email
+          in: query
+          required: false
+          schema:
+            type: string
+          example: jDUtxAcixjixiNsgucEE5w==
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1767682854656"
+      responses:
+        "200":
+          description: Success
+  /products/Login/{id}:
+    get:
+      tags:
+        - products
+      summary: GET /products/Login/{id}
+      operationId: get_products_Login_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1767682854657"
+        - name: PhoneNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "8328015257"
+      responses:
+        "200":
+          description: Success
+  /products/motor-insurance/GetHoAddress:
+    get:
+      tags:
+        - products
+      summary: GET /products/motor-insurance/GetHoAddress
+      operationId: get_products_motor_insurance_GetHoAddress
+      parameters:
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1767682854658"
+      responses:
+        "200":
+          description: Success
+  /products/Login/{id}/Health:
+    get:
+      tags:
+        - products
+      summary: GET /products/Login/{id}/Health
+      operationId: get_products_Login_id_Health
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1767682964375"
+      responses:
+        "200":
+          description: Success
+  /products/SelfHelp/{id}:
+    get:
+      tags:
+        - products
+      summary: GET /products/SelfHelp/{id}
+      operationId: get_products_SelfHelp_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1767682964378"
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Contactno
+      responses:
+        "200":
+          description: Success
+  /products/MotorAdmin/{id}:
+    get:
+      tags:
+        - products
+      summary: GET /products/MotorAdmin/{id}
+      operationId: get_products_MotorAdmin_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+  /products/Login/ViewProfile:
+    get:
+      tags:
+        - products
+      summary: GET /products/Login/ViewProfile
+      operationId: get_products_Login_ViewProfile
+      responses:
+        "200":
+          description: Success
+  /products/Login/UppdateProfile:
+    get:
+      tags:
+        - products
+      summary: GET /products/Login/UppdateProfile
+      operationId: get_products_Login_UppdateProfile
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - products
+      summary: POST /products/Login/UppdateProfile
+      operationId: post_products_Login_UppdateProfile
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+            examples:
+              fromHar:
+                value:
+                  __RequestVerificationToken: Y8Hti-vzWvo-ghTXmHEL6_UjrStCSRU9Vu_xrKElDzLADM26V238qyxglrCI7QmZJKqEmUkx-KzX4fiiN0D_5FZNT27Il60tZNAOzgim16UCkFqovER5MsYkI4G0WKHpJywY-R__yW01PEKutzk-aQ2
+                  FirstName: Gh
+                  LastName: md
+                  Email: mohammedghouse86.backup%40gmail.com
+                  PhoneNumber: "8328015257"
+                  DateOfBirth: 03%2F04%2F2007
+                  OTP: ""
+                  X-Requested-With: XMLHttpRequest
+      responses:
+        "200":
+          description: Success
+  /products/Login/ChangePassword:
+    get:
+      tags:
+        - products
+      summary: GET /products/Login/ChangePassword
+      operationId: get_products_Login_ChangePassword
+      responses:
+        "200":
+          description: Success
+  /api/config.json:
+    get:
+      tags:
+        - api
+      summary: GET /api/config.json
+      operationId: get_api_config_json
+      parameters:
+        - name: key
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6WHZ4-4GT2P-74AU5-LJPHS-YCQKE
+        - name: d
+          in: query
+          required: false
+          schema:
+            type: string
+          example: www.libertyinsurance.in
+        - name: t
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5892278"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1.720.0
+        - name: sl
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: si
+          in: query
+          required: false
+          schema:
+            type: string
+          example: a5df69df-3814-46c6-8c6a-3b090663114f-t8fl7i
+        - name: plugins
+          in: query
+          required: false
+          schema:
+            type: string
+          example: AK,ConfigOverride,Continuity,PageParams,IFrameDelay,AutoXHR,SPA,History,Angular,Backbone,Ember,RT,CrossDomain,BW,PaintTiming,NavigationTiming,ResourceTiming,Memory,CACHE_RELOAD,Errors,TPAnalytics,UserTiming,Akamai,Early,EventTiming,LOGN
+        - name: acao
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: ak.ai
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "559439"
+      responses:
+        "200":
+          description: Success
+  /header.html:
+    get:
+      tags:
+        - header.html
+      summary: GET /header.html
+      operationId: get_header_html
+      responses:
+        "200":
+          description: Success
+  /footer.html:
+    get:
+      tags:
+        - footer.html
+      summary: GET /footer.html
+      operationId: get_footer_html
+      responses:
+        "200":
+          description: Success
+  /footermobile.html:
+    get:
+      tags:
+        - footermobile.html
+      summary: GET /footermobile.html
+      operationId: get_footermobile_html
+      responses:
+        "200":
+          description: Success
+  /id:
+    get:
+      tags:
+        - id
+      summary: GET /id
+      operationId: get_id
+      parameters:
+        - name: d_visid_ver
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 4.4.0
+        - name: d_fieldgroup
+          in: query
+          required: false
+          schema:
+            type: string
+          example: MC
+        - name: d_rtbd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: json
+        - name: d_ver
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2"
+        - name: d_orgid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 34CF64B35C13CD270A495C73@AdobeOrg
+        - name: d_nsid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: ts
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1767683361521"
+      responses:
+        "200":
+          description: Success
+  /j/collect:
+    post:
+      tags:
+        - j
+      summary: POST /j/collect
+      operationId: post_j_collect
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: _v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: j102
+        - name: a
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "590768742"
+        - name: t
+          in: query
+          required: false
+          schema:
+            type: string
+          example: pageview
+        - name: _s
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: dl
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://www.libertyinsurance.in/customer-support/
+        - name: ul
+          in: query
+          required: false
+          schema:
+            type: string
+          example: en-gb
+        - name: dt
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Customer Support - Liberty General Insurance
+        - name: sr
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1536x864
+        - name: vp
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1074x730
+        - name: _u
+          in: query
+          required: false
+          schema:
+            type: string
+          example: YCDAgEABAAAAACAAI~
+        - name: jid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1863682540"
+        - name: gjid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "611234071"
+        - name: cid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "996088322.1767683361"
+        - name: tid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: UA-98430182-1
+        - name: _gid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1604941337.1767683362"
+        - name: _slc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: gtm
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 45He5cc1n815DZ4NBNza200
+        - name: gcd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 13l3l3l3l1l1
+        - name: dma
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: tag_exp
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 103116026~103200004~104527906~104528500~104573694~104684208~104684211~105391253~115583767~115616986~115938465~115938468~116184927~116184929~116251938~116251940
+        - name: z
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1648918480"
+        - name: aip
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: _r
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "3"
+      responses:
+        "200":
+          description: Success
+  /:
+    get:
+      tags:
+        - default
+      summary: GET /
+      operationId: get_root
+      parameters:
+        - name: uid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: b81b4ed3-761f-486e-9afb-d7d31881dc4d-tuct10563aa2
+        - name: ptf
+          in: query
+          required: false
+          schema:
+            type: string
+          example: V2luZG93cw==
+        - name: ptfv
+          in: query
+          required: false
+          schema:
+            type: string
+          example: MTkuMC4w
+        - name: ufv
+          in: query
+          required: false
+          schema:
+            type: string
+          example: MTQzLjAuNzQ5OS4xNzA=
+        - name: bnd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: R29vZ2xlIENocm9tZQ==
+        - name: bndv
+          in: query
+          required: false
+          schema:
+            type: string
+          example: MTQz
+        - name: mbl
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ZmFsc2U=
+        - name: dc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: hk
+      responses:
+        "200":
+          description: Success
+  /{id}/log/{id}/unip:
+    get:
+      tags:
+        - log
+      summary: GET /{id}/log/{id}/unip
+      operationId: get_id_log_id_unip
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: en
+          in: query
+          required: false
+          schema:
+            type: string
+          example: pre_d_eng_tb
+        - name: tos
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "4567"
+        - name: scd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+        - name: ssd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: est
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1767683362202"
+        - name: ver
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "36"
+        - name: isls
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: src
+          in: query
+          required: false
+          schema:
+            type: string
+          example: i
+        - name: invt
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "4500"
+        - name: msa
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "3821"
+        - name: rv
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: tim
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1767683366768"
+        - name: vi
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1767683362195"
+        - name: ri
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 92a706098b1e0d839ae70d869607d81b
+        - name: sd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: v2_d026f37232c22499994dc263dee260d4_b81b4ed3-761f-486e-9afb-d7d31881dc4d-tuct10563aa2_1767683362_1767683362_CIi3jgYQnvBKGJObjpG5MyABKAEwZziY0QpAhJeABEiBtIEEUKbdFVgAYABoqtDp1ejslqi1AXABgAEAiAEA
+        - name: ui
+          in: query
+          required: false
+          schema:
+            type: string
+          example: b81b4ed3-761f-486e-9afb-d7d31881dc4d-tuct10563aa2
+        - name: ref
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://www.libertyinsurance.in/
+        - name: cv
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 20260104-11-RELEASE
+        - name: item-url
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://www.libertyinsurance.in/customer-support/
+        - name: it
+          in: query
+          required: false
+          schema:
+            type: string
+          example: JS_PIXEL
+      responses:
+        "200":
+          description: Success
+  /products/Login/{id}/Motor:
+    get:
+      tags:
+        - products
+      summary: GET /products/Login/{id}/Motor
+      operationId: get_products_Login_id_Motor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1767683387718"
+      responses:
+        "200":
+          description: Success
+  /eum/getdns.txt:
+    get:
+      tags:
+        - eum
+      summary: GET /eum/getdns.txt
+      operationId: get_eum_getdns_txt
+      parameters:
+        - name: c
+          in: query
+          required: false
+          schema:
+            type: string
+          example: plsy1rd67
+      responses:
+        "200":
+          description: Success
+  /eum/results.txt:
+    get:
+      tags:
+        - eum
+      summary: GET /eum/results.txt
+      operationId: get_eum_results_txt
+      responses:
+        "200":
+          description: Success
+components:
+  schemas: {}
