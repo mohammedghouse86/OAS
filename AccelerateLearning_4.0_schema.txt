@@ -1,0 +1,653 @@
+# Auto-generated from sample request/response captures
+# Note: This schema is best-effort; unknown referenced types are stubbed as scalars
+
+schema {
+  query: Query
+}
+
+type Query {
+  aclApplications: String
+  activeContentGroups: String
+  activeContentGroupsWithSchools: String
+  applicationSettings: ApplicationSettings
+  assessmentPool(input: AssessmentPoolInput!): AssessmentPoolPayload
+  assignment(id: String, lti: Boolean, schoolId: String): Assignment
+  assignments: StudentAssignments
+  baseDistrictAssignments(filter: BaseDistrictAssignmentsFilter!): DistrictBaseAssignmentsType
+  calendarTemplates(itemsPerPage: Int, schoolIds: [String], userRoleCode: String!): CalendarPageConnection
+  class(id: ID!): Class
+  classes(filter: [ClassFilter]): ClassPageConnection
+  createScopePlan(input: createScopePlanInput!): CreateScopePlanPayload
+  createTeam(createTeamInput: CreateTeamInput!): TeamPayload
+  createUser(input: createUserInput!): String
+  createWidget: Widget
+  deleteWidget: Widget
+  district(id: ID!): District
+  districtSettingsKnowledgeBase: DistrictSettingsKnowledgeBase
+  districtSettingsLessonPlanner: String
+  districtSettingsRoster: String
+  districtSettingsUserManagement: DistrictSettingsUserManagement
+  districtSetupStatus: String
+  identifyUsers(sisId: String, stateId: String): String
+  initiateUserSelection(input: initiateUserSelectionInput!): InitiateUserSelectionPayload
+  lookupRoles(ids: [ID!]!): String
+  ownerAssignments(classId: String, paginationInfo: StemscopesAssignmentPageInfoInput, schoolId: String): OwnerAssignments
+  pacingGuides(schoolIds: [String], userRoleCode: String!, userTeamIds: [String]): PacingGuidePageConnection
+  parents(studentId: String!): String
+  putActivitiesShareResults(params: PutActivitiesShareResultsInput!): Success
+  roles: RolePageConnection
+  saveGradingSession(sessionsParams: [SaveGradingSessionInput!]!): GradingSession
+  schools(districtId: String, filter: [SchoolFilter], id_list: [String], itemsPerPage: Int, order: [SchoolFilter_order], page: Int): SchoolPageConnection
+  scopePlan(id: ID!): ScopePlan
+  scopePlans(schoolIds: [String], userRoleCode: String!, userTeamIds: [String]): ScopePlanPageConnection
+  scopePlanTemplates(curriculumAreas: Iterable, grades: Iterable, schoolIds: Iterable, userRoleCode: String!, userTeamIds: Iterable): ScopePlanPageConnection
+  ssStandards(aggregateBy: SsStandardsAggregationTypeEnum, assignmentId: String, classId: String, districtAssessmentId: String, districtId: String, itemsPerPage: Int, level: LevelEnumType, nextToken: String, order: SsStandardsSort, schoolId: String, standards: String, teacherId: String): String
+  systemAdmins(districtUuid: String!, itemsPerPage: Int, page: Int): SystemAdminPageConnection
+  teacherFeedback(sessionId: String!): TeacherFeedback
+  teacherStudentAssignments(filter: StudentAssignmentsFilter, schoolId: String): String
+  teacherStudents(filter: [TeacherStudentFilter], itemsPerPage: Int, order: [StudentFilter_order], page: Int): StudentPageConnection
+  updateWidgets(input: [updateWidgetInput]!): String
+  users(filter: [UserFilter], itemsPerPage: Int!, order: [UserFilter_order], page: Int!): UserPageConnection
+  usersBySisId: String
+  usersByStateId: String
+  widgets: String
+}
+
+input AssessmentPoolInput {
+  stemscopesInput: AssessmentPoolInputStemscopesInput
+}
+
+input AssessmentPoolInputStemscopesInput {
+  isArchived: Boolean
+  itemsPerPage: Int
+  libraries: [String]
+  page: Int
+  schoolIds: [ID]
+}
+
+input BaseDistrictAssignmentsFilter {
+  schoolIds: [ID]
+}
+
+input ClassFilter {
+  archived: Boolean
+  hasLmsId: Boolean
+  schoolId: ID
+  status: String
+  teachersId: ID
+}
+
+input createScopePlanInput {
+  approachType: String
+  curriculumArea: String
+  grade: String
+  name: String
+  schoolIds: [ID]
+  scopePlanTemplateId: ID
+  scopePlanType: String
+  teamId: ID
+  userRoleCode: String
+  userTeamIds: [ID]
+}
+
+input CreateTeamInput {
+  context: String
+  members: [ID]
+  name: String
+}
+
+input createUserInput {
+  email: String
+  firstName: String
+  gradeLevel: String
+  language: String
+  lastName: String
+  plainPassword: String
+  schoolIds: [ID]
+  sisId: ID
+  stateId: ID
+  type: String
+  username: String
+}
+
+input initiateUserSelectionInput {
+  schoolIds: [ID]
+  userId: ID
+  userRoleCode: String
+  userTeamIds: [ID]
+}
+
+input PutActivitiesShareResultsInput {
+  assignmentId: ID
+  shareResults: String
+  studentIds: [ID]
+}
+
+input SaveGradingSessionInput {
+  responseFeedbacks: [SaveGradingSessionInputResponseFeedback]
+  responses: [SaveGradingSessionInputRespons]
+  sessionId: ID
+  userId: ID
+}
+
+input SaveGradingSessionInputRespons {
+  max_score: String
+  response_id: ID
+  score: String
+}
+
+input SaveGradingSessionInputResponseFeedback {
+  feedback: String
+  responseId: ID
+}
+
+input SchoolFilter {
+  districtId: ID
+  id_list: [ID]
+  name: String
+}
+
+input StemscopesAssignmentPageInfoInput {
+  pageNumber: Int
+  pageSize: Int
+}
+
+input StudentAssignmentsFilter {
+  studentId: ID
+}
+
+input StudentFilter_order {
+  fullName: String
+}
+
+input TeacherStudentFilter {
+  active: Boolean
+  schoolId: ID
+  schoolIds: [ID]
+  studentHasArchivedClasses: Boolean
+  teachersId: ID
+}
+
+input updateWidgetInput {
+  h: Int
+  i: String
+  id: ID
+  minH: Int
+  minW: Int
+  w: Int
+  x: Int
+  y: Int
+}
+
+type AclApplication {
+  modules: [String]
+  name: String
+  schools: [ApplicationSchool]
+}
+
+type ApplicationModule {
+  modules: [ApplicationModule]
+  name: String
+  operations: [ApplicationModuleOperation]
+}
+
+type ApplicationModuleOperation {
+  behaviour: String
+  name: String
+  scopes: [String]
+}
+
+type ApplicationSchool {
+  modules: [ApplicationModule]
+  schoolIds: [ID]
+}
+
+type ApplicationSettings {
+  id: ID
+  value: ApplicationSettingsValue
+}
+
+type ApplicationSettingsValue {
+  availableSystems: [String]
+  firstName: String
+  gradeLevel: String
+  lastName: String
+  ltiRequestParameters: [String]
+  preferences: String
+  reviewSite: Boolean
+  schoolIds: [ID]
+  user: ApplicationSettingsValueUser
+}
+
+type ApplicationSettingsValueUser {
+  availableSystems: [String]
+  districtId: ID
+  email: String
+  firstName: String
+  gradeLevel: String
+  impersonated: Boolean
+  isPasswordExpirable: Boolean
+  lastName: String
+  ltiRequestParameters: [String]
+  passwordExpirationTime: Int
+  preferences: String
+  purpose: String
+  schoolIds: [ID]
+  state: String
+  type: String
+  userId: ID
+  username: String
+  userRoles: [ApplicationSettingsValueUserUserRolesUserRole]
+}
+
+type ApplicationSettingsValueUserUserRolesUserRole {
+  roleId: ID
+  schoolIds: [ID]
+}
+
+type AssessmentPoolPayload {
+  stemscopesPayload: StemscopesAssessmentPoolPayload
+}
+
+type Assignment {
+  archived: Boolean
+  assignmentId: ID
+  assignmentSource: AssignmentSource
+  classId: ID
+  endDate: String
+  immediatelyShareResults: String
+  lateTurnIn: Boolean
+  name: String
+  notes: String
+  quantileId: String
+  startDate: String
+  studentAssignments: [StudentAssignment]
+  subgroupIds: String
+}
+
+type AssignmentSource {
+  element: String
+}
+
+type Calendar {
+  _id: ID
+  calendarEntries: EntryPageConnection
+  creator: ID
+  id: ID
+  name: String
+}
+
+type CalendarPageConnection {
+  collection: [Calendar]
+}
+
+type Class {
+  _id: ID
+  classStudents: ClassStudentPageConnection
+  name: String
+}
+
+type ClassPageConnection {
+  paginationInfo: ClassPaginationInfo
+}
+
+type ClassPaginationInfo {
+  totalCount: Int
+}
+
+type ClassStudent {
+  _id: ID
+  id: ID
+  student: Student
+}
+
+type ClassStudentPageConnection {
+  collection: [ClassStudent]
+}
+
+type ContentGroup {
+  id: ID
+}
+
+type ContentGroupWithSchoolPayload {
+  contentGroups: [String]
+  schoolId: ID
+}
+
+type CreateScopePlanPayload {
+  scopePlan: ScopePlan
+}
+
+type District {
+  _id: ID
+  externalId: String
+  globalName: String
+  id: ID
+  localName: String
+  state: String
+}
+
+type DistrictBaseAssignmentsType {
+  collection: [DistrictBaseAssignmentType]
+}
+
+type DistrictBaseAssignmentType {
+  assignType: String
+  daId: ID
+  districtId: ID
+  endDate: String
+  name: String
+  schoolGradeLevels: [SchoolGradeLevels]
+  startDate: String
+}
+
+type DistrictSettingsKnowledgeBase {
+  studentCanUsePerryBot: Boolean
+  teacherCanUsePerryBot: Boolean
+}
+
+type DistrictSettingsUserManagement {
+  teacherCanCreateStudents: Boolean
+  teacherCanEditStudentPassword: Boolean
+  teacherCanImpersonateStudents: Boolean
+}
+
+type Entry {
+  _id: ID
+  editable: Boolean
+  endDate: String
+  eventId: ID
+  id: ID
+  name: String
+  startDate: String
+  type: String
+}
+
+type EntryPageConnection {
+  collection: [Entry]
+}
+
+type GradingSession {
+  success: Boolean
+}
+
+type InitiateUserSelectionPayload {
+  userSelection: UserSelection
+}
+
+type OwnerAssignments {
+  assignments: [String]
+  pageInfo: PageInfo
+  studentAssignments: [String]
+}
+
+type PacingGuidePageConnection {
+  collection: [String]
+}
+
+type PageInfo {
+  itemsPerPage: Int
+  totalCount: Int
+}
+
+type PaginationInfoPayload {
+  itemsPerPage: Int
+  lastPage: Int
+  totalCount: Int
+}
+
+type ResponseFeedback {
+  feedback: String
+  responseId: ID
+}
+
+type Role {
+  _id: ID
+  code: String
+  id: ID
+  name: String
+}
+
+type RolePageConnection {
+  collection: [Role]
+}
+
+type School {
+  _id: ID
+  city: String
+  district: District
+  globalName: String
+  id: ID
+  localName: String
+  mathNationId: String
+  name: String
+}
+
+type SchoolGradeLevels {
+  gradeLevels: [String]
+  school: School
+  schoolId: ID
+}
+
+type SchoolPageConnection {
+  collection: [School]
+  paginationInfo: SchoolPaginationInfo
+}
+
+type SchoolPaginationInfo {
+  itemsPerPage: Int
+  lastPage: Int
+  totalCount: Int
+}
+
+type ScopePlan {
+  _id: ID
+  approachType: String
+  classSize: String
+  classTime: String
+  curriculumArea: String
+  editable: Boolean
+  grade: String
+  id: ID
+  isSelected: Boolean
+  name: String
+  pacingGuideId: String
+  scopePlanId: ID
+  scopePlanType: String
+  scopes: ScopePlanScopePageConnection
+  sharedData: [String]
+  sharedOption: String
+  teacherExp: String
+  userId: ID
+  version: Int
+}
+
+type ScopePlanPageConnection {
+  collection: [ScopePlan]
+}
+
+type ScopePlanScope {
+  _id: ID
+  elements: [String]
+  endDate: String
+  id: ID
+  instructionalDays: Int
+  order: Int
+  startDate: String
+  version: Int
+}
+
+type ScopePlanScopePageConnection {
+  collection: [ScopePlanScope]
+}
+
+type StemscopesAssessmentItemPayload {
+  activityType: String
+  createdAt: String
+  createdBy: UserPayload
+  curriculumArea: String
+  deliveries: [String]
+  grade: String
+  hiddenForSchool: Boolean
+  id: ID
+  isArchived: Boolean
+  isShared: Boolean
+  items: [String]
+  library: String
+  resourceItems: [String]
+  standards: [String]
+  teams: [String]
+  title: String
+  usersViewOnlyIds: [String]
+}
+
+type StemscopesAssessmentPoolPayload {
+  list: [StemscopesAssessmentItemPayload]
+  paginationInfo: PaginationInfoPayload
+}
+
+type Student {
+  _id: ID
+  firstName: String
+  lastName: String
+}
+
+type StudentAssignment {
+  answers: String
+  archived: Boolean
+  assessmentId: ID
+  assignmentId: ID
+  classId: ID
+  completedAt: String
+  endDate: String
+  grade: String
+  id: ID
+  lateTurnIn: Boolean
+  learnosityReferenceId: ID
+  quantileScore: String
+  resetted: Boolean
+  returnedAt: String
+  sessionId: ID
+  shareResults: String
+  startedAt: String
+  status: String
+  studentId: ID
+  studentNotes: String
+  submittedAt: String
+}
+
+type StudentAssignments {
+  collection: [StudentAssignment]
+}
+
+type StudentPageConnection {
+  collection: [String]
+  paginationInfo: StudentPaginationInfo
+}
+
+type StudentPaginationInfo {
+  lastPage: Int
+  totalCount: Int
+}
+
+type Success {
+  success: Boolean
+}
+
+type SystemAdmin {
+  firstName: String
+  lastName: String
+}
+
+type SystemAdminPageConnection {
+  collection: [SystemAdmin]
+}
+
+type TeacherFeedback {
+  responseFeedbacks: [ResponseFeedback]
+}
+
+type Team {
+  name: String
+}
+
+type TeamPayload {
+  team: Team
+}
+
+type User {
+  _id: ID
+  active: Boolean
+  district: District
+  email: String
+  externalId: String
+  externalSystemName: String
+  firstName: String
+  id: ID
+  lastLoginDate: String
+  lastName: String
+  manualMaintenance: Boolean
+  middleName: String
+  preferences: String
+  stateId: String
+  username: String
+  userRoles: UserRolePageConnection
+}
+
+type UserPageConnection {
+  collection: [User]
+  paginationInfo: UserPaginationInfo
+}
+
+type UserPaginationInfo {
+  itemsPerPage: Int
+  lastPage: Int
+  totalCount: Int
+}
+
+type UserPayload {
+  firstName: String
+  lastName: String
+}
+
+type UserRole {
+  role: Role
+  schoolIds: String
+}
+
+type UserRolePageConnection {
+  collection: [UserRole]
+}
+
+type UserSelection {
+  calendarSettingsPopup: Boolean
+}
+
+type Widget {
+  collapsed: Boolean
+  config: String
+  expandedH: Int
+  expandedW: Int
+  h: Int
+  i: String
+  id: ID
+  minH: Int
+  minW: Int
+  type: String
+  w: Int
+  x: Int
+  y: Int
+}
+
+# ---- Auto-added scalar stubs for missing types (Postman compatibility) ----
+scalar Iterable
+scalar LevelEnumType
+scalar SchoolFilter_order
+scalar SsStandardsAggregationTypeEnum
+scalar SsStandardsSort
+scalar This
+scalar UserFilter
+scalar UserFilter_order
+scalar best
+scalar is
+# ---- End auto-added stubs ----
