@@ -1,0 +1,626 @@
+openapi: 3.0.3
+info:
+  title: Sleekflow App
+  version: 1.0.0
+servers:
+  - url: https://api.sleekflow.io
+tags:
+  - name: Account
+  - name: Company
+  - name: CrmHub
+  - name: FlowHub
+  - name: IntelligentHub
+  - name: SleekPay
+  - name: TenantHub
+  - name: app
+  - name: background-task
+  - name: company
+  - name: ipaddress
+  - name: v2
+  - name: v3
+  - name: vtex
+  - name: "{id}"
+paths:
+  /Company/Staff/{id}:
+    get:
+      tags:
+        - Company
+      summary: GET /Company/Staff/{id}
+      operationId: get_Company_Staff_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 879eae59-b0ac-48c5-bc93-8952c0b0fc48
+      responses:
+        "200":
+          description: Success
+  /background-task/list:
+    get:
+      tags:
+        - background-task
+      summary: GET /background-task/list
+      operationId: get_background_task_list
+      parameters:
+        - name: isDismissed
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /v2/Company/Staff/{id}:
+    get:
+      tags:
+        - v2
+      summary: GET /v2/Company/Staff/{id}
+      operationId: get_v2_Company_Staff_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 879eae59-b0ac-48c5-bc93-8952c0b0fc48
+      responses:
+        "200":
+          description: Success
+  /FlowHub/Workflows/GetWorkflows:
+    post:
+      tags:
+        - FlowHub
+      summary: POST /FlowHub/Workflows/GetWorkflows
+      operationId: post_FlowHub_Workflows_GetWorkflows
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowHubPostRequest"
+            examples:
+              fromHar:
+                value:
+                  limit: 1
+                  workflow_filters:
+                    activation_status: Active
+                    workflow_type: normal
+      responses:
+        "200":
+          description: Success
+  /company/usage:
+    get:
+      tags:
+        - company
+      summary: GET /company/usage
+      operationId: get_company_usage
+      responses:
+        "200":
+          description: Success
+  /{id}/{id2}:
+    post:
+      tags:
+        - "{id}"
+      summary: POST /{id}/{id2}
+      operationId: post_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: MessagingChannels
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: GetAvailableChannels
+      responses:
+        "200":
+          description: Success
+  /CrmHub/CrmHubConfigs/GetCrmHubConfig:
+    post:
+      tags:
+        - CrmHub
+      summary: POST /CrmHub/CrmHubConfigs/GetCrmHubConfig
+      operationId: post_CrmHub_CrmHubConfigs_GetCrmHubConfig
+      responses:
+        "200":
+          description: Success
+  /v2/Company/Team:
+    get:
+      tags:
+        - v2
+      summary: GET /v2/Company/Team
+      operationId: get_v2_Company_Team
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "300"
+      responses:
+        "200":
+          description: Success
+  /{id}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /{id}
+      operationId: get_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: location-info-v2
+      responses:
+        "200":
+          description: Success
+  /Company:
+    get:
+      tags:
+        - Company
+      summary: GET /Company
+      operationId: get_Company
+      responses:
+        "200":
+          description: Success
+  /TenantHub/EnabledFeatures/{id}:
+    post:
+      tags:
+        - TenantHub
+      summary: POST /TenantHub/EnabledFeatures/{id}
+      operationId: post_TenantHub_EnabledFeatures_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: GetFeatureEnablements
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TenantHubPostRequest"
+            examples:
+              fromHar:
+                value:
+                  feature_name: 2FA
+      responses:
+        "200":
+          description: Success
+  /FlowHub/FlowHubConfigs/{id}:
+    post:
+      tags:
+        - FlowHub
+      summary: POST /FlowHub/FlowHubConfigs/{id}
+      operationId: post_FlowHub_FlowHubConfigs_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: GetFlowHubConfig
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowHubPostRequest"
+            examples:
+              fromHar:
+                value: {}
+      responses:
+        "200":
+          description: Success
+  /app/feature-info:
+    get:
+      tags:
+        - app
+      summary: GET /app/feature-info
+      operationId: get_app_feature_info
+      responses:
+        "200":
+          description: Success
+  /company/whatsapp/cloudapi/balances:
+    get:
+      tags:
+        - company
+      summary: GET /company/whatsapp/cloudapi/balances
+      operationId: get_company_whatsapp_cloudapi_balances
+      responses:
+        "200":
+          description: Success
+  /IntelligentHub/{id}/{id2}:
+    post:
+      tags:
+        - IntelligentHub
+      summary: POST /IntelligentHub/{id}/{id2}
+      operationId: post_IntelligentHub_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: IntelligentHubConfigs
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: GetFeatureUsageStatistics
+      responses:
+        "200":
+          description: Success
+  /Account/Register/Device:
+    post:
+      tags:
+        - Account
+      summary: POST /Account/Register/Device
+      operationId: post_Account_Register_Device
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountPostRequest"
+            examples:
+              fromHar:
+                value:
+                  deviceName: windows
+                  uuid: 1ec6ffcb-2265-48e3-be18-7694c4bd966a
+                  deviceType: webv2
+                  isTakeover: false
+      responses:
+        "200":
+          description: Success
+  /ipaddress:
+    get:
+      tags:
+        - ipaddress
+      summary: GET /ipaddress
+      operationId: get_ipaddress
+      responses:
+        "200":
+          description: Success
+  /v3/conversations/all:
+    get:
+      tags:
+        - v3
+      summary: GET /v3/conversations/all
+      operationId: get_v3_conversations_all
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: orderBy
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desc
+      responses:
+        "200":
+          description: Success
+  /FlowHub/Workflows/{id}:
+    post:
+      tags:
+        - FlowHub
+      summary: POST /FlowHub/Workflows/{id}
+      operationId: post_FlowHub_Workflows_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: GetLatestWorkflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowHubPostRequest"
+            examples:
+              fromHar:
+                value:
+                  workflow_id: lxgUBDo5am1RV7oQ
+      responses:
+        "200":
+          description: Success
+  /company/Shopify/status/list:
+    get:
+      tags:
+        - company
+      summary: GET /company/Shopify/status/list
+      operationId: get_company_Shopify_status_list
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+      responses:
+        "200":
+          description: Success
+  /Company/StaffOverviews:
+    get:
+      tags:
+        - Company
+      summary: GET /Company/StaffOverviews
+      operationId: get_Company_StaffOverviews
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1000"
+      responses:
+        "200":
+          description: Success
+  /CrmHub/{id}:
+    post:
+      tags:
+        - CrmHub
+      summary: POST /CrmHub/{id}
+      operationId: post_CrmHub_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: GetProviderConnections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CrmHubPostRequest"
+            examples:
+              fromHar:
+                value:
+                  provider_name: salesforce-integrator
+      responses:
+        "200":
+          description: Success
+  /vtex/authentication/getAll:
+    post:
+      tags:
+        - vtex
+      summary: POST /vtex/authentication/getAll
+      operationId: post_vtex_authentication_getAll
+      responses:
+        "200":
+          description: Success
+  /SleekPay/{id}:
+    get:
+      tags:
+        - SleekPay
+      summary: GET /SleekPay/{id}
+      operationId: get_SleekPay_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: supported-currencies
+      responses:
+        "200":
+          description: Success
+  /FlowHub/Workflows/CountWorkflows:
+    post:
+      tags:
+        - FlowHub
+      summary: POST /FlowHub/Workflows/CountWorkflows
+      operationId: post_FlowHub_Workflows_CountWorkflows
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowHubPostRequest"
+            examples:
+              fromHar:
+                value:
+                  workflow_type: normal
+      responses:
+        "200":
+          description: Success
+  /FlowHub/Workflows/DisableWorkflow:
+    post:
+      tags:
+        - FlowHub
+      summary: POST /FlowHub/Workflows/DisableWorkflow
+      operationId: post_FlowHub_Workflows_DisableWorkflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowHubPostRequest"
+            examples:
+              fromHar:
+                value:
+                  workflow_versioned_id: lxgUBDo5am1RV7oQ-ekYcQW43g5b2pv1X
+      responses:
+        "200":
+          description: Success
+  /FlowHub/Workflows/UpdateWorkflow:
+    post:
+      tags:
+        - FlowHub
+      summary: POST /FlowHub/Workflows/UpdateWorkflow
+      operationId: post_FlowHub_Workflows_UpdateWorkflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowHubPostRequest"
+            examples:
+              fromHar:
+                value:
+                  triggers:
+                    contact_label_relationships_changed:
+                      condition: '{{ ((event_body.added_to_labels | array.some @(do; ret $0.label_value == "VIP"; end))) &&
+                        ((!((event_body.contact_id | sleekflow.get_contact_lists) | array.some @(do; ret $0.id ==
+                        "7000020526"; end)))) }}'
+                  steps:
+                    - id: setup-contact-and-conversation
+                      name: setup
+                      next_step_id: null
+                      assign:
+                        contact: "{{ (trigger_event_body.contact_id | string.empty) ? {} : (trigger_event_body.contact_id |
+                          sleekflow.get_contact) }}"
+                        lists: "{{ (trigger_event_body.contact_id | string.empty) ? {} : (trigger_event_body.contact_id |
+                          sleekflow.get_contact_lists) }}"
+                        conversation: "{{ (trigger_event_body.contact_id | string.empty) ? {} : (trigger_event_body.contact_id |
+                          sleekflow.get_contact_conversation) }}"
+                        contactOwner: '{{ (usr_var_dict.contact["ContactOwner"] | string.empty) ? "" : (usr_var_dict.contact["ContactOwner"] |
+                          sleekflow.get_staff) }}'
+                    - id: setup-contact-owner
+                      name: setup-contact-owner
+                      next_step_id: null
+                      assign:
+                        contactOwner: '{{ (usr_var_dict.contact["ContactOwner"] | string.empty) ? "" : (usr_var_dict.contact["ContactOwner"] |
+                          sleekflow.get_staff) }}'
+                    - call: sleekflow.v1.update-contact-owner-relationships
+                      args:
+                        contact_id__expr: "{{ trigger_event_body.contact_id ?? usr_var_dict.contact.id }}"
+                        strategy: RoundRobbin_StaffOnly
+                        staff_ids__expr: '{{ ["879eae59-b0ac-48c5-bc93-8952c0b0fc48"] }}'
+                      id: 5ed2d362-8d4a-4ccd-a227-66ee4818fa16
+                      name: Action 1
+                      assign: null
+                      next_step_id: 5a3e2c72-8ae5-45be-8ca9-23ccd6655251
+                    - id: 5a3e2c72-8ae5-45be-8ca9-23ccd6655251
+                      name: end
+                      assign: null
+                      next_step_id: null
+                  name: key words flow
+                  metadata:
+                    v6: '{"nodes":[{"id":"79ae27e7-1723-48de-a781-c79ea0926784","type":"label-added","data":{"category":"start","formValues":{"isFilterByCondition":true,"conditions":[{"conditionType":"list","operator":"isNotAnyOf","value":[{"id":"7000020526","listName":"[Template]
+                      Welcome"}]}],"triggerType":"label-added","labelAdded":[{"id":"4a77178b-cf85-437a-a151-403ccc4e3fc6","hashtag":"VIP","hashTagColor":"Blue","count":0,"hashTagType":"Normal"}]},"formState":{"errors":{},"isValid":true,"isDirty":false,"isValidating":false},"validateOnMount":false},"position":{"x":0,"y":0},"positionAbsolute":{"x":0,"y":0},"width":300,"height":264,"selected":false},{"id":"5ed2d362-8d4a-4ccd-a227-66ee4818fa16","type":"assignTo","data":{"category":"action","formValues":{"title":"Action
+                      1","actionType":"assignTo","assignTo":"specificUser","assignees":[{"id":"879eae59-b0ac-48c5-bc93-8952c0b0fc48","name":"ghouse
+                      mohammed"}],"assignLogic":"","team":{"id":"","teamName":""}},"formState":{"errors":{},"isValid":true,"isDirty":false,"isValidating":false},"validateOnMount":false},"position":{"x":0,"y":384},"positionAbsolute":{"x":0,"y":384},"width":300,"height":180,"selected":false},{"id":"2739f531-6788-4900-973b-ed4f6925a467","type":"end","data":{"category":"end","formValues":{"endType":"here","title":"
+                      "},"formState":{"errors":{},"isValid":true,"isDirty":false,"isValidating":false},"validateOnMount":false},"position":{"x":0,"y":684},"positionAbsolute":{"x":0,"y":684},"width":300,"height":116,"selected":false}],"edges":[{"id":"bbd73312-a8d2-4cfa-8da4-a3a1acc239c1","source":"79ae27e7-1723-48de-a781-c79ea0926784","target":"5ed2d362-8d4a-4ccd-a227-66ee4818fa16","type":"buttonEdge"},{"id":"57a01653-5801-40ee-a0f8-5add4c1a23d3","source":"5ed2d362-8d4a-4ccd-a227-66ee4818fa16","target":"2739f531-6788-4900-973b-ed4f6925a467","type":"buttonEdge"}],"isDynamic":false}'
+                  workflow_id: lxgUBDo5am1RV7oQ
+                  workflow_enrollment_settings:
+                    can_enroll_only_once: false
+                    can_enroll_again_on_failure_only: true
+                    can_enroll_in_parallel: false
+                  workflow_schedule_settings: null
+      responses:
+        "200":
+          description: Success
+  /FlowHub/Workflows/EnableWorkflow:
+    post:
+      tags:
+        - FlowHub
+      summary: POST /FlowHub/Workflows/EnableWorkflow
+      operationId: post_FlowHub_Workflows_EnableWorkflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlowHubPostRequest"
+            examples:
+              fromHar:
+                value:
+                  workflow_versioned_id: lxgUBDo5am1RV7oQ-ElNc15lKVM1Aok7l
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    FlowHubPostRequest:
+      type: object
+      properties:
+        limit:
+          type: integer
+        workflow_filters:
+          type: object
+          properties:
+            activation_status:
+              type: string
+            workflow_type:
+              type: string
+          required:
+            - activation_status
+            - workflow_type
+      required:
+        - limit
+        - workflow_filters
+    TenantHubPostRequest:
+      type: object
+      properties:
+        feature_name:
+          type: string
+      required:
+        - feature_name
+    AccountPostRequest:
+      type: object
+      properties:
+        deviceName:
+          type: string
+        uuid:
+          type: string
+        deviceType:
+          type: string
+        isTakeover:
+          type: boolean
+      required:
+        - deviceName
+        - uuid
+        - deviceType
+        - isTakeover
+    CrmHubPostRequest:
+      type: object
+      properties:
+        provider_name:
+          type: string
+      required:
+        - provider_name
