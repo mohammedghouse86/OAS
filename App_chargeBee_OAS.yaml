@@ -1,0 +1,1212 @@
+openapi: 3.0.3
+info:
+  title: ChargeBee App
+  version: 1.0.0
+servers:
+  - url: https://ghouse1-test.chargebee.com
+tags:
+  - name: api
+  - name: attachments
+  - name: coupon_codes
+  - name: dashboards
+  - name: layout
+  - name: list
+  - name: manual_mails
+  - name: merchants
+  - name: multi_product
+  - name: notifications
+  - name: qualtrics
+  - name: sandbox_data
+  - name: search
+  - name: security
+  - name: settings
+  - name: site_users
+  - name: sites
+  - name: ui
+  - name: users
+  - name: "{id}"
+paths:
+  /api/internal/{id}:
+    post:
+      tags:
+        - api
+      summary: POST /api/internal/{id}
+      operationId: post_api_internal_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: track_app_info_error
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  type: kvl
+                  data:
+                    route_name: /customers
+                  id: 105c9ceb-ecee-4c66-8133-fd4bcb19bc28
+                  meta: {}
+      responses:
+        "200":
+          description: Success
+  /search/customers/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/customers/meta
+      operationId: get_search_customers_meta
+      responses:
+        "200":
+          description: Success
+  /search/customers/saved_meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/customers/saved_meta
+      operationId: get_search_customers_saved_meta
+      responses:
+        "200":
+          description: Success
+  /search/customers:
+    post:
+      tags:
+        - search
+      summary: POST /search/customers
+      operationId: post_search_customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters: []
+                  offset: 0
+                  search: ""
+      responses:
+        "200":
+          description: Success
+  /notifications/{id}:
+    get:
+      tags:
+        - notifications
+      summary: GET /notifications/{id}
+      operationId: get_notifications_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_email_version
+      responses:
+        "200":
+          description: Success
+  /sites/{id}:
+    get:
+      tags:
+        - sites
+      summary: GET /sites/{id}
+      operationId: get_sites_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: form_validations
+        - name: route_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: manual_mails.send_notification_mail
+      responses:
+        "200":
+          description: Success
+  /search/customers/alerts:
+    post:
+      tags:
+        - search
+      summary: POST /search/customers/alerts
+      operationId: post_search_customers_alerts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters:
+                    - operand: customers[id]
+                      operator: includes
+                      list:
+                        - 67511281
+                        - 67511280
+                        - 67511279
+                        - 67511278
+                        - 67511277
+      responses:
+        "200":
+          description: Success
+  /manual_mails/{id}:
+    get:
+      tags:
+        - manual_mails
+      summary: GET /manual_mails/{id}
+      operationId: get_manual_mails_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_notification_list
+        - name: entity_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: customer
+      responses:
+        "200":
+          description: Success
+  /search/subscriptions/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/subscriptions/meta
+      operationId: get_search_subscriptions_meta
+      responses:
+        "200":
+          description: Success
+  /search/subscriptions/saved_meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/subscriptions/saved_meta
+      operationId: get_search_subscriptions_saved_meta
+      responses:
+        "200":
+          description: Success
+  /search/subscriptions:
+    post:
+      tags:
+        - search
+      summary: POST /search/subscriptions
+      operationId: post_search_subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters: []
+                  offset: 0
+                  search: ""
+      responses:
+        "200":
+          description: Success
+  /search/subscriptions/alerts:
+    post:
+      tags:
+        - search
+      summary: POST /search/subscriptions/alerts
+      operationId: post_search_subscriptions_alerts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters:
+                    - operand: subscriptions[id]
+                      operator: includes
+                      list:
+                        - 50128291
+                        - 50128290
+                        - 50128289
+                        - 50128288
+                        - 50128287
+      responses:
+        "200":
+          description: Success
+  /search/invoices/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/invoices/meta
+      operationId: get_search_invoices_meta
+      responses:
+        "200":
+          description: Success
+  /search/invoices/saved_meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/invoices/saved_meta
+      operationId: get_search_invoices_saved_meta
+      responses:
+        "200":
+          description: Success
+  /search/invoices:
+    post:
+      tags:
+        - search
+      summary: POST /search/invoices
+      operationId: post_search_invoices
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters: []
+                  offset: 0
+                  search: ""
+      responses:
+        "200":
+          description: Success
+  /search/invoices/alerts:
+    post:
+      tags:
+        - search
+      summary: POST /search/invoices/alerts
+      operationId: post_search_invoices_alerts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters:
+                    - operand: invoices[id]
+                      operator: includes
+                      list:
+                        - 234856290
+                        - 234856288
+      responses:
+        "200":
+          description: Success
+  /search/credit_notes/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/credit_notes/meta
+      operationId: get_search_credit_notes_meta
+      responses:
+        "200":
+          description: Success
+  /search/credit_notes/saved_meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/credit_notes/saved_meta
+      operationId: get_search_credit_notes_saved_meta
+      responses:
+        "200":
+          description: Success
+  /search/credit_notes:
+    post:
+      tags:
+        - search
+      summary: POST /search/credit_notes
+      operationId: post_search_credit_notes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters: []
+                  offset: 0
+                  search: ""
+      responses:
+        "200":
+          description: Success
+  /search/quotes/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/quotes/meta
+      operationId: get_search_quotes_meta
+      responses:
+        "200":
+          description: Success
+  /search/quotes/saved_meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/quotes/saved_meta
+      operationId: get_search_quotes_saved_meta
+      responses:
+        "200":
+          description: Success
+  /search/quotes:
+    post:
+      tags:
+        - search
+      summary: POST /search/quotes
+      operationId: post_search_quotes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters: []
+                  offset: 0
+                  search: ""
+      responses:
+        "200":
+          description: Success
+  /search/{id}/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/{id}/meta
+      operationId: get_search_id_meta
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: product_families
+      responses:
+        "200":
+          description: Success
+  /users/{id}:
+    post:
+      tags:
+        - users
+      summary: POST /users/{id}
+      operationId: post_users_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: generate_ui_token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UsersPostRequest"
+            examples:
+              fromHar:
+                value: {}
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - users
+      summary: GET /users/{id}
+      operationId: get_users_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: team_members_config
+      responses:
+        "200":
+          description: Success
+  /sites/feature_config:
+    get:
+      tags:
+        - sites
+      summary: GET /sites/feature_config
+      operationId: get_sites_feature_config
+      parameters:
+        - name: feature
+          in: query
+          required: false
+          schema:
+            type: string
+          example: giftSubscriptionConfig,shippingFieldsConfig,portalConfig,checkoutConfig,itemBillingFrequencyConfig,mrrConfig,mandatoryFieldsConfig,pimConfig,ubbConfig
+        - name: resource
+          in: query
+          required: false
+          schema:
+            type: string
+          example: customer,subscription
+      responses:
+        "200":
+          description: Success
+  /search/item_plans/saved_meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/item_plans/saved_meta
+      operationId: get_search_item_plans_saved_meta
+      responses:
+        "200":
+          description: Success
+  /search/item_plans/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/item_plans/meta
+      operationId: get_search_item_plans_meta
+      responses:
+        "200":
+          description: Success
+  /search/item_addons/saved_meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/item_addons/saved_meta
+      operationId: get_search_item_addons_saved_meta
+      responses:
+        "200":
+          description: Success
+  /search/item_addons/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/item_addons/meta
+      operationId: get_search_item_addons_meta
+      responses:
+        "200":
+          description: Success
+  /search/charges/saved_meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/charges/saved_meta
+      operationId: get_search_charges_saved_meta
+      responses:
+        "200":
+          description: Success
+  /search/charges/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/charges/meta
+      operationId: get_search_charges_meta
+      responses:
+        "200":
+          description: Success
+  /search/coupons/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/coupons/meta
+      operationId: get_search_coupons_meta
+      responses:
+        "200":
+          description: Success
+  /search/coupons/saved_meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/coupons/saved_meta
+      operationId: get_search_coupons_saved_meta
+      responses:
+        "200":
+          description: Success
+  /search/coupons:
+    post:
+      tags:
+        - search
+      summary: POST /search/coupons
+      operationId: post_search_coupons
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters:
+                    - operand: coupons[status]
+                      operator: is
+                      value: "100"
+                      key: 1768136174713
+                  offset: 0
+                  search: ""
+      responses:
+        "200":
+          description: Success
+  /search/coupon_sets/meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/coupon_sets/meta
+      operationId: get_search_coupon_sets_meta
+      responses:
+        "200":
+          description: Success
+  /search/coupon_sets/saved_meta:
+    get:
+      tags:
+        - search
+      summary: GET /search/coupon_sets/saved_meta
+      operationId: get_search_coupon_sets_saved_meta
+      responses:
+        "200":
+          description: Success
+  /search/coupon_sets:
+    post:
+      tags:
+        - search
+      summary: POST /search/coupon_sets
+      operationId: post_search_coupon_sets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters: []
+                  offset: 0
+                  search: ""
+      responses:
+        "200":
+          description: Success
+  /search/{id}/autocomplete:
+    get:
+      tags:
+        - search
+      summary: GET /search/{id}/autocomplete
+      operationId: get_search_id_autocomplete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: allCouponSetApplicable
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+      responses:
+        "200":
+          description: Success
+  /coupon_codes/upload:
+    post:
+      tags:
+        - coupon_codes
+      summary: POST /coupon_codes/upload
+      operationId: post_coupon_codes_upload
+      requestBody:
+        required: true
+        content:
+          multipart/form-data; boundary=----WebKitFormBoundarypbEfFLKWA9zIR0UY:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: "------WebKitFormBoundarypbEfFLKWA9zIR0UY\r
+
+                  Content-Disposition: form-data; name=\"coupons_id\"\r
+
+                  \r
+
+                  5846980\r
+
+                  ------WebKitFormBoundarypbEfFLKWA9zIR0UY\r
+
+                  Content-Disposition: form-data; name=\"coupon_set.external_id\"\r
+
+                  \r
+
+                  coupon\r
+
+                  ------WebKitFormBoundarypbEfFLKWA9zIR0UY\r
+
+                  Content-Disposition: form-data; name=\"coupon_set.name\"\r
+
+                  \r
+
+                  coupon\r
+
+                  ------WebKitFormBoundarypbEfFLKWA9zIR0UY\r
+
+                  Content-Disposition: form-data; name=\"coupon_codes\"\r
+
+                  \r
+
+                  \r
+
+                  ------WebKitFormBoundarypbEfFLKWA9zIR0UY\r
+
+                  Content-Disposition: form-data; name=\"generate\"\r
+
+                  \r
+
+                  false\r
+
+                  ------WebKitFormBoundarypbEfFLKWA9zIR0UY\r
+
+                  Content-Disposition: form-data; name=\"_csrf_token\"\r
+
+                  \r
+
+                  9yDn73nQ9TzgPMo5mIzgZw23xkqzcupsO\r
+
+                  ------WebKitFormBoundarypbEfFLKWA9zIR0UY--\r\n"
+      responses:
+        "200":
+          description: Success
+  /sites/custom_fields/charge_item:
+    get:
+      tags:
+        - sites
+      summary: GET /sites/custom_fields/charge_item
+      operationId: get_sites_custom_fields_charge_item
+      responses:
+        "200":
+          description: Success
+  /sites/custom_fields/item_family:
+    get:
+      tags:
+        - sites
+      summary: GET /sites/custom_fields/item_family
+      operationId: get_sites_custom_fields_item_family
+      responses:
+        "200":
+          description: Success
+  /sandbox_data/config:
+    get:
+      tags:
+        - sandbox_data
+      summary: GET /sandbox_data/config
+      operationId: get_sandbox_data_config
+      responses:
+        "200":
+          description: Success
+  /users/account_config:
+    get:
+      tags:
+        - users
+      summary: GET /users/account_config
+      operationId: get_users_account_config
+      responses:
+        "200":
+          description: Success
+  /layout/nav_config:
+    post:
+      tags:
+        - layout
+      summary: POST /layout/nav_config
+      operationId: post_layout_nav_config
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  _csrf_token: 9yDn73nQ9TzgPMo5mIzgZw23xkqzcupsO
+      responses:
+        "200":
+          description: Success
+  /sites/custom_fields/addon_item:
+    get:
+      tags:
+        - sites
+      summary: GET /sites/custom_fields/addon_item
+      operationId: get_sites_custom_fields_addon_item
+      responses:
+        "200":
+          description: Success
+  /attachments/list:
+    get:
+      tags:
+        - attachments
+      summary: GET /attachments/list
+      operationId: get_attachments_list
+      parameters:
+        - name: entity_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2400"
+        - name: entity_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "3168151136384365390"
+      responses:
+        "200":
+          description: Success
+  /sites/custom_fields/customer:
+    get:
+      tags:
+        - sites
+      summary: GET /sites/custom_fields/customer
+      operationId: get_sites_custom_fields_customer
+      responses:
+        "200":
+          description: Success
+  /sites/fetch_config:
+    get:
+      tags:
+        - sites
+      summary: GET /sites/fetch_config
+      operationId: get_sites_fetch_config
+      responses:
+        "200":
+          description: Success
+  /ui/onboarding:
+    get:
+      tags:
+        - ui
+      summary: GET /ui/onboarding
+      operationId: get_ui_onboarding
+      responses:
+        "200":
+          description: Success
+  /site_users/meta:
+    get:
+      tags:
+        - site_users
+      summary: GET /site_users/meta
+      operationId: get_site_users_meta
+      responses:
+        "200":
+          description: Success
+  /multi_product/nav_config:
+    get:
+      tags:
+        - multi_product
+      summary: GET /multi_product/nav_config
+      operationId: get_multi_product_nav_config
+      responses:
+        "200":
+          description: Success
+  /ui/taxes/{id}:
+    get:
+      tags:
+        - ui
+      summary: GET /ui/taxes/{id}
+      operationId: get_ui_taxes_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_configuration
+      responses:
+        "200":
+          description: Success
+  /search/subscriptions/count:
+    post:
+      tags:
+        - search
+      summary: POST /search/subscriptions/count
+      operationId: post_search_subscriptions_count
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters:
+                    - operand: customers[handle]
+                      operator: equals
+                      value: AzqaK3V8004e6WX6
+                    - operand: subscriptions[channel]
+                      operator: is
+                      value: "100"
+      responses:
+        "200":
+          description: Success
+  /search/mail_logs:
+    post:
+      tags:
+        - search
+      summary: POST /search/mail_logs
+      operationId: post_search_mail_logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters:
+                    - operand: Id[Id]
+                      operator: equals
+                      value: AzqaK3V8004e6WX6
+                      key: 1768136353197
+                      type: cb_text
+                      list: []
+                  limit: 11
+      responses:
+        "200":
+          description: Success
+  /search/transactions:
+    post:
+      tags:
+        - search
+      summary: POST /search/transactions
+      operationId: post_search_transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters:
+                    - operand: customers[handle]
+                      operator: equals
+                      value: AzqaK3V8004e6WX6
+                  limit: 11
+      responses:
+        "200":
+          description: Success
+  /search/payment_intents:
+    post:
+      tags:
+        - search
+      summary: POST /search/payment_intents
+      operationId: post_search_payment_intents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters:
+                    - operand: customers[handle]
+                      operator: equals
+                      value: AzqaK3V8004e6WX6
+                  limit: 11
+      responses:
+        "200":
+          description: Success
+  /search/events:
+    post:
+      tags:
+        - search
+      summary: POST /search/events
+      operationId: post_search_events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filters:
+                    - operand: Id[Id]
+                      operator: equals
+                      value: AzqaK3V8004e6WX6
+                      key: 1768136353197
+                      type: cb_text
+                      list: []
+                    - operand: events[occurred_at]
+                      operator: last_90_days
+                      key: 1768136353197
+                  limit: 11
+      responses:
+        "200":
+          description: Success
+  /qualtrics/{id}:
+    get:
+      tags:
+        - qualtrics
+      summary: GET /qualtrics/{id}
+      operationId: get_qualtrics_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: external_reference_id
+      responses:
+        "200":
+          description: Success
+  /settings/{id}:
+    get:
+      tags:
+        - settings
+      summary: GET /settings/{id}
+      operationId: get_settings_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: list_integrations
+      responses:
+        "200":
+          description: Success
+  /{id}/{id2}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /{id}/{id2}
+      operationId: get_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: chargebee_notifications
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: notification_config
+      responses:
+        "200":
+          description: Success
+  /users/invite:
+    post:
+      tags:
+        - users
+      summary: POST /users/invite
+      operationId: post_users_invite
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  invited_user.email: mohammedghouse86.backup%40gmail.com
+                  app_roles: "false"
+                  customer_support: "8192"
+                  _csrf_token: 9yDn73nQ9TzgPMo5mIzgZw23xkqzcupsO
+      responses:
+        "200":
+          description: Success
+  /security/{id}:
+    get:
+      tags:
+        - security
+      summary: GET /security/{id}
+      operationId: get_security_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: list_auth_settings
+      responses:
+        "200":
+          description: Success
+  /sandbox_data/settings_stripe:
+    get:
+      tags:
+        - sandbox_data
+      summary: GET /sandbox_data/settings_stripe
+      operationId: get_sandbox_data_settings_stripe
+      responses:
+        "200":
+          description: Success
+  /dashboards/{id}:
+    get:
+      tags:
+        - dashboards
+      summary: GET /dashboards/{id}
+      operationId: get_dashboards_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: onboarding_video
+      responses:
+        "200":
+          description: Success
+  /dashboards/vanity_metrics:
+    get:
+      tags:
+        - dashboards
+      summary: GET /dashboards/vanity_metrics
+      operationId: get_dashboards_vanity_metrics
+      responses:
+        "200":
+          description: Success
+  /merchants/{id}:
+    get:
+      tags:
+        - merchants
+      summary: GET /merchants/{id}
+      operationId: get_merchants_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: enable_consult_now_call
+      responses:
+        "200":
+          description: Success
+  /{id}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /{id}
+      operationId: get_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: trial_notification
+      responses:
+        "200":
+          description: Success
+  /{id}/list:
+    get:
+      tags:
+        - list
+      summary: GET /{id}/list
+      operationId: get_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: merchant_insights
+      responses:
+        "200":
+          description: Success
+  /dashboards/chart_data:
+    get:
+      tags:
+        - dashboards
+      summary: GET /dashboards/chart_data
+      operationId: get_dashboards_chart_data
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPostRequest:
+      type: object
+      properties:
+        type:
+          type: string
+        data:
+          type: object
+          properties:
+            route_name:
+              type: string
+          required:
+            - route_name
+        id:
+          type: string
+        meta:
+          type: object
+          properties: {}
+          required: []
+      required:
+        - type
+        - data
+        - id
+        - meta
+    SearchPostRequest:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            type: string
+        offset:
+          type: integer
+        search:
+          type: string
+      required:
+        - filters
+        - offset
+        - search
+    UsersPostRequest:
+      type: object
+      properties: {}
+      required: []
