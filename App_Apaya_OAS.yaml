@@ -1,0 +1,700 @@
+openapi: 3.0.3
+info:
+  title: Apaya App
+  version: 1.0.0
+servers:
+  - url: https://apaya-uks-webapp-studioapi-prod.azurewebsites.net
+tags:
+  - name: api
+paths:
+  /api/Profile/Users/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/Profile/Users/{id}
+      operationId: get_api_Profile_Users_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "2304"
+      responses:
+        "200":
+          description: Success
+  /api/Profile/User/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/Profile/User/{id}
+      operationId: get_api_Profile_User_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "332"
+      responses:
+        "200":
+          description: Success
+  /api/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/{id}
+      operationId: get_api_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: TechnicalPartners
+      responses:
+        "200":
+          description: Success
+  /api/{id}/Available:
+    get:
+      tags:
+        - api
+      summary: GET /api/{id}/Available
+      operationId: get_api_id_Available
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: TechnicalPartners
+      responses:
+        "200":
+          description: Success
+  /api/profile/LogEvent:
+    post:
+      tags:
+        - api
+      summary: POST /api/profile/LogEvent
+      operationId: post_api_profile_LogEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  action: '{"action":"Selected Connectors Page"}'
+                  location: Portal->Connectors
+                  tokenId: 1
+                  userId: 1
+                  token: 4d543aa8-8d6e-4536-ab4d-148981aca4a3
+      responses:
+        "200":
+          description: Success
+  /api/{id}/Current:
+    get:
+      tags:
+        - api
+      summary: GET /api/{id}/Current
+      operationId: get_api_id_Current
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: SubscriptionPlans
+      responses:
+        "200":
+          description: Success
+  /api/Analytics:
+    get:
+      tags:
+        - api
+      summary: GET /api/Analytics
+      operationId: get_api_Analytics
+      responses:
+        "200":
+          description: Success
+  /api/Analytics/{id}:
+    post:
+      tags:
+        - api
+      summary: POST /api/Analytics/{id}
+      operationId: post_api_Analytics_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: TransactionRepSuccess
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  StartDate: 2025-07-13T08:05:16.523Z
+                  EndDate: 2026-01-13T08:05:16.523Z
+      responses:
+        "200":
+          description: Success
+  /api/Products/Filters:
+    get:
+      tags:
+        - api
+      summary: GET /api/Products/Filters
+      operationId: get_api_Products_Filters
+      responses:
+        "200":
+          description: Success
+  /api/Products:
+    get:
+      tags:
+        - api
+      summary: GET /api/Products
+      operationId: get_api_Products
+      parameters:
+        - name: Page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "null"
+        - name: Rows
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "6"
+        - name: IsCountryDistinct
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/Products
+      operationId: post_api_Products
+      requestBody:
+        required: true
+        content:
+          multipart/form-data; boundary=----WebKitFormBoundaryV39jzDRoKqbBTPQo:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: "------WebKitFormBoundaryV39jzDRoKqbBTPQo\r
+
+                  Content-Disposition: form-data; name=\"name\"\r
+
+                  \r
+
+                  ss\r
+
+                  ------WebKitFormBoundaryV39jzDRoKqbBTPQo\r
+
+                  Content-Disposition: form-data; name=\"billingText\"\r
+
+                  \r
+
+                  dd\r
+
+                  ------WebKitFormBoundaryV39jzDRoKqbBTPQo\r
+
+                  Content-Disposition: form-data; name=\"description\"\r
+
+                  \r
+
+                  dd\r
+
+                  ------WebKitFormBoundaryV39jzDRoKqbBTPQo\r
+
+                  Content-Disposition: form-data; name=\"successURL\"\r
+
+                  \r
+
+                  google.com\r
+
+                  ------WebKitFormBoundaryV39jzDRoKqbBTPQo\r
+
+                  Content-Disposition: form-data; name=\"errorURL\"\r
+
+                  \r
+
+                  google.com\r
+
+                  ------WebKitFormBoundaryV39jzDRoKqbBTPQo\r
+
+                  Content-Disposition: form-data; name=\"webhookURL\"\r
+
+                  \r
+
+                  google.com\r
+
+                  ------WebKitFormBoundaryV39jzDRoKqbBTPQo\r
+
+                  Content-Disposition: form-data; name=\"countries\"\r
+
+                  \r
+
+                  [{\"countryId\":124,\"currencyId\":21,\"isDefaultPriceActive\":true,\"languages\":[28],\"currencies\"\
+                  :[21]}]\r
+
+                  ------WebKitFormBoundaryV39jzDRoKqbBTPQo\r
+
+                  Content-Disposition: form-data; name=\"categoryId\"\r
+
+                  \r
+
+                  68000000\r
+
+                  ------WebKitFormBoundaryV39jzDRoKqbBTPQo--\r\n"
+      responses:
+        "200":
+          description: Success
+  /api/Workflows:
+    get:
+      tags:
+        - api
+      summary: GET /api/Workflows
+      operationId: get_api_Workflows
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/Workflows
+      operationId: post_api_Workflows
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: ddd
+                  productID: 93000282
+                  countryID: 124
+                  statusID: "1"
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - api
+      summary: PUT /api/Workflows
+      operationId: put_api_Workflows
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPutRequest"
+            examples:
+              fromHar:
+                value:
+                  id: 106
+                  name: ddd
+                  statusId: 1
+                  workFlowUiModel:
+                    nodes: []
+                    columnTypes:
+                      - Id: 0
+                        TypeId: 1
+                      - Id: 5
+                        TypeId: 5
+                      - Id: 1
+                        TypeId: 3
+                      - Id: 2
+                        TypeId: 2
+                      - Id: 4
+                        TypeId: 4
+                    columns:
+                      - id: 0
+                        type: Purchase_Model
+                        typeId: 1
+                        name: Purchase Model
+                        placeholderText: Add purchase model
+                        nextColumns:
+                          - type: Filter
+                            typeId: 5
+                            name: Condition
+                            placeholderText: Add condition
+                            stackable: false
+                            backgroundColor: var(--apaya-grey-dark-3-10)
+                            isPlaceholderRequired: true
+                      - name: Condition
+                        id: 5
+                        typeId: 5
+                        type: Filter
+                        placeholderText: Add condition
+                        nextColumns: null
+                        backgroundColor: var(--apaya-grey-dark-3-10)
+                        isPlaceholderRequired: true
+                      - id: 1
+                        typeId: 3
+                        type: Provider
+                        name: Payment Provider
+                        placeholderText: Add payment provider
+                      - id: 2
+                        typeId: 2
+                        type: Processor
+                        name: Connector
+                        placeholderText: Connector Placeholder
+                        nextColumns:
+                          - type: Post_Transaction
+                            typeId: 6
+                            name: Post-transaction
+                            placeholderText: Add post-transaction
+                            stackable: false
+                            backgroundColor: var(--apaya-grey-dark-3-10)
+                      - id: 4
+                        typeId: 4
+                        type: Routing
+                        name: Routing
+                        placeholderText: Return to merchant
+      responses:
+        "200":
+          description: Success
+  /api/{id}/Available/{id2}/CanRetry:
+    get:
+      tags:
+        - api
+      summary: GET /api/{id}/Available/{id2}/CanRetry
+      operationId: get_api_id_Available_id2_CanRetry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: TechnicalPartners
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18"
+      responses:
+        "200":
+          description: Success
+  /api/{id}/Available/{id2}/{id3}:
+    get:
+      tags:
+        - api
+      summary: GET /api/{id}/Available/{id2}/{id3}
+      operationId: get_api_id_Available_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: TechnicalPartners
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ConnectionSetting
+      responses:
+        "200":
+          description: Success
+  /api/{id}/{id2}/false/false/Configure():
+    post:
+      tags:
+        - api
+      summary: POST /api/{id}/{id2}/false/false/Configure()
+      operationId: post_api_id_id2_false_false_Configure__
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: TechnicalPartners
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "26"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  ApayaConfig: "1234566"
+      responses:
+        "200":
+          description: Success
+  /api/Countries/Languages:
+    get:
+      tags:
+        - api
+      summary: GET /api/Countries/Languages
+      operationId: get_api_Countries_Languages
+      responses:
+        "200":
+          description: Success
+  /api/Products/Categories:
+    get:
+      tags:
+        - api
+      summary: GET /api/Products/Categories
+      operationId: get_api_Products_Categories
+      responses:
+        "200":
+          description: Success
+  /api/Products/{id}/Countries:
+    get:
+      tags:
+        - api
+      summary: GET /api/Products/{id}/Countries
+      operationId: get_api_Products_id_Countries
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "93000282"
+      responses:
+        "200":
+          description: Success
+  /api/Products/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/Products/{id}
+      operationId: get_api_Products_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "93000282"
+        - name: IsCountryDistinct
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api/Workflows/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/Workflows/{id}
+      operationId: get_api_Workflows_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "106"
+      responses:
+        "200":
+          description: Success
+  /api/Workflows/NestedNodeTypes:
+    get:
+      tags:
+        - api
+      summary: GET /api/Workflows/NestedNodeTypes
+      operationId: get_api_Workflows_NestedNodeTypes
+      responses:
+        "200":
+          description: Success
+  /api/Workflows/{id}/PaymentTypes:
+    get:
+      tags:
+        - api
+      summary: GET /api/Workflows/{id}/PaymentTypes
+      operationId: get_api_Workflows_id_PaymentTypes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "106"
+      responses:
+        "200":
+          description: Success
+  /api/merchant:
+    get:
+      tags:
+        - api
+      summary: GET /api/merchant
+      operationId: get_api_merchant
+      responses:
+        "200":
+          description: Success
+  /api/merchant/{id}/bin-groups/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/merchant/{id}/bin-groups/{id2}
+      operationId: get_api_merchant_id_bin_groups_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "2304"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "124"
+      responses:
+        "200":
+          description: Success
+  /api/Workflows/NodeTypes:
+    get:
+      tags:
+        - api
+      summary: GET /api/Workflows/NodeTypes
+      operationId: get_api_Workflows_NodeTypes
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPostRequest:
+      type: object
+      properties:
+        action:
+          type: string
+        location:
+          type: string
+        tokenId:
+          type: integer
+        userId:
+          type: integer
+        token:
+          type: string
+      required:
+        - action
+        - location
+        - tokenId
+        - userId
+        - token
+    ApiPutRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        statusId:
+          type: integer
+        workFlowUiModel:
+          type: object
+          properties:
+            nodes:
+              type: array
+              items:
+                type: string
+            columnTypes:
+              type: array
+              items:
+                type: object
+                properties:
+                  Id:
+                    type: integer
+                  TypeId:
+                    type: integer
+                required:
+                  - Id
+                  - TypeId
+            columns:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  type:
+                    type: string
+                  typeId:
+                    type: integer
+                  name:
+                    type: string
+                  placeholderText:
+                    type: string
+                  nextColumns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        typeId:
+                          type: integer
+                        name:
+                          type: string
+                        placeholderText:
+                          type: string
+                        stackable:
+                          type: boolean
+                        backgroundColor:
+                          type: string
+                        isPlaceholderRequired:
+                          type: boolean
+                      required:
+                        - type
+                        - typeId
+                        - name
+                        - placeholderText
+                        - stackable
+                        - backgroundColor
+                        - isPlaceholderRequired
+                required:
+                  - id
+                  - type
+                  - typeId
+                  - name
+                  - placeholderText
+                  - nextColumns
+          required:
+            - nodes
+            - columnTypes
+            - columns
+      required:
+        - id
+        - name
+        - statusId
+        - workFlowUiModel
