@@ -1,0 +1,1717 @@
+openapi: 3.0.3
+info:
+  title: myalice App
+  version: 1.0.0
+servers:
+  - url: https://prod-api.myalice.ai
+tags:
+  - name: api
+  - name: edge
+  - name: stable
+paths:
+  /api/accounts/{id}:
+    post:
+      tags:
+        - api
+      summary: POST /api/accounts/{id}
+      operationId: post_api_accounts_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resend-verification-mail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: mohammedghouse86.backup@gmail.com
+      responses:
+        "200":
+          description: Success
+  /api/dashboard/projects/{id}/online-agents:
+    get:
+      tags:
+        - api
+      summary: GET /api/dashboard/projects/{id}/online-agents
+      operationId: get_api_dashboard_projects_id_online_agents
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /api/bots/projects/{id}/away-reasons:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/projects/{id}/away-reasons
+      operationId: get_api_bots_projects_id_away_reasons
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /edge/crm/projects/{id}/{id2}:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/crm/projects/{id}/{id2}
+      operationId: get_edge_crm_projects_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get-inbox-preset-filters
+      responses:
+        "200":
+          description: Success
+  /edge/crm/projects/{id}/tickets:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/crm/projects/{id}/tickets
+      operationId: get_edge_crm_projects_id_tickets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desc
+        - name: sort_field
+          in: query
+          required: false
+          schema:
+            type: string
+          example: card_timestamp
+        - name: queue
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: is_resolved
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: is_on_hold
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: channels
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: agents
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: groups
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: tags
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: priorities
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /edge/crm/projects/{id}/ticket-tags:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/crm/projects/{id}/ticket-tags
+      operationId: get_edge_crm_projects_id_ticket_tags
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /edge/bots/projects/{id}/groups:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/bots/projects/{id}/groups
+      operationId: get_edge_bots_projects_id_groups
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /edge/channels/projects/{id}/get-channels:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/channels/projects/{id}/get-channels
+      operationId: get_edge_channels_projects_id_get_channels
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /api/dashboard/team/{id}/details:
+    get:
+      tags:
+        - api
+      summary: GET /api/dashboard/team/{id}/details
+      operationId: get_api_dashboard_team_id_details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /edge/crm/projects/{id}/attributes:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/crm/projects/{id}/attributes
+      operationId: get_edge_crm_projects_id_attributes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /edge/bots/projects/{id}/access:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/bots/projects/{id}/access
+      operationId: get_edge_bots_projects_id_access
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /api/bots/projects/{id}/data_lab:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/projects/{id}/data_lab
+      operationId: get_api_bots_projects_id_data_lab
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /api/bots/projects/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/projects/{id}/{id2}
+      operationId: get_api_bots_projects_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get-ticket-configuration
+      responses:
+        "200":
+          description: Success
+  /api/bots/projects/{id}/platforms/list:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/projects/{id}/platforms/list
+      operationId: get_api_bots_projects_id_platforms_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /stable/broadcast/projects/{id}/list:
+    get:
+      tags:
+        - stable
+      summary: GET /stable/broadcast/projects/{id}/list
+      operationId: get_stable_broadcast_projects_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2025-10-01
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13
+      responses:
+        "200":
+          description: Success
+  /api/dashboard/teams:
+    get:
+      tags:
+        - api
+      summary: GET /api/dashboard/teams
+      operationId: get_api_dashboard_teams
+      responses:
+        "200":
+          description: Success
+  /api/bots/platforms/undefined/sequences:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/platforms/undefined/sequences
+      operationId: get_api_bots_platforms_undefined_sequences
+      responses:
+        "200":
+          description: Success
+  /api/bots/platforms/undefined/attributes:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/platforms/undefined/attributes
+      operationId: get_api_bots_platforms_undefined_attributes
+      responses:
+        "200":
+          description: Success
+  /api/bots/platforms/undefined/entities:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/platforms/undefined/entities
+      operationId: get_api_bots_platforms_undefined_entities
+      responses:
+        "200":
+          description: Success
+  /stable/channels/undefined/{id}:
+    get:
+      tags:
+        - stable
+      summary: GET /stable/channels/undefined/{id}
+      operationId: get_stable_channels_undefined_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get-whatsapp-message-templates
+      responses:
+        "200":
+          description: Success
+  /api/bots/sequences/{id}/blocks:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/sequences/{id}/blocks
+      operationId: get_api_bots_sequences_id_blocks
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "0"
+      responses:
+        "200":
+          description: Success
+  /api/bots/sequences/undefined/rules:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/sequences/undefined/rules
+      operationId: get_api_bots_sequences_undefined_rules
+      responses:
+        "200":
+          description: Success
+  /api/bots/platforms/undefined/subscriptions:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/platforms/undefined/subscriptions
+      operationId: get_api_bots_platforms_undefined_subscriptions
+      responses:
+        "200":
+          description: Success
+  /api/bots/projects/{id}/custom_api:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/projects/{id}/custom_api
+      operationId: get_api_bots_projects_id_custom_api
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /api/bots/platforms/undefined/intents:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/platforms/undefined/intents
+      operationId: get_api_bots_platforms_undefined_intents
+      responses:
+        "200":
+          description: Success
+  /api/bots/projects/{id}/access:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/projects/{id}/access
+      operationId: get_api_bots_projects_id_access
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /api/accounts/info:
+    get:
+      tags:
+        - api
+      summary: GET /api/accounts/info
+      operationId: get_api_accounts_info
+      responses:
+        "200":
+          description: Success
+    patch:
+      tags:
+        - api
+      summary: PATCH /api/accounts/info
+      operationId: patch_api_accounts_info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  has_viewed_integrations: true
+      responses:
+        "200":
+          description: Success
+  /api/bots/projects/{id}/groups:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/projects/{id}/groups
+      operationId: get_api_bots_projects_id_groups
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/bots/projects/{id}/groups
+      operationId: post_api_bots_projects_id_groups
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  id: null
+                  name: Jack Doe
+                  image: ""
+                  members:
+                    - 21171
+                  is_smart: false
+                  should_assign_to_online_agents: true
+                  should_assign_to_away_agents: false
+                  should_assign_to_offline_agents: false
+      responses:
+        "200":
+          description: Success
+  /api/{id}/list:
+    get:
+      tags:
+        - api
+      summary: GET /api/{id}/list
+      operationId: get_api_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: other-integrations
+      responses:
+        "200":
+          description: Success
+  /api/nlp/projects/{id}/integrations/list:
+    get:
+      tags:
+        - api
+      summary: GET /api/nlp/projects/{id}/integrations/list
+      operationId: get_api_nlp_projects_id_integrations_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /edge/ecommerce/projects/{id}/{id2}:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/ecommerce/projects/{id}/{id2}
+      operationId: get_edge_ecommerce_projects_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get-ecommerce-data
+      responses:
+        "200":
+          description: Success
+  /api/accounts/refresh:
+    post:
+      tags:
+        - api
+      summary: POST /api/accounts/refresh
+      operationId: post_api_accounts_refresh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  refresh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImp0aSI6ImY2YjU0NjRhLWNkMmItNDdhMy05MGNiLTMxOWU5NWI5YjNjNiIsInN1YiI6Im1vaGFtbWVkZ2hvdXNlODYuYmFja3VwQGdtYWlsLmNvbSIsInNzb191c2VyIjp0cnVlLCJ1c2VyX2lkIjoyMTE3MSwiZXhwIjoxNzY4MzcxMTEyfQ.UvvQOSzJ2SvWUkjFNTb-Sd1BOMZ_VSb5HTsZlvqVoQQ
+      responses:
+        "200":
+          description: Success
+  /api/billing/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/billing/{id}
+      operationId: get_api_billing_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get-stripe-public-key
+      responses:
+        "200":
+          description: Success
+  /api/bots/projects/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/projects/{id}
+      operationId: get_api_bots_projects_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /api/accounts/country-list:
+    get:
+      tags:
+        - api
+      summary: GET /api/accounts/country-list
+      operationId: get_api_accounts_country_list
+      responses:
+        "200":
+          description: Success
+  /api/accounts/timezone-list:
+    get:
+      tags:
+        - api
+      summary: GET /api/accounts/timezone-list
+      operationId: get_api_accounts_timezone_list
+      responses:
+        "200":
+          description: Success
+  /api/bots/projects/{id}/users:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/projects/{id}/users
+      operationId: get_api_bots_projects_id_users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /api/billing/available-plans:
+    get:
+      tags:
+        - api
+      summary: GET /api/billing/available-plans
+      operationId: get_api_billing_available_plans
+      responses:
+        "200":
+          description: Success
+  /api/billing/projects/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/billing/projects/{id}/{id2}
+      operationId: get_api_billing_projects_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: subscription-details
+      responses:
+        "200":
+          description: Success
+  /api/billing/payment-details:
+    get:
+      tags:
+        - api
+      summary: GET /api/billing/payment-details
+      operationId: get_api_billing_payment_details
+      responses:
+        "200":
+          description: Success
+  /stable/lookingglass/teams/{id}/triggers:
+    get:
+      tags:
+        - stable
+      summary: GET /stable/lookingglass/teams/{id}/triggers
+      operationId: get_stable_lookingglass_teams_id_triggers
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+      responses:
+        "200":
+          description: Success
+  /edge/dashboard/projects/{id}/{id2}:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/dashboard/projects/{id}/{id2}
+      operationId: get_edge_dashboard_projects_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ticket-count-of-agent
+        - name: agent_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "21171"
+      responses:
+        "200":
+          description: Success
+  /api/billing/plans:
+    get:
+      tags:
+        - api
+      summary: GET /api/billing/plans
+      operationId: get_api_billing_plans
+      responses:
+        "200":
+          description: Success
+  /edge/dashboard/projects/{id}/assigned-agents:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/dashboard/projects/{id}/assigned-agents
+      operationId: get_edge_dashboard_projects_id_assigned_agents
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18275"
+      responses:
+        "200":
+          description: Success
+  /api/dashboard/create-team:
+    post:
+      tags:
+        - api
+      summary: POST /api/dashboard/create-team
+      operationId: post_api_dashboard_create_team
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: G team
+                  country: Singapore
+                  country_iso_code: SG
+                  currency_name: Dollar
+                  currency_code: SGD
+                  currency_symbol: $
+                  timezone_alias: Asia/Singapore
+                  timezone_offset_type: UTC
+                  timezone_offset: +8:00
+                  business_url: ""
+                  onboarding_channels:
+                    - whatsapp_bsp
+                    - app_messenger
+      responses:
+        "200":
+          description: Success
+  /api/bots/projects/{id}/permissions:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/projects/{id}/permissions
+      operationId: get_api_bots_projects_id_permissions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+      responses:
+        "200":
+          description: Success
+  /api/accounts/update-status:
+    post:
+      tags:
+        - api
+      summary: POST /api/accounts/update-status
+      operationId: post_api_accounts_update_status
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  status: online
+      responses:
+        "200":
+          description: Success
+  /api/analytics/projects/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/analytics/projects/{id}/{id2}
+      operationId: get_api_analytics_projects_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_new_customer_count
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+        - name: business_hour_status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: projectId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "18276"
+        - name: platform_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: agents
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: groups
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: tags
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: priorities
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: aggregation_mode
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+        - name: endpoint
+          in: query
+          required: false
+          schema:
+            type: string
+          example: get-agent-table-v2
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: ratings
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /api/analytics/projects/{id}/{id2}/referral:
+    get:
+      tags:
+        - api
+      summary: GET /api/analytics/projects/{id}/{id2}/referral
+      operationId: get_api_analytics_projects_id_id2_referral
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_triggered_message_count
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+        - name: business_hour_status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "27292"
+      responses:
+        "200":
+          description: Success
+  /api/analytics/projects/{id}/{id2}/intent:
+    get:
+      tags:
+        - api
+      summary: GET /api/analytics/projects/{id}/{id2}/intent
+      operationId: get_api_analytics_projects_id_id2_intent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_triggered_message_count
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+        - name: business_hour_status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "27292"
+      responses:
+        "200":
+          description: Success
+  /api/analytics/projects/{id}/{id2}/keyword:
+    get:
+      tags:
+        - api
+      summary: GET /api/analytics/projects/{id}/{id2}/keyword
+      operationId: get_api_analytics_projects_id_id2_keyword
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_triggered_message_list
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+        - name: business_hour_status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /api/analytics/projects/{id}/{id2}/postback:
+    get:
+      tags:
+        - api
+      summary: GET /api/analytics/projects/{id}/{id2}/postback
+      operationId: get_api_analytics_projects_id_id2_postback
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_triggered_message_list
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+        - name: business_hour_status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /edge/analytics/projects/{id}/revenue-metrics/order-metrics:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/analytics/projects/{id}/revenue-metrics/order-metrics
+      operationId: get_edge_analytics_projects_id_revenue_metrics_order_metrics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: projectId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "18276"
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+      responses:
+        "200":
+          description: Success
+  /edge/analytics/projects/{id}/revenue-metrics/{id2}:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/analytics/projects/{id}/revenue-metrics/{id2}
+      operationId: get_edge_analytics_projects_id_revenue_metrics_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: channel-timeline
+        - name: projectId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "18276"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+      responses:
+        "200":
+          description: Success
+  /edge/analytics/projects/{id}/revenue-metrics/channel-report:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/analytics/projects/{id}/revenue-metrics/channel-report
+      operationId: get_edge_analytics_projects_id_revenue_metrics_channel_report
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: projectId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "18276"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /edge/analytics/projects/{id}/revenue-metrics/source-report:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/analytics/projects/{id}/revenue-metrics/source-report
+      operationId: get_edge_analytics_projects_id_revenue_metrics_source_report
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: projectId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "18276"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+      responses:
+        "200":
+          description: Success
+  /edge/analytics/projects/{id}/revenue-metrics/source-timeline:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/analytics/projects/{id}/revenue-metrics/source-timeline
+      operationId: get_edge_analytics_projects_id_revenue_metrics_source_timeline
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: projectId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "18276"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+      responses:
+        "200":
+          description: Success
+  /edge/analytics/projects/{id}/revenue-metrics/medium-report:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/analytics/projects/{id}/revenue-metrics/medium-report
+      operationId: get_edge_analytics_projects_id_revenue_metrics_medium_report
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: projectId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "18276"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+      responses:
+        "200":
+          description: Success
+  /edge/analytics/projects/{id}/revenue-metrics/medium-timeline:
+    get:
+      tags:
+        - edge
+      summary: GET /edge/analytics/projects/{id}/revenue-metrics/medium-timeline
+      operationId: get_edge_analytics_projects_id_revenue_metrics_medium_timeline
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: projectId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "18276"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+      responses:
+        "200":
+          description: Success
+  /api/analytics/projects/{id}/get_ticket_list:
+    get:
+      tags:
+        - api
+      summary: GET /api/analytics/projects/{id}/get_ticket_list
+      operationId: get_api_analytics_projects_id_get_ticket_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "6"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /api/analytics/projects/{id}/get_tag_cloud:
+    get:
+      tags:
+        - api
+      summary: GET /api/analytics/projects/{id}/get_tag_cloud
+      operationId: get_api_analytics_projects_id_get_tag_cloud
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-06T00:00:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-13T23:59:59
+      responses:
+        "200":
+          description: Success
+  /api/crm/projects/{id}/agents:
+    get:
+      tags:
+        - api
+      summary: GET /api/crm/projects/{id}/agents
+      operationId: get_api_crm_projects_id_agents
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+      responses:
+        "200":
+          description: Success
+  /api/crm/projects/{id}/ticket-tags:
+    get:
+      tags:
+        - api
+      summary: GET /api/crm/projects/{id}/ticket-tags
+      operationId: get_api_crm_projects_id_ticket_tags
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18276"
+      responses:
+        "200":
+          description: Success
+  /stable/channels/{id}/{id2}:
+    post:
+      tags:
+        - stable
+      summary: POST /stable/channels/{id}/{id2}
+      operationId: post_stable_channels_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "27292"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: update-whatsapp-account-information
+      responses:
+        "200":
+          description: Success
+  /api/bots/customers/filters:
+    get:
+      tags:
+        - api
+      summary: GET /api/bots/customers/filters
+      operationId: get_api_bots_customers_filters
+      parameters:
+        - name: project_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "18276"
+        - name: platform_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "27292"
+      responses:
+        "200":
+          description: Success
+  /api/bots/customers:
+    post:
+      tags:
+        - api
+      summary: POST /api/bots/customers
+      operationId: post_api_bots_customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  project_id: 18276
+                  platform_id: 27292
+                  conditions: []
+                  limit: 20
+                  offset: 0
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPostRequest:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+        - email
+    ApiPatchRequest:
+      type: object
+      properties:
+        has_viewed_integrations:
+          type: boolean
+      required:
+        - has_viewed_integrations
