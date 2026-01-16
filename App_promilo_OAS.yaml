@@ -1,0 +1,1322 @@
+openapi: 3.0.3
+info:
+  title: promilo App
+  version: 1.0.0
+servers:
+  - url: https://api.promilo.com
+tags:
+  - name: admin
+  - name: campaign
+  - name: payment
+  - name: prolet
+  - name: user
+paths:
+  /campaign/api/v1/campaign/impressions:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v1/campaign/impressions
+      operationId: post_campaign_api_v1_campaign_impressions
+      parameters:
+        - name: uid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2c9f942c9bbb1cf7019bc6c20ebf1982
+        - name: guest
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: la
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: lo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: ts
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  - 2c9f88c995b7b3760195c7aa2b706747
+                  - 2c9f88c99140575c019192a24a081da1
+                  - 8a2080849a58dcbe019a5cb69b82094f
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/user/profile/details:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/user/profile/details
+      operationId: get_user_api_v1_user_profile_details
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/user/profile:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/user/profile
+      operationId: get_user_api_v1_user_profile
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/home/product/types:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/home/product/types
+      operationId: get_campaign_api_v1_home_product_types
+      parameters:
+        - name: la
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: lo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/notifications/count:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/notifications/count
+      operationId: get_user_api_v1_notifications_count
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: NEW
+        - name: messageType
+          in: query
+          required: false
+          schema:
+            type: string
+          example: INAPP
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/banner/list:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/banner/list
+      operationId: get_user_api_v1_banner_list
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: HOME
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/search/home/course:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v1/search/home/course
+      operationId: post_campaign_api_v1_search_home_course
+      parameters:
+        - name: la
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: lo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: keyword
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: ci
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 11
+                  query:
+                    filter:
+                      - fields:
+                          - start_date
+                        search: 16/01/2026
+                        search_match: lt
+                      - fields:
+                          - campaign_type
+                        search: COURSE_MEETUP
+                        search_match: exact
+                  group_by:
+                    - display_brand_name
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/search:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v1/search
+      operationId: post_campaign_api_v1_search
+      parameters:
+        - name: la
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: lo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: keyword
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: ci
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 11
+                  query:
+                    filter:
+                      - fields:
+                          - start_date
+                        search: 16/01/2026
+                        search_match: lt
+                      - fields:
+                          - campaign_type
+                        search: INTERNSHIP
+                        search_match: exact
+                  group_by:
+                    - display_brand_name
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/funzone:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/funzone
+      operationId: get_user_api_v1_funzone
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/search/mentors:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v1/search/mentors
+      operationId: post_campaign_api_v1_search_mentors
+      parameters:
+        - name: la
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: lo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: keyword
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: ci
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 11
+                  query:
+                    filter:
+                      - fields:
+                          - start_date
+                        search: 16/01/2026
+                        search_match: lt
+                  group_by:
+                    - user_id
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/seo/article:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/seo/article
+      operationId: get_campaign_api_v1_seo_article
+      parameters:
+        - name: url
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://www.promilo.com/courses-listing
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/mentor/types:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/mentor/types
+      operationId: get_campaign_api_v1_mentor_types
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/master/fortune500:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/master/fortune500
+      operationId: get_campaign_api_v1_master_fortune500
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/master/locations:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/master/locations
+      operationId: get_campaign_api_v1_master_locations
+      parameters:
+        - name: page_number
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2000"
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/master/streams:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/master/streams
+      operationId: get_campaign_api_v1_master_streams
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/category/faq:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/category/faq
+      operationId: get_campaign_api_v1_category_faq
+      parameters:
+        - name: url
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://www.promilo.com/courses-listing
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/home/course/stream:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/home/course/stream
+      operationId: get_campaign_api_v1_home_course_stream
+      parameters:
+        - name: la
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: lo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/campaign/details:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/campaign/details
+      operationId: get_campaign_api_v1_campaign_details
+      parameters:
+        - name: url
+          in: query
+          required: false
+          schema:
+            type: string
+          example: arvindbhai-patel-institute-of-environmental-design-apied-1499
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/campaign/{id}/questions:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/campaign/{id}/questions
+      operationId: get_campaign_api_v1_campaign_id_questions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2c9f942c9b12acb6019b30d3ed8b3bbd
+        - name: la
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: lo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: src
+          in: query
+          required: false
+          schema:
+            type: string
+          example: DESCRIPTION_PAGE
+        - name: ts
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: tst
+          in: query
+          required: false
+          schema:
+            type: string
+          example: DESCRIPTION_PAGE
+        - name: act
+          in: query
+          required: false
+          schema:
+            type: string
+          example: CALL_BACK
+        - name: question_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: SCREENING
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/campaign/{id}/clicks:
+    put:
+      tags:
+        - campaign
+      summary: PUT /campaign/api/v1/campaign/{id}/clicks
+      operationId: put_campaign_api_v1_campaign_id_clicks
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2c9f942c9b12acb6019b30d3ed8b3bbd
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: "null"
+      responses:
+        "200":
+          description: Success
+  /prolet/api/v1/suggestion:
+    get:
+      tags:
+        - prolet
+      summary: GET /prolet/api/v1/suggestion
+      operationId: get_prolet_api_v1_suggestion
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v2/campaign/interest/user/course/search:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v2/campaign/interest/user/course/search
+      operationId: post_campaign_api_v2_campaign_interest_user_course_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 3
+                  query:
+                    filter:
+                      - fields:
+                          - user_id
+                        search: 2c9f942c9bbb1cf7019bc6c20ebf1982
+                        search_match: exact
+                      - fields:
+                          - campaign_type
+                        search: COURSE_MEETUP
+                        search_match: exact
+                      - fields:
+                          - call_back
+                        search: false
+                        search_match: exact
+                      - fields:
+                          - interest_source
+                        search: SIMILAR
+                        search_match: notin
+                  sort:
+                    - field: created_on
+                      direction: DESC
+                      order_sequencing: ACTIVE
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v2/campaign/interest/user/job/search:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v2/campaign/interest/user/job/search
+      operationId: post_campaign_api_v2_campaign_interest_user_job_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 3
+                  query:
+                    filter:
+                      - fields:
+                          - user_id
+                        search: 2c9f942c9bbb1cf7019bc6c20ebf1982
+                        search_match: exact
+                      - fields:
+                          - campaign_type
+                        search: JOB
+                        search_match: exact
+                      - fields:
+                          - call_back
+                        search: false
+                        search_match: exact
+                      - fields:
+                          - interest_source
+                        search: SIMILAR
+                        search_match: notin
+                  sort:
+                    - field: created_on
+                      direction: DESC
+                      order_sequencing: ACTIVE
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v2/campaign/interest/user/internship/search:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v2/campaign/interest/user/internship/search
+      operationId: post_campaign_api_v2_campaign_interest_user_internship_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 3
+                  query:
+                    filter:
+                      - fields:
+                          - user_id
+                        search: 2c9f942c9bbb1cf7019bc6c20ebf1982
+                        search_match: exact
+                      - fields:
+                          - campaign_type
+                        search: INTERNSHIP
+                        search_match: exact
+                      - fields:
+                          - call_back
+                        search: false
+                        search_match: exact
+                      - fields:
+                          - interest_source
+                        search: SIMILAR
+                        search_match: notin
+                  sort:
+                    - field: created_on
+                      direction: DESC
+                      order_sequencing: ACTIVE
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v2/campaign/interest/user/mentorship/search:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v2/campaign/interest/user/mentorship/search
+      operationId: post_campaign_api_v2_campaign_interest_user_mentorship_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 3
+                  query:
+                    filter:
+                      - fields:
+                          - user_id
+                        search: 2c9f942c9bbb1cf7019bc6c20ebf1982
+                        search_match: exact
+                      - fields:
+                          - campaign_type
+                        search: ONE_ON_ONE_MEETUP
+                        search_match: exact
+                      - fields:
+                          - call_back
+                        search: false
+                        search_match: exact
+                      - fields:
+                          - interest_source
+                        search: SIMILAR
+                        search_match: notin
+                  sort:
+                    - field: created_on
+                      direction: DESC
+                      order_sequencing: ACTIVE
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v2/campaign/interest/mentor/mentorship/search:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v2/campaign/interest/mentor/mentorship/search
+      operationId: post_campaign_api_v2_campaign_interest_mentor_mentorship_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 3
+                  query:
+                    filter:
+                      - fields:
+                          - campaign_user_id
+                        search: 2c9f942c9bbb1cf7019bc6c20ebf1982
+                        search_match: exact
+                      - fields:
+                          - campaign_type
+                        search: ONE_ON_ONE_MEETUP
+                        search_match: exact
+                      - fields:
+                          - status
+                        search: INITIATED,SCHEDULED,REJECTED,CANCELLED,RESCHEDULED,COMPLETED,EXPIRED,ACTIVE
+                        search_match: in
+                      - fields:
+                          - mentor_service_type
+                        search: VIDEO_CALL
+                        search_match: exact
+                  sort:
+                    - field: created_on
+                      direction: DESC
+                      order_sequencing: ACTIVE
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/master/functional-area/title/list:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/master/functional-area/title/list
+      operationId: get_campaign_api_v1_master_functional_area_title_list
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume
+      operationId: get_user_api_v1_resume
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/interview/candidate/interview/search:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v1/interview/candidate/interview/search
+      operationId: post_campaign_api_v1_interview_candidate_interview_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 10
+                  query:
+                    filter:
+                      - fields:
+                          - user_id
+                        search: 2c9f942c9bbb1cf7019bc6c20ebf1982
+                        search_match: exact
+                  sort:
+                    - field: last_updated_on
+                      direction: DESC
+                      order_sequencing: ACTIVE
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/interview/credits:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/interview/credits
+      operationId: get_campaign_api_v1_interview_credits
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/application/user/search:
+    post:
+      tags:
+        - campaign
+      summary: POST /campaign/api/v1/application/user/search
+      operationId: post_campaign_api_v1_application_user_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 20
+                  query:
+                    filter:
+                      - fields:
+                          - user_id
+                        search: 2c9f942c9bbb1cf7019bc6c20ebf1982
+                        search_match: exact
+                  sort:
+                    - field: created_on
+                      direction: DESC
+                      order_sequencing: ACTIVE
+      responses:
+        "200":
+          description: Success
+  /admin/api/v1/points/howtoearn/search:
+    post:
+      tags:
+        - admin
+      summary: POST /admin/api/v1/points/howtoearn/search
+      operationId: post_admin_api_v1_points_howtoearn_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 200
+                  query:
+                    filter:
+                      - fields:
+                          - status
+                        search: ACTIVE
+                        search_match: exact
+                  sort:
+                    - field: sequence
+                      direction: ASC
+                      order_sequencing: ACTIVE
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/rewards/summary:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/rewards/summary
+      operationId: get_user_api_v1_rewards_summary
+      parameters:
+        - name: fromDate
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 07/01/2026
+        - name: toDate
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 16/01/2026
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/referralreferee/count:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/referralreferee/count
+      operationId: get_user_api_v1_referralreferee_count
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/workexperience:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/workexperience
+      operationId: get_user_api_v1_resume_workexperience
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/academic:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/academic
+      operationId: get_user_api_v1_resume_academic
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/itskills:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/itskills
+      operationId: get_user_api_v1_resume_itskills
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/project:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/project
+      operationId: get_user_api_v1_resume_project
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/accomplishment:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/accomplishment
+      operationId: get_user_api_v1_resume_accomplishment
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/accomplishment/worksample:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/accomplishment/worksample
+      operationId: get_user_api_v1_resume_accomplishment_worksample
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/accomplishment/research:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/accomplishment/research
+      operationId: get_user_api_v1_resume_accomplishment_research
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/accomplishment/patent:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/accomplishment/patent
+      operationId: get_user_api_v1_resume_accomplishment_patent
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/accomplishment/presentation:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/accomplishment/presentation
+      operationId: get_user_api_v1_resume_accomplishment_presentation
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/accomplishment/certification:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/accomplishment/certification
+      operationId: get_user_api_v1_resume_accomplishment_certification
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/carrer/profile:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/carrer/profile
+      operationId: get_user_api_v1_resume_carrer_profile
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/resume/workexperience/user/{id}:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/resume/workexperience/user/{id}
+      operationId: get_user_api_v1_resume_workexperience_user_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2c9f942c9bbb1cf7019bc6c20ebf1982
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/advertiser/balance:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/advertiser/balance
+      operationId: get_user_api_v1_advertiser_balance
+      responses:
+        "200":
+          description: Success
+  /payment/api/v1/payment/search:
+    post:
+      tags:
+        - payment
+      summary: POST /payment/api/v1/payment/search
+      operationId: post_payment_api_v1_payment_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentPostRequest"
+            examples:
+              fromHar:
+                value:
+                  page:
+                    no: 1
+                    size: 10
+                  query:
+                    filter:
+                      - fields:
+                          - userId
+                        search: 2c9f942c9bbb1cf7019bc6c20ebf1982
+                        search_match: exact
+                      - fields:
+                          - payment_status
+                        search: INITIATED
+                        search_match: notin
+                    search: {}
+                  sort:
+                    - field: created_on
+                      direction: DESC
+                      order_sequencing: ACTIVE
+      responses:
+        "200":
+          description: Success
+  /user/api/v1/advertiser/detail/{id}:
+    get:
+      tags:
+        - user
+      summary: GET /user/api/v1/advertiser/detail/{id}
+      operationId: get_user_api_v1_advertiser_detail_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2c9f942c9bbb1cf7019bc6c20ebf1982
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/master/social:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/master/social
+      operationId: get_campaign_api_v1_master_social
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/master/functional-area/title:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/master/functional-area/title
+      operationId: get_campaign_api_v1_master_functional_area_title
+      parameters:
+        - name: page_number
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "4000"
+        - name: functional_area_ids
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/master/functional-area:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/master/functional-area
+      operationId: get_campaign_api_v1_master_functional_area
+      parameters:
+        - name: page_number
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "4000"
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/master/industries/group:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/master/industries/group
+      operationId: get_campaign_api_v1_master_industries_group
+      parameters:
+        - name: page_number
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "4000"
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/campaign/user/bankdetail:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/campaign/user/bankdetail
+      operationId: get_campaign_api_v1_campaign_user_bankdetail
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/mentor/domain/{id}/categories:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/mentor/domain/{id}/categories
+      operationId: get_campaign_api_v1_mentor_domain_id_categories
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "5"
+      responses:
+        "200":
+          description: Success
+  /campaign/api/v1/mentor/domain/{id}/category/subcategories:
+    get:
+      tags:
+        - campaign
+      summary: GET /campaign/api/v1/mentor/domain/{id}/category/subcategories
+      operationId: get_campaign_api_v1_mentor_domain_id_category_subcategories
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "5"
+        - name: categories
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "73"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    CampaignPostRequest:
+      type: array
+      items:
+        type: string
+    AdminPostRequest:
+      type: object
+      properties:
+        page:
+          type: object
+          properties:
+            no:
+              type: integer
+            size:
+              type: integer
+          required:
+            - no
+            - size
+        query:
+          type: object
+          properties:
+            filter:
+              type: array
+              items:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      type: string
+                  search:
+                    type: string
+                  search_match:
+                    type: string
+                required:
+                  - fields
+                  - search
+                  - search_match
+          required:
+            - filter
+        sort:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              direction:
+                type: string
+              order_sequencing:
+                type: string
+            required:
+              - field
+              - direction
+              - order_sequencing
+      required:
+        - page
+        - query
+        - sort
+    PaymentPostRequest:
+      type: object
+      properties:
+        page:
+          type: object
+          properties:
+            no:
+              type: integer
+            size:
+              type: integer
+          required:
+            - no
+            - size
+        query:
+          type: object
+          properties:
+            filter:
+              type: array
+              items:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      type: string
+                  search:
+                    type: string
+                  search_match:
+                    type: string
+                required:
+                  - fields
+                  - search
+                  - search_match
+            search:
+              type: object
+              properties: {}
+              required: []
+          required:
+            - filter
+            - search
+        sort:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              direction:
+                type: string
+              order_sequencing:
+                type: string
+            required:
+              - field
+              - direction
+              - order_sequencing
+      required:
+        - page
+        - query
+        - sort
