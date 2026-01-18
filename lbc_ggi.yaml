@@ -4716,13 +4716,5 @@ components:
             $ref: '#/components/schemas/mdlAdditionalCoverInfo'
           nullable: true
       additionalProperties: false
-  securitySchemes:
-    Bearer:
-      type: https
-      description: >-
-        JWT Authorization header using the Bearer scheme. Example:
-        "Authorization: Bearer {token}"
-      scheme: bearer
-      bearerFormat: JWT
 security:
   - Bearer: []
