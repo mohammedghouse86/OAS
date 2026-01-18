@@ -4718,7 +4718,7 @@ components:
       additionalProperties: false
   securitySchemes:
     Bearer:
-      type: http
+      type: https
       description: >-
         JWT Authorization header using the Bearer scheme. Example:
         "Authorization: Bearer {token}"
