@@ -1,0 +1,1441 @@
+openapi: 3.0.3
+info:
+  title: Weekmate App
+  version: 1.0.0
+servers:
+  - url: https://payroll.weekmate.in
+tags:
+  - name: api
+paths:
+  /api/v1/employees:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/employees
+      operationId: get_api_v1_employees
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: department
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: sub_company_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: joinDateFrom
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: joinDateTo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: ctcMin
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: ctcMax
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: employmentType
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/employees
+      operationId: post_api_v1_employees
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  employee:
+                    name: Jack Doe
+                    first_name: Jack
+                    middle_name: ""
+                    last_name: Doe
+                    email: jack@tester.com
+                    joining_date: 2026-01-27
+                    department_id: 201
+                    designation_id: 252
+                    employment_type: Full_Time
+                    phone_number: "917852723247"
+                    status: Active
+                    role_id: 71
+                    address: |-
+                      3667 Sydney Ct
+                      Rd Number 2
+                    sub_company_id: 64
+                    grade_id: 1015
+                    branch_id: 43
+                    payment_mode: cash
+                    ctc: "785"
+                    salary_template_id: 70
+                    freeze_account: false
+                    gender: male
+                  contact:
+                    country: India
+                    nationality: Indian
+                    emergency_contact_name: Jack Doe
+                    emergency_contact_phone: "917852723247"
+                    emergency_contact_address: 3667 Sydney Ct
+                  bank_details: {}
+                  statutory:
+                    pan: ABCDE1234F
+                    pt_flag: false
+                    pf_flag: false
+                    esic_flag: false
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/department:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/department
+      operationId: get_api_v1_field_department
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/field/department
+      operationId: post_api_v1_field_department
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: department main
+      responses:
+        "200":
+          description: Success
+  /api/v1/company/sub-companies/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/company/sub-companies/{id}
+      operationId: get_api_v1_company_sub_companies_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "64"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/grade/all:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/grade/all
+      operationId: get_api_v1_field_grade_all
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/branch/all:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/branch/all
+      operationId: get_api_v1_field_branch_all
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/designation/all:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/designation/all
+      operationId: get_api_v1_field_designation_all
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/department/all:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/department/all
+      operationId: get_api_v1_field_department_all
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/division/all:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/division/all
+      operationId: get_api_v1_field_division_all
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/unit/all:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/unit/all
+      operationId: get_api_v1_field_unit_all
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/category/all:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/category/all
+      operationId: get_api_v1_field_category_all
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/project/all:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/project/all
+      operationId: get_api_v1_field_project_all
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/{id}/all:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/{id}/all
+      operationId: get_api_v1_id_all
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: salary-templates
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/role:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/role
+      operationId: get_api_v1_role
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/role
+      operationId: post_api_v1_role
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  role:
+                    name: manager
+                    access_level: manager
+                  module:
+                    salary:
+                      full: false
+                      partial: true
+                      is_visible: true
+                    salary-template:
+                      full: false
+                      partial: true
+                      is_visible: true
+                    employee-salary-management:
+                      full: false
+                      partial: true
+                      is_visible: true
+                    attendance:
+                      full: false
+                      partial: true
+                      is_visible: true
+                    employee:
+                      full: false
+                      partial: true
+                      is_visible: true
+                    attendance-template:
+                      full: false
+                      partial: true
+                      is_visible: true
+                    loan:
+                      full: false
+                      partial: true
+                      is_visible: true
+                    loan-type:
+                      full: false
+                      partial: true
+                      is_visible: true
+                    dashboard:
+                      full: true
+                      partial: false
+                      is_visible: true
+      responses:
+        "200":
+          description: Success
+  /api/v1/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/{id}
+      operationId: get_api_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: salary-templates
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+          example: base
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/{id}
+      operationId: post_api_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: salary-templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: salary template
+                  description: salary template
+                  template_type: HOURLY
+                  company_id: 64
+      responses:
+        "200":
+          description: Success
+  /api/v1/employee-salary/list:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/employee-salary/list
+      operationId: get_api_v1_employee_salary_list
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/designation:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/designation
+      operationId: get_api_v1_field_designation
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/field/designation
+      operationId: post_api_v1_field_designation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: manager
+                  description: ""
+      responses:
+        "200":
+          description: Success
+  /api/v1/{id}/{id2}:
+    put:
+      tags:
+        - api
+      summary: PUT /api/v1/{id}/{id2}
+      operationId: put_api_v1_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: salary-templates
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPutRequest"
+            examples:
+              fromHar:
+                value:
+                  name: salary template
+                  description: salary template
+                  template_type: HOURLY
+                  company_id: 64
+                  hourly_wages_raw_data:
+                    type: manual
+                    hourly_wage: "12"
+                    overtime_wage: "5"
+                    per_day_working_hours: null
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/{id}/{id2}
+      operationId: get_api_v1_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: role-permissions
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "71"
+      responses:
+        "200":
+          description: Success
+  /api/v1/attendance/month-year-list:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/attendance/month-year-list
+      operationId: get_api_v1_attendance_month_year_list
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /api/v1/dropdown/attendance/years:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/dropdown/attendance/years
+      operationId: get_api_v1_dropdown_attendance_years
+      responses:
+        "200":
+          description: Success
+  /api/v1/attendance/upload:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/attendance/upload
+      operationId: post_api_v1_attendance_upload
+      requestBody:
+        required: true
+        content:
+          multipart/form-data; boundary=----WebKitFormBoundaryK3BetC8VhBSpuTk7:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: "------WebKitFormBoundaryK3BetC8VhBSpuTk7\r
+
+                  Content-Disposition: form-data; name=\"file\"; filename=\"New Microsoft Excel Worksheet.xlsx\"\r
+
+                  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r
+
+                  \r
+
+                  \r
+
+                  ------WebKitFormBoundaryK3BetC8VhBSpuTk7\r
+
+                  Content-Disposition: form-data; name=\"template_id\"\r
+
+                  \r
+
+                  80\r
+
+                  ------WebKitFormBoundaryK3BetC8VhBSpuTk7\r
+
+                  Content-Disposition: form-data; name=\"month\"\r
+
+                  \r
+
+                  February\r
+
+                  ------WebKitFormBoundaryK3BetC8VhBSpuTk7\r
+
+                  Content-Disposition: form-data; name=\"year\"\r
+
+                  \r
+
+                  2026\r
+
+                  ------WebKitFormBoundaryK3BetC8VhBSpuTk7--\r\n"
+      responses:
+        "200":
+          description: Success
+  /api/v1/dropdown/payroll/years:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/dropdown/payroll/years
+      operationId: get_api_v1_dropdown_payroll_years
+      responses:
+        "200":
+          description: Success
+  /api/v1/payroll:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/payroll
+      operationId: get_api_v1_payroll
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/payroll
+      operationId: post_api_v1_payroll
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  month: January
+                  year: 2026
+                  total_days: 31
+                  weekly_off: 4
+                  paid_holidays: 0
+                  process_date: 2026-01-31
+                  attendance_from: 2026-01-01
+                  attendance_to: 2026-01-31
+                  process_from: 2026-01-01
+                  process_to: 2026-01-31
+                  company_id: 64
+                  sub_company_id: 64
+                  overtime_rate: null
+      responses:
+        "200":
+          description: Success
+  /api/v1/company/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/company/{id}
+      operationId: get_api_v1_company_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "64"
+      responses:
+        "200":
+          description: Success
+  /api/v1/payroll/batches:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/payroll/batches
+      operationId: get_api_v1_payroll_batches
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /api/v1/loan/types:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/loan/types
+      operationId: get_api_v1_loan_types
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/loan/types
+      operationId: post_api_v1_loan_types
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: loan IX
+                  interest_type: flat
+                  interest_rate: "45"
+                  min_tenure: 1
+                  min_service_period: 0
+                  processing_fee: 0
+                  processing_fee_type: fixed
+                  late_payment_penalty: 0
+                  late_payment_penalty_type: percentage
+                  bounce_charge: 0
+                  bounce_charge_type: fixed
+                  foreclosure_charge: 0
+                  foreclosure_charge_type: percentage
+                  status: active
+      responses:
+        "200":
+          description: Success
+  /api/v1/reports/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/reports/{id}
+      operationId: get_api_v1_reports_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get-employee-report
+        - name: from_month
+          in: query
+          required: false
+          schema:
+            type: string
+          example: January
+        - name: from_year
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2026"
+        - name: to_month
+          in: query
+          required: false
+          schema:
+            type: string
+          example: January
+        - name: to_year
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2026"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: is_pagination
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api/v1/statutory/tax-projectory:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/statutory/tax-projectory
+      operationId: get_api_v1_statutory_tax_projectory
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/signature/all:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/signature/all
+      operationId: get_api_v1_field_signature_all
+      responses:
+        "200":
+          description: Success
+  /api/v1/statutory/declarations:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/statutory/declarations
+      operationId: get_api_v1_statutory_declarations
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/signature:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/signature
+      operationId: get_api_v1_field_signature
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/field/signature
+      operationId: post_api_v1_field_signature
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Ghouse1
+                  father_name: sass
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/grade:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/grade
+      operationId: get_api_v1_field_grade
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/field/grade
+      operationId: post_api_v1_field_grade
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: L2 - II
+                  description: ""
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/branch:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/branch
+      operationId: get_api_v1_field_branch
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/field/branch
+      operationId: post_api_v1_field_branch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: branch 1
+                  pt: "2657"
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/division:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/division
+      operationId: get_api_v1_field_division
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/field/division
+      operationId: post_api_v1_field_division
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: div III
+                  description: this is div III
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/unit:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/unit
+      operationId: get_api_v1_field_unit
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/field/unit
+      operationId: post_api_v1_field_unit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: unit 1
+                  description: unit 1
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/category:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/category
+      operationId: get_api_v1_field_category
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/field/category
+      operationId: post_api_v1_field_category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: category 1
+                  description: category 1
+      responses:
+        "200":
+          description: Success
+  /api/v1/field/project:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/field/project
+      operationId: get_api_v1_field_project
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/field/project
+      operationId: post_api_v1_field_project
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: project 1
+                  description: project 1
+      responses:
+        "200":
+          description: Success
+  /api/v1/module:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/module
+      operationId: get_api_v1_module
+      responses:
+        "200":
+          description: Success
+  /api/v1/smtp/getSmtpConfig:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/smtp/getSmtpConfig
+      operationId: get_api_v1_smtp_getSmtpConfig
+      responses:
+        "200":
+          description: Success
+  /api/v1/{id}/{id2}/{id3}:
+    put:
+      tags:
+        - api
+      summary: PUT /api/v1/{id}/{id2}/{id3}
+      operationId: put_api_v1_id_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: role-permissions
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "71"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPutRequest"
+            examples:
+              fromHar:
+                value:
+                  create: true
+                  read: true
+                  update: true
+                  delete: true
+                  is_visible: false
+      responses:
+        "200":
+          description: Success
+  /api/v1/reports/general-voucher:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/reports/general-voucher
+      operationId: get_api_v1_reports_general_voucher
+      parameters:
+        - name: year
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2026"
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPostRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        template_type:
+          type: string
+        company_id:
+          type: integer
+      required:
+        - name
+        - description
+        - template_type
+        - company_id
+    ApiPutRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        template_type:
+          type: string
+        company_id:
+          type: integer
+        hourly_wages_raw_data:
+          type: object
+          properties:
+            type:
+              type: string
+            hourly_wage:
+              type: string
+            overtime_wage:
+              type: string
+            per_day_working_hours:
+              nullable: true
+          required:
+            - type
+            - hourly_wage
+            - overtime_wage
+            - per_day_working_hours
+      required:
+        - name
+        - description
+        - template_type
+        - company_id
+        - hourly_wages_raw_data
