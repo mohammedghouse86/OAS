@@ -1,0 +1,7160 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OnlineApi",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://lbc.ggi-sa.com/MobilAppUatAPI"
+    }
+  ],
+  "paths": {
+    "/api/Auth/Login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "Login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlloginReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlloginReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlloginReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/LoginVerifyOTP": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "LoginVerifyOTP",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlOtpVerifyReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlOtpVerifyReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlOtpVerifyReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/AddRegistration": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "AddRegistration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlRegistrationReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlRegistrationReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlRegistrationReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/claimconfig": {
+      "get": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "claimconfig",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/accidentdetails": {
+      "post": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "accidentdetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimSearchReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimSearchReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimSearchReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/claimregister": {
+      "post": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "claimregister",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimRegisterReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimRegisterReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimRegisterReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/claimuploaddoc": {
+      "post": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "claimuploaddoc",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCoreDocumentUploadReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCoreDocumentUploadReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCoreDocumentUploadReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/pendingdocs": {
+      "post": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "pendingdocs",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCorePendingDocUploadReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCorePendingDocUploadReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCorePendingDocUploadReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/claimstatus": {
+      "post": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "claimstatus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimStatusReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimStatusReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimStatusReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/GetClaimsById": {
+      "post": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "GetClaimsById",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetClaimsByIdReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetClaimsByIdReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetClaimsByIdReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/GetGeneralClaimsInfo": {
+      "post": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "GetGeneralClaimsInfo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimsBindInfoReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimsBindInfoReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlClaimsBindInfoReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/SubmitGeneralClaim": {
+      "post": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "SubmitGeneralClaim",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSubmitClaimReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSubmitClaimReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSubmitClaimReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/GetClaimList": {
+      "post": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "GetClaimList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetClaimListReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetClaimListReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetClaimListReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Claims/GetGeneralClaimDetails": {
+      "post": {
+        "tags": [
+          "Claims"
+        ],
+        "operationId": "GetGeneralClaimDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetClaimDetailsReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetClaimDetailsReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetClaimDetailsReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/GetChangeInGeneralInfo": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "GetChangeInGeneralInfo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetChangeInGeneralInfoReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetChangeInGeneralInfoReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetChangeInGeneralInfoReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/SubmitChangeInGeneralInfo": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "SubmitChangeInGeneralInfo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSubmitChangeInGeneralInfoReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSubmitChangeInGeneralInfoReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSubmitChangeInGeneralInfoReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/GetDDLEndorsements": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "GetDDLEndorsements",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetDDLEndorsementsReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetDDLEndorsementsReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetDDLEndorsementsReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/SubmitAddDriver": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "SubmitAddDriver",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDriverEndAddReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDriverEndAddReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDriverEndAddReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/MotorCancellationRequest": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "MotorCancellationRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/MotorCancellationSubmit": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "MotorCancellationSubmit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMotorCancelSubmit"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMotorCancelSubmit"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMotorCancelSubmit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/UpdateSequenceNo": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "UpdateSequenceNo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSubmitAddSequenceNoEndReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSubmitAddSequenceNoEndReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSubmitAddSequenceNoEndReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/MedmalCancellationRequest": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "MedmalCancellationRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/MedmalCancellationSubmit": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "MedmalCancellationSubmit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalCancelSubmit"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalCancelSubmit"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalCancelSubmit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/ChangeinHospitalAndProfession": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "ChangeinHospitalAndProfession",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlChangeinHospitalOrProfessionReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlChangeinHospitalOrProfessionReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlChangeinHospitalOrProfessionReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/TravelCancellationRequest": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "TravelCancellationRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/TravelCancellationSubmit": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "TravelCancellationSubmit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalCancelSubmit"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalCancelSubmit"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalCancelSubmit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/DHCancellationRequest": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "DHCancellationRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Endorsements/DHCancellationSubmit": {
+      "post": {
+        "tags": [
+          "Endorsements"
+        ],
+        "operationId": "DHCancellationSubmit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalCancelSubmit"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalCancelSubmit"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalCancelSubmit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/General/SubmitComplaint": {
+      "post": {
+        "tags": [
+          "General"
+        ],
+        "operationId": "SubmitComplaint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlOnlineComplaintReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlOnlineComplaintReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlOnlineComplaintReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/BindInfo": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "BindInfo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelBindInfoReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelBindInfoReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelBindInfoReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetCompanyDetails": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetCompanyDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetCompanyReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetCompanyReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetCompanyReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/BasicQuoteSave": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "BasicQuoteSave",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlQuoteBasicSaveReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlQuoteBasicSaveReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlQuoteBasicSaveReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetMemberDetails": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetMemberDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetMemberDetailsReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetMemberDetailsReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetMemberDetailsReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/VerifyMembers": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "VerifyMembers",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlVerifyMembersReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlVerifyMembersReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlVerifyMembersReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/MemberSave": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "MemberSave",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveMembers"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveMembers"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveMembers"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/MemberHDFSave": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "MemberHDFSave",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveMemberHDF"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveMemberHDF"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveMemberHDF"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/PremiumDetails": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "PremiumDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetPremiumDetais_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetPremiumDetais_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetPremiumDetais_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/KYCSave": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "KYCSave",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveKYC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveKYC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveKYC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/EditQuote": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "EditQuote",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_EditQuote_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_EditQuote_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_EditQuote_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetQuoteList": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetQuoteList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_QuotationList_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_QuotationList_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_QuotationList_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/QuoteCancel": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "QuoteCancel",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_QuoteCancel_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_QuoteCancel_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_QuoteCancel_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetPolicyList": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetPolicyList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPolicyListReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPolicyListReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPolicyListReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/AddNewEndorsement": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "AddNewEndorsement",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_AddNewEndorsement_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_AddNewEndorsement_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_AddNewEndorsement_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/BindInfo_End": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "BindInfo_End",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlBindDDLEnd_Req"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlBindDDLEnd_Req"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlBindDDLEnd_Req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetEndorsementList": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetEndorsementList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetEndorsementListReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetEndorsementListReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetEndorsementListReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/VerifyMembersEnd": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "VerifyMembersEnd",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlVerifyMembersEndReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlVerifyMembersEndReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlVerifyMembersEndReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/MemberSaveEnd": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "MemberSaveEnd",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMemberSaveEndReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMemberSaveEndReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMemberSaveEndReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/MemberHDFSaveEnd": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "MemberHDFSaveEnd",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveMemberHDF_End_Ec"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveMemberHDF_End_Ec"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveMemberHDF_End_Ec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/PremiumDetailsEnd": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "PremiumDetailsEnd",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetPremiumDetaisEnd_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetPremiumDetaisEnd_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetPremiumDetaisEnd_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/CheckHDFCase": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "CheckHDFCase",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_CheckHDFCase_End_Ec"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_CheckHDFCase_End_Ec"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_CheckHDFCase_End_Ec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/CancelEndorsement": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "CancelEndorsement",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelEndorsementReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelEndorsementReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelEndorsementReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetBindInfoCorrectionEnd": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetBindInfoCorrectionEnd",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlBindDDLEnd_Req"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlBindDDLEnd_Req"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlBindDDLEnd_Req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/MemberCorrectionVerify_End": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "MemberCorrectionVerify_End",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_MemberCorrectionValidations_End"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_MemberCorrectionValidations_End"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_MemberCorrectionValidations_End"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetSingleMember_End": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetSingleMember_End",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetSingleMember_End"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetSingleMember_End"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetSingleMember_End"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/SaveAndSubmitEndorsement_Correction": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "SaveAndSubmitEndorsement_Correction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveAndSubmitEndorsement_Correction"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveAndSubmitEndorsement_Correction"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveAndSubmitEndorsement_Correction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetBulkMembersCorrection_End": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetBulkMembersCorrection_End",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetBulkMembersCorrection_End"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetBulkMembersCorrection_End"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetBulkMembersCorrection_End"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetBindInfo_Deletion_End": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetBindInfo_Deletion_End",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_BindInfo_Deletion_End_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_BindInfo_Deletion_End_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_BindInfo_Deletion_End_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetAllMembers_End": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetAllMembers_End",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetAllActiveMembers_End"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetAllActiveMembers_End"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetAllActiveMembers_End"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/GetMembers_End": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "GetMembers_End",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetMembers_End_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetMembers_End_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_GetMembers_End_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/RemoveMembers_End": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "RemoveMembers_End",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_RemoveMembers_End_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_RemoveMembers_End_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_RemoveMembers_End_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/MemberDeletionVerify_End": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "MemberDeletionVerify_End",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_MemberDeletionValidations_End_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_MemberDeletionValidations_End_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_MemberDeletionValidations_End_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Med/SaveAndSubmitEndorsement_Deletion": {
+      "post": {
+        "tags": [
+          "Med"
+        ],
+        "operationId": "SaveAndSubmitEndorsement_Deletion",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveAndSubmitEndorsement_Deletion_EC"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveAndSubmitEndorsement_Deletion_EC"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SPME_SaveAndSubmitEndorsement_Deletion_EC"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MedClaims/PolicyDetails_Medical": {
+      "post": {
+        "tags": [
+          "MedClaims"
+        ],
+        "operationId": "PolicyDetails_Medical",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PolicyDetail_MobApp_Req"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PolicyDetail_MobApp_Req"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PolicyDetail_MobApp_Req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MedClaims/ReimbClaim_Config_Data": {
+      "get": {
+        "tags": [
+          "MedClaims"
+        ],
+        "operationId": "ReimbClaim_Config_Data",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MedClaims/ReimbClaimList": {
+      "post": {
+        "tags": [
+          "MedClaims"
+        ],
+        "operationId": "ReimbClaimList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimbListReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimbListReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimbListReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MedClaims/ReimbCreation": {
+      "post": {
+        "tags": [
+          "MedClaims"
+        ],
+        "operationId": "ReimbCreation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimbSaveReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimbSaveReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimbSaveReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MedClaims/ReimbPendingDocs": {
+      "post": {
+        "tags": [
+          "MedClaims"
+        ],
+        "operationId": "ReimbPendingDocs",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimPendingDocsReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimPendingDocsReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimPendingDocsReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MedClaims/ReimbPendingUploadDocs": {
+      "post": {
+        "tags": [
+          "MedClaims"
+        ],
+        "operationId": "ReimbPendingUploadDocs",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimUploadPendingDocsReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimUploadPendingDocsReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimUploadPendingDocsReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MedClaims/ReimbDetails": {
+      "post": {
+        "tags": [
+          "MedClaims"
+        ],
+        "operationId": "ReimbDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimbDetailsReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimbDetailsReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReimbDetailsReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/GetRedirectionRequest": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "operationId": "GetRedirectionRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPaymentReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPaymentReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPaymentReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/GetTabbyRequest": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "operationId": "GetTabbyRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPaymentReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPaymentReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPaymentReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/CheckPaymentStatus": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "operationId": "CheckPaymentStatus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCheckStatusReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCheckStatusReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCheckStatusReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetDDLMotor": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetDDLMotor",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetDDLMotorReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetDDLMotorReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetDDLMotorReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetVehicleDDL": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetVehicleDDL",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetVehicleDDLReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetVehicleDDLReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetVehicleDDLReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetMotorDetails": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetMotorDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetMotorQuoteReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetMotorQuoteReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetMotorQuoteReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetDriverDetails": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetDriverDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDriverInfoReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDriverInfoReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDriverInfoReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetMotorPremium": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetMotorPremium",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetMotorQuoteRes"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetMotorQuoteRes"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetMotorQuoteRes"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/MotorAddAdditionalCovers": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "MotorAddAdditionalCovers",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMotorAdditionalCoversReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMotorAdditionalCoversReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMotorAdditionalCoversReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/SaveMotorQuote": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "SaveMotorQuote",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSaveMotorQuoteReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSaveMotorQuoteReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSaveMotorQuoteReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetPolicies": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetPolicies",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPoliciesListReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPoliciesListReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetPoliciesListReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetProposals": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetProposals",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetProposalListReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetProposalListReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetProposalListReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/CancelProposal": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "CancelProposal",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelProposalReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelProposalReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlCancelProposalReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetDDLMedmal": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetDDLMedmal",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalDDLReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalDDLReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalDDLReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetDetailsMedmal": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetDetailsMedmal",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalDetailsReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalDetailsReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalDetailsReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetMedmalPremium": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetMedmalPremium",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalPremiumReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalPremiumReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlMedmalPremiumReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/SaveMedmalQuote": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "SaveMedmalQuote",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSaveMedmalQuoteReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSaveMedmalQuoteReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSaveMedmalQuoteReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetDDLTravel": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetDDLTravel",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelBindInfoReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelBindInfoReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelBindInfoReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetInsuredInfoTravel": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetInsuredInfoTravel",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelQuoteRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelQuoteRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelQuoteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetTravelPremium": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetTravelPremium",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelPremiumReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelPremiumReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetTravelPremiumReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/SaveTravelQuote": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "SaveTravelQuote",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSaveTravelQuoteReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSaveTravelQuoteReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlSaveTravelQuoteReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetDDLDomesticHelper": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetDDLDomesticHelper",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetDDLDomesticHelperReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetDDLDomesticHelperReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetDDLDomesticHelperReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetDetailsDomesticHelper": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetDetailsDomesticHelper",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDomesticHelperDetailsReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDomesticHelperDetailsReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDomesticHelperDetailsReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/GetDomesticHelperPremium": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "GetDomesticHelperPremium",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDomesticHelperPremiumReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDomesticHelperPremiumReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlDomesticHelperPremiumReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Quote/SaveDomesticHelperQuote": {
+      "post": {
+        "tags": [
+          "Quote"
+        ],
+        "operationId": "SaveDomesticHelperQuote",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlsaveDomesticHelperQuoteReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlsaveDomesticHelperQuoteReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlsaveDomesticHelperQuoteReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Visit/GetVisitorDetails": {
+      "post": {
+        "tags": [
+          "Visit"
+        ],
+        "operationId": "GetVisitorDetails",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlVisitorReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlVisitorReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlVisitorReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Visit/GetVisitExtPremium": {
+      "post": {
+        "tags": [
+          "Visit"
+        ],
+        "operationId": "GetVisitExtPremium",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetVisitExtPremiumReq"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetVisitExtPremiumReq"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlGetVisitExtPremiumReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Visit/GetPolicyPrint": {
+      "post": {
+        "tags": [
+          "Visit"
+        ],
+        "operationId": "GetPolicyPrint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReqPolicyPrint"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReqPolicyPrint"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/mdlReqPolicyPrint"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PolicyDetail_MobApp_Req": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_AddNewEndorsement_EC": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndorsementType": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "RequestDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "EffectiveDate": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_BindInfo_Deletion_End_EC": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_CheckHDFCase_End_Ec": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_EditQuote_EC": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "QuotationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_GetAllActiveMembers_End": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeletionDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeletionReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsPolicyCancellation": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_GetBulkMembersCorrection_End": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "MemberList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMember_End"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_GetMembers_End_EC": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "MemberIdList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMemberId"
+            },
+            "nullable": true
+          },
+          "IsPolicyCancellation": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_GetPremiumDetaisEnd_EC": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_GetPremiumDetais_EC": {
+        "type": "object",
+        "properties": {
+          "QuotationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_GetSingleMember_End": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "MemberNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_MemberCorrectionValidations_End": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "MemberList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMember_End"
+            },
+            "nullable": true
+          },
+          "IsBorderToIqama": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_MemberDeletionValidations_End_EC": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "MemberList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMember_End"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_QuotationList_EC": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_QuoteCancel_EC": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "QuotationId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_RemoveMembers_End_EC": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMember_End"
+            },
+            "nullable": true
+          },
+          "DeleteType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_SaveAndSubmitEndorsement_Correction": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsBorderToIqama": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_SaveAndSubmitEndorsement_Deletion_EC": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_SaveKYC": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "QuotationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "CompanyDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlCompany"
+            },
+            "nullable": true
+          },
+          "BoardMembers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlQuoteBoardMembers"
+            },
+            "nullable": true
+          },
+          "ShareHolders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlQuoteShareHolders"
+            },
+            "nullable": true
+          },
+          "AMLQuestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlQuoteAMLQuestion"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_SaveMemberHDF": {
+        "type": "object",
+        "properties": {
+          "QuotationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "MembersHDFList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMember_HDF"
+            },
+            "nullable": true
+          },
+          "Height": {
+            "type": "string",
+            "nullable": true
+          },
+          "Weight": {
+            "type": "string",
+            "nullable": true
+          },
+          "Decision": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_SaveMemberHDF_End_Ec": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "MembersHDFList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMemberEnd_HDF"
+            },
+            "nullable": true
+          },
+          "Height": {
+            "type": "string",
+            "nullable": true
+          },
+          "Weight": {
+            "type": "string",
+            "nullable": true
+          },
+          "Decision": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SPME_SaveMembers": {
+        "type": "object",
+        "properties": {
+          "QuotationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "MemberList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMember"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlAdditionalCoverInfo": {
+        "type": "object",
+        "properties": {
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "CoverCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "CoverDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "CoverDescription_Ar": {
+            "type": "string",
+            "nullable": true
+          },
+          "Price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "Vat_Amount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlAddress": {
+        "type": "object",
+        "properties": {
+          "Street": {
+            "type": "string",
+            "nullable": true
+          },
+          "District": {
+            "type": "string",
+            "nullable": true
+          },
+          "CityCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "PostalCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "BuildingNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "AdditionalNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "UnitNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "languageCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlAttachments": {
+        "type": "object",
+        "properties": {
+          "Attachment": {
+            "type": "string",
+            "nullable": true
+          },
+          "ComplaintId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlBeneficiaryDetails_DH": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Relationship": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ContactNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "EMail": {
+            "type": "string",
+            "nullable": true
+          },
+          "BeneficiaryAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlBindDDLEnd_Req": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlCCHIMinCount": {
+        "type": "object",
+        "properties": {
+          "Required_Main": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Required_Dependents": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Remaining_Main": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Remaining_Dependents": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlCancelEndorsementReq": {
+        "type": "object",
+        "properties": {
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlCancelProposalReq": {
+        "type": "object",
+        "properties": {
+          "Proposalno": {
+            "type": "string",
+            "nullable": true
+          },
+          "Product": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlCancelReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredId": {
+            "type": "string",
+            "nullable": true
+          },
+          "CancellationDate": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlCancellationImages": {
+        "type": "object",
+        "properties": {
+          "ImageTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageMedia": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlChangeinHospitalOrProfessionReq": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredId": {
+            "type": "string",
+            "nullable": true
+          },
+          "HospitalCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ProfessionCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlCheckStatusReq": {
+        "type": "object",
+        "properties": {
+          "merchant_reference": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlClaimRegisterReq": {
+        "type": "object",
+        "properties": {
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "taqdeerNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "estimationAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankType": {
+            "type": "string",
+            "nullable": true
+          },
+          "ibanNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankName": {
+            "type": "string",
+            "nullable": true
+          },
+          "swiftCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimantLiability": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimantVehPlateNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimantName": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturedYear": {
+            "type": "string",
+            "nullable": true
+          },
+          "damageCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "accidentDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "accidentCityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "accidentDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimantVehPlateNoEN": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimantVehPlateNoBL": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleMake": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleModel": {
+            "type": "string",
+            "nullable": true
+          },
+          "ownerIqamaId": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuredPolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuredSequenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuredVehicleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuredVehicleMake": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuredVehicleModel": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuredVehPlateNoEN": {
+            "type": "string",
+            "nullable": true
+          },
+          "insuredVehPlateNoBL": {
+            "type": "string",
+            "nullable": true
+          },
+          "divisionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "regionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimCityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimDistrict": {
+            "type": "string",
+            "nullable": true
+          },
+          "nationalId": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimType": {
+            "type": "string",
+            "nullable": true
+          },
+          "AccidentReportNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "accidentSurveyedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "sequenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "isIBANVerified": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlClaimSearchReq": {
+        "type": "object",
+        "properties": {
+          "nationalId": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimType": {
+            "type": "string",
+            "nullable": true
+          },
+          "accidentReportNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "accidentSurveyedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "sequenceNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlClaimStatusReq": {
+        "type": "object",
+        "properties": {
+          "NationalID": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClaimRefNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlClaimsBindInfoReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "LOB": {
+            "type": "string",
+            "nullable": true
+          },
+          "Policyno": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlClass": {
+        "type": "object",
+        "properties": {
+          "ClassCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ProductCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "PlanCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "LoadingTypeCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "PremiumCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ClassName": {
+            "type": "string",
+            "nullable": true
+          },
+          "DisplayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClassPriority": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlCompany": {
+        "type": "object",
+        "properties": {
+          "SponsorNo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "CompanyNameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "CompanyNameAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "CompanyTypeCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "CrNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "CrIssueDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "CrExpiryDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "CrMainNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "BuildingNo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "Street": {
+            "type": "string",
+            "nullable": true
+          },
+          "District": {
+            "type": "string",
+            "nullable": true
+          },
+          "CityCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "CityDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "ZipCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "UnitNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "AdditionalNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "MobileNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "PhoneNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "TaxRegTypeCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "TaxRegistrationNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IBAN": {
+            "type": "string",
+            "nullable": true
+          },
+          "BankCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "BusinessTypeCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "RevenueCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Activities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlSponsorActivities"
+            },
+            "nullable": true
+          },
+          "CCHIMinCount": {
+            "$ref": "#/components/schemas/mdlCCHIMinCount"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlCoreDocumentUploadReq": {
+        "type": "object",
+        "properties": {
+          "NationalID": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClaimRefNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentExtension": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentAsBase64": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlCorePendingDocUploadReq": {
+        "type": "object",
+        "properties": {
+          "NationalID": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClaimRefNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlDHClaimsHistory": {
+        "type": "object",
+        "properties": {
+          "ClaimYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Details": {
+            "type": "string",
+            "nullable": true
+          },
+          "Amount": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlDHcovers": {
+        "type": "object",
+        "properties": {
+          "CoverCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "SumInsured": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlDependentList": {
+        "type": "object",
+        "properties": {
+          "DependentId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "DependentBirthDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "DependentBirthDateG": {
+            "type": "string",
+            "nullable": true
+          },
+          "DependentPassportExpDateG": {
+            "type": "string",
+            "nullable": true
+          },
+          "DependentGenderCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "DependentNationalityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "DependentFirstNameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "DependentMiddleNameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "DependentLastNameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "DependentPassportNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DependentRelationCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlDomesticHelperDetailsReq": {
+        "type": "object",
+        "properties": {
+          "IqamaNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DOB": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlDomesticHelperPremiumReq": {
+        "type": "object",
+        "properties": {
+          "ProposalNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Insured_IdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PromoCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyEffectiveDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyExpiryDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsSpecialTermsImposed": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "RiskDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlriskdetails_DH"
+            },
+            "nullable": true
+          },
+          "BeneficiaryDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlBeneficiaryDetails_DH"
+            },
+            "nullable": true
+          },
+          "SelectedCovers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlDHcovers"
+            },
+            "nullable": true
+          },
+          "DHClaimsHistory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlDHClaimsHistory"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlDriver": {
+        "type": "object",
+        "properties": {
+          "IsPolicyHolder": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IsMaindriver": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IqamaNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "NameEng": {
+            "type": "string",
+            "nullable": true
+          },
+          "NameAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "BirthDateG": {
+            "type": "string",
+            "nullable": true
+          },
+          "BirthDateH": {
+            "type": "string",
+            "nullable": true
+          },
+          "DriverAge": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "GenderCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "MaritalStatusCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "OccupationCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EducationCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "NationalityCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ChildrenBelow16": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "RelationWithInsuredCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "HealthConditionsCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "LicenseTypeCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "LicenseExpiryDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "DrivingExpYears": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "NoOfYearsSaudiLicenseHeld": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "VehicleUsagePercentage": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "TrafficViolationsCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "CityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "HomeAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "OfficeAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlDriverEndAddReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "RequestNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "DriverInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlDriver"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlDriverInfoReq": {
+        "type": "object",
+        "properties": {
+          "DriverId": {
+            "type": "string",
+            "nullable": true
+          },
+          "DOB": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetChangeInGeneralInfoReq": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetClaimDetailsReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClaimNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetClaimListReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetClaimsByIdReq": {
+        "type": "object",
+        "properties": {
+          "nationalId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetCompanyReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "SponsorNo": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetDDLDomesticHelperReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetDDLEndorsementsReq": {
+        "type": "object",
+        "properties": {
+          "PolicyType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetDDLMotorReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetEndorsementListReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetMemberDetailsReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "QuotationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetMotorQuoteReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "VehDefType": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "SequenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DOB": {
+            "type": "string",
+            "nullable": true
+          },
+          "CustomId": {
+            "type": "string",
+            "nullable": true
+          },
+          "OwnerIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsTransferOfShip": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "VehicleModelYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IsRenewal": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "PrevoiusPolicyNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetMotorQuoteRes": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PromoCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyEffectiveDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredInfo": {
+            "$ref": "#/components/schemas/mdlInsuredInfo"
+          },
+          "Address": {
+            "$ref": "#/components/schemas/mdlAddress"
+          },
+          "VehicleInfo": {
+            "$ref": "#/components/schemas/mdlVehicle"
+          },
+          "DriverInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlDriver"
+            },
+            "nullable": true
+          },
+          "St": {
+            "$ref": "#/components/schemas/mdlStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetPaymentReq": {
+        "type": "object",
+        "properties": {
+          "Type": {
+            "type": "string",
+            "nullable": true
+          },
+          "LOB": {
+            "type": "string",
+            "nullable": true
+          },
+          "UserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "QuotationNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IP": {
+            "type": "string",
+            "nullable": true
+          },
+          "Channel": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetPoliciesListReq": {
+        "type": "object",
+        "properties": {
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetPolicyListReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetProposalListReq": {
+        "type": "object",
+        "properties": {
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetTravelBindInfoReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetTravelPremiumReq": {
+        "type": "object",
+        "properties": {
+          "CountryFrom": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "CountryTo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TravelFrom": {
+            "type": "string",
+            "nullable": true
+          },
+          "TravelTo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Period": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ProposalNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "PromoCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "AdultCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ChildCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "SeniorCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetTravelQuoteRequest": {
+        "type": "object",
+        "properties": {
+          "IqamaNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DOB": {
+            "type": "string",
+            "nullable": true
+          },
+          "DOBHijri": {
+            "type": "string",
+            "nullable": true
+          },
+          "RegNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetVehicleDDLReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "VehDefType": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "SequenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "CustomId": {
+            "type": "string",
+            "nullable": true
+          },
+          "OwnerIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsTransferOfShip": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlGetVisitExtPremiumReq": {
+        "type": "object",
+        "properties": {
+          "Policy_no": {
+            "type": "string",
+            "nullable": true
+          },
+          "Insurance_Duration": {
+            "type": "string",
+            "nullable": true
+          },
+          "Declarations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlQuoteHDFQuestion"
+            },
+            "nullable": true
+          },
+          "IBANNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "BorderNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "BankCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "FromDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlInsuredInfo": {
+        "type": "object",
+        "properties": {
+          "ProposalNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "IsTransferOfOwnership": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "OwnerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "NameEng": {
+            "type": "string",
+            "nullable": true
+          },
+          "NameAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdExpiryDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "IDRegistrationCityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "BirthDateG": {
+            "type": "string",
+            "nullable": true
+          },
+          "BirthDateH": {
+            "type": "string",
+            "nullable": true
+          },
+          "GenderCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "MaritalStatusCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "OccupationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "EducationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "NationalityCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ChildrenBelow16": {
+            "type": "string",
+            "nullable": true
+          },
+          "MobileNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "EmailId": {
+            "type": "string",
+            "nullable": true
+          },
+          "NcdYears": {
+            "type": "string",
+            "nullable": true
+          },
+          "NcdReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "NoOfAccidents": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "AccidentsLiability": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Ins_Age": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "NoOfSaudiLicHeld": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "AccidentDetails": {
+            "$ref": "#/components/schemas/mdlNajmCaseDetails"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMedmalCancelSubmit": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "CancellationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CancellationReasonCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IBANNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "CancellationDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredId": {
+            "type": "string",
+            "nullable": true
+          },
+          "AccountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "CancellationImages": {
+            "$ref": "#/components/schemas/mdlCancellationImages"
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMedmalDDLReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IqamaNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMedmalDetailsReq": {
+        "type": "object",
+        "properties": {
+          "IqamaNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DOB": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMedmalPremiumReq": {
+        "type": "object",
+        "properties": {
+          "ProposalNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "HospCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProfCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "LimitOfLiability": {
+            "type": "string",
+            "nullable": true
+          },
+          "Period": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClaimFlag": {
+            "type": "string",
+            "nullable": true
+          },
+          "NoOfClaims": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PrvPolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PrvPolicyFromdate": {
+            "type": "string",
+            "nullable": true
+          },
+          "PrvPolicyTodate": {
+            "type": "string",
+            "nullable": true
+          },
+          "PrvPolicyRetroActivedate": {
+            "type": "string",
+            "nullable": true
+          },
+          "RetroActivedate": {
+            "type": "string",
+            "nullable": true
+          },
+          "AddRetroActivedate": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeductableCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ExtPeriod": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyFromDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "PromoCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMember": {
+        "type": "object",
+        "properties": {
+          "MemberType": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdTypeCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IdentityNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "SponsorNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "IdExpiry": {
+            "type": "string",
+            "nullable": true
+          },
+          "BirthDateG": {
+            "type": "string",
+            "nullable": true
+          },
+          "BirthDateH": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClassName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClassCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Relation": {
+            "type": "string",
+            "nullable": true
+          },
+          "RelationCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "GenderCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "NationalityCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "OccupationCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "MaritalStatusCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "MobileNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "BuildingNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "Street": {
+            "type": "string",
+            "nullable": true
+          },
+          "District": {
+            "type": "string",
+            "nullable": true
+          },
+          "CityCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ZipCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "UnitNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "AdditionalNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Weight": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "Height": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "IsVerified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "MaritalStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "HDF": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMember_HDF"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMemberEnd_HDF": {
+        "type": "object",
+        "properties": {
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "QuestionNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "DiagnosisDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "OtherNotes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMemberId": {
+        "type": "object",
+        "properties": {
+          "MemberType": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeletionDate": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMemberSaveEndReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "MemberList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMember"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMember_End": {
+        "type": "object",
+        "properties": {
+          "Sno": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "MemberType": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsNameExist": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Class": {
+            "type": "string",
+            "nullable": true
+          },
+          "Dob": {
+            "type": "string",
+            "nullable": true
+          },
+          "Relation": {
+            "type": "string",
+            "nullable": true
+          },
+          "RelationCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "GenderCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdentityExpiryDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "SponserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "MobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsDeclaration": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Weight": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "Height": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "Q1": {
+            "type": "string",
+            "nullable": true
+          },
+          "Q2": {
+            "type": "string",
+            "nullable": true
+          },
+          "Q3": {
+            "type": "string",
+            "nullable": true
+          },
+          "Q4": {
+            "type": "string",
+            "nullable": true
+          },
+          "Q5": {
+            "type": "string",
+            "nullable": true
+          },
+          "Q6": {
+            "type": "string",
+            "nullable": true
+          },
+          "Q6Date": {
+            "type": "string",
+            "nullable": true
+          },
+          "EmployeeNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "MaritalStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "MaritalStatusCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IsMaritalStatusExist": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "BuildingNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsBuildingNoExist": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "StreetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsStreetNameExist": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "DistrictName": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsDistrictnameExist": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "City": {
+            "type": "string",
+            "nullable": true
+          },
+          "CityCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IsCityExist": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "PostCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsPostCodeExist": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "AdditionalNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsAdditionalNoExist": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Nationality": {
+            "type": "string",
+            "nullable": true
+          },
+          "NationalityCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IsNationalityExist": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Occupation": {
+            "type": "string",
+            "nullable": true
+          },
+          "OccupationCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IsOccupationExist": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IsVerified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IsSaved": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "IsInfoCompleted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "MemberNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeletionDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeletionReasonCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "DeletionReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "EnrollmentDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "CCHIStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "ServiceType": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IsBorderToIqama": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "PaidPremium": {
+            "type": "string",
+            "nullable": true
+          },
+          "NRP": {
+            "type": "string",
+            "nullable": true
+          },
+          "Gross": {
+            "type": "string",
+            "nullable": true
+          },
+          "VatAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "TotalAmount": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMember_HDF": {
+        "type": "object",
+        "properties": {
+          "IdentityNo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "Code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMotorAdditionalCoversReq": {
+        "type": "object",
+        "properties": {
+          "ProposalNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsSurplusUsed": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "SurplusInquiryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "SurplusAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "AdditionalCoversInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlAdditionalCoverInfo"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlMotorCancelSubmit": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "CancellationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "CancellationReasonCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IBANNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredId": {
+            "type": "string",
+            "nullable": true
+          },
+          "AccountName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlNajmCaseDetails": {
+        "type": "object",
+        "properties": {
+          "accidentDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "carModel": {
+            "type": "string",
+            "nullable": true
+          },
+          "carType": {
+            "type": "string",
+            "nullable": true
+          },
+          "caseNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "causeOfAccident": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "damageParts": {
+            "type": "string",
+            "nullable": true
+          },
+          "driverAge": {
+            "type": "string",
+            "nullable": true
+          },
+          "driverIdNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "estimatedAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "liability": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "sequenceNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlOnlineComplaintReq": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "City": {
+            "type": "string",
+            "nullable": true
+          },
+          "MobileNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "EmailId": {
+            "type": "string",
+            "nullable": true
+          },
+          "ComplaintCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "Notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "ComplaintType": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageBase64": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageExt": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlOtpVerifyReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "OTP": {
+            "type": "string",
+            "nullable": true
+          },
+          "ReqType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlQuoteAMLQuestion": {
+        "type": "object",
+        "properties": {
+          "SponsorNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "QNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Answer": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlQuoteBasicSaveReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "QuotationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "PolicyEffectiveDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CompanyDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlCompany"
+            },
+            "nullable": true
+          },
+          "ClassList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlClass"
+            },
+            "nullable": true
+          },
+          "CCHIMinCount": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlCCHIMinCount"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlQuoteBoardMembers": {
+        "type": "object",
+        "properties": {
+          "SponsorNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Address": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlQuoteHDFQuestion": {
+        "type": "object",
+        "properties": {
+          "QuestionNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "DescEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "DescAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsSelected": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "Answer": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlQuoteShareHolders": {
+        "type": "object",
+        "properties": {
+          "SponsorNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Address": {
+            "type": "string",
+            "nullable": true
+          },
+          "SharePercentage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlRegistrationReq": {
+        "type": "object",
+        "properties": {
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "EmailId": {
+            "type": "string",
+            "nullable": true
+          },
+          "MobileNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DOB": {
+            "type": "string",
+            "nullable": true
+          },
+          "DOBHijri": {
+            "type": "string",
+            "nullable": true
+          },
+          "IpAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "Lng": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeviceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeviceID": {
+            "type": "string",
+            "nullable": true
+          },
+          "FCMId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlReimDocuments": {
+        "type": "object",
+        "properties": {
+          "DocumentCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "DocumentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "DocumentContent": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlReimPendingDocsReq": {
+        "type": "object",
+        "properties": {
+          "IdType": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "ReimNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlReimUploadPendingDocsReq": {
+        "type": "object",
+        "properties": {
+          "IdType": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "ReimNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "DocumentCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "DocumentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "DocumentContent": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlReimbDetailsReq": {
+        "type": "object",
+        "properties": {
+          "IdType": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "ReimNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlReimbListReq": {
+        "type": "object",
+        "properties": {
+          "IdType": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlReimbSaveReq": {
+        "type": "object",
+        "properties": {
+          "IdType": {
+            "type": "string",
+            "nullable": true
+          },
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DOB": {
+            "type": "string",
+            "nullable": true
+          },
+          "MobileNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClaimLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "ClaimType": {
+            "type": "string",
+            "nullable": true
+          },
+          "TotalAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "InvoiceDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "Currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "IBANNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "Documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlReimDocuments"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlReqPolicyPrint": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "VisaNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlSaveMedmalQuoteReq": {
+        "type": "object",
+        "properties": {
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProposalNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "AccountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "BankCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "IBANNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "PreferCommLang": {
+            "type": "string",
+            "nullable": true
+          },
+          "PreferCommChannel": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsHigherPosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "HigherPositionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "LicenseNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "LicenseExpiryDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "MedmalImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlVehicleImages"
+            },
+            "nullable": true
+          },
+          "AdditionalCoversInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlAdditionalCoverInfo"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlSaveMotorQuoteReq": {
+        "type": "object",
+        "properties": {
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProposalNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "AccountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "BankCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "IBANNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "PreferCommLang": {
+            "type": "string",
+            "nullable": true
+          },
+          "PreferCommChannel": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsHigherPosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "HigherPositionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsSurplusUsed": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "SurplusInquiryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "SurplusAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "VehicleImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlVehicleImages"
+            },
+            "nullable": true
+          },
+          "AdditionalCoversInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlAdditionalCoverInfo"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlSaveTravelQuoteReq": {
+        "type": "object",
+        "properties": {
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProposalNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "AccountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "BankCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "IBANNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "PreferCommLang": {
+            "type": "string",
+            "nullable": true
+          },
+          "PreferCommChannel": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsHigherPosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "HigherPositionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsVaccine": {
+            "type": "string",
+            "nullable": true
+          },
+          "OccupationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "PlaceOfBirthCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "PassPortType": {
+            "type": "string",
+            "nullable": true
+          },
+          "PassNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "PassportExpDateG": {
+            "type": "string",
+            "nullable": true
+          },
+          "Dependents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlDependentList"
+            },
+            "nullable": true
+          },
+          "TravelImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlVehicleImages"
+            },
+            "nullable": true
+          },
+          "AdditionalCoversInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlAdditionalCoverInfo"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlSponsorActivities": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "string",
+            "nullable": true
+          },
+          "NameEn": {
+            "type": "string",
+            "nullable": true
+          },
+          "NameAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "SponsorId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlStatus": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "StatusDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "StatusDescAr": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlSubmitAddSequenceNoEndReq": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "SequenceNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlSubmitChangeInGeneralInfoReq": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Insured_MobileNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Insured_EmailId": {
+            "type": "string",
+            "nullable": true
+          },
+          "Insured_BuildingNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Insured_PostalCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Insured_AdditionalCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Insured_UnitNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Insured_DistName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Insured_StreetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlSubmitClaimReq": {
+        "type": "object",
+        "properties": {
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "LOB": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "AttachmentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "Attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlAttachments"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlVehicle": {
+        "type": "object",
+        "properties": {
+          "VehicleIdTypeCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "RepairTypeCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "DeductableCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ChassisNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "ColorCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ColorDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "ColorDescAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "SequenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "CustomNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "Cylinders": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "EngineSize": {
+            "type": "string",
+            "nullable": true
+          },
+          "ExpectedAnnualMileage": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "VehicleValue": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "MinVehicleValue": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "MaxVehicleValue": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "MakeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "MakeDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "MakeDescAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "ModelCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ModelDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "ModelDescAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "VehicleTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "VehicleTypeDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "VehicleTypeDescAr": {
+            "type": "string",
+            "nullable": true
+          },
+          "ManufactureYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "PlateTypeCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "PlateNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FirstPlateLetter": {
+            "type": "string",
+            "nullable": true
+          },
+          "SecondPlateLetter": {
+            "type": "string",
+            "nullable": true
+          },
+          "ThirdPlateLetter": {
+            "type": "string",
+            "nullable": true
+          },
+          "NightParkingCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "RegistrationCityCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "RegistrationExpiryDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "SeatsCapacity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Automatic_Braking_System": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Cruise_Control": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Adaptive_Cruise_Control": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Rear_Parking_Sensors": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Front_Sensors": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Front_Camera": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Rear_Camera": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Degree_Camera_360": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Fire_Extinguisher": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Modifications_In_The_Car": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Modifications_In_The_Car_Desc": {
+            "type": "string",
+            "nullable": true
+          },
+          "Vehicle_Axle_Weight": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Antilock_Braking_System": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "TransmissionTypeCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "UsagePurposeCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "weight": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Vehicle_Age": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlVehicleImages": {
+        "type": "object",
+        "properties": {
+          "ImageTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageMedia": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlVerifyMembersEndReq": {
+        "type": "object",
+        "properties": {
+          "RegNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PolicyNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndorsementNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "MemberList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMember"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlVerifyMembersReq": {
+        "type": "object",
+        "properties": {
+          "QuotationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "MemberList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlMember"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlVisitorReq": {
+        "type": "object",
+        "properties": {
+          "PassportNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "VISANumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "NoOfExDays": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlloginReq": {
+        "type": "object",
+        "properties": {
+          "IdentityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "IpAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeviceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "FCMId": {
+            "type": "string",
+            "nullable": true
+          },
+          "MobileAppVersion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlriskdetails_DH": {
+        "type": "object",
+        "properties": {
+          "IqamaNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "DOB": {
+            "type": "string",
+            "nullable": true
+          },
+          "Gender": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Nationality": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "PoBoxNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "BorderNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "SponsorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "VisaNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "mdlsaveDomesticHelperQuoteReq": {
+        "type": "object",
+        "properties": {
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProposalNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "InsuredIdNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "AccountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "BankCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "IBANNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "PreferCommLang": {
+            "type": "string",
+            "nullable": true
+          },
+          "PreferCommChannel": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsHigherPosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "HigherPositionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "DHImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlVehicleImages"
+            },
+            "nullable": true
+          },
+          "AdditionalCoversInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/mdlAdditionalCoverInfo"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "https",
+        "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
