@@ -3,7 +3,7 @@ info:
   title: OnlineApi
   version: v1
 servers:
-  - url: https://lbc.ggi-sa.com/MobilAppUatAPI
+  - url: http://lbc.ggi-sa.com/MobilAppUatAPI
 paths:
   /api/Claims/accidentdetails:
     post:
@@ -259,13 +259,5 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-  securitySchemes:
-    Bearer:
-      type: https
-      description: >-
-        JWT Authorization header using the Bearer scheme. Example:
-        "Authorization: Bearer {token}"
-      scheme: bearer
-      bearerFormat: JWT
 security:
   - Bearer: []
