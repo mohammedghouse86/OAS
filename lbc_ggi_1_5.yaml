@@ -1,0 +1,271 @@
+openapi: 3.0.1
+info:
+  title: OnlineApi
+  version: v1
+servers:
+  - url: https://lbc.ggi-sa.com/MobilAppUatAPI
+paths:
+  /api/Claims/accidentdetails:
+    post:
+      tags:
+        - Claims
+      operationId: accidentdetails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/mdlClaimSearchReq"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/mdlClaimSearchReq"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/mdlClaimSearchReq"
+      responses:
+        "200":
+          description: OK
+  /api/Claims/claimconfig:
+    get:
+      tags:
+        - Claims
+      operationId: claimconfig
+      responses:
+        "200":
+          description: OK
+  /api/Claims/claimregister:
+    post:
+      tags:
+        - Claims
+      operationId: claimregister
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/mdlClaimRegisterReq"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/mdlClaimRegisterReq"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/mdlClaimRegisterReq"
+      responses:
+        "200":
+          description: OK
+  /api/Claims/claimstatus:
+    post:
+      tags:
+        - Claims
+      operationId: claimstatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/mdlClaimStatusReq"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/mdlClaimStatusReq"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/mdlClaimStatusReq"
+      responses:
+        "200":
+          description: OK
+  /api/Claims/claimuploaddoc:
+    post:
+      tags:
+        - Claims
+      operationId: claimuploaddoc
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/mdlCoreDocumentUploadReq"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/mdlCoreDocumentUploadReq"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/mdlCoreDocumentUploadReq"
+      responses:
+        "200":
+          description: OK
+components:
+  schemas:
+    mdlClaimRegisterReq:
+      type: object
+      properties:
+        mobileNumber:
+          type: string
+          nullable: true
+        taqdeerNumber:
+          type: string
+          nullable: true
+        estimationAmount:
+          type: string
+          nullable: true
+        bankType:
+          type: string
+          nullable: true
+        ibanNumber:
+          type: string
+          nullable: true
+        bankName:
+          type: string
+          nullable: true
+        swiftCode:
+          type: string
+          nullable: true
+        bankAddress:
+          type: string
+          nullable: true
+        claimantLiability:
+          type: string
+          nullable: true
+        claimantVehPlateNo:
+          type: string
+          nullable: true
+        claimantName:
+          type: string
+          nullable: true
+        manufacturedYear:
+          type: string
+          nullable: true
+        damageCode:
+          type: string
+          nullable: true
+        accidentDate:
+          type: string
+          nullable: true
+        accidentCityId:
+          type: string
+          nullable: true
+        accidentDesc:
+          type: string
+          nullable: true
+        claimantVehPlateNoEN:
+          type: string
+          nullable: true
+        claimantVehPlateNoBL:
+          type: string
+          nullable: true
+        vehicleMake:
+          type: string
+          nullable: true
+        vehicleModel:
+          type: string
+          nullable: true
+        ownerIqamaId:
+          type: string
+          nullable: true
+        insuredPolicyNo:
+          type: string
+          nullable: true
+        insuredSequenceNo:
+          type: string
+          nullable: true
+        insuredVehicleId:
+          type: string
+          nullable: true
+        insuredVehicleMake:
+          type: string
+          nullable: true
+        insuredVehicleModel:
+          type: string
+          nullable: true
+        insuredVehPlateNoEN:
+          type: string
+          nullable: true
+        insuredVehPlateNoBL:
+          type: string
+          nullable: true
+        divisionCode:
+          type: string
+          nullable: true
+        regionCode:
+          type: string
+          nullable: true
+        claimCityCode:
+          type: string
+          nullable: true
+        claimDistrict:
+          type: string
+          nullable: true
+        nationalId:
+          type: string
+          nullable: true
+        claimType:
+          type: string
+          nullable: true
+        AccidentReportNumber:
+          type: string
+          nullable: true
+        accidentSurveyedBy:
+          type: string
+          nullable: true
+        sequenceNumber:
+          type: string
+          nullable: true
+        isIBANVerified:
+          type: boolean
+      additionalProperties: false
+    mdlClaimSearchReq:
+      type: object
+      properties:
+        nationalId:
+          type: string
+          nullable: true
+        claimType:
+          type: string
+          nullable: true
+        accidentReportNumber:
+          type: string
+          nullable: true
+        accidentSurveyedBy:
+          type: string
+          nullable: true
+        sequenceNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    mdlClaimStatusReq:
+      type: object
+      properties:
+        NationalID:
+          type: string
+          nullable: true
+        ClaimRefNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    mdlCoreDocumentUploadReq:
+      type: object
+      properties:
+        NationalID:
+          type: string
+          nullable: true
+        ClaimRefNumber:
+          type: string
+          nullable: true
+        documentCode:
+          type: string
+          nullable: true
+        documentExtension:
+          type: string
+          nullable: true
+        documentType:
+          type: string
+          nullable: true
+        documentAsBase64:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: https
+      description: >-
+        JWT Authorization header using the Bearer scheme. Example:
+        "Authorization: Bearer {token}"
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - Bearer: []
