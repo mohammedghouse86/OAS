@@ -1,0 +1,294 @@
+openapi: 3.0.3
+info:
+  title: Cengage App
+  version: 1.0.0
+servers:
+  - url: https://www.cengage.com
+tags:
+  - name: api
+  - name: services
+  - name: ws
+paths:
+  /services/stx/bff/context:
+    options:
+      tags:
+        - services
+      summary: OPTIONS /services/stx/bff/context
+      operationId: options_services_stx_bff_context
+      responses:
+        "200":
+          description: Success
+  /services/stx/bff/orders:
+    get:
+      tags:
+        - services
+      summary: GET /services/stx/bff/orders
+      operationId: get_services_stx_bff_orders
+      responses:
+        "200":
+          description: Success
+  /services/stx/bff/rentals/list:
+    get:
+      tags:
+        - services
+      summary: GET /services/stx/bff/rentals/list
+      operationId: get_services_stx_bff_rentals_list
+      responses:
+        "200":
+          description: Success
+  /services/stx/bff/rentals/available:
+    get:
+      tags:
+        - services
+      summary: GET /services/stx/bff/rentals/available
+      operationId: get_services_stx_bff_rentals_available
+      responses:
+        "200":
+          description: Success
+  /services/{id}/bff/elements/courses:
+    get:
+      tags:
+        - services
+      summary: GET /services/{id}/bff/elements/courses
+      operationId: get_services_id_bff_elements_courses
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: universal-sidebar
+      responses:
+        "200":
+          description: Success
+  /services/stx/bff/studyPacks/generalInfo:
+    get:
+      tags:
+        - services
+      summary: GET /services/stx/bff/studyPacks/generalInfo
+      operationId: get_services_stx_bff_studyPacks_generalInfo
+      responses:
+        "200":
+          description: Success
+  /services/stx/bff/studyTools:
+    get:
+      tags:
+        - services
+      summary: GET /services/stx/bff/studyTools
+      operationId: get_services_stx_bff_studyTools
+      responses:
+        "200":
+          description: Success
+  /services/stx/bff/studyPacks/{id}:
+    get:
+      tags:
+        - services
+      summary: GET /services/stx/bff/studyPacks/{id}
+      operationId: get_services_stx_bff_studyPacks_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: collegeSuccessCenter
+      responses:
+        "200":
+          description: Success
+  /services/stx/bff/{id}:
+    get:
+      tags:
+        - services
+      summary: GET /services/stx/bff/{id}
+      operationId: get_services_stx_bff_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: entitlement-tiles
+      responses:
+        "200":
+          description: Success
+  /services/stx/bff/pin/all:
+    get:
+      tags:
+        - services
+      summary: GET /services/stx/bff/pin/all
+      operationId: get_services_stx_bff_pin_all
+      responses:
+        "200":
+          description: Success
+  /services/stx/bff/studyPacks/careerCenter:
+    get:
+      tags:
+        - services
+      summary: GET /services/stx/bff/studyPacks/careerCenter
+      operationId: get_services_stx_bff_studyPacks_careerCenter
+      responses:
+        "200":
+          description: Success
+  /ws/solr/cengage/sap/ecommerce/cengage-b2c-us/cart/count:
+    post:
+      tags:
+        - ws
+      summary: POST /ws/solr/cengage/sap/ecommerce/cengage-b2c-us/cart/count
+      operationId: post_ws_solr_cengage_sap_ecommerce_cengage_b2c_us_cart_count
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  storefrontID: "10151"
+                  countryCode: US
+                  ipAddress: ""
+      responses:
+        "200":
+          description: Success
+  /ws/solr/cengage/sap/ecommerce/cengage-b2c-us/cart:
+    get:
+      tags:
+        - ws
+      summary: GET /ws/solr/cengage/sap/ecommerce/cengage-b2c-us/cart
+      operationId: get_ws_solr_cengage_sap_ecommerce_cengage_b2c_us_cart
+      parameters:
+        - name: cache
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: quickCart
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: studentGuid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 60e1e52bb534d7f6:76b9b7d7:19bda36595f:-7ed2
+        - name: countryCode
+          in: query
+          required: false
+          schema:
+            type: string
+          example: US
+      responses:
+        "200":
+          description: Success
+  /api/{id}/search:
+    post:
+      tags:
+        - api
+      summary: POST /api/{id}/search
+      operationId: post_api_id_search
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: trainingresources
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  init: true
+                  query: ""
+                  pageNumber: 1
+                  pageSize: 300
+                  sortBy: cengage:sequenceNumber
+                  facets:
+                    - groupName: platform
+                      items:
+                        - label: CNOWv2
+                          selected: true
+      responses:
+        "200":
+          description: Success
+  /api/{id}/platforms:
+    get:
+      tags:
+        - api
+      summary: GET /api/{id}/platforms
+      operationId: get_api_id_platforms
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: facultypartnerfacets
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    WsPostRequest:
+      type: object
+      properties:
+        storefrontID:
+          type: string
+        countryCode:
+          type: string
+        ipAddress:
+          type: string
+      required:
+        - storefrontID
+        - countryCode
+        - ipAddress
+    ApiPostRequest:
+      type: object
+      properties:
+        init:
+          type: boolean
+        query:
+          type: string
+        pageNumber:
+          type: integer
+        pageSize:
+          type: integer
+        sortBy:
+          type: string
+        facets:
+          type: array
+          items:
+            type: object
+            properties:
+              groupName:
+                type: string
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    selected:
+                      type: boolean
+                  required:
+                    - label
+                    - selected
+            required:
+              - groupName
+              - items
+      required:
+        - init
+        - query
+        - pageNumber
+        - pageSize
+        - sortBy
+        - facets
