@@ -1,0 +1,608 @@
+openapi: 3.0.3
+info:
+  title: Stemscopes 3.5 Admin App
+  version: 1.0.0
+servers:
+  - url: https://n12119d170134.acceleratelearning.com
+tags:
+  - name: admin
+  - name: change-school
+  - name: data
+paths:
+  /data/dashboards:
+    get:
+      tags:
+        - data
+      summary: GET /data/dashboards
+      operationId: get_data_dashboards
+      responses:
+        "200":
+          description: Success
+  /data/select:
+    get:
+      tags:
+        - data
+      summary: GET /data/select
+      operationId: get_data_select
+      responses:
+        "200":
+          description: Success
+  /data/dashboard/widgetlist/{id}:
+    get:
+      tags:
+        - data
+      summary: GET /data/dashboard/widgetlist/{id}
+      operationId: get_data_dashboard_widgetlist_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "61"
+      responses:
+        "200":
+          description: Success
+  /data/widget/data:
+    post:
+      tags:
+        - data
+      summary: POST /data/widget/data
+      operationId: post_data_widget_data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataPostRequest"
+            examples:
+              fromHar:
+                value:
+                  widget:
+                    id: 47
+                    name: District Analytics
+                    type: reloadText
+                    column: 0
+                    size: size-h4-w4
+                    color: light
+                    code: App\Widget\QuickSightDashboardWidget
+                    help: null
+                    newWindowAvailable: false
+                    titleClass: ""
+                    rendered: false
+                    loading: true
+                  filters:
+                    dateFrom: 08/01/2025
+                    date: 01/22/2026
+                    dateTo: 01/22/2026
+                  timezone: Asia/Kolkata
+      responses:
+        "200":
+          description: Success
+  /data/dashboard/embed-url:
+    post:
+      tags:
+        - data
+      summary: POST /data/dashboard/embed-url
+      operationId: post_data_dashboard_embed_url
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  from: 08%2F01%2F2025
+                  to: 01%2F22%2F2026
+      responses:
+        "200":
+          description: Success
+  /data/filter/{id}:
+    get:
+      tags:
+        - data
+      summary: GET /data/filter/{id}
+      operationId: get_data_filter_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: district-assessment-assignments
+        - name: current
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/main/student/create:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/main/student/create
+      operationId: get_admin_id_main_student_create
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+      responses:
+        "200":
+          description: Success
+  /admin/app/clientjobrole/create:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/app/clientjobrole/create
+      operationId: get_admin_app_clientjobrole_create
+      responses:
+        "200":
+          description: Success
+  /admin/export/csv/staff/create:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/export/csv/staff/create
+      operationId: get_admin_export_csv_staff_create
+      responses:
+        "200":
+          description: Success
+  /admin/app/staff/create:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/app/staff/create
+      operationId: get_admin_app_staff_create
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/main/integration/credentials/create:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/main/integration/credentials/create
+      operationId: get_admin_id_main_integration_credentials_create
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+      responses:
+        "200":
+          description: Success
+  /admin/app/{id}/create:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/app/{id}/create
+      operationId: get_admin_app_id_create
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ltiscopegroupmapping
+      responses:
+        "200":
+          description: Success
+  /admin/admin/{id}/main/{id2}/create:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/admin/{id}/main/{id2}/create
+      operationId: get_admin_admin_id_main_id2_create
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: districtstudentanalysisreport
+      responses:
+        "200":
+          description: Success
+  /admin/dashboard:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/dashboard
+      operationId: get_admin_dashboard
+      responses:
+        "200":
+          description: Success
+  /change-school:
+    post:
+      tags:
+        - change-school
+      summary: POST /change-school
+      operationId: post_change_school
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  current_school: "31"
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/main/qrcode/district-report/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/main/qrcode/district-report/list
+      operationId: get_admin_id_main_qrcode_district_report_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/main/qrcode/school-report/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/main/qrcode/school-report/list
+      operationId: get_admin_id_main_qrcode_school_report_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/list
+      operationId: get_admin_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: additional-license
+      responses:
+        "200":
+          description: Success
+  /admin/admin/{id}/main/{id2}/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/admin/{id}/main/{id2}/list
+      operationId: get_admin_admin_id_main_id2_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: districtstudentanalysisreport
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/main/student/assignment/archive/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/main/student/assignment/archive/list
+      operationId: get_admin_id_main_student_assignment_archive_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/main/endofyear/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/main/endofyear/list
+      operationId: get_admin_id_main_endofyear_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/main/integration/credentials/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/main/integration/credentials/list
+      operationId: get_admin_id_main_integration_credentials_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+      responses:
+        "200":
+          description: Success
+  /admin/admin/app/{id}/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/admin/app/{id}/list
+      operationId: get_admin_admin_app_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: lti_one_point_three_settings
+      responses:
+        "200":
+          description: Success
+  /admin/app/ltisetting/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/app/ltisetting/list
+      operationId: get_admin_app_ltisetting_list
+      responses:
+        "200":
+          description: Success
+  /admin/app/{id}/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/app/{id}/list
+      operationId: get_admin_app_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ltiscopegroupmapping
+      responses:
+        "200":
+          description: Success
+  /admin/app/district/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/app/district/list
+      operationId: get_admin_app_district_list
+      responses:
+        "200":
+          description: Success
+  /admin/school/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/school/list
+      operationId: get_admin_school_list
+      responses:
+        "200":
+          description: Success
+  /admin/app/course/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/app/course/list
+      operationId: get_admin_app_course_list
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/main/student/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/main/student/list
+      operationId: get_admin_id_main_student_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+      responses:
+        "200":
+          description: Success
+  /admin/app/staff/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/app/staff/list
+      operationId: get_admin_app_staff_list
+      responses:
+        "200":
+          description: Success
+  /admin/staff/login/notification/manager/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/staff/login/notification/manager/list
+      operationId: get_admin_staff_login_notification_manager_list
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/main/{id2}/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/main/{id2}/list
+      operationId: get_admin_id_main_id2_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: alidistrictmaster
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: districtassessment-package
+      responses:
+        "200":
+          description: Success
+  /admin/export/csv/staff/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/export/csv/staff/list
+      operationId: get_admin_export_csv_staff_list
+      responses:
+        "200":
+          description: Success
+  /admin/export/csv/student/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/export/csv/student/list
+      operationId: get_admin_export_csv_student_list
+      responses:
+        "200":
+          description: Success
+  /admin/export/csv/log/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/export/csv/log/list
+      operationId: get_admin_export_csv_log_list
+      responses:
+        "200":
+          description: Success
+  /admin/integration/students/import:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/integration/students/import
+      operationId: get_admin_integration_students_import
+      responses:
+        "200":
+          description: Success
+  /admin/app/clientjobrole/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/app/clientjobrole/list
+      operationId: get_admin_app_clientjobrole_list
+      responses:
+        "200":
+          description: Success
+  /admin/license/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/license/list
+      operationId: get_admin_license_list
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    DataPostRequest:
+      type: object
+      properties:
+        widget:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            type:
+              type: string
+            column:
+              type: integer
+            size:
+              type: string
+            color:
+              type: string
+            code:
+              type: string
+            help:
+              nullable: true
+            newWindowAvailable:
+              type: boolean
+            titleClass:
+              type: string
+            rendered:
+              type: boolean
+            loading:
+              type: boolean
+          required:
+            - id
+            - name
+            - type
+            - column
+            - size
+            - color
+            - code
+            - help
+            - newWindowAvailable
+            - titleClass
+            - rendered
+            - loading
+        filters:
+          type: object
+          properties:
+            dateFrom:
+              type: string
+            date:
+              type: string
+            dateTo:
+              type: string
+          required:
+            - dateFrom
+            - date
+            - dateTo
+        timezone:
+          type: string
+      required:
+        - widget
+        - filters
+        - timezone
