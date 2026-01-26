@@ -1,0 +1,810 @@
+openapi: 3.0.3
+info:
+  title: Secure My Scholarship Admin App
+  version: 1.0.0
+servers:
+  - url: https://www.securemyscholarship.com
+tags:
+  - name: _next
+  - name: api
+  - name: mixpanel
+paths:
+  /api/account/profile:
+    get:
+      tags:
+        - api
+      summary: GET /api/account/profile
+      operationId: get_api_account_profile
+      responses:
+        "200":
+          description: Success
+    patch:
+      tags:
+        - api
+      summary: PATCH /api/account/profile
+      operationId: patch_api_account_profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  first_name: ghouse1
+                  last_name: mohammed
+                  phone_number: +91 7428730894
+      responses:
+        "200":
+          description: Success
+  /api/ad-blocks:
+    get:
+      tags:
+        - api
+      summary: GET /api/ad-blocks
+      operationId: get_api_ad_blocks
+      responses:
+        "200":
+          description: Success
+  /api/countries:
+    get:
+      tags:
+        - api
+      summary: GET /api/countries
+      operationId: get_api_countries
+      responses:
+        "200":
+          description: Success
+  /api/payment/plus/invoices:
+    get:
+      tags:
+        - api
+      summary: GET /api/payment/plus/invoices
+      operationId: get_api_payment_plus_invoices
+      responses:
+        "200":
+          description: Success
+  /mixpanel/track:
+    post:
+      tags:
+        - mixpanel
+      summary: POST /mixpanel/track
+      operationId: post_mixpanel_track
+      parameters:
+        - name: verbose
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ip
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1769414957805"
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  data: WwogICAgeyJldmVudCI6ICJWSVNJVCBQQUdFIiwicHJvcGVydGllcyI6IHsiJG9zIjogIldpbmRvd3MiLCIkYnJvd3NlciI6ICJDaHJvbWUiLCIkcmVmZXJyZXIiOiAiaHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tLyIsIiRyZWZlcnJpbmdfZG9tYWluIjogImFjY291bnRzLmdvb2dsZS5jb20iLCIkY3VycmVudF91cmwiOiAiaHR0cHM6Ly93d3cuc2VjdXJlbXlzY2hvbGFyc2hpcC5jb20vYWNjb3VudC9wbHVzIiwiJGJyb3dzZXJfdmVyc2lvbiI6IDE0NCwiJHNjcmVlbl9oZWlnaHQiOiAxMDgwLCIkc2NyZWVuX3dpZHRoIjogMTkyMCwibXBfbGliIjogIndlYiIsIiRsaWJfdmVyc2lvbiI6ICIyLjQ1LjAiLCIkaW5zZXJ0X2lkIjogImczdXppbDUxajdjY3RlM3QiLCJ0aW1lIjogMTc2OTQxNDk1Ny41ODQsImRpc3RpbmN0X2lkIjogIjE5YmY5NThhOWY4NGZhLTA2NjU1MTUyYmMyZTUtMjYwNjFkNTEtMWZhNDAwLTE5YmY5NThhOWY5MTViNCIsIiRkZXZpY2VfaWQiOiAiMTliZjk1OGE5Zjg0ZmEtMDY2NTUxNTJiYzJlNS0yNjA2MWQ1MS0xZmE0MDAtMTliZjk1OGE5ZjkxNWI0IiwiJGluaXRpYWxfcmVmZXJyZXIiOiAiJGRpcmVjdCIsIiRpbml0aWFsX3JlZmVycmluZ19kb21haW4iOiAiJGRpcmVjdCIsIiRzZWFyY2hfZW5naW5lIjogImdvb2dsZSIsInBhZ2UiOiAiL2FjY291bnQvWy4uLnBhZ2VdIiwicGF0aCI6ICIvYWNjb3VudC9wbHVzIiwidXRtX3NvdXJjZSI6IFtdLCJ1dG1fbWVkaXVtIjogW10sInV0bV9jYW1wYWlnbiI6IFtdLCJ1dG1fdGVybSI6IFtdLCJ1dG1fY29udGVudCI6IFtdLCJ0b2tlbiI6ICI5Mzg1Y2EyYzY4YjI2N2IwNDczOGFmMTA2YmVlNjAxZCJ9fSwKICAgIHsiZXZlbnQiOiAiVklTSVQgL2FjY291bnQvWy4uLnBhZ2VdIiwicHJvcGVydGllcyI6IHsiJG9zIjogIldpbmRvd3MiLCIkYnJvd3NlciI6ICJDaHJvbWUiLCIkcmVmZXJyZXIiOiAiaHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tLyIsIiRyZWZlcnJpbmdfZG9tYWluIjogImFjY291bnRzLmdvb2dsZS5jb20iLCIkY3VycmVudF91cmwiOiAiaHR0cHM6Ly93d3cuc2VjdXJlbXlzY2hvbGFyc2hpcC5jb20vYWNjb3VudC9wbHVzIiwiJGJyb3dzZXJfdmVyc2lvbiI6IDE0NCwiJHNjcmVlbl9oZWlnaHQiOiAxMDgwLCIkc2NyZWVuX3dpZHRoIjogMTkyMCwibXBfbGliIjogIndlYiIsIiRsaWJfdmVyc2lvbiI6ICIyLjQ1LjAiLCIkaW5zZXJ0X2lkIjogIjVyOWp6b2s4aTFzOWhxbHgiLCJ0aW1lIjogMTc2OTQxNDk1Ny41ODQsImRpc3RpbmN0X2lkIjogIjE5YmY5NThhOWY4NGZhLTA2NjU1MTUyYmMyZTUtMjYwNjFkNTEtMWZhNDAwLTE5YmY5NThhOWY5MTViNCIsIiRkZXZpY2VfaWQiOiAiMTliZjk1OGE5Zjg0ZmEtMDY2NTUxNTJiYzJlNS0yNjA2MWQ1MS0xZmE0MDAtMTliZjk1OGE5ZjkxNWI0IiwiJGluaXRpYWxfcmVmZXJyZXIiOiAiJGRpcmVjdCIsIiRpbml0aWFsX3JlZmVycmluZ19kb21haW4iOiAiJGRpcmVjdCIsIiRzZWFyY2hfZW5naW5lIjogImdvb2dsZSIsInBhZ2UiOiAiL2FjY291bnQvWy4uLnBhZ2VdIiwicGF0aCI6ICIvYWNjb3VudC9wbHVzIiwidXRtX3NvdXJjZSI6IFtdLCJ1dG1fbWVkaXVtIjogW10sInV0bV9jYW1wYWlnbiI6IFtdLCJ1dG1fdGVybSI6IFtdLCJ1dG1fY29udGVudCI6IFtdLCJ0b2tlbiI6ICI5Mzg1Y2EyYzY4YjI2N2IwNDczOGFmMTA2YmVlNjAxZCJ9fQpd
+      responses:
+        "200":
+          description: Success
+  /api/account/applications:
+    get:
+      tags:
+        - api
+      summary: GET /api/account/applications
+      operationId: get_api_account_applications
+      responses:
+        "200":
+          description: Success
+  /api/account/documents:
+    get:
+      tags:
+        - api
+      summary: GET /api/account/documents
+      operationId: get_api_account_documents
+      responses:
+        "200":
+          description: Success
+  /api/account/referrals:
+    get:
+      tags:
+        - api
+      summary: GET /api/account/referrals
+      operationId: get_api_account_referrals
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/account/overview.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/account/overview.json
+      operationId: get__next_data_id_account_overview_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: overview
+      responses:
+        "200":
+          description: Success
+  /api/account/documents/upload:
+    post:
+      tags:
+        - api
+      summary: POST /api/account/documents/upload
+      operationId: post_api_account_documents_upload
+      requestBody:
+        required: true
+        content:
+          multipart/form-data; boundary=----WebKitFormBoundary64EXETirWPdiLW19:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: "------WebKitFormBoundary64EXETirWPdiLW19\r
+
+                  Content-Disposition: form-data; name=\"file\"; filename=\"sample document to be uploaded.pdf\"\r
+
+                  Content-Type: application/pdf\r
+
+                  \r
+
+                  \r
+
+                  ------WebKitFormBoundary64EXETirWPdiLW19\r
+
+                  Content-Disposition: form-data; name=\"file_name\"\r
+
+                  \r
+
+                  high_school_grade_10_transcript.pdf\r
+
+                  ------WebKitFormBoundary64EXETirWPdiLW19\r
+
+                  Content-Disposition: form-data; name=\"document_key\"\r
+
+                  \r
+
+                  high_school_grade_10_transcript\r
+
+                  ------WebKitFormBoundary64EXETirWPdiLW19--\r\n"
+      responses:
+        "200":
+          description: Success
+  /api/authentication/{id}:
+    post:
+      tags:
+        - api
+      summary: POST /api/authentication/{id}
+      operationId: post_api_authentication_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: refresh-access-token
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/index.json:
+    head:
+      tags:
+        - _next
+      summary: HEAD /_next/data/{id}/index.json
+      operationId: head__next_data_id_index_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/index.json
+      operationId: get__next_data_id_index_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+      responses:
+        "200":
+          description: Success
+  /api/authentication/sign-up/user-profile:
+    post:
+      tags:
+        - api
+      summary: POST /api/authentication/sign-up/user-profile
+      operationId: post_api_authentication_sign_up_user_profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  first_name: ghouse1
+                  last_name: mohammed
+                  phone_number: +91 7428730894
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/966.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/966.json
+      operationId: get__next_data_id_university_id2_966_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: university-of-birmingham-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: university-of-birmingham-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "966"
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/128.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/128.json
+      operationId: get__next_data_id_university_id2_128_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: university-of-wollongong-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: university-of-wollongong-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "128"
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/47.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/47.json
+      operationId: get__next_data_id_university_id2_47_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: heriot-watt-university-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: heriot-watt-university-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "47"
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/67.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/67.json
+      operationId: get__next_data_id_university_id2_67_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: murdoch-university-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: murdoch-university-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "67"
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/63.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/63.json
+      operationId: get__next_data_id_university_id2_63_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: manipal-academy-of-higher-education-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: manipal-academy-of-higher-education-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "63"
+      responses:
+        "200":
+          description: Success
+    head:
+      tags:
+        - _next
+      summary: HEAD /_next/data/{id}/university/{id2}/63.json
+      operationId: head__next_data_id_university_id2_63_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: manipal-academy-of-higher-education-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: manipal-academy-of-higher-education-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "63"
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/1011.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/1011.json
+      operationId: get__next_data_id_university_id2_1011_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: de-montfort-university-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: de-montfort-university-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1011"
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/14.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/14.json
+      operationId: get__next_data_id_university_id2_14_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: bits-pilani-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: bits-pilani-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "14"
+      responses:
+        "200":
+          description: Success
+  /api/university/popularity/{id}:
+    patch:
+      tags:
+        - api
+      summary: PATCH /api/university/popularity/{id}
+      operationId: patch_api_university_popularity_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "63"
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/1376.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/1376.json
+      operationId: get__next_data_id_university_id2_1376_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: global-business-studies-gbs-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: global-business-studies-gbs-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1376"
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/1360.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/1360.json
+      operationId: get__next_data_id_university_id2_1360_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: university-of-west-london-rak
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: university-of-west-london-rak
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1360"
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/1370.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/1370.json
+      operationId: get__next_data_id_university_id2_1370_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: symbiosis-international-university-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: symbiosis-international-university-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1370"
+      responses:
+        "200":
+          description: Success
+  /_next/data/{id}/university/{id2}/81.json:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/data/{id}/university/{id2}/81.json
+      operationId: get__next_data_id_university_id2_81_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3gcr4Yun8-H0oi6DpDhKP
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: rochester-institute-of-technology-rit-dubai
+        - name: institute_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rochester-institute-of-technology-rit-dubai
+        - name: institute_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "81"
+      responses:
+        "200":
+          description: Success
+  /api/forms/contact-us:
+    post:
+      tags:
+        - api
+      summary: POST /api/forms/contact-us
+      operationId: post_api_forms_contact_us
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  full_name: Jack Doe
+                  phone_number: +91 456676466
+                  email: jack@tester.com
+                  fields:
+                    first_name: Jack
+                    last_name: Doe
+                    enquiry_type: Admissions
+                    message: hi
+                    form_name: contact-us
+                  utm_source: null
+                  utm_medium: null
+                  utm_campaign: null
+                  utm_term: null
+                  utm_content: null
+      responses:
+        "200":
+          description: Success
+  /api/account/set-password:
+    post:
+      tags:
+        - api
+      summary: POST /api/account/set-password
+      operationId: post_api_account_set_password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  new_password: Tester@786
+      responses:
+        "200":
+          description: Success
+  /api/get-programs:
+    post:
+      tags:
+        - api
+      summary: POST /api/get-programs
+      operationId: post_api_get_programs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  course_ids:
+                    - 4
+      responses:
+        "200":
+          description: Success
+  /api/account/edit-preference:
+    patch:
+      tags:
+        - api
+      summary: PATCH /api/account/edit-preference
+      operationId: patch_api_account_edit_preference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  preferred_education_level: Undergraduate
+                  preferred_intake: May 2026
+                  preferred_programs: "[4]"
+                  preferred_destination: United States of America
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPatchRequest:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone_number:
+          type: string
+      required:
+        - first_name
+        - last_name
+        - phone_number
+    ApiPostRequest:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone_number:
+          type: string
+      required:
+        - first_name
+        - last_name
+        - phone_number
