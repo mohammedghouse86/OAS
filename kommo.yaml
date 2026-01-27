@@ -1,0 +1,2005 @@
+openapi: 3.0.3
+info:
+  title: Kommo App
+  version: 1.0.0
+servers:
+  - url: https://mohammedghouse86backup.kommo.com
+tags:
+  - name: ajax
+  - name: api
+  - name: private
+  - name: profile
+  - name: tour
+  - name: v3
+  - name: "{id}"
+paths:
+  /ajax/v4/industry:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/v4/industry
+      operationId: post_ajax_v4_industry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AjaxPostRequest"
+            examples:
+              fromHar:
+                value:
+                  onboarding_industry_step: 7
+                  onboarding_industry_users: industry_users_group_3
+                  onboarding_industry_platform: web
+                  onboarding_industry_new_qualification: true
+      responses:
+        "200":
+          description: Success
+  /tour:
+    post:
+      tags:
+        - tour
+      summary: POST /tour
+      operationId: post_tour
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TourPostRequest"
+            examples:
+              fromHar:
+                value:
+                  step: 2
+                  completed: false
+                  device: desktop
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/help/sequence_viewed:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/v4/help/sequence_viewed
+      operationId: post_ajax_v4_help_sequence_viewed
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  sequence_code: ai
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/ai-agent:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/settings/ai-agent
+      operationId: post_ajax_settings_ai_agent
+      responses:
+        "200":
+          description: Success
+  /ajax/widgets/list:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/widgets/list
+      operationId: post_ajax_widgets_list
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  area: settings
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/airewriter/agent/settings:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/airewriter/agent/settings
+      operationId: get_ajax_v4_airewriter_agent_settings
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/custom_fields:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/settings/custom_fields
+      operationId: get_ajax_settings_custom_fields
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/bots:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/bots
+      operationId: get_ajax_v4_bots
+      parameters:
+        - name: sort[id]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desc
+        - name: filter[type_functionality][0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: regular
+        - name: filter[type_functionality][1]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: marketing
+        - name: filter[type_functionality][2]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: nps
+        - name: filter[type_functionality][3]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: greeting
+        - name: sort%5Bid%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desc
+        - name: filter%5Btype_functionality%5D%5B0%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: regular
+        - name: filter%5Btype_functionality%5D%5B1%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: marketing
+        - name: filter%5Btype_functionality%5D%5B2%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: nps
+        - name: filter%5Btype_functionality%5D%5B3%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: greeting
+        - name: with
+          in: query
+          required: false
+          schema:
+            type: string
+          example: launches
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "30"
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/sources:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/sources
+      operationId: get_ajax_v4_sources
+      parameters:
+        - name: only
+          in: query
+          required: false
+          schema:
+            type: string
+          example: chats
+        - name: with
+          in: query
+          required: false
+          schema:
+            type: string
+          example: supports_delivery_notification,is_widget_disabled
+        - name: filter[origin][]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: wechat
+        - name: filter%5Borigin%5D%5B%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: wechat
+      responses:
+        "200":
+          description: Success
+  /ajax/v1/pipelines/list:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v1/pipelines/list
+      operationId: get_ajax_v1_pipelines_list
+      parameters:
+        - name: with_unsorted
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /ajax/help:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/help
+      operationId: get_ajax_help
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/features:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/features
+      operationId: get_ajax_v4_features
+      parameters:
+        - name: features[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: is_influencers_tools_wizard
+        - name: features%5B%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: is_influencers_tools_wizard
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/inbox/list:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/inbox/list
+      operationId: get_ajax_v4_inbox_list
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+        - name: order[sort_by]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: last_message_at
+        - name: order[sort_type]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desc
+        - name: order%5Bsort_by%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: last_message_at
+        - name: order%5Bsort_type%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desc
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/inbox/count:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/inbox/count
+      operationId: get_ajax_v4_inbox_count
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/chats/onboarding:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/chats/onboarding
+      operationId: get_ajax_v4_chats_onboarding
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/feedback/survey:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/feedback/survey
+      operationId: get_ajax_v4_feedback_survey
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/help/limits:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/help/limits
+      operationId: get_ajax_v4_help_limits
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/help/calendly-demo/token:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/v4/help/calendly-demo/token
+      operationId: post_ajax_v4_help_calendly_demo_token
+      responses:
+        "200":
+          description: Success
+  /ajax/v3/leads/tags:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v3/leads/tags
+      operationId: get_ajax_v3_leads_tags
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "-1"
+      responses:
+        "200":
+          description: Success
+  /ajax/v3/customers/tags:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v3/customers/tags
+      operationId: get_ajax_v3_customers_tags
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "-1"
+      responses:
+        "200":
+          description: Success
+  /api/v4/help/hire_partner/settings:
+    get:
+      tags:
+        - api
+      summary: GET /api/v4/help/hire_partner/settings
+      operationId: get_api_v4_help_hire_partner_settings
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/widgets:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/settings/widgets
+      operationId: post_ajax_settings_widgets
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/widgets/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/settings/widgets/{id}
+      operationId: get_ajax_settings_widgets_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_base_integrations
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/messengers/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/messengers/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_messengers_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/{id}/{id2}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/{id}/{id2}
+      operationId: get_ajax_v4_settings_marketplace_category_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: whatsapp_providers
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/sms/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/sms/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_sms_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/live_chat/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/live_chat/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_live_chat_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/forms/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/forms/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_forms_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/calls/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/calls/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_calls_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/workflow/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/workflow/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_workflow_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/payments/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/payments/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_payments_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/marketing/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/marketing/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_marketing_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/customization/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/customization/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_customization_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/chatbots/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/chatbots/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_chatbots_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/productivity/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/productivity/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_productivity_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/settings/marketplace/category/others/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/settings/marketplace/category/others/{id}
+      operationId: get_ajax_v4_settings_marketplace_category_others_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "19"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: default
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/pipeline/leads/{id}/sources:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/settings/pipeline/leads/{id}/sources
+      operationId: get_ajax_settings_pipeline_leads_id_sources
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "13004539"
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/pipeline/leads/{id}/{id2}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/settings/pipeline/leads/{id}/{id2}
+      operationId: get_ajax_settings_pipeline_leads_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "13004539"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: handler_endpoints
+      responses:
+        "200":
+          description: Success
+  /ajax/v1/chats/origin/wechat/list:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v1/chats/origin/wechat/list
+      operationId: get_ajax_v1_chats_origin_wechat_list
+      parameters:
+        - name: pipeline_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "13004539"
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/widgets/category/{id}/{id2}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/settings/widgets/category/{id}/{id2}
+      operationId: get_ajax_settings_widgets_category_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: own_integrations
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/pipeline/sources/add:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/settings/pipeline/sources/add
+      operationId: post_ajax_settings_pipeline_sources_add
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  request%5Bpipeline_id%5D: "13004539"
+                  request%5Btype%5D: "2"
+                  request%5Bparams%5D%5Bid%5D: disconnected%3A13004539%3Awechat
+                  request%5Bparams%5D%5Borigin%5D: wechat
+      responses:
+        "200":
+          description: Success
+  /ajax/v1/chats/origin/wechat/add:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/v1/chats/origin/wechat/add
+      operationId: post_ajax_v1_chats_origin_wechat_add
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  request%5Bchats%5D%5Borigin%5D%5B0%5D%5Bid%5D: "415125"
+                  request%5Bchats%5D%5Borigin%5D%5B0%5D%5Bapp_id%5D: "51515"
+                  request%5Bchats%5D%5Borigin%5D%5B0%5D%5Btoken%5D: "415"
+                  request%5Bchats%5D%5Borigin%5D%5B0%5D%5Bencoding_key%5D: 549651dc651d65c16sc165sd
+                  request%5Bchats%5D%5Borigin%5D%5B0%5D%5Bpipeline_id%5D: "13004539"
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/profile:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/settings/profile
+      operationId: post_ajax_settings_profile
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  xcsrf_token: 290c2ca38b513edcdb1ed9abfdc6646653b455f5
+                  ID: "14686299"
+                  NEW_USER: N
+                  ACTION: EDIT_USER
+                  files: ""
+                  LANGUAGE: en
+                  NAME: ghouse+mohammed+1
+                  PERSONAL_MOBILE: "%2B917428730894"
+                  LOGIN: mohammedghouse86.backup%40gmail.com
+                  NEW_PASSWORD: ""
+                  NEW_PASSWORD_CONFIRM: ""
+                  PERSONAL_NOTES: ""
+                  SYSTEM_NAVIGATION_VERSION: "2"
+                  NEW_TASKS_NOTIFIER: ""
+                  UNSORTED_NOTIFIER: ""
+                  mfa_switcher: ""
+                  switcher_notifications: on
+                  row_base: ""
+                  email: ""
+                  mobile_push: ""
+                  browser_push: ""
+                  session_token: 866f5572f53004bb6c0cf7ca14c6c22f1df64d5a2aaa5aad85ad8dd69973c3a5
+      responses:
+        "200":
+          description: Success
+  /profile/external:
+    get:
+      tags:
+        - profile
+      summary: GET /profile/external
+      operationId: get_profile_external
+      parameters:
+        - name: can_authorize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /{id}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /{id}
+      operationId: get_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: scheduled_reports
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/active_sessions:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/active_sessions
+      operationId: get_ajax_v4_active_sessions
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+      responses:
+        "200":
+          description: Success
+  /v3/inbox/settings:
+    get:
+      tags:
+        - v3
+      summary: GET /v3/inbox/settings
+      operationId: get_v3_inbox_settings
+      parameters:
+        - name: lang
+          in: query
+          required: false
+          schema:
+            type: string
+          example: en
+        - name: filter[exclude][chats]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v3
+      summary: POST /v3/inbox/settings
+      operationId: post_v3_inbox_settings
+      parameters:
+        - name: lang
+          in: query
+          required: false
+          schema:
+            type: string
+          example: en
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V3PostRequest"
+            examples:
+              fromHar:
+                value:
+                  settings: {}
+                  external_channels:
+                    telegram: false
+                  disabled: false
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/index:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/settings/index
+      operationId: post_ajax_settings_index
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/origins/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/origins/{id}
+      operationId: get_ajax_v4_origins_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: download_settings
+      responses:
+        "200":
+          description: Success
+  /ajax/v1/widgets/list:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v1/widgets/list
+      operationId: get_ajax_v1_widgets_list
+      parameters:
+        - name: filter[widget_locations]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: sms
+        - name: full
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/files/issue_token:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/v4/files/issue_token
+      operationId: post_ajax_v4_files_issue_token
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  '""': ""
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/communications:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/settings/communications
+      operationId: post_ajax_settings_communications
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/origins/settings/short_links:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/origins/settings/short_links
+      operationId: get_ajax_v4_origins_settings_short_links
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/origins/settings/personalization:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/origins/settings/personalization
+      operationId: get_ajax_v4_origins_settings_personalization
+      responses:
+        "200":
+          description: Success
+  /private/ajax/v2/json/helpbot:
+    get:
+      tags:
+        - private
+      summary: GET /private/ajax/v2/json/helpbot
+      operationId: get_private_ajax_v2_json_helpbot
+      parameters:
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "30"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /ajax/settings:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/settings
+      operationId: post_ajax_settings
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  ACTION: EDIT_ACCOUNT
+                  account%5Bname%5D: mohammedghouse86backup
+                  account%5Bsubdomain%5D: mohammedghouse86backup
+                  account%5Btime_zone%5D: Asia%2FKolkata
+                  account%5Bcountry%5D: IN
+                  account%5Bdate_format%5D: ru
+                  account%5Btime_format%5D: en
+                  account%5Bdeals_currency%5D: INR
+                  account%5Bcontact_name_display_order%5D: "2"
+                  account%5Bproducts_enabled%5D: Y
+                  account%5Bamojo_direct_enabled%5D: Y
+                  account%5Bamojo_group_chat_create_rights%5D: "0"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bcommunications%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bchats%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bteam_inbox%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bmail%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bleads%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bleads_13004539%5D: ""
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Btasks%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bcatalogs%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bcatalogs_23600%5D: ""
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bcatalogs_contacts%5D: ""
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bcatalogs_companies%5D: ""
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bcatalogs_contacts_and_companies%5D: ""
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bcatalogs_files%5D: ""
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Binsights%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bdashboard%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bwin_loss_analysis%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bconsolidated_report%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Breport_by_activities%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bactivity_log%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bcall_report%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Bgoal_report%5D: "1"
+                  account%5Bleft_menu_hidden_items%5D%5Ball_users%5D%5Broi_report%5D: "1"
+                  session_token: 866f5572f53004bb6c0cf7ca14c6c22f1df64d5a2aaa5aad85ad8dd69973c3a5
+      responses:
+        "200":
+          description: Success
+  /ajax/{id}:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/{id}
+      operationId: post_ajax_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_managers_with_group
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  free_users: Y
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/airewriter/issue_token:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/v4/airewriter/issue_token
+      operationId: post_ajax_v4_airewriter_issue_token
+      responses:
+        "200":
+          description: Success
+  /ajax/v1/catalogs/list:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v1/catalogs/list
+      operationId: get_ajax_v1_catalogs_list
+      responses:
+        "200":
+          description: Success
+  /v3/inbox/badge:
+    get:
+      tags:
+        - v3
+      summary: GET /v3/inbox/badge
+      operationId: get_v3_inbox_badge
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/inbox/badge:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/inbox/badge
+      operationId: get_ajax_v4_inbox_badge
+      responses:
+        "200":
+          description: Success
+  /v3/inbox/filter/presets:
+    get:
+      tags:
+        - v3
+      summary: GET /v3/inbox/filter/presets
+      operationId: get_v3_inbox_filter_presets
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/promotion/waba:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/promotion/waba
+      operationId: get_ajax_v4_promotion_waba
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/waba/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/waba/{id}
+      operationId: get_ajax_v4_waba_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: sandbox_needshow
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/broadcasting/leads/count:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/broadcasting/leads/count
+      operationId: get_ajax_v4_broadcasting_leads_count
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/broadcasting:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/broadcasting
+      operationId: get_ajax_v4_broadcasting
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: scheduled
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "20"
+      responses:
+        "200":
+          description: Success
+  /ajax/leads/pipeline/{id}:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/leads/pipeline/{id}
+      operationId: post_ajax_leads_pipeline_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "13004539"
+      responses:
+        "200":
+          description: Success
+  /ajax/v3/leads/pipeline/{id}/tags:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v3/leads/pipeline/{id}/tags
+      operationId: get_ajax_v3_leads_pipeline_id_tags
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "13004539"
+      responses:
+        "200":
+          description: Success
+  /ajax/leads/sum/{id}:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/leads/sum/{id}
+      operationId: post_ajax_leads_sum_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "13004539"
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  leads_by_status: Y
+                  skip_filter: Y
+                  filter%5Bpipe%5D%5B13004539%5D%5B%5D: "100275663"
+      responses:
+        "200":
+          description: Success
+  /ajax/leads/pipelines/{id}/triggers/count:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/leads/pipelines/{id}/triggers/count
+      operationId: get_ajax_leads_pipelines_id_triggers_count
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "13004539"
+      responses:
+        "200":
+          description: Success
+  /ajax/leads/list:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/leads/list
+      operationId: post_ajax_leads_list
+      responses:
+        "200":
+          description: Success
+  /ajax/leads/list/pipeline/{id}:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/leads/list/pipeline/{id}
+      operationId: get_ajax_leads_list_pipeline_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "13004539"
+        - name: only_count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Y
+        - name: skip_filter
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Y
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/leads/list/pipeline/{id}
+      operationId: post_ajax_leads_list_pipeline_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "13004539"
+      responses:
+        "200":
+          description: Success
+  /v3/inbox/list:
+    get:
+      tags:
+        - v3
+      summary: GET /v3/inbox/list
+      operationId: get_v3_inbox_list
+      parameters:
+        - name: filter[team_union]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+        - name: order[unread_first]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: order%5Bunread_first%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[exclude][chats]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /ajax/dashboard:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/dashboard
+      operationId: get_ajax_dashboard
+      responses:
+        "200":
+          description: Success
+  /ajax/v1/dashboard/widgets/data:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v1/dashboard/widgets/data
+      operationId: get_ajax_v1_dashboard_widgets_data
+      parameters:
+        - name: id[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "715142219"
+        - name: period
+          in: query
+          required: false
+          schema:
+            type: string
+          example: week
+        - name: pipeline_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "13004539"
+        - name: main_user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: id%5B%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "715142219"
+      responses:
+        "200":
+          description: Success
+  /ajax/stats/roi:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/stats/roi
+      operationId: post_ajax_stats_roi
+      responses:
+        "200":
+          description: Success
+  /ajax/v4/stats/roi/reports:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v4/stats/roi/reports
+      operationId: get_ajax_v4_stats_roi_reports
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /ajax/stats/pipeline:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/stats/pipeline
+      operationId: post_ajax_stats_pipeline
+      responses:
+        "200":
+          description: Success
+  /api/unsorted/get_all_summary:
+    get:
+      tags:
+        - api
+      summary: GET /api/unsorted/get_all_summary
+      operationId: get_api_unsorted_get_all_summary
+      responses:
+        "200":
+          description: Success
+  /ajax/dashboard/show:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/dashboard/show
+      operationId: get_ajax_dashboard_show
+      parameters:
+        - name: pipeline_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: view
+          in: query
+          required: false
+          schema:
+            type: string
+          example: conversion
+        - name: only
+          in: query
+          required: false
+          schema:
+            type: string
+          example: top_chart
+        - name: sel
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: date_from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: date_to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: date_preset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: filter_date_switch
+          in: query
+          required: false
+          schema:
+            type: string
+          example: closed
+      responses:
+        "200":
+          description: Success
+  /ajax/stats/leads/forecast:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/stats/leads/forecast
+      operationId: get_ajax_stats_leads_forecast
+      responses:
+        "200":
+          description: Success
+  /ajax/stats/leads/funnel:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/stats/leads/funnel
+      operationId: get_ajax_stats_leads_funnel
+      responses:
+        "200":
+          description: Success
+  /ajax/stats/consolidated:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/stats/consolidated
+      operationId: post_ajax_stats_consolidated
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/stats/consolidated
+      operationId: get_ajax_stats_consolidated
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: leads
+      responses:
+        "200":
+          description: Success
+  /ajax/stats/by_activities:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/stats/by_activities
+      operationId: get_ajax_stats_by_activities
+      responses:
+        "200":
+          description: Success
+  /ajax/events/list:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/events/list
+      operationId: post_ajax_events_list
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  "": ""
+                  need_filter: Y
+      responses:
+        "200":
+          description: Success
+  /ajax/events/count:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/events/count
+      operationId: post_ajax_events_count
+      responses:
+        "200":
+          description: Success
+  /ajax/stats/calls:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/stats/calls
+      operationId: get_ajax_stats_calls
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/stats/calls
+      operationId: post_ajax_stats_calls
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  action: get_report
+      responses:
+        "200":
+          description: Success
+  /profile/notifications/sync:
+    post:
+      tags:
+        - profile
+      summary: POST /profile/notifications/sync
+      operationId: post_profile_notifications_sync
+      responses:
+        "200":
+          description: Success
+  /ajax/settings/users:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/settings/users
+      operationId: post_ajax_settings_users
+      responses:
+        "200":
+          description: Success
+  /ajax/v3/users:
+    get:
+      tags:
+        - ajax
+      summary: GET /ajax/v3/users
+      operationId: get_ajax_v3_users
+      parameters:
+        - name: with
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rights
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: filter[active]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Y
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+        - name: filter%5Bactive%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Y
+      responses:
+        "200":
+          description: Success
+  /ajax/rights/check:
+    post:
+      tags:
+        - ajax
+      summary: POST /ajax/rights/check
+      operationId: post_ajax_rights_check
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  email: jack%40tester.com
+                  session_token: 866f5572f53004bb6c0cf7ca14c6c22f1df64d5a2aaa5aad85ad8dd69973c3a5
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    AjaxPostRequest:
+      type: object
+      properties:
+        onboarding_industry_step:
+          type: integer
+        onboarding_industry_users:
+          type: string
+        onboarding_industry_platform:
+          type: string
+        onboarding_industry_new_qualification:
+          type: boolean
+      required:
+        - onboarding_industry_step
+        - onboarding_industry_users
+        - onboarding_industry_platform
+        - onboarding_industry_new_qualification
+    TourPostRequest:
+      type: object
+      properties:
+        step:
+          type: integer
+        completed:
+          type: boolean
+        device:
+          type: string
+      required:
+        - step
+        - completed
+        - device
+    V3PostRequest:
+      type: object
+      properties:
+        settings:
+          type: object
+          properties: {}
+          required: []
+        external_channels:
+          type: object
+          properties:
+            telegram:
+              type: boolean
+          required:
+            - telegram
+        disabled:
+          type: boolean
+      required:
+        - settings
+        - external_channels
+        - disabled
