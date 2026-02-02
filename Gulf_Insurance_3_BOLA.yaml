@@ -1,0 +1,126 @@
+openapi: 3.0.1
+info:
+  title: OnlineApi
+  version: v1
+servers:
+  - url: https://lbc.ggi-sa.com/MobilAppUatAPI
+paths:
+  /api/Claims/pendingdocs:
+    post:
+      tags:
+        - Claims
+      operationId: pendingdocs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/mdlCorePendingDocUploadReq"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/mdlCorePendingDocUploadReq"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/mdlCorePendingDocUploadReq"
+      responses:
+        "200":
+          description: OK
+  /api/Endorsements/SubmitChangeInGeneralInfo:
+    post:
+      tags:
+        - Endorsements
+      operationId: SubmitChangeInGeneralInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/mdlSubmitChangeInGeneralInfoReq"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/mdlSubmitChangeInGeneralInfoReq"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/mdlSubmitChangeInGeneralInfoReq"
+      responses:
+        "200":
+          description: OK
+  /api/Med/EditQuote:
+    post:
+      tags:
+        - Med
+      operationId: EditQuote
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SPME_EditQuote_EC"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/SPME_EditQuote_EC"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/SPME_EditQuote_EC"
+      responses:
+        "200":
+          description: OK
+components:
+  schemas:
+    SPME_EditQuote_EC:
+      type: object
+      properties:
+        RegNo:
+          type: integer
+          format: int64
+        QuotationId:
+          type: integer
+          format: int64
+      additionalProperties: false
+    mdlCorePendingDocUploadReq:
+      type: object
+      properties:
+        NationalID:
+          type: string
+          nullable: true
+        ClaimRefNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    mdlSubmitChangeInGeneralInfoReq:
+      type: object
+      properties:
+        PolicyNo:
+          type: string
+          nullable: true
+        Insured_MobileNo:
+          type: string
+          nullable: true
+        Insured_EmailId:
+          type: string
+          nullable: true
+        Insured_BuildingNo:
+          type: integer
+          format: int32
+          nullable: true
+        Insured_PostalCode:
+          type: integer
+          format: int32
+          nullable: true
+        Insured_AdditionalCode:
+          type: integer
+          format: int32
+          nullable: true
+        Insured_UnitNo:
+          type: integer
+          format: int32
+          nullable: true
+        Insured_DistName:
+          type: string
+          nullable: true
+        Insured_StreetName:
+          type: string
+          nullable: true
+        ProductCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+security:
+  - Bearer: []
