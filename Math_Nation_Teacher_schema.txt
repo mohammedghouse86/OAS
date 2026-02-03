@@ -1,0 +1,145 @@
+# Auto-generated from sample request/response captures
+# Note: This schema is best-effort; unknown referenced types are stubbed as scalars
+
+schema {
+  query: Query
+}
+
+type Query {
+  assessment: String
+  assessmentPool: String
+  benchmarkList(input: BenchmarkInput!): String
+  class(id: ID!): String
+  classes: String
+  createAssessment: String
+  createClass(input: createClassInput!): String
+  createSignRequest(input: CreateSignRequestInput): String
+  dashboardEmbedUrlForAnonymousUser(dashboardID: String!, sheetID: String, visualID: String): String
+  districts(filter: [DistrictFilter], id: String, itemsPerPage: Int, order: [DistrictFilter_order], page: Int): String
+  edgexlAssignments(assessmentId: String!, schoolId: String): String
+  listMathInActionActivity: String
+  mnScope(id: String!, schoolId: String): String
+  mnScopes(filter: MathNationScopeFilter, page: Int, perPage: Int, schoolId: String): String
+  note(id: ID!): String
+  onrampTeacherAssignmentsList(input: TeacherAssignmentListInput!): String
+  questionPool: String
+  schools(districtId: String, id_list: [String], itemsPerPage: Int): String
+  teacherStudents: String
+  updateAssessment: String
+  updateClass(input: updateClassInput!): String
+  users(active: Boolean, fullName: String, itemsPerPage: Int, page: Int, schoolsId: String, type: UserTypeEnum): String
+  videos(filter: VideoFilterInput!, itemsPerPage: Int!, page: Int!): String
+  videosByGroup: String
+}
+
+input BenchmarkInput {
+  currentSchoolId: ID
+  state: String
+  subject: String
+}
+
+input createClassInput {
+  classTeachers: [createClassInputClassTeacher]
+  curriculumArea: String
+  gradeOrCourse: String
+  language: String
+  name: String
+  schoolId: ID
+}
+
+input createClassInputClassTeacher {
+  _id: ID
+  accesses: [String]
+  mainTeacher: Boolean
+  orderListStudents: String
+}
+
+input CreateSignRequestInput {
+  itemsService: CreateSignRequestInputItemsService
+  state: String
+}
+
+input CreateSignRequestInputItemsService {
+  config: String
+  items: [ID]
+}
+
+input EdgexlCreateAssessmentInput {
+  attemptsNumber: Int
+  category: String
+  currentSchoolId: ID
+  deliveries: [String]
+  grade: String
+  isAllowViewCorrectAnswers: Boolean
+  isRetakeOnlyIncorrect: Boolean
+  isSameQuestionNumber: Boolean
+  isScramble: Boolean
+  items: [ID]
+  title: String
+}
+
+input EdgexlUpdateAssessmentInput {
+  attemptsNumber: Int
+  category: String
+  currentSchoolId: ID
+  deliveries: [String]
+  grade: String
+  id: ID
+  isAllowViewCorrectAnswers: Boolean
+  isRetakeOnlyIncorrect: Boolean
+  isSameQuestionNumber: Boolean
+  isScramble: Boolean
+  items: [ID]
+  title: String
+}
+
+input MathNationScopeFilter {
+  category: String
+  contentAudience: String
+  grade: String
+}
+
+input SortInput {
+  direction: String
+  field: String
+}
+
+input TeacherAssignmentListInput {
+  currentSchoolId: ID
+  orderBy: [TeacherAssignmentListInputOrderBy]
+  pageCount: Int
+  pageNo: Int
+  students: [String]
+}
+
+input TeacherAssignmentListInputOrderBy {
+  field: String
+  order: String
+}
+
+input updateClassInput {
+  classTeachers: [updateClassInputClassTeacher]
+  id: ID
+}
+
+input updateClassInputClassTeacher {
+  _id: ID
+  accesses: [String]
+  mainTeacher: Boolean
+  orderListStudents: String
+}
+
+input VideoFilterInput {
+  maSubject: String
+  purpose: String
+  resourceType: String
+}
+
+# ---- Auto-added scalar stubs for missing types (Postman compatibility) ----
+scalar DistrictFilter
+scalar DistrictFilter_order
+scalar This
+scalar UserTypeEnum
+scalar best
+scalar is
+# ---- End auto-added stubs ----
