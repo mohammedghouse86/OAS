@@ -3,6 +3,7 @@
 
 schema {
   query: Query
+  mutation: Mutation
 }
 
 type Query {
@@ -11,25 +12,51 @@ type Query {
   benchmarkList(input: BenchmarkInput!): String
   class(id: ID!): String
   classes: String
-  createAssessment: String
-  createClass(input: createClassInput!): String
-  createSignRequest(input: CreateSignRequestInput): String
   dashboardEmbedUrlForAnonymousUser(dashboardID: String!, sheetID: String, visualID: String): String
   districts(filter: [DistrictFilter], id: String, itemsPerPage: Int, order: [DistrictFilter_order], page: Int): String
   edgexlAssignments(assessmentId: String!, schoolId: String): String
+  getAssessment: String @deprecated(reason: "operationName alias for root field 'assessment'")
+  getAssessmentPool: String @deprecated(reason: "operationName alias for root field 'assessmentPool'")
+  getAssignClassList: String @deprecated(reason: "operationName alias for root field 'classes'")
+  getClasses: String @deprecated(reason: "operationName alias for root field 'classes'")
+  getClassForClassForm(id: ID!): String @deprecated(reason: "operationName alias for root field 'class'")
+  getClassList: String @deprecated(reason: "operationName alias for root field 'classes'")
+  getClassStudents(id: ID!): String @deprecated(reason: "operationName alias for root field 'class'")
+  getDashboardEmbedUrlForAnonymousUser(dashboardID: String!, sheetID: String, visualID: String): String @deprecated(reason: "operationName alias for root field 'dashboardEmbedUrlForAnonymousUser'")
+  getDistricts(filter: [DistrictFilter], id: String, itemsPerPage: Int, order: [DistrictFilter_order], page: Int): String @deprecated(reason: "operationName alias for root field 'districts'")
+  getEdgexlAssignments(assessmentId: String!, schoolId: String): String @deprecated(reason: "operationName alias for root field 'edgexlAssignments'")
+  getEdgexlAssignmentsForAssign(assessmentId: String!, schoolId: String): String @deprecated(reason: "operationName alias for root field 'edgexlAssignments'")
+  getNote(id: ID!): String @deprecated(reason: "operationName alias for root field 'note'")
+  getQuestionList: String @deprecated(reason: "operationName alias for root field 'questionPool'")
+  getSchools(districtId: String, id_list: [String], itemsPerPage: Int): String @deprecated(reason: "operationName alias for root field 'schools'")
+  getSchoolStudents(active: Boolean, fullName: String, itemsPerPage: Int, page: Int, schoolsId: String, type: UserTypeEnum): String @deprecated(reason: "operationName alias for root field 'users'")
+  getScope(id: String!, schoolId: String): String @deprecated(reason: "operationName alias for root field 'mnScope'")
+  getScopes(filter: MathNationScopeFilter, page: Int, perPage: Int, schoolId: String): String @deprecated(reason: "operationName alias for root field 'mnScopes'")
+  getStudents: String @deprecated(reason: "operationName alias for root field 'teacherStudents'")
+  getUsersForClasses(active: Boolean, fullName: String, itemsPerPage: Int, page: Int, schoolsId: String, type: UserTypeEnum): String @deprecated(reason: "operationName alias for root field 'users'")
+  getVideosByGroup: String @deprecated(reason: "operationName alias for root field 'videosByGroup'")
+  getVideosList(filter: VideoFilterInput!, itemsPerPage: Int!, page: Int!): String @deprecated(reason: "operationName alias for root field 'videos'")
   listMathInActionActivity: String
+  ListMathInActionActivity: String @deprecated(reason: "operationName alias for root field 'listMathInActionActivity'")
   mnScope(id: String!, schoolId: String): String
   mnScopes(filter: MathNationScopeFilter, page: Int, perPage: Int, schoolId: String): String
   note(id: ID!): String
   onrampTeacherAssignmentsList(input: TeacherAssignmentListInput!): String
   questionPool: String
   schools(districtId: String, id_list: [String], itemsPerPage: Int): String
+  teacherAssignedTopics(input: TeacherAssignmentListInput!): String @deprecated(reason: "operationName alias for root field 'onrampTeacherAssignmentsList'")
   teacherStudents: String
-  updateAssessment: String
-  updateClass(input: updateClassInput!): String
   users(active: Boolean, fullName: String, itemsPerPage: Int, page: Int, schoolsId: String, type: UserTypeEnum): String
   videos(filter: VideoFilterInput!, itemsPerPage: Int!, page: Int!): String
   videosByGroup: String
+}
+
+type Mutation {
+  createAssessment: String
+  createClass(input: createClassInput!): String
+  createSignRequest(input: CreateSignRequestInput): String
+  updateAssessment: String
+  updateClass(input: updateClassInput!): String
 }
 
 input BenchmarkInput {
@@ -135,7 +162,7 @@ input VideoFilterInput {
   resourceType: String
 }
 
-# ---- Auto-added scalar stubs for missing types (Postman compatibility) ----
+# ---- Auto-added scalar stubs for missing types ----
 scalar DistrictFilter
 scalar DistrictFilter_order
 scalar This
