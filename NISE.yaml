@@ -1,0 +1,589 @@
+openapi: 3.0.3
+info:
+  title: NISE App
+  version: 1.0.0
+servers:
+  - url: https://nise.acceleratelearning.com
+tags:
+  - name: admin
+  - name: portal
+paths:
+  /portal/profile/{id}:
+    get:
+      tags:
+        - portal
+      summary: GET /portal/profile/{id}
+      operationId: get_portal_profile_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "26023"
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1770181183292"
+      responses:
+        "200":
+          description: Success
+  /portal/badges:
+    get:
+      tags:
+        - portal
+      summary: GET /portal/badges
+      operationId: get_portal_badges
+      parameters:
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1770181183293"
+      responses:
+        "200":
+          description: Success
+  /portal/cart/orders:
+    get:
+      tags:
+        - portal
+      summary: GET /portal/cart/orders
+      operationId: get_portal_cart_orders
+      parameters:
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1770181183294"
+      responses:
+        "200":
+          description: Success
+  /admin/style-guide/rules/list-all:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/style-guide/rules/list-all
+      operationId: get_admin_style_guide_rules_list_all
+      responses:
+        "200":
+          description: Success
+  /portal/session/{id}/default:
+    post:
+      tags:
+        - portal
+      summary: POST /portal/session/{id}/default
+      operationId: post_portal_session_id_default
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "0"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PortalPostRequest"
+            examples:
+              fromHar:
+                value: {}
+      responses:
+        "200":
+          description: Success
+  /portal/my-pd:
+    get:
+      tags:
+        - portal
+      summary: GET /portal/my-pd
+      operationId: get_portal_my_pd
+      parameters:
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1770181498573"
+      responses:
+        "200":
+          description: Success
+  /portal/{id}/{id2}/collection:
+    get:
+      tags:
+        - portal
+      summary: GET /portal/{id}/{id2}/collection
+      operationId: get_portal_id_id2_collection
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "0"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: quick-application
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1770181498574"
+      responses:
+        "200":
+          description: Success
+  /portal/portfolio:
+    get:
+      tags:
+        - portal
+      summary: GET /portal/portfolio
+      operationId: get_portal_portfolio
+      parameters:
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1770181498575"
+      responses:
+        "200":
+          description: Success
+  /portal/feedback:
+    get:
+      tags:
+        - portal
+      summary: GET /portal/feedback
+      operationId: get_portal_feedback
+      parameters:
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1770181498576"
+      responses:
+        "200":
+          description: Success
+  /admin/alinise/data/tocsection/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/alinise/data/tocsection/list
+      operationId: get_admin_alinise_data_tocsection_list
+      responses:
+        "200":
+          description: Success
+  /admin/ali/data/nise_students/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/ali/data/nise_students/list
+      operationId: get_admin_ali_data_nise_students_list
+      responses:
+        "200":
+          description: Success
+  /admin/ali/data/{id}/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/ali/data/{id}/list
+      operationId: get_admin_ali_data_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: candidate_progress_csv_report
+      responses:
+        "200":
+          description: Success
+  /admin/coach/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/coach/list
+      operationId: get_admin_coach_list
+      responses:
+        "200":
+          description: Success
+  /admin/alinise/data/alistaff/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/alinise/data/alistaff/list
+      operationId: get_admin_alinise_data_alistaff_list
+      responses:
+        "200":
+          description: Success
+  /admin/alinise/data/setting/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/alinise/data/setting/list
+      operationId: get_admin_alinise_data_setting_list
+      parameters:
+        - name: filter[_page]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: filter[_per_page]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: filter%5B_page%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: filter%5B_per_page%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /admin/alinise/data/{id}/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/alinise/data/{id}/list
+      operationId: get_admin_alinise_data_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: chalkandwirebulkcode
+        - name: filter[_page]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: filter[_per_page]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: filter%5B_page%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: filter%5B_per_page%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /admin/alinise/data/setting/{id}/edit:
+    post:
+      tags:
+        - admin
+      summary: POST /admin/alinise/data/setting/{id}/edit
+      operationId: post_admin_alinise_data_setting_id_edit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: uniqid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: s6982d572be8b1
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  s6982d572be8b1%5Bdescription%5D: Day+of+the+Month+NISE+Coaches+are+to+start+being+emailed+about+updating+their%2C+Total+%23+of+Students+Coach+is+willing+to+Manage+field
+                  s6982d572be8b1%5Bvalue%5D: "21"
+                  s6982d572be8b1%5B_token%5D: 6f73b2874713c23f5faecd4b64.ebbSZfFLDh5cKjoWBuMknWDbPpDgmoP9AuT0i4zbWMo.EtWQIYVydno7R1x7do580g6eBuSZ_-2VdcmhwtStN6MI_IBRoyhkVmRBcw
+                  btn_update_and_list: ""
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - admin
+      summary: GET /admin/alinise/data/setting/{id}/edit
+      operationId: get_admin_alinise_data_setting_id_edit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /admin/alinise/data/{id}/{id2}/edit:
+    post:
+      tags:
+        - admin
+      summary: POST /admin/alinise/data/{id}/{id2}/edit
+      operationId: post_admin_alinise_data_id_id2_edit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: chalkandwirebulkcode
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: uniqid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: s6982d5611665f
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  s6982d5611665f%5Bcode%5D: XAZ427616NR
+                  s6982d5611665f%5BisDefined%5D: "1"
+                  s6982d5611665f%5B_token%5D: bdefc30b112b1e707e51d7.VRL1gEuSOdzUb-RztauXVOl8Fi1Q3jBkCFCoM581DLc.PEifzifraIqwLZYfgpujFtwjY2gXmWQ-ODXdXuh0YOECcMfBE9Rz6ZUXsQ
+                  btn_update_and_list: ""
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - admin
+      summary: GET /admin/alinise/data/{id}/{id2}/edit
+      operationId: get_admin_alinise_data_id_id2_edit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: chalkandwirebulkcode
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /admin/alinise/data/niseclass/{id}/edit:
+    post:
+      tags:
+        - admin
+      summary: POST /admin/alinise/data/niseclass/{id}/edit
+      operationId: post_admin_alinise_data_niseclass_id_edit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "143"
+        - name: uniqid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: s6982d528337c7
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value:
+                  s6982d528337c7%5BclassCode%5D: Match+2026
+                  s6982d528337c7%5Bdescription%5D: ""
+                  s6982d528337c7%5BclassStartDate%5D: 2026%2F03%2F01
+                  s6982d528337c7%5Bcourse%5D: "10"
+                  s6982d528337c7%5B_token%5D: b83824cb4f.icwGdkSQ6pMP8KCxseKuEapR5x7HeI8cYMXwWog6v1o.wo12GQ_6rtRenPrV_c_AXeNh03yQGuhFC4zCLdh4-SnI-G8YfPGg6X2j-Q
+                  btn_update_and_list: ""
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - admin
+      summary: GET /admin/alinise/data/niseclass/{id}/edit
+      operationId: get_admin_alinise_data_niseclass_id_edit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "143"
+      responses:
+        "200":
+          description: Success
+  /admin/alinise/data/niseclass/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/alinise/data/niseclass/list
+      operationId: get_admin_alinise_data_niseclass_list
+      parameters:
+        - name: filter[_page]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: filter[_per_page]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: filter[_sort_by]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: classStartDate
+        - name: filter[_sort_order]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: DESC
+        - name: filter%5B_page%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: filter%5B_per_page%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: filter%5B_sort_by%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: classStartDate
+        - name: filter%5B_sort_order%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: DESC
+      responses:
+        "200":
+          description: Success
+  /admin/ali/data/students/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/ali/data/students/list
+      operationId: get_admin_ali_data_students_list
+      responses:
+        "200":
+          description: Success
+  /admin/{id}/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/{id}/list
+      operationId: get_admin_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: potential-candidate
+      responses:
+        "200":
+          description: Success
+  /admin/calendar/event-type/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/calendar/event-type/list
+      operationId: get_admin_calendar_event_type_list
+      responses:
+        "200":
+          description: Success
+  /admin/calendar/event/list:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/calendar/event/list
+      operationId: get_admin_calendar_event_list
+      responses:
+        "200":
+          description: Success
+  /admin/calendar/event/calendar:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/calendar/event/calendar
+      operationId: get_admin_calendar_event_calendar
+      responses:
+        "200":
+          description: Success
+  /admin/dashboard:
+    get:
+      tags:
+        - admin
+      summary: GET /admin/dashboard
+      operationId: get_admin_dashboard
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    PortalPostRequest:
+      type: object
+      properties: {}
+      required: []
