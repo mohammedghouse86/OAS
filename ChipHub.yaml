@@ -11,7 +11,7 @@ info:
 
     **Security and compliance.** Endpoints may process personal data (e.g. user, org, contact). Consumers must handle such data in line with applicable law (e.g. GDPR, CCPA) and the provider's terms. No payment-card data is accepted at the API layer.
 servers:
-  - url: https://demo.chiphub.com
+  - url: https://demo.api.chiphub.com:443
     description: Demo server. HTTPS only. Do not use HTTP for this environment.
 security:
   - JWT: []
