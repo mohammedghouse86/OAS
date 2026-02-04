@@ -2714,15 +2714,15 @@ paths:
             schema:
               $ref: "#/components/schemas/RFQEntryWithParts"
       responses:
-        200:
+        "200":
           description: RFQ created successfully
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/RFQCreateResponse"
-        400:
+        "400":
           description: Bad request
-        500:
+        "500":
           description: Internal server error
   /api/rfq/create:
     post:
@@ -2740,15 +2740,15 @@ paths:
             schema:
               $ref: "#/components/schemas/RFQEntry"
       responses:
-        200:
+        "200":
           description: RFQ created successfully
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/RFQEntry"
-        400:
+        "400":
           description: Bad request
-        500:
+        "500":
           description: Internal server error
   /api/rfq/mine/list:
     get:
@@ -2781,15 +2781,15 @@ paths:
             type: string
             format: date-time
       responses:
-        200:
+        "200":
           description: User's RFQ list retrieved successfully
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/RFQEntryList"
-        400:
+        "400":
           description: Bad request
-        500:
+        "500":
           description: Internal server error
   /api/rfq/details/byid/{rfq_id}/update:
     post:
@@ -2814,15 +2814,15 @@ paths:
         - MagicToken: []
       description: Update RFQ details
       responses:
-        200:
+        "200":
           description: RFQ updated successfully
-        400:
+        "400":
           description: Bad request
-        401:
+        "401":
           description: Unauthorized
-        403:
+        "403":
           description: Forbidden - User is not the RFQ owner
-        500:
+        "500":
           description: Internal server error
   /api/rfq/details/byid/{rfq_id}/rows/{row_id}:
     delete:
@@ -2847,19 +2847,19 @@ paths:
       summary: Delete RFQ row
       description: Permanently delete a specific row from an RFQ. Only the RFQ owner can delete rows. Rows that have been sent to suppliers but not returned cannot be deleted.
       responses:
-        200:
+        "200":
           description: RFQ row deleted successfully
-        400:
+        "400":
           description: Bad request (missing parameters or row doesn't belong to RFQ)
-        401:
+        "401":
           description: Unauthorized
-        403:
+        "403":
           description: Forbidden - User is not the RFQ owner
-        404:
+        "404":
           description: RFQ or RFQ row not found
-        409:
+        "409":
           description: Conflict - Row cannot be deleted because it has been sent to supplier and is awaiting response
-        500:
+        "500":
           description: Internal server error
   /api/rfq/details/byid/{rfq_id}:
     get:
@@ -2894,19 +2894,19 @@ paths:
         - MagicToken: []
       description: Retrieve full or limited RFQ details based on authentication
       responses:
-        200:
+        "200":
           description: RFQ details retrieved successfully
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/RFQDetailsWithPaginationResponse"
-        400:
+        "400":
           description: Bad request
-        401:
+        "401":
           description: Unauthorized
-        403:
+        "403":
           description: Forbidden - User is not the RFQ owner
-        500:
+        "500":
           description: Internal server error
   /api/rfq/return/byid/{rfq_id}:
     post:
@@ -2925,15 +2925,15 @@ paths:
         - MagicToken: []
       summary: Return RFQ
       responses:
-        200:
+        "200":
           description: RFQ returned successfully
-        400:
+        "400":
           description: Bad request
-        401:
+        "401":
           description: Unauthorized
-        403:
+        "403":
           description: Forbidden - User is not the RFQ owner
-        500:
+        "500":
           description: Internal server error
   /api/rfq/publish/byid/{rfq_id}:
     post:
@@ -2952,15 +2952,15 @@ paths:
         - MagicToken: []
       summary: Publish RFQ
       responses:
-        200:
+        "200":
           description: RFQ published successfully
-        400:
+        "400":
           description: Bad request
-        401:
+        "401":
           description: Unauthorized
-        403:
+        "403":
           description: Forbidden - User is not the RFQ owner
-        500:
+        "500":
           description: Internal server error
   /api/rfq/import/byid/{rfq_id}:
     post:
@@ -2991,17 +2991,17 @@ paths:
                   format: binary
                   description: The Excel file to upload
       responses:
-        200:
+        "200":
           description: RFQ data imported successfully
-        400:
+        "400":
           description: Bad request
-        401:
+        "401":
           description: Unauthorized
-        403:
+        "403":
           description: Forbidden - User is not the RFQ owner
-        415:
+        "415":
           description: Unsupported media type
-        500:
+        "500":
           description: Internal server error
   /api/rfq/export/byid/{rfqID}:
     get:
@@ -3148,20 +3148,20 @@ paths:
         
         Note: Sensitive fields such as OwnerID, LastModifiedBySender, and LastEmailSentToSupplier are NOT included in the export.
       responses:
-        200:
+        "200":
           description: RFQ data exported successfully
           content:
             application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
               schema:
                 type: string
                 format: binary
-        400:
+        "400":
           description: Bad request
-        401:
+        "401":
           description: Unauthorized - Invalid or missing authentication token
-        403:
+        "403":
           description: Forbidden - User is not the RFQ owner
-        500:
+        "500":
           description: Internal server error
   /api/market/inventory/byuploader/{uploader_id}:
     get:
@@ -3182,7 +3182,7 @@ paths:
         - name: limit
           in: query
           required: false
-          description: Maximum number of items to return (default: 50, max: 1000)
+          description: Maximum number of items to return (default 50, max 1000)
           schema:
             type: integer
             minimum: 1
@@ -3191,7 +3191,7 @@ paths:
         - name: offset
           in: query
           required: false
-          description: Number of items to skip (default: 0, max: 10000 for performance)
+          description: Number of items to skip (default 0, max 10000 for performance)
           schema:
             type: integer
             minimum: 0
@@ -3200,7 +3200,7 @@ paths:
         - name: include_total
           in: query
           required: false
-          description: Whether to calculate total count (default: true, set to false for better performance at scale)
+          description: Whether to calculate total count (default true, set to false for better performance at scale)
           schema:
             type: boolean
             default: true
@@ -3295,13 +3295,13 @@ paths:
                   format: binary
                   description: The Excel file to upload.
       responses:
-        200:
+        "200":
           description: Inventory data imported successfully.
-        400:
+        "400":
           description: Bad request
-        415:
+        "415":
           description: Unsupported media type
-        500:
+        "500":
           description: Internal server error
   /api/market/inventory/export:
     get:
@@ -3325,28 +3325,28 @@ paths:
         - CreatedAt
         - Public Status
       responses:
-        200:
+        "200":
           description: Inventory data exported successfully.
           content:
             application/zip:
               schema:
                 type: string
                 format: binary
-        400:
+        "400":
           description: Bad request
           content:
             text/plain:
               schema:
                 type: string
                 example: "Bad Request: [error message]"
-        401:
+        "401":
           description: Unauthorized - Invalid or missing authentication token
           content:
             text/plain:
               schema:
                 type: string
                 example: "unauthorized: invalid token"
-        500:
+        "500":
           description: Internal server error
           content:
             text/plain:
@@ -3371,7 +3371,7 @@ paths:
         - name: limit
           in: query
           required: false
-          description: Maximum number of items to return (default: 50, max: 1000)
+          description: Maximum number of items to return (default 50, max 1000)
           schema:
             type: integer
             minimum: 1
@@ -3380,7 +3380,7 @@ paths:
         - name: offset
           in: query
           required: false
-          description: Number of items to skip (default: 0, max: 10000 for performance)
+          description: Number of items to skip (default 0, max 10000 for performance)
           schema:
             type: integer
             minimum: 0
@@ -3389,7 +3389,7 @@ paths:
         - name: include_total
           in: query
           required: false
-          description: Whether to calculate total count (default: true, set to false for better performance at scale)
+          description: Whether to calculate total count (default true, set to false for better performance at scale)
           schema:
             type: boolean
             default: true
@@ -3719,13 +3719,15 @@ components:
         libraryID:
           type: string
         startedAt:
-          type: datetime
+          type: string
+          format: datetime
         modifiedAt:
-          type: datetime
+          type: string
+          format: datetime
         active:
           type: boolean
         isSearchType:
-          type: boolean                    
+          type: boolean
     Message:
       type: object
       required:
