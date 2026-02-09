@@ -1,0 +1,301 @@
+openapi: 3.0.3
+info:
+  title: NISE App
+  version: 1.0.0
+servers:
+  - url: https://us.kidescience.com
+tags:
+  - name: api
+  - name: cdn-cgi
+paths:
+  /api/kjsd23:
+    post:
+      tags:
+        - api
+      summary: POST /api/kjsd23
+      operationId: post_api_kjsd23
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  id: ""
+                  profileId: null
+                  event: add_favorite
+                  data:
+                    lessonId: true-friends-sel-welcome-activity
+                  pageLocation: https://us.kidescience.com/en/search
+                  language: en
+      responses:
+        "200":
+          description: Success
+  /api/bookmarks/{id}:
+    post:
+      tags:
+        - api
+      summary: POST /api/bookmarks/{id}
+      operationId: post_api_bookmarks_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: true-friends-sel-welcome-activity
+      responses:
+        "200":
+          description: Success
+  /api/bookmarks:
+    get:
+      tags:
+        - api
+      summary: GET /api/bookmarks
+      operationId: get_api_bookmarks
+      responses:
+        "200":
+          description: Success
+  /api/user/me:
+    get:
+      tags:
+        - api
+      summary: GET /api/user/me
+      operationId: get_api_user_me
+      responses:
+        "200":
+          description: Success
+  /api/bundles/en:
+    get:
+      tags:
+        - api
+      summary: GET /api/bundles/en
+      operationId: get_api_bundles_en
+      responses:
+        "200":
+          description: Success
+  /cdn-cgi/rum:
+    post:
+      tags:
+        - cdn-cgi
+      summary: POST /cdn-cgi/rum
+      operationId: post_cdn_cgi_rum
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cdn-cgiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  resources: []
+                  referrer: https://us.kidescience.com/en/search
+                  eventType: 1
+                  firstPaint: 1676
+                  firstContentfulPaint: 2224
+                  startTime: 1770614709678.6
+                  versions:
+                    fl: 2024.11.0
+                    js: 2024.6.1
+                    timings: 1
+                  pageloadId: 251b3f96-f267-4da2-adb3-001f4959ab8e
+                  location: https://us.kidescience.com/en/supraland
+                  nt: reload
+                  timingsV2:
+                    nextHopProtocol: h3
+                    transferSize: 2297
+                    decodedBodySize: 5279
+                  dt: ""
+                  siteToken: b98a7e6b0d744766b82ead0458fbbee5
+                  st: 2
+      responses:
+        "200":
+          description: Success
+  /api/extras/standards:
+    get:
+      tags:
+        - api
+      summary: GET /api/extras/standards
+      operationId: get_api_extras_standards
+      responses:
+        "200":
+          description: Success
+  /api/trainings/en:
+    get:
+      tags:
+        - api
+      summary: GET /api/trainings/en
+      operationId: get_api_trainings_en
+      responses:
+        "200":
+          description: Success
+  /api/reflections:
+    get:
+      tags:
+        - api
+      summary: GET /api/reflections
+      operationId: get_api_reflections
+      responses:
+        "200":
+          description: Success
+  /api/invites:
+    get:
+      tags:
+        - api
+      summary: GET /api/invites
+      operationId: get_api_invites
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/invites
+      operationId: post_api_invites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  invitedEmail: jack@tester.com
+      responses:
+        "200":
+          description: Success
+  /api/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/{id}
+      operationId: get_api_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: organization-members
+      responses:
+        "200":
+          description: Success
+  /api/invites/{id}:
+    delete:
+      tags:
+        - api
+      summary: DELETE /api/invites/{id}
+      operationId: delete_api_invites_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 400358a8-771b-48ae-866e-ade7fa5c510b
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPostRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        profileId:
+          nullable: true
+        event:
+          type: string
+        data:
+          type: object
+          properties:
+            lessonId:
+              type: string
+          required:
+            - lessonId
+        pageLocation:
+          type: string
+        language:
+          type: string
+      required:
+        - id
+        - profileId
+        - event
+        - data
+        - pageLocation
+        - language
+    Cdn-cgiPostRequest:
+      type: object
+      properties:
+        resources:
+          type: array
+          items:
+            type: string
+        referrer:
+          type: string
+        eventType:
+          type: integer
+        firstPaint:
+          type: integer
+        firstContentfulPaint:
+          type: integer
+        startTime:
+          type: number
+        versions:
+          type: object
+          properties:
+            fl:
+              type: string
+            js:
+              type: string
+            timings:
+              type: integer
+          required:
+            - fl
+            - js
+            - timings
+        pageloadId:
+          type: string
+        location:
+          type: string
+        nt:
+          type: string
+        timingsV2:
+          type: object
+          properties:
+            nextHopProtocol:
+              type: string
+            transferSize:
+              type: integer
+            decodedBodySize:
+              type: integer
+          required:
+            - nextHopProtocol
+            - transferSize
+            - decodedBodySize
+        dt:
+          type: string
+        siteToken:
+          type: string
+        st:
+          type: integer
+      required:
+        - resources
+        - referrer
+        - eventType
+        - firstPaint
+        - firstContentfulPaint
+        - startTime
+        - versions
+        - pageloadId
+        - location
+        - nt
+        - timingsV2
+        - dt
+        - siteToken
+        - st
