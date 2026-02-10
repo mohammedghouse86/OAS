@@ -1,0 +1,278 @@
+openapi: 3.0.3
+info:
+  title: HAR extracted API
+  version: 1.0.0
+servers:
+  - url: https://www.airport-assist.com
+tags:
+  - name: book-now
+  - name: cart
+  - name: contact
+  - name: my-account
+  - name: product
+  - name: services
+  - name: shop
+paths:
+  /shop:
+    get:
+      tags:
+        - shop
+      summary: GET /shop
+      operationId: get_shop
+      responses:
+        '200':
+          description: Success
+  /cart:
+    get:
+      tags:
+        - cart
+      summary: GET /cart
+      operationId: get_cart
+      responses:
+        '200':
+          description: Success
+  /contact:
+    get:
+      tags:
+        - contact
+      summary: GET /contact
+      operationId: get_contact
+      responses:
+        '200':
+          description: Success
+  /product/chauffeur-by-the-hour:
+    get:
+      tags:
+        - product
+      summary: GET /product/chauffeur-by-the-hour
+      operationId: get_product_chauffeurbythehour
+      responses:
+        '200':
+          description: Success
+  /book-now/book-now-chauffeur-services:
+    get:
+      tags:
+        - book-now
+      summary: GET /book-now/book-now-chauffeur-services
+      operationId: get_booknow_booknowchauffeurservices
+      responses:
+        '200':
+          description: Success
+  /product/paris-orly-airport:
+    get:
+      tags:
+        - product
+      summary: GET /product/paris-orly-airport
+      operationId: get_product_parisorlyairport
+      responses:
+        '200':
+          description: Success
+  /book-now/book-now-france:
+    get:
+      tags:
+        - book-now
+      summary: GET /book-now/book-now-france
+      operationId: get_booknow_booknowfrance
+      responses:
+        '200':
+          description: Success
+  /book-now/book-now-london-heathrow:
+    get:
+      tags:
+        - book-now
+      summary: GET /book-now/book-now-london-heathrow
+      operationId: get_booknow_booknowlondonheathrow
+      responses:
+        '200':
+          description: Success
+  /book-now/uk-airports/book-now-london-heathrow:
+    get:
+      tags:
+        - book-now
+      summary: GET /book-now/uk-airports/book-now-london-heathrow
+      operationId: get_booknow_ukairports_booknowlondonheathrow
+      responses:
+        '200':
+          description: Success
+  /book-now/uk-airports:
+    get:
+      tags:
+        - book-now
+      summary: GET /book-now/uk-airports
+      operationId: get_booknow_ukairports
+      responses:
+        '200':
+          description: Success
+  /book-now:
+    get:
+      tags:
+        - book-now
+      summary: GET /book-now
+      operationId: get_booknow
+      responses:
+        '200':
+          description: Success
+  /services/private-jet:
+    get:
+      tags:
+        - services
+      summary: GET /services/private-jet
+      operationId: get_services_privatejet
+      responses:
+        '200':
+          description: Success
+  /services:
+    get:
+      tags:
+        - services
+      summary: GET /services
+      operationId: get_services
+      responses:
+        '200':
+          description: Success
+  /services/private-suite:
+    get:
+      tags:
+        - services
+      summary: GET /services/private-suite
+      operationId: get_services_privatesuite
+      responses:
+        '200':
+          description: Success
+  /my-account/bookings:
+    get:
+      tags:
+        - my-account
+      summary: GET /my-account/bookings
+      operationId: get_myaccount_bookings
+      responses:
+        '200':
+          description: Success
+  /my-account/edit-account:
+    get:
+      tags:
+        - my-account
+      summary: GET /my-account/edit-account
+      operationId: get_myaccount_editaccount
+      responses:
+        '200':
+          description: Success
+    post:
+      tags:
+        - my-account
+      summary: POST /my-account/edit-account
+      operationId: post_myaccount_editaccount
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+            example:
+              account_first_name: rash
+              account_last_name: id
+              account_display_name: rashid5674
+              account_email: rashid5674%407t56gq.onmicrosoft.com
+              password_current: ''
+              password_1: ''
+              password_2: ''
+              save-account-details-nonce: 6d03521407
+              _wp_http_referer: '%2Fmy-account%2Fedit-account'
+              save_account_details: Save+changes
+              action: save_account_details
+      responses:
+        '200':
+          description: Success
+  /my-account/add-payment-method:
+    get:
+      tags:
+        - my-account
+      summary: GET /my-account/add-payment-method
+      operationId: get_myaccount_addpaymentmethod
+      responses:
+        '200':
+          description: Success
+  /my-account/payment-methods:
+    get:
+      tags:
+        - my-account
+      summary: GET /my-account/payment-methods
+      operationId: get_myaccount_paymentmethods
+      responses:
+        '200':
+          description: Success
+  /my-account/edit-address/billing:
+    post:
+      tags:
+        - my-account
+      summary: POST /my-account/edit-address/billing
+      operationId: post_myaccount_editaddress_billing
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+            example:
+              billing_email: rashid5674%407t56gq.onmicrosoft.com
+              billing_first_name: rash
+              billing_last_name: id
+              billing_company: ''
+              billing_country: ''
+              billing_address_1: rashid5674%407t56gq.onmicrosoft.com
+              billing_address_2: ''
+              billing_city: ''
+              billing_state: ''
+              billing_postcode: WS111DB
+              billing_phone: '%2B917428723247'
+              save_address: Save+address
+              woocommerce-edit-address-nonce: f3d446554e
+              _wp_http_referer: '%2Fmy-account%2Fedit-address%2Fbilling'
+              action: edit_address
+      responses:
+        '200':
+          description: Success
+    get:
+      tags:
+        - my-account
+      summary: GET /my-account/edit-address/billing
+      operationId: get_myaccount_editaddress_billing
+      responses:
+        '200':
+          description: Success
+  /my-account/edit-address:
+    get:
+      tags:
+        - my-account
+      summary: GET /my-account/edit-address
+      operationId: get_myaccount_editaddress
+      responses:
+        '200':
+          description: Success
+  /my-account/downloads:
+    get:
+      tags:
+        - my-account
+      summary: GET /my-account/downloads
+      operationId: get_myaccount_downloads
+      responses:
+        '200':
+          description: Success
+  /my-account/orders:
+    get:
+      tags:
+        - my-account
+      summary: GET /my-account/orders
+      operationId: get_myaccount_orders
+      responses:
+        '200':
+          description: Success
+  /my-account:
+    get:
+      tags:
+        - my-account
+      summary: GET /my-account
+      operationId: get_myaccount
+      responses:
+        '200':
+          description: Success
