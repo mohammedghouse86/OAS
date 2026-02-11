@@ -1,0 +1,1359 @@
+openapi: 3.0.3
+info:
+  title: DigiPay API
+  version: 1.0.0
+  description: OpenAPI specification generated from the provided cURL samples and
+    example responses.
+servers:
+- url: http://192.168.1.102:8014
+tags:
+- name: Agent Profile
+  description: Manage agent profiles
+- name: Agent Profile Products
+  description: Manage products associated with an agent profile
+- name: Agent Threshold
+  description: Manage agent thresholds
+- name: Agent Threshold Detail
+  description: Manage threshold details for products/payment modes
+- name: Agent User Profile
+  description: Manage mapping between users and agent profiles
+- name: Auth
+  description: Authentication endpoints
+- name: Base - Currency
+  description: Currency master data
+security:
+- authToken: []
+  companyId: []
+paths:
+  /digipay/v3/agent_profile_threshold/agent_profile:
+    post:
+      tags:
+      - Agent Profile
+      summary: Save Agent Profile
+      operationId: post_digipay_v3_agent_profile_threshold_agent_profile
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: Agent profile data saved successfully.
+                  agent_profile_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                profile_name:
+                  type: string
+                status_type:
+                  type: integer
+                is_default:
+                  type: boolean
+                tree_level_id:
+                  type: string
+                tree_id:
+                  type: string
+                wallet_id:
+                  type: string
+                currency_id:
+                  type: string
+                parent_agent_profile_id:
+                  type: string
+              additionalProperties: true
+            example:
+              profile_name: Merchant full kyc
+              status_type: 2
+              is_default: false
+              tree_level_id: 76bc712200ca444fa334f9e55e5fd7a8
+              tree_id: 76bc712200ca444fa334f9e55e5fd7a8
+              wallet_id: 76bc712200ca444fa334f9e55e5fd7a8
+              currency_id: 76bc712200ca444fa334f9e55e5fd7a8
+              parent_agent_profile_id: 76bc712200ca444fa334f9e55e5fd7a8
+    put:
+      tags:
+      - Agent Profile
+      summary: Update Agent Profile
+      operationId: put_digipay_v3_agent_profile_threshold_agent_profile
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: Agent profile data updated successfully.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                profile_name:
+                  type: string
+                status_type:
+                  type: integer
+                is_default:
+                  type: boolean
+                tree_level_id:
+                  type: string
+                tree_id:
+                  type: string
+                wallet_id:
+                  type: string
+                currency_id:
+                  type: string
+                parent_agent_profile_id:
+                  type: string
+              additionalProperties: true
+            example:
+              id: 76bc712200ca444fa334f9e55e5fd7a8
+              profile_name: Merchant full kyc
+              status_type: 2
+              is_default: false
+              tree_level_id: 76bc712200ca444fa334f9e55e5fd7a8
+              tree_id: 76bc712200ca444fa334f9e55e5fd7a8
+              wallet_id: 76bc712200ca444fa334f9e55e5fd7a8
+              currency_id: 76bc712200ca444fa334f9e55e5fd7a8
+              parent_agent_profile_id: 76bc712200ca444fa334f9e55e5fd7a8
+    get:
+      tags:
+      - Agent Profile
+      summary: Get Agent Profile List
+      operationId: get_digipay_v3_agent_profile_threshold_agent_profile
+      parameters:
+      - name: wallet_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 76bc712200ca444fa334f9e55e5fd7a8
+      - name: tree_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 76bc712200ca444fa334f9e55e5fd7a8
+      - name: tree_level_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 76bc712200ca444fa334f9e55e5fd7a8
+      - name: is_default
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 'false'
+      - name: parent_agent_profile_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 76bc712200ca444fa334f9e55e5fd7a8
+      - name: is_active
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 'false'
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: sorting
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      - name: search_keyword
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  agent_profile:
+                  - id: 52e10d1c2c6246c7a1c842a18bb0ff98
+                    is_active: true
+                    created_by: 7795cf982af741b1b4b2ebeb7bbdd8b8
+                    updated_date: 1646377993
+                    profile_name: merchant full kyc
+                    status_type: 1
+                    is_default: false
+                    tree_level_id: null
+                    tree_id: null
+                    wallet_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+                    user_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+                    parent_agent_profile_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+  /digipay/v3/agent_profile_threshold/agent_profile/{id}:
+    get:
+      tags:
+      - Agent Profile
+      summary: Get Agent Profile Detail
+      operationId: get_digipay_v3_agent_profile_threshold_agent_profile_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  agent_profile:
+                    id: 42e10d1c2c6246c7a1c842a18bb0ff98
+                    is_active: true
+                    created_by: 7795cf982af741b1b4b2ebeb7bbdd8b8
+                    updated_date: 1646377993
+                    profile_name: merchant full kyc
+                    status_type: 1
+                    is_default: false
+                    tree_level_id: null
+                    tree_id: null
+                    wallet_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+                    user_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+                    parent_agent_profile_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+  /digipay/v3/agent_profile_threshold/agent_profile_products:
+    post:
+      tags:
+      - Agent Profile Products
+      summary: Save Agent Profile Product
+      operationId: post_digipay_v3_agent_profile_threshold_agent_profile_products
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: Agent profile product saved successfully.
+                  agent_profile_product_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                agent_profile_id:
+                  type: string
+                profile_products:
+                  type: string
+              additionalProperties: true
+            example:
+              raw: '{ "agent_profile_id": "76bc712200ca444fa334f9e55e5fd7a8", "profile_products":
+                "[{\"product_id\": \"116a51aa2b7d459a8b7e3db7dcf5e70a\",\"product_name\":
+                \"Cash IN Bank\",\"product_code\": \"CIB\",\"product_type\": 1,\"commission_id\"
+                : \"9bbbe9cc853d48e9a486574a04f4d5a7\"}]" }'
+    put:
+      tags:
+      - Agent Profile Products
+      summary: Update Agent Profile Product
+      operationId: put_digipay_v3_agent_profile_threshold_agent_profile_products
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: Agent profile products updated successfully.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                agent_profile_id:
+                  type: string
+                profile_products:
+                  type: string
+              required:
+              - raw
+            example:
+              raw: '{ "id": "76bc712200ca444fa334f9e55e5fd7a8", "agent_profile_id":
+                "76bc712200ca444fa334f9e55e5fd7a8", "profile_products": "[{\"product_id\":
+                \"116a51aa2b7d459a8b7e3db7dcf5e70a\",\"product_name\": \"Cash IN Bank\",\"product_code\":
+                \"CIB\",\"product_type\": 1,\"commission_id\" : \"9bbbe9cc853d48e9a486574a04f4d5a7\"}]" }'
+    get:
+      tags:
+      - Agent Profile Products
+      summary: Get Agent Profile Product List
+      operationId: get_digipay_v3_agent_profile_threshold_agent_profile_products
+      parameters:
+      - name: product_code
+        in: query
+        required: false
+        schema:
+          type: string
+        example: MS/CIB
+      - name: is_active
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 'false'
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: sorting
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      - name: search_keyword
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  agent_profile_product:
+                    id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                    agent_profile_id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                    product_id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                    product_name: Cash IN Bank
+                    product_code: CIB
+                    product_type: 1
+                    commission_type: 1
+                    commission_value: 1
+                    commission_value_type: 1
+                    commission_range:
+                    - commission_value: 123
+  /digipay/v3/agent_profile_threshold/agent_profile_products/{id}:
+    get:
+      tags:
+      - Agent Profile Products
+      summary: Get Agent Profile Product Detail
+      operationId: get_digipay_v3_agent_profile_threshold_agent_profile_products_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  agent_profile_product:
+                    id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                    agent_profile_id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                    product_id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                    product_name: Cash IN Bank
+                    product_code: CIB
+                    product_type: 1
+                    commission_type: 1
+                    commission_value: 1
+                    commission_value_type: 1
+                    commission_range:
+                    - commission_value: 123
+  /digipay/v3/agent_profile_threshold/agent_threshold_detail:
+    post:
+      tags:
+      - Agent Threshold Detail
+      summary: Save Agent Threshold Detail
+      operationId: post_digipay_v3_agent_profile_threshold_agent_threshold_detail
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: Agent threshold Detail data saved successfully.
+                  agent_threshold_detail_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                agent_threshold_id:
+                  type: string
+                product_id:
+                  type: string
+                product_code:
+                  type: string
+                threshold_type:
+                  type: integer
+                threshold_amount:
+                  type: string
+                threshold_no_txn:
+                  type: string
+                min_amount:
+                  type: integer
+                max_amount:
+                  type: integer
+                payment_mode:
+                  type: integer
+              additionalProperties: true
+            example:
+              raw: '{ "agent_threshold_id": "76bc712200ca444fa334f9e55e5fd7a8", "product_id":
+                "76bc712200ca444fa334f9e55e5fd7a8", "product_code": "DNT", "threshold_type":
+                2, "threshold_amount": "{\"daily_limit\" : 100\"weekly_limit\" : 200,\"monthly_limit\":
+                300     }", "threshold_no_txn": "{\"daily_limit\" : 100\"weekly_limit\"
+                : 200,\"monthly_limit\": 300     }", "min_amount": 100, "max_amount":
+                1000, "payment_mode": 1 }'
+    put:
+      tags:
+      - Agent Threshold Detail
+      summary: Update Agent Threshold Detail
+      operationId: put_digipay_v3_agent_profile_threshold_agent_threshold_detail
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: Agent threshold detail data updated successfully.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                payment_mode:
+                  type: integer
+                agent_threshold_id:
+                  type: string
+                product_id:
+                  type: string
+                product_code:
+                  type: string
+                threshold_type:
+                  type: integer
+                threshold_amount:
+                  type: string
+                threshold_no_txn:
+                  type: string
+                min_amount:
+                  type: integer
+                max_amount:
+                  type: integer
+              additionalProperties: true
+            example:
+              raw: '{ "id": "76bc712200ca444fa334f9e55e5fd7a8", "payment_mode": 1, "agent_threshold_id":
+                "76bc712200ca444fa334f9e55e5fd7a8", "product_id": "76bc712200ca444fa334f9e55e5fd7a8",
+                "product_code": "DNT", "threshold_type": 2, "threshold_amount": "{\"daily_limit\"
+                : 100,\"weekly_limit\" : 200,\"monthly_limit\": 300     }", "threshold_no_txn":
+                "{\"daily_limit\" : 100,\"weekly_limit\" : 200,\"monthly_limit\": 300     }",
+                "min_amount": 100, "max_amount": 1000 }'
+    get:
+      tags:
+      - Agent Threshold Detail
+      summary: Get Agent Threshold Detail List
+      operationId: get_digipay_v3_agent_profile_threshold_agent_threshold_detail
+      parameters:
+      - name: agent_threshold_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 76bc712200ca444fa334f9e55e5fd7a8
+      - name: is_active
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 'false'
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: sorting
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      - name: search_keyword
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  agent_threshold_details:
+                  - id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                    agent_threshold_id: Corporte
+                    product_id: 8
+                    product_code: CIB
+                    threshold_type: 1
+                    threshold_amount:
+                      daily_limit: 100
+                      weekly_limit: 200
+                      monthly_limit: 300
+                    threshold_no_txn:
+                      daily_limit: 100
+                      weekly_limit: 200
+                      monthly_limit: 300
+                    threshold_apply_on: 1
+                    payment_mode: null
+  /digipay/v3/agent_profile_threshold/agent_threshold_detail/{id}:
+    get:
+      tags:
+      - Agent Threshold Detail
+      summary: Get Agent Threshold Detail
+      operationId: get_digipay_v3_agent_profile_threshold_agent_threshold_detail_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                agent_threshold_detail:
+                  id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                  agent_threshold_id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                  product_id: 8
+                  product_code: CIB
+                  threshold_type: 1
+                  threshold_amount:
+                    daily_limit: 100
+                    weekly_limit: 200
+                    monthly_limit: 300
+                  threshold_no_txn:
+                    daily_limit: 100
+                    weekly_limit: 200
+                    monthly_limit: 300
+                  threshold_apply_on: 1
+                  payment_mode: null
+  /digipay/v3/agent_profile_threshold/agent_threshold:
+    post:
+      tags:
+      - Agent Threshold
+      summary: Save Agent Threshold
+      operationId: post_digipay_v3_agent_profile_threshold_agent_threshold
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: Threshold data saved successfully.
+                  agent_threshold_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                min_balance:
+                  type: integer
+                max_balance:
+                  type: integer
+                currency_id:
+                  type: string
+                tree_level_id:
+                  type: string
+                tree_id:
+                  type: string
+              additionalProperties: true
+            example:
+              name: Corporate
+              min_balance: 100
+              max_balance: 100
+              currency_id: 76bc712200ca444fa334f9e55e5fd7a8
+              tree_level_id: 76bc712200ca444fa334f9e55e5fd7a8
+              tree_id: 76bc712200ca444fa334f9e55e5fd7a8
+    put:
+      tags:
+      - Agent Threshold
+      summary: Update Agent Threshold
+      operationId: put_digipay_v3_agent_profile_threshold_agent_threshold
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: Threshold data updated successfully.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                min_balance:
+                  type: integer
+                max_balance:
+                  type: integer
+                currency_id:
+                  type: string
+                tree_level_id:
+                  type: string
+                tree_id:
+                  type: string
+              additionalProperties: true
+            example:
+              id: 76bc712200ca444fa334f9e55e5fd7a8
+              name: Corporate
+              min_balance: 100
+              max_balance: 100
+              currency_id: 76bc712200ca444fa334f9e55e5fd7a8
+              tree_level_id: 76bc712200ca444fa334f9e55e5fd7a8
+              tree_id: 76bc712200ca444fa334f9e55e5fd7a8
+    get:
+      tags:
+      - Agent Threshold
+      summary: Get Agent Threshold List
+      operationId: get_digipay_v3_agent_profile_threshold_agent_threshold
+      parameters:
+      - name: tree_level_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 76bc712200ca444fa334f9e55e5fd7a8
+      - name: tree_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 76bc712200ca444fa334f9e55e5fd7a8
+      - name: is_active
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 'false'
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: sorting
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      - name: search_keyword
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  agent_threshold:
+                  - id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                    name: Corporte
+                    min_balance: 1
+                    max_balance: 10000
+                    wallet_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+                    tree_level_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+                    tree_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+  /digipay/v3/agent_profile_threshold/agent_threshold/{id}:
+    get:
+      tags:
+      - Agent Threshold
+      summary: Get Agent Threshold Detail
+      operationId: get_digipay_v3_agent_profile_threshold_agent_threshold_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  agent_threshold:
+                    id: 116a51aa2b7d459a8b7e3db7dcf5e70a
+                    name: Corporte
+                    min_balance: 1
+                    max_balance: 10000
+                    wallet_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+                    tree_level_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+                    tree_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+  /digipay/v3/agent_profile_threshold/agent_user_profile:
+    post:
+      tags:
+      - Agent User Profile
+      summary: Save Agent User Profile
+      operationId: post_digipay_v3_agent_profile_threshold_agent_user_profile
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: Agent user profile data saved successfully.
+                  agent_user_profile_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                agent_profile_id:
+                  type: string
+                currency_id:
+                  type: string
+                parent_user_id:
+                  type: string
+              additionalProperties: true
+            example:
+              user_id: 76bc712200ca444fa334f9e55e5fd7a8
+              agent_profile_id: 76bc712200ca444fa334f9e55e5fd7a8
+              currency_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+              parent_user_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+    put:
+      tags:
+      - Agent User Profile
+      summary: Update Agent User Profile
+      operationId: put_digipay_v3_agent_profile_threshold_agent_user_profile
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: Agent user profile data updated successfully.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                user_id:
+                  type: string
+                agent_profile_id:
+                  type: string
+                currency_id:
+                  type: string
+                parent_user_id:
+                  type: string
+              additionalProperties: true
+            example:
+              id: 9bbbe9cc853d48e9a486574a04f4d5a7
+              user_id: 76bc712200ca444fa334f9e55e5fd7a8
+              agent_profile_id: 76bc712200ca444fa334f9e55e5fd7a8
+              currency_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+              parent_user_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+    get:
+      tags:
+      - Agent User Profile
+      summary: Get Agent User Profile List
+      operationId: get_digipay_v3_agent_profile_threshold_agent_user_profile
+      parameters:
+      - name: agent_profile_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 76bc712200ca444fa334f9e55e5fd7a8
+      - name: user_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 76bc712200ca444fa334f9e55e5fd7a8
+      - name: currency_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 9bbbe9cc853d48e9a486574a04f4d5a7
+      - name: parent_user_id
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 9bbbe9cc853d48e9a486574a04f4d5a7
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: sorting
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      - name: search_keyword
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  agent_user_profile:
+                    id: 803114ef2be54dc7869eb0fa730662d7
+                    user_id: d0920fcd648e49588380ac39fc7b3727
+                    agent_profile_id: 66cf46d82f6845beb2320b00c6fbb6cf
+                    wallet_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+                    parent_user_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+  /digipay/v3/agent_profile_threshold/agent_user_profile/{id}:
+    get:
+      tags:
+      - Agent User Profile
+      summary: Get Agent User Profile Detail
+      operationId: get_digipay_v3_agent_profile_threshold_agent_user_profile_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  agent_user_profile:
+                    id: 803114ef2be54dc7869eb0fa730662d7
+                    user_id: d0920fcd648e49588380ac39fc7b3727
+                    agent_profile_id: 66cf46d82f6845beb2320b00c6fbb6cf
+                    wallet_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+                    parent_user_id: 9bbbe9cc853d48e9a486574a04f4d5a7
+  /digipay/v3/auth/logout:
+    post:
+      tags:
+      - Auth
+      summary: Logout
+      operationId: post_digipay_v3_auth_logout
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: You have successfully logged out.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                logout_all:
+                  type: boolean
+              additionalProperties: true
+            example:
+              user_id: '123'
+              logout_all: false
+  /digipay/v3/base/currency:
+    post:
+      tags:
+      - Base - Currency
+      summary: Save Currency
+      operationId: post_digipay_v3_base_currency
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: BASE_SAVE_CURRENCY_SUCCESSFULLY
+                  currency_id: 61457e993a294323944a1c2e7c812338
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currency_name:
+                  type: string
+                currency_code:
+                  type: string
+                currency_symbol:
+                  type: string
+                country_id:
+                  type: string
+                is_primary_currency:
+                  type: boolean
+              additionalProperties: true
+            example:
+              currency_name: Rupee
+              currency_code: INR
+              currency_symbol: ₹
+              country_id: 76bc712200ca444fa334f9e55e5fd7a8
+              is_primary_currency: true
+    put:
+      tags:
+      - Base - Currency
+      summary: Update Currency
+      operationId: put_digipay_v3_base_currency
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  message: BASE_UPDATE_CURRENCY_SUCCESSFULLY
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                currency_name:
+                  type: string
+                currency_code:
+                  type: string
+                currency_symbol:
+                  type: string
+                country_id:
+                  type: string
+                is_primary_currency:
+                  type: boolean
+              additionalProperties: true
+            example:
+              id: 76bc712200ca444fa334f9e55e5fd7a8
+              currency_name: Rupee
+              currency_code: INR
+              currency_symbol: ₹
+              country_id: 76bc712200ca444fa334f9e55e5fd7a8
+              is_primary_currency: true
+    get:
+      tags:
+      - Base - Currency
+      summary: Get Currency List
+      operationId: get_digipay_v3_base_currency
+      parameters:
+      - name: is_active
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 'false'
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      - name: sorting
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      - name: serach_keyword
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '123'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                success: 1
+                error: []
+                data:
+                  currency:
+                  - id: 4428647ee7ed420487cd6899f51eaa63
+                    currency_name: US
+                    currency_code: USD
+                    currency_symbol: $
+                    country_id: 6089e4b1301845c6978056bb2b0ecbbe
+                    is_primary_currency: true
+                    is_active: true
+                    updated_by: 6089e4b1301845c6978056bb2b0ecbbe
+                    updated_date: 1634109945
+  /digipay/v3/base/currency/{id}:
+    get:
+      tags:
+      - Base - Currency
+      summary: Get Currency
+      operationId: get_digipay_v3_base_currency_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                id: 4428647ee7ed420487cd6899f51eaa63
+                currency_name: US
+                currency_code: USD
+                currency_symbol: $
+                country_id: 6089e4b1301845c6978056bb2b0ecbbe
+                is_primary_currency: true
+                is_active: true
+                updated_by: 6089e4b1301845c6978056bb2b0ecbbe
+                updated_date: 1634109945
+components:
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Authorization header. Examples in the samples use either `Token <token>`
+        or a JWT-like token string.
+    companyId:
+      type: apiKey
+      in: header
+      name: CompanyID
+      description: Company identifier header used by the API gateway.
+  schemas:
+    ErrorArray:
+      type: array
+      items:
+        type: string
+    StandardEnvelope:
+      type: object
+      properties:
+        success:
+          type: integer
+          example: 1
+        error:
+          type: array
+          items: {}
+        data:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
