@@ -5,7 +5,7 @@ info:
   description: OpenAPI specification generated from the provided cURL samples and
     example responses.
 servers:
-- url: http://192.168.1.102:8014
+- url: https://9cdbp7k459.execute-api.us-west-2.amazonaws.com
 tags:
 - name: Agent Profile
   description: Manage agent profiles
@@ -1356,4 +1356,5 @@ components:
         data:
           type: object
           additionalProperties: true
+
       additionalProperties: true
