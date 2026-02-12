@@ -1507,7 +1507,7 @@
         }
       }
     },
-    "/api/{apiId}": {
+    "/api/retrieve-payment-intent-metadata": {
       "get": {
         "summary": "GET /api/retrieve-payment-intent-metadata",
         "description": "Auto-generated from observed network traffic.",
@@ -1521,7 +1521,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "example": "pi_3SSrSECewIvxqYAm0nTqTK4d"
+              "example": "pi_3SzqppCewIvxqYAm1YKpgD4I"
             }
           }
         ],
