@@ -1,0 +1,522 @@
+openapi: 3.0.3
+info:
+  title: Trades Pool App
+  version: 1.0.0
+servers:
+  - url: https://www.tradespool.ca
+tags:
+  - name: _vercel
+  - name: about
+  - name: blog
+  - name: dashboard
+  - name: default
+  - name: forgot-password
+  - name: login
+  - name: register
+paths:
+  /:
+    get:
+      tags:
+        - default
+      summary: GET /
+      operationId: get_root
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "188e9"
+      responses:
+        "200":
+          description: Success
+  /dashboard/tasks:
+    get:
+      tags:
+        - dashboard
+      summary: GET /dashboard/tasks
+      operationId: get_dashboard_tasks
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "188e9"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - dashboard
+      summary: POST /dashboard/tasks
+      operationId: post_dashboard_tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DashboardPostRequest"
+            examples:
+              fromHar:
+                value:
+                  - eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1MzMwMzNhMTMzYWQyM2EyYzlhZGNmYzE4YzRlM2E3MWFmYWY2MjkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSW50ZXNhciIsInVzZXJUeXBlIjoiaG9tZW93bmVyIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3RyYWRlc3Bvb2wtcHJvZCIsImF1ZCI6InRyYWRlc3Bvb2wtcHJvZCIsImF1dGhfdGltZSI6MTc3MTM3ODM1OCwidXNlcl9pZCI6IlE5VlRSQ2tVU3BNWVN5YUhlbklYbERaQ0VFaTEiLCJzdWIiOiJROVZUUkNrVVNwTVlTeWFIZW5JWGxEWkNFRWkxIiwiaWF0IjoxNzcxMzc4MzYxLCJleHAiOjE3NzEzODE5NjEsImVtYWlsIjoiaW50ZXNhckBwZXJmYWkuYWkiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJpbnRlc2FyQHBlcmZhaS5haSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.rAL1zH2NiBX0utk8O-h1I02QfWoP02eQ1tWr7KgEEZ8Aq_5X1KE6ZCZXAMbuSZHjdGPTRCgCwgx99LdM_7bw7L1gBwYy2kZhsxU2wGMN8S2DoA43IJzgoEMd5aqH45ls9f2103bP--27CjGxmtWuwb-GeRn-2xW-x9n_qT1GKXKuMj9x9NjLGe6ZgQWP25BnzzEg2003BQh3v7ku48PHBtWQPhZxhRsQhghiLIBqhQdC9zX5TLmFPgLVq9r99hp1uiQDI94iss-pAvKIGO4BfWX8VNgyyDXovwZQbA0ZMuOse7Frg7PbZPiRzFhGmcuH5u1LxEf-5-BXk62qUBM1Kg
+                  - eyJraWQiOiJrMnhhbUEiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxOjE1ODU1NTM4NTY4Njp3ZWI6Y2IwZGU1ZTMyZGYwNjU3MDIyNzBmNyIsImF1ZCI6WyJwcm9qZWN0cy8xNTg1NTUzODU2ODYiLCJwcm9qZWN0cy90cmFkZXNwb29sLXByb2QiXSwicHJvdmlkZXIiOiJyZWNhcHRjaGFfdjMiLCJpc3MiOiJodHRwczovL2ZpcmViYXNlYXBwY2hlY2suZ29vZ2xlYXBpcy5jb20vMTU4NTU1Mzg1Njg2IiwiZXhwIjoxNzcxNDY0NzMwLCJpYXQiOjE3NzEzNzgzMzAsImp0aSI6InU1eTB5cTF3UFJEWkxlUVdPRVBlTzdrZHNlOUw4dExSRHk2VS02VlFBSkUifQ.FKgkvUGlB1FZp3aYwZV0rSUpFryPBGLbgX-ekIYxqBzA6bJH3OFJXh3bLrarlfW0mccv24jnvFvAmnArrUfj_3gZ3J7P94s-_g8GkQH75d1FiShLQ812B0NKoVU_IHDSJsJ41hUCfUCO3nyprFa1meW3TycC3atU2bmxbVI2uQ8ZLjAgdNsX8UAdRdLCLqVI6J2MHVWvJKSkBlDYxESjIbF0Qxg1uCS1R7doY9QrbehIBEfTfZgIk9UN7ap8DB00ZkAP6UtwWdeRxRlIhI2FlrpTfdROLlxiGvOu_XJshXJnv0ZzLEPZqIClrC4z9nUWXaZPBZv8ZMyb30m6tEYrUygc3ghesJXZMnR65kMuhyWDa6FCxrKR42sY1rVsNcmjV3YBMSZPxjWxniXbxeEOWNSzmx2KBqcC_91J8Kgv5ZUPuJSnbZUzY0kqgZCTrl6FZxAFR8zcXboS2jI9u61oFz1TaXeQHIkYUWglcTvMQrJlbfTtqprxRwIRYAt_AkkJ
+      responses:
+        "200":
+          description: Success
+  /dashboard/search:
+    get:
+      tags:
+        - dashboard
+      summary: GET /dashboard/search
+      operationId: get_dashboard_search
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "188e9"
+      responses:
+        "200":
+          description: Success
+  /dashboard/tasks/post:
+    get:
+      tags:
+        - dashboard
+      summary: GET /dashboard/tasks/post
+      operationId: get_dashboard_tasks_post
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "188e9"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - dashboard
+      summary: POST /dashboard/tasks/post
+      operationId: post_dashboard_tasks_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DashboardPostRequest"
+            examples:
+              fromHar:
+                value:
+                  - city: Hakimpet
+                    location:
+                      - 78.417
+                      - 17.401
+                    title: Duct insulation test
+                    description: passing smoke through a duct to check for leaks
+                    images:
+                      - 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
+                    categories:
+                      - HVAC
+                    address: Hakimpet, 40 500014 IN
+                  - eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1MzMwMzNhMTMzYWQyM2EyYzlhZGNmYzE4YzRlM2E3MWFmYWY2MjkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSW50ZXNhciIsInVzZXJUeXBlIjoiaG9tZW93bmVyIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3RyYWRlc3Bvb2wtcHJvZCIsImF1ZCI6InRyYWRlc3Bvb2wtcHJvZCIsImF1dGhfdGltZSI6MTc3MTM3ODM1OCwidXNlcl9pZCI6IlE5VlRSQ2tVU3BNWVN5YUhlbklYbERaQ0VFaTEiLCJzdWIiOiJROVZUUkNrVVNwTVlTeWFIZW5JWGxEWkNFRWkxIiwiaWF0IjoxNzcxMzc4MzYxLCJleHAiOjE3NzEzODE5NjEsImVtYWlsIjoiaW50ZXNhckBwZXJmYWkuYWkiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJpbnRlc2FyQHBlcmZhaS5haSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.rAL1zH2NiBX0utk8O-h1I02QfWoP02eQ1tWr7KgEEZ8Aq_5X1KE6ZCZXAMbuSZHjdGPTRCgCwgx99LdM_7bw7L1gBwYy2kZhsxU2wGMN8S2DoA43IJzgoEMd5aqH45ls9f2103bP--27CjGxmtWuwb-GeRn-2xW-x9n_qT1GKXKuMj9x9NjLGe6ZgQWP25BnzzEg2003BQh3v7ku48PHBtWQPhZxhRsQhghiLIBqhQdC9zX5TLmFPgLVq9r99hp1uiQDI94iss-pAvKIGO4BfWX8VNgyyDXovwZQbA0ZMuOse7Frg7PbZPiRzFhGmcuH5u1LxEf-5-BXk62qUBM1Kg
+                  - eyJraWQiOiJrMnhhbUEiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxOjE1ODU1NTM4NTY4Njp3ZWI6Y2IwZGU1ZTMyZGYwNjU3MDIyNzBmNyIsImF1ZCI6WyJwcm9qZWN0cy8xNTg1NTUzODU2ODYiLCJwcm9qZWN0cy90cmFkZXNwb29sLXByb2QiXSwicHJvdmlkZXIiOiJyZWNhcHRjaGFfdjMiLCJpc3MiOiJodHRwczovL2ZpcmViYXNlYXBwY2hlY2suZ29vZ2xlYXBpcy5jb20vMTU4NTU1Mzg1Njg2IiwiZXhwIjoxNzcxNDY0NzMwLCJpYXQiOjE3NzEzNzgzMzAsImp0aSI6InU1eTB5cTF3UFJEWkxlUVdPRVBlTzdrZHNlOUw4dExSRHk2VS02VlFBSkUifQ.FKgkvUGlB1FZp3aYwZV0rSUpFryPBGLbgX-ekIYxqBzA6bJH3OFJXh3bLrarlfW0mccv24jnvFvAmnArrUfj_3gZ3J7P94s-_g8GkQH75d1FiShLQ812B0NKoVU_IHDSJsJ41hUCfUCO3nyprFa1meW3TycC3atU2bmxbVI2uQ8ZLjAgdNsX8UAdRdLCLqVI6J2MHVWvJKSkBlDYxESjIbF0Qxg1uCS1R7doY9QrbehIBEfTfZgIk9UN7ap8DB00ZkAP6UtwWdeRxRlIhI2FlrpTfdROLlxiGvOu_XJshXJnv0ZzLEPZqIClrC4z9nUWXaZPBZv8ZMyb30m6tEYrUygc3ghesJXZMnR65kMuhyWDa6FCxrKR42sY1rVsNcmjV3YBMSZPxjWxniXbxeEOWNSzmx2KBqcC_91J8Kgv5ZUPuJSnbZUzY0kqgZCTrl6FZxAFR8zcXboS2jI9u61oFz1TaXeQHIkYUWglcTvMQrJlbfTtqprxRwIRYAt_AkkJ
+                  - ""
+      responses:
+        "200":
+          description: Success
+  /dashboard/reviews:
+    get:
+      tags:
+        - dashboard
+      summary: GET /dashboard/reviews
+      operationId: get_dashboard_reviews
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "188e9"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - dashboard
+      summary: POST /dashboard/reviews
+      operationId: post_dashboard_reviews
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DashboardPostRequest"
+            examples:
+              fromHar:
+                value:
+                  - eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1MzMwMzNhMTMzYWQyM2EyYzlhZGNmYzE4YzRlM2E3MWFmYWY2MjkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSW50ZXNhciIsInVzZXJUeXBlIjoiaG9tZW93bmVyIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3RyYWRlc3Bvb2wtcHJvZCIsImF1ZCI6InRyYWRlc3Bvb2wtcHJvZCIsImF1dGhfdGltZSI6MTc3MTM3ODM1OCwidXNlcl9pZCI6IlE5VlRSQ2tVU3BNWVN5YUhlbklYbERaQ0VFaTEiLCJzdWIiOiJROVZUUkNrVVNwTVlTeWFIZW5JWGxEWkNFRWkxIiwiaWF0IjoxNzcxMzc4MzYxLCJleHAiOjE3NzEzODE5NjEsImVtYWlsIjoiaW50ZXNhckBwZXJmYWkuYWkiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJpbnRlc2FyQHBlcmZhaS5haSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.rAL1zH2NiBX0utk8O-h1I02QfWoP02eQ1tWr7KgEEZ8Aq_5X1KE6ZCZXAMbuSZHjdGPTRCgCwgx99LdM_7bw7L1gBwYy2kZhsxU2wGMN8S2DoA43IJzgoEMd5aqH45ls9f2103bP--27CjGxmtWuwb-GeRn-2xW-x9n_qT1GKXKuMj9x9NjLGe6ZgQWP25BnzzEg2003BQh3v7ku48PHBtWQPhZxhRsQhghiLIBqhQdC9zX5TLmFPgLVq9r99hp1uiQDI94iss-pAvKIGO4BfWX8VNgyyDXovwZQbA0ZMuOse7Frg7PbZPiRzFhGmcuH5u1LxEf-5-BXk62qUBM1Kg
+                  - eyJraWQiOiJrMnhhbUEiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxOjE1ODU1NTM4NTY4Njp3ZWI6Y2IwZGU1ZTMyZGYwNjU3MDIyNzBmNyIsImF1ZCI6WyJwcm9qZWN0cy8xNTg1NTUzODU2ODYiLCJwcm9qZWN0cy90cmFkZXNwb29sLXByb2QiXSwicHJvdmlkZXIiOiJyZWNhcHRjaGFfdjMiLCJpc3MiOiJodHRwczovL2ZpcmViYXNlYXBwY2hlY2suZ29vZ2xlYXBpcy5jb20vMTU4NTU1Mzg1Njg2IiwiZXhwIjoxNzcxNDY0NzMwLCJpYXQiOjE3NzEzNzgzMzAsImp0aSI6InU1eTB5cTF3UFJEWkxlUVdPRVBlTzdrZHNlOUw4dExSRHk2VS02VlFBSkUifQ.FKgkvUGlB1FZp3aYwZV0rSUpFryPBGLbgX-ekIYxqBzA6bJH3OFJXh3bLrarlfW0mccv24jnvFvAmnArrUfj_3gZ3J7P94s-_g8GkQH75d1FiShLQ812B0NKoVU_IHDSJsJ41hUCfUCO3nyprFa1meW3TycC3atU2bmxbVI2uQ8ZLjAgdNsX8UAdRdLCLqVI6J2MHVWvJKSkBlDYxESjIbF0Qxg1uCS1R7doY9QrbehIBEfTfZgIk9UN7ap8DB00ZkAP6UtwWdeRxRlIhI2FlrpTfdROLlxiGvOu_XJshXJnv0ZzLEPZqIClrC4z9nUWXaZPBZv8ZMyb30m6tEYrUygc3ghesJXZMnR65kMuhyWDa6FCxrKR42sY1rVsNcmjV3YBMSZPxjWxniXbxeEOWNSzmx2KBqcC_91J8Kgv5ZUPuJSnbZUzY0kqgZCTrl6FZxAFR8zcXboS2jI9u61oFz1TaXeQHIkYUWglcTvMQrJlbfTtqprxRwIRYAt_AkkJ
+      responses:
+        "200":
+          description: Success
+  /dashboard/settings:
+    get:
+      tags:
+        - dashboard
+      summary: GET /dashboard/settings
+      operationId: get_dashboard_settings
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "188e9"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - dashboard
+      summary: POST /dashboard/settings
+      operationId: post_dashboard_settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DashboardPostRequest"
+            examples:
+              fromHar:
+                value:
+                  - displayName: Intesar Mohammed
+                  - eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1MzMwMzNhMTMzYWQyM2EyYzlhZGNmYzE4YzRlM2E3MWFmYWY2MjkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSW50ZXNhciIsInVzZXJUeXBlIjoiaG9tZW93bmVyIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3RyYWRlc3Bvb2wtcHJvZCIsImF1ZCI6InRyYWRlc3Bvb2wtcHJvZCIsImF1dGhfdGltZSI6MTc3MTM3ODM1OCwidXNlcl9pZCI6IlE5VlRSQ2tVU3BNWVN5YUhlbklYbERaQ0VFaTEiLCJzdWIiOiJROVZUUkNrVVNwTVlTeWFIZW5JWGxEWkNFRWkxIiwiaWF0IjoxNzcxMzc4MzYxLCJleHAiOjE3NzEzODE5NjEsImVtYWlsIjoiaW50ZXNhckBwZXJmYWkuYWkiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJpbnRlc2FyQHBlcmZhaS5haSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.rAL1zH2NiBX0utk8O-h1I02QfWoP02eQ1tWr7KgEEZ8Aq_5X1KE6ZCZXAMbuSZHjdGPTRCgCwgx99LdM_7bw7L1gBwYy2kZhsxU2wGMN8S2DoA43IJzgoEMd5aqH45ls9f2103bP--27CjGxmtWuwb-GeRn-2xW-x9n_qT1GKXKuMj9x9NjLGe6ZgQWP25BnzzEg2003BQh3v7ku48PHBtWQPhZxhRsQhghiLIBqhQdC9zX5TLmFPgLVq9r99hp1uiQDI94iss-pAvKIGO4BfWX8VNgyyDXovwZQbA0ZMuOse7Frg7PbZPiRzFhGmcuH5u1LxEf-5-BXk62qUBM1Kg
+                  - eyJraWQiOiJrMnhhbUEiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxOjE1ODU1NTM4NTY4Njp3ZWI6Y2IwZGU1ZTMyZGYwNjU3MDIyNzBmNyIsImF1ZCI6WyJwcm9qZWN0cy8xNTg1NTUzODU2ODYiLCJwcm9qZWN0cy90cmFkZXNwb29sLXByb2QiXSwicHJvdmlkZXIiOiJyZWNhcHRjaGFfdjMiLCJpc3MiOiJodHRwczovL2ZpcmViYXNlYXBwY2hlY2suZ29vZ2xlYXBpcy5jb20vMTU4NTU1Mzg1Njg2IiwiZXhwIjoxNzcxNDY0NzMwLCJpYXQiOjE3NzEzNzgzMzAsImp0aSI6InU1eTB5cTF3UFJEWkxlUVdPRVBlTzdrZHNlOUw4dExSRHk2VS02VlFBSkUifQ.FKgkvUGlB1FZp3aYwZV0rSUpFryPBGLbgX-ekIYxqBzA6bJH3OFJXh3bLrarlfW0mccv24jnvFvAmnArrUfj_3gZ3J7P94s-_g8GkQH75d1FiShLQ812B0NKoVU_IHDSJsJ41hUCfUCO3nyprFa1meW3TycC3atU2bmxbVI2uQ8ZLjAgdNsX8UAdRdLCLqVI6J2MHVWvJKSkBlDYxESjIbF0Qxg1uCS1R7doY9QrbehIBEfTfZgIk9UN7ap8DB00ZkAP6UtwWdeRxRlIhI2FlrpTfdROLlxiGvOu_XJshXJnv0ZzLEPZqIClrC4z9nUWXaZPBZv8ZMyb30m6tEYrUygc3ghesJXZMnR65kMuhyWDa6FCxrKR42sY1rVsNcmjV3YBMSZPxjWxniXbxeEOWNSzmx2KBqcC_91J8Kgv5ZUPuJSnbZUzY0kqgZCTrl6FZxAFR8zcXboS2jI9u61oFz1TaXeQHIkYUWglcTvMQrJlbfTtqprxRwIRYAt_AkkJ
+      responses:
+        "200":
+          description: Success
+  /dashboard/tasks/{id}:
+    get:
+      tags:
+        - dashboard
+      summary: GET /dashboard/tasks/{id}
+      operationId: get_dashboard_tasks_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 43cfccd5-bf86-4e71-92a7-91db5507ed05
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: qrvzd
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - dashboard
+      summary: POST /dashboard/tasks/{id}
+      operationId: post_dashboard_tasks_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 43cfccd5-bf86-4e71-92a7-91db5507ed05
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DashboardPostRequest"
+            examples:
+              fromHar:
+                value:
+                  - 43cfccd5-bf86-4e71-92a7-91db5507ed05
+                  - eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1MzMwMzNhMTMzYWQyM2EyYzlhZGNmYzE4YzRlM2E3MWFmYWY2MjkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSW50ZXNhciIsInVzZXJUeXBlIjoiaG9tZW93bmVyIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3RyYWRlc3Bvb2wtcHJvZCIsImF1ZCI6InRyYWRlc3Bvb2wtcHJvZCIsImF1dGhfdGltZSI6MTc3MTM3ODM1OCwidXNlcl9pZCI6IlE5VlRSQ2tVU3BNWVN5YUhlbklYbERaQ0VFaTEiLCJzdWIiOiJROVZUUkNrVVNwTVlTeWFIZW5JWGxEWkNFRWkxIiwiaWF0IjoxNzcxMzc4MzYxLCJleHAiOjE3NzEzODE5NjEsImVtYWlsIjoiaW50ZXNhckBwZXJmYWkuYWkiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJpbnRlc2FyQHBlcmZhaS5haSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.rAL1zH2NiBX0utk8O-h1I02QfWoP02eQ1tWr7KgEEZ8Aq_5X1KE6ZCZXAMbuSZHjdGPTRCgCwgx99LdM_7bw7L1gBwYy2kZhsxU2wGMN8S2DoA43IJzgoEMd5aqH45ls9f2103bP--27CjGxmtWuwb-GeRn-2xW-x9n_qT1GKXKuMj9x9NjLGe6ZgQWP25BnzzEg2003BQh3v7ku48PHBtWQPhZxhRsQhghiLIBqhQdC9zX5TLmFPgLVq9r99hp1uiQDI94iss-pAvKIGO4BfWX8VNgyyDXovwZQbA0ZMuOse7Frg7PbZPiRzFhGmcuH5u1LxEf-5-BXk62qUBM1Kg
+                  - eyJraWQiOiJrMnhhbUEiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxOjE1ODU1NTM4NTY4Njp3ZWI6Y2IwZGU1ZTMyZGYwNjU3MDIyNzBmNyIsImF1ZCI6WyJwcm9qZWN0cy8xNTg1NTUzODU2ODYiLCJwcm9qZWN0cy90cmFkZXNwb29sLXByb2QiXSwicHJvdmlkZXIiOiJyZWNhcHRjaGFfdjMiLCJpc3MiOiJodHRwczovL2ZpcmViYXNlYXBwY2hlY2suZ29vZ2xlYXBpcy5jb20vMTU4NTU1Mzg1Njg2IiwiZXhwIjoxNzcxNDY0NzMwLCJpYXQiOjE3NzEzNzgzMzAsImp0aSI6InU1eTB5cTF3UFJEWkxlUVdPRVBlTzdrZHNlOUw4dExSRHk2VS02VlFBSkUifQ.FKgkvUGlB1FZp3aYwZV0rSUpFryPBGLbgX-ekIYxqBzA6bJH3OFJXh3bLrarlfW0mccv24jnvFvAmnArrUfj_3gZ3J7P94s-_g8GkQH75d1FiShLQ812B0NKoVU_IHDSJsJ41hUCfUCO3nyprFa1meW3TycC3atU2bmxbVI2uQ8ZLjAgdNsX8UAdRdLCLqVI6J2MHVWvJKSkBlDYxESjIbF0Qxg1uCS1R7doY9QrbehIBEfTfZgIk9UN7ap8DB00ZkAP6UtwWdeRxRlIhI2FlrpTfdROLlxiGvOu_XJshXJnv0ZzLEPZqIClrC4z9nUWXaZPBZv8ZMyb30m6tEYrUygc3ghesJXZMnR65kMuhyWDa6FCxrKR42sY1rVsNcmjV3YBMSZPxjWxniXbxeEOWNSzmx2KBqcC_91J8Kgv5ZUPuJSnbZUzY0kqgZCTrl6FZxAFR8zcXboS2jI9u61oFz1TaXeQHIkYUWglcTvMQrJlbfTtqprxRwIRYAt_AkkJ
+      responses:
+        "200":
+          description: Success
+  /dashboard:
+    get:
+      tags:
+        - dashboard
+      summary: GET /dashboard
+      operationId: get_dashboard
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 11o4t
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - dashboard
+      summary: POST /dashboard
+      operationId: post_dashboard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DashboardPostRequest"
+            examples:
+              fromHar:
+                value:
+                  - eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1MzMwMzNhMTMzYWQyM2EyYzlhZGNmYzE4YzRlM2E3MWFmYWY2MjkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSW50ZXNhciIsInVzZXJUeXBlIjoiaG9tZW93bmVyIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3RyYWRlc3Bvb2wtcHJvZCIsImF1ZCI6InRyYWRlc3Bvb2wtcHJvZCIsImF1dGhfdGltZSI6MTc3MTM3ODM1OCwidXNlcl9pZCI6IlE5VlRSQ2tVU3BNWVN5YUhlbklYbERaQ0VFaTEiLCJzdWIiOiJROVZUUkNrVVNwTVlTeWFIZW5JWGxEWkNFRWkxIiwiaWF0IjoxNzcxMzc4NjQ3LCJleHAiOjE3NzEzODIyNDcsImVtYWlsIjoiaW50ZXNhckBwZXJmYWkuYWkiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJpbnRlc2FyQHBlcmZhaS5haSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.JPQdaFaHfBjbjLt6a3jCsKd3Z3hkQDwmImpYxgAmpirSWncIgyCCgMdnBC830WjjZax6QzSYz7IDAls4uEiXfx2jMkwlgGFVgl0ZhUWUggLwpoFO3Iz_K7J3BVvATM_4MlS8nQQjQCwTmFXSJ8XLKalnbx657E2fJneQXbgNh5Lz65ZQDiOZj6FEKu_DyOBYr5Eap-OkhFN7LMXXlL6Xc3tFI06LWhNyV_ayVgbOXPXiql7b5wQ-247o4FkOBwaxKs8pKbc9jKjulSJdvSrVB9hKK2z0d9Tmsr0fv-_GH5xdwACU2HR5OhY1nxccACP5lS4gHG6b23VWlD-lNOy2qA
+      responses:
+        "200":
+          description: Success
+  /dashboard/search/results:
+    get:
+      tags:
+        - dashboard
+      summary: GET /dashboard/search/results
+      operationId: get_dashboard_search_results
+      parameters:
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+          example: General Contractor
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1n9vs
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: electrical contractor
+        - name: lat
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "17.3991"
+        - name: lng
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "78.4577"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - dashboard
+      summary: POST /dashboard/search/results
+      operationId: post_dashboard_search_results
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: electrical contractor
+        - name: lat
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "17.3991"
+        - name: lng
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "78.4577"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DashboardPostRequest"
+            examples:
+              fromHar:
+                value:
+                  - eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1MzMwMzNhMTMzYWQyM2EyYzlhZGNmYzE4YzRlM2E3MWFmYWY2MjkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSW50ZXNhciIsInVzZXJUeXBlIjoiaG9tZW93bmVyIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3RyYWRlc3Bvb2wtcHJvZCIsImF1ZCI6InRyYWRlc3Bvb2wtcHJvZCIsImF1dGhfdGltZSI6MTc3MTM3ODM1OCwidXNlcl9pZCI6IlE5VlRSQ2tVU3BNWVN5YUhlbklYbERaQ0VFaTEiLCJzdWIiOiJROVZUUkNrVVNwTVlTeWFIZW5JWGxEWkNFRWkxIiwiaWF0IjoxNzcxMzc4NjQ3LCJleHAiOjE3NzEzODIyNDcsImVtYWlsIjoiaW50ZXNhckBwZXJmYWkuYWkiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJpbnRlc2FyQHBlcmZhaS5haSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.JPQdaFaHfBjbjLt6a3jCsKd3Z3hkQDwmImpYxgAmpirSWncIgyCCgMdnBC830WjjZax6QzSYz7IDAls4uEiXfx2jMkwlgGFVgl0ZhUWUggLwpoFO3Iz_K7J3BVvATM_4MlS8nQQjQCwTmFXSJ8XLKalnbx657E2fJneQXbgNh5Lz65ZQDiOZj6FEKu_DyOBYr5Eap-OkhFN7LMXXlL6Xc3tFI06LWhNyV_ayVgbOXPXiql7b5wQ-247o4FkOBwaxKs8pKbc9jKjulSJdvSrVB9hKK2z0d9Tmsr0fv-_GH5xdwACU2HR5OhY1nxccACP5lS4gHG6b23VWlD-lNOy2qA
+                  - eyJraWQiOiJrMnhhbUEiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxOjE1ODU1NTM4NTY4Njp3ZWI6Y2IwZGU1ZTMyZGYwNjU3MDIyNzBmNyIsImF1ZCI6WyJwcm9qZWN0cy8xNTg1NTUzODU2ODYiLCJwcm9qZWN0cy90cmFkZXNwb29sLXByb2QiXSwicHJvdmlkZXIiOiJyZWNhcHRjaGFfdjMiLCJpc3MiOiJodHRwczovL2ZpcmViYXNlYXBwY2hlY2suZ29vZ2xlYXBpcy5jb20vMTU4NTU1Mzg1Njg2IiwiZXhwIjoxNzcxNDY0NzMwLCJpYXQiOjE3NzEzNzgzMzAsImp0aSI6InU1eTB5cTF3UFJEWkxlUVdPRVBlTzdrZHNlOUw4dExSRHk2VS02VlFBSkUifQ.FKgkvUGlB1FZp3aYwZV0rSUpFryPBGLbgX-ekIYxqBzA6bJH3OFJXh3bLrarlfW0mccv24jnvFvAmnArrUfj_3gZ3J7P94s-_g8GkQH75d1FiShLQ812B0NKoVU_IHDSJsJ41hUCfUCO3nyprFa1meW3TycC3atU2bmxbVI2uQ8ZLjAgdNsX8UAdRdLCLqVI6J2MHVWvJKSkBlDYxESjIbF0Qxg1uCS1R7doY9QrbehIBEfTfZgIk9UN7ap8DB00ZkAP6UtwWdeRxRlIhI2FlrpTfdROLlxiGvOu_XJshXJnv0ZzLEPZqIClrC4z9nUWXaZPBZv8ZMyb30m6tEYrUygc3ghesJXZMnR65kMuhyWDa6FCxrKR42sY1rVsNcmjV3YBMSZPxjWxniXbxeEOWNSzmx2KBqcC_91J8Kgv5ZUPuJSnbZUzY0kqgZCTrl6FZxAFR8zcXboS2jI9u61oFz1TaXeQHIkYUWglcTvMQrJlbfTtqprxRwIRYAt_AkkJ
+                  - electrical contractor
+                  - 1
+                  - 17.3991
+                  - 78.4577
+      responses:
+        "200":
+          description: Success
+  /about:
+    get:
+      tags:
+        - about
+      summary: GET /about
+      operationId: get_about
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1wtp7
+      responses:
+        "200":
+          description: Success
+  /blog:
+    get:
+      tags:
+        - blog
+      summary: GET /blog
+      operationId: get_blog
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1wtp7
+      responses:
+        "200":
+          description: Success
+  /_vercel/insights/view:
+    post:
+      tags:
+        - _vercel
+      summary: POST /_vercel/insights/view
+      operationId: post__vercel_insights_view
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/_vercelPostRequest"
+            examples:
+              fromHar:
+                value:
+                  o: https://www.tradespool.ca/
+                  sv: 0.1.3
+                  sdkn: "@vercel/analytics/react"
+                  sdkv: 1.5.0
+                  ts: 1771378641065
+      responses:
+        "200":
+          description: Success
+  /blog/{id}:
+    get:
+      tags:
+        - blog
+      summary: GET /blog/{id}
+      operationId: get_blog_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "8"
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1yyo8
+      responses:
+        "200":
+          description: Success
+  /login:
+    get:
+      tags:
+        - login
+      summary: GET /login
+      operationId: get_login
+      parameters:
+        - name: redirectUrl
+          in: query
+          required: false
+          schema:
+            type: string
+          example: /dashboard
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gq1nb
+      responses:
+        "200":
+          description: Success
+  /register:
+    get:
+      tags:
+        - register
+      summary: GET /register
+      operationId: get_register
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 882tj
+      responses:
+        "200":
+          description: Success
+  /forgot-password:
+    get:
+      tags:
+        - forgot-password
+      summary: GET /forgot-password
+      operationId: get_forgot_password
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 882tj
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    DashboardPostRequest:
+      type: array
+      items:
+        type: string
+    _vercelPostRequest:
+      type: object
+      properties:
+        o:
+          type: string
+        sv:
+          type: string
+        sdkn:
+          type: string
+        sdkv:
+          type: string
+        ts:
+          type: integer
+      required:
+        - o
+        - sv
+        - sdkn
+        - sdkv
+        - ts
