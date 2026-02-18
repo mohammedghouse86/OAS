@@ -7,19 +7,13 @@ servers:
 tags:
   - name: v1
 paths:
-  /{id}/v1/user/getUserById/{id2}:
+  /roofly-sso-service/v1/user/getUserById/{id2}:
     get:
       tags:
         - v1
-      summary: GET /{id}/v1/user/getUserById/{id2}
+      summary: GET /roofly-sso-service/v1/user/getUserById/{id2}
       operationId: get_id_v1_user_getUserById_id2
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
         - name: id2
           in: path
           required: true
@@ -29,19 +23,13 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/profiles:
+  /roofly-sso-service/v1/profiles:
     get:
       tags:
         - v1
-      summary: GET /{id}/v1/profiles
-      operationId: get_id_v1_profiles
+      summary: GET /roofly-sso-service/v1/profiles
+      operationId: get_roofly_sso_service_v1_profiles
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
         - name: userId
           in: query
           required: false
@@ -57,19 +45,13 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/public/property/{id2}:
+  /roofly-sso-service/v1/public/property/{id2}:
     get:
       tags:
         - v1
-      summary: GET /{id}/v1/public/property/{id2}
-      operationId: get_id_v1_public_property_id2
+      summary: GET /roofly-sso-service/v1/public/property/{id2}
+      operationId: get_roofly_sso_service_v1_public_property_id2
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
         - name: id2
           in: path
           required: true
@@ -79,19 +61,13 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/connections/{id2}/{id3}:
+  /roofly-sso-service/v1/connections/{id2}/{id3}:
     get:
       tags:
         - v1
-      summary: GET /{id}/v1/connections/{id2}/{id3}
-      operationId: get_id_v1_connections_id2_id3
+      summary: GET /roofly-sso-service/v1/connections/{id2}/{id3}
+      operationId: get_roofly_sso_service_v1_connections_id2_id3
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
         - name: id2
           in: path
           required: true
@@ -107,19 +83,13 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/saveSearch/all/{id2}:
+  /roofly-sso-service/v1/saveSearch/all/{id2}:
     get:
       tags:
         - v1
-      summary: GET /{id}/v1/saveSearch/all/{id2}
-      operationId: get_id_v1_saveSearch_all_id2
+      summary: GET /roofly-sso-service/v1/saveSearch/all/{id2}
+      operationId: get_roofly_sso_service_v1_saveSearch_all_id2
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
         - name: id2
           in: path
           required: true
@@ -129,19 +99,13 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/saveSearch/count/{id2}:
+  /roofly-sso-service/v1/saveSearch/count/{id2}:
     get:
       tags:
         - v1
-      summary: GET /{id}/v1/saveSearch/count/{id2}
-      operationId: get_id_v1_saveSearch_count_id2
+      summary: GET /roofly-sso-service/v1/saveSearch/count/{id2}
+      operationId: get_roofly_sso_service_v1_saveSearch_count_id2
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
         - name: id2
           in: path
           required: true
@@ -151,19 +115,14 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/public/categories/search:
+  /roofly-sso-service/v1/public/categories/search:
     post:
       tags:
         - v1
-      summary: POST /{id}/v1/public/categories/search
-      operationId: post_id_v1_public_categories_search
+      summary: POST /roofly-sso-service/v1/public/categories/search
+      operationId: post_roofly_sso_service_v1_public_categories_search
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
+
       requestBody:
         required: true
         content:
@@ -179,19 +138,13 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/connections/{id2}:
+  /roofly-sso-service/v1/connections/{id2}:
     post:
       tags:
         - v1
-      summary: POST /{id}/v1/connections/{id2}
-      operationId: post_id_v1_connections_id2
+      summary: POST /roofly-sso-service/v1/connections/{id2}
+      operationId: post_roofly_sso_service_v1_connections_id2
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
         - name: id2
           in: path
           required: true
@@ -228,15 +181,9 @@ paths:
     delete:
       tags:
         - v1
-      summary: DELETE /{id}/v1/connections/{id2}
-      operationId: delete_id_v1_connections_id2
+      summary: DELETE /roofly-sso-service/v1/connections/{id2}
+      operationId: delete_roofly_sso_service_v1_connections_id2
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
         - name: id2
           in: path
           required: true
@@ -258,19 +205,13 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/public/property-videos:
+  /roofly-sso-service/v1/public/property-videos:
     get:
       tags:
         - v1
-      summary: GET /{id}/v1/public/property-videos
-      operationId: get_id_v1_public_property_videos
+      summary: GET /roofly-sso-service/v1/public/property-videos
+      operationId: get_roofly_sso_service_v1_public_property_videos
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
         - name: page
           in: query
           required: false
@@ -292,19 +233,13 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/connections/{id2}/{id3}/{id4}:
+  /roofly-sso-service/v1/connections/{id2}/{id3}/{id4}:
     get:
       tags:
         - v1
-      summary: GET /{id}/v1/connections/{id2}/{id3}/{id4}
-      operationId: get_id_v1_connections_id2_id3_id4
+      summary: GET /roofly-sso-service/v1/connections/{id2}/{id3}/{id4}
+      operationId: get_roofly_sso_service_v1_connections_id2_id3_id4
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
         - name: id2
           in: path
           required: true
@@ -326,19 +261,14 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/posts/create:
+  /roofly-sso-service/v1/posts/create:
     post:
       tags:
         - v1
-      summary: POST /{id}/v1/posts/create
-      operationId: post_id_v1_posts_create
+      summary: POST /roofly-sso-service/v1/posts/create
+      operationId: post_roofly_sso_service_v1_posts_create
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
+
       requestBody:
         required: true
         content:
@@ -359,19 +289,14 @@ paths:
       responses:
         "200":
           description: Success
-  /{id}/v1/user/update:
+  /roofly-sso-service/v1/user/update:
     put:
       tags:
         - v1
-      summary: PUT /{id}/v1/user/update
-      operationId: put_id_v1_user_update
+      summary: PUT /roofly-sso-service/v1/user/update
+      operationId: put_roofly_sso_service_v1_user_update
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: roofly-sso-service
+
       requestBody:
         required: true
         content:
