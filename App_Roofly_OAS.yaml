@@ -359,6 +359,35 @@ paths:
       responses:
         "200":
           description: Success
+  /{id}/v1/user/update:
+    put:
+      tags:
+        - v1
+      summary: PUT /{id}/v1/user/update
+      operationId: put_id_v1_user_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: roofly-sso-service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PutRequest"
+            examples:
+              fromHar:
+                value:
+                  id: "110469"
+                  name: ghouse mohammed 1
+                  email: mohammedghouse86.backup@gmail.com
+                  phone: "+966578139964"
+      responses:
+        "200":
+          description: Success
 components:
   schemas:
     V1PostRequest:
@@ -374,3 +403,19 @@ components:
         - pageNo
         - pageSize
         - totalPages
+    V1PutRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+      required:
+        - id
+        - name
+        - email
+        - phone
