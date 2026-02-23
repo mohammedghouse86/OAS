@@ -13379,14 +13379,14 @@ paths:
       responses:
         "200":
           description: Success
-  /SM/CreateNewTool/{id}:
+  /SM/CreateNewTool/{id1}:
     post:
       tags:
         - SM
-      summary: POST /SM/CreateNewTool/{id}
+      summary: POST /SM/CreateNewTool/{id1}
       operationId: post_SM_CreateNewTool_id
       parameters:
-        - name: id
+        - name: id1
           in: path
           required: true
           schema:
@@ -13416,10 +13416,10 @@ paths:
     get:
       tags:
         - SM
-      summary: GET /SM/CreateNewTool/{id}
+      summary: GET /SM/CreateNewTool/{id1}
       operationId: get_SM_CreateNewTool_id
       parameters:
-        - name: id
+        - name: id1
           in: path
           required: true
           schema:
