@@ -1,0 +1,641 @@
+openapi: 3.0.3
+info:
+  title: Sogolytics App
+  version: 1.0.0
+servers:
+  - url: https://www.sogolytics.com
+tags:
+  - name: AccountActivity
+  - name: AccountDetails
+  - name: AccountManager
+  - name: AccountSecurity
+  - name: AuthWebApp
+  - name: CancelAccount
+  - name: Compliance
+  - name: DMToolData
+  - name: DownloadData
+  - name: Error
+  - name: FeatureDetails
+  - name: GetProjectTitle
+  - name: Header
+  - name: LinkedAccounts
+  - name: ProductFeature
+  - name: ProfileDetails
+  - name: ResourceHub
+  - name: UpdateSeenFiles
+  - name: auth
+  - name: detail
+  - name: notification
+  - name: search
+  - name: update
+  - name: "{id}"
+paths:
+  /apismx/{id}/detail/search:
+    get:
+      tags:
+        - detail
+      summary: GET /apismx/{id}/detail/search
+      operationId: get_apismx_id_detail_search
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: CheckEnabledModule
+        - name: path
+          in: query
+          required: false
+          schema:
+            type: string
+          example: distribute
+        - name: surveyNo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: SurveyNo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: FolderNo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: CopyProject
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /apismx/GetProjectTitle/detail/search:
+    get:
+      tags:
+        - GetProjectTitle
+      summary: GET /apismx/GetProjectTitle/detail/search
+      operationId: get_apismx_GetProjectTitle_detail_search
+      parameters:
+        - name: SurveyNo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /apismx/Header/detail/search:
+    get:
+      tags:
+        - Header
+      summary: GET /apismx/Header/detail/search
+      operationId: get_apismx_Header_detail_search
+      parameters:
+        - name: Dashboard
+          in: query
+          required: false
+          schema:
+            type: string
+          example: survey
+        - name: SurveyNo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: Email
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: IsFromWebServices
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: IgnoreActivation
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: Path
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /apismx/{id}/{id2}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /apismx/{id}/{id2}
+      operationId: get_apismx_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: CheckEnabledModule
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: GetSurveyPermissions
+        - name: surveyNo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /apismx/DownloadData/search:
+    get:
+      tags:
+        - DownloadData
+      summary: GET /apismx/DownloadData/search
+      operationId: get_apismx_DownloadData_search
+      responses:
+        "200":
+          description: Success
+  /apismx/ProductFeature/detail/search:
+    get:
+      tags:
+        - ProductFeature
+      summary: GET /apismx/ProductFeature/detail/search
+      operationId: get_apismx_ProductFeature_detail_search
+      responses:
+        "200":
+          description: Success
+  /apismx/DMToolData/detail/search:
+    get:
+      tags:
+        - DMToolData
+      summary: GET /apismx/DMToolData/detail/search
+      operationId: get_apismx_DMToolData_detail_search
+      parameters:
+        - name: surveyNo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /apismx/auth/refresh:
+    post:
+      tags:
+        - auth
+      summary: POST /apismx/auth/refresh
+      operationId: post_apismx_auth_refresh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthPostRequest"
+            examples:
+              fromHar:
+                value:
+                  accessToken: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwOGZjOGIyNi05MWIyLTQyZWYtYmEyNy0zYmY1NDUwYTI4MTEiLCJleHAiOiIxNzcxNTY4NjQzIiwiY29ycF9ubyI6IjMzNTA4NiIsInBhcmVudCI6IjAiLCJjb3JwX25vX3VtIjoiMzM1MDg2IiwiaXNBZG1pblJpZ2h0cyI6IlRydWUiLCJpbnRUaW1lWm9uZSI6IjQ5IiwiZGF0ZWZvcm1hdCI6IjQiLCJ0aW1lZm9ybWF0IjoiMiIsImlzbm9naW4iOiJmYWxzZSIsImlwIjoiNDkuNDMuMjE3LjE4MCIsImlzU2hhcmVkIjoiZmFsc2UiLCJzaGFyZUtleSI6IiJ9.O-BOdq7ifEJwqMew8Z_dIwrVwxREnRBUhhbrtbxDqurMq0czSm5cF79obttwfEQ2gmBPtZYvouUL1Jp19l4QS4wxQH-fwwGxe0HmCZbI-nN-C5vQSDXnCx3CBTMv0uVqV1L5ONuRi-rYvCfRVAMFrXTph8PYhbYuLpZW8zRkgJi0PNvWlYW03A7LwhUL9CIXgR6o8q_UPzuZIi6Gm8JcA2BSy9hgoFMoRpjCuRu1SO30vjzPa8PY2R0tQV-TnVUSS4SCRflzJbdKi_KKMUBgWGd_4OWyrK4H4wPh3cU0DADFK0VdCIOWKp8pCQKqzxbwO3akm_2fUTz6D2zUY09oSA
+                  refreshToken: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmZjdmMTllZi1mZTBlLTQ5NWQtOGU3Mi03ZmIxMmExNGU4ZmMiLCJleHAiOiIxNzcxNjEwOTQzIiwiY29ycF9ubyI6IjMzNTA4NiIsImlwIjoiNDkuNDMuMjE3LjE4MCIsInJlZnJlc2hfY291bnQiOiIwIn0.txOHANwIgfXaWMZbUYetgbnoT-212NaEBgnk2TvFdQqq8QaG9wVxlkjPwotvmqpDMgxaUhV-5TTu6L2gS_S1GA22MRFBe48G-NB8DBmU3v9PAWvnBuw8YmWwFxvrvDfpnk4tmpx__5PemqojpLx7Gu0Rm5-470hIfsBqZWcXl3Wan9l-amMscqMz4fOQk1rX4OAlMqvGMvxL3lM0n48Zyv0JmYlN3LqyDHyC3DRl1bTxKIOwXj6Qaf6FGaxxjmIljFbeeLslWvDaqbSwxA45hWoaqgvOHvJAat81t7z8B7UvfkvVsKJG-hFI6SDpIqKKX8arWIsw-Fb-eXiDQgiYYw
+      responses:
+        "200":
+          description: Success
+  /apismx/AuthWebApp/refreshWebApp:
+    post:
+      tags:
+        - AuthWebApp
+      summary: POST /apismx/AuthWebApp/refreshWebApp
+      operationId: post_apismx_AuthWebApp_refreshWebApp
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthWebAppPostRequest"
+            examples:
+              fromHar:
+                value:
+                  accessToken: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwOGZjOGIyNi05MWIyLTQyZWYtYmEyNy0zYmY1NDUwYTI4MTEiLCJleHAiOiIxNzcxNTY4NjQzIiwiY29ycF9ubyI6IjMzNTA4NiIsInBhcmVudCI6IjAiLCJjb3JwX25vX3VtIjoiMzM1MDg2IiwiaXNBZG1pblJpZ2h0cyI6IlRydWUiLCJpbnRUaW1lWm9uZSI6IjQ5IiwiZGF0ZWZvcm1hdCI6IjQiLCJ0aW1lZm9ybWF0IjoiMiIsImlzbm9naW4iOiJmYWxzZSIsImlwIjoiNDkuNDMuMjE3LjE4MCIsImlzU2hhcmVkIjoiZmFsc2UiLCJzaGFyZUtleSI6IiJ9.O-BOdq7ifEJwqMew8Z_dIwrVwxREnRBUhhbrtbxDqurMq0czSm5cF79obttwfEQ2gmBPtZYvouUL1Jp19l4QS4wxQH-fwwGxe0HmCZbI-nN-C5vQSDXnCx3CBTMv0uVqV1L5ONuRi-rYvCfRVAMFrXTph8PYhbYuLpZW8zRkgJi0PNvWlYW03A7LwhUL9CIXgR6o8q_UPzuZIi6Gm8JcA2BSy9hgoFMoRpjCuRu1SO30vjzPa8PY2R0tQV-TnVUSS4SCRflzJbdKi_KKMUBgWGd_4OWyrK4H4wPh3cU0DADFK0VdCIOWKp8pCQKqzxbwO3akm_2fUTz6D2zUY09oSA
+                  refreshToken: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmZjdmMTllZi1mZTBlLTQ5NWQtOGU3Mi03ZmIxMmExNGU4ZmMiLCJleHAiOiIxNzcxNjEwOTQzIiwiY29ycF9ubyI6IjMzNTA4NiIsImlwIjoiNDkuNDMuMjE3LjE4MCIsInJlZnJlc2hfY291bnQiOiIwIn0.txOHANwIgfXaWMZbUYetgbnoT-212NaEBgnk2TvFdQqq8QaG9wVxlkjPwotvmqpDMgxaUhV-5TTu6L2gS_S1GA22MRFBe48G-NB8DBmU3v9PAWvnBuw8YmWwFxvrvDfpnk4tmpx__5PemqojpLx7Gu0Rm5-470hIfsBqZWcXl3Wan9l-amMscqMz4fOQk1rX4OAlMqvGMvxL3lM0n48Zyv0JmYlN3LqyDHyC3DRl1bTxKIOwXj6Qaf6FGaxxjmIljFbeeLslWvDaqbSwxA45hWoaqgvOHvJAat81t7z8B7UvfkvVsKJG-hFI6SDpIqKKX8arWIsw-Fb-eXiDQgiYYw
+      responses:
+        "200":
+          description: Success
+  /apismx/{id}/search:
+    get:
+      tags:
+        - search
+      summary: GET /apismx/{id}/search
+      operationId: get_apismx_id_search
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: DownloadDataWebApp
+        - name: _
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1771570411291"
+      responses:
+        "200":
+          description: Success
+  /apismx/{id}/detail/{id2}:
+    get:
+      tags:
+        - detail
+      summary: GET /apismx/{id}/detail/{id2}
+      operationId: get_apismx_id_detail_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: GetTopFewSurveys
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: GetAllProjectSurveysWeb
+        - name: FolderNo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: IsSearch
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: Dashboard
+          in: query
+          required: false
+          schema:
+            type: string
+          example: AllProjects
+      responses:
+        "200":
+          description: Success
+  /apismx/AccountManager/detail/search:
+    get:
+      tags:
+        - AccountManager
+      summary: GET /apismx/AccountManager/detail/search
+      operationId: get_apismx_AccountManager_detail_search
+      responses:
+        "200":
+          description: Success
+  /apismx/ProfileDetails/detail/search:
+    get:
+      tags:
+        - ProfileDetails
+      summary: GET /apismx/ProfileDetails/detail/search
+      operationId: get_apismx_ProfileDetails_detail_search
+      responses:
+        "200":
+          description: Success
+  /apismx/ProfileDetails/insertupdate:
+    post:
+      tags:
+        - ProfileDetails
+      summary: POST /apismx/ProfileDetails/insertupdate
+      operationId: post_apismx_ProfileDetails_insertupdate
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: DOf0HHgTvGKfLZcepBloamUmtUd8fSy2PoZdx/X0lwtRAki5ucOFXDX8zu1pbXG+lqNfxmX9zSv1DkR8s6W3ZaCzCJwfl4YbACUEGn6OQgqLCosdERzMBoDhgAmRwuY6OnTO1cWZ7lw4mb41UAGj7qu5x0oOaj7xtMddz6DOsfk5HYbovpu5svhh0z3MFX/u/XV0KJQBeAX8TDHvMEBjwTItnbHqmFAJ6vo3I+HUShg+WmQJL7rfoVPHqSHCpy4nH3TNtVoqqV8p/exWUUr3rCpAZK1SI6U7kPijZlYP83wXbO7gXxSbGFdMbRjIs4OHGq44H3O+qUpZKtrW0jA8vZJpgYKdTpFo6nIDYT5Sx1fFbQZSfxFDb9bl6BvCRsvF
+      responses:
+        "200":
+          description: Success
+  /apismx/LinkedAccounts/detail/search:
+    get:
+      tags:
+        - LinkedAccounts
+      summary: GET /apismx/LinkedAccounts/detail/search
+      operationId: get_apismx_LinkedAccounts_detail_search
+      responses:
+        "200":
+          description: Success
+  /apismx/AccountDetails/detail/search:
+    get:
+      tags:
+        - AccountDetails
+      summary: GET /apismx/AccountDetails/detail/search
+      operationId: get_apismx_AccountDetails_detail_search
+      responses:
+        "200":
+          description: Success
+  /apismx/FeatureDetails/detail/search:
+    get:
+      tags:
+        - FeatureDetails
+      summary: GET /apismx/FeatureDetails/detail/search
+      operationId: get_apismx_FeatureDetails_detail_search
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: feature
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Custom URL
+        - name: newType
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: customMsg
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: questionLimit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: req
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: featureName
+          in: query
+          required: false
+          schema:
+            type: string
+          example: isCustomBrandURL
+      responses:
+        "200":
+          description: Success
+  /apismx/Compliance/detail/search:
+    get:
+      tags:
+        - Compliance
+      summary: GET /apismx/Compliance/detail/search
+      operationId: get_apismx_Compliance_detail_search
+      responses:
+        "200":
+          description: Success
+  /apismx/CancelAccount/detail/search:
+    get:
+      tags:
+        - CancelAccount
+      summary: GET /apismx/CancelAccount/detail/search
+      operationId: get_apismx_CancelAccount_detail_search
+      responses:
+        "200":
+          description: Success
+  /apismx/AccountSecurity/detail/search:
+    get:
+      tags:
+        - AccountSecurity
+      summary: GET /apismx/AccountSecurity/detail/search
+      operationId: get_apismx_AccountSecurity_detail_search
+      responses:
+        "200":
+          description: Success
+  /apismx/AccountSecurity/insertupdate:
+    post:
+      tags:
+        - AccountSecurity
+      summary: POST /apismx/AccountSecurity/insertupdate
+      operationId: post_apismx_AccountSecurity_insertupdate
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: ElVnwt0D9AVOS/7EZhLSF35LGldkgTBkA/vMXu5xWmDteA/+LvrisUTOyLqULbotV/I2ZHKMeu4dPUnj1k6BDWWf53KQqVJOmdK+nYxOYoMlrIKgjBi3La5f8eIFtKVZ/mdifGa20fwJbVR8eg9HMu+y1Qj1TsyhXIre6dK+F74eyFPSYeCck5Os1RXQTxHjmjyzd4erKD6gSZpKhrZ6EvFUM+JXOsK4itflrfQAdMMLLOoaKn5qJW2Ovf2yuOrclJeS7avBJwnPf639kRq1Oz0Ve78GSXYgE+4TQDyT0glf5SuhU6cK2sPq1RNy9BoEQRqMXsgWSpACn5UfalPUkw==
+      responses:
+        "200":
+          description: Success
+  /apismx/AccountActivity/search:
+    get:
+      tags:
+        - AccountActivity
+      summary: GET /apismx/AccountActivity/search
+      operationId: get_apismx_AccountActivity_search
+      responses:
+        "200":
+          description: Success
+  /apismx/{id}/update:
+    post:
+      tags:
+        - update
+      summary: POST /apismx/{id}/update
+      operationId: post_apismx_id_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: NotificationSettings
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: 0UcMgUoWGCANOwTfTuHqBXEwJgsD8ujbNfO2/2t8P7p7qphoUrkGAwYxLEJdnOW8GWth2dkKe5KX3FYWixUQAtfgt5eJDG2eUncmqLiC/8/nkTwfdqMxexGJHmqBbDHl
+      responses:
+        "200":
+          description: Success
+  /apismx/notification/search:
+    post:
+      tags:
+        - notification
+      summary: POST /apismx/notification/search
+      operationId: post_apismx_notification_search
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: pB7EnjSGwdNmE1M3IDFgfPwsW4VnyS2jJHFsYszeBaQ=
+      responses:
+        "200":
+          description: Success
+  /apismx/UpdateSeenFiles:
+    post:
+      tags:
+        - UpdateSeenFiles
+      summary: POST /apismx/UpdateSeenFiles
+      operationId: post_apismx_UpdateSeenFiles
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: AnyUBEvs8VdlG/y+Dw8L+A==
+      responses:
+        "200":
+          description: Success
+  /apismx/Error/JSErrorMail:
+    post:
+      tags:
+        - Error
+      summary: POST /apismx/Error/JSErrorMail
+      operationId: post_apismx_Error_JSErrorMail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ErrorPostRequest"
+            examples:
+              fromHar:
+                value:
+                  ErrorType: Transformer Project JS Error
+                  Message: Cannot read properties of undefined (reading 'scrolled')
+                  Filename: ""
+                  Lineno: ""
+                  Colno: ""
+                  ErrorName: TypeError
+                  Error: "{\"stack\":\"TypeError: Cannot read properties of undefined (reading 'scrolled')\\n    at
+                    https://www.sogolytics.com/t/7756.0005b0346460b4af.js:1:967579\\n    at A.<computed>
+                    (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:11125)\\n    at d.invokeTask
+                    (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:19908)\\n    at Object.onInvokeTask
+                    (https://www.sogolytics.com/t/7580.e91fde46755541e2.js:1:54915)\\n    at d.invokeTask
+                    (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:19829)\\n    at Object.onInvokeTask
+                    (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:16893)\\n    at d.invokeTask
+                    (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:19829)\\n    at U.runTask
+                    (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:15175)\\n    at U.<anonymous>
+                    (https://www.sogolytics.com/t/main.88f9067b0a649d7f.js?v=190226:1:125009)\\n    at invokeTask
+                    (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:20963)\",\"message\":\"Cannot read
+                    properties of undefined (reading 'scrolled')\"}"
+                  Stack: |-
+                    TypeError: Cannot read properties of undefined (reading 'scrolled')
+                        at https://www.sogolytics.com/t/7756.0005b0346460b4af.js:1:967579
+                        at A.<computed> (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:11125)
+                        at d.invokeTask (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:19908)
+                        at Object.onInvokeTask (https://www.sogolytics.com/t/7580.e91fde46755541e2.js:1:54915)
+                        at d.invokeTask (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:19829)
+                        at Object.onInvokeTask (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:16893)
+                        at d.invokeTask (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:19829)
+                        at U.runTask (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:15175)
+                        at U.<anonymous> (https://www.sogolytics.com/t/main.88f9067b0a649d7f.js?v=190226:1:125009)
+                        at invokeTask (https://www.sogolytics.com/t/polyfills.038ad8bd308e4608.js:1:20963)
+                  UserAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0
+                    Safari/537.36
+                  CurrentUrl: https://www.sogolytics.com/t/account-manager/notification-center?viewAll=true
+      responses:
+        "200":
+          description: Success
+  /apismx/ResourceHub/detail/search:
+    get:
+      tags:
+        - ResourceHub
+      summary: GET /apismx/ResourceHub/detail/search
+      operationId: get_apismx_ResourceHub_detail_search
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    AuthPostRequest:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+      required:
+        - accessToken
+        - refreshToken
+    AuthWebAppPostRequest:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+      required:
+        - accessToken
+        - refreshToken
+    ErrorPostRequest:
+      type: object
+      properties:
+        ErrorType:
+          type: string
+        Message:
+          type: string
+        Filename:
+          type: string
+        Lineno:
+          type: string
+        Colno:
+          type: string
+        ErrorName:
+          type: string
+        Error:
+          type: string
+        Stack:
+          type: string
+        UserAgent:
+          type: string
+        CurrentUrl:
+          type: string
+      required:
+        - ErrorType
+        - Message
+        - Filename
+        - Lineno
+        - Colno
+        - ErrorName
+        - Error
+        - Stack
+        - UserAgent
+        - CurrentUrl
