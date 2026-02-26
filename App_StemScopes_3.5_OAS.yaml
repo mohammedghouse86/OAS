@@ -1,0 +1,3261 @@
+openapi: 3.0.3
+info:
+  title: StemScopes 3.5 App
+  version: 1.0.0
+servers:
+  - url: https://app-backend.acceleratelearning.com
+tags:
+  - name: answer_key
+  - name: comments
+  - name: draft
+  - name: grade_levels
+  - name: highlights
+  - name: lesson_plans
+  - name: media_assets
+  - name: preferences
+  - name: record_types
+  - name: scope_filters
+  - name: scopes
+  - name: sections
+  - name: standards
+  - name: students
+  - name: teacher_widgets
+  - name: teachers
+  - name: total_count
+  - name: "{id}"
+paths:
+  /students:
+    get:
+      tags:
+        - students
+      summary: GET /students
+      operationId: get_students
+      parameters:
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherSections,user
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: fields[student]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,firstName,lastName,middleName,externalId,gradeLevels,sisId,studentNumber,teacherSectionIds,teacherSections,user,status,deleted,disabled
+        - name: fields[teacherSection]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,googleSection
+        - name: fields[user]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: externalPassword
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: deleted
+        - name: filter[1][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[1][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+        - name: filter[2][value][0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "12"
+        - name: filter[2][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: user.userGradeLevels.externalId
+        - name: filter[2][operator]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: in
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: firstName,lastName
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: fields%5Bstudent%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2CfirstName%2ClastName%2CmiddleName%2CexternalId%2CgradeLevels%2CsisId%2CstudentNumber%2CteacherSectionIds%2CteacherSections%2Cuser%2Cstatus%2Cdeleted%2Cdisabled
+        - name: fields%5BteacherSection%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2CgoogleSection
+        - name: fields%5Buser%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: externalPassword
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: deleted
+        - name: filter%5B1%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B1%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+        - name: filter%5B2%5D%5Bvalue%5D%5B0%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "12"
+        - name: filter%5B2%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: user.userGradeLevels.externalId
+        - name: filter%5B2%5D%5Boperator%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: in
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: filter[0][operator]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: is
+        - name: filter[2][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B0%5D%5Boperator%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: is
+        - name: filter%5B2%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - students
+      summary: POST /students
+      operationId: post_students
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StudentsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  teacherSectionId: "116"
+                  student:
+                    userAttributes:
+                      userGradeLevelsAttributes:
+                        - externalId: "12"
+                      readableExternalPassword: password!@#$123F
+                      email: jack@tester.com
+                      username: jackdoe4586
+                    sisId: "123"
+                    studentNumber: NY
+                    lastName: Doe
+                    middleName: xyz
+                    firstName: Jack
+      responses:
+        "200":
+          description: Success
+  /{id}/{id2}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /{id}/{id2}
+      operationId: get_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: teacher_sections
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "116"
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: languages,curriculumAreas
+        - name: fields[teacherSection]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,studentsCount,activeTeacherSectionAssignmentsCount,externalNameChanged,externalId,masterCourseName,courseNumber,actionsAvailable,description,languages,curriculumAreas,googleSection,teacherNames
+        - name: fields[curriculumArea]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name
+        - name: fields%5BteacherSection%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2CstudentsCount%2CactiveTeacherSectionAssignmentsCount%2CexternalNameChanged%2CexternalId%2CmasterCourseName%2CcourseNumber%2CactionsAvailable%2Cdescription%2Clanguages%2CcurriculumAreas%2CgoogleSection%2CteacherNames
+        - name: fields%5BcurriculumArea%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname
+        - name: fields[teacherAssessment]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,old,administratePlan,questionsCountSummary,bilingual,standardsSummary,lessonsSummary,topicsSummary,tagsSummary,assessmentBankQuestions,assessmentQuestions,sharedPending,editable,disabled
+        - name: fields[assessmentBankQuestion]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,formId,partTypes,languages,packages,assessmentBankQuestionContentType,assessmentBankQuestionContent,hasSpanishTranslation,bloomsLevel,depthOfKnowledge,dualCoded,gradeLevel,lessonLabels,standardLabels,tagNames,topicNames
+        - name: fields[assessmentQuestion]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,formId,standards,assessmentQuestionContentType,assessmentQuestionContent,shortTypeName,language,bloomsLevel,dualCoded,depthOfKnowledge,standards
+        - name: fields%5BteacherAssessment%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2Cold%2CadministratePlan%2CquestionsCountSummary%2Cbilingual%2CstandardsSummary%2ClessonsSummary%2CtopicsSummary%2CtagsSummary%2CassessmentBankQuestions%2CassessmentQuestions%2CsharedPending%2Ceditable%2Cdisabled
+        - name: fields%5BassessmentBankQuestion%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2CformId%2CpartTypes%2Clanguages%2Cpackages%2CassessmentBankQuestionContentType%2CassessmentBankQuestionContent%2ChasSpanishTranslation%2CbloomsLevel%2CdepthOfKnowledge%2CdualCoded%2CgradeLevel%2ClessonLabels%2CstandardLabels%2CtagNames%2CtopicNames
+        - name: fields%5BassessmentQuestion%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2CformId%2Cstandards%2CassessmentQuestionContentType%2CassessmentQuestionContent%2CshortTypeName%2Clanguage%2CbloomsLevel%2CdualCoded%2CdepthOfKnowledge%2Cstandards
+        - name: fields[teacherAssessmentBankQuestion]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: assessmentBankQuestionId
+        - name: fields%5BteacherAssessmentBankQuestion%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: assessmentBankQuestionId
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - "{id}"
+      summary: POST /{id}/{id2}
+      operationId: post_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: teacher_assessments
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: available_questions
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: packages
+        - name: fields[assessmentBankQuestion]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: assessmentBankQuestionContentType,assessmentBankQuestionContent,packages,partTypes,formId,hasSpanishTranslation,bloomsLevel,depthOfKnowledge,dualCoded,gradeLevel,lessonLabels,standardLabels,tagNames,topicNames
+        - name: fields[package]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "30"
+        - name: fields%5BassessmentBankQuestion%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: assessmentBankQuestionContentType%2CassessmentBankQuestionContent%2Cpackages%2CpartTypes%2CformId%2ChasSpanishTranslation%2CbloomsLevel%2CdepthOfKnowledge%2CdualCoded%2CgradeLevel%2ClessonLabels%2CstandardLabels%2CtagNames%2CtopicNames
+        - name: fields%5Bpackage%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "30"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/idPostRequest"
+            examples:
+              fromHar:
+                value:
+                  teacherAssessment:
+                    assessmentBankQuestionAreaTokens: []
+                    assessmentBankQuestionLessonTokens: []
+                    assessmentBankQuestionStandardTokens: []
+                    assessmentBankQuestionTopicTokens: []
+                    editionsForLessons: []
+                    editionsForStandards: []
+                    gradeLevels: []
+                    hasSpanishTranslation: []
+                    query: ""
+                    questionTypes: []
+                    tags: []
+                    updateCounter: 0
+                  packageOnly: "false"
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - "{id}"
+      summary: PUT /{id}/{id2}
+      operationId: put_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: teacher_assessments
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "173"
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/idPutRequest"
+            examples:
+              fromHar:
+                value:
+                  name: g
+                  assessmentBankQuestionAreaTokens:
+                    - "1"
+                  assessmentBankQuestionLessonTokens:
+                    - "8064"
+                  assessmentBankQuestionStandardTokens: []
+                  assessmentBankQuestionTopicTokens: []
+                  editionsForLessons:
+                    - California 3D
+                  editionsForStandards: []
+                  gradeLevels: []
+                  hasSpanishTranslation: []
+                  packageOnly: "false"
+                  query: ""
+                  questionTypes: []
+                  tags: []
+                  id: "173"
+                  administratePlan: no_type
+                  draftAttributes: null
+                  assessmentBankQuestionIds:
+                    - "17283"
+                  teacherAssessmentBankQuestionsAttributes:
+                    - assessmentBankQuestionId: 17283
+      responses:
+        "200":
+          description: Success
+  /students/grade_levels:
+    get:
+      tags:
+        - students
+      summary: GET /students/grade_levels
+      operationId: get_students_grade_levels
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /{id}/{id2}/{id3}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /{id}/{id2}/{id3}
+      operationId: get_id_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: teacher_sections
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "116"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: learning_resources
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: studentAssignments
+        - name: fields[studentAssignment]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: submittedAt,completedAt
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+        - name: fields%5BstudentAssignment%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: submittedAt%2CcompletedAt
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+      responses:
+        "200":
+          description: Success
+  /{id}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /{id}
+      operationId: get_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: teacher_section_assignments
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: districtMasterCalendarAssignment
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "116"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherSectionId
+        - name: filter[1][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[1][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+        - name: filter[2][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[2][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: deleted
+        - name: filter[3][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[3][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: learningResourcesSubmission
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "116"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherSectionId
+        - name: filter%5B1%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B1%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+        - name: filter%5B2%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B2%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: deleted
+        - name: filter%5B3%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B3%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: learningResourcesSubmission
+        - name: fields[curriculumArea]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name
+        - name: fields%5BcurriculumArea%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname
+        - name: fields[teacherAssessment]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,standardsSummary,lessonsSummary,languagesSummary,questionsCountSummarySplit,createdAt,editable,sharedPending,old,sharedTeacherName
+        - name: filter[3][operator]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "null"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: fields%5BteacherAssessment%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2CstandardsSummary%2ClessonsSummary%2ClanguagesSummary%2CquestionsCountSummarySplit%2CcreatedAt%2Ceditable%2CsharedPending%2Cold%2CsharedTeacherName
+        - name: filter%5B3%5D%5Boperator%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "null"
+        - name: fields[assessmentBankQuestionTopic]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name
+        - name: fields%5BassessmentBankQuestionTopic%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname
+        - name: fields[assessmentBankQuestionStandard]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,label
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: fields%5BassessmentBankQuestionStandard%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Clabel
+        - name: fields[assessmentBankQuestionTag]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name
+        - name: fields%5BassessmentBankQuestionTag%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname
+        - name: fields[assessmentBankQuestionLessons]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,label
+        - name: fields%5BassessmentBankQuestionLessons%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Clabel
+        - name: filter[0][value][0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: California 3D
+        - name: filter[0][operator]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: in
+        - name: filter%5B0%5D%5Bvalue%5D%5B0%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: California%203D
+        - name: filter%5B0%5D%5Boperator%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: in
+        - name: fields[teacherSection]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name
+        - name: fields%5BteacherSection%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname
+        - name: fields[element]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name,title,audienceName,scope,elementTypeDescription
+        - name: fields[scope]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: fields[districtMasterCalendarAssignment]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,kind
+        - name: fields%5Belement%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name%2Ctitle%2CaudienceName%2Cscope%2CelementTypeDescription
+        - name: fields%5Bscope%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: fields%5BdistrictMasterCalendarAssignment%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Ckind
+        - name: fields[plannedElement]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,districtMasterCalendarAssignment
+        - name: fields%5BplannedElement%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2CdistrictMasterCalendarAssignment
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - "{id}"
+      summary: POST /{id}
+      operationId: post_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: update_accessibility_settings
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/idPostRequest"
+            examples:
+              fromHar:
+                value:
+                  accTypeFace: serif
+                  accTypeSize: medium
+                  accTheme: null
+                  accSpeechSpeed: regular
+                  accSpeechHighlightWords: false
+      responses:
+        "200":
+          description: Success
+  /teacher_widgets/latest_activity:
+    get:
+      tags:
+        - teacher_widgets
+      summary: GET /teacher_widgets/latest_activity
+      operationId: get_teacher_widgets_latest_activity
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: fields[activityItem]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,payload,publishAt
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "116"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: senderId
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: fields%5BactivityItem%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cpayload%2CpublishAt
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "116"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: senderId
+      responses:
+        "200":
+          description: Success
+  /students/{id}:
+    get:
+      tags:
+        - students
+      summary: GET /students/{id}
+      operationId: get_students_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1675"
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: user.userGradeLevels,teacherSections
+        - name: fields[teacherSection]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: googleSection
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: fields%5BteacherSection%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: googleSection
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - students
+      summary: PUT /students/{id}
+      operationId: put_students_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1675"
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StudentsPutRequest"
+            examples:
+              fromHar:
+                value:
+                  student:
+                    userAttributes:
+                      userGradeLevelsAttributes:
+                        - id: "1575"
+                          externalId: "12"
+                      email: jack@tester.com
+                      username: jackdoe4586
+                      id: "10512"
+                    lastName: Doe
+                    middleName: xyz9
+                    firstName: Jack
+      responses:
+        "200":
+          description: Success
+  /students/{id}/{id2}:
+    get:
+      tags:
+        - students
+      summary: GET /students/{id}/{id2}
+      operationId: get_students_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1675"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: show_for_teacher_section
+        - name: teacherSectionId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "116"
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherSections
+        - name: fields[teacherSection]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: googleSection
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: fields%5BteacherSection%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: googleSection
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /{id}/preferences:
+    get:
+      tags:
+        - preferences
+      summary: GET /{id}/preferences
+      operationId: get_id_preferences
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: curriculum_areas
+        - name: fields[curriculumArea]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: fields%5BcurriculumArea%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /teachers/{id}:
+    put:
+      tags:
+        - teachers
+      summary: PUT /teachers/{id}
+      operationId: put_teachers_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "8050"
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TeachersPutRequest"
+            examples:
+              fromHar:
+                value:
+                  teacher:
+                    curriculumAreaIds: []
+                    curriculumPreferencesIds:
+                      - "1"
+                      - "2"
+                    userAttributes:
+                      id: "10044"
+                      defaultGrade: "100"
+                      studentsSortOrderType: last_name_first
+                      readableExternalPassword: Acceleratelearning2025!
+      responses:
+        "200":
+          description: Success
+  /teacher_widgets/{id}:
+    get:
+      tags:
+        - teacher_widgets
+      summary: GET /teacher_widgets/{id}
+      operationId: get_teacher_widgets_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: upcoming_lessons
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherSection,element
+        - name: fields[plannedElement]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,teacherSection,element,startDate,endDate
+        - name: fields[teacherSection]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: fields[element]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name,scopeId
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2025-11-26
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2025-12-03
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherSection.deleted
+        - name: filter[1][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[1][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherSection.disabled
+        - name: fields%5BplannedElement%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2CteacherSection%2Celement%2CstartDate%2CendDate
+        - name: fields%5BteacherSection%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: fields%5Belement%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name%2CscopeId
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherSection.deleted
+        - name: filter%5B1%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B1%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherSection.disabled
+        - name: fields[teacherBookmarkFolder]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,teacherElementBookmarksCount,teacherScopeBookmarksCount,teacherScopeBookmarks,teacherElementBookmarks
+        - name: fields[teacherScopeBookmarks]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,scope
+        - name: fields[teacherElementBookmarks]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,element
+        - name: fields[scope]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,createdAt,topics
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: -createdAt
+        - name: fields%5BteacherBookmarkFolder%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2CteacherElementBookmarksCount%2CteacherScopeBookmarksCount%2CteacherScopeBookmarks%2CteacherElementBookmarks
+        - name: fields%5BteacherScopeBookmarks%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cscope
+        - name: fields%5BteacherElementBookmarks%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Celement
+        - name: fields%5Bscope%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2CcreatedAt%2Ctopics
+      responses:
+        "200":
+          description: Success
+  /teacher_widgets/classes:
+    get:
+      tags:
+        - teacher_widgets
+      summary: GET /teacher_widgets/classes
+      operationId: get_teacher_widgets_classes
+      parameters:
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: languages
+        - name: fields[teacherSection]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,teachers,studentsCount,languages,teacherNames
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+        - name: filter[1][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[1][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: deleted
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: fields%5BteacherSection%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2Cteachers%2CstudentsCount%2Clanguages%2CteacherNames
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+        - name: filter%5B1%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B1%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: deleted
+      responses:
+        "200":
+          description: Success
+  /teacher_widgets/announcements:
+    get:
+      tags:
+        - teacher_widgets
+      summary: GET /teacher_widgets/announcements
+      operationId: get_teacher_widgets_announcements
+      parameters:
+        - name: fields[announcement]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,text,title,image,location
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: fields%5Bannouncement%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Ctext%2Ctitle%2Cimage%2Clocation
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /scopes/{id}:
+    get:
+      tags:
+        - scopes
+      summary: GET /scopes/{id}
+      operationId: get_scopes_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "713"
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: grade,topics,scopeGroups,curriculumAreas,keyConcepts,fundamentalQuestions
+        - name: fields[curriculumArea]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name
+        - name: fields[scopeGroup]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: banner
+        - name: fields[topic]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name
+        - name: fields[grade]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: fields%5BcurriculumArea%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname
+        - name: fields%5BscopeGroup%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: banner
+        - name: fields%5Btopic%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname
+        - name: fields%5Bgrade%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: topicIds[0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "438"
+        - name: topicIds%5B0%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "438"
+      responses:
+        "200":
+          description: Success
+  /sections:
+    get:
+      tags:
+        - sections
+      summary: GET /sections
+      operationId: get_sections
+      parameters:
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: elements
+        - name: fields[section]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,elements,position
+        - name: fields[element]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,title,name,disabled,deleted,language,elementTypeImageUrl,elementTypeDescription,connectedElementId,languageParentId,audienceName,sectionOverview,position,connectedLanguageId
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "713"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: scopeId
+        - name: filter[1][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[1][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: deleted
+        - name: filter[2][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[2][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+        - name: fields%5Bsection%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2Celements%2Cposition
+        - name: fields%5Belement%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Ctitle%2Cname%2Cdisabled%2Cdeleted%2Clanguage%2CelementTypeImageUrl%2CelementTypeDescription%2CconnectedElementId%2ClanguageParentId%2CaudienceName%2CsectionOverview%2Cposition%2CconnectedLanguageId
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "713"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: scopeId
+        - name: filter%5B1%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B1%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: deleted
+        - name: filter%5B2%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B2%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+      responses:
+        "200":
+          description: Success
+  /scopes/{id}/{id2}:
+    get:
+      tags:
+        - scopes
+      summary: GET /scopes/{id}/{id2}
+      operationId: get_scopes_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "713"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: standards_for_dropdown
+        - name: fields[standard]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,ancestryPath,description
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: fields%5Bstandard%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2CancestryPath%2Cdescription
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /{id}/total_count:
+    get:
+      tags:
+        - total_count
+      summary: GET /{id}/total_count
+      operationId: get_id_total_count
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: teacher_assessments
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /{id}/draft:
+    get:
+      tags:
+        - draft
+      summary: GET /{id}/draft
+      operationId: get_id_draft
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: teacher_assessments
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /{id}/grade_levels:
+    get:
+      tags:
+        - grade_levels
+      summary: GET /{id}/grade_levels
+      operationId: get_id_grade_levels
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: assessment_bank_questions
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /{id}/{id2}/answer_key:
+    get:
+      tags:
+        - answer_key
+      summary: GET /{id}/{id2}/answer_key
+      operationId: get_id_id2_answer_key
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: teacher_assessments
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "173"
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /highlights:
+    get:
+      tags:
+        - highlights
+      summary: GET /highlights
+      operationId: get_highlights
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "173"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherAssessmentId
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "173"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherAssessmentId
+      responses:
+        "200":
+          description: Success
+  /comments:
+    get:
+      tags:
+        - comments
+      summary: GET /comments
+      operationId: get_comments
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "173"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherAssessmentId
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "173"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacherAssessmentId
+      responses:
+        "200":
+          description: Success
+  /standards/roots:
+    get:
+      tags:
+        - standards
+      summary: GET /standards/roots
+      operationId: get_standards_roots
+      parameters:
+        - name: fields[standard]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,description,standardTypeName,displayTheme,standardBreadcrumbs,position,disabled,deleted
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: fields%5Bstandard%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2Cdescription%2CstandardTypeName%2CdisplayTheme%2CstandardBreadcrumbs%2Cposition%2Cdisabled%2Cdeleted
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /media_assets/activity_types:
+    get:
+      tags:
+        - media_assets
+      summary: GET /media_assets/activity_types
+      operationId: get_media_assets_activity_types
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /media_assets/category_types:
+    get:
+      tags:
+        - media_assets
+      summary: GET /media_assets/category_types
+      operationId: get_media_assets_category_types
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /media_assets/count_by_entity:
+    get:
+      tags:
+        - media_assets
+      summary: GET /media_assets/count_by_entity
+      operationId: get_media_assets_count_by_entity
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /media_assets/news_entries:
+    get:
+      tags:
+        - media_assets
+      summary: GET /media_assets/news_entries
+      operationId: get_media_assets_news_entries
+      parameters:
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: mediaTopic
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "9"
+        - name: fields[mediaNewsItem]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,title,link,pubDate,thumbnailUrl,description
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: mediaTopicId
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: -pubDate
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "9"
+        - name: fields%5BmediaNewsItem%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2Ctitle%2Clink%2CpubDate%2CthumbnailUrl%2Cdescription
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: mediaTopicId
+      responses:
+        "200":
+          description: Success
+  /media_assets/recently_viewed:
+    get:
+      tags:
+        - media_assets
+      summary: GET /media_assets/recently_viewed
+      operationId: get_media_assets_recently_viewed
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "6"
+        - name: fields[mediaAsset]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,cover,contentType,previewDescription
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: -createdAt
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "6"
+        - name: fields%5BmediaAsset%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2Ccover%2CcontentType%2CpreviewDescription
+      responses:
+        "200":
+          description: Success
+  /media_assets/count_by_topic:
+    get:
+      tags:
+        - media_assets
+      summary: GET /media_assets/count_by_topic
+      operationId: get_media_assets_count_by_topic
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /scope_filters:
+    get:
+      tags:
+        - scope_filters
+      summary: GET /scope_filters
+      operationId: get_scope_filters
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /scopes:
+    get:
+      tags:
+        - scopes
+      summary: GET /scopes
+      operationId: get_scopes
+      parameters:
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "30"
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: grade,topics,scopeGroups,standards
+        - name: fields[scope]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,image,starred,topics,scopeGroups,grade,standards,displayStandards
+        - name: fields[scopeGroup]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: banner
+        - name: fields[grade]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: fields[topic]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name
+        - name: fields[standard]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: filter[0][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[0][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+        - name: filter[1][value]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter[1][field]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: deleted
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "30"
+        - name: fields%5Bscope%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname%2Cimage%2Cstarred%2Ctopics%2CscopeGroups%2Cgrade%2Cstandards%2CdisplayStandards
+        - name: fields%5BscopeGroup%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: banner
+        - name: fields%5Bgrade%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: fields%5Btopic%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id%2Cname
+        - name: fields%5Bstandard%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: filter%5B0%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B0%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: disabled
+        - name: filter%5B1%5D%5Bvalue%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: filter%5B1%5D%5Bfield%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: deleted
+        - name: topicIds[0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "438"
+        - name: topicIds%5B0%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "438"
+      responses:
+        "200":
+          description: Success
+  /lesson_plans:
+    get:
+      tags:
+        - lesson_plans
+      summary: GET /lesson_plans
+      operationId: get_lesson_plans
+      parameters:
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: plannedElements.element
+        - name: fields[lessonPlan]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name,notes,plannedElements
+        - name: fields[plannedElement]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: element,startDate
+        - name: fields[element]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name,scopeId
+        - name: fields[teacherSection]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: fields%5BlessonPlan%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name%2Cnotes%2CplannedElements
+        - name: fields%5BplannedElement%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: element%2CstartDate
+        - name: fields%5Belement%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name%2CscopeId
+        - name: fields%5BteacherSection%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+  /{id}/record_types:
+    get:
+      tags:
+        - record_types
+      summary: GET /{id}/record_types
+      operationId: get_id_record_types
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: planned_elements
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page[size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+        - name: page%5Bnumber%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page%5Bsize%5D
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10000"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    StudentsPostRequest:
+      type: object
+      properties:
+        teacherSectionId:
+          type: string
+        student:
+          type: object
+          properties:
+            userAttributes:
+              type: object
+              properties:
+                userGradeLevelsAttributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      externalId:
+                        type: string
+                    required:
+                      - externalId
+                readableExternalPassword:
+                  type: string
+                email:
+                  type: string
+                username:
+                  type: string
+              required:
+                - userGradeLevelsAttributes
+                - readableExternalPassword
+                - email
+                - username
+            sisId:
+              type: string
+            studentNumber:
+              type: string
+            lastName:
+              type: string
+            middleName:
+              type: string
+            firstName:
+              type: string
+          required:
+            - userAttributes
+            - sisId
+            - studentNumber
+            - lastName
+            - middleName
+            - firstName
+      required:
+        - teacherSectionId
+        - student
+    StudentsPutRequest:
+      type: object
+      properties:
+        student:
+          type: object
+          properties:
+            userAttributes:
+              type: object
+              properties:
+                userGradeLevelsAttributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      externalId:
+                        type: string
+                    required:
+                      - id
+                      - externalId
+                email:
+                  type: string
+                username:
+                  type: string
+                id:
+                  type: string
+              required:
+                - userGradeLevelsAttributes
+                - email
+                - username
+                - id
+            lastName:
+              type: string
+            middleName:
+              type: string
+            firstName:
+              type: string
+          required:
+            - userAttributes
+            - lastName
+            - middleName
+            - firstName
+      required:
+        - student
+    "idPostRequest":
+      type: object
+      properties:
+        accTypeFace:
+          type: string
+        accTypeSize:
+          type: string
+        accTheme:
+          nullable: true
+        accSpeechSpeed:
+          type: string
+        accSpeechHighlightWords:
+          type: boolean
+      required:
+        - accTypeFace
+        - accTypeSize
+        - accTheme
+        - accSpeechSpeed
+        - accSpeechHighlightWords
+    TeachersPutRequest:
+      type: object
+      properties:
+        teacher:
+          type: object
+          properties:
+            curriculumAreaIds:
+              type: array
+              items:
+                type: string
+            curriculumPreferencesIds:
+              type: array
+              items:
+                type: string
+            userAttributes:
+              type: object
+              properties:
+                id:
+                  type: string
+                defaultGrade:
+                  type: string
+                studentsSortOrderType:
+                  type: string
+                readableExternalPassword:
+                  type: string
+              required:
+                - id
+                - defaultGrade
+                - studentsSortOrderType
+                - readableExternalPassword
+          required:
+            - curriculumAreaIds
+            - curriculumPreferencesIds
+            - userAttributes
+      required:
+        - teacher
+    "idPutRequest":
+      type: object
+      properties:
+        name:
+          type: string
+        assessmentBankQuestionAreaTokens:
+          type: array
+          items:
+            type: string
+        assessmentBankQuestionLessonTokens:
+          type: array
+          items:
+            type: string
+        assessmentBankQuestionStandardTokens:
+          type: array
+          items:
+            type: string
+        assessmentBankQuestionTopicTokens:
+          type: array
+          items:
+            type: string
+        editionsForLessons:
+          type: array
+          items:
+            type: string
+        editionsForStandards:
+          type: array
+          items:
+            type: string
+        gradeLevels:
+          type: array
+          items:
+            type: string
+        hasSpanishTranslation:
+          type: array
+          items:
+            type: string
+        packageOnly:
+          type: string
+        query:
+          type: string
+        questionTypes:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        id:
+          type: string
+        administratePlan:
+          type: string
+        draftAttributes:
+          nullable: true
+        assessmentBankQuestionIds:
+          type: array
+          items:
+            type: string
+        teacherAssessmentBankQuestionsAttributes:
+          type: array
+          items:
+            type: object
+            properties:
+              assessmentBankQuestionId:
+                type: integer
+            required:
+              - assessmentBankQuestionId
+      required:
+        - name
+        - assessmentBankQuestionAreaTokens
+        - assessmentBankQuestionLessonTokens
+        - assessmentBankQuestionStandardTokens
+        - assessmentBankQuestionTopicTokens
+        - editionsForLessons
+        - editionsForStandards
+        - gradeLevels
+        - hasSpanishTranslation
+        - packageOnly
+        - query
+        - questionTypes
+        - tags
+        - id
+        - administratePlan
+        - draftAttributes
+        - assessmentBankQuestionIds
+        - teacherAssessmentBankQuestionsAttributes
