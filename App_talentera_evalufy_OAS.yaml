@@ -1,0 +1,4153 @@
+openapi: 3.0.3
+info:
+  title: Talentra App
+  version: 1.0.0
+servers:
+  - url: https://talentera.evalufy.com
+tags:
+  - name: en
+paths:
+  /apiv2/en/login:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/login
+      operationId: post_apiv2_en_login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: intesar@perfai.ai
+                  password: Tester@786
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/users/extras:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/users/extras
+      operationId: get_apiv2_en_users_extras
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/users/credits:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/users/credits
+      operationId: get_apiv2_en_users_credits
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/dashboard/skeleton:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/dashboard/skeleton
+      operationId: get_apiv2_en_dashboard_skeleton
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/dashboard/{id}:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/dashboard/{id}
+      operationId: post_apiv2_en_dashboard_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: assessment-stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  date_range:
+                    startDate: 2026-01-31
+                    endDate: 2026-03-02
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/dashboard/batch-stats:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/dashboard/batch-stats
+      operationId: post_apiv2_en_dashboard_batch_stats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  date_range:
+                    startDate: 2026-01-31
+                    endDate: 2026-03-02
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/dashboard/batch-stages:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/dashboard/batch-stages
+      operationId: post_apiv2_en_dashboard_batch_stages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  date_range:
+                    startDate: 2026-01-31
+                    endDate: 2026-03-02
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/members:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/members
+      operationId: get_apiv2_en_members
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,firstName,lastName,image
+        - name: roles
+          in: query
+          required: false
+          schema:
+            type: string
+          example: coordinator,admin
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: firstName:asc
+        - name: active
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: autoScoring
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/members
+      operationId: put_apiv2_en_members
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  userId: eb2fd51d-aada-4174-be83-d6886ba26689
+                  firstName: Intesar
+                  lastName: Perfai
+                  email: intesar@perfai.ai
+                  image: null
+                  preferredLang: en
+                  isFirstLogin: false
+                  isSuperAdmin: false
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/members
+      operationId: post_apiv2_en_members
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  firstName: Bob
+                  lastName: doe
+                  email: test@gmail.cim
+                  status: null
+                  roles:
+                    - 0459fc6d-f9d0-414e-99c6-c2ffd934dfb5
+                  preferredLang: en
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/assessments:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/assessments
+      operationId: get_apiv2_en_assessments
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,type,formId,autoScoring,respectsWeight
+        - name: exclude
+          in: query
+          required: false
+          schema:
+            type: string
+          example: zeroQuestions,untitled
+        - name: excludeArchived
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/assessments
+      operationId: post_apiv2_en_assessments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Test1
+                  description: null
+                  type: regular
+                  hours: 0
+                  minutes: 0
+                  inUse: false
+                  autoScoring: false
+                  passingCriteria: null
+                  respectsWeight: false
+                  navigationMode: linear
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/batches:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/batches
+      operationId: get_apiv2_en_batches
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count,stages
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: lastActivityAt:desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/batches
+      operationId: post_apiv2_en_batches
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  id: 950c9e96-3b6b-0760-4fab-4d63207140ef
+                  assessmentId: 3f3bb11d-6be5-45ea-8cd2-354a8c86509c
+                  purposeId: a3071c6e-b913-440b-8506-1cc81553d695
+                  evaluatorsIds:
+                    - 5865c0d2-32e0-4ec0-beb1-8afe20b6bf18
+                  candidatesIds:
+                    - 4d219801-adbe-4665-b7f4-3e75ad928583
+                  name: Test1 Batch 2026-3-2
+                  message: >-
+                    <p style="margin:0;">
+
+                    Dear <span class="ql-placeholder-content" data-id="candidate.firstName"
+                    data-label="candidate.firstName" spellcheck="false">&#65279;<span
+                    contenteditable="false">{{candidate.firstName}}</span>&#65279;</span>,
+
+                    </p>
+
+
+                    <br />
+
+                    <p style="margin:0;">You are invited to complete <span class="ql-placeholder-content"
+                    data-id="assessment.name" data-label="assessment.name" spellcheck="false">&#65279;<span
+                    contenteditable="false">{{assessment.name}}</span>&#65279;</span> for <span
+                    class="ql-placeholder-content" data-id="company.name" data-label="company.name"
+                    spellcheck="false">&#65279;<span contenteditable="false">{{company.name}}</span>&#65279;</span>.<br
+                    /><br /> The deadline to complete your assessment is <span class="ql-placeholder-content"
+                    data-id="assessment.deadline" data-label="assessment.deadline" spellcheck="false">&#65279;<span
+                    contenteditable="false">{{assessment.deadline}}</span>&#65279;</span>. Please ensure you submit it
+                    before the deadline to avoid any issues.
+
+                    </p>
+
+                    <br />
+
+                    <p style="margin:0;">
+
+                    {{assessment.url}}
+
+                    </p>
+
+                    <br />
+
+                    <p style="margin:0;">
+
+                    If you experience any issues accessing the assessment, feel free to reach out to <a
+                    href="mailto:help@evalufy.com">help@evalufy.com</a>.<br /><br /> Best regards,<br /><br /><span
+                    class="ql-placeholder-content" data-id="company.name" data-label="company.name"
+                    spellcheck="false">&#65279;<span contenteditable="false">{{company.name}}</span>&#65279;</span> Team
+
+                    </p>
+
+                    <br />
+                  description: New
+                  deadline: 2026-03-09
+                  sender: null
+                  subject: "{{company.name}} Invites You to Submit An Assessment"
+                  emailTemplate: a8456a81-6085-45fc-a363-1a1a1fb794b6
+                  isPublic: true
+                  proctoringConfig:
+                    status: false
+                    detectOutOfWindow: false
+                    noRemainingOuts: submitted
+                    takeSnapshot: false
+                    numberOfOuts: 4
+                    snapshotInterval: 1
+                  multipleAssessments: false
+                  selectedAssessments: []
+                  sendDeadlineEmail: true
+                  batchPurposeDetail:
+                    title: ""
+                    description: ""
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/forms/questionsLimit:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/forms/questionsLimit
+      operationId: get_apiv2_en_forms_questionsLimit
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/question-sets:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/question-sets
+      operationId: get_apiv2_en_question_sets
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/question-sets
+      operationId: post_apiv2_en_question_sets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Maths Questions
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/forms/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/forms/{id}
+      operationId: get_apiv2_en_forms_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 7afb5e34-71ea-4669-80da-bed11364c63b
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/forms/{id}
+      operationId: put_apiv2_en_forms_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 55ac0b38-e787-4d98-a677-522b62ec2b5d
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  type: form
+                  action: ""
+                  method: POST
+                  is_ajax: false
+                  labelFields: true
+                  name: Form Name
+                  title: Video
+                  header: Video Assessment
+                  controls:
+                    - id: 305a1a54-e123-14cf-a5b3-a9c779b63572
+                      ui:
+                        label: Welcome to ESE English teacher assessment
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                      name: Welcome Screen
+                      type: welcome
+                      order: 0
+                      value: ""
+                      buttonText: Start
+                      defaultEnd: false
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: false
+                        once: true
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations: []
+                    - id: 00efbb87-c86b-353e-89fa-b4b8209bcfbc
+                      ui:
+                        label: Your age?
+                        desc: ""
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                        weight: 0
+                        answeringTime:
+                          view: false
+                          minutes: 0
+                          seconds: 0
+                      data:
+                        type: embedded
+                        src:
+                          - id: b7514d82-394e-20e0-06cb-980ab4df5a13
+                            label: 1-20
+                            value: option_0
+                            isCorrect: false
+                            answerScore: 0
+                          - id: a530eb04-3eb2-c157-af5b-651e530f8dda
+                            label: 21-30
+                            value: option_1
+                            isCorrect: false
+                            answerScore: 0
+                          - id: a9bc3e66-428b-f309-2502-d5d0734940fe
+                            label: "+30"
+                            value: option_2
+                            isCorrect: false
+                            answerScore: 0
+                        logicalJumps:
+                          - jumpTo: null
+                            option_id: null
+                      name: Multiple Choice
+                      type: multipleChoice
+                      order: 1
+                      value: ""
+                      orderBy: alpha
+                      multiple: false
+                      alignment: horizontal
+                      defaultEnd: false
+                      answerScore: 0
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations:
+                        - type: required
+                    - id: 316b470c-23ee-7c99-b808-12cedc276e5e
+                      ui:
+                        label: Are you located in UAE?
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                        weight: 0
+                        answeringTime:
+                          view: false
+                          minutes: 0
+                          seconds: 0
+                      data:
+                        type: embedded
+                        src:
+                          - id: 82126e11-cf2c-2113-145d-45c690b59e59
+                            label: Yes
+                            value: yes
+                            isCorrect: false
+                            answerScore: 0
+                          - id: e0efaae6-a2ce-85e3-f662-40757ccbe5df
+                            label: No
+                            value: no
+                            isCorrect: false
+                            answerScore: 0
+                        logicalJumps:
+                          - jumpTo: null
+                            option_id: null
+                      name: Yes/No
+                      type: yesNo
+                      order: 2
+                      value: ""
+                      defaultEnd: false
+                      answerScore: 0
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations:
+                        - type: required
+                    - id: 5b1d379e-cf8b-ad93-17ff-f091c52152e9
+                      ui:
+                        label: Are you willing to relocate?
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                        weight: 0
+                        answeringTime:
+                          view: false
+                          minutes: 0
+                          seconds: 0
+                      data:
+                        type: embedded
+                        src:
+                          - id: 5d261f2d-490e-89df-42e1-16ef0a632979
+                            label: Yes
+                            value: yes
+                            isCorrect: false
+                            answerScore: 0
+                          - id: b658b72f-10ee-b952-2c0c-8dadcecccc1d
+                            label: No
+                            value: no
+                            isCorrect: false
+                            answerScore: 0
+                        logicalJumps:
+                          - jumpTo: null
+                            option_id: null
+                      name: Yes/No
+                      type: yesNo
+                      order: 3
+                      value: ""
+                      defaultEnd: false
+                      answerScore: 0
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations:
+                        - type: required
+                    - id: 999b1f36-8ba8-dc08-2b15-ce72f2f65275
+                      ui:
+                        label: Briefly, introduce yourself and experience as English teacher.
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                        weight: 0
+                        answeringTime:
+                          view: false
+                          minutes: 0
+                          seconds: 0
+                      data:
+                        type: embedded
+                        src: []
+                      name: Smart Video
+                      type: smartVideo
+                      limit: 3
+                      order: 4
+                      value: ""
+                      attempts:
+                        count: "3"
+                        limited: true
+                      keywords: []
+                      defaultEnd: false
+                      answerScore: 0
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      preferredLanguage:
+                        key: en-US
+                        name: English
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      aiEvaluationGuidance: ""
+                      aiAnalysisCriteria:
+                        relevance: 15
+                        clarity: 50
+                        keywordsCoverage: 25
+                        suitability: 10
+                      validations:
+                        - type: required
+                    - id: e58dcc62-2cfe-b366-01a9-d9ffc3358235
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 5
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: What is the primary purpose of a project charter?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: To outline project scope and objectives
+                            value: A
+                            isCorrect: true
+                            id: b755c0b8-3db4-c29a-62c3-d4c3cb7a9d2d
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To assign team roles
+                            value: B
+                            isCorrect: false
+                            id: a7a71cf3-1605-dbde-6fa4-da80adbe6b64
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To create a detailed budget
+                            value: C
+                            isCorrect: false
+                            id: 0101c1cb-664a-0d94-8511-50104c5c2954
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To schedule meetings
+                            value: D
+                            isCorrect: false
+                            id: 2102ed43-5686-0e63-038e-051e4e8cfa83
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: 5276cc77-2845-aee8-5d0f-661075db8a44
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 6
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: How often should a project manager conduct status meetings?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: Once a month
+                            value: A
+                            isCorrect: false
+                            id: 64c69048-40c6-e896-0ab4-8d5b4bc2dac5
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Weekly or bi-weekly
+                            value: B
+                            isCorrect: true
+                            id: b0d72623-ecb4-b01b-2955-c0227df89e29
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Only when issues arise
+                            value: C
+                            isCorrect: false
+                            id: 7e26be90-15f5-63a2-79a8-9e0ee5f6ba9b
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Daily
+                            value: D
+                            isCorrect: false
+                            id: 0f402b0d-bace-305d-eace-f6ca1085b82e
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: 6cc68e44-b7e9-dbe5-d794-2f00d4b6d987
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 7
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: Which tool is commonly used for project management?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: Photoshop
+                            value: A
+                            isCorrect: false
+                            id: e6f59cf0-22a9-0368-3054-4313b520e040
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Trello
+                            value: B
+                            isCorrect: true
+                            id: 982f3f71-2593-247f-fda1-cda1a1edd2b8
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Excel
+                            value: C
+                            isCorrect: false
+                            id: e5d9b2ba-3231-a220-a478-c2b402c956e4
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Word
+                            value: D
+                            isCorrect: false
+                            id: 1ff7769c-0c90-9995-4866-85bebddc0244
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: 013b5ea3-9e98-417a-b6a5-cf2e7231634a
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 8
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: What is a Gantt chart primarily used for?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: Budget tracking
+                            value: A
+                            isCorrect: false
+                            id: 3f7bc0a2-dd5e-7d45-47ab-c801e25c248e
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Resource allocation
+                            value: B
+                            isCorrect: false
+                            id: ee722318-4a30-892a-800c-a67875546456
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Project scheduling
+                            value: C
+                            isCorrect: true
+                            id: 85e917e4-6176-d8ce-3741-41475c6a01f3
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Risk assessment
+                            value: D
+                            isCorrect: false
+                            id: 1b4388b8-1205-162b-23ba-7195257bc9b9
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: e0a7e4e9-b148-090b-5bdb-d7cb98082244
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 9
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: What does 'scope creep' refer to in project management?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: Unexpected changes to project scope
+                            value: A
+                            isCorrect: true
+                            id: f28a1ff2-ec76-a8f8-44a1-e364afe2a322
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Increased team productivity
+                            value: B
+                            isCorrect: false
+                            id: f57fff70-f646-10b1-a126-8c14b89a18b6
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Improved communication
+                            value: C
+                            isCorrect: false
+                            id: e64ffe5a-dba3-17bb-4715-7b626506bd87
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Reduced project costs
+                            value: D
+                            isCorrect: false
+                            id: bf00aa42-fa0c-b2d4-062b-20fc3ffeedf0
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: 76eeb020-e3c5-5ab1-4984-f47c7496bdd8
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 10
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: Which method is best for managing project risks?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: Ignoring them
+                            value: A
+                            isCorrect: false
+                            id: 2f524c7f-34c8-d301-c2bb-8aa399503ade
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Identifying and analyzing them
+                            value: B
+                            isCorrect: true
+                            id: a6bd6266-874c-3371-bed3-e5073794604d
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Only addressing them at project end
+                            value: C
+                            isCorrect: false
+                            id: 1592aa50-6ff5-9e00-2bac-df66e77f1e36
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Delegating to team members
+                            value: D
+                            isCorrect: false
+                            id: a12f3144-5d37-21f4-2dc8-2782596949bd
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: c1237740-acab-2ee5-0d8b-2de7011616fd
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 11
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: What is the critical path in project management?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: The shortest path to complete the project
+                            value: A
+                            isCorrect: false
+                            id: ed9190a8-84dd-d348-d8ea-326430a882c2
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: The longest sequence of dependent tasks
+                            value: B
+                            isCorrect: true
+                            id: 2cda12c6-7fc8-7149-99f9-ea665391443e
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Tasks that can be delayed without affecting the project
+                            value: C
+                            isCorrect: false
+                            id: c01a833c-55c6-3e20-81e5-191b85b321fc
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Non-essential tasks
+                            value: D
+                            isCorrect: false
+                            id: b189a62e-791e-6d54-fb59-53afb5ac183d
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: 0da38ac9-4fce-75a4-4ec1-a85a772f1017
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 12
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: What is the main role of a stakeholder in a project?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: To manage the project team
+                            value: A
+                            isCorrect: false
+                            id: c07b183d-d92f-cbc2-4c7b-ea57899693cd
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To provide input and feedback
+                            value: B
+                            isCorrect: true
+                            id: f38fbfaa-5051-0cdd-aac8-a65271ba48c5
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To handle budgets
+                            value: C
+                            isCorrect: false
+                            id: e557ac8b-2fc0-a9c7-06fe-6a07abd11618
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To execute project tasks
+                            value: D
+                            isCorrect: false
+                            id: 794f465e-ca2c-eea5-63bc-8de683072da7
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: 7120c159-6f81-d25e-6ce6-61e2a958d123
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 13
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: Which document outlines how project changes will be managed?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: Project Plan
+                            value: A
+                            isCorrect: false
+                            id: 4f36d202-edd0-d248-e69d-8859501dfb35
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Change Management Plan
+                            value: B
+                            isCorrect: true
+                            id: fbbfdc37-ec29-bdcb-f8a5-c87454cea7f7
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Risk Management Plan
+                            value: C
+                            isCorrect: false
+                            id: d0ed1843-a8bf-dbf2-3460-61b79642ef00
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Communication Plan
+                            value: D
+                            isCorrect: false
+                            id: e559ea21-50a5-c5cb-ff2f-8742ce06f699
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: 43bc815b-c075-23f3-6b34-4d5e254f5a32
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 14
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: What is the purpose of a lessons learned session?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: To celebrate project success
+                            value: A
+                            isCorrect: false
+                            id: bac364ce-25c1-7759-0405-069f555e2ccd
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To identify what went wrong and right
+                            value: B
+                            isCorrect: true
+                            id: 8c7bc3e4-3f16-0bb8-166f-20e9ab75906b
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To finalize project documentation
+                            value: C
+                            isCorrect: false
+                            id: 224c1e43-417e-c4cc-b8f9-37067e83e9fe
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To assign future projects
+                            value: D
+                            isCorrect: false
+                            id: 2a3ccf0f-ab96-4af2-6b32-e5ab732d5a82
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: 4ff1591a-613e-fd44-093e-7ede041c9f0c
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 15
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: Which of the following is a key responsibility of a project manager?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: Performing all technical tasks
+                            value: A
+                            isCorrect: false
+                            id: 06d9ed5e-767b-2777-0c8b-97f97634bddd
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Monitoring project progress
+                            value: B
+                            isCorrect: true
+                            id: a1ac99b4-c14a-210b-c061-bc4a3dee35bc
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Creating marketing materials
+                            value: C
+                            isCorrect: false
+                            id: 525573e5-25e1-fc5e-b59e-8c2115efc639
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Conducting market research
+                            value: D
+                            isCorrect: false
+                            id: c4212859-b670-48f3-e0fb-4920f6d067ae
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: 925df74a-f584-b179-1317-e99868a9c04a
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 16
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: What is an agile methodology?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: A linear approach to project management
+                            value: A
+                            isCorrect: false
+                            id: f33fcb30-64c9-b729-5cd0-029539b46e13
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: A flexible approach focusing on iterative progress
+                            value: B
+                            isCorrect: true
+                            id: 1e2014dd-68b9-500c-9c31-c8e9b51a622e
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: A method for risk avoidance
+                            value: C
+                            isCorrect: false
+                            id: ddb7697c-4764-701e-4335-b976c829f098
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: A budgeting technique
+                            value: D
+                            isCorrect: false
+                            id: ce085b06-2f62-5d29-bbe7-d82fa8ebd109
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: ad8c056c-8688-139e-4ae1-687e1ea967d4
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 17
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: What is the purpose of a project kickoff meeting?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: To discuss project closure
+                            value: A
+                            isCorrect: false
+                            id: 79fcd7f2-609b-2da5-dc72-7de4e9813e6d
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To align the team on project goals and roles
+                            value: B
+                            isCorrect: true
+                            id: 32bd0a1e-cd13-4161-5d26-cfeb5caafeae
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To finalize budgets
+                            value: C
+                            isCorrect: false
+                            id: 65340909-8698-50e1-47f2-f5114d8ef91b
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To evaluate team performance
+                            value: D
+                            isCorrect: false
+                            id: 7f4cbe8f-a65b-085b-5893-63f3a211617f
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: f750d076-f9d2-066c-e7d0-96ceffb48852
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 18
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: Which of the following best describes stakeholder engagement?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: Ignoring their input
+                            value: A
+                            isCorrect: false
+                            id: f607368f-ae88-2ca9-897a-a412bc301680
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Involving them in decision-making
+                            value: B
+                            isCorrect: true
+                            id: 74c7a047-8194-667c-c303-b5b17af7d8aa
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Limiting their access to information
+                            value: C
+                            isCorrect: false
+                            id: 6dbbde1d-fb7f-b058-f48f-f233aaa05bb2
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: Only involving them at the project's end
+                            value: D
+                            isCorrect: false
+                            id: 2f6ed395-4e1a-bbce-435a-c7043b6d878a
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: c4957bdf-ac48-1a3a-b0bf-378e968bc5fb
+                      name: Multiple Choice
+                      type: multipleChoice
+                      value: ""
+                      order: 19
+                      defaultEnd: false
+                      referencedBy: {}
+                      multiple: false
+                      allowOtherOptions: false
+                      ui:
+                        label: What is the function of a project management software?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Choose one
+                        flow: "1"
+                        autoScore: true
+                        weight: 0
+                      data:
+                        type: embedded
+                        url: ""
+                        logicalJumps:
+                          - option_id: null
+                            jumpTo: null
+                        src:
+                          - label: To automate financial reports
+                            value: A
+                            isCorrect: false
+                            id: 74c47cea-8406-0578-5c7d-3616af6dccf8
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To assist in planning, executing, and monitoring projects
+                            value: B
+                            isCorrect: true
+                            id: d97b274a-8060-27f7-7685-361cc4b1d81d
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To create marketing campaigns
+                            value: C
+                            isCorrect: false
+                            id: 47df2d83-14dd-df04-5b68-3713f9c80884
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                          - label: To design product prototypes
+                            value: D
+                            isCorrect: false
+                            id: 15efe22b-3a8b-f4c5-a810-c101a76b83ad
+                            img:
+                              view: false
+                              url: ""
+                              label: ""
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: 38256965-ebb7-e7eb-7990-938e1710f2fc
+                      ui:
+                        label: Thank you for your time!
+                        desc: Will get in touch with you soon.
+                        img:
+                          view: true
+                          url: /storage/talentera/public/question/image/dd/19/image/dd19d9b4-dc04-4037-8144-a09251a80b71.png
+                          type: link
+                          label: Screenshot 2023-03-09 115626.png
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                      name: Thank You Screen
+                      type: thankYou
+                      order: 20
+                      value: ""
+                      defaultEnd: false
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: false
+                        once: true
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations: []
+                  isMixed: true
+                  evaluatorsWeight: 0
+                  autoscoreWeight: 0
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/videos/languages:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/videos/languages
+      operationId: get_apiv2_en_videos_languages
+      parameters:
+        - name: languages_source
+          in: query
+          required: false
+          schema:
+            type: string
+          example: assessmentCreation
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/onboarding:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/onboarding
+      operationId: get_apiv2_en_onboarding
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/assessments/{id}/forms:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/assessments/{id}/forms
+      operationId: post_apiv2_en_assessments_id_forms
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3f3bb11d-6be5-45ea-8cd2-354a8c86509c
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  type: form
+                  action: ""
+                  method: POST
+                  is_ajax: false
+                  labelFields: true
+                  name: Form Name
+                  title: Video
+                  header: Video Assessment
+                  controls:
+                    - id: 305a1a54-e123-14cf-a5b3-a9c779b63572
+                      ui:
+                        label: Welcome to ESE English teacher assessment
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                      name: Welcome Screen
+                      type: welcome
+                      order: 0
+                      value: ""
+                      buttonText: Start
+                      defaultEnd: false
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations: []
+                    - id: 77aee5df-e497-5339-a772-fd5f73c6ee71
+                      ui:
+                        label: Your age?
+                        desc: ""
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                        answeringTime:
+                          view: false
+                          minutes: 0
+                          seconds: 0
+                      data:
+                        type: embedded
+                        src:
+                          - id: b7514d82-394e-20e0-06cb-980ab4df5a13
+                            label: 1-20
+                            value: option_0
+                            isCorrect: false
+                            answerScore: 0
+                          - id: a530eb04-3eb2-c157-af5b-651e530f8dda
+                            label: 21-30
+                            value: option_1
+                            isCorrect: false
+                            answerScore: 0
+                          - id: a9bc3e66-428b-f309-2502-d5d0734940fe
+                            label: "+30"
+                            value: option_2
+                            isCorrect: false
+                            answerScore: 0
+                        logicalJumps:
+                          - jumpTo: null
+                            option_id: null
+                      name: Multiple Choice
+                      type: multipleChoice
+                      order: 1
+                      value: ""
+                      orderBy: alpha
+                      multiple: false
+                      alignment: horizontal
+                      defaultEnd: false
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations:
+                        - type: required
+                    - id: f832514e-145a-2947-0bc2-8fa21d9a0c19
+                      ui:
+                        label: Are you located in UAE?
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                        answeringTime:
+                          view: false
+                          minutes: 0
+                          seconds: 0
+                      data:
+                        type: embedded
+                        src:
+                          - id: 82126e11-cf2c-2113-145d-45c690b59e59
+                            label: Yes
+                            value: yes
+                            isCorrect: false
+                            answerScore: 0
+                          - id: e0efaae6-a2ce-85e3-f662-40757ccbe5df
+                            label: No
+                            value: no
+                            isCorrect: false
+                            answerScore: 0
+                        logicalJumps:
+                          - jumpTo: null
+                            option_id: null
+                      name: Yes/No
+                      type: yesNo
+                      order: 2
+                      value: ""
+                      defaultEnd: false
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations:
+                        - type: required
+                    - id: 25c41bc0-a62e-26d9-3074-ddebe3ff5da3
+                      ui:
+                        label: Are you willing to relocate?
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                        answeringTime:
+                          view: false
+                          minutes: 0
+                          seconds: 0
+                      data:
+                        type: embedded
+                        src:
+                          - id: 5d261f2d-490e-89df-42e1-16ef0a632979
+                            label: Yes
+                            value: yes
+                            isCorrect: false
+                            answerScore: 0
+                          - id: b658b72f-10ee-b952-2c0c-8dadcecccc1d
+                            label: No
+                            value: no
+                            isCorrect: false
+                            answerScore: 0
+                        logicalJumps:
+                          - jumpTo: null
+                            option_id: null
+                      name: Yes/No
+                      type: yesNo
+                      order: 3
+                      value: ""
+                      defaultEnd: false
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations:
+                        - type: required
+                    - id: 1a26a225-3a7d-c441-7a73-ece53907ba86
+                      ui:
+                        label: Briefly, introduce yourself and experience as English teacher.
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                        answeringTime:
+                          view: false
+                          minutes: 0
+                          seconds: 0
+                      data:
+                        type: embedded
+                        src: []
+                      name: Smart Video
+                      type: smartVideo
+                      limit: 3
+                      order: 4
+                      value: ""
+                      attempts:
+                        count: "3"
+                        limited: true
+                      keywords: []
+                      defaultEnd: false
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      preferredLanguage:
+                        key: en-US
+                        name: English
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      aiEvaluationGuidance: ""
+                      aiAnalysisCriteria:
+                        relevance: 15
+                        clarity: 50
+                        keywordsCoverage: 25
+                        suitability: 10
+                      validations:
+                        - type: required
+                    - id: 38256965-ebb7-e7eb-7990-938e1710f2fc
+                      ui:
+                        label: Thank you for your time!
+                        desc: Will get in touch with you soon.
+                        img:
+                          view: true
+                          url: /storage/talentera/public/question/image/dd/19/image/dd19d9b4-dc04-4037-8144-a09251a80b71.png
+                          type: link
+                          label: Screenshot 2023-03-09 115626.png
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                      name: Thank You Screen
+                      type: thankYou
+                      order: 5
+                      value: ""
+                      defaultEnd: false
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations: []
+                  isMixed: false
+                  evaluatorsWeight: null
+                  autoscoreWeight: 0
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/{id}:
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/{id}
+      operationId: put_apiv2_en_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: update-tenant-onboarding
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/assessments/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/assessments/{id}
+      operationId: get_apiv2_en_assessments_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3f3bb11d-6be5-45ea-8cd2-354a8c86509c
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/lov/purpose:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/lov/purpose
+      operationId: get_apiv2_en_lov_purpose
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/lov/gender:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/lov/gender
+      operationId: get_apiv2_en_lov_gender
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/candidates:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/candidates
+      operationId: get_apiv2_en_candidates
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/candidates
+      operationId: post_apiv2_en_candidates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  position: Product Manager
+                  gender: 6543d35c-4b80-48e5-ac2a-031221e18d32
+                  nationality: 2ddf8025-54fd-4c9c-ac91-e1b44489a3aa
+                  firstName: John
+                  lastName: Doe
+                  email: test@gmail.cim
+                  jobRequisitionId: "1243"
+                  tags:
+                    - 889d9ec4-f241-4202-9d7f-4a111a499c3c
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/candidates
+      operationId: put_apiv2_en_candidates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  id: c7a71e11-1764-46c7-90b8-58cefd1a5f05
+                  position: Product Manager
+                  gender: 6543d35c-4b80-48e5-ac2a-031221e18d32
+                  nationality: 2ddf8025-54fd-4c9c-ac91-e1b44489a3aa
+                  firstName: John
+                  lastName: Doe
+                  email: test@gmail.cim
+                  jobRequisitionId: "1243"
+                  tags: []
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/lov/nationality:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/lov/nationality
+      operationId: get_apiv2_en_lov_nationality
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/purposes:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/purposes
+      operationId: get_apiv2_en_purposes
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name,id
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 68420457-af7d-4798-bc69-737c6f113737
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/purposes
+      operationId: post_apiv2_en_purposes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  id: ""
+                  name: Test
+                  description: ""
+                  type: b6adfe58-9deb-4d6b-8ef4-4fb10ef0dcaa
+                  externalLink: ""
+                  externalId: ""
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/emailTemplates/batch:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/emailTemplates/batch
+      operationId: get_apiv2_en_emailTemplates_batch
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: title,id,xid_subtype,lang
+        - name: fetchAll
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/tags/candidate:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/tags/candidate
+      operationId: get_apiv2_en_tags_candidate
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/emailTemplates/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/emailTemplates/{id}
+      operationId: get_apiv2_en_emailTemplates_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: a8456a81-6085-45fc-a363-1a1a1fb794b6
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/emailTemplates/{id}
+      operationId: put_apiv2_en_emailTemplates_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 5a9feaad-3a0b-47d1-be71-f1088dc20934
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  emailTemplateOwner: Intesar Perfai
+                  emailTemplateOwnerId: eb2fd51d-aada-4174-be83-d6886ba26689
+                  createdAt: 2026-03-02 09:22:57
+                  id: 5a9feaad-3a0b-47d1-be71-f1088dc20934
+                  tenantId: 9f301349-61c8-4e03-8903-3a5d1e68cf75
+                  companyId: 9f301349-61c8-4e03-8903-3a5d1e68cf75
+                  name: Temp test
+                  subject: "{{company.name}} Invites You To Submit a Test"
+                  title: Temp test2
+                  body: '<p>Dear&nbsp;<span class="ql-placeholder-content" data-id="candidate.firstName" data-label="candidate.firstName"
+                    spellcheck="false">﻿<span
+                    contenteditable="false">{{candidate.firstName}}</span>﻿</span>,</p><p><br></p><p>As a key part of
+                    our evaluation process, we invite you to complete the following online assessment(s). This is an
+                    excellent opportunity for you to demonstrate your skills and for us to gain a deeper understanding
+                    of your capabilities.</p><p><br></p><p><strong>Important Guidelines:</strong></p><ul><li>Ensure you
+                    have access to a laptop or PCs for the test, and please do not use an IOS iPad, iPhone or Android to
+                    do the test.</li><li>Ensure you have a stable internet connection and a quiet
+                    environment.</li><li>Do not open any of the test links unless you are fully prepared to begin — each
+                    link can only be used once and the test will start immediately upon
+                    opening.</li></ul><p><br></p><p>Please complete the following assessment(s) before the end
+                    of&nbsp;<span class="ql-placeholder-content" data-id="assessment.deadline"
+                    data-label="assessment.deadline" spellcheck="false">﻿<span
+                    contenteditable="false">{{assessment.deadline}}</span>﻿</span>.</p><p><br></p><p><strong>Assessment
+                    Link(s):</strong></p><p><span class="ql-placeholder-content" data-id="assessment.url"
+                    data-label="assessment.url" spellcheck="false">﻿<span
+                    contenteditable="false">{{assessment.url}}</span>﻿</span></p><p><br></p><p>We appreciate you taking
+                    the time to complete this important step in our process. We look forward to your
+                    response.</p><p><br></p><p>Should you encounter any technical difficulties, please reach out to our
+                    support team at&nbsp;<a href="mailto:help@evalufy.com" rel="noopener noreferrer" target="_blank"
+                    style="color: rgb(34, 47, 61);">help@evalufy.com</a>.</p><p><br></p><p>Sincerely,</p><p><span
+                    class="ql-placeholder-content" data-id="company.name" data-label="company.name"
+                    spellcheck="false">﻿<span contenteditable="false">{{company.name}}</span>﻿</span></p>'
+                  type: volt
+                  attachments: null
+                  macros: null
+                  xidType: batch
+                  xidSubtype: null
+                  isSystem: false
+                  lang: null
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/emailTemplates/{id}
+      operationId: delete_apiv2_en_emailTemplates_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 120ad746-0bad-46a0-9bcf-1ec6483a5574
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/batches/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/batches/{id}
+      operationId: get_apiv2_en_batches_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 950c9e96-3b6b-0760-4fab-4d63207140ef
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: edit
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/batches/{id}
+      operationId: put_apiv2_en_batches_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 950c9e96-3b6b-0760-4fab-4d63207140ef
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  assessmentId: 3f3bb11d-6be5-45ea-8cd2-354a8c86509c
+                  purposeId: a3071c6e-b913-440b-8506-1cc81553d695
+                  purposeType: 68420457-af7d-4798-bc69-737c6f113737
+                  batchPurposeDetail:
+                    title: ""
+                    description: ""
+                  name: Test1 Batch 2026-3-2
+                  description: New Batch
+                  deadline: 2026-03-09
+                  message: >-
+                    <p style="margin:0;">
+
+                    Dear <span class="ql-placeholder-content" data-id="candidate.firstName"
+                    data-label="candidate.firstName" spellcheck="false">&#65279;<span
+                    contenteditable="false">{{candidate.firstName}}</span>&#65279;</span>,
+
+                    </p>
+
+
+                    <br />
+
+                    <p style="margin:0;">You are invited to complete <span class="ql-placeholder-content"
+                    data-id="assessment.name" data-label="assessment.name" spellcheck="false">&#65279;<span
+                    contenteditable="false">{{assessment.name}}</span>&#65279;</span> for <span
+                    class="ql-placeholder-content" data-id="company.name" data-label="company.name"
+                    spellcheck="false">&#65279;<span contenteditable="false">{{company.name}}</span>&#65279;</span>.<br
+                    /><br /> The deadline to complete your assessment is <span class="ql-placeholder-content"
+                    data-id="assessment.deadline" data-label="assessment.deadline" spellcheck="false">&#65279;<span
+                    contenteditable="false">{{assessment.deadline}}</span>&#65279;</span>. Please ensure you submit it
+                    before the deadline to avoid any issues.
+
+                    </p>
+
+                    <br />
+
+                    <p style="margin:0;">
+
+                    {{assessment.url}}
+
+                    </p>
+
+                    <br />
+
+                    <p style="margin:0;">
+
+                    If you experience any issues accessing the assessment, feel free to reach out to <a
+                    href="mailto:help@evalufy.com">help@evalufy.com</a>.<br /><br /> Best regards,<br /><br /><span
+                    class="ql-placeholder-content" data-id="company.name" data-label="company.name"
+                    spellcheck="false">&#65279;<span contenteditable="false">{{company.name}}</span>&#65279;</span> Team
+
+                    </p>
+
+                    <br />
+                  isPublic: true
+                  subject: "{{company.name}} Invites You to Submit An Assessment"
+                  emailTemplateMacros:
+                    - candidate.firstName
+                    - me.firstName
+                    - me.lastName
+                    - me.email
+                    - assessment.name
+                    - assessment.duration
+                    - assessment.url
+                    - assessment.deadline
+                    - company.name
+                    - company.email
+                  emailTemplate: a8456a81-6085-45fc-a363-1a1a1fb794b6
+                  evaluatorsIds:
+                    - 5865c0d2-32e0-4ec0-beb1-8afe20b6bf18
+                  activeEvaluatorsCount: 1
+                  candidatesIds:
+                    - 4d219801-adbe-4665-b7f4-3e75ad928583
+                  proctoringConfig:
+                    status: false
+                    numberOfOuts: 4
+                    takeSnapshot: false
+                    noRemainingOuts: submitted
+                    snapshotInterval: 1
+                    detectOutOfWindow: false
+                  multipleAssessments: false
+                  selectedAssessments: []
+                  email_lang: en
+                  hasSmartVideo: true
+                  removedEvaluatorsIds: []
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/batches/{id}
+      operationId: delete_apiv2_en_batches_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 950c9e96-3b6b-0760-4fab-4d63207140ef
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/requests/export-credit:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/requests/export-credit
+      operationId: get_apiv2_en_requests_export_credit
+      parameters:
+        - name: batchId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 950c9e96-3b6b-0760-4fab-4d63207140ef
+        - name: requestIds
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/requests/export:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/requests/export
+      operationId: get_apiv2_en_requests_export
+      parameters:
+        - name: requestIds
+          in: query
+          required: false
+          schema:
+            type: string
+          example: across
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+          example: xlsx
+        - name: includeComments
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: includeResponse
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: publicWithResponse
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: publicWithScores
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: publicWithComments
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: publicWithMonitoring
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: includePublicLink
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: batchId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 950c9e96-3b6b-0760-4fab-4d63207140ef
+        - name: isViewedOnly
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/batches/{id}/close:
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/batches/{id}/close
+      operationId: put_apiv2_en_batches_id_close
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 950c9e96-3b6b-0760-4fab-4d63207140ef
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/ai/{id}:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/ai/{id}
+      operationId: post_apiv2_en_ai_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: generate-job-skills
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  lang: en
+                  prompt_data:
+                    job_title: Project Manager
+                    job_desc: ""
+                    assessment_focus:
+                      - skills
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/get-categories:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/get-categories
+      operationId: get_apiv2_en_get_categories
+      parameters:
+        - name: isCatalog
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/get-test:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/get-test
+      operationId: get_apiv2_en_get_test
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: isCatalog
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: isFavorite
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 018e7d6a-b457-42c9-a0f0-8ff19ad4b6b1
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/sendInvitations:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/sendInvitations
+      operationId: post_apiv2_en_sendInvitations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  categories:
+                    - categoryId: ba358f90-b6bf-4417-9f2b-576fef39beb4
+                      monitor: {}
+                      tests:
+                        - testId: 7036139a-7450-4541-ac97-a460f0ee7f38
+                          categoryId: Demo Tests
+                          testName: Demo Editing Skills Certification
+                          coverage: Prepositions ;Parallel Construction ;Comma Usage ;Punctuation ;Apostrophe Usage ;Sentence Structure ;Pronoun
+                            Usage ;Tenses ;Misplaced Modifiers ;Article Usage
+                          totalQuestions: 10
+                          duration: 10
+                          passingMarks: 60
+                          isFavorite: 0
+                  candidates:
+                    - 397ca2b3-b657-4e64-906a-085e9c19e2d7
+                  deadline: 2026-03-09
+                  emailTemplateId: e3100829-3b7d-4d9c-96ff-954a0c980437
+                  emailTemplateSubject: "{{company.name}} Invites You To Submit a Test"
+                  emailTemplateBody: <p>Dear <span class="ql-placeholder-content" data-id="candidate.firstName"
+                    data-label="candidate.firstName" spellcheck="false">﻿<span
+                    contenteditable="false">{{candidate.firstName}}</span>﻿</span>,</p><p><br></p><p>As a key part of
+                    our evaluation process, we invite you to complete the following online assessment(s). This is an
+                    excellent opportunity for you to demonstrate your skills and for us to gain a deeper understanding
+                    of your capabilities.</p><p><br></p><p><strong>Important Guidelines:</strong></p><ul><li>Ensure you
+                    have access to a laptop or PCs for the test, and please do not use an IOS iPad, iPhone or Android to
+                    do the test.</li><li>Ensure you have a stable internet connection and a quiet
+                    environment.</li><li>Do not open any of the test links unless you are fully prepared to begin — each
+                    link can only be used once and the test will start immediately upon
+                    opening.</li></ul><p><br></p><p>Please complete the following assessment(s) before the end of <span
+                    class="ql-placeholder-content" data-id="assessment.deadline" data-label="assessment.deadline"
+                    spellcheck="false">﻿<span
+                    contenteditable="false">{{assessment.deadline}}</span>﻿</span>.</p><br><p><strong>Assessment
+                    Link(s):</strong></p><p><span class="ql-placeholder-content" data-id="assessment.url"
+                    data-label="assessment.url" spellcheck="false">﻿<span
+                    contenteditable="false">{{assessment.url}}</span>﻿</span></p><p><br></p><p>We appreciate you taking
+                    the time to complete this important step in our process. We look forward to your
+                    response.</p><p><br></p><p>Should you encounter any technical difficulties, please reach out to our
+                    support team at <a href="mailto:help@evalufy.com" rel="noopener noreferrer"
+                    target="_blank">help@evalufy.com</a>.</p><p><br></p><p>Sincerely,</p><p><span
+                    class="ql-placeholder-content" data-id="company.name" data-label="company.name"
+                    spellcheck="false">﻿<span contenteditable="false">{{company.name}}</span>﻿</span></p>
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/get-sent-tests:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/get-sent-tests
+      operationId: get_apiv2_en_get_sent_tests
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count,stages
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/get-sent-tests/{id}/export:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/get-sent-tests/{id}/export
+      operationId: get_apiv2_en_get_sent_tests_id_export
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: e34e368d-5408-4090-a209-4dd82547b1dc
+        - name: stage
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/assessments/{id}/duplicates:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/assessments/{id}/duplicates
+      operationId: post_apiv2_en_assessments_id_duplicates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cfb1f202-0395-40ee-928d-9f9ceb298a50
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Test1 (Copy)
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/assessments/{id}/archive:
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/assessments/{id}/archive
+      operationId: put_apiv2_en_assessments_id_archive
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cfb1f202-0395-40ee-928d-9f9ceb298a50
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  isArchived: true
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/candidates/create-form:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/candidates/create-form
+      operationId: get_apiv2_en_candidates_create_form
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/candidates/{id}/edit-form:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/candidates/{id}/edit-form
+      operationId: get_apiv2_en_candidates_id_edit_form
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4d219801-adbe-4665-b7f4-3e75ad928583
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/purposes/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/purposes/{id}
+      operationId: get_apiv2_en_purposes_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: a3071c6e-b913-440b-8506-1cc81553d695
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/purposes/{id}
+      operationId: put_apiv2_en_purposes_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 92de63c9-da3c-41ef-83e3-de45a96633ac
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  id: 92de63c9-da3c-41ef-83e3-de45a96633ac
+                  name: Test2
+                  description: ""
+                  type: b6adfe58-9deb-4d6b-8ef4-4fb10ef0dcaa
+                  createdAt: 2026-03-02 09:19:56
+                  externalId: ""
+                  externalLink: ""
+                  tenantId: 9f301349-61c8-4e03-8903-3a5d1e68cf75
+                  companyId: 9f301349-61c8-4e03-8903-3a5d1e68cf75
+                  inUse: null
+                  in_use: false
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/purposes/{id}
+      operationId: delete_apiv2_en_purposes_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 92de63c9-da3c-41ef-83e3-de45a96633ac
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/tags:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/tags
+      operationId: post_apiv2_en_tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Test
+                  type: candidate
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/tags/{id}:
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/tags/{id}
+      operationId: put_apiv2_en_tags_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: d61845d8-3b7b-41f0-881c-676926bd8f58
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  id: d61845d8-3b7b-41f0-881c-676926bd8f58
+                  createdById: eb2fd51d-aada-4174-be83-d6886ba26689
+                  name: Test11
+                  type: candidate
+                  createdAt: 2026-03-02T09:21:05.000000Z
+                  modifiedAt: 2026-03-02T09:21:05.000000Z
+                  inUse: false
+                  noOfUses: 0
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/tags/{id}
+      operationId: delete_apiv2_en_tags_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 159a11d9-6449-46a0-b363-2381db8ffdbf
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/emailTemplates:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/emailTemplates
+      operationId: get_apiv2_en_emailTemplates
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/emailTemplates
+      operationId: post_apiv2_en_emailTemplates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Temp test
+                  subject: "{{company.name}} Invites You To Submit a Test"
+                  title: Temp test
+                  body: '<p>Dear&nbsp;<span class="ql-placeholder-content" data-id="candidate.firstName" data-label="candidate.firstName"
+                    spellcheck="false">﻿<span
+                    contenteditable="false">{{candidate.firstName}}</span>﻿</span>,</p><p><br></p><p>As a key part of
+                    our evaluation process, we invite you to complete the following online assessment(s). This is an
+                    excellent opportunity for you to demonstrate your skills and for us to gain a deeper understanding
+                    of your capabilities.</p><p><br></p><p><strong>Important Guidelines:</strong></p><ul><li>Ensure you
+                    have access to a laptop or PCs for the test, and please do not use an IOS iPad, iPhone or Android to
+                    do the test.</li><li>Ensure you have a stable internet connection and a quiet
+                    environment.</li><li>Do not open any of the test links unless you are fully prepared to begin — each
+                    link can only be used once and the test will start immediately upon
+                    opening.</li></ul><p><br></p><p>Please complete the following assessment(s) before the end
+                    of&nbsp;<span class="ql-placeholder-content" data-id="assessment.deadline"
+                    data-label="assessment.deadline" spellcheck="false">﻿<span
+                    contenteditable="false">{{assessment.deadline}}</span>﻿</span>.</p><p><br></p><p><strong>Assessment
+                    Link(s):</strong></p><p><span class="ql-placeholder-content" data-id="assessment.url"
+                    data-label="assessment.url" spellcheck="false">﻿<span
+                    contenteditable="false">{{assessment.url}}</span>﻿</span></p><p><br></p><p>We appreciate you taking
+                    the time to complete this important step in our process. We look forward to your
+                    response.</p><p><br></p><p>Should you encounter any technical difficulties, please reach out to our
+                    support team at&nbsp;<a href="mailto:help@evalufy.com" rel="noopener noreferrer" target="_blank"
+                    style="color: rgb(34, 47, 61);">help@evalufy.com</a>.</p><p><br></p><p>Sincerely,</p><p><span
+                    class="ql-placeholder-content" data-id="company.name" data-label="company.name"
+                    spellcheck="false">﻿<span contenteditable="false">{{company.name}}</span>﻿</span></p>'
+                  type: volt
+                  attachments: null
+                  macros: null
+                  xidType: batch
+                  xidSubtype: null
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/emailTemplates/batch/macros:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/emailTemplates/batch/macros
+      operationId: get_apiv2_en_emailTemplates_batch_macros
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/question-sets/search:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/question-sets/search
+      operationId: get_apiv2_en_question_sets_search
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: active
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/question-sets/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/question-sets/{id}
+      operationId: get_apiv2_en_question_sets_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: f546d3c9-52d3-4494-af7a-5bac99a03135
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/question-sets/{id}
+      operationId: put_apiv2_en_question_sets_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 601ddee0-55ce-4d9b-80a6-f0cbd2fd2245
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  id: 601ddee0-55ce-4d9b-80a6-f0cbd2fd2245
+                  name: Maths Questions (Copy)
+                  formId: null
+                  createdAt: 2026-03-02 09:26:07.62743
+                  status: inactive
+                  questionSetOwner: Intesar Perfai
+                  createdBy: eb2fd51d-aada-4174-be83-d6886ba26689
+                  numberOfQuestions: 0
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/question-sets/{id}
+      operationId: delete_apiv2_en_question_sets_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 68c25984-e313-44a4-b239-ffe6a72f712c
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/question-sets/{id}/duplicates:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/question-sets/{id}/duplicates
+      operationId: post_apiv2_en_question_sets_id_duplicates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: f546d3c9-52d3-4494-af7a-5bac99a03135
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: English teacher questions (Copy)
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/question-sets/{id}/forms:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/question-sets/{id}/forms
+      operationId: post_apiv2_en_question_sets_id_forms
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: d6010077-d912-4c1b-a7bf-6e25a5b86361
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  type: form
+                  action: ""
+                  method: POST
+                  is_ajax: false
+                  labelFields: true
+                  name: Form Name
+                  title: Video
+                  header: Video Assessment
+                  controls:
+                    - id: 1bf21b6f-f84c-8c50-3b4d-bd19a0ef60a4
+                      name: Welcome Screen
+                      type: welcome
+                      value: ""
+                      order: 0
+                      defaultEnd: false
+                      referencedBy: {}
+                      ui:
+                        label: Welcome to ESE
+                        desc: ""
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Type your welcome message
+                        flow: "1"
+                      buttonText: Start
+                      clone:
+                        val: true
+                        once: true
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                    - id: a4719cf8-09b8-6d32-eaf8-300d527b1b1d
+                      name: Short Text
+                      type: shortText
+                      value: ""
+                      order: 1
+                      defaultEnd: false
+                      referencedBy: {}
+                      ui:
+                        label: What is your name
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Type your answer
+                        flow: "1"
+                        weight: 0
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations:
+                        - type: required
+                      select: true
+                    - id: e70d8ef8-788c-858a-cd56-f3ac1592c006
+                      name: Short Text
+                      type: shortText
+                      value: ""
+                      order: 2
+                      defaultEnd: false
+                      referencedBy: {}
+                      ui:
+                        label: How old are you
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Type your answer
+                        flow: "1"
+                        weight: 0
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 0
+                      validations:
+                        - type: required
+                      select: true
+                    - id: 35828995-490e-f9b4-0e8b-158491907955
+                      name: Short Text
+                      type: shortText
+                      value: ""
+                      order: 3
+                      defaultEnd: false
+                      referencedBy: {}
+                      ui:
+                        label: Are you located in UAE?
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Type your answer
+                        flow: "1"
+                        weight: 0
+                      clone:
+                        val: true
+                        once: false
+                      active: true
+                      activeError: false
+                      orgIndex: 0
+                      validations: []
+                      select: true
+                  isMixed: false
+                  evaluatorsWeight: 0
+                  autoscoreWeight: 0
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/companyProfiles:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/companyProfiles
+      operationId: get_apiv2_en_companyProfiles
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/companyProfiles
+      operationId: put_apiv2_en_companyProfiles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  id: 9f301349-61c8-4e03-8903-3a5d1e68cf75
+                  name: Evalufy Talentera
+                  locationId: 8459e6f5-2f5b-4130-a7fe-192a49957b97
+                  website: null
+                  industry: 41d77e2b-6e7f-4512-b11b-3f549c973422
+                  video: null
+                  summary: null
+                  creationDate: 2020-07-07 12:50:11.972419
+                  companyEmail: null
+                  reminderInterval: 24
+                  adminPhone: null
+                  webmasterEmail: admin@talentera.evalufy.com
+                  brand:
+                    mainColor: "#222F3D"
+                    secondaryColor: "#BDC3C8"
+                    logo: /storage/talentera/public/logo-1710150416.png
+                    candidateBackground: /static/assessment/qi-1.jpg
+                    reminderInterval: 24
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/rbac/roles:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/rbac/roles
+      operationId: get_apiv2_en_rbac_roles
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/members/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/members/{id}
+      operationId: get_apiv2_en_members_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: c7a71e11-1764-46c7-90b8-58cefd1a5f05
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/members/{id}
+      operationId: delete_apiv2_en_members_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 5187f205-8356-4b7d-8cd2-96cc8b7f2697
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/get-roles:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/get-roles
+      operationId: get_apiv2_en_get_roles
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name:asc
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/list-modules:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/list-modules
+      operationId: get_apiv2_en_list_modules
+      parameters:
+        - name: role-id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 20772084-03b4-417c-916d-62056e669f4e
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/add-role:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/add-role
+      operationId: post_apiv2_en_add_role
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  roleName: Manager
+                  roles:
+                    assessment-&-batches:
+                      create-assessment:
+                        checked: true
+                      view-all-assessmets:
+                        checked: true
+                      edit-all-assessments:
+                        checked: true
+                      delete-all-assessment:
+                        checked: true
+                      view-all-batches:
+                        checked: true
+                      send-assessment:
+                        checked: true
+                      edit-all-batches:
+                        checked: true
+                      delete-all-batches:
+                        checked: true
+                      change-candidate-stage:
+                        checked: true
+                      select-all:
+                        checked: true
+                    predefined-tests:
+                      view:
+                        checked: false
+                      send-tests:
+                        checked: false
+                      view-test-Status:
+                        checked: false
+                      select-all:
+                        checked: false
+                    candidate-profile:
+                      view-all-candidate-listing:
+                        checked: false
+                      view-candidate-profile:
+                        checked: false
+                      add-candidate:
+                        checked: false
+                      edit-all-candidates:
+                        checked: false
+                      delete-candidate:
+                        checked: false
+                      select-all:
+                        checked: false
+                    email-template:
+                      view-all-templates:
+                        checked: false
+                      edit-all-templates:
+                        checked: false
+                      add-New-templates:
+                        checked: false
+                      delete-all-templates:
+                        checked: false
+                      select-all:
+                        checked: false
+                    purpose:
+                      view-all-purposes:
+                        checked: false
+                      add-new-purpose:
+                        checked: false
+                      edit-all-purpose:
+                        checked: false
+                      delete-purpose:
+                        checked: false
+                      select-all:
+                        checked: false
+                    question-set:
+                      Create-question-set:
+                        checked: false
+                      view-all-question-set:
+                        checked: false
+                      edit-all-question-set:
+                        checked: false
+                      delete-question-set:
+                        checked: false
+                      select-all:
+                        checked: false
+                    user-management:
+                      add-new-users:
+                        checked: false
+                      delete-users:
+                        checked: false
+                      select-all:
+                        checked: false
+                    branding-and-subscription:
+                      update-branding:
+                        checked: false
+                      view-subcription:
+                        checked: false
+                      select-all:
+                        checked: false
+                    role-Management:
+                      view-all-roles:
+                        checked: false
+                      edit-all-roles:
+                        checked: false
+                      add-new-role:
+                        checked: false
+                      delete-all-roles:
+                        checked: false
+                      select-all:
+                        checked: false
+                    tags:
+                      view:
+                        checked: false
+                      edit:
+                        checked: false
+                      assign-or-create:
+                        checked: false
+                      delete:
+                        checked: false
+                      bulk-assign:
+                        checked: false
+                      select-all:
+                        checked: false
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/update-role:
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/update-role
+      operationId: put_apiv2_en_update_role
+      parameters:
+        - name: role-id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 20772084-03b4-417c-916d-62056e669f4e
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  roleName: Assistant Manager
+                  roles:
+                    tags:
+                      edit:
+                        checked: false
+                      view:
+                        checked: false
+                      delete:
+                        checked: false
+                      select-all:
+                        checked: false
+                      bulk-assign:
+                        checked: false
+                      assign-or-create:
+                        checked: false
+                    purpose:
+                      select-all:
+                        checked: false
+                      delete-purpose:
+                        checked: false
+                      add-new-purpose:
+                        checked: false
+                      edit-all-purpose:
+                        checked: false
+                      view-all-purposes:
+                        checked: false
+                    question-set:
+                      select-all:
+                        checked: false
+                      Create-question-set:
+                        checked: false
+                      delete-question-set:
+                        checked: false
+                      edit-all-question-set:
+                        checked: false
+                      view-all-question-set:
+                        checked: false
+                    email-template:
+                      select-all:
+                        checked: false
+                      add-New-templates:
+                        checked: false
+                      edit-all-templates:
+                        checked: false
+                      view-all-templates:
+                        checked: false
+                      delete-all-templates:
+                        checked: false
+                    role-Management:
+                      select-all:
+                        checked: false
+                      add-new-role:
+                        checked: false
+                      edit-all-roles:
+                        checked: false
+                      view-all-roles:
+                        checked: false
+                      delete-all-roles:
+                        checked: false
+                    user-management:
+                      select-all:
+                        checked: false
+                      delete-users:
+                        checked: false
+                      add-new-users:
+                        checked: false
+                    predefined-tests:
+                      view:
+                        checked: false
+                      select-all:
+                        checked: false
+                      send-tests:
+                        checked: false
+                      view-test-Status:
+                        checked: false
+                    candidate-profile:
+                      select-all:
+                        checked: false
+                      add-candidate:
+                        checked: false
+                      delete-candidate:
+                        checked: false
+                      edit-all-candidates:
+                        checked: false
+                      view-candidate-profile:
+                        checked: false
+                      view-all-candidate-listing:
+                        checked: false
+                    assessment-&-batches:
+                      select-all:
+                        checked: true
+                      send-assessment:
+                        checked: true
+                      edit-all-batches:
+                        checked: true
+                      view-all-batches:
+                        checked: true
+                      create-assessment:
+                        checked: true
+                      delete-all-batches:
+                        checked: true
+                      view-all-assessmets:
+                        checked: true
+                      edit-all-assessments:
+                        checked: true
+                      delete-all-assessment:
+                        checked: true
+                      change-candidate-stage:
+                        checked: true
+                    branding-and-subscription:
+                      select-all:
+                        checked: false
+                      update-branding:
+                        checked: false
+                      view-subcription:
+                        checked: false
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/delete-role/{id}:
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/delete-role/{id}
+      operationId: delete_apiv2_en_delete_role_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ec72421e-6796-41ba-8d06-24ec32a3674e
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/lov/location:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/lov/location
+      operationId: get_apiv2_en_lov_location
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/lov/industry:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/lov/industry
+      operationId: get_apiv2_en_lov_industry
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    EnPostRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+    EnPutRequest:
+      type: object
+      properties:
+        assessmentId:
+          type: string
+        purposeId:
+          type: string
+        purposeType:
+          type: string
+        batchPurposeDetail:
+          type: object
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+          required:
+            - title
+            - description
+        name:
+          type: string
+        description:
+          type: string
+        deadline:
+          type: string
+        message:
+          type: string
+        isPublic:
+          type: boolean
+        subject:
+          type: string
+        emailTemplateMacros:
+          type: array
+          items:
+            type: string
+        emailTemplate:
+          type: string
+        evaluatorsIds:
+          type: array
+          items:
+            type: string
+        activeEvaluatorsCount:
+          type: integer
+        candidatesIds:
+          type: array
+          items:
+            type: string
+        proctoringConfig:
+          type: object
+          properties:
+            status:
+              type: boolean
+            numberOfOuts:
+              type: integer
+            takeSnapshot:
+              type: boolean
+            noRemainingOuts:
+              type: string
+            snapshotInterval:
+              type: integer
+            detectOutOfWindow:
+              type: boolean
+          required:
+            - status
+            - numberOfOuts
+            - takeSnapshot
+            - noRemainingOuts
+            - snapshotInterval
+            - detectOutOfWindow
+        multipleAssessments:
+          type: boolean
+        selectedAssessments:
+          type: array
+          items:
+            type: string
+        email_lang:
+          type: string
+        hasSmartVideo:
+          type: boolean
+        removedEvaluatorsIds:
+          type: array
+          items:
+            type: string
+      required:
+        - assessmentId
+        - purposeId
+        - purposeType
+        - batchPurposeDetail
+        - name
+        - description
+        - deadline
+        - message
+        - isPublic
+        - subject
+        - emailTemplateMacros
+        - emailTemplate
+        - evaluatorsIds
+        - activeEvaluatorsCount
+        - candidatesIds
+        - proctoringConfig
+        - multipleAssessments
+        - selectedAssessments
+        - email_lang
+        - hasSmartVideo
+        - removedEvaluatorsIds
