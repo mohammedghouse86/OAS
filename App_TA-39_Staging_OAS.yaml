@@ -406,8 +406,8 @@ paths:
         in: path
         required: true
         schema:
-          type: string
-        example: '1581'
+          type: integer
+        example: 1581
       responses:
         '200':
           description: Success
@@ -422,14 +422,14 @@ paths:
         in: path
         required: true
         schema:
-          type: string
-        example: '170'
+          type: integer
+        example: 170
       - name: userId
         in: path
         required: true
         schema:
-          type: string
-        example: '16'
+          type: integer
+        example: 16
       responses:
         '200':
           description: Success
