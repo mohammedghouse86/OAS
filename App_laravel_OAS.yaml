@@ -1,0 +1,1504 @@
+openapi: 3.0.3
+info:
+  title: Laravel App
+  version: 1.0.0
+servers:
+  - url: https://laravel.evalufy.com
+tags:
+  - name: en
+paths:
+  /apiv2/en/members:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/members
+      operationId: get_apiv2_en_members
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,firstName,lastName,image
+        - name: roles
+          in: query
+          required: false
+          schema:
+            type: string
+          example: coordinator,admin
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: firstName:asc
+        - name: active
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: autoScoring
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/members
+      operationId: put_apiv2_en_members
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  userId: e27ccd96-6a3a-48d8-8fae-792e3b741de3
+                  firstName: Intesar
+                  lastName: perfaia
+                  email: intesar@perfai.ai
+                  image: null
+                  preferredLang: en
+                  isFirstLogin: false
+                  isSuperAdmin: false
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/assessments:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/assessments
+      operationId: get_apiv2_en_assessments
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+        - name: exclude
+          in: query
+          required: false
+          schema:
+            type: string
+          example: zeroQuestions,untitled
+        - name: excludeArchived
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/assessments
+      operationId: post_apiv2_en_assessments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Assessment 1
+                  description: null
+                  type: regular
+                  hours: 0
+                  minutes: 0
+                  inUse: false
+                  autoScoring: false
+                  passingCriteria: null
+                  respectsWeight: false
+                  navigationMode: linear
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/batches:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/batches
+      operationId: get_apiv2_en_batches
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count,stages
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: lastActivityAt:desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/batches
+      operationId: post_apiv2_en_batches
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  id: 6ce7c8a9-9ee6-c76d-87b6-4bd156d2af09
+                  assessmentId: 96b4e60c-c769-4807-89d9-2085729d357a
+                  purposeId: 144eb63e-6eac-4655-bf98-9385a0a7cd2e
+                  evaluatorsIds:
+                    - 3a639707-eaca-4975-84de-6a0fe8e209aa
+                  candidatesIds:
+                    - 241ab598-b62f-42c6-bcb2-16a3845a430c
+                  name: b1
+                  message: <p>Dear <span class="ql-placeholder-content" data-id="candidate.firstName" data-label="candidate.firstName"
+                    spellcheck="false">﻿<span
+                    contenteditable="false">{{candidate.firstName}}</span>﻿</span>,</p><p><br></p><p>You are invited to
+                    complete <span class="ql-placeholder-content" data-id="assessment.name" data-label="assessment.name"
+                    spellcheck="false">﻿<span contenteditable="false">{{assessment.name}}</span>﻿</span> for <span
+                    class="ql-placeholder-content" data-id="company.name" data-label="company.name"
+                    spellcheck="false">﻿<span contenteditable="false">{{company.name}}</span>﻿</span>.</p><p><br></p><p>
+                    The deadline to complete your assessment is <span class="ql-placeholder-content"
+                    data-id="assessment.deadline" data-label="assessment.deadline" spellcheck="false">﻿<span
+                    contenteditable="false">{{assessment.deadline}}</span>﻿</span>. Please ensure you submit it before
+                    the deadline to avoid any issues.</p><p><br></p><p>{{assessment.url}}</p><p><br></p><p>If you
+                    experience any issues accessing the assessment, feel free to reach out to <a
+                    href="mailto:help@evalufy.com" rel="noopener noreferrer"
+                    target="_blank">help@evalufy.com</a>.</p><p><br></p><p> Best regards,</p><p><br></p><p><span
+                    class="ql-placeholder-content" data-id="company.name" data-label="company.name"
+                    spellcheck="false">﻿<span contenteditable="false">{{company.name}}</span>﻿</span> Team</p>
+                  description: wds
+                  deadline: 2026-03-10
+                  sender: null
+                  subject: "{{company.name}} Invites You to Submit An Assessment"
+                  emailTemplate: a8456a81-6085-45fc-a363-1a1a1fb794b6
+                  isPublic: true
+                  proctoringConfig:
+                    status: false
+                    detectOutOfWindow: false
+                    noRemainingOuts: submitted
+                    takeSnapshot: false
+                    numberOfOuts: 4
+                    snapshotInterval: 1
+                  multipleAssessments: false
+                  selectedAssessments: []
+                  sendDeadlineEmail: true
+                  batchPurposeDetail:
+                    title: ""
+                    description: ""
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/forms/questionsLimit:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/forms/questionsLimit
+      operationId: get_apiv2_en_forms_questionsLimit
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/ai/{id}:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/ai/{id}
+      operationId: post_apiv2_en_ai_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: generate-job-skills
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  lang: en
+                  prompt_data:
+                    job_title: PM
+                    job_desc: ""
+                    assessment_focus:
+                      - skills
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/question-sets:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/question-sets
+      operationId: get_apiv2_en_question_sets
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/forms/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/forms/{id}
+      operationId: get_apiv2_en_forms_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 71326c64-d465-44d6-9a3a-8987f710f351
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/onboarding:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/onboarding
+      operationId: get_apiv2_en_onboarding
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/{id}:
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/{id}
+      operationId: put_apiv2_en_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: update-tenant-onboarding
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/{id}
+      operationId: post_apiv2_en_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: add-predefined-test-to-favorite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  predefined_test_id: 7036139a-7450-4541-ac97-a460f0ee7f38
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/assessments/{id}/forms:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/assessments/{id}/forms
+      operationId: post_apiv2_en_assessments_id_forms
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 96b4e60c-c769-4807-89d9-2085729d357a
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  type: form
+                  action: ""
+                  method: POST
+                  is_ajax: false
+                  labelFields: true
+                  name: Form Name
+                  title: Video
+                  header: Video Assessment
+                  controls:
+                    - id: d439d620-247d-df7f-71a9-8c52ce4e72a3
+                      name: Long text
+                      type: longText
+                      value: Who was India's first Prime Minister?
+                      order: 0
+                      defaultEnd: true
+                      referencedBy: {}
+                      ui:
+                        label: cvbnm
+                        desc: vbnm,
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Type your answer
+                        flow: "1"
+                        weight: 0
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 4
+                      validations:
+                        - type: required
+                        - type: length
+                          options:
+                            min: "5"
+                            max: "996"
+                      select: true
+                    - id: 870ab013-8376-6a15-c94d-d705165d35c2
+                      ui:
+                        label: "123"
+                        desc: ""
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                      name: Welcome Screen
+                      type: welcome
+                      order: 1
+                      value: ""
+                      buttonText: Start
+                      defaultEnd: false
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations: []
+                    - id: a6c500dc-5173-f35f-cb19-3eb1df3cfb94
+                      ui:
+                        label: "213"
+                        desc: ""
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                        answeringTime:
+                          view: false
+                          minutes: 0
+                          seconds: 0
+                      data:
+                        type: embedded
+                        src:
+                          - id: 521e5ae1-7806-80d7-1973-7fa451720cbd
+                            label: "123"
+                            value: option_0
+                            isCorrect: false
+                          - id: 68294609-82ed-54be-e205-394fefe966c4
+                            label: "123"
+                            value: option_1
+                            isCorrect: false
+                        logicalJumps:
+                          - jumpTo: null
+                            option_id: null
+                      name: Drop Down
+                      type: dropdown
+                      order: 2
+                      value: ""
+                      defaultEnd: false
+                      answerScore: 0
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations:
+                        - type: required
+                    - id: 24886a93-f13e-aee0-218c-35d3c6c357ca
+                      name: Email
+                      type: email
+                      value: 1233@gmail.com
+                      order: 3
+                      defaultEnd: false
+                      referencedBy: {}
+                      ui:
+                        label: bmn,.
+                        desc: ""
+                        answeringTime:
+                          minutes: 0
+                          seconds: 0
+                          view: false
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Type an email address
+                        flow: "1"
+                        weight: 0
+                      clone:
+                        val: true
+                        once: false
+                      active: true
+                      activeError: false
+                      orgIndex: 14
+                      validations: []
+                      select: true
+                    - id: ceeb3ab4-a678-435e-e451-15d77eeef95d
+                      ui:
+                        label: "123"
+                        desc: ""
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf
+                          maxSize: 5
+                          view: false
+                          files: []
+                        answeringTime:
+                          view: false
+                          minutes: 0
+                          seconds: 0
+                      name: Short Text
+                      type: shortText
+                      order: 4
+                      value: ""
+                      defaultEnd: false
+                      answerScore: 0
+                      referencedBy: {}
+                      persistencePolicy: 1
+                      clone:
+                        val: true
+                        once: false
+                      active: false
+                      activeError: false
+                      orgIndex: 1
+                      select: true
+                      validations:
+                        - type: required
+                    - id: 66a2ee61-6b70-b418-5cef-27959d18e60f
+                      name: Thank You Screen
+                      type: thankYou
+                      value: ""
+                      order: 5
+                      defaultEnd: false
+                      referencedBy: {}
+                      ui:
+                        label: Thankyou!
+                        desc: ""
+                        attachments:
+                          limit: 4
+                          accepted: .jpg,.jpeg,.png,.doc,.docx,.txt,.pdf,.xls,.xlsx,.csv,.ppt,.pptx
+                          maxSize: 5
+                          view: false
+                          files: []
+                        placeholder: Type your thank you message
+                        flow: "1"
+                      clone:
+                        val: true
+                        once: true
+                      active: false
+                      activeError: false
+                      orgIndex: 15
+                      validations: []
+                      select: true
+                  isMixed: false
+                  evaluatorsWeight: null
+                  autoscoreWeight: 0
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/assessments/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/assessments/{id}
+      operationId: get_apiv2_en_assessments_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 96b4e60c-c769-4807-89d9-2085729d357a
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/assessments/{id}
+      operationId: delete_apiv2_en_assessments_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 77b1f4c6-0307-4a04-8ddc-abebaa853a2e
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/users/credits:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/users/credits
+      operationId: get_apiv2_en_users_credits
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/lov/purpose:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/lov/purpose
+      operationId: get_apiv2_en_lov_purpose
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/lov/gender:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/lov/gender
+      operationId: get_apiv2_en_lov_gender
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/candidates:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/candidates
+      operationId: get_apiv2_en_candidates
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/candidates
+      operationId: post_apiv2_en_candidates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  firstName: gfdsa
+                  lastName: thgrew
+                  email: tbvfcdx@gmail.com
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/candidates
+      operationId: put_apiv2_en_candidates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  id: c12b7820-036c-4996-bb2e-6a47d363ba52
+                  firstName: gfdsa1
+                  lastName: thgrew
+                  email: tbvfcdx@gmail.com
+                  tags: []
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/lov/nationality:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/lov/nationality
+      operationId: get_apiv2_en_lov_nationality
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/purposes:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/purposes
+      operationId: get_apiv2_en_purposes
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name,id
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 68420457-af7d-4798-bc69-737c6f113737
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/purposes
+      operationId: post_apiv2_en_purposes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  id: ""
+                  name: p1
+                  description: ""
+                  type: 68420457-af7d-4798-bc69-737c6f113737
+                  externalLink: ""
+                  externalId: ""
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/emailTemplates/batch:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/emailTemplates/batch
+      operationId: get_apiv2_en_emailTemplates_batch
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: title,id,xid_subtype,lang
+        - name: fetchAll
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/tags/candidate:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/tags/candidate
+      operationId: get_apiv2_en_tags_candidate
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/emailTemplates/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/emailTemplates/{id}
+      operationId: get_apiv2_en_emailTemplates_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: e9b6eda8-35ad-42dc-a769-fad5b6effddc
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/emailTemplates/{id}
+      operationId: put_apiv2_en_emailTemplates_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9371d094-200d-4382-b1dc-8ff6fa9cc004
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  emailTemplateOwner: Intesar perfai
+                  emailTemplateOwnerId: e27ccd96-6a3a-48d8-8fae-792e3b741de3
+                  createdAt: 2026-03-03 07:40:27
+                  id: 9371d094-200d-4382-b1dc-8ff6fa9cc004
+                  tenantId: e9bf8abb-b42d-44ca-84ca-7d28f7378e2a
+                  companyId: e9bf8abb-b42d-44ca-84ca-7d28f7378e2a
+                  name: t1
+                  subject: fredwwwwwwwwwwwgtfrds
+                  title: t1
+                  body: <p>ntbrvecwxsa</p>
+                  type: volt
+                  attachments: null
+                  macros: null
+                  xidType: batch
+                  xidSubtype: null
+                  isSystem: false
+                  lang: null
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/emailTemplates/{id}
+      operationId: delete_apiv2_en_emailTemplates_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 9371d094-200d-4382-b1dc-8ff6fa9cc004
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/get-categories:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/get-categories
+      operationId: get_apiv2_en_get_categories
+      parameters:
+        - name: isCatalog
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/get-test:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/get-test
+      operationId: get_apiv2_en_get_test
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: isCatalog
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 018e7d6a-b457-42c9-a0f0-8ff19ad4b6b1
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/sendInvitations:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/sendInvitations
+      operationId: post_apiv2_en_sendInvitations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  categories:
+                    - categoryId: 0d215940-56fe-47d2-bc73-1d676c36d3b3
+                      monitor:
+                        detectSwitch: true
+                        numberOfScreens: 5
+                      tests:
+                        - testId: 3cddfd0c-6388-402b-9031-88812f109569
+                          categoryId: Health and Fitness
+                          testName: Entrenador Personal Certification
+                          coverage: Teoría y terminología de fitness ;Nutrición y componentes de los alimentos ;Lesiones deportivas y primeros
+                            auxilios ;Habilidades administrativas del entrenador personal ;La ciencia de perder peso
+                            ;Fisiología del cuerpo humano ;Rutinas y técnicas de ejercicios ;Recomendaciones de
+                            ejercicios
+                          totalQuestions: 40
+                          duration: 40
+                          passingMarks: 60
+                          isFavorite: 0
+                  candidates:
+                    - 241ab598-b62f-42c6-bcb2-16a3845a430c
+                  deadline: 2026-03-10
+                  emailTemplateId: 4bbd08d6-5a82-4f06-afa0-357a40822092
+                  emailTemplateSubject: "{{company.name}} Invites You To Submit a Test"
+                  emailTemplateBody: '<p>Dear <span class="ql-placeholder-content" data-id="candidate.firstName"
+                    data-label="candidate.firstName" spellcheck="false">﻿<span
+                    contenteditable="false">{{candidate.firstName}}</span>﻿</span>,</p><p><br></p><p>As a key part of
+                    our evaluation process, we invite you to complete the following online assessment(s). This is an
+                    excellent opportunity for you to demonstrate your skills and for us to gain a deeper understanding
+                    of your capabilities.</p><p><br></p><p><strong>Important Guidelines:</strong></p><ul><li>Ensure you
+                    have access to a laptop or PCs for the test, and please do not use an IOS iPad, iPhone or Android to
+                    do the test.</li><li>Ensure you have a stable internet connection and a quiet
+                    environment.</li><li>Do not open any of the test links unless you are fully prepared to begin — each
+                    link can only be used once and the test will start immediately upon
+                    opening.</li></ul><p><br></p><p><strong>Proctoring Requirements:</strong></p><ul><li>Camera Access:
+                    Your camera must be enabled and uncovered throughout the session. The system will capture your
+                    picture periodically to verify your identity.</li><li>Screen Monitoring: You must remain within the
+                    assessment window at all times. Switching to other applications, tabs, or screens is not permitted
+                    and will be logged. Exceeding the allowed number of screen switches will automatically terminate the
+                    test.</li></ul><p><br></p><p>Please complete the following assessment(s) before the end of <span
+                    class="ql-placeholder-content" data-id="assessment.deadline" data-label="assessment.deadline"
+                    spellcheck="false">﻿<span
+                    contenteditable="false">{{assessment.deadline}}</span>﻿</span>.</p><p><br></p><p><strong>Assessment
+                    Link(s):</strong></p><p><span class="ql-placeholder-content" data-id="assessment.url"
+                    data-label="assessment.url" spellcheck="false">﻿<span
+                    contenteditable="false">{{assessment.url}}</span>﻿</span></p><p><br></p><p>We appreciate you taking
+                    the time to complete this important step in our process. We look forward to your
+                    response.</p><p><br></p><p>Should you encounter any technical difficulties, please reach out to our
+                    support team at <a href="mailto:help@evalufy.com" rel="noopener noreferrer"
+                    target="_blank">help@evalufy.com</a>.</p><p><br></p><p>Sincerely,</p><p><span
+                    class="ql-placeholder-content" data-id="company.name" data-label="company.name"
+                    spellcheck="false">﻿<span contenteditable="false">{{company.name}}</span>﻿</span></p>'
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/candidates/create-form:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/candidates/create-form
+      operationId: get_apiv2_en_candidates_create_form
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/tags:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/tags
+      operationId: post_apiv2_en_tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Imp
+                  type: candidate
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/emailTemplates:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/emailTemplates
+      operationId: get_apiv2_en_emailTemplates
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/emailTemplates
+      operationId: post_apiv2_en_emailTemplates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: t1
+                  subject: fredwwwwwwwwwww
+                  title: t1
+                  body: <p>ntbrvecwxsa</p>
+                  type: volt
+                  attachments: null
+                  macros: null
+                  xidType: batch
+                  xidSubtype: null
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/tags/{id}:
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/tags/{id}
+      operationId: put_apiv2_en_tags_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 6c364411-cd4c-4c4f-8574-7949a4d1e73e
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  id: 6c364411-cd4c-4c4f-8574-7949a4d1e73e
+                  createdById: e27ccd96-6a3a-48d8-8fae-792e3b741de3
+                  name: Imp1
+                  type: candidate
+                  createdAt: 2026-03-03T07:37:08.000000Z
+                  modifiedAt: 2026-03-03T07:37:08.000000Z
+                  inUse: false
+                  noOfUses: 0
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/tags/{id}
+      operationId: delete_apiv2_en_tags_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 6c364411-cd4c-4c4f-8574-7949a4d1e73e
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/purposes/{id}:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/purposes/{id}
+      operationId: get_apiv2_en_purposes_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: d114463f-646d-4ebe-b9fa-98dfddab0250
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/purposes/{id}
+      operationId: put_apiv2_en_purposes_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: d114463f-646d-4ebe-b9fa-98dfddab0250
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  id: d114463f-646d-4ebe-b9fa-98dfddab0250
+                  name: p1111
+                  description: ""
+                  type: 68420457-af7d-4798-bc69-737c6f113737
+                  createdAt: 2026-03-03 07:36:51
+                  externalId: ""
+                  externalLink: ""
+                  tenantId: e9bf8abb-b42d-44ca-84ca-7d28f7378e2a
+                  companyId: e9bf8abb-b42d-44ca-84ca-7d28f7378e2a
+                  inUse: null
+                  in_use: false
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/purposes/{id}
+      operationId: delete_apiv2_en_purposes_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: d114463f-646d-4ebe-b9fa-98dfddab0250
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/candidates/{id}/edit-form:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/candidates/{id}/edit-form
+      operationId: get_apiv2_en_candidates_id_edit_form
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: c12b7820-036c-4996-bb2e-6a47d363ba52
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/candidates/{id}:
+    delete:
+      tags:
+        - en
+      summary: DELETE /apiv2/en/candidates/{id}
+      operationId: delete_apiv2_en_candidates_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: c12b7820-036c-4996-bb2e-6a47d363ba52
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/assessments/{id}/duplicates:
+    post:
+      tags:
+        - en
+      summary: POST /apiv2/en/assessments/{id}/duplicates
+      operationId: post_apiv2_en_assessments_id_duplicates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 96b4e60c-c769-4807-89d9-2085729d357a
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Assessment 1 (Copy)
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/assessments/{id}/archive:
+    put:
+      tags:
+        - en
+      summary: PUT /apiv2/en/assessments/{id}/archive
+      operationId: put_apiv2_en_assessments_id_archive
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: a4e824a6-ef59-4a01-84e4-af121e14bd81
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnPutRequest"
+            examples:
+              fromHar:
+                value:
+                  isArchived: true
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/get-sent-tests:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/get-sent-tests
+      operationId: get_apiv2_en_get_sent_tests
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count,stages
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/get-sent-tests/{id}/export:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/get-sent-tests/{id}/export
+      operationId: get_apiv2_en_get_sent_tests_id_export
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 1b85d369-2563-4cc0-971d-fe4717ea05e5
+        - name: stage
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/emailTemplates/batch/macros:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/emailTemplates/batch/macros
+      operationId: get_apiv2_en_emailTemplates_batch_macros
+      responses:
+        "200":
+          description: Success
+  /apiv2/en/question-sets/search:
+    get:
+      tags:
+        - en
+      summary: GET /apiv2/en/question-sets/search
+      operationId: get_apiv2_en_question_sets_search
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: active
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: count
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt:desc
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    EnPostRequest:
+      type: object
+      properties:
+        lang:
+          type: string
+        prompt_data:
+          type: object
+          properties:
+            job_title:
+              type: string
+            job_desc:
+              type: string
+            assessment_focus:
+              type: array
+              items:
+                type: string
+          required:
+            - job_title
+            - job_desc
+            - assessment_focus
+      required:
+        - lang
+        - prompt_data
+    EnPutRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        createdById:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        createdAt:
+          type: string
+        modifiedAt:
+          type: string
+        inUse:
+          type: boolean
+        noOfUses:
+          type: integer
+      required:
+        - id
+        - createdById
+        - name
+        - type
+        - createdAt
+        - modifiedAt
+        - inUse
+        - noOfUses
