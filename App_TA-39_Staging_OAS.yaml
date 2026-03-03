@@ -3,22 +3,23 @@ info:
   title: Ta-39 Staging App
   version: 1.0.0
 servers:
-  - url: https://api-staging.ta-39.com
+- url: https://api-staging.ta-39.com
 tags:
-  - name: assignments
-  - name: chat
-  - name: classroom
-  - name: folders
-  - name: login
-  - name: rubrics
-  - name: submissions
-  - name: users
-  - name: "{id}"
+- name: assignments
+- name: chat
+- name: classroom
+- name: folders
+- name: login
+- name: rubrics
+- name: submissions
+- name: users
+- name: '{id}'
+- name: exemplar_analysis_history
 paths:
   /login/application:
     post:
       tags:
-        - login
+      - login
       summary: POST /login/application
       operationId: post_login_application
       requestBody:
@@ -26,45 +27,45 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/LoginPostRequest"
+              $ref: '#/components/schemas/LoginPostRequest'
             examples:
               fromHar:
                 value:
-                  email: fatima@perfai.ai
-                  password: Maimoona@786
+                  email: example@mail.org
+                  password: P@$$\/\/0r|)
       responses:
-        "200":
+        '200':
           description: Success
   /users/:
     get:
       tags:
-        - users
+      - users
       summary: GET /users/
       operationId: get_users
       responses:
-        "200":
+        '200':
           description: Success
   /folders/with-assignment-count:
     get:
       tags:
-        - folders
+      - folders
       summary: GET /folders/with-assignment-count
       operationId: get_folders_id
       responses:
-        "200":
+        '200':
           description: Success
   /assignments/:
     get:
       tags:
-        - assignments
+      - assignments
       summary: GET /assignments/
       operationId: get_assignments
       responses:
-        "200":
+        '200':
           description: Success
     post:
       tags:
-        - assignments
+      - assignments
       summary: POST /assignments/
       operationId: post_assignments
       requestBody:
@@ -72,24 +73,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AssignmentsPostRequest"
+              $ref: '#/components/schemas/AssignmentsPostRequest'
             examples:
               fromHar:
                 value:
-                  DateCreated: 2026-03-03T00:15:48.636Z
-                  DueDate: 2026-03-02T18:30:00.000Z
+                  DateCreated: 2026-03-03 00:15:48.636000+00:00
+                  DueDate: 2026-03-02 18:30:00+00:00
                   Grade: 2nd
                   Name: a
                   Status: Open
                   Subject: a
                   Course: aa
-                  Submissions: ""
-                  TeachersName: ""
+                  Submissions: ''
+                  TeachersName: ''
                   RubricID: 2321
                   FeedbackTemplateID: 1210
                   QuestionSet:
-                    - details: a
-                      criteria: a
+                  - details: a
+                    criteria: a
                   QuizID: 0
                   CreatedBy: 0
                   trialRun: false
@@ -97,20 +98,20 @@ paths:
                   isCopilotEnabled: true
                   FolderID: 1582
       responses:
-        "200":
+        '200':
           description: Success
   /rubrics/:
     get:
       tags:
-        - rubrics
+      - rubrics
       summary: GET /rubrics/
       operationId: get_rubrics
       responses:
-        "200":
+        '200':
           description: Success
     post:
       tags:
-        - rubrics
+      - rubrics
       summary: POST /rubrics/
       operationId: post_rubrics
       requestBody:
@@ -118,39 +119,39 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RubricsPostRequest"
+              $ref: '#/components/schemas/RubricsPostRequest'
             examples:
               fromHar:
                 value:
                   RubricID: 0
                   RubricTitle: t
                   RubricDetails: t
-                  DateCreated: 2026-03-03T00:14:33.037Z
+                  DateCreated: 2026-03-03 00:14:33.037000+00:00
       responses:
-        "200":
+        '200':
           description: Success
   /assignments/folder/1581:
     get:
       tags:
-        - assignments
+      - assignments
       summary: GET /assignments/folder/1581
       operationId: get_assignments_folder_id
       responses:
-        "200":
+        '200':
           description: Success
   /folders:
     get:
       tags:
-        - folders
+      - folders
       summary: GET /folders
       operationId: get_folders
       responses:
-        "200":
+        '200':
           description: Success
   /assignments/1040/move/1588:
     put:
       tags:
-        - assignments
+      - assignments
       summary: PUT /assignments/1040/move/1588
       operationId: put_assignments_id_move_id2
       requestBody:
@@ -158,17 +159,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AssignmentsPutRequest"
+              $ref: '#/components/schemas/AssignmentsPutRequest'
             examples:
               fromHar:
                 value: {}
       responses:
-        "200":
+        '200':
           description: Success
   /rubrics/190:
     put:
       tags:
-        - rubrics
+      - rubrics
       summary: PUT /rubrics/190
       operationId: put_rubrics_id
       requestBody:
@@ -176,7 +177,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RubricsPutRequest"
+              $ref: '#/components/schemas/RubricsPutRequest'
             examples:
               fromHar:
                 value:
@@ -192,7 +193,8 @@ paths:
                     criteria: []
                     total_score: null
                     score_bands: null
-                    reasoning: Only a title present; no criteria or scoring information in the provided text.
+                    reasoning: Only a title present; no criteria or scoring information
+                      in the provided text.
                     usage:
                       completion_tokens: 811
                       prompt_tokens: 3813
@@ -207,23 +209,23 @@ paths:
                         cached_tokens: 0
                     provider: openai
                     model: o3-2025-04-16
-                    version: "2"
-                    date_extracted: 2026-03-02T05:46:34.296492Z
+                    version: '2'
+                    date_extracted: 2026-03-02 05:46:34.296492+00:00
       responses:
-        "200":
+        '200':
           description: Success
   /feedback_templates/:
     get:
       tags:
-        - "{id}"
+      - '{id}'
       summary: GET /feedback_templates/
       operationId: get_id
       responses:
-        "200":
+        '200':
           description: Success
     post:
       tags:
-        - "{id}"
+      - '{id}'
       summary: POST /feedback_templates/
       operationId: post_id
       requestBody:
@@ -231,123 +233,123 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/{id}PostRequest"
+              $ref: '#/components/schemas/{id}PostRequest'
             examples:
               fromHar:
                 value:
                   FeedbackTemplateID: 0
                   FeedbackTemplateTitle: a
                   FeedbackTemplateDetails: a
-                  DateCreated: 2026-03-03T00:15:37.835Z
+                  DateCreated: 2026-03-03 00:15:37.835000+00:00
       responses:
-        "200":
+        '200':
           description: Success
   /assignments/9929:
     get:
       tags:
-        - assignments
+      - assignments
       summary: GET /assignments/9929
       operationId: get_assignments_id
       responses:
-        "200":
+        '200':
           description: Success
   /assignments/9929/report/performance:
     get:
       tags:
-        - assignments
+      - assignments
       summary: GET /assignments/9929/report/performance
       operationId: get_assignments_id_report_performance
       responses:
-        "200":
+        '200':
           description: Success
   /rubrics/quiz/9929/exemplars:
     get:
       tags:
-        - rubrics
+      - rubrics
       summary: GET /rubrics/quiz/9929/exemplars
       operationId: get_rubrics_quiz_id_exemplars
       responses:
-        "200":
+        '200':
           description: Success
   /assignments/feedback-view-style/9929:
     get:
       tags:
-        - assignments
+      - assignments
       summary: GET /assignments/feedback-view-style/9929
       operationId: get_assignments_id_id2
       responses:
-        "200":
+        '200':
           description: Success
   /analysis_history/credits_used:
     get:
       tags:
-        - "{id}"
+      - '{id}'
       summary: GET /analysis_history/credits_used
       operationId: get_id_credits_used
       responses:
-        "200":
+        '200':
           description: Success
   /classroom/9929:
     get:
       tags:
-        - classroom
+      - classroom
       summary: GET /classroom/9929
       operationId: get_classroom_id
       responses:
-        "200":
+        '200':
           description: Success
   /rubrics/2321:
     get:
       tags:
-        - rubrics
+      - rubrics
       summary: GET /rubrics/2321
       operationId: get_rubrics_id
       responses:
-        "200":
+        '200':
           description: Success
   /feedback_templates/1210:
     get:
       tags:
-        - "{id}"
+      - '{id}'
       summary: GET /feedback_templates/1210
       operationId: get_id_id2
       responses:
-        "200":
+        '200':
           description: Success
   /chat/assignment/9929/user/16/thread:
     get:
       tags:
-        - chat
+      - chat
       summary: GET /chat/assignment/9929/user/16/thread
       operationId: get_chat_assignment_id_user_id2_thread
       parameters:
-        - name: role
-          in: query
-          required: false
-          schema:
-            type: string
-          example: teacher
-        - name: studentId
-          in: query
-          required: false
-          schema:
-            type: string
-          example: undefined
+      - name: role
+        in: query
+        required: false
+        schema:
+          type: string
+        example: teacher
+      - name: studentId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: undefined
       responses:
-        "200":
+        '200':
           description: Success
   /submissions/16/quiz/9929:
     get:
       tags:
-        - submissions
+      - submissions
       summary: GET /submissions/16/quiz/9929
       operationId: get_submissions_id_quiz_id2
       responses:
-        "200":
+        '200':
           description: Success
     post:
       tags:
-        - submissions
+      - submissions
       summary: POST /submissions/16/quiz/9929
       operationId: post_submissions_id_quiz_id2
       requestBody:
@@ -355,43 +357,97 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SubmissionsPostRequest"
+              $ref: '#/components/schemas/SubmissionsPostRequest'
             examples:
               fromHar:
                 value:
-                  Analysis: ""
+                  Analysis: ''
                   Status: Open
                   SubmissionID: 0
                   AssignmentID: 9929
-                  Collaborators: ""
+                  Collaborators: ''
                   SubmissionFiles:
-                    - AssignmentID: 9929
-                      StudentID: "33"
-                      Data: filename:sample.pdf,data:application/pdf;base64,
+                  - AssignmentID: 9929
+                    StudentID: '33'
+                    Data: filename:sample.pdf,data:application/pdf;base64,
                   files:
-                    - fileName: sample.pdf
-                      fileSize: 0 bytes
-                      icon:
-                        type:
-                          displayName: Image
-                        key: null
-                        ref: null
-                        props: {}
-                        _owner: null
-                  StudentID: "33"
+                  - fileName: sample.pdf
+                    fileSize: 0 bytes
+                    icon:
+                      type:
+                        displayName: Image
+                      key: null
+                      ref: null
+                      props: {}
+                      _owner: null
+                  StudentID: '33'
                   StudentName: cf
-                  DateCreated: 2026-03-03T00:16:22.424Z
+                  DateCreated: 2026-03-03 00:16:22.424000+00:00
       responses:
-        "200":
+        '200':
           description: Success
   /classroom/:
     get:
       tags:
-        - classroom
+      - classroom
       summary: GET /classroom/
       operationId: get_classroom
       responses:
-        "200":
+        '200':
+          description: Success
+  /assignments/folder/{folderId}:
+    get:
+      tags:
+      - assignments
+      summary: GET /assignments/folder/{folderId}
+      operationId: get_assignments_folder_folderId
+      parameters:
+      - name: folderId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '1581'
+      responses:
+        '200':
+          description: Success
+  /exemplar_analysis_history/{assignmentId}/{userId}:
+    get:
+      tags:
+      - exemplar_analysis_history
+      summary: GET /exemplar_analysis_history/{assignmentId}/{userId}
+      operationId: get_exemplar_analysis_history_assignmentId_userId
+      parameters:
+      - name: assignmentId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '170'
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '16'
+      responses:
+        '200':
+          description: Success
+  /exemplar_analysis_history/{assignmentId}:
+    get:
+      tags:
+      - exemplar_analysis_history
+      summary: GET /exemplar_analysis_history/{assignmentId}
+      operationId: get_exemplar_analysis_history_assignmentId
+      parameters:
+      - name: assignmentId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '170'
+      responses:
+        '200':
           description: Success
 components:
   schemas:
@@ -403,8 +459,8 @@ components:
         password:
           type: string
       required:
-        - email
-        - password
+      - email
+      - password
     AssignmentsPutRequest:
       type: object
       properties: {}
@@ -431,10 +487,10 @@ components:
                 standards:
                   nullable: true
               required:
-                - title
-                - grade_level
-                - subject
-                - standards
+              - title
+              - grade_level
+              - subject
+              - standards
             general_info:
               type: array
               items:
@@ -470,10 +526,10 @@ components:
                     rejected_prediction_tokens:
                       type: integer
                   required:
-                    - accepted_prediction_tokens
-                    - audio_tokens
-                    - reasoning_tokens
-                    - rejected_prediction_tokens
+                  - accepted_prediction_tokens
+                  - audio_tokens
+                  - reasoning_tokens
+                  - rejected_prediction_tokens
                 prompt_tokens_details:
                   type: object
                   properties:
@@ -482,14 +538,14 @@ components:
                     cached_tokens:
                       type: integer
                   required:
-                    - audio_tokens
-                    - cached_tokens
+                  - audio_tokens
+                  - cached_tokens
               required:
-                - completion_tokens
-                - prompt_tokens
-                - total_tokens
-                - completion_tokens_details
-                - prompt_tokens_details
+              - completion_tokens
+              - prompt_tokens
+              - total_tokens
+              - completion_tokens_details
+              - prompt_tokens_details
             provider:
               type: string
             model:
@@ -499,21 +555,21 @@ components:
             date_extracted:
               type: string
           required:
-            - metadata
-            - general_info
-            - criteria
-            - total_score
-            - score_bands
-            - reasoning
-            - usage
-            - provider
-            - model
-            - version
-            - date_extracted
+          - metadata
+          - general_info
+          - criteria
+          - total_score
+          - score_bands
+          - reasoning
+          - usage
+          - provider
+          - model
+          - version
+          - date_extracted
       required:
-        - RubricTitle
-        - RubricDetails
-        - Analysis
+      - RubricTitle
+      - RubricDetails
+      - Analysis
     RubricsPostRequest:
       type: object
       properties:
@@ -526,11 +582,11 @@ components:
         DateCreated:
           type: string
       required:
-        - RubricID
-        - RubricTitle
-        - RubricDetails
-        - DateCreated
-    "{id}PostRequest":
+      - RubricID
+      - RubricTitle
+      - RubricDetails
+      - DateCreated
+    '{id}PostRequest':
       type: object
       properties:
         FeedbackTemplateID:
@@ -542,10 +598,10 @@ components:
         DateCreated:
           type: string
       required:
-        - FeedbackTemplateID
-        - FeedbackTemplateTitle
-        - FeedbackTemplateDetails
-        - DateCreated
+      - FeedbackTemplateID
+      - FeedbackTemplateTitle
+      - FeedbackTemplateDetails
+      - DateCreated
     AssignmentsPostRequest:
       type: object
       properties:
@@ -581,8 +637,8 @@ components:
               criteria:
                 type: string
             required:
-              - details
-              - criteria
+            - details
+            - criteria
         QuizID:
           type: integer
         CreatedBy:
@@ -596,24 +652,24 @@ components:
         FolderID:
           type: integer
       required:
-        - DateCreated
-        - DueDate
-        - Grade
-        - Name
-        - Status
-        - Subject
-        - Course
-        - Submissions
-        - TeachersName
-        - RubricID
-        - FeedbackTemplateID
-        - QuestionSet
-        - QuizID
-        - CreatedBy
-        - trialRun
-        - lastPublished
-        - isCopilotEnabled
-        - FolderID
+      - DateCreated
+      - DueDate
+      - Grade
+      - Name
+      - Status
+      - Subject
+      - Course
+      - Submissions
+      - TeachersName
+      - RubricID
+      - FeedbackTemplateID
+      - QuestionSet
+      - QuizID
+      - CreatedBy
+      - trialRun
+      - lastPublished
+      - isCopilotEnabled
+      - FolderID
     SubmissionsPostRequest:
       type: object
       properties:
@@ -639,9 +695,9 @@ components:
               Data:
                 type: string
             required:
-              - AssignmentID
-              - StudentID
-              - Data
+            - AssignmentID
+            - StudentID
+            - Data
         files:
           type: array
           items:
@@ -660,7 +716,7 @@ components:
                       displayName:
                         type: string
                     required:
-                      - displayName
+                    - displayName
                   key:
                     nullable: true
                   ref:
@@ -672,15 +728,15 @@ components:
                   _owner:
                     nullable: true
                 required:
-                  - type
-                  - key
-                  - ref
-                  - props
-                  - _owner
+                - type
+                - key
+                - ref
+                - props
+                - _owner
             required:
-              - fileName
-              - fileSize
-              - icon
+            - fileName
+            - fileSize
+            - icon
         StudentID:
           type: string
         StudentName:
@@ -688,13 +744,13 @@ components:
         DateCreated:
           type: string
       required:
-        - Analysis
-        - Status
-        - SubmissionID
-        - AssignmentID
-        - Collaborators
-        - SubmissionFiles
-        - files
-        - StudentID
-        - StudentName
-        - DateCreated
+      - Analysis
+      - Status
+      - SubmissionID
+      - AssignmentID
+      - Collaborators
+      - SubmissionFiles
+      - files
+      - StudentID
+      - StudentName
+      - DateCreated
