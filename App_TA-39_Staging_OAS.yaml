@@ -6,12 +6,99 @@ servers:
   - url: https://api-staging.ta-39.com
 tags:
   - name: assignments
+  - name: chat
   - name: classroom
   - name: folders
+  - name: login
   - name: rubrics
+  - name: submissions
   - name: users
   - name: "{id}"
 paths:
+  /login/application:
+    post:
+      tags:
+        - login
+      summary: POST /login/application
+      operationId: post_login_application
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: fatima@perfai.ai
+                  password: Maimoona@786
+      responses:
+        "200":
+          description: Success
+  /users/:
+    get:
+      tags:
+        - users
+      summary: GET /users/
+      operationId: get_users
+      responses:
+        "200":
+          description: Success
+  /folders/with-assignment-count:
+    get:
+      tags:
+        - folders
+      summary: GET /folders/with-assignment-count
+      operationId: get_folders_id
+      responses:
+        "200":
+          description: Success
+  /assignments/:
+    get:
+      tags:
+        - assignments
+      summary: GET /assignments/
+      operationId: get_assignments
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - assignments
+      summary: POST /assignments/
+      operationId: post_assignments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssignmentsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  DateCreated: 2026-03-03T00:15:48.636Z
+                  DueDate: 2026-03-02T18:30:00.000Z
+                  Grade: 2nd
+                  Name: a
+                  Status: Open
+                  Subject: a
+                  Course: aa
+                  Submissions: ""
+                  TeachersName: ""
+                  RubricID: 2321
+                  FeedbackTemplateID: 1210
+                  QuestionSet:
+                    - details: a
+                      criteria: a
+                  QuizID: 0
+                  CreatedBy: 0
+                  trialRun: false
+                  lastPublished: null
+                  isCopilotEnabled: true
+                  FolderID: 1582
+      responses:
+        "200":
+          description: Success
   /rubrics/:
     get:
       tags:
@@ -36,26 +123,53 @@ paths:
               fromHar:
                 value:
                   RubricID: 0
-                  RubricTitle: aa
-                  RubricDetails: a
-                  DateCreated: 2026-03-02T04:02:06.409Z
+                  RubricTitle: t
+                  RubricDetails: t
+                  DateCreated: 2026-03-03T00:14:33.037Z
       responses:
         "200":
           description: Success
-  /folders/with-assignment-count:
+  /assignments/folder/1581:
+    get:
+      tags:
+        - assignments
+      summary: GET /assignments/folder/1581
+      operationId: get_assignments_folder_id
+      responses:
+        "200":
+          description: Success
+  /folders:
     get:
       tags:
         - folders
-      summary: GET /folders/with-assignment-count
-      operationId: get_folders_id
+      summary: GET /folders
+      operationId: get_folders
       responses:
         "200":
           description: Success
-  /rubrics/17:
+  /assignments/1040/move/1588:
+    put:
+      tags:
+        - assignments
+      summary: PUT /assignments/1040/move/1588
+      operationId: put_assignments_id_move_id2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssignmentsPutRequest"
+            examples:
+              fromHar:
+                value: {}
+      responses:
+        "200":
+          description: Success
+  /rubrics/190:
     put:
       tags:
         - rubrics
-      summary: PUT /rubrics/17
+      summary: PUT /rubrics/190
       operationId: put_rubrics_id
       requestBody:
         required: true
@@ -66,139 +180,27 @@ paths:
             examples:
               fromHar:
                 value:
-                  RubricTitle: "Sample Rubric "
-                  RubricDetails: >
-                    With your timeline/brainstorm, you started to reflect on your literacy experiences, and you will use
-                    that to create a literacy autobiography, a reflective account sharing your most defining experiences
-                    as a reader and writer. 
-
-
-                    Imagine you're telling a genuinely curious audience about your history with writing.  (That would be
-                    me.)  I know nothing about you. I'm curious to learn about what you've written, your feelings about
-                    stories and composition, and your hopes for the future. I'm curious about where you started, where
-                    you're headed, and how you feel about it.
-
-
-                    Begin by selecting three moments from your timeline and describe each one in its own thoughtful
-                    paragraph. You can share what these experiences reveal about you, how they shaped you, or how you've
-                    chanved. The main idea is up to you. Remember, this is your personal story, so it's essential to be
-                    genuine and in your reflections and bring it to life for your reader. This is an opportunity for you
-                    explore your experiences with communication, language, and personal growth. Share how these moments
-                    shaped you. 
-
-                     
-
-                     When you finish, please submit at least three paragraphs.
-
-                    -respond to the prompt and provide a clear main idea
-
-
-                    - provide and explain specific examples
-
-
-                    - use complete sentences and correct punctuation and spelling
-
-
-                    - use transition words and phrases
-
-
-                    - offer a conclusion
+                  RubricTitle: Grading Rubric for History Essay 1
+                  RubricDetails: Rubric Details for Assignment 1
                   Analysis:
                     metadata:
-                      title: null
+                      title: Rubric Details for Assignment 1
                       grade_level: null
                       subject: null
                       standards: null
-                    general_info:
-                      - >-
-                        With your timeline/brainstorm, you started to reflect on your literacy experiences, and you will
-                        use that to create a literacy autobiography, a reflective account sharing your most defining
-                        experiences as a reader and writer. 
-
-
-                        Imagine you're telling a genuinely curious audience about your history with writing.  (That
-                        would be me.)  I know nothing about you. I'm curious to learn about what you've written, your
-                        feelings about stories and composition, and your hopes for the future. I'm curious about where
-                        you started, where you're headed, and how you feel about it.
-
-
-                        Begin by selecting three moments from your timeline and describe each one in its own thoughtful
-                        paragraph. You can share what these experiences reveal about you, how they shaped you, or how
-                        you've chanved. The main idea is up to you. Remember, this is your personal story, so it's
-                        essential to be genuine and in your reflections and bring it to life for your reader. This is an
-                        opportunity for you explore your experiences with communication, language, and personal growth.
-                        Share how these moments shaped you. 
-                         
-                         
-                         When you finish, please submit at least three paragraphs.
-                    criteria:
-                      - original_text: -respond to the prompt and provide a clear main idea
-                        criterion_id: CR1
-                        criterion_name: -respond to the prompt and provide a clear main idea
-                        weight: null
-                        scale:
-                          type: qualitative
-                          levels:
-                            - label: -respond to the prompt and provide a clear main idea
-                              original_text: -respond to the prompt and provide a clear main idea
-                          min: null
-                          max: null
-                      - original_text: "- provide and explain specific examples"
-                        criterion_id: CR2
-                        criterion_name: "- provide and explain specific examples"
-                        weight: null
-                        scale:
-                          type: qualitative
-                          levels:
-                            - label: "- provide and explain specific examples"
-                              original_text: "- provide and explain specific examples"
-                          min: null
-                          max: null
-                      - original_text: "- use complete sentences and correct punctuation and spelling"
-                        criterion_id: CR3
-                        criterion_name: "- use complete sentences and correct punctuation and spelling"
-                        weight: null
-                        scale:
-                          type: qualitative
-                          levels:
-                            - label: "- use complete sentences and correct punctuation and spelling"
-                              original_text: "- use complete sentences and correct punctuation and spelling"
-                          min: null
-                          max: null
-                      - original_text: "- use transition words and phrases"
-                        criterion_id: CR4
-                        criterion_name: "- use transition words and phrases"
-                        weight: null
-                        scale:
-                          type: qualitative
-                          levels:
-                            - label: "- use transition words and phrases"
-                              original_text: "- use transition words and phrases"
-                          min: null
-                          max: null
-                      - original_text: "- offer a conclusion"
-                        criterion_id: CR5
-                        criterion_name: "- offer a conclusion"
-                        weight: null
-                        scale:
-                          type: qualitative
-                          levels:
-                            - label: "- offer a conclusion"
-                              original_text: "- offer a conclusion"
-                          min: null
-                          max: null
+                    general_info: []
+                    criteria: []
                     total_score: null
                     score_bands: null
-                    reasoning: Rubric provides five bullet-point requirements with no performance levels or numeric scores; each bullet
-                      treated as its own qualitative criterion with a single level.
+                    reasoning: Only a title present; no criteria or scoring information in the provided text.
                     usage:
-                      completion_tokens: 4413
-                      prompt_tokens: 4068
-                      total_tokens: 8481
+                      completion_tokens: 811
+                      prompt_tokens: 3813
+                      total_tokens: 4624
                       completion_tokens_details:
                         accepted_prediction_tokens: 0
                         audio_tokens: 0
-                        reasoning_tokens: 3520
+                        reasoning_tokens: 704
                         rejected_prediction_tokens: 0
                       prompt_tokens_details:
                         audio_tokens: 0
@@ -206,7 +208,7 @@ paths:
                     provider: openai
                     model: o3-2025-04-16
                     version: "2"
-                    date_extracted: 2026-02-25T01:31:59.797422Z
+                    date_extracted: 2026-03-02T05:46:34.296492Z
       responses:
         "200":
           description: Success
@@ -234,182 +236,179 @@ paths:
               fromHar:
                 value:
                   FeedbackTemplateID: 0
-                  FeedbackTemplateTitle: gg
-                  FeedbackTemplateDetails: gg
-                  DateCreated: 2026-03-02T04:03:08.171Z
+                  FeedbackTemplateTitle: a
+                  FeedbackTemplateDetails: a
+                  DateCreated: 2026-03-03T00:15:37.835Z
       responses:
         "200":
           description: Success
-  /feedback_templates/184:
-    put:
-      tags:
-        - "{id}"
-      summary: PUT /feedback_templates/184
-      operationId: put_id_id2
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/{id}PutRequest"
-            examples:
-              fromHar:
-                value:
-                  FeedbackTemplateTitle: "Feedback Form "
-                  FeedbackTemplateDetails: Standard template for product feedback
-      responses:
-        "200":
-          description: Success
-  /assignments/folder/1586:
+  /assignments/9929:
     get:
       tags:
         - assignments
-      summary: GET /assignments/folder/1586
-      operationId: get_assignments_folder_id
-      responses:
-        "200":
-          description: Success
-  /users/:
-    get:
-      tags:
-        - users
-      summary: GET /users/
-      operationId: get_users
-      responses:
-        "200":
-          description: Success
-  /assignments/:
-    post:
-      tags:
-        - assignments
-      summary: POST /assignments/
-      operationId: post_assignments
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AssignmentsPostRequest"
-            examples:
-              fromHar:
-                value:
-                  DateCreated: 2026-03-02T04:04:27.222Z
-                  DueDate: 2026-03-02T18:30:00.000Z
-                  Grade: 2nd
-                  Name: s
-                  Status: Open
-                  Subject: ss
-                  Course: ss
-                  Submissions: ""
-                  TeachersName: ""
-                  RubricID: 2323
-                  FeedbackTemplateID: 231
-                  QuestionSet:
-                    - details: s
-                      criteria: s
-                  QuizID: 0
-                  CreatedBy: 0
-                  trialRun: false
-                  lastPublished: null
-                  isCopilotEnabled: true
-                  FolderID: 1586
-      responses:
-        "200":
-          description: Success
-    get:
-      tags:
-        - assignments
-      summary: GET /assignments/
-      operationId: get_assignments
-      responses:
-        "200":
-          description: Success
-  /folders:
-    get:
-      tags:
-        - folders
-      summary: GET /folders
-      operationId: get_folders
-      responses:
-        "200":
-          description: Success
-  /assignments/1040/move/1581:
-    put:
-      tags:
-        - assignments
-      summary: PUT /assignments/1040/move/1581
-      operationId: put_assignments_id_move_id2
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AssignmentsPutRequest"
-            examples:
-              fromHar:
-                value: {}
-      responses:
-        "200":
-          description: Success
-  /classroom/1040:
-    get:
-      tags:
-        - classroom
-      summary: GET /classroom/1040
-      operationId: get_classroom_id
-      responses:
-        "200":
-          description: Success
-  /assignments/1040:
-    get:
-      tags:
-        - assignments
-      summary: GET /assignments/1040
+      summary: GET /assignments/9929
       operationId: get_assignments_id
       responses:
         "200":
           description: Success
-    put:
+  /assignments/9929/report/performance:
+    get:
       tags:
         - assignments
-      summary: PUT /assignments/1040
-      operationId: put_assignments_id
+      summary: GET /assignments/9929/report/performance
+      operationId: get_assignments_id_report_performance
+      responses:
+        "200":
+          description: Success
+  /rubrics/quiz/9929/exemplars:
+    get:
+      tags:
+        - rubrics
+      summary: GET /rubrics/quiz/9929/exemplars
+      operationId: get_rubrics_quiz_id_exemplars
+      responses:
+        "200":
+          description: Success
+  /assignments/feedback-view-style/9929:
+    get:
+      tags:
+        - assignments
+      summary: GET /assignments/feedback-view-style/9929
+      operationId: get_assignments_id_id2
+      responses:
+        "200":
+          description: Success
+  /analysis_history/credits_used:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /analysis_history/credits_used
+      operationId: get_id_credits_used
+      responses:
+        "200":
+          description: Success
+  /classroom/9929:
+    get:
+      tags:
+        - classroom
+      summary: GET /classroom/9929
+      operationId: get_classroom_id
+      responses:
+        "200":
+          description: Success
+  /rubrics/2321:
+    get:
+      tags:
+        - rubrics
+      summary: GET /rubrics/2321
+      operationId: get_rubrics_id
+      responses:
+        "200":
+          description: Success
+  /feedback_templates/1210:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /feedback_templates/1210
+      operationId: get_id_id2
+      responses:
+        "200":
+          description: Success
+  /chat/assignment/9929/user/16/thread:
+    get:
+      tags:
+        - chat
+      summary: GET /chat/assignment/9929/user/16/thread
+      operationId: get_chat_assignment_id_user_id2_thread
+      parameters:
+        - name: role
+          in: query
+          required: false
+          schema:
+            type: string
+          example: teacher
+        - name: studentId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: undefined
+      responses:
+        "200":
+          description: Success
+  /submissions/16/quiz/9929:
+    get:
+      tags:
+        - submissions
+      summary: GET /submissions/16/quiz/9929
+      operationId: get_submissions_id_quiz_id2
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - submissions
+      summary: POST /submissions/16/quiz/9929
+      operationId: post_submissions_id_quiz_id2
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AssignmentsPutRequest"
+              $ref: "#/components/schemas/SubmissionsPostRequest"
             examples:
               fromHar:
                 value:
-                  lti_assignment_id: null
-                  lti_provider: null
-                  QuizID: 1040
-                  DateCreated: 2026-03-02T04:04:27.222000
-                  Grade: 2nd
-                  DueDate: 2026-03-02T18:30:00
-                  Course: ss
-                  Name: s
+                  Analysis: ""
                   Status: Open
-                  Subject: ss
-                  Submissions: ""
-                  TeachersName: ""
-                  RubricID: 2323
-                  QuestionSet:
-                    - details: sa
-                      criteria: s
-                  FeedbackTemplateID: 231
-                  trialRun: false
-                  lastPublished: null
-                  FeedbackViewStyle: markdown
-                  isCopilotEnabled: true
-                  FolderID: 1581
+                  SubmissionID: 0
+                  AssignmentID: 9929
+                  Collaborators: ""
+                  SubmissionFiles:
+                    - AssignmentID: 9929
+                      StudentID: "33"
+                      Data: filename:sample.pdf,data:application/pdf;base64,
+                  files:
+                    - fileName: sample.pdf
+                      fileSize: 0 bytes
+                      icon:
+                        type:
+                          displayName: Image
+                        key: null
+                        ref: null
+                        props: {}
+                        _owner: null
+                  StudentID: "33"
+                  StudentName: cf
+                  DateCreated: 2026-03-03T00:16:22.424Z
+      responses:
+        "200":
+          description: Success
+  /classroom/:
+    get:
+      tags:
+        - classroom
+      summary: GET /classroom/
+      operationId: get_classroom
       responses:
         "200":
           description: Success
 components:
   schemas:
+    LoginPostRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+    AssignmentsPutRequest:
+      type: object
+      properties: {}
+      required: []
     RubricsPutRequest:
       type: object
       properties:
@@ -424,7 +423,7 @@ components:
               type: object
               properties:
                 title:
-                  nullable: true
+                  type: string
                 grade_level:
                   nullable: true
                 subject:
@@ -443,48 +442,7 @@ components:
             criteria:
               type: array
               items:
-                type: object
-                properties:
-                  original_text:
-                    type: string
-                  criterion_id:
-                    type: string
-                  criterion_name:
-                    type: string
-                  weight:
-                    nullable: true
-                  scale:
-                    type: object
-                    properties:
-                      type:
-                        type: string
-                      levels:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            label:
-                              type: string
-                            original_text:
-                              type: string
-                          required:
-                            - label
-                            - original_text
-                      min:
-                        nullable: true
-                      max:
-                        nullable: true
-                    required:
-                      - type
-                      - levels
-                      - min
-                      - max
-                required:
-                  - original_text
-                  - criterion_id
-                  - criterion_name
-                  - weight
-                  - scale
+                type: string
             total_score:
               nullable: true
             score_bands:
@@ -572,16 +530,6 @@ components:
         - RubricTitle
         - RubricDetails
         - DateCreated
-    "{id}PutRequest":
-      type: object
-      properties:
-        FeedbackTemplateTitle:
-          type: string
-        FeedbackTemplateDetails:
-          type: string
-      required:
-        - FeedbackTemplateTitle
-        - FeedbackTemplateDetails
     "{id}PostRequest":
       type: object
       properties:
@@ -666,7 +614,87 @@ components:
         - lastPublished
         - isCopilotEnabled
         - FolderID
-    AssignmentsPutRequest:
+    SubmissionsPostRequest:
       type: object
-      properties: {}
-      required: []
+      properties:
+        Analysis:
+          type: string
+        Status:
+          type: string
+        SubmissionID:
+          type: integer
+        AssignmentID:
+          type: integer
+        Collaborators:
+          type: string
+        SubmissionFiles:
+          type: array
+          items:
+            type: object
+            properties:
+              AssignmentID:
+                type: integer
+              StudentID:
+                type: string
+              Data:
+                type: string
+            required:
+              - AssignmentID
+              - StudentID
+              - Data
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              fileName:
+                type: string
+              fileSize:
+                type: string
+              icon:
+                type: object
+                properties:
+                  type:
+                    type: object
+                    properties:
+                      displayName:
+                        type: string
+                    required:
+                      - displayName
+                  key:
+                    nullable: true
+                  ref:
+                    nullable: true
+                  props:
+                    type: object
+                    properties: {}
+                    required: []
+                  _owner:
+                    nullable: true
+                required:
+                  - type
+                  - key
+                  - ref
+                  - props
+                  - _owner
+            required:
+              - fileName
+              - fileSize
+              - icon
+        StudentID:
+          type: string
+        StudentName:
+          type: string
+        DateCreated:
+          type: string
+      required:
+        - Analysis
+        - Status
+        - SubmissionID
+        - AssignmentID
+        - Collaborators
+        - SubmissionFiles
+        - files
+        - StudentID
+        - StudentName
+        - DateCreated
