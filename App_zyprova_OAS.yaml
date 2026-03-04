@@ -1,0 +1,2863 @@
+openapi: 3.0.3
+info:
+  title: Zyprova App
+  version: 1.0.0
+servers:
+  - url: https://api-dev.zyprova.com
+tags:
+  - name: auth
+  - name: auto-trigger
+  - name: cap-table
+  - name: dashboard
+  - name: fp-a
+  - name: hr
+  - name: index
+  - name: list
+  - name: list-rows
+  - name: mapping-hr-fpa
+  - name: plan
+  - name: report-settings
+  - name: search
+  - name: slack
+  - name: user
+  - name: user-business
+  - name: vesting
+  - name: widget
+  - name: "{id}"
+paths:
+  /api/plan:
+    get:
+      tags:
+        - plan
+      summary: GET /api/plan
+      operationId: get_api_plan
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - plan
+      summary: OPTIONS /api/plan
+      operationId: options_api_plan
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - plan
+      summary: POST /api/plan
+      operationId: post_api_plan
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlanPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: dfghj
+                  startDate: 2026-01-01
+                  endDate: 2027-03-31
+                  lockDate: 2026-03-09
+                  message: ""
+                  archived: false
+                  rolloverActuals: false
+                  planOfRecord: false
+                  invitees: []
+                  showActualMonths: 0
+      responses:
+        "200":
+          description: Success
+  /api/plan/invitee:
+    get:
+      tags:
+        - plan
+      summary: GET /api/plan/invitee
+      operationId: get_api_plan_invitee
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - plan
+      summary: OPTIONS /api/plan/invitee
+      operationId: options_api_plan_invitee
+      responses:
+        "200":
+          description: Success
+  /api/auth/authorization:
+    get:
+      tags:
+        - auth
+      summary: GET /api/auth/authorization
+      operationId: get_api_auth_authorization
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/widget/list:
+    options:
+      tags:
+        - widget
+      summary: OPTIONS /api/widget/list
+      operationId: options_api_widget_list
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - widget
+      summary: GET /api/widget/list
+      operationId: get_api_widget_list
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/dashboard/list:
+    options:
+      tags:
+        - dashboard
+      summary: OPTIONS /api/dashboard/list
+      operationId: options_api_dashboard_list
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - dashboard
+      summary: GET /api/dashboard/list
+      operationId: get_api_dashboard_list
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/hr/gauge/{id}:
+    options:
+      tags:
+        - hr
+      summary: OPTIONS /api/hr/gauge/{id}
+      operationId: options_api_hr_gauge_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: current-forecast
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr/gauge/{id}
+      operationId: get_api_hr_gauge_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: current-forecast
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/hr/gauge/annualized-cost:
+    options:
+      tags:
+        - hr
+      summary: OPTIONS /api/hr/gauge/annualized-cost
+      operationId: options_api_hr_gauge_annualized_cost
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr/gauge/annualized-cost
+      operationId: get_api_hr_gauge_annualized_cost
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/hr/gauge/new-hires:
+    options:
+      tags:
+        - hr
+      summary: OPTIONS /api/hr/gauge/new-hires
+      operationId: options_api_hr_gauge_new_hires
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr/gauge/new-hires
+      operationId: get_api_hr_gauge_new_hires
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/fp-a/report/burn-rate:
+    options:
+      tags:
+        - fp-a
+      summary: OPTIONS /api/fp-a/report/burn-rate
+      operationId: options_api_fp_a_report_burn_rate
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - fp-a
+      summary: POST /api/fp-a/report/burn-rate
+      operationId: post_api_fp_a_report_burn_rate
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Fp-aPostRequest"
+            examples:
+              fromHar:
+                value:
+                  startDate: 2026-01-01
+                  numberOfMonths: 1
+                  burnRateType: GROSS_BURN_RATE
+      responses:
+        "200":
+          description: Success
+  /api/fp-a/report/runway:
+    post:
+      tags:
+        - fp-a
+      summary: POST /api/fp-a/report/runway
+      operationId: post_api_fp_a_report_runway
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Fp-aPostRequest"
+            examples:
+              fromHar:
+                value:
+                  date: 2026-01-01
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - fp-a
+      summary: OPTIONS /api/fp-a/report/runway
+      operationId: options_api_fp_a_report_runway
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/report-settings/list:
+    options:
+      tags:
+        - report-settings
+      summary: OPTIONS /api/report-settings/list
+      operationId: options_api_report_settings_list
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - report-settings
+      summary: GET /api/report-settings/list
+      operationId: get_api_report_settings_list
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/{id}/list:
+    get:
+      tags:
+        - list
+      summary: GET /api/{id}/list
+      operationId: get_api_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: custom-table-settings
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - list
+      summary: OPTIONS /api/{id}/list
+      operationId: options_api_id_list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: custom-table-settings
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/fp-a/{id}:
+    get:
+      tags:
+        - fp-a
+      summary: GET /api/fp-a/{id}
+      operationId: get_api_fp_a_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: accounts-complete-tree
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: showActuals
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - fp-a
+      summary: OPTIONS /api/fp-a/{id}
+      operationId: options_api_fp_a_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: accounts-complete-tree
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: showActuals
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /api/user/business-info:
+    options:
+      tags:
+        - user
+      summary: OPTIONS /api/user/business-info
+      operationId: options_api_user_business_info
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - user
+      summary: GET /api/user/business-info
+      operationId: get_api_user_business_info
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - user
+      summary: POST /api/user/business-info
+      operationId: post_api_user_business_info
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Executive G Org
+                  legalName: Executive G Org
+                  legalAddress:
+                    line1: "123"
+                    line2: "456"
+                    city: hyd
+                    state: tel
+                    country: Ind
+                    zip: "898"
+                  companyAddress:
+                    line1: 3667 Sydney Ct
+                    line2: Rd Number 2
+                    city: Bhaisa
+                    state: Telangana
+                    country: India
+                    zip: "95132"
+      responses:
+        "200":
+          description: Success
+  /api/fp-a/report/calculate-bs:
+    options:
+      tags:
+        - fp-a
+      summary: OPTIONS /api/fp-a/report/calculate-bs
+      operationId: options_api_fp_a_report_calculate_bs
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: rtype
+          in: query
+          required: false
+          schema:
+            type: string
+          example: DETAILED
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - fp-a
+      summary: GET /api/fp-a/report/calculate-bs
+      operationId: get_api_fp_a_report_calculate_bs
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: rtype
+          in: query
+          required: false
+          schema:
+            type: string
+          example: DETAILED
+      responses:
+        "200":
+          description: Success
+  /api/auto-trigger/reduction:
+    options:
+      tags:
+        - auto-trigger
+      summary: OPTIONS /api/auto-trigger/reduction
+      operationId: options_api_auto_trigger_reduction
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - auto-trigger
+      summary: GET /api/auto-trigger/reduction
+      operationId: get_api_auto_trigger_reduction
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/fp-a/customers:
+    get:
+      tags:
+        - fp-a
+      summary: GET /api/fp-a/customers
+      operationId: get_api_fp_a_customers
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - fp-a
+      summary: OPTIONS /api/fp-a/customers
+      operationId: options_api_fp_a_customers
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /api/{id}/search:
+    get:
+      tags:
+        - search
+      summary: GET /api/{id}/search
+      operationId: get_api_id_search
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: custom-table-settings
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+          example: CURRENCY
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - search
+      summary: OPTIONS /api/{id}/search
+      operationId: options_api_id_search
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: custom-table-settings
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+          example: CURRENCY
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/fp-a/vendors:
+    get:
+      tags:
+        - fp-a
+      summary: GET /api/fp-a/vendors
+      operationId: get_api_fp_a_vendors
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - fp-a
+      summary: OPTIONS /api/fp-a/vendors
+      operationId: options_api_fp_a_vendors
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /api/{id}:
+    options:
+      tags:
+        - "{id}"
+      summary: OPTIONS /api/{id}
+      operationId: options_api_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: pivot-table-settings
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: FP_A_PIVOT_TABLE
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: oid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: c560e80f-4992-4a2c-8157-1c2be72511b1
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - "{id}"
+      summary: GET /api/{id}
+      operationId: get_api_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: pivot-table-settings
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: FP_A_PIVOT_TABLE
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: oid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: c560e80f-4992-4a2c-8157-1c2be72511b1
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - "{id}"
+      summary: POST /api/{id}
+      operationId: post_api_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: pivot-table-settings
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/{id}PostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: cvbnm
+                  type: FP_A_PIVOT_TABLE
+                  settings:
+                    pivotState:
+                      columnState:
+                        - colId: fqdnAccountName
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: className
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: accountTotal
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: sum
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: transactionDate
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: transactionTypeName
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: documentNumber
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: name
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: customerName
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: vendorName
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: productOrServiceName
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: memo
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: splitName
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: null
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: amount
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: sum
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                        - colId: balance
+                          width: 200
+                          hide: false
+                          pinned: null
+                          sort: null
+                          sortIndex: null
+                          aggFunc: sum
+                          rowGroup: false
+                          rowGroupIndex: null
+                          pivot: false
+                          pivotIndex: null
+                          flex: 1
+                      filterModel: {}
+                      rowGroupColumns: []
+                      valueColumns:
+                        - colId: accountTotal
+                          aggFunc: sum
+                        - colId: amount
+                          aggFunc: sum
+                        - colId: balance
+                          aggFunc: sum
+                      pivotColumns: []
+                      columnDefs:
+                        - field: fqdnAccountName
+                          headerName: Account Name
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: className
+                          headerName: Department
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: accountTotal
+                          headerName: Account Total
+                          sortable: true
+                          filter: true
+                          enableValue: true
+                          enablePivot: true
+                          aggFunc: sum
+                        - field: transactionDate
+                          headerName: Transaction Date
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: transactionTypeName
+                          headerName: Transaction Type
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: documentNumber
+                          headerName: Document Number
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: name
+                          headerName: Name
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: customerName
+                          headerName: Customer Name
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: vendorName
+                          headerName: Vendor Name
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: productOrServiceName
+                          headerName: Product or Service Name
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: memo
+                          headerName: Memo
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: splitName
+                          headerName: Split Name
+                          sortable: true
+                          filter: true
+                          enablePivot: true
+                        - field: amount
+                          headerName: Amount
+                          sortable: true
+                          filter: true
+                          enableValue: true
+                          enablePivot: true
+                          aggFunc: sum
+                        - field: balance
+                          headerName: Balance
+                          sortable: true
+                          filter: true
+                          enableValue: true
+                          enablePivot: true
+                          aggFunc: sum
+                      sortModel: []
+                    pivotOptions: null
+                    pivotReport: null
+                    pivotColumns:
+                      - field: fqdnAccountName
+                        headerName: Account Name
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: className
+                        headerName: Department
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: accountTotal
+                        headerName: Account Total
+                        sortable: true
+                        filter: true
+                        enableValue: true
+                        enablePivot: true
+                        aggFunc: sum
+                      - field: transactionDate
+                        headerName: Transaction Date
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: transactionTypeName
+                        headerName: Transaction Type
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: documentNumber
+                        headerName: Document Number
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: name
+                        headerName: Name
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: customerName
+                        headerName: Customer Name
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: vendorName
+                        headerName: Vendor Name
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: productOrServiceName
+                        headerName: Product or Service Name
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: memo
+                        headerName: Memo
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: splitName
+                        headerName: Split Name
+                        sortable: true
+                        filter: true
+                        enablePivot: true
+                      - field: amount
+                        headerName: Amount
+                        sortable: true
+                        filter: true
+                        enableValue: true
+                        enablePivot: true
+                        aggFunc: sum
+                      - field: balance
+                        headerName: Balance
+                        sortable: true
+                        filter: true
+                        enableValue: true
+                        enablePivot: true
+                        aggFunc: sum
+      responses:
+        "200":
+          description: Success
+  /api/fp-a/data-report:
+    options:
+      tags:
+        - fp-a
+      summary: OPTIONS /api/fp-a/data-report
+      operationId: options_api_fp_a_data_report
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - fp-a
+      summary: GET /api/fp-a/data-report
+      operationId: get_api_fp_a_data_report
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/cap-table/summary-report:
+    options:
+      tags:
+        - cap-table
+      summary: OPTIONS /api/cap-table/summary-report
+      operationId: options_api_cap_table_summary_report
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-04
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - cap-table
+      summary: GET /api/cap-table/summary-report
+      operationId: get_api_cap_table_summary_report
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-04
+      responses:
+        "200":
+          description: Success
+  /api/cap-table/{id}:
+    get:
+      tags:
+        - cap-table
+      summary: GET /api/cap-table/{id}
+      operationId: get_api_cap_table_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: summary-report-data-list
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-04
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - cap-table
+      summary: OPTIONS /api/cap-table/{id}
+      operationId: options_api_cap_table_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: summary-report-data-list
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-04
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - cap-table
+      summary: POST /api/cap-table/{id}
+      operationId: post_api_cap_table_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cap-table-save-planning-round-assumptions-data
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cap-tablePostRequest"
+            examples:
+              fromHar:
+                value:
+                  expectedCloseDate: 2026-03-04T10:17:00.000Z
+                  preMoneyValuation: 0
+                  roundSize: 0
+                  includeConvertedShares: false
+                  refreshType: Pre-Money Basis
+                  poolRefresh: 0
+                  roundName: vbnm
+                  planName: ""
+      responses:
+        "200":
+          description: Success
+  /api/vesting/{id}:
+    get:
+      tags:
+        - vesting
+      summary: GET /api/vesting/{id}
+      operationId: get_api_vesting_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: all-vesting-terms
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - vesting
+      summary: OPTIONS /api/vesting/{id}
+      operationId: options_api_vesting_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: all-vesting-terms
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/cap-table/409a:
+    get:
+      tags:
+        - cap-table
+      summary: GET /api/cap-table/409a
+      operationId: get_api_cap_table_409a
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - cap-table
+      summary: OPTIONS /api/cap-table/409a
+      operationId: options_api_cap_table_409a
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/hr/{id}:
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr/{id}
+      operationId: get_api_hr_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: is-recommendations-setup-finished
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - hr
+      summary: OPTIONS /api/hr/{id}
+      operationId: options_api_hr_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: recommendations-for-levels
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/hr:
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr
+      operationId: get_api_hr
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/index/departments:
+    get:
+      tags:
+        - index
+      summary: GET /api/index/departments
+      operationId: get_api_index_departments
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - index
+      summary: OPTIONS /api/index/departments
+      operationId: options_api_index_departments
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /api/hr/levels:
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr/levels
+      operationId: get_api_hr_levels
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /api/hr/regions:
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr/regions
+      operationId: get_api_hr_regions
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /api/index/genders:
+    options:
+      tags:
+        - index
+      summary: OPTIONS /api/index/genders
+      operationId: options_api_index_genders
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - index
+      summary: GET /api/index/genders
+      operationId: get_api_index_genders
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/index/{id}:
+    options:
+      tags:
+        - index
+      summary: OPTIONS /api/index/{id}
+      operationId: options_api_index_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: sexual-orientation
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - index
+      summary: GET /api/index/{id}
+      operationId: get_api_index_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: sexual-orientation
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/hr/collection/currencies:
+    options:
+      tags:
+        - hr
+      summary: OPTIONS /api/hr/collection/currencies
+      operationId: options_api_hr_collection_currencies
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr/collection/currencies
+      operationId: get_api_hr_collection_currencies
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/hr/collection/{id}:
+    options:
+      tags:
+        - hr
+      summary: OPTIONS /api/hr/collection/{id}
+      operationId: options_api_hr_collection_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: department-heads
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr/collection/{id}
+      operationId: get_api_hr_collection_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: department-heads
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/hr/collection/managers:
+    options:
+      tags:
+        - hr
+      summary: OPTIONS /api/hr/collection/managers
+      operationId: options_api_hr_collection_managers
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr/collection/managers
+      operationId: get_api_hr_collection_managers
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/hr/collection/titles:
+    options:
+      tags:
+        - hr
+      summary: OPTIONS /api/hr/collection/titles
+      operationId: options_api_hr_collection_titles
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - hr
+      summary: GET /api/hr/collection/titles
+      operationId: get_api_hr_collection_titles
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/index/employment-type:
+    options:
+      tags:
+        - index
+      summary: OPTIONS /api/index/employment-type
+      operationId: options_api_index_employment_type
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - index
+      summary: GET /api/index/employment-type
+      operationId: get_api_index_employment_type
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/{id}/{id2}:
+    options:
+      tags:
+        - "{id}"
+      summary: OPTIONS /api/{id}/{id2}
+      operationId: options_api_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: variable-settings-per-plan
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - "{id}"
+      summary: GET /api/{id}/{id2}
+      operationId: get_api_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: variable-settings-per-plan
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/{id}/list-rows:
+    options:
+      tags:
+        - list-rows
+      summary: OPTIONS /api/{id}/list-rows
+      operationId: options_api_id_list_rows
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: custom-table-settings
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - list-rows
+      summary: GET /api/{id}/list-rows
+      operationId: get_api_id_list_rows
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: custom-table-settings
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/user/me:
+    options:
+      tags:
+        - user
+      summary: OPTIONS /api/user/me
+      operationId: options_api_user_me
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - user
+      summary: GET /api/user/me
+      operationId: get_api_user_me
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/user/{id}:
+    options:
+      tags:
+        - user
+      summary: OPTIONS /api/user/{id}
+      operationId: options_api_user_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: quickbooks-auth-status
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - user
+      summary: GET /api/user/{id}
+      operationId: get_api_user_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: quickbooks-auth-status
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/slack/status:
+    options:
+      tags:
+        - slack
+      summary: OPTIONS /api/slack/status
+      operationId: options_api_slack_status
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - slack
+      summary: GET /api/slack/status
+      operationId: get_api_slack_status
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/slack/install-url:
+    options:
+      tags:
+        - slack
+      summary: OPTIONS /api/slack/install-url
+      operationId: options_api_slack_install_url
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - slack
+      summary: GET /api/slack/install-url
+      operationId: get_api_slack_install_url
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/index/accounts:
+    get:
+      tags:
+        - index
+      summary: GET /api/index/accounts
+      operationId: get_api_index_accounts
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - index
+      summary: OPTIONS /api/index/accounts
+      operationId: options_api_index_accounts
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/mapping-hr-fpa:
+    get:
+      tags:
+        - mapping-hr-fpa
+      summary: GET /api/mapping-hr-fpa
+      operationId: get_api_mapping_hr_fpa
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - mapping-hr-fpa
+      summary: OPTIONS /api/mapping-hr-fpa
+      operationId: options_api_mapping_hr_fpa
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/fp-a/account-mapping/{id}:
+    get:
+      tags:
+        - fp-a
+      summary: GET /api/fp-a/account-mapping/{id}
+      operationId: get_api_fp_a_account_mapping_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: AMORTIZATION_MAPPING
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - fp-a
+      summary: OPTIONS /api/fp-a/account-mapping/{id}
+      operationId: options_api_fp_a_account_mapping_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: AMORTIZATION_MAPPING
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/user/role:
+    options:
+      tags:
+        - user
+      summary: OPTIONS /api/user/role
+      operationId: options_api_user_role
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - user
+      summary: GET /api/user/role
+      operationId: get_api_user_role
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/user-business/users:
+    options:
+      tags:
+        - user-business
+      summary: OPTIONS /api/user-business/users
+      operationId: options_api_user_business_users
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - user-business
+      summary: GET /api/user-business/users
+      operationId: get_api_user_business_users
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/user-business/send-invite:
+    options:
+      tags:
+        - user-business
+      summary: OPTIONS /api/user-business/send-invite
+      operationId: options_api_user_business_send_invite
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - user-business
+      summary: POST /api/user-business/send-invite
+      operationId: post_api_user_business_send_invite
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User-businessPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: random@random.com
+                  role: OWNER
+      responses:
+        "200":
+          description: Success
+  /api/user-business:
+    put:
+      tags:
+        - user-business
+      summary: PUT /api/user-business
+      operationId: put_api_user_business
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User-businessPutRequest"
+            examples:
+              fromHar:
+                value:
+                  businessId: e3587efc-6170-4583-acf5-ae39b7f105cb
+                  refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2RiMzkzNS0yYWI2LTQ2ODctOGNmYy04MTg0NTcyZmU1ZWMiLCJhY2NvdW50SWQiOiIzYzMxMjA4ZS02OGRkLTQxYTktYTVlMS04NWZjMThiMTBkMWMiLCJyb2xlIjoiT1dORVIiLCJpYXQiOjE3NzI2MTg3MDQsImV4cCI6MTc3NTIxMDcwNCwiYXVkIjoiYXV0aDpyZWZyZXNoIiwiaXNzIjoienlwcm92YS5jb20iLCJqdGkiOiJ1bXVjS0ZBcnIxemIzRllhbjd6bmFWIn0.4XVx34L5orxeKWBvl3ltxg2lvWuvISgXnChMEk7_SZA
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - user-business
+      summary: OPTIONS /api/user-business
+      operationId: options_api_user_business
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - user-business
+      summary: GET /api/user-business
+      operationId: get_api_user_business
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/user-business/selected:
+    get:
+      tags:
+        - user-business
+      summary: GET /api/user-business/selected
+      operationId: get_api_user_business_selected
+      parameters:
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+  /api/user-business/{id}:
+    options:
+      tags:
+        - user-business
+      summary: OPTIONS /api/user-business/{id}
+      operationId: options_api_user_business_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: add-regular-business
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - user-business
+      summary: POST /api/user-business/{id}
+      operationId: post_api_user_business_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: add-regular-business
+        - name: pid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6aabb37b-3f7a-4d6c-a71b-d2fc0acdd4fe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User-businessPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Org1
+                  numberOfEmployees: 10
+                  legalName: Org1
+                  companyAddress:
+                    line1: "112"
+                    line2: ""
+                    country: Argentina
+                    state: Chubut
+                    city: Departamento de Gastre
+                    zip: "88900"
+                  customerCommunicationAddress: null
+                  legalAddress: null
+                  customerCommunicationEmailAddress: ""
+                  primaryPhone: ""
+                  fiscalYearStartMonth: "1"
+                  webAddress: ""
+                  billingInfo: null
+                  businessInvitee: null
+                  isFinanceCompleted: false
+                  fiscalMonth: 1
+                  fiscalDay: 1
+                  type: ""
+                  refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2RiMzkzNS0yYWI2LTQ2ODctOGNmYy04MTg0NTcyZmU1ZWMiLCJhY2NvdW50SWQiOiIzYzMxMjA4ZS02OGRkLTQxYTktYTVlMS04NWZjMThiMTBkMWMiLCJyb2xlIjoiT1dORVIiLCJpYXQiOjE3NzI2MTg3MDQsImV4cCI6MTc3NTIxMDcwNCwiYXVkIjoiYXV0aDpyZWZyZXNoIiwiaXNzIjoienlwcm92YS5jb20iLCJqdGkiOiJ1bXVjS0ZBcnIxemIzRllhbjd6bmFWIn0.4XVx34L5orxeKWBvl3ltxg2lvWuvISgXnChMEk7_SZA
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    Fp-aPostRequest:
+      type: object
+      properties:
+        startDate:
+          type: string
+        numberOfMonths:
+          type: integer
+        burnRateType:
+          type: string
+      required:
+        - startDate
+        - numberOfMonths
+        - burnRateType
+    PlanPostRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        lockDate:
+          type: string
+        message:
+          type: string
+        archived:
+          type: boolean
+        rolloverActuals:
+          type: boolean
+        planOfRecord:
+          type: boolean
+        invitees:
+          type: array
+          items:
+            type: string
+        showActualMonths:
+          type: integer
+      required:
+        - name
+        - startDate
+        - endDate
+        - lockDate
+        - message
+        - archived
+        - rolloverActuals
+        - planOfRecord
+        - invitees
+        - showActualMonths
+    "{id}PostRequest":
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        settings:
+          type: object
+          properties:
+            pivotState:
+              type: object
+              properties:
+                columnState:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      colId:
+                        type: string
+                      width:
+                        type: integer
+                      hide:
+                        type: boolean
+                      pinned:
+                        nullable: true
+                      sort:
+                        nullable: true
+                      sortIndex:
+                        nullable: true
+                      aggFunc:
+                        nullable: true
+                      rowGroup:
+                        type: boolean
+                      rowGroupIndex:
+                        nullable: true
+                      pivot:
+                        type: boolean
+                      pivotIndex:
+                        nullable: true
+                      flex:
+                        type: integer
+                    required:
+                      - colId
+                      - width
+                      - hide
+                      - pinned
+                      - sort
+                      - sortIndex
+                      - aggFunc
+                      - rowGroup
+                      - rowGroupIndex
+                      - pivot
+                      - pivotIndex
+                      - flex
+                filterModel:
+                  type: object
+                  properties: {}
+                  required: []
+                rowGroupColumns:
+                  type: array
+                  items:
+                    type: string
+                valueColumns:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      colId:
+                        type: string
+                      aggFunc:
+                        type: string
+                    required:
+                      - colId
+                      - aggFunc
+                pivotColumns:
+                  type: array
+                  items:
+                    type: string
+                columnDefs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      field:
+                        type: string
+                      headerName:
+                        type: string
+                      sortable:
+                        type: boolean
+                      filter:
+                        type: boolean
+                      enablePivot:
+                        type: boolean
+                    required:
+                      - field
+                      - headerName
+                      - sortable
+                      - filter
+                      - enablePivot
+                sortModel:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - columnState
+                - filterModel
+                - rowGroupColumns
+                - valueColumns
+                - pivotColumns
+                - columnDefs
+                - sortModel
+            pivotOptions:
+              nullable: true
+            pivotReport:
+              nullable: true
+            pivotColumns:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  headerName:
+                    type: string
+                  sortable:
+                    type: boolean
+                  filter:
+                    type: boolean
+                  enablePivot:
+                    type: boolean
+                required:
+                  - field
+                  - headerName
+                  - sortable
+                  - filter
+                  - enablePivot
+          required:
+            - pivotState
+            - pivotOptions
+            - pivotReport
+            - pivotColumns
+      required:
+        - name
+        - type
+        - settings
+    Cap-tablePostRequest:
+      type: object
+      properties:
+        expectedCloseDate:
+          type: string
+        preMoneyValuation:
+          type: integer
+        roundSize:
+          type: integer
+        includeConvertedShares:
+          type: boolean
+        refreshType:
+          type: string
+        poolRefresh:
+          type: integer
+        roundName:
+          type: string
+        planName:
+          type: string
+      required:
+        - expectedCloseDate
+        - preMoneyValuation
+        - roundSize
+        - includeConvertedShares
+        - refreshType
+        - poolRefresh
+        - roundName
+        - planName
+    UserPostRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        legalName:
+          type: string
+        legalAddress:
+          type: object
+          properties:
+            line1:
+              type: string
+            line2:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            country:
+              type: string
+            zip:
+              type: string
+          required:
+            - line1
+            - line2
+            - city
+            - state
+            - country
+            - zip
+        companyAddress:
+          type: object
+          properties:
+            line1:
+              type: string
+            line2:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            country:
+              type: string
+            zip:
+              type: string
+          required:
+            - line1
+            - line2
+            - city
+            - state
+            - country
+            - zip
+      required:
+        - name
+        - legalName
+        - legalAddress
+        - companyAddress
+    User-businessPostRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        role:
+          type: string
+      required:
+        - email
+        - role
+    User-businessPutRequest:
+      type: object
+      properties:
+        businessId:
+          type: string
+        refreshToken:
+          type: string
+      required:
+        - businessId
+        - refreshToken
