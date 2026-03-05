@@ -1,0 +1,1545 @@
+openapi: 3.0.3
+info:
+  title: Seamailer App
+  version: 1.0.0
+servers:
+  - url: https://api.seamailer.app
+tags:
+  - name: accounts
+  - name: analytics
+  - name: campaigns
+  - name: campaigns-ab
+  - name: contacts
+  - name: data-verifier
+  - name: groups
+  - name: notifications
+  - name: segments
+  - name: submit
+  - name: templates
+  - name: users
+paths:
+  /v1.0/{id}/submit:
+    post:
+      tags:
+        - submit
+      summary: POST /v1.0/{id}/submit
+      operationId: post_v1_0_id_submit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: user-verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SubmitPostRequest"
+            examples:
+              fromHar:
+                value:
+                  companyName: Executive G Org
+                  address: 6-3-349/9
+                  city: Hyderabad
+                  country: India
+                  website: ""
+                  aboutBusiness: hi this is my business
+                  sendVolume: 1-10k
+                  noteOnSubscribers: "entertainment content "
+                  hasWebsite: no
+                  hasSubscribers: no
+      responses:
+        "200":
+          description: Success
+  /v1.0/accounts/user-details:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1.0/accounts/user-details
+      operationId: get_v1_0_accounts_user_details
+      responses:
+        "200":
+          description: Success
+  /v1.0/campaigns/history/{id}:
+    get:
+      tags:
+        - campaigns
+      summary: GET /v1.0/campaigns/history/{id}
+      operationId: get_v1_0_campaigns_history_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: last-campaign-metrics
+      responses:
+        "200":
+          description: Success
+  /v1.0/campaigns/history/last-campaign:
+    get:
+      tags:
+        - campaigns
+      summary: GET /v1.0/campaigns/history/last-campaign
+      operationId: get_v1_0_campaigns_history_last_campaign
+      responses:
+        "200":
+          description: Success
+  /v1.0/contacts/statistics:
+    get:
+      tags:
+        - contacts
+      summary: GET /v1.0/contacts/statistics
+      operationId: get_v1_0_contacts_statistics
+      parameters:
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-02-28T18:30:00Z
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-05T18:30:00Z
+      responses:
+        "200":
+          description: Success
+  /v1.0/campaigns/metrics/sum:
+    get:
+      tags:
+        - campaigns
+      summary: GET /v1.0/campaigns/metrics/sum
+      operationId: get_v1_0_campaigns_metrics_sum
+      parameters:
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-02-28T18:30:00Z
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-05T18:30:00Z
+      responses:
+        "200":
+          description: Success
+  /v1.0/analytics/credits/usage:
+    get:
+      tags:
+        - analytics
+      summary: GET /v1.0/analytics/credits/usage
+      operationId: get_v1_0_analytics_credits_usage
+      responses:
+        "200":
+          description: Success
+  /v1.0/accounts/user/tick-tock:
+    patch:
+      tags:
+        - accounts
+      summary: PATCH /v1.0/accounts/user/tick-tock
+      operationId: patch_v1_0_accounts_user_tick_tock
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountsPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  userAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0
+                    Safari/537.36
+                  device: null
+                  browser: Chrome/145.0.0.0
+                  timezone: Asia/Calcutta
+      responses:
+        "200":
+          description: Success
+  /v1.0/users/request-otp:
+    get:
+      tags:
+        - users
+      summary: GET /v1.0/users/request-otp
+      operationId: get_v1_0_users_request_otp
+      responses:
+        "200":
+          description: Success
+  /v1.0/contacts:
+    get:
+      tags:
+        - contacts
+      summary: GET /v1.0/contacts
+      operationId: get_v1_0_contacts
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - contacts
+      summary: POST /v1.0/contacts
+      operationId: post_v1_0_contacts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  contacts:
+                    - firstName: Jack
+                      lastName: Doe
+                      email: jack@tester.com
+      responses:
+        "200":
+          description: Success
+  /v1.0/contacts/custom/properties-keys:
+    get:
+      tags:
+        - contacts
+      summary: GET /v1.0/contacts/custom/properties-keys
+      operationId: get_v1_0_contacts_custom_properties_keys
+      responses:
+        "200":
+          description: Success
+  /v1.0/campaigns:
+    get:
+      tags:
+        - campaigns
+      summary: GET /v1.0/campaigns
+      operationId: get_v1_0_campaigns
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /v1.0/campaigns/{id}:
+    get:
+      tags:
+        - campaigns
+      summary: GET /v1.0/campaigns/{id}
+      operationId: get_v1_0_campaigns_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "6293"
+      responses:
+        "200":
+          description: Success
+  /v1.0/templates/marketing:
+    get:
+      tags:
+        - templates
+      summary: GET /v1.0/templates/marketing
+      operationId: get_v1_0_templates_marketing
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "15"
+      responses:
+        "200":
+          description: Success
+  /v1.0/templates/gallery:
+    get:
+      tags:
+        - templates
+      summary: GET /v1.0/templates/gallery
+      operationId: get_v1_0_templates_gallery
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: marketing
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "15"
+      responses:
+        "200":
+          description: Success
+  /v1.0/templates/categories/list:
+    get:
+      tags:
+        - templates
+      summary: GET /v1.0/templates/categories/list
+      operationId: get_v1_0_templates_categories_list
+      responses:
+        "200":
+          description: Success
+  /v1.0/templates/create:
+    post:
+      tags:
+        - templates
+      summary: POST /v1.0/templates/create
+      operationId: post_v1_0_templates_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TemplatesPostRequest"
+            examples:
+              fromHar:
+                value:
+                  fromTemplateId: null
+                  type: marketing
+                  templateName: ss
+                  subject: ""
+                  tags: sss
+                  editorVersion: brick_v1
+      responses:
+        "200":
+          description: Success
+  /v1.0/templates/ud/{id}:
+    get:
+      tags:
+        - templates
+      summary: GET /v1.0/templates/ud/{id}
+      operationId: get_v1_0_templates_ud_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "929381"
+      responses:
+        "200":
+          description: Success
+  /v1.0/templates/{id}:
+    patch:
+      tags:
+        - templates
+      summary: PATCH /v1.0/templates/{id}
+      operationId: patch_v1_0_templates_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "929381"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TemplatesPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  templateId: 929381
+                  templateName: ss
+                  templateJson:
+                    mainVersion: 1
+                    version: 0.0.2
+                    components:
+                      - id: a2e7489d-b75d-409c-8c8c-6b99dd766187
+                        type: logo
+                        label: Logo
+                        isContainer: false
+                        properties:
+                          src: null
+                          alt: Logo
+                          caption: ""
+                          link: ""
+                          width: 100px
+                          height: auto
+                          backgroundColor: transparent
+                          objectFit: contain
+                          objectPosition: center
+                          alignment: center
+                          borderRadius: 0px
+                          borderWidth: "0"
+                          borderStyle: solid
+                          borderColor: "#000000"
+                          boxShadow: none
+                          opacity: "1"
+                          filter: none
+                          transition: all 0.3s ease
+                          hoverOpacity: "0.8"
+                          hoverFilter: brightness(1.1)
+                          hoverTransform: scale(1.03)
+                        editorProperties:
+                          - name: content
+                            properties:
+                              - name: src
+                                type: image
+                                value: null
+                                label: Image
+                                metadata: null
+                              - name: alt
+                                type: text
+                                value: Logo
+                                label: Alt Text
+                              - name: caption
+                                type: text
+                                value: ""
+                                label: Caption
+                              - name: link
+                                type: link
+                                value: ""
+                                label: Link To
+                          - name: size
+                            properties:
+                              - name: width
+                                type: size
+                                value: 100px
+                                label: Width
+                              - name: height
+                                type: size
+                                value: auto
+                                label: Height
+                          - name: style
+                            properties:
+                              - name: backgroundColor
+                                type: color
+                                value: transparent
+                                label: Background
+                              - name: objectFit
+                                type: select
+                                value: contain
+                                label: Object Fit
+                                options:
+                                  - cover
+                                  - contain
+                                  - fill
+                                  - none
+                                  - scale-down
+                              - name: objectPosition
+                                type: select
+                                value: center
+                                label: Object Position
+                                options:
+                                  - center
+                                  - top
+                                  - bottom
+                                  - left
+                                  - right
+                              - name: alignment
+                                type: select
+                                value: center
+                                label: Alignment
+                                options:
+                                  - left
+                                  - center
+                                  - right
+                              - name: borderRadius
+                                type: size
+                                value: 0px
+                                label: Border Radius
+                              - name: borderWidth
+                                type: size
+                                value: "0"
+                                label: Border Width
+                              - name: borderStyle
+                                type: select
+                                value: solid
+                                label: Border Style
+                                options:
+                                  - none
+                                  - solid
+                                  - dashed
+                                  - dotted
+                              - name: borderColor
+                                type: color
+                                value: "#000000"
+                                label: Border Color
+                              - name: boxShadow
+                                type: text
+                                value: none
+                                label: Box Shadow
+                              - name: opacity
+                                type: text
+                                value: "1"
+                                label: Opacity
+                              - name: filter
+                                type: text
+                                value: none
+                                label: Filter
+                          - name: animation
+                            properties:
+                              - name: transition
+                                type: text
+                                value: all 0.3s ease
+                                label: Transition
+                              - name: hoverOpacity
+                                type: text
+                                value: "0.8"
+                                label: Hover Opacity
+                              - name: hoverFilter
+                                type: text
+                                value: brightness(1.1)
+                                label: Hover Filter
+                              - name: hoverTransform
+                                type: text
+                                value: scale(1.03)
+                                label: Hover Transform
+                    globalSettings:
+                      id: global-settings
+                      type: global
+                      label: Global Settings
+                      isContainer: false
+                      properties:
+                        backgroundColor: "#f4f4f4"
+                        contentBackgroundColor: "#ffffff"
+                        fontFamily: Inter, sans-serif
+                        maxWidth: 600px
+                        padding: 0px
+                      editorProperties:
+                        - name: General Styles
+                          properties:
+                            - name: backgroundColor
+                              label: Body Background
+                              type: color
+                              value: "#f4f4f4"
+                            - name: contentBackgroundColor
+                              label: Content Background
+                              type: color
+                              value: "#ffffff"
+                            - name: fontFamily
+                              label: Font Family
+                              type: select
+                              value: Inter, sans-serif
+                              options:
+                                - label: Inter
+                                  value: Inter, sans-serif
+                                - label: Archivo
+                                  value: Archivo, sans-serif
+                                - label: Roboto
+                                  value: Roboto, sans-serif
+                                - label: Arial
+                                  value: Arial, Helvetica, sans-serif
+                                - label: Arial Black
+                                  value: '"Arial Black", Gadget, sans-serif'
+                                - label: Verdana
+                                  value: Verdana, Geneva, sans-serif
+                                - label: Tahoma
+                                  value: Tahoma, Geneva, sans-serif
+                                - label: Trebuchet MS
+                                  value: '"Trebuchet MS", Helvetica, sans-serif'
+                                - label: Impact
+                                  value: Impact, Charcoal, sans-serif
+                                - label: Times New Roman
+                                  value: '"Times New Roman", Times, serif'
+                                - label: Georgia
+                                  value: Georgia, serif
+                                - label: Palatino
+                                  value: '"Palatino Linotype", "Book Antiqua", Palatino, serif'
+                                - label: Courier New
+                                  value: '"Courier New", Courier, monospace'
+                                - label: Lucida Console
+                                  value: '"Lucida Console", Monaco, monospace'
+                            - name: maxWidth
+                              label: Content Width (px)
+                              type: size
+                              value: 600px
+                              options:
+                                - px
+                                - "%"
+                            - name: padding
+                              label: Padding
+                              type: padding
+                              value: 0px
+                  templateHtml: >-
+                    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+                    <html xmlns="http://www.w3.org/1999/xhtml">
+
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <title>Email Template</title>
+                        <style type="text/css">
+                            body { margin: 0; padding: 0; min-width: 100%; width: 100% !important; height: 100% !important; font-family: Inter, sans-serif; }
+                            body, table, td, div, p, a { -webkit-font-smoothing: antialiased; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; line-height: 100%; }
+                            table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; border-spacing: 0; }
+                            img { border: 0; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+                            p { margin: 0; }
+                            h1, h2, h3, h4, h5, h6 { margin: 0; }
+                            #outlook a { padding: 0; }
+                            .ReadMsgBody { width: 100%; } .ExternalClass { width: 100%; }
+                            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+
+                            
+                            @media screen and (max-width: 600px) {
+                                .email-container { width: 100% !important; }
+                                img { max-width: 100% !important; height: auto !important; }
+                                
+                                .stack-on-mobile {
+                                    display: block !important;
+                                    width: 100% !important;
+                                }
+                                .stack-on-mobile > tbody > tr > td, .stack-on-mobile > tr > td, .stack-column {
+                                    display: block !important;
+                                    width: 100% !important;
+                                    box-sizing: border-box !important;
+                                    padding-left: 0 !important;
+                                    padding-right: 0 !important;
+                                    padding-bottom: 16px !important;
+                                }
+                                .stack-column:last-child {
+                                    padding-bottom: 0 !important;
+                                }
+                            }
+                        </style>
+                    </head>
+
+                    <body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: Inter, sans-serif;">
+                        <center style="width: 100%; table-layout: fixed; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+                            <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container" style="margin: 0 auto; max-width: 600px;">
+                                    <tr>
+                                        <td align="left" style="padding: 0px;">
+                                            
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td align="center" style="padding: 0;">
+                                     <img src="" alt="Logo" width="100" style="display: block; border: 0; width: 100px; max-width: 100%; height: auto; object-fit: contain" />
+                                </td>
+                            </tr>
+                        </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </center>
+                    </body>
+
+                    </html>
+                  editorVersion: brick_v1
+      responses:
+        "200":
+          description: Success
+  /v1.0/notifications:
+    get:
+      tags:
+        - notifications
+      summary: GET /v1.0/notifications
+      operationId: get_v1_0_notifications
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "15"
+      responses:
+        "200":
+          description: Success
+  /v1.0/accounts/plans:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1.0/accounts/plans
+      operationId: get_v1_0_accounts_plans
+      parameters:
+        - name: cc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: inr
+      responses:
+        "200":
+          description: Success
+  /v1.0/accounts/teams/belong:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1.0/accounts/teams/belong
+      operationId: get_v1_0_accounts_teams_belong
+      responses:
+        "200":
+          description: Success
+  /v1.0/accounts/teams/team-members:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1.0/accounts/teams/team-members
+      operationId: get_v1_0_accounts_teams_team_members
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+      responses:
+        "200":
+          description: Success
+  /v1.0/segments/listings:
+    get:
+      tags:
+        - segments
+      summary: GET /v1.0/segments/listings
+      operationId: get_v1_0_segments_listings
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /v1.0/contacts/de-duplicate/dry-run:
+    get:
+      tags:
+        - contacts
+      summary: GET /v1.0/contacts/de-duplicate/dry-run
+      operationId: get_v1_0_contacts_de_duplicate_dry_run
+      responses:
+        "200":
+          description: Success
+  /v1.0/analytics/reports/email-metrics:
+    get:
+      tags:
+        - analytics
+      summary: GET /v1.0/analytics/reports/email-metrics
+      operationId: get_v1_0_analytics_reports_email_metrics
+      responses:
+        "200":
+          description: Success
+  /v1.0/segments/filters:
+    get:
+      tags:
+        - segments
+      summary: GET /v1.0/segments/filters
+      operationId: get_v1_0_segments_filters
+      responses:
+        "200":
+          description: Success
+  /v1.0/segments/query:
+    post:
+      tags:
+        - segments
+      summary: POST /v1.0/segments/query
+      operationId: post_v1_0_segments_query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SegmentsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  query:
+                    or:
+                      - and:
+                          - key: email_sent
+                            match: is_on
+                            value: []
+                            frequencyOperator: eq
+                            frequencyOperatorValue: "1"
+                            optionSelected: any_email
+                            index: 0
+                            groupIndex: 0
+                            timeframeUnit: Days
+                            displayLabel: Email sent
+      responses:
+        "200":
+          description: Success
+  /v1.0/segments/create:
+    post:
+      tags:
+        - segments
+      summary: POST /v1.0/segments/create
+      operationId: post_v1_0_segments_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SegmentsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: ss
+                  filter:
+                    query:
+                      or:
+                        - and:
+                            - key: email_sent
+                              match: is_on
+                              value:
+                                - 2026-03-11
+                              frequencyOperator: gte
+                              frequencyOperatorValue: "1"
+                              optionSelected: marketing_email
+                              index: 0
+                              groupIndex: 0
+                              timeframeUnit: Days
+                              displayLabel: Email sent
+      responses:
+        "200":
+          description: Success
+  /v1.0/segments/item/{id}:
+    get:
+      tags:
+        - segments
+      summary: GET /v1.0/segments/item/{id}
+      operationId: get_v1_0_segments_item_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "87"
+      responses:
+        "200":
+          description: Success
+  /v1.0/segments/{id}/update:
+    patch:
+      tags:
+        - segments
+      summary: PATCH /v1.0/segments/{id}/update
+      operationId: patch_v1_0_segments_id_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "87"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SegmentsPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  name: ss
+                  filter:
+                    query:
+                      or:
+                        - and:
+                            - key: email_sent
+                              match: is_on
+                              value:
+                                - 2026-03-12
+                              frequencyOperator: gte
+                              frequencyOperatorValue: "1"
+                              optionSelected: marketing_email
+                              index: 0
+                              groupIndex: 0
+                              timeframeUnit: Days
+                              displayLabel: Email sent
+      responses:
+        "200":
+          description: Success
+  /v1.0/groups:
+    get:
+      tags:
+        - groups
+      summary: GET /v1.0/groups
+      operationId: get_v1_0_groups
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - groups
+      summary: POST /v1.0/groups
+      operationId: post_v1_0_groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: g roup
+                  description: aaaaa
+                  tags: ""
+      responses:
+        "200":
+          description: Success
+  /v1.0/groups/{id}:
+    get:
+      tags:
+        - groups
+      summary: GET /v1.0/groups/{id}
+      operationId: get_v1_0_groups_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3921"
+      responses:
+        "200":
+          description: Success
+  /v1.0/groups/{id}/add-contact:
+    post:
+      tags:
+        - groups
+      summary: POST /v1.0/groups/{id}/add-contact
+      operationId: post_v1_0_groups_id_add_contact
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3921"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  contactIds:
+                    - 7103167
+                  groupId: 3921
+      responses:
+        "200":
+          description: Success
+  /v1.0/groups/{id}/contacts:
+    get:
+      tags:
+        - groups
+      summary: GET /v1.0/groups/{id}/contacts
+      operationId: get_v1_0_groups_id_contacts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3921"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /v1.0/data-verifier/{id}:
+    post:
+      tags:
+        - data-verifier
+      summary: POST /v1.0/data-verifier/{id}
+      operationId: post_v1_0_data_verifier_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: check-single-email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Data-verifierPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: mohammedghouse86.backup@gmail.com
+      responses:
+        "200":
+          description: Success
+  /v1.0/campaigns-ab/list:
+    get:
+      tags:
+        - campaigns-ab
+      summary: GET /v1.0/campaigns-ab/list
+      operationId: get_v1_0_campaigns_ab_list
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    SubmitPostRequest:
+      type: object
+      properties:
+        companyName:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        website:
+          type: string
+        aboutBusiness:
+          type: string
+        sendVolume:
+          type: string
+        noteOnSubscribers:
+          type: string
+        hasWebsite:
+          type: string
+        hasSubscribers:
+          type: string
+      required:
+        - companyName
+        - address
+        - city
+        - country
+        - website
+        - aboutBusiness
+        - sendVolume
+        - noteOnSubscribers
+        - hasWebsite
+        - hasSubscribers
+    AccountsPatchRequest:
+      type: object
+      properties:
+        userAgent:
+          type: string
+        device:
+          nullable: true
+        browser:
+          type: string
+        timezone:
+          type: string
+      required:
+        - userAgent
+        - device
+        - browser
+        - timezone
+    ContactsPostRequest:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            type: object
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+            required:
+              - firstName
+              - lastName
+              - email
+      required:
+        - contacts
+    TemplatesPostRequest:
+      type: object
+      properties:
+        fromTemplateId:
+          nullable: true
+        type:
+          type: string
+        templateName:
+          type: string
+        subject:
+          type: string
+        tags:
+          type: string
+        editorVersion:
+          type: string
+      required:
+        - fromTemplateId
+        - type
+        - templateName
+        - subject
+        - tags
+        - editorVersion
+    TemplatesPatchRequest:
+      type: object
+      properties:
+        templateId:
+          type: integer
+        templateName:
+          type: string
+        templateJson:
+          type: object
+          properties:
+            mainVersion:
+              type: integer
+            version:
+              type: string
+            components:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  type:
+                    type: string
+                  label:
+                    type: string
+                  isContainer:
+                    type: boolean
+                  properties:
+                    type: object
+                    properties:
+                      src:
+                        nullable: true
+                      alt:
+                        type: string
+                      caption:
+                        type: string
+                      link:
+                        type: string
+                      width:
+                        type: string
+                      height:
+                        type: string
+                      backgroundColor:
+                        type: string
+                      objectFit:
+                        type: string
+                      objectPosition:
+                        type: string
+                      alignment:
+                        type: string
+                      borderRadius:
+                        type: string
+                      borderWidth:
+                        type: string
+                      borderStyle:
+                        type: string
+                      borderColor:
+                        type: string
+                      boxShadow:
+                        type: string
+                      opacity:
+                        type: string
+                      filter:
+                        type: string
+                      transition:
+                        type: string
+                      hoverOpacity:
+                        type: string
+                      hoverFilter:
+                        type: string
+                      hoverTransform:
+                        type: string
+                    required:
+                      - src
+                      - alt
+                      - caption
+                      - link
+                      - width
+                      - height
+                      - backgroundColor
+                      - objectFit
+                      - objectPosition
+                      - alignment
+                      - borderRadius
+                      - borderWidth
+                      - borderStyle
+                      - borderColor
+                      - boxShadow
+                      - opacity
+                      - filter
+                      - transition
+                      - hoverOpacity
+                      - hoverFilter
+                      - hoverTransform
+                  editorProperties:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        properties:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              type:
+                                type: string
+                              value:
+                                nullable: true
+                              label:
+                                type: string
+                              metadata:
+                                nullable: true
+                            required:
+                              - name
+                              - type
+                              - value
+                              - label
+                              - metadata
+                      required:
+                        - name
+                        - properties
+                required:
+                  - id
+                  - type
+                  - label
+                  - isContainer
+                  - properties
+                  - editorProperties
+            globalSettings:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+                label:
+                  type: string
+                isContainer:
+                  type: boolean
+                properties:
+                  type: object
+                  properties:
+                    backgroundColor:
+                      type: string
+                    contentBackgroundColor:
+                      type: string
+                    fontFamily:
+                      type: string
+                    maxWidth:
+                      type: string
+                    padding:
+                      type: string
+                  required:
+                    - backgroundColor
+                    - contentBackgroundColor
+                    - fontFamily
+                    - maxWidth
+                    - padding
+                editorProperties:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      properties:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            label:
+                              type: string
+                            type:
+                              type: string
+                            value:
+                              type: string
+                          required:
+                            - name
+                            - label
+                            - type
+                            - value
+                    required:
+                      - name
+                      - properties
+              required:
+                - id
+                - type
+                - label
+                - isContainer
+                - properties
+                - editorProperties
+          required:
+            - mainVersion
+            - version
+            - components
+            - globalSettings
+        templateHtml:
+          type: string
+        editorVersion:
+          type: string
+      required:
+        - templateId
+        - templateName
+        - templateJson
+        - templateHtml
+        - editorVersion
+    SegmentsPostRequest:
+      type: object
+      properties:
+        query:
+          type: object
+          properties:
+            or:
+              type: array
+              items:
+                type: object
+                properties:
+                  and:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        match:
+                          type: string
+                        value:
+                          type: array
+                          items:
+                            type: string
+                        frequencyOperator:
+                          type: string
+                        frequencyOperatorValue:
+                          type: string
+                        optionSelected:
+                          type: string
+                        index:
+                          type: integer
+                        groupIndex:
+                          type: integer
+                        timeframeUnit:
+                          type: string
+                        displayLabel:
+                          type: string
+                      required:
+                        - key
+                        - match
+                        - value
+                        - frequencyOperator
+                        - frequencyOperatorValue
+                        - optionSelected
+                        - index
+                        - groupIndex
+                        - timeframeUnit
+                        - displayLabel
+                required:
+                  - and
+          required:
+            - or
+      required:
+        - query
+    SegmentsPatchRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        filter:
+          type: object
+          properties:
+            query:
+              type: object
+              properties:
+                or:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      and:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            key:
+                              type: string
+                            match:
+                              type: string
+                            value:
+                              type: array
+                              items:
+                                type: string
+                            frequencyOperator:
+                              type: string
+                            frequencyOperatorValue:
+                              type: string
+                            optionSelected:
+                              type: string
+                            index:
+                              type: integer
+                            groupIndex:
+                              type: integer
+                            timeframeUnit:
+                              type: string
+                            displayLabel:
+                              type: string
+                          required:
+                            - key
+                            - match
+                            - value
+                            - frequencyOperator
+                            - frequencyOperatorValue
+                            - optionSelected
+                            - index
+                            - groupIndex
+                            - timeframeUnit
+                            - displayLabel
+                    required:
+                      - and
+              required:
+                - or
+          required:
+            - query
+      required:
+        - name
+        - filter
+    GroupsPostRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: string
+      required:
+        - name
+        - description
+        - tags
+    Data-verifierPostRequest:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+        - email
