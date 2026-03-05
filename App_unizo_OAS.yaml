@@ -1,0 +1,863 @@
+openapi: 3.0.3
+info:
+  title: Unizo App
+  version: 1.0.0
+servers:
+  - url: https://app.unizo.ai
+tags:
+  - name: accessKeys
+  - name: dockProfiles
+  - name: integrations
+  - name: logs
+  - name: organizations
+  - name: services
+  - name: statistics
+  - name: watches
+  - name: webhooks
+  - name: "{id}"
+paths:
+  /api/v1/statistics:
+    get:
+      tags:
+        - statistics
+      summary: GET /api/v1/statistics
+      operationId: get_api_v1_statistics
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: API_UTILIZATION
+        - name: startDateTime
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-02-04T04:24:04Z
+        - name: endDateTime
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-05T04:24:04Z
+      responses:
+        "200":
+          description: Success
+  /api/v1/integrations/stats:
+    get:
+      tags:
+        - integrations
+      summary: GET /api/v1/integrations/stats
+      operationId: get_api_v1_integrations_stats
+      responses:
+        "200":
+          description: Success
+  /api/v1/services/search:
+    post:
+      tags:
+        - services
+      summary: POST /api/v1/services/search
+      operationId: post_api_v1_services_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServicesPostRequest"
+            examples:
+              fromHar:
+                value:
+                  pagination:
+                    limit: 1
+                    offset: 0
+                  filter:
+                    and:
+                      - property: /state
+                        operator: =
+                        values:
+                          - ACTIVE
+                      - property: /type
+                        operator: =
+                        values:
+                          - TICKETING
+      responses:
+        "200":
+          description: Success
+  /api/v1/watches/search:
+    post:
+      tags:
+        - watches
+      summary: POST /api/v1/watches/search
+      operationId: post_api_v1_watches_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WatchesPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filter:
+                    and:
+                      - property: /organization/id
+                        operator: =
+                        values:
+                          - fcbe3a48-701b-40c7-9508-18eff4c432ab
+                  pagination:
+                    limit: 50
+                    offset: 0
+      responses:
+        "200":
+          description: Success
+  /api/v1/services/accessPoints:
+    get:
+      tags:
+        - services
+      summary: GET /api/v1/services/accessPoints
+      operationId: get_api_v1_services_accessPoints
+      responses:
+        "200":
+          description: Success
+  /api/v1/services:
+    post:
+      tags:
+        - services
+      summary: POST /api/v1/services
+      operationId: post_api_v1_services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServicesPostRequest"
+            examples:
+              fromHar:
+                value:
+                  organization:
+                    id: fcbe3a48-701b-40c7-9508-18eff4c432ab
+                  serviceProfile:
+                    id: 283ebd69-e1f7-4927-ae5e-9f61f08e8b5d
+                  state: ACTIVE
+      responses:
+        "200":
+          description: Success
+  /api/v1/{id}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /api/v1/{id}
+      operationId: get_api_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: integrationMonitorConfigs
+        - name: organizationId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: fcbe3a48-701b-40c7-9508-18eff4c432ab
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - "{id}"
+      summary: POST /api/v1/{id}
+      operationId: post_api_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: customUnifiedFields
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/{id}PostRequest"
+            examples:
+              fromHar:
+                value:
+                  type: PREDEFINED
+                  name: Auto-Appending Query Parameters
+                  key: autoappending_query_parameters
+                  description: ""
+                  state: ACTIVE
+                  category:
+                    type: TICKETING
+                  dataModel:
+                    type: organization
+                  dataType:
+                    type: string
+                  children: []
+      responses:
+        "200":
+          description: Success
+  /api/v1/integrations/search:
+    post:
+      tags:
+        - integrations
+      summary: POST /api/v1/integrations/search
+      operationId: post_api_v1_integrations_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IntegrationsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filter:
+                    and:
+                      - property: /organization/id
+                        operator: =
+                        values:
+                          - fcbe3a48-701b-40c7-9508-18eff4c432ab
+                  pagination:
+                    offset: 0
+                    limit: 10
+                  sort:
+                    - property: /changeLog/lastUpdatedDateTime
+                      direction: DESC
+      responses:
+        "200":
+          description: Success
+  /api/v1/logs/search:
+    post:
+      tags:
+        - logs
+      summary: POST /api/v1/logs/search
+      operationId: post_api_v1_logs_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LogsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filter:
+                    and:
+                      - property: /organization/id
+                        operator: =
+                        values:
+                          - fcbe3a48-701b-40c7-9508-18eff4c432ab
+                  pagination:
+                    limit: 10
+                    offset: 0
+                  sort:
+                    - property: /changeLog/startDateTime
+                      direction: DESC
+      responses:
+        "200":
+          description: Success
+  /api/v1/webhooks/search:
+    post:
+      tags:
+        - webhooks
+      summary: POST /api/v1/webhooks/search
+      operationId: post_api_v1_webhooks_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhooksPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filter:
+                    and:
+                      - property: /organization/id
+                        operator: =
+                        values:
+                          - fcbe3a48-701b-40c7-9508-18eff4c432ab
+                      - property: /state
+                        operator: =
+                        values:
+                          - ACTIVE
+                  pagination:
+                    limit: 50
+                    offset: 0
+                  sort:
+                    - property: /changeLog/lastUpdatedDateTime
+                      direction: DESC
+      responses:
+        "200":
+          description: Success
+  /api/v1/webhooks/validate:
+    post:
+      tags:
+        - webhooks
+      summary: POST /api/v1/webhooks/validate
+      operationId: post_api_v1_webhooks_validate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhooksPostRequest"
+            examples:
+              fromHar:
+                value:
+                  url: https://petstore.swagger.io/v2
+      responses:
+        "200":
+          description: Success
+  /api/v1/webhooks:
+    post:
+      tags:
+        - webhooks
+      summary: POST /api/v1/webhooks
+      operationId: post_api_v1_webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhooksPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: pet
+                  type: WEBHOOK_ENDPOINT
+                  description: s
+                  destination:
+                    type: WEBHOOK
+                    webhookConfig:
+                      url: https://petstore.swagger.io/v2/pet
+                      contentType: application/json
+                      sslVerification: true
+                  eventSubscriptions:
+                    eventTypes:
+                      - integration:created
+      responses:
+        "200":
+          description: Success
+  /api/v1/dockProfiles/search:
+    post:
+      tags:
+        - dockProfiles
+      summary: POST /api/v1/dockProfiles/search
+      operationId: post_api_v1_dockProfiles_search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DockProfilesPostRequest"
+            examples:
+              fromHar:
+                value:
+                  filter:
+                    and:
+                      - property: /organization/id
+                        operator: =
+                        values:
+                          - fcbe3a48-701b-40c7-9508-18eff4c432ab
+                      - property: /state
+                        operator: =
+                        values:
+                          - ACTIVE
+                  pagination:
+                    limit: 10
+                    offset: 0
+                  sort:
+                    - property: /changeLog/lastUpdatedDateTime
+                      direction: DESC
+      responses:
+        "200":
+          description: Success
+  /api/v1/dockProfiles:
+    post:
+      tags:
+        - dockProfiles
+      summary: POST /api/v1/dockProfiles
+      operationId: post_api_v1_dockProfiles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DockProfilesPostRequest"
+            examples:
+              fromHar:
+                value:
+                  type: CUSTOM
+                  pageLayout: EMBEDDED
+                  name: Ghouse1
+                  userFlow:
+                    type: CATEGORY
+                  frontendUrl: https://dock.unizo.ai
+      responses:
+        "200":
+          description: Success
+  /api/v1/services/{id}/fieldMappings:
+    get:
+      tags:
+        - services
+      summary: GET /api/v1/services/{id}/fieldMappings
+      operationId: get_api_v1_services_id_fieldMappings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 3c19910b-5da7-43c5-baa4-16f9346b164e
+        - name: dataType
+          in: query
+          required: false
+          schema:
+            type: string
+          example: COLLECTION
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+          example: DRAFT
+      responses:
+        "200":
+          description: Success
+  /api/v1/services/{id}/fieldMappings/search:
+    post:
+      tags:
+        - services
+      summary: POST /api/v1/services/{id}/fieldMappings/search
+      operationId: post_api_v1_services_id_fieldMappings_search
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 07728b05-da6a-4d14-95f2-f26ed574bc73
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServicesPostRequest"
+            examples:
+              fromHar:
+                value: {}
+      responses:
+        "200":
+          description: Success
+  /api/v1/organizations/{id}/logProtections:
+    get:
+      tags:
+        - organizations
+      summary: GET /api/v1/organizations/{id}/logProtections
+      operationId: get_api_v1_organizations_id_logProtections
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: fcbe3a48-701b-40c7-9508-18eff4c432ab
+      responses:
+        "200":
+          description: Success
+  /api/v1/organizations/{id}/keyProtections:
+    get:
+      tags:
+        - organizations
+      summary: GET /api/v1/organizations/{id}/keyProtections
+      operationId: get_api_v1_organizations_id_keyProtections
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: fcbe3a48-701b-40c7-9508-18eff4c432ab
+      responses:
+        "200":
+          description: Success
+  /api/v1/accessKeys:
+    get:
+      tags:
+        - accessKeys
+      summary: GET /api/v1/accessKeys
+      operationId: get_api_v1_accessKeys
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - accessKeys
+      summary: POST /api/v1/accessKeys
+      operationId: post_api_v1_accessKeys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccessKeysPostRequest"
+            examples:
+              fromHar:
+                value:
+                  type: GENERATE_REQUEST
+                  expirationDateTime: 2026-03-12T04:32:20.509Z
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ServicesPostRequest:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            limit:
+              type: integer
+            offset:
+              type: integer
+          required:
+            - limit
+            - offset
+        filter:
+          type: object
+          properties:
+            and:
+              type: array
+              items:
+                type: object
+                properties:
+                  property:
+                    type: string
+                  operator:
+                    type: string
+                  values:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - property
+                  - operator
+                  - values
+          required:
+            - and
+      required:
+        - pagination
+        - filter
+    WatchesPostRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          properties:
+            and:
+              type: array
+              items:
+                type: object
+                properties:
+                  property:
+                    type: string
+                  operator:
+                    type: string
+                  values:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - property
+                  - operator
+                  - values
+          required:
+            - and
+        pagination:
+          type: object
+          properties:
+            limit:
+              type: integer
+            offset:
+              type: integer
+          required:
+            - limit
+            - offset
+      required:
+        - filter
+        - pagination
+    IntegrationsPostRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          properties:
+            and:
+              type: array
+              items:
+                type: object
+                properties:
+                  property:
+                    type: string
+                  operator:
+                    type: string
+                  values:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - property
+                  - operator
+                  - values
+          required:
+            - and
+        pagination:
+          type: object
+          properties:
+            offset:
+              type: integer
+            limit:
+              type: integer
+          required:
+            - offset
+            - limit
+        sort:
+          type: array
+          items:
+            type: object
+            properties:
+              property:
+                type: string
+              direction:
+                type: string
+            required:
+              - property
+              - direction
+      required:
+        - filter
+        - pagination
+        - sort
+    LogsPostRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          properties:
+            and:
+              type: array
+              items:
+                type: object
+                properties:
+                  property:
+                    type: string
+                  operator:
+                    type: string
+                  values:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - property
+                  - operator
+                  - values
+          required:
+            - and
+        pagination:
+          type: object
+          properties:
+            limit:
+              type: integer
+            offset:
+              type: integer
+          required:
+            - limit
+            - offset
+        sort:
+          type: array
+          items:
+            type: object
+            properties:
+              property:
+                type: string
+              direction:
+                type: string
+            required:
+              - property
+              - direction
+      required:
+        - filter
+        - pagination
+        - sort
+    WebhooksPostRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          properties:
+            and:
+              type: array
+              items:
+                type: object
+                properties:
+                  property:
+                    type: string
+                  operator:
+                    type: string
+                  values:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - property
+                  - operator
+                  - values
+          required:
+            - and
+        pagination:
+          type: object
+          properties:
+            limit:
+              type: integer
+            offset:
+              type: integer
+          required:
+            - limit
+            - offset
+        sort:
+          type: array
+          items:
+            type: object
+            properties:
+              property:
+                type: string
+              direction:
+                type: string
+            required:
+              - property
+              - direction
+      required:
+        - filter
+        - pagination
+        - sort
+    DockProfilesPostRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          properties:
+            and:
+              type: array
+              items:
+                type: object
+                properties:
+                  property:
+                    type: string
+                  operator:
+                    type: string
+                  values:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - property
+                  - operator
+                  - values
+          required:
+            - and
+        pagination:
+          type: object
+          properties:
+            limit:
+              type: integer
+            offset:
+              type: integer
+          required:
+            - limit
+            - offset
+        sort:
+          type: array
+          items:
+            type: object
+            properties:
+              property:
+                type: string
+              direction:
+                type: string
+            required:
+              - property
+              - direction
+      required:
+        - filter
+        - pagination
+        - sort
+    "{id}PostRequest":
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        key:
+          type: string
+        description:
+          type: string
+        state:
+          type: string
+        category:
+          type: object
+          properties:
+            type:
+              type: string
+          required:
+            - type
+        dataModel:
+          type: object
+          properties:
+            type:
+              type: string
+          required:
+            - type
+        dataType:
+          type: object
+          properties:
+            type:
+              type: string
+          required:
+            - type
+        children:
+          type: array
+          items:
+            type: string
+      required:
+        - type
+        - name
+        - key
+        - description
+        - state
+        - category
+        - dataModel
+        - dataType
+        - children
+    AccessKeysPostRequest:
+      type: object
+      properties:
+        type:
+          type: string
+        expirationDateTime:
+          type: string
+      required:
+        - type
+        - expirationDateTime
