@@ -1,0 +1,766 @@
+openapi: 3.0.3
+info:
+  title: Zuplo App
+  version: 1.0.0
+servers:
+  - url: https://api.zuplo.com
+tags:
+  - name: accounts
+  - name: analytics
+  - name: api-keys
+  - name: auth
+  - name: chat-identity
+  - name: deployments
+  - name: knock-identity
+  - name: user
+  - name: users
+paths:
+  /v1/accounts/{id}/projects:
+    post:
+      tags:
+        - accounts
+      summary: POST /v1/accounts/{id}/projects
+      operationId: post_v1_accounts_id_projects
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: gold-flamingo
+                  options:
+                    prettier: false
+                    eslint: false
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - accounts
+      summary: GET /v1/accounts/{id}/projects
+      operationId: get_v1_accounts_id_projects
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+      responses:
+        "200":
+          description: Success
+  /v1/accounts:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1/accounts
+      operationId: get_v1_accounts
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - accounts
+      summary: POST /v1/accounts
+      operationId: post_v1_accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  label: Gorg2
+                  name: gorg2
+      responses:
+        "200":
+          description: Success
+  /v1/accounts/{id}/projects/gold-flamingo/deployments:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1/accounts/{id}/projects/gold-flamingo/deployments
+      operationId: get_v1_accounts_id_projects_gold_flamingo_deployments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+      responses:
+        "200":
+          description: Success
+  /v1/deployments/{id}/logs:
+    get:
+      tags:
+        - deployments
+      summary: GET /v1/deployments/{id}/logs
+      operationId: get_v1_deployments_id_logs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: gold-flamingo-main-77cf378
+      responses:
+        "200":
+          description: Success
+  /v1/deployments/{id}/real-time-token:
+    post:
+      tags:
+        - deployments
+      summary: POST /v1/deployments/{id}/real-time-token
+      operationId: post_v1_deployments_id_real_time_token
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: gold-flamingo-main-77cf378
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeploymentsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  socket_id: "885788.13503144"
+      responses:
+        "200":
+          description: Success
+  /v1/knock-identity:
+    get:
+      tags:
+        - knock-identity
+      summary: GET /v1/knock-identity
+      operationId: get_v1_knock_identity
+      responses:
+        "200":
+          description: Success
+  /v1/deployments/{id}/versions:
+    get:
+      tags:
+        - deployments
+      summary: GET /v1/deployments/{id}/versions
+      operationId: get_v1_deployments_id_versions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: gold-flamingo-main-77cf378
+      responses:
+        "200":
+          description: Success
+  /v1/user/me/{id}:
+    get:
+      tags:
+        - user
+      summary: GET /v1/user/me/{id}
+      operationId: get_v1_user_me_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: source-control-configs
+      responses:
+        "200":
+          description: Success
+  /v1/deployments/{id}/fs/dir:
+    get:
+      tags:
+        - deployments
+      summary: GET /v1/deployments/{id}/fs/dir
+      operationId: get_v1_deployments_id_fs_dir
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: gold-flamingo-main-77cf378
+        - name: path
+          in: query
+          required: false
+          schema:
+            type: string
+          example: /
+        - name: recursive
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /v1/deployments/{id}/fs/file:
+    get:
+      tags:
+        - deployments
+      summary: GET /v1/deployments/{id}/fs/file
+      operationId: get_v1_deployments_id_fs_file
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: gold-flamingo-main-77cf378
+        - name: path
+          in: query
+          required: false
+          schema:
+            type: string
+          example: /config/policies.json
+      responses:
+        "200":
+          description: Success
+  /v1/accounts/{id}/projects/gold-flamingo/{id2}:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1/accounts/{id}/projects/gold-flamingo/{id2}
+      operationId: get_v1_accounts_id_projects_gold_flamingo_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: environment-variables
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - accounts
+      summary: POST /v1/accounts/{id}/projects/gold-flamingo/{id2}
+      operationId: post_v1_accounts_id_projects_gold_flamingo_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: environment-variables
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: USER
+                  value: gh
+                  type: config
+                  targets:
+                    - production
+                    - preview
+                    - working-copy
+      responses:
+        "200":
+          description: Success
+  /v1/accounts/{id}/projects/gold-flamingo/{id2}/{id3}:
+    patch:
+      tags:
+        - accounts
+      summary: PATCH /v1/accounts/{id}/projects/gold-flamingo/{id2}/{id3}
+      operationId: patch_v1_accounts_id_projects_gold_flamingo_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: environment-variables
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: env_pBSItzsx5kmav2YFG61nSMPF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountsPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  id: env_pBSItzsx5kmav2YFG61nSMPF
+                  name: SAMPLE
+                  value: "123"
+      responses:
+        "200":
+          description: Success
+  /v1/accounts/{id}/{id2}:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1/accounts/{id}/{id2}
+      operationId: get_v1_accounts_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: account-member-invites
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - accounts
+      summary: POST /v1/accounts/{id}/{id2}
+      operationId: post_v1_accounts_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: account-member-invites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  userEmail: jack@tester.com
+                  metadata:
+                    account:
+                      role: admin
+                    project:
+                      name: gold-flamingo
+                      role: admin
+      responses:
+        "200":
+          description: Success
+  /v1/auth/users:
+    get:
+      tags:
+        - auth
+      summary: GET /v1/auth/users
+      operationId: get_v1_auth_users
+      parameters:
+        - name: accountName
+          in: query
+          required: false
+          schema:
+            type: string
+          example: silver_little_marten
+        - name: projectName
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gold-flamingo
+        - name: includeInheritedRoles
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /v1/accounts/{id}/projects/gold-flamingo/custom-domains:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1/accounts/{id}/projects/gold-flamingo/custom-domains
+      operationId: get_v1_accounts_id_projects_gold_flamingo_custom_domains
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+      responses:
+        "200":
+          description: Success
+  /v1/accounts/{id}/billings:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1/accounts/{id}/billings
+      operationId: get_v1_accounts_id_billings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+      responses:
+        "200":
+          description: Success
+  /v1/analytics/{id}/usage:
+    get:
+      tags:
+        - analytics
+      summary: GET /v1/analytics/{id}/usage
+      operationId: get_v1_analytics_id_usage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-02-03
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-04
+        - name: version
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2"
+      responses:
+        "200":
+          description: Success
+  /v1/users/me/preferences:
+    get:
+      tags:
+        - users
+      summary: GET /v1/users/me/preferences
+      operationId: get_v1_users_me_preferences
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - users
+      summary: PUT /v1/users/me/preferences
+      operationId: put_v1_users_me_preferences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UsersPutRequest"
+            examples:
+              fromHar:
+                value:
+                  data:
+                    favoriteProjects:
+                      silver_little_marten:
+                        - gold-flamingo
+      responses:
+        "200":
+          description: Success
+  /v1/chat-identity:
+    post:
+      tags:
+        - chat-identity
+      summary: POST /v1/chat-identity
+      operationId: post_v1_chat_identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Chat-identityPostRequest"
+            examples:
+              fromHar:
+                value:
+                  account: gorg2
+      responses:
+        "200":
+          description: Success
+  /v1/accounts/gorg2/projects:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1/accounts/gorg2/projects
+      operationId: get_v1_accounts_gorg2_projects
+      responses:
+        "200":
+          description: Success
+  /v1/analytics/gorg2/usage:
+    get:
+      tags:
+        - analytics
+      summary: GET /v1/analytics/gorg2/usage
+      operationId: get_v1_analytics_gorg2_usage
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-02-03
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-04
+        - name: version
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2"
+      responses:
+        "200":
+          description: Success
+  /v1/deployments/{id}/build-logs/{id2}:
+    get:
+      tags:
+        - deployments
+      summary: GET /v1/deployments/{id}/build-logs/{id2}
+      operationId: get_v1_deployments_id_build_logs_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: gold-flamingo-main-77cf378
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: f8871885-cec1-40aa-a63e-69ba2513a968
+      responses:
+        "200":
+          description: Success
+  /v1/accounts/{id}/projects/gold-flamingo:
+    get:
+      tags:
+        - accounts
+      summary: GET /v1/accounts/{id}/projects/gold-flamingo
+      operationId: get_v1_accounts_id_projects_gold_flamingo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: silver_little_marten
+      responses:
+        "200":
+          description: Success
+  /v1/api-keys/{id}/consumers:
+    get:
+      tags:
+        - api-keys
+      summary: GET /v1/api-keys/{id}/consumers
+      operationId: get_v1_api_keys_id_consumers
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: zprj-fikj0xgd8skja44jjnwhx6ra-working-copy
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api-keys
+      summary: POST /v1/api-keys/{id}/consumers
+      operationId: post_v1_api_keys_id_consumers
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: zprj-fikj0xgd8skja44jjnwhx6ra-working-copy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Api-keysPostRequest"
+            examples:
+              fromHar:
+                value:
+                  metadata: "{}"
+                  externalUsers: []
+                  sub: ww
+                  accountName: silver_little_marten
+                  projectName: gold-flamingo
+                  environmentType: WORKING_COPY
+      responses:
+        "200":
+          description: Success
+  /v1/api-keys/{id}/consumers/ww:
+    get:
+      tags:
+        - api-keys
+      summary: GET /v1/api-keys/{id}/consumers/ww
+      operationId: get_v1_api_keys_id_consumers_ww
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: zprj-fikj0xgd8skja44jjnwhx6ra-working-copy
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    AccountsPostRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        options:
+          type: object
+          properties:
+            prettier:
+              type: boolean
+            eslint:
+              type: boolean
+          required:
+            - prettier
+            - eslint
+      required:
+        - name
+        - options
+    DeploymentsPostRequest:
+      type: object
+      properties:
+        socket_id:
+          type: string
+      required:
+        - socket_id
+    AccountsPatchRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+      required:
+        - id
+        - name
+        - value
+    Chat-identityPostRequest:
+      type: object
+      properties:
+        account:
+          type: string
+      required:
+        - account
+    UsersPutRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            favoriteProjects:
+              type: object
+              properties:
+                silver_little_marten:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - silver_little_marten
+          required:
+            - favoriteProjects
+      required:
+        - data
+    Api-keysPostRequest:
+      type: object
+      properties:
+        metadata:
+          type: string
+        externalUsers:
+          type: array
+          items:
+            type: string
+        sub:
+          type: string
+        accountName:
+          type: string
+        projectName:
+          type: string
+        environmentType:
+          type: string
+      required:
+        - metadata
+        - externalUsers
+        - sub
+        - accountName
+        - projectName
+        - environmentType
