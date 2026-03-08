@@ -1,0 +1,2984 @@
+openapi: 3.0.3
+info:
+  title: MyEventBazaar App
+  version: 1.0.0
+servers:
+  - url: https://myeventbazaar.com
+tags:
+  - name: _next
+  - name: about-us
+  - name: api
+  - name: baking
+  - name: blogs
+  - name: cart
+  - name: caterers
+  - name: chat
+  - name: contact-us
+  - name: decorators
+  - name: default
+  - name: djService
+  - name: event-listing
+  - name: faq
+  - name: g
+  - name: gtag
+  - name: login
+  - name: partyDrums
+  - name: partyRentals
+  - name: photography
+  - name: privacy-policy
+  - name: profile
+  - name: refund-policy
+  - name: registration
+  - name: reset-password
+  - name: usage-policy
+  - name: venues
+  - name: "{id}"
+paths:
+  /cart:
+    get:
+      tags:
+        - cart
+      summary: GET /cart
+      operationId: get_cart
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /profile:
+    get:
+      tags:
+        - profile
+      summary: GET /profile
+      operationId: get_profile
+      parameters:
+        - name: tab
+          in: query
+          required: false
+          schema:
+            type: string
+          example: wishlist
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1gu32
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ALL
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /api/auth/csrf:
+    get:
+      tags:
+        - api
+      summary: GET /api/auth/csrf
+      operationId: get_api_auth_csrf
+      responses:
+        "200":
+          description: Success
+  /api/auth/signout:
+    post:
+      tags:
+        - api
+      summary: POST /api/auth/signout
+      operationId: post_api_auth_signout
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  csrfToken: 3e8d06028ef39b8695855c5f529e100d4f6aed4f1f93559e17808ba795686001
+                  callbackUrl: https%3A%2F%2Fmyeventbazaar.com%2Fcart
+                  json: "true"
+      responses:
+        "200":
+          description: Success
+  /gtag/js:
+    get:
+      tags:
+        - gtag
+      summary: GET /gtag/js
+      operationId: get_gtag_js
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: G-HVFFV15L0P
+      responses:
+        "200":
+          description: Success
+  /_next/image:
+    get:
+      tags:
+        - _next
+      summary: GET /_next/image
+      operationId: get__next_image
+      parameters:
+        - name: url
+          in: query
+          required: false
+          schema:
+            type: string
+          example: /_next/static/media/Loader.ea511a32.gif
+        - name: w
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1920"
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "75"
+      responses:
+        "200":
+          description: Success
+  /login:
+    get:
+      tags:
+        - login
+      summary: GET /login
+      operationId: get_login
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: cart
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 3nvwd
+      responses:
+        "200":
+          description: Success
+  /api/auth/session:
+    get:
+      tags:
+        - api
+      summary: GET /api/auth/session
+      operationId: get_api_auth_session
+      responses:
+        "200":
+          description: Success
+  /:
+    get:
+      tags:
+        - default
+      summary: GET /
+      operationId: get_root
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1mxde
+      responses:
+        "200":
+          description: Success
+  /event-listing:
+    get:
+      tags:
+        - event-listing
+      summary: GET /event-listing
+      operationId: get_event_listing
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1mxde
+      responses:
+        "200":
+          description: Success
+  /about-us:
+    get:
+      tags:
+        - about-us
+      summary: GET /about-us
+      operationId: get_about_us
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1mxde
+      responses:
+        "200":
+          description: Success
+  /reset-password:
+    get:
+      tags:
+        - reset-password
+      summary: GET /reset-password
+      operationId: get_reset_password
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1mxde
+      responses:
+        "200":
+          description: Success
+  /registration:
+    get:
+      tags:
+        - registration
+      summary: GET /registration
+      operationId: get_registration
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1mxde
+      responses:
+        "200":
+          description: Success
+  /g/collect:
+    post:
+      tags:
+        - g
+      summary: POST /g/collect
+      operationId: post_g_collect
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2"
+        - name: tid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: G-HVFFV15L0P
+        - name: gtm
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 45je6341v9195355850za200zd9195355850
+        - name: _p
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1772794663597"
+        - name: gcd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 13l3l3l3l1l1
+        - name: npa
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: dma
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: cid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "150550017.1772791390"
+        - name: ul
+          in: query
+          required: false
+          schema:
+            type: string
+          example: en-gb
+        - name: sr
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1536x864
+        - name: uaa
+          in: query
+          required: false
+          schema:
+            type: string
+          example: x86
+        - name: uab
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "64"
+        - name: uafvl
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Not%3AA-Brand;99.0.0.0|Google%20Chrome;145.0.7632.117|Chromium;145.0.7632.117
+        - name: uamb
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: uam
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: uap
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Windows
+        - name: uapv
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 19.0.0
+        - name: uaw
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: are
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: frm
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: pscdl
+          in: query
+          required: false
+          schema:
+            type: string
+          example: noapi
+        - name: _eu
+          in: query
+          required: false
+          schema:
+            type: string
+          example: AAAAAAQ
+        - name: _s
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: tag_exp
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 103116026~103200004~115938465~115938469~116024733~117477894~117484252~117625638
+        - name: sid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1772791390"
+        - name: sct
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: seg
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: dl
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://myeventbazaar.com/cart
+        - name: dr
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://myeventbazaar.com/cart
+        - name: dt
+          in: query
+          required: false
+          schema:
+            type: string
+          example: My Event Bazaar
+        - name: en
+          in: query
+          required: false
+          schema:
+            type: string
+          example: page_view
+        - name: _ee
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: tfd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "4071"
+        - name: ep.form_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: ep.form_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: ep.form_destination
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://myeventbazaar.com/login?from=cart
+        - name: epn.form_length
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "3"
+        - name: ep.first_field_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: ep.first_field_name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: email
+        - name: ep.first_field_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: text
+        - name: epn.first_field_position
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: _et
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "770"
+        - name: epn.percent_scrolled
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "90"
+      requestBody:
+        required: true
+        content:
+          text/plain;charset=UTF-8:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: "en=page_view&_et=13980\r
+
+                  en=page_view&_et=4760&dl=https%3A%2F%2Fmyeventbazaar.com%2FpartyRentals&dr=https%3A%2F%2Fmyeventbazaa\
+                  r.com%2Fphotography"
+      responses:
+        "200":
+          description: Success
+  /api/auth/providers:
+    get:
+      tags:
+        - api
+      summary: GET /api/auth/providers
+      operationId: get_api_auth_providers
+      responses:
+        "200":
+          description: Success
+  /api/auth/callback/credentials:
+    post:
+      tags:
+        - api
+      summary: POST /api/auth/callback/credentials
+      operationId: post_api_auth_callback_credentials
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  redirect: "false"
+                  username: maimoona.f399%40gmail.com
+                  password: Tester%40786
+                  csrfToken: 3e8d06028ef39b8695855c5f529e100d4f6aed4f1f93559e17808ba795686001
+                  callbackUrl: https%3A%2F%2Fmyeventbazaar.com%2Flogin%3Ffrom%3Dcart
+                  json: "true"
+      responses:
+        "200":
+          description: Success
+  /api/user/profile:
+    get:
+      tags:
+        - api
+      summary: GET /api/user/profile
+      operationId: get_api_user_profile
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/user/profile
+      operationId: options_api_user_profile
+      responses:
+        "200":
+          description: Success
+  /api/notification/count:
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/notification/count
+      operationId: options_api_notification_count
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/notification/count
+      operationId: get_api_notification_count
+      responses:
+        "200":
+          description: Success
+  /api/notification:
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/notification
+      operationId: options_api_notification
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/notification
+      operationId: get_api_notification
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /api/services/venue/listing:
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/venue/listing
+      operationId: options_api_services_venue_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: occassion[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: GRADUATION
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+        - name: venueType
+          in: query
+          required: false
+          schema:
+            type: string
+          example: OUT_DOOR
+        - name: numberOfGuests
+          in: query
+          required: false
+          schema:
+            type: string
+          example: SEAT_125_FLOAT_150
+        - name: stage[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: AVAILABLE
+        - name: date[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-11
+        - name: maxPrice
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1500"
+        - name: minPrice
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: danceFloor[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: UNAVAILABLE
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/services/venue/listing
+      operationId: get_api_services_venue_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: occassion[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: GRADUATION
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+        - name: venueType
+          in: query
+          required: false
+          schema:
+            type: string
+          example: OUT_DOOR
+        - name: numberOfGuests
+          in: query
+          required: false
+          schema:
+            type: string
+          example: SEAT_125_FLOAT_150
+        - name: stage[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: AVAILABLE
+        - name: date[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-11
+        - name: maxPrice
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1500"
+        - name: minPrice
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: danceFloor[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: UNAVAILABLE
+      responses:
+        "200":
+          description: Success
+  /api/services/venue/count:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/venue/count
+      operationId: get_api_services_venue_count
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/venue/count
+      operationId: options_api_services_venue_count
+      responses:
+        "200":
+          description: Success
+  /venues:
+    get:
+      tags:
+        - venues
+      summary: GET /venues
+      operationId: get_venues
+      parameters:
+        - name: occassion
+          in: query
+          required: false
+          schema:
+            type: string
+          example: BRIDAL_SHOWER
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+        - name: venueType
+          in: query
+          required: false
+          schema:
+            type: string
+          example: OUT_DOOR
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: venueCapacity
+          in: query
+          required: false
+          schema:
+            type: string
+          example: SEAT_125_FLOAT_150
+        - name: stage
+          in: query
+          required: false
+          schema:
+            type: string
+          example: AVAILABLE
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-11
+        - name: maxPrice
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1500"
+        - name: minPrice
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: danceFloor
+          in: query
+          required: false
+          schema:
+            type: string
+          example: UNAVAILABLE
+      responses:
+        "200":
+          description: Success
+  /caterers:
+    get:
+      tags:
+        - caterers
+      summary: GET /caterers
+      operationId: get_caterers
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-11
+        - name: lat
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "41.3596647"
+        - name: lon
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "-93.4498346"
+        - name: miles
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Iowa
+        - name: zipcode
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50001"
+      responses:
+        "200":
+          description: Success
+  /photography:
+    get:
+      tags:
+        - photography
+      summary: GET /photography
+      operationId: get_photography
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2"
+      responses:
+        "200":
+          description: Success
+  /baking:
+    get:
+      tags:
+        - baking
+      summary: GET /baking
+      operationId: get_baking
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /djService:
+    get:
+      tags:
+        - djService
+      summary: GET /djService
+      operationId: get_djService
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /partyRentals:
+    get:
+      tags:
+        - partyRentals
+      summary: GET /partyRentals
+      operationId: get_partyRentals
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /decorators:
+    get:
+      tags:
+        - decorators
+      summary: GET /decorators
+      operationId: get_decorators
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /partyDrums:
+    get:
+      tags:
+        - partyDrums
+      summary: GET /partyDrums
+      operationId: get_partyDrums
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2"
+      responses:
+        "200":
+          description: Success
+  /chat:
+    get:
+      tags:
+        - chat
+      summary: GET /chat
+      operationId: get_chat
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /blogs:
+    get:
+      tags:
+        - blogs
+      summary: GET /blogs
+      operationId: get_blogs
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /{id}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /{id}
+      operationId: get_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: terms-conditions
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /privacy-policy:
+    get:
+      tags:
+        - privacy-policy
+      summary: GET /privacy-policy
+      operationId: get_privacy_policy
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /faq:
+    get:
+      tags:
+        - faq
+      summary: GET /faq
+      operationId: get_faq
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /refund-policy:
+    get:
+      tags:
+        - refund-policy
+      summary: GET /refund-policy
+      operationId: get_refund_policy
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /contact-us:
+    get:
+      tags:
+        - contact-us
+      summary: GET /contact-us
+      operationId: get_contact_us
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /usage-policy:
+    get:
+      tags:
+        - usage-policy
+      summary: GET /usage-policy
+      operationId: get_usage_policy
+      parameters:
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /venues/{id}:
+    get:
+      tags:
+        - venues
+      summary: GET /venues/{id}
+      operationId: get_venues_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 66f9a76cefc2836384f1ca3a
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: kz5j3
+      responses:
+        "200":
+          description: Success
+  /api/home/{id}/VENUE_FILTER:
+    get:
+      tags:
+        - api
+      summary: GET /api/home/{id}/VENUE_FILTER
+      operationId: get_api_home_id_VENUE_FILTER
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dashboard_filter
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/home/{id}/VENUE_FILTER
+      operationId: options_api_home_id_VENUE_FILTER
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dashboard_filter
+      responses:
+        "200":
+          description: Success
+  /api/services/venue/details/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/venue/details/{id}
+      operationId: get_api_services_venue_details_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 66f9a76cefc2836384f1ca3a
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/venue/details/{id}
+      operationId: options_api_services_venue_details_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 66f9a76cefc2836384f1ca3a
+      responses:
+        "200":
+          description: Success
+  /api/services/venue/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/venue/{id}/{id2}
+      operationId: get_api_services_venue_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: check_availability
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 66f9a76cefc2836384f1ca3a
+        - name: date[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-31
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/venue/{id}/{id2}
+      operationId: options_api_services_venue_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: check_availability
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 66f9a76cefc2836384f1ca3a
+        - name: date[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-31
+      responses:
+        "200":
+          description: Success
+  /venues/{id}/booking:
+    get:
+      tags:
+        - venues
+      summary: GET /venues/{id}/booking
+      operationId: get_venues_id_booking
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 66f9a76cefc2836384f1ca3a
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-31
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1ik49
+      responses:
+        "200":
+          description: Success
+  /api/services/cartWishList/addToCart:
+    post:
+      tags:
+        - api
+      summary: POST /api/services/cartWishList/addToCart
+      operationId: post_api_services_cartWishList_addToCart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  startDate: 2026-03-30T18:30:00.000Z
+                  endDate: 2026-03-30T18:30:00.000Z
+                  startTime: 0
+                  endTime: 23
+                  item:
+                    vendor: 66e0bc984091d2adf8f08b88
+                    productId: 66f9a76cefc2836384f1ca3a
+                    comment: "music should be best "
+                    productDetails:
+                      bookingDate: Tue Mar 31 2026
+                      rooms: "1"
+                      guests: 2
+                      eventTypes:
+                        name: Birthday
+                        type: BIRTHDAY
+                        _id: 66fae2594681035850ad52ce
+                        label: Birthday
+                        value: BIRTHDAY
+                        title: Event Type
+                      venueType:
+                        name: Indoor
+                        type: IN_DOOR
+                        subSpecialization:
+                          - name: Full Day
+                            type: FULL_DAY
+                            price: 1500
+                            _id: 66fae2594681035850ad52cf
+                          - name: Half Day
+                            type: HALF_DAY
+                            price: 1000
+                            _id: 66fae2594681035850ad52d0
+                        _id: 66fae2594681035850ad52d1
+                        label: Indoor
+                        value: IN_DOOR
+                        title: Venue Type
+                        price: 1000
+                      bookingType:
+                        name: Half Day
+                        type: HALF_DAY
+                        _id: 66fae2594681035850ad52d0
+                        label: Half Day
+                        value: HALF_DAY
+                        title: Booking Type
+                      dining:
+                        name: Dedicated indoor
+                        type: DEDICATED_INDOOR
+                        _id: 66fae2594681035850ad52d7
+                        label: Dedicated indoor
+                        value: DEDICATED_INDOOR
+                        title: Dining
+                      stageInfo:
+                        label: No
+                        value: NO
+                        title: Stage
+                      name: Testing Venue-2
+                      image: https://media.myeventbazaar.com/2024-09-29-myeventbazaar-prod-test-a9ccec4c-f4c0-4b8e-8892-85a0122f0bba.new.jpg
+                      price: 1000
+                      tax: 6.25
+                      service: VENUE
+                      features:
+                        - title: Booking Date
+                          description: Tue Mar 31 2026
+                          price: null
+                        - title: Guests
+                          description: "2"
+                          price: null
+                        - title: Rooms
+                          description: "1"
+                          price: null
+                        - title: Event Type
+                          description: Birthday
+                          price: null
+                        - title: Venue Type
+                          description: Indoor
+                          price: 1000
+                        - title: Booking Type
+                          description: Half Day
+                          price: null
+                        - title: Stage
+                          description: No
+                          price: null
+                        - title: Dining
+                          description: Dedicated indoor
+                          price: null
+                        - title: Special Requests
+                          description: "music should be best "
+                          price: null
+                    externalServices: []
+                    totalPrice: 1062.5
+                    service: VENUE
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/cartWishList/addToCart
+      operationId: options_api_services_cartWishList_addToCart
+      responses:
+        "200":
+          description: Success
+  /api/services/cartWishList/get-cartList:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/cartWishList/get-cartList
+      operationId: get_api_services_cartWishList_get_cartList
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNum
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/cartWishList/get-cartList
+      operationId: options_api_services_cartWishList_get_cartList
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNum
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /cart/edit:
+    get:
+      tags:
+        - cart
+      summary: GET /cart/edit
+      operationId: get_cart_edit
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aab3a32c651927c3ea41f9
+        - name: _rsc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: so6vb
+      responses:
+        "200":
+          description: Success
+  /api/services/cartWishList/cart-details/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/cartWishList/cart-details/{id}
+      operationId: get_api_services_cartWishList_cart_details_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 69aab3a32c651927c3ea41f9
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/cartWishList/cart-details/{id}
+      operationId: options_api_services_cartWishList_cart_details_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 69aab3a32c651927c3ea41f9
+      responses:
+        "200":
+          description: Success
+  /api/services/cartWishList/{id}:
+    put:
+      tags:
+        - api
+      summary: PUT /api/services/cartWishList/{id}
+      operationId: put_api_services_cartWishList_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: update-cart-item
+        - name: cartId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aab3a32c651927c3ea41f8
+        - name: itemId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aab3a32c651927c3ea41f9
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPutRequest"
+            examples:
+              fromHar:
+                value:
+                  vendor: 66e0bc984091d2adf8f08b88
+                  productId: 66f9a76cefc2836384f1ca3a
+                  comment: "music should be best  "
+                  productDetails:
+                    bookingDate: Tue Mar 31 2026
+                    rooms: "1"
+                    guests: 3
+                    eventTypes:
+                      name: Birthday
+                      type: BIRTHDAY
+                      _id: 66fae2594681035850ad52ce
+                      label: Birthday
+                      value: BIRTHDAY
+                      title: Event Type
+                    venueType:
+                      name: Indoor
+                      type: IN_DOOR
+                      subSpecialization:
+                        - name: Full Day
+                          type: FULL_DAY
+                          price: 1500
+                          _id: 66fae2594681035850ad52cf
+                        - name: Half Day
+                          type: HALF_DAY
+                          price: 1000
+                          _id: 66fae2594681035850ad52d0
+                      _id: 66fae2594681035850ad52d1
+                      label: Indoor
+                      value: IN_DOOR
+                      title: Venue Type
+                      price: 1000
+                    bookingType:
+                      name: Half Day
+                      type: HALF_DAY
+                      _id: 66fae2594681035850ad52d0
+                      label: Half Day
+                      value: HALF_DAY
+                      title: Booking Type
+                    dining:
+                      name: Dedicated indoor
+                      type: DEDICATED_INDOOR
+                      _id: 66fae2594681035850ad52d7
+                      label: Dedicated indoor
+                      value: DEDICATED_INDOOR
+                      title: Dining
+                    stageInfo:
+                      label: No
+                      value: NO
+                      title: Stage
+                    name: Testing Venue-2
+                    image: https://media.myeventbazaar.com/2024-09-29-myeventbazaar-prod-test-a9ccec4c-f4c0-4b8e-8892-85a0122f0bba.new.jpg
+                    price: 1000
+                    tax: 6.25
+                    service: VENUE
+                    features:
+                      - title: Booking Date
+                        description: Tue Mar 31 2026
+                        price: null
+                      - title: Guests
+                        description: "3"
+                        price: null
+                      - title: Rooms
+                        description: "1"
+                        price: null
+                      - title: Event Type
+                        description: Birthday
+                        price: null
+                      - title: Venue Type
+                        description: Indoor
+                        price: 1000
+                      - title: Booking Type
+                        description: Half Day
+                        price: null
+                      - title: Stage
+                        description: No
+                        price: null
+                      - title: Dining
+                        description: Dedicated indoor
+                        price: null
+                      - title: Special Requests
+                        description: "music should be best  "
+                        price: null
+                  externalServices: []
+                  totalPrice: 1062.5
+                  service: VENUE
+                  startDate: 2026-03-30T18:30:00.000Z
+                  endDate: 2026-03-30T18:30:00.000Z
+                  startTime: 0
+                  endTime: 23
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/cartWishList/{id}
+      operationId: options_api_services_cartWishList_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: update-cart-item
+        - name: cartId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aab3a32c651927c3ea41f8
+        - name: itemId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aab3a32c651927c3ea41f9
+      responses:
+        "200":
+          description: Success
+  /api/home/{id}/CATERING_FILTER:
+    get:
+      tags:
+        - api
+      summary: GET /api/home/{id}/CATERING_FILTER
+      operationId: get_api_home_id_CATERING_FILTER
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dashboard_filter
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/home/{id}/CATERING_FILTER
+      operationId: options_api_home_id_CATERING_FILTER
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dashboard_filter
+      responses:
+        "200":
+          description: Success
+  /api/services/catering/listing:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/catering/listing
+      operationId: get_api_services_catering_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+        - name: date[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-11
+        - name: mileRadius[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: |-
+            {
+             "miles": 50,
+              "coordinates": [-93.4498346,41.3596647]
+            }
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Iowa
+        - name: zipcode
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50001"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/catering/listing
+      operationId: options_api_services_catering_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+        - name: date[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-11
+        - name: mileRadius[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: |-
+            {
+             "miles": 50,
+              "coordinates": [-93.4498346,41.3596647]
+            }
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Iowa
+        - name: zipcode
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50001"
+      responses:
+        "200":
+          description: Success
+  /api/home/{id}/BAKING_FILTER:
+    get:
+      tags:
+        - api
+      summary: GET /api/home/{id}/BAKING_FILTER
+      operationId: get_api_home_id_BAKING_FILTER
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dashboard_filter
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/home/{id}/BAKING_FILTER
+      operationId: options_api_home_id_BAKING_FILTER
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dashboard_filter
+      responses:
+        "200":
+          description: Success
+  /api/services/baking/listing:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/baking/listing
+      operationId: get_api_services_baking_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/baking/listing
+      operationId: options_api_services_baking_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+  /api/home/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/home/{id}/{id2}
+      operationId: get_api_home_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dashboard_filter
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: DECORATION_FILTER
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/home/{id}/{id2}
+      operationId: options_api_home_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dashboard_filter
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: DECORATION_FILTER
+      responses:
+        "200":
+          description: Success
+  /api/services/decor/listing:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/decor/listing
+      operationId: get_api_services_decor_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/decor/listing
+      operationId: options_api_services_decor_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+  /api/services/photography/listing:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/photography/listing
+      operationId: get_api_services_photography_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/photography/listing
+      operationId: options_api_services_photography_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+  /api/services/partyRentals/listing:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/partyRentals/listing
+      operationId: get_api_services_partyRentals_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/partyRentals/listing
+      operationId: options_api_services_partyRentals_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+  /api/services/djService/listing:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/djService/listing
+      operationId: get_api_services_djService_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/djService/listing
+      operationId: options_api_services_djService_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+  /api/services/partyDrums/listing:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/partyDrums/listing
+      operationId: get_api_services_partyDrums_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/partyDrums/listing
+      operationId: options_api_services_partyDrums_listing
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 69aaa6973fe891b21715a462
+      responses:
+        "200":
+          description: Success
+  /api/services/cartWishList/get-wishList:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/cartWishList/get-wishList
+      operationId: get_api_services_cartWishList_get_wishList
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNum
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: service
+          in: query
+          required: false
+          schema:
+            type: string
+          example: DJ_SERVICE
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/cartWishList/get-wishList
+      operationId: options_api_services_cartWishList_get_wishList
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNum
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: service
+          in: query
+          required: false
+          schema:
+            type: string
+          example: DJ_SERVICE
+      responses:
+        "200":
+          description: Success
+  /api/home/{id}/ZIPCODES:
+    get:
+      tags:
+        - api
+      summary: GET /api/home/{id}/ZIPCODES
+      operationId: get_api_home_id_ZIPCODES
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dashboard_filter
+        - name: zipcode
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50000"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/home/{id}/ZIPCODES
+      operationId: options_api_home_id_ZIPCODES
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dashboard_filter
+        - name: zipcode
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50000"
+      responses:
+        "200":
+          description: Success
+  /api/user/update-profile:
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/user/update-profile
+      operationId: options_api_user_update_profile
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - api
+      summary: PUT /api/user/update-profile
+      operationId: put_api_user_update_profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPutRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Maimoona Fatima
+                  address:
+                    state: Chiang Mai
+                    zipCode: "50000"
+                    city: Santa Clara
+                    country: Thailand
+                  mobile: 9887661234
+      responses:
+        "200":
+          description: Success
+  /api/services/booking/listBookings:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/booking/listBookings
+      operationId: get_api_services_booking_listBookings
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNum
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ACCEPTED
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/booking/listBookings
+      operationId: options_api_services_booking_listBookings
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: pageNum
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ACCEPTED
+      responses:
+        "200":
+          description: Success
+  /api/services/info/blog-list:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/info/blog-list
+      operationId: get_api_services_info_blog_list
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "3"
+        - name: pageNum
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: USER
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/info/blog-list
+      operationId: options_api_services_info_blog_list
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "3"
+        - name: pageNum
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: USER
+      responses:
+        "200":
+          description: Success
+  /api/services/booking/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/services/booking/{id}
+      operationId: get_api_services_booking_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: swipe-orders-list
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/services/booking/{id}
+      operationId: options_api_services_booking_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: swipe-orders-list
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPostRequest:
+      type: object
+      properties:
+        startDate:
+          type: string
+        endDate:
+          type: string
+        startTime:
+          type: integer
+        endTime:
+          type: integer
+        item:
+          type: object
+          properties:
+            vendor:
+              type: string
+            productId:
+              type: string
+            comment:
+              type: string
+            productDetails:
+              type: object
+              properties:
+                bookingDate:
+                  type: string
+                rooms:
+                  type: string
+                guests:
+                  type: integer
+                eventTypes:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    _id:
+                      type: string
+                    label:
+                      type: string
+                    value:
+                      type: string
+                    title:
+                      type: string
+                  required:
+                    - name
+                    - type
+                    - _id
+                    - label
+                    - value
+                    - title
+                venueType:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    subSpecialization:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          type:
+                            type: string
+                          price:
+                            type: integer
+                          _id:
+                            type: string
+                        required:
+                          - name
+                          - type
+                          - price
+                          - _id
+                    _id:
+                      type: string
+                    label:
+                      type: string
+                    value:
+                      type: string
+                    title:
+                      type: string
+                    price:
+                      type: integer
+                  required:
+                    - name
+                    - type
+                    - subSpecialization
+                    - _id
+                    - label
+                    - value
+                    - title
+                    - price
+                bookingType:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    _id:
+                      type: string
+                    label:
+                      type: string
+                    value:
+                      type: string
+                    title:
+                      type: string
+                  required:
+                    - name
+                    - type
+                    - _id
+                    - label
+                    - value
+                    - title
+                dining:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    _id:
+                      type: string
+                    label:
+                      type: string
+                    value:
+                      type: string
+                    title:
+                      type: string
+                  required:
+                    - name
+                    - type
+                    - _id
+                    - label
+                    - value
+                    - title
+                stageInfo:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    value:
+                      type: string
+                    title:
+                      type: string
+                  required:
+                    - label
+                    - value
+                    - title
+                name:
+                  type: string
+                image:
+                  type: string
+                price:
+                  type: integer
+                tax:
+                  type: number
+                service:
+                  type: string
+                features:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                      description:
+                        type: string
+                      price:
+                        nullable: true
+                    required:
+                      - title
+                      - description
+                      - price
+              required:
+                - bookingDate
+                - rooms
+                - guests
+                - eventTypes
+                - venueType
+                - bookingType
+                - dining
+                - stageInfo
+                - name
+                - image
+                - price
+                - tax
+                - service
+                - features
+            externalServices:
+              type: array
+              items:
+                type: string
+            totalPrice:
+              type: number
+            service:
+              type: string
+          required:
+            - vendor
+            - productId
+            - comment
+            - productDetails
+            - externalServices
+            - totalPrice
+            - service
+      required:
+        - startDate
+        - endDate
+        - startTime
+        - endTime
+        - item
+    ApiPutRequest:
+      type: object
+      properties:
+        vendor:
+          type: string
+        productId:
+          type: string
+        comment:
+          type: string
+        productDetails:
+          type: object
+          properties:
+            bookingDate:
+              type: string
+            rooms:
+              type: string
+            guests:
+              type: integer
+            eventTypes:
+              type: object
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                _id:
+                  type: string
+                label:
+                  type: string
+                value:
+                  type: string
+                title:
+                  type: string
+              required:
+                - name
+                - type
+                - _id
+                - label
+                - value
+                - title
+            venueType:
+              type: object
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                subSpecialization:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      type:
+                        type: string
+                      price:
+                        type: integer
+                      _id:
+                        type: string
+                    required:
+                      - name
+                      - type
+                      - price
+                      - _id
+                _id:
+                  type: string
+                label:
+                  type: string
+                value:
+                  type: string
+                title:
+                  type: string
+                price:
+                  type: integer
+              required:
+                - name
+                - type
+                - subSpecialization
+                - _id
+                - label
+                - value
+                - title
+                - price
+            bookingType:
+              type: object
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                _id:
+                  type: string
+                label:
+                  type: string
+                value:
+                  type: string
+                title:
+                  type: string
+              required:
+                - name
+                - type
+                - _id
+                - label
+                - value
+                - title
+            dining:
+              type: object
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                _id:
+                  type: string
+                label:
+                  type: string
+                value:
+                  type: string
+                title:
+                  type: string
+              required:
+                - name
+                - type
+                - _id
+                - label
+                - value
+                - title
+            stageInfo:
+              type: object
+              properties:
+                label:
+                  type: string
+                value:
+                  type: string
+                title:
+                  type: string
+              required:
+                - label
+                - value
+                - title
+            name:
+              type: string
+            image:
+              type: string
+            price:
+              type: integer
+            tax:
+              type: number
+            service:
+              type: string
+            features:
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    nullable: true
+                required:
+                  - title
+                  - description
+                  - price
+          required:
+            - bookingDate
+            - rooms
+            - guests
+            - eventTypes
+            - venueType
+            - bookingType
+            - dining
+            - stageInfo
+            - name
+            - image
+            - price
+            - tax
+            - service
+            - features
+        externalServices:
+          type: array
+          items:
+            type: string
+        totalPrice:
+          type: number
+        service:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        startTime:
+          type: integer
+        endTime:
+          type: integer
+      required:
+        - vendor
+        - productId
+        - comment
+        - productDetails
+        - externalServices
+        - totalPrice
+        - service
+        - startDate
+        - endDate
+        - startTime
+        - endTime
