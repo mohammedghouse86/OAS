@@ -1,0 +1,1758 @@
+openapi: 3.0.3
+info:
+  title: Synctera App
+  version: 1.0.0
+servers:
+  - url: https://app.synctera.com
+tags:
+  - name: v0
+  - name: v1
+paths:
+  /api-gateway/v0/fintech_profile:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/fintech_profile
+      operationId: get_api_gateway_v0_fintech_profile
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: PREVIOUS_FINANCIAL_STATEMENTS
+        - name: is_template
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/businesses/{id}:
+    patch:
+      tags:
+        - v0
+      summary: PATCH /api-gateway/v0/businesses/{id}
+      operationId: patch_api_gateway_v0_businesses_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cb74f8cc-9b12-4686-b0d4-20b60d6b4900
+        - name: partner_ownership
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5417"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V0PatchRequest"
+            examples:
+              fromHar:
+                value:
+                  entity_name: Ghouse1
+                  trade_names: []
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/businesses/{id}
+      operationId: get_api_gateway_v0_businesses_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cb74f8cc-9b12-4686-b0d4-20b60d6b4900
+        - name: partner_ownership
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5417"
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/identity:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/identity
+      operationId: get_api_gateway_v0_identity
+      parameters:
+        - name: skip_expansion
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/partners:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/partners
+      operationId: get_api_gateway_v0_partners
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ACTIVE
+        - name: bank_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "6"
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5417"
+        - name: is_quickstart
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/banks:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/banks
+      operationId: get_api_gateway_v0_banks
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ACTIVE
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/users/{id}/preferences:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/users/{id}/preferences
+      operationId: get_api_gateway_v0_users_id_preferences
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 7911a6c0-0753-48b5-94a2-51e2b0d1b93a
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/businesses:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/businesses
+      operationId: get_api_gateway_v0_businesses
+      parameters:
+        - name: partner_ownership
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5417"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: last_updated_time:desc
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/persons:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/persons
+      operationId: get_api_gateway_v0_persons
+      parameters:
+        - name: partner_ownership
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5417"
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: last_updated_time:desc
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/partners/gzpqep_yveebo/info:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/partners/gzpqep_yveebo/info
+      operationId: get_api_gateway_v0_partners_gzpqep_yveebo_info
+      parameters:
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+          example: JSON
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - v0
+      summary: PUT /api-gateway/v0/partners/gzpqep_yveebo/info
+      operationId: put_api_gateway_v0_partners_gzpqep_yveebo_info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V0PutRequest"
+            examples:
+              fromHar:
+                value:
+                  partner_id: 5417
+                  data:
+                    address: {}
+                    financial_condition:
+                      funding:
+                        - {}
+                      financial_statements_doc_ids: []
+                    business_details:
+                      products_and_services: ""
+                      leadership_team:
+                        - {}
+                    legal_regulatory: {}
+                    product_details:
+                      customer_info:
+                        who_where_customers:
+                          retail_customers_in_the_us: false
+                          retail_customers_inside_the_us: false
+                          non_us_retail_customers_outside_the_us: false
+                          businesses_in_the_us: false
+                          businesses_hq_outside_us: false
+                          businesses_intl_no_us_entity: false
+                          retail_customers_in_canada: false
+                          retail_customers_outside_canada: false
+                          retail_customers_inside_canada: false
+                          businesses_in_canada: false
+                          businesses_hq_outside_canada: false
+                          businesses_intl_no_canada_entity: false
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/relationships:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/relationships
+      operationId: get_api_gateway_v0_relationships
+      parameters:
+        - name: to_business_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: cb74f8cc-9b12-4686-b0d4-20b60d6b4900
+        - name: partner_ownership
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5417"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/workspaces:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/workspaces
+      operationId: get_api_gateway_v0_workspaces
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/roles:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/roles
+      operationId: get_api_gateway_v0_roles
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: f2e5995a-ad0c-4729-9c1d-487a31d97044
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v0
+      summary: POST /api-gateway/v0/roles
+      operationId: post_api_gateway_v0_roles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V0PostRequest"
+            examples:
+              fromHar:
+                value:
+                  description: aaaaa
+                  name: basic user
+                  permissions:
+                    - billing_account:write
+                  tenant: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/apikeys:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/apikeys
+      operationId: get_api_gateway_v0_apikeys
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/apikeys/{id}:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/apikeys/{id}
+      operationId: get_api_gateway_v0_apikeys_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: vendor_templates
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/users:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/users
+      operationId: get_api_gateway_v0_users
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ACTIVE
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: email:asc
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v0
+      summary: POST /api-gateway/v0/users
+      operationId: post_api_gateway_v0_users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V0PostRequest"
+            examples:
+              fromHar:
+                value:
+                  first_name: Jack
+                  last_name: Doe
+                  email: jack@tester.com
+                  tenant: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/cases/configs:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/cases/configs
+      operationId: get_api_gateway_v0_cases_configs
+      parameters:
+        - name: case_tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6_5417
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6_5417
+        - name: case_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: account_closure
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v0
+      summary: POST /api-gateway/v0/cases/configs
+      operationId: post_api_gateway_v0_cases_configs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V0PostRequest"
+            examples:
+              fromHar:
+                value:
+                  tenant: 6_5417
+                  bank_id: "6"
+                  partner_id: "5417"
+                  case_tenant: 6_5417
+                  case_type: account_closure
+                  assignments: []
+                  default_assignee_uuids:
+                    - 7911a6c0-0753-48b5-94a2-51e2b0d1b93a
+                  escalation_assignee_uuids:
+                    - 7911a6c0-0753-48b5-94a2-51e2b0d1b93a
+                  default_synctera_assignee_uuids: []
+                  synctera_escalation_assignee_uuids: []
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/fee_templates:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/fee_templates
+      operationId: get_api_gateway_v1_fee_templates
+      parameters:
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: last_updated_time:desc
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/wires/incoming:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/wires/incoming
+      operationId: get_api_gateway_v0_wires_incoming
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: READY
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/spend_controls:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/spend_controls
+      operationId: get_api_gateway_v1_spend_controls
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name:desc
+        - name: is_active
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/{id}:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/{id}
+      operationId: get_api_gateway_v0_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: account_templates
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name:asc
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: account_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: CHECKING
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ACTIVE
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/accounts/templates:
+    post:
+      tags:
+        - v0
+      summary: POST /api-gateway/v0/accounts/templates
+      operationId: post_api_gateway_v0_accounts_templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V0PostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Ghouse1
+                  is_enabled: true
+                  template:
+                    currency: USD
+                    bank_country: US
+                    account_type: CHARGE_UNSECURED
+                    minimum_payment:
+                      type: RATE_OR_AMOUNT
+                  tenant: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/cards/products:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/cards/products
+      operationId: get_api_gateway_v1_cards_products
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/cards/bins:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/cards/bins
+      operationId: get_api_gateway_v1_cards_bins
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_*
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: creation_time:asc
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/cards:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/cards
+      operationId: get_api_gateway_v1_cards
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: card_status:asc
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/external_cards:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/external_cards
+      operationId: get_api_gateway_v1_external_cards
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/applications:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/applications
+      operationId: get_api_gateway_v1_applications
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/transactions/pending:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/transactions/pending
+      operationId: get_api_gateway_v0_transactions_pending
+      parameters:
+        - name: from_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-08
+        - name: to_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-08
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: DECLINED
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/transactions/posted:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/transactions/posted
+      operationId: get_api_gateway_v0_transactions_posted
+      parameters:
+        - name: from_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-08
+        - name: to_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-08
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/ach/gateways:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/ach/gateways
+      operationId: get_api_gateway_v0_ach_gateways
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/billing/{id}:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/billing/{id}
+      operationId: get_api_gateway_v1_billing_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: settlement_accounts
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/contacts:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/contacts
+      operationId: get_api_gateway_v0_contacts
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: active
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: labels
+          in: query
+          required: false
+          schema:
+            type: string
+          example: BILLING
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name:asc
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/party_groups:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/party_groups
+      operationId: get_api_gateway_v0_party_groups
+      parameters:
+        - name: members
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/users/{id}/related_roles:
+    post:
+      tags:
+        - v0
+      summary: POST /api-gateway/v0/users/{id}/related_roles
+      operationId: post_api_gateway_v0_users_id_related_roles
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 8986c043-3968-4f3b-85a2-9265fb1463a9
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V0PostRequest"
+            examples:
+              fromHar:
+                value:
+                  role_id: f2e5995a-ad0c-4729-9c1d-487a31d97044
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/users/{id}/related_roles
+      operationId: get_api_gateway_v0_users_id_related_roles
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 8986c043-3968-4f3b-85a2-9265fb1463a9
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/users/{id}:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/users/{id}
+      operationId: get_api_gateway_v0_users_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 8986c043-3968-4f3b-85a2-9265fb1463a9
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - v0
+      summary: PUT /api-gateway/v0/users/{id}
+      operationId: put_api_gateway_v0_users_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 8986c043-3968-4f3b-85a2-9265fb1463a9
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V0PutRequest"
+            examples:
+              fromHar:
+                value:
+                  first_name: Jack1
+                  last_name: Doe
+                  email: jack@tester.com
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/persons/{id}:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/persons/{id}
+      operationId: get_api_gateway_v0_persons_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 8986c043-3968-4f3b-85a2-9265fb1463a9
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/users/authinfo:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/users/authinfo
+      operationId: get_api_gateway_v0_users_authinfo
+      parameters:
+        - name: email
+          in: query
+          required: false
+          schema:
+            type: string
+          example: jack@tester.com
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/roles/{id}/related_users:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/roles/{id}/related_users
+      operationId: get_api_gateway_v0_roles_id_related_users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 0950c1e4-8a0f-40b4-8738-0504c8b508b4
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/roles/{id}/related_groups:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/roles/{id}/related_groups
+      operationId: get_api_gateway_v0_roles_id_related_groups
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 0950c1e4-8a0f-40b4-8738-0504c8b508b4
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_yveebo
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/roles/permissions:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/roles/permissions
+      operationId: get_api_gateway_v0_roles_permissions
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/partners/{id}:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/partners/{id}
+      operationId: get_api_gateway_v0_partners_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "5418"
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/partners/gzpqep_pjzzqq/info:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/partners/gzpqep_pjzzqq/info
+      operationId: get_api_gateway_v0_partners_gzpqep_pjzzqq_info
+      parameters:
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+          example: JSON
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - v0
+      summary: PUT /api-gateway/v0/partners/gzpqep_pjzzqq/info
+      operationId: put_api_gateway_v0_partners_gzpqep_pjzzqq_info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V0PutRequest"
+            examples:
+              fromHar:
+                value:
+                  partner_id: 5418
+                  data:
+                    address: {}
+                    financial_condition:
+                      funding:
+                        - {}
+                      financial_statements_doc_ids: []
+                    business_details:
+                      products_and_services: ""
+                      leadership_team:
+                        - {}
+                    legal_regulatory: {}
+                    product_details:
+                      customer_info:
+                        who_where_customers:
+                          retail_customers_in_the_us: false
+                          retail_customers_inside_the_us: false
+                          non_us_retail_customers_outside_the_us: false
+                          businesses_in_the_us: false
+                          businesses_hq_outside_us: false
+                          businesses_intl_no_us_entity: false
+                          retail_customers_in_canada: false
+                          retail_customers_outside_canada: false
+                          retail_customers_inside_canada: false
+                          businesses_in_canada: false
+                          businesses_hq_outside_canada: false
+                          businesses_intl_no_canada_entity: false
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/cases:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/cases
+      operationId: get_api_gateway_v0_cases
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: per_page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: date_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desc
+        - name: partner_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5418"
+        - name: bank_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "6"
+        - name: is_active
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/cases/tenant_configs:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/cases/tenant_configs
+      operationId: get_api_gateway_v0_cases_tenant_configs
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6_5418
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/cases/counts:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/cases/counts
+      operationId: get_api_gateway_v0_cases_counts
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6_5418
+        - name: is_active
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/accounts:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/accounts
+      operationId: get_api_gateway_v0_accounts
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: gzpqep_pjzzqq
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: account_number:desc
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/tenant_limits:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/tenant_limits
+      operationId: get_api_gateway_v1_tenant_limits
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: pnrqep_yvezrv
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/{id}:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/{id}
+      operationId: get_api_gateway_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: tenant_limit_buckets
+        - name: tenant_limit_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 019a4d14-9467-7aed-9f75-eeeffe4ffd94
+        - name: effective_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-08
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/ach/incoming:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/ach/incoming
+      operationId: get_api_gateway_v0_ach_incoming
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: pnrqep_yvezrv
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: IN_SUSPENSE
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/wires:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/wires
+      operationId: get_api_gateway_v0_wires
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: pnrqep_yvezrv
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: from_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-08
+        - name: to_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-08
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v0/transactions/batchable:
+    get:
+      tags:
+        - v0
+      summary: GET /api-gateway/v0/transactions/batchable
+      operationId: get_api_gateway_v0_transactions_batchable
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: pnrqep_yvezrv
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /api-gateway/v1/batches:
+    get:
+      tags:
+        - v1
+      summary: GET /api-gateway/v1/batches
+      operationId: get_api_gateway_v1_batches
+      parameters:
+        - name: tenant
+          in: query
+          required: false
+          schema:
+            type: string
+          example: pnrqep_yvezrv
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: INITIATED
+        - name: sandbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    V0PatchRequest:
+      type: object
+      properties:
+        entity_name:
+          type: string
+        trade_names:
+          type: array
+          items:
+            type: string
+      required:
+        - entity_name
+        - trade_names
+    V0PutRequest:
+      type: object
+      properties:
+        partner_id:
+          type: integer
+        data:
+          type: object
+          properties:
+            address:
+              type: object
+              properties: {}
+              required: []
+            financial_condition:
+              type: object
+              properties:
+                funding:
+                  type: array
+                  items:
+                    type: object
+                    properties: {}
+                    required: []
+                financial_statements_doc_ids:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - funding
+                - financial_statements_doc_ids
+            business_details:
+              type: object
+              properties:
+                products_and_services:
+                  type: string
+                leadership_team:
+                  type: array
+                  items:
+                    type: object
+                    properties: {}
+                    required: []
+              required:
+                - products_and_services
+                - leadership_team
+            legal_regulatory:
+              type: object
+              properties: {}
+              required: []
+            product_details:
+              type: object
+              properties:
+                customer_info:
+                  type: object
+                  properties:
+                    who_where_customers:
+                      type: object
+                      properties:
+                        retail_customers_in_the_us:
+                          type: boolean
+                        retail_customers_inside_the_us:
+                          type: boolean
+                        non_us_retail_customers_outside_the_us:
+                          type: boolean
+                        businesses_in_the_us:
+                          type: boolean
+                        businesses_hq_outside_us:
+                          type: boolean
+                        businesses_intl_no_us_entity:
+                          type: boolean
+                        retail_customers_in_canada:
+                          type: boolean
+                        retail_customers_outside_canada:
+                          type: boolean
+                        retail_customers_inside_canada:
+                          type: boolean
+                        businesses_in_canada:
+                          type: boolean
+                        businesses_hq_outside_canada:
+                          type: boolean
+                        businesses_intl_no_canada_entity:
+                          type: boolean
+                      required:
+                        - retail_customers_in_the_us
+                        - retail_customers_inside_the_us
+                        - non_us_retail_customers_outside_the_us
+                        - businesses_in_the_us
+                        - businesses_hq_outside_us
+                        - businesses_intl_no_us_entity
+                        - retail_customers_in_canada
+                        - retail_customers_outside_canada
+                        - retail_customers_inside_canada
+                        - businesses_in_canada
+                        - businesses_hq_outside_canada
+                        - businesses_intl_no_canada_entity
+                  required:
+                    - who_where_customers
+              required:
+                - customer_info
+          required:
+            - address
+            - financial_condition
+            - business_details
+            - legal_regulatory
+            - product_details
+      required:
+        - partner_id
+        - data
+    V0PostRequest:
+      type: object
+      properties:
+        tenant:
+          type: string
+        bank_id:
+          type: string
+        partner_id:
+          type: string
+        case_tenant:
+          type: string
+        case_type:
+          type: string
+        assignments:
+          type: array
+          items:
+            type: string
+        default_assignee_uuids:
+          type: array
+          items:
+            type: string
+        escalation_assignee_uuids:
+          type: array
+          items:
+            type: string
+        default_synctera_assignee_uuids:
+          type: array
+          items:
+            type: string
+        synctera_escalation_assignee_uuids:
+          type: array
+          items:
+            type: string
+      required:
+        - tenant
+        - bank_id
+        - partner_id
+        - case_tenant
+        - case_type
+        - assignments
+        - default_assignee_uuids
+        - escalation_assignee_uuids
+        - default_synctera_assignee_uuids
+        - synctera_escalation_assignee_uuids
