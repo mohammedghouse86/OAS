@@ -1,0 +1,431 @@
+openapi: 3.0.3
+info:
+  title: Groundx App
+  version: 1.0.0
+servers:
+  - url: https://middleware.groundx.ai
+tags:
+  - name: api
+paths:
+  /api/v1/customer/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/customer/{id}
+      operationId: get_api_v1_customer_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 6d3b87b3-a8c0-4177-b544-9db9d1839d42
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/customer/{id}
+      operationId: options_api_v1_customer_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 6d3b87b3-a8c0-4177-b544-9db9d1839d42
+      responses:
+        "200":
+          description: Success
+  /api/v1/subscription/{id}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/subscription/{id}
+      operationId: post_api_v1_subscription_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: retrieve_avaliable_subscription
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/subscription/{id}
+      operationId: options_api_v1_subscription_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: retrieve_avaliable_subscription
+      responses:
+        "200":
+          description: Success
+  /api/v1/ingest:
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/ingest
+      operationId: options_api_v1_ingest
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: active
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/ingest
+      operationId: get_api_v1_ingest
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: active
+      responses:
+        "200":
+          description: Success
+  /api/v1/bucket:
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/bucket
+      operationId: options_api_v1_bucket
+      parameters:
+        - name: n
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/bucket
+      operationId: get_api_v1_bucket
+      parameters:
+        - name: n
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/bucket
+      operationId: post_api_v1_bucket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  bucket:
+                    name: ghouse
+      responses:
+        "200":
+          description: Success
+  /api/v1/apikey:
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/apikey
+      operationId: options_api_v1_apikey
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/apikey
+      operationId: get_api_v1_apikey
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/apikey
+      operationId: post_api_v1_apikey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  apiKey:
+                    name: g api key
+      responses:
+        "200":
+          description: Success
+  /api/v1/bucket/{id}:
+    put:
+      tags:
+        - api
+      summary: PUT /api/v1/bucket/{id}
+      operationId: put_api_v1_bucket_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "26481"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPutRequest"
+            examples:
+              fromHar:
+                value:
+                  bucket:
+                    name: ghouse1
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/bucket/{id}
+      operationId: options_api_v1_bucket_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "26481"
+      responses:
+        "200":
+          description: Success
+  /api/v1/ingest/documents/{id}:
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/ingest/documents/{id}
+      operationId: options_api_v1_ingest_documents_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "26481"
+        - name: n
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "20"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created
+        - name: sortOrder
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desc
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/ingest/documents/{id}
+      operationId: get_api_v1_ingest_documents_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "26481"
+        - name: n
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "20"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created
+        - name: sortOrder
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desc
+      responses:
+        "200":
+          description: Success
+  /api/v1/ingest/documents/remote:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/ingest/documents/remote
+      operationId: post_api_v1_ingest_documents_remote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  documents:
+                    - contentType: documents
+                      operation: add
+                      documentId: 8da478dd-9681-4eb9-8034-27a53e8d71b5
+                      fileName: sample for upload.pdf
+                      fileSize: 1 MB
+                      sourceUrl: https://eyelevel-upload.s3.us-west-2.amazonaws.com/prod/file/ssp/4c7db6a2-8c9a-40c1-88e1-722d25c226c6.pdf
+                      fileType: pdf
+                      bucketId: 26481
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/ingest/documents/remote
+      operationId: options_api_v1_ingest_documents_remote
+      responses:
+        "200":
+          description: Success
+  /api/v1/ingest/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/ingest/{id}
+      operationId: get_api_v1_ingest_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 85ba53df-5776-4428-aa1d-bfa801c89697
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/ingest/{id}
+      operationId: options_api_v1_ingest_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 85ba53df-5776-4428-aa1d-bfa801c89697
+      responses:
+        "200":
+          description: Success
+  /api/v1/apikey/{id}:
+    put:
+      tags:
+        - api
+      summary: PUT /api/v1/apikey/{id}
+      operationId: put_api_v1_apikey_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 129c4ee2-e36c-4ac3-a89b-39358ff2ddaf
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPutRequest"
+            examples:
+              fromHar:
+                value:
+                  apiKey:
+                    name: aa
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/apikey/{id}
+      operationId: options_api_v1_apikey_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 129c4ee2-e36c-4ac3-a89b-39358ff2ddaf
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPostRequest:
+      type: object
+      properties:
+        bucket:
+          type: object
+          properties:
+            name:
+              type: string
+          required:
+            - name
+      required:
+        - bucket
+    ApiPutRequest:
+      type: object
+      properties:
+        bucket:
+          type: object
+          properties:
+            name:
+              type: string
+          required:
+            - name
+      required:
+        - bucket
