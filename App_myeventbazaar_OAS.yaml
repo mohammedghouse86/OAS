@@ -601,23 +601,7 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/user/profile
-      operationId: options_api_user_profile
-      responses:
-        "200":
-          description: Success
   /api/notification/count:
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/notification/count
-      operationId: options_api_notification_count
-      responses:
-        "200":
-          description: Success
     get:
       tags:
         - api
@@ -627,27 +611,6 @@ paths:
         "200":
           description: Success
   /api/notification:
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/notification
-      operationId: options_api_notification
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-      responses:
-        "200":
-          description: Success
     get:
       tags:
         - api
@@ -670,81 +633,6 @@ paths:
         "200":
           description: Success
   /api/services/venue/listing:
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/venue/listing
-      operationId: options_api_services_venue_listing
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: occassion[]
-          in: query
-          required: false
-          schema:
-            type: string
-          example: GRADUATION
-        - name: user
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 69aaa6973fe891b21715a462
-        - name: venueType
-          in: query
-          required: false
-          schema:
-            type: string
-          example: OUT_DOOR
-        - name: numberOfGuests
-          in: query
-          required: false
-          schema:
-            type: string
-          example: SEAT_125_FLOAT_150
-        - name: stage[]
-          in: query
-          required: false
-          schema:
-            type: string
-          example: AVAILABLE
-        - name: date[]
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 2026-03-11
-        - name: maxPrice
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1500"
-        - name: minPrice
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "0"
-        - name: danceFloor[]
-          in: query
-          required: false
-          schema:
-            type: string
-          example: UNAVAILABLE
-      responses:
-        "200":
-          description: Success
     get:
       tags:
         - api
@@ -826,14 +714,6 @@ paths:
         - api
       summary: GET /api/services/venue/count
       operationId: get_api_services_venue_count
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/venue/count
-      operationId: options_api_services_venue_count
       responses:
         "200":
           description: Success
@@ -1245,21 +1125,6 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/home/{id}/VENUE_FILTER
-      operationId: options_api_home_id_VENUE_FILTER
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: dashboard_filter
-      responses:
-        "200":
-          description: Success
   /api/services/venue/details/{id}:
     get:
       tags:
@@ -1276,54 +1141,12 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/venue/details/{id}
-      operationId: options_api_services_venue_details_id
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: 66f9a76cefc2836384f1ca3a
-      responses:
-        "200":
-          description: Success
   /api/services/venue/{id}/{id2}:
     get:
       tags:
         - api
       summary: GET /api/services/venue/{id}/{id2}
       operationId: get_api_services_venue_id_id2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: check_availability
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: 66f9a76cefc2836384f1ca3a
-        - name: date[]
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 2026-03-31
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/venue/{id}/{id2}
-      operationId: options_api_services_venue_id_id2
       parameters:
         - name: id
           in: path
@@ -1482,41 +1305,12 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/cartWishList/addToCart
-      operationId: options_api_services_cartWishList_addToCart
-      responses:
-        "200":
-          description: Success
   /api/services/cartWishList/get-cartList:
     get:
       tags:
         - api
       summary: GET /api/services/cartWishList/get-cartList
       operationId: get_api_services_cartWishList_get_cartList
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNum
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/cartWishList/get-cartList
-      operationId: options_api_services_cartWishList_get_cartList
       parameters:
         - name: limit
           in: query
@@ -1561,21 +1355,6 @@ paths:
         - api
       summary: GET /api/services/cartWishList/cart-details/{id}
       operationId: get_api_services_cartWishList_cart_details_id
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: 69aab3a32c651927c3ea41f9
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/cartWishList/cart-details/{id}
-      operationId: options_api_services_cartWishList_cart_details_id
       parameters:
         - name: id
           in: path
@@ -1712,54 +1491,12 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/cartWishList/{id}
-      operationId: options_api_services_cartWishList_id
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: update-cart-item
-        - name: cartId
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 69aab3a32c651927c3ea41f8
-        - name: itemId
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 69aab3a32c651927c3ea41f9
-      responses:
-        "200":
-          description: Success
   /api/home/{id}/CATERING_FILTER:
     get:
       tags:
         - api
       summary: GET /api/home/{id}/CATERING_FILTER
       operationId: get_api_home_id_CATERING_FILTER
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: dashboard_filter
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/home/{id}/CATERING_FILTER
-      operationId: options_api_home_id_CATERING_FILTER
       parameters:
         - name: id
           in: path
@@ -1826,61 +1563,6 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/catering/listing
-      operationId: options_api_services_catering_listing
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: user
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 69aaa6973fe891b21715a462
-        - name: date[]
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 2026-03-11
-        - name: mileRadius[]
-          in: query
-          required: false
-          schema:
-            type: string
-          example: |-
-            {
-             "miles": 50,
-              "coordinates": [-93.4498346,41.3596647]
-            }
-        - name: state
-          in: query
-          required: false
-          schema:
-            type: string
-          example: Iowa
-        - name: zipcode
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "50001"
-      responses:
-        "200":
-          description: Success
   /api/home/{id}/BAKING_FILTER:
     get:
       tags:
@@ -1897,54 +1579,12 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/home/{id}/BAKING_FILTER
-      operationId: options_api_home_id_BAKING_FILTER
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: dashboard_filter
-      responses:
-        "200":
-          description: Success
   /api/services/baking/listing:
     get:
       tags:
         - api
       summary: GET /api/services/baking/listing
       operationId: get_api_services_baking_listing
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: user
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 69aaa6973fe891b21715a462
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/baking/listing
-      operationId: options_api_services_baking_listing
       parameters:
         - name: limit
           in: query
@@ -1989,60 +1629,12 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/home/{id}/{id2}
-      operationId: options_api_home_id_id2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: dashboard_filter
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: DECORATION_FILTER
-      responses:
-        "200":
-          description: Success
   /api/services/decor/listing:
     get:
       tags:
         - api
       summary: GET /api/services/decor/listing
       operationId: get_api_services_decor_listing
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: user
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 69aaa6973fe891b21715a462
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/decor/listing
-      operationId: options_api_services_decor_listing
       parameters:
         - name: limit
           in: query
@@ -2093,66 +1685,12 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/photography/listing
-      operationId: options_api_services_photography_listing
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: user
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 69aaa6973fe891b21715a462
-      responses:
-        "200":
-          description: Success
   /api/services/partyRentals/listing:
     get:
       tags:
         - api
       summary: GET /api/services/partyRentals/listing
       operationId: get_api_services_partyRentals_listing
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: user
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 69aaa6973fe891b21715a462
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/partyRentals/listing
-      operationId: options_api_services_partyRentals_listing
       parameters:
         - name: limit
           in: query
@@ -2203,66 +1741,12 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/djService/listing
-      operationId: options_api_services_djService_listing
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: user
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 69aaa6973fe891b21715a462
-      responses:
-        "200":
-          description: Success
   /api/services/partyDrums/listing:
     get:
       tags:
         - api
       summary: GET /api/services/partyDrums/listing
       operationId: get_api_services_partyDrums_listing
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: user
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 69aaa6973fe891b21715a462
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/partyDrums/listing
-      operationId: options_api_services_partyDrums_listing
       parameters:
         - name: limit
           in: query
@@ -2313,67 +1797,13 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/cartWishList/get-wishList
-      operationId: options_api_services_cartWishList_get_wishList
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNum
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: service
-          in: query
-          required: false
-          schema:
-            type: string
-          example: DJ_SERVICE
-      responses:
-        "200":
-          description: Success
   /api/home/{id}/ZIPCODES:
     get:
       tags:
         - api
-      summary: GET /api/home/{id}/ZIPCODES
+      summary: GET /api/home/dashboard_filter/ZIPCODES
       operationId: get_api_home_id_ZIPCODES
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: dashboard_filter
-        - name: zipcode
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "50000"
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/home/{id}/ZIPCODES
-      operationId: options_api_home_id_ZIPCODES
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: dashboard_filter
         - name: zipcode
           in: query
           required: false
@@ -2384,14 +1814,6 @@ paths:
         "200":
           description: Success
   /api/user/update-profile:
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/user/update-profile
-      operationId: options_api_user_update_profile
-      responses:
-        "200":
-          description: Success
     put:
       tags:
         - api
@@ -2444,33 +1866,6 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/booking/listBookings
-      operationId: options_api_services_booking_listBookings
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: pageNum
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: status
-          in: query
-          required: false
-          schema:
-            type: string
-          example: ACCEPTED
-      responses:
-        "200":
-          description: Success
   /api/services/info/blog-list:
     get:
       tags:
@@ -2499,54 +1894,12 @@ paths:
       responses:
         "200":
           description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/info/blog-list
-      operationId: options_api_services_info_blog_list
-      parameters:
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "3"
-        - name: pageNum
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: type
-          in: query
-          required: false
-          schema:
-            type: string
-          example: USER
-      responses:
-        "200":
-          description: Success
   /api/services/booking/{id}:
     get:
       tags:
         - api
       summary: GET /api/services/booking/{id}
       operationId: get_api_services_booking_id
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: swipe-orders-list
-      responses:
-        "200":
-          description: Success
-    options:
-      tags:
-        - api
-      summary: OPTIONS /api/services/booking/{id}
-      operationId: options_api_services_booking_id
       parameters:
         - name: id
           in: path
