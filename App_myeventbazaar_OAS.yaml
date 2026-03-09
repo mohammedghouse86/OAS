@@ -1109,35 +1109,21 @@ paths:
       responses:
         "200":
           description: Success
-  /api/home/{id}/VENUE_FILTER:
+  /api/home/dashboard_filter/VENUE_FILTER:
     get:
       tags:
         - api
-      summary: GET /api/home/{id}/VENUE_FILTER
-      operationId: get_api_home_id_VENUE_FILTER
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: dashboard_filter
+      summary: GET /api/home/dashboard_filter/VENUE_FILTER
+      operationId: get_api_home_dashboard_filter_VENUE_FILTER
       responses:
         "200":
           description: Success
-  /api/services/venue/details/{id}:
+  /api/services/venue/details/66f9a76cefc2836384f1ca3a:
     get:
       tags:
         - api
-      summary: GET /api/services/venue/details/{id}
+      summary: GET /api/services/venue/details/66f9a76cefc2836384f1ca3a
       operationId: get_api_services_venue_details_id
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: 66f9a76cefc2836384f1ca3a
       responses:
         "200":
           description: Success
@@ -1491,19 +1477,12 @@ paths:
       responses:
         "200":
           description: Success
-  /api/home/{id}/CATERING_FILTER:
+  /api/home/dashboard_filter/CATERING_FILTER:
     get:
       tags:
         - api
-      summary: GET /api/home/{id}/CATERING_FILTER
-      operationId: get_api_home_id_CATERING_FILTER
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: dashboard_filter
+      summary: GET /api/home/dashboard_filter/CATERING_FILTER
+      operationId: get_api_home_dashboard_filter_CATERING_FILTER
       responses:
         "200":
           description: Success
@@ -1563,19 +1542,12 @@ paths:
       responses:
         "200":
           description: Success
-  /api/home/{id}/BAKING_FILTER:
+  /api/home/dashboard_filter/BAKING_FILTER:
     get:
       tags:
         - api
-      summary: GET /api/home/{id}/BAKING_FILTER
-      operationId: get_api_home_id_BAKING_FILTER
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: dashboard_filter
+      summary: GET /api/home/dashboard_filter/BAKING_FILTER
+      operationId: get_api_home_dashboard_filter_BAKING_FILTER
       responses:
         "200":
           description: Success
@@ -1607,25 +1579,12 @@ paths:
       responses:
         "200":
           description: Success
-  /api/home/{id}/{id2}:
+  /api/home/dashboard_filter/DECORATION_FILTER:
     get:
       tags:
         - api
-      summary: GET /api/home/{id}/{id2}
-      operationId: get_api_home_id_id2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: dashboard_filter
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: DECORATION_FILTER
+      summary: GET /api/home/dashboard_filter/DECORATION_FILTER
+      operationId: get_api_home_dashboard_filter_DECORATION_FILTER
       responses:
         "200":
           description: Success
@@ -1797,12 +1756,12 @@ paths:
       responses:
         "200":
           description: Success
-  /api/home/{id}/ZIPCODES:
+  /api/home/dashboard_filter/ZIPCODES:
     get:
       tags:
         - api
       summary: GET /api/home/dashboard_filter/ZIPCODES
-      operationId: get_api_home_id_ZIPCODES
+      operationId: get_api_home_dashboard_filter_ZIPCODES
       parameters:
         - name: zipcode
           in: query
