@@ -1,0 +1,1045 @@
+openapi: 3.0.3
+info:
+  title: Experian App
+  version: 1.0.0
+servers:
+  - url: https://developer.experian.com
+tags:
+  - name: api
+  - name: app
+  - name: apps
+  - name: b
+  - name: blogs
+  - name: consentconfig
+  - name: contact-us
+  - name: default
+  - name: dest5.html
+  - name: faqs
+  - name: get-started
+  - name: group
+  - name: id
+  - name: login
+  - name: m2
+  - name: products
+  - name: recaptcha
+  - name: saml_login
+  - name: sdk
+  - name: simplesaml
+  - name: sites
+  - name: tutorials
+  - name: user
+paths:
+  /group/{id}/user/{id2}/apps/create:
+    post:
+      tags:
+        - group
+      summary: POST /group/{id}/user/{id2}/apps/create
+      operationId: post_group_id_user_id2_apps_create
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "2"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "35115"
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  name: tst9
+                  products%5BExperian+One+Customer+Acquisition+API+Sandbox%5D: Experian+One+Customer+Acquisition+API+Sandbox
+                  op: Create+New+App%21
+                  form_build_id: form-4D0eHL0amUMooRk6XRH0tlu-wbsZ5dAHC_9p3TqzMvA
+                  form_token: vgNh5Xok8B5BTv6VuD_NytWPrTlnuEdx9Hb9oLnCNvg
+                  form_id: dpboost_edge_app
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - group
+      summary: GET /group/{id}/user/{id2}/apps/create
+      operationId: get_group_id_user_id2_apps_create
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "2"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "35115"
+      responses:
+        "200":
+          description: Success
+  /group/{id}/user/{id2}/apps:
+    get:
+      tags:
+        - group
+      summary: GET /group/{id}/user/{id2}/apps
+      operationId: get_group_id_user_id2_apps
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "2"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "35115"
+      responses:
+        "200":
+          description: Success
+  /group/{id}/join-check:
+    get:
+      tags:
+        - group
+      summary: GET /group/{id}/join-check
+      operationId: get_group_id_join_check
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "2"
+      responses:
+        "200":
+          description: Success
+  /apps:
+    get:
+      tags:
+        - apps
+      summary: GET /apps
+      operationId: get_apps
+      responses:
+        "200":
+          description: Success
+  /group/{id}/user/{id2}/apps/{id3}/delete:
+    post:
+      tags:
+        - group
+      summary: POST /group/{id}/user/{id2}/apps/{id3}/delete
+      operationId: post_group_id_user_id2_apps_id3_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "35115"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 57e8e2e1-e7fb-4f49-8ed8-e48a233f785d
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  confirm: "1"
+                  form_build_id: form-V6oM6Fm3kW4t2xA-sYhMIL0LBAUUuxLe9XG4-7HZfik
+                  form_token: u1-t6pExmYXTgU-KhnftEEZEu9u5QZxY42llImxSuxs
+                  form_id: dpboost_app_delete
+                  op: Confirm
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - group
+      summary: GET /group/{id}/user/{id2}/apps/{id3}/delete
+      operationId: get_group_id_user_id2_apps_id3_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "35115"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 57e8e2e1-e7fb-4f49-8ed8-e48a233f785d
+      responses:
+        "200":
+          description: Success
+  /group/{id}/user/{id2}/apps/{id3}/edit:
+    post:
+      tags:
+        - group
+      summary: POST /group/{id}/user/{id2}/apps/{id3}/edit
+      operationId: post_group_id_user_id2_apps_id3_edit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "35115"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: e967ccaa-c93e-4834-8f40-79f743e28748
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  name: Napp999
+                  products%5BAMS+Sandbox%5D: AMS+Sandbox
+                  op: Update+App
+                  form_build_id: form-wRIXU1Et6AEcRhmJWsUhNpMBmtRISOnbq2Pokb6CsGo
+                  form_token: vgNh5Xok8B5BTv6VuD_NytWPrTlnuEdx9Hb9oLnCNvg
+                  form_id: dpboost_edge_app
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - group
+      summary: GET /group/{id}/user/{id2}/apps/{id3}/edit
+      operationId: get_group_id_user_id2_apps_id3_edit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "35115"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: e967ccaa-c93e-4834-8f40-79f743e28748
+      responses:
+        "200":
+          description: Success
+  /products:
+    get:
+      tags:
+        - products
+      summary: GET /products
+      operationId: get_products
+      parameters:
+        - name: region
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+      responses:
+        "200":
+          description: Success
+  /user/me:
+    get:
+      tags:
+        - user
+      summary: GET /user/me
+      operationId: get_user_me
+      responses:
+        "200":
+          description: Success
+  /:
+    get:
+      tags:
+        - default
+      summary: GET /
+      operationId: get_root
+      responses:
+        "200":
+          description: Success
+  /user/me/edit:
+    get:
+      tags:
+        - user
+      summary: GET /user/me/edit
+      operationId: get_user_me_edit
+      responses:
+        "200":
+          description: Success
+  /contact-us:
+    get:
+      tags:
+        - contact-us
+      summary: GET /contact-us
+      operationId: get_contact_us
+      responses:
+        "200":
+          description: Success
+  /tutorials:
+    get:
+      tags:
+        - tutorials
+      summary: GET /tutorials
+      operationId: get_tutorials
+      responses:
+        "200":
+          description: Success
+  /faqs:
+    get:
+      tags:
+        - faqs
+      summary: GET /faqs
+      operationId: get_faqs
+      responses:
+        "200":
+          description: Success
+  /blogs:
+    get:
+      tags:
+        - blogs
+      summary: GET /blogs
+      operationId: get_blogs
+      responses:
+        "200":
+          description: Success
+  /get-started:
+    get:
+      tags:
+        - get-started
+      summary: GET /get-started
+      operationId: get_get_started
+      responses:
+        "200":
+          description: Success
+  /simplesaml/module.php/saml/sp/saml2-acs.php/default-sp:
+    post:
+      tags:
+        - simplesaml
+      summary: POST /simplesaml/module.php/saml/sp/saml2-acs.php/default-sp
+      operationId: post_simplesaml_module_php_saml_sp_saml2_acs_php_default_sp
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  SAMLResponse: PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c2FtbDJwOlJlc3BvbnNlIERlc3RpbmF0aW9uPSJodHRwczovL2RldmVsb3Blci5leHBlcmlhbi5jb20vc2ltcGxlc2FtbC9tb2R1bGUucGhwL3NhbWwvc3Avc2FtbDItYWNzLnBocC9kZWZhdWx0LXNwIiBJRD0iaWQtMjY4Nzg0NTE2NDU0OTg2ODA3MTk3OTY4ODQ3MCIgSW5SZXNwb25zZVRvPSJfOTVkYzJhZWE0N2M0MWM3NDBiMWY3NTE1MjM1MDEyNmZkMWFkMzk3NWIwIiBJc3N1ZUluc3RhbnQ9IjIwMjYtMDMtMDlUMDg6NDE6MjMuNzUzWiIgVmVyc2lvbj0iMi4wIiB4bWxuczpzYW1sMnA9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpwcm90b2NvbCIgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj48c2FtbDI6SXNzdWVyIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6ZW50aXR5IiB4bWxuczpzYW1sMj0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFzc2VydGlvbiI%2BaHR0cDovL3d3dy5va3RhLmNvbS9leGtlc3p1ZWliTW1BZkFsOTF0Nzwvc2FtbDI6SXNzdWVyPjxkczpTaWduYXR1cmUgeG1sbnM6ZHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyMiPjxkczpTaWduZWRJbmZvPjxkczpDYW5vbmljYWxpemF0aW9uTWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8%2BPGRzOlNpZ25hdHVyZU1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNpZy1tb3JlI3JzYS1zaGEyNTYiLz48ZHM6UmVmZXJlbmNlIFVSST0iI2lkLTI2ODc4NDUxNjQ1NDk4NjgwNzE5Nzk2ODg0NzAiPjxkczpUcmFuc2Zvcm1zPjxkczpUcmFuc2Zvcm0gQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjZW52ZWxvcGVkLXNpZ25hdHVyZSIvPjxkczpUcmFuc2Zvcm0gQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzEwL3htbC1leGMtYzE0biMiPjxlYzpJbmNsdXNpdmVOYW1lc3BhY2VzIFByZWZpeExpc3Q9InhzIiB4bWxuczplYz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8%2BPC9kczpUcmFuc2Zvcm0%2BPC9kczpUcmFuc2Zvcm1zPjxkczpEaWdlc3RNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVuYyNzaGEyNTYiLz48ZHM6RGlnZXN0VmFsdWU%2BN1lXYUxIMGp4eldwTjBwYVN1Zml1bGNaVlkvTjhZOXo5eFlSQk5VQ2FOUT08L2RzOkRpZ2VzdFZhbHVlPjwvZHM6UmVmZXJlbmNlPjwvZHM6U2lnbmVkSW5mbz48ZHM6U2lnbmF0dXJlVmFsdWU%2BYUdSL0l1QU14Sk1jcHlzZ1pzVS9rU0hNTnRrSm1Ub0tXaWMvNE1aM3IydXRmRHJNUjVobUpOM2FSMUUwSkdDeHM5b3lzMTJOTEw5dnZpYnk1cnhLcEhkM3lsZGEzSTN1QnlZSTd4WlNDNFJpbVNGaDhybGlKK1c5WTRYSFozNkVVaG1qQUZoeEMvMk1mc2hRcXBLOThMTkNYdHViSzhPalFXdWhlUzdQaWZtT2Eva0VZWGxFQnFDanMwRWJJU3R1M1dDN1VmQ1BzZk1zRDhhRTVoNVEvU3ZWOVdDZmZxTkNoakhDL2R4Z2VKVVJDaE52RVJTTVZkOS9xdVE5eXJZY1VqZEV4VE5Pd0JrOVVSelB4QnhxZVNrcFF6YTFmVG55dE9EWk1nNmx3cE1QbGQxTHRJcTJkM2o3T0MzYk1DaFBETW1EZXVOa1hkUFYvalFsTDFxU0RnPT08L2RzOlNpZ25hdHVyZVZhbHVlPjxkczpLZXlJbmZvPjxkczpYNTA5RGF0YT48ZHM6WDUwOUNlcnRpZmljYXRlPk1JSURxRENDQXBDZ0F3SUJBZ0lHQVYybXJNK0NNQTBHQ1NxR1NJYjNEUUVCQ3dVQU1JR1VNUXN3Q1FZRFZRUUdFd0pWVXpFVE1CRUcKQTFVRUNBd0tRMkZzYVdadmNtNXBZVEVXTUJRR0ExVUVCd3dOVTJGdUlFWnlZVzVqYVhOamJ6RU5NQXNHQTFVRUNnd0VUMnQwWVRFVQpNQklHQTFVRUN3d0xVMU5QVUhKdmRtbGtaWEl4RlRBVEJnTlZCQU1NREdWNGNHVnlhV0Z1TFc1aFl6RWNNQm9HQ1NxR1NJYjNEUUVKCkFSWU5hVzVtYjBCdmEzUmhMbU52YlRBZUZ3MHhOekE0TURNd05UVTNORGxhRncweU56QTRNRE13TlRVNE5EaGFNSUdVTVFzd0NRWUQKVlFRR0V3SlZVekVUTUJFR0ExVUVDQXdLUTJGc2FXWnZjbTVwWVRFV01CUUdBMVVFQnd3TlUyRnVJRVp5WVc1amFYTmpiekVOTUFzRwpBMVVFQ2d3RVQydDBZVEVVTUJJR0ExVUVDd3dMVTFOUFVISnZkbWxrWlhJeEZUQVRCZ05WQkFNTURHVjRjR1Z5YVdGdUxXNWhZekVjCk1Cb0dDU3FHU0liM0RRRUpBUllOYVc1bWIwQnZhM1JoTG1OdmJUQ0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0MKZ2dFQkFJR21lUnRZMWo1cFFWQjJyeS9hMGxRT25UNy9iMGtxM2p6ckRwNDQ4VW1oOUtIajhkNVBjcDZuUkV3UVNZOW5OMXo3MHNGQgpCS01wOUhybzJ4MDJjSUhoWWtjN1Z0NkZEdENJMDFDVWdwN2FnOTNKc1dTRWlob0pKRTdNaVM0YVAySjl0OUN3aGt2M1hpd2l3SHFPCk9JdHU0L2VzclYvRDNoS09sYkRtbS9FZGVVL3B1MjhMWEJFckxuRUJPamlpR2pYQjdzcnBWclZ3RzdDMXhrUjJmSHJheUo4VDFTa1QKaHdTQVNCZ0tPZFo1TkoydUJqRWQyQmlkU1F6WDVkKzlod05ReDVVL0VGczdDVXFsR0k3Wks1aVJrVGtrNytGVkFDVTkwUHlsVzRsWQpQVUN1SUZZNTUxcks4ejkycU5qcUhQKzBCVVlJaUl0V1pYUGhPMk13UGJzQ0F3RUFBVEFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBCmZXRXlKbW5Nd1VieFBIQ3lOWlFNMG83UzRhc0c3RytEZXR2MDAwQnBwb05QZWFzMWhUeFJwUEpFMHB2OGpQVVR6YjJpWDVjMithbU4KM2JpU01BODI3T3J1NjlDREc2VUNpblRKN2I4dmExZGp5T2RNYWdianUybEw1eGlMdG9laHFuNEVmaURudWFCdHNaOFo2L1VLZi8zdwpZUHdvSlBMdWlqZnVNZE1ic3pjcGFZL1Y2OUxRS055K3M3RHVHWjVPK2NqZytTMnBFSG5scDFuZkF6TmszVzh1QzdRUVNoMjFoY3VoClgrN3hibFA1dlFBckJSUExiUkVER052ZWV2WVFtcU8vU2QwOEtjTVBYRE9keGpPVDNIRDZmejVzaUxyNURPc3dlQzZBRlhjdFlBR3QKQmljblRyY2xQTU5Mby84N2kzOFA2aXRrY3AzYys0TkpYdllDN1E9PTwvZHM6WDUwOUNlcnRpZmljYXRlPjwvZHM6WDUwOURhdGE%2BPC9kczpLZXlJbmZvPjwvZHM6U2lnbmF0dXJlPjxzYW1sMnA6U3RhdHVzIHhtbG5zOnNhbWwycD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOnByb3RvY29sIj48c2FtbDJwOlN0YXR1c0NvZGUgVmFsdWU9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpzdGF0dXM6U3VjY2VzcyIvPjwvc2FtbDJwOlN0YXR1cz48c2FtbDI6QXNzZXJ0aW9uIElEPSJpZC0zMTc4NjQzMTgwODQ4MTEyNzg5MjE3Mzc1OTk1IiBJc3N1ZUluc3RhbnQ9IjIwMjYtMDMtMDlUMDg6NDE6MjMuNzUzWiIgVmVyc2lvbj0iMi4wIiB4bWxuczpzYW1sMj0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFzc2VydGlvbiIgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj48c2FtbDI6SXNzdWVyIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6ZW50aXR5IiB4bWxuczpzYW1sMj0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFzc2VydGlvbiI%2BaHR0cDovL3d3dy5va3RhLmNvbS9leGtlc3p1ZWliTW1BZkFsOTF0Nzwvc2FtbDI6SXNzdWVyPjxkczpTaWduYXR1cmUgeG1sbnM6ZHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyMiPjxkczpTaWduZWRJbmZvPjxkczpDYW5vbmljYWxpemF0aW9uTWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8%2BPGRzOlNpZ25hdHVyZU1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNpZy1tb3JlI3JzYS1zaGEyNTYiLz48ZHM6UmVmZXJlbmNlIFVSST0iI2lkLTMxNzg2NDMxODA4NDgxMTI3ODkyMTczNzU5OTUiPjxkczpUcmFuc2Zvcm1zPjxkczpUcmFuc2Zvcm0gQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjZW52ZWxvcGVkLXNpZ25hdHVyZSIvPjxkczpUcmFuc2Zvcm0gQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzEwL3htbC1leGMtYzE0biMiPjxlYzpJbmNsdXNpdmVOYW1lc3BhY2VzIFByZWZpeExpc3Q9InhzIiB4bWxuczplYz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8%2BPC9kczpUcmFuc2Zvcm0%2BPC9kczpUcmFuc2Zvcm1zPjxkczpEaWdlc3RNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVuYyNzaGEyNTYiLz48ZHM6RGlnZXN0VmFsdWU%2Ba09qRFJzc3FlUnl5OXlJQ254RXVjSGhHczluYjdERHRpVDJWUUU1eFc4Zz08L2RzOkRpZ2VzdFZhbHVlPjwvZHM6UmVmZXJlbmNlPjwvZHM6U2lnbmVkSW5mbz48ZHM6U2lnbmF0dXJlVmFsdWU%2BWTFTNVBoeFZoZno0b1JXM3lmQktpN2RZOGlPZmd4dU1qeWJmeG4rdUVxdFVwSjA2bm00aTVGR0tYU2xMUGR5am50dmVWdXNXdkE2WG5JMTFySml6TnUxa0lmWFVpRGNWYjd0S0tsRkRXeTNsTlhoNHlndnh4SHByaEJudUN4bVAxeUxmY014WXRPbVhTU01OOVJPOGJ6WXNvbjV1Wi8ydUV2djdDVjg3a3lGWjNBSkZsWllOaEsrM1BRWUMyNkFEQ0lKOW9Vc0pPc2d0STBCbEVjOWpxTEJzMEcyM3lRUXd1cCt4d2ZCeWltTzJXZUlJcS9rN3dSUWhNVXAzSHpkSmdVdWh6SlBYL0pjRVF2RmFyUkNMZE91VUlpZXFCNDExM2ZJMmRJMkVITUxNTzI5a2lCYldPd29UbUs3N2RZTFRtQ3NucXRhbHExUnpidjlvYm0zVk5nPT08L2RzOlNpZ25hdHVyZVZhbHVlPjxkczpLZXlJbmZvPjxkczpYNTA5RGF0YT48ZHM6WDUwOUNlcnRpZmljYXRlPk1JSURxRENDQXBDZ0F3SUJBZ0lHQVYybXJNK0NNQTBHQ1NxR1NJYjNEUUVCQ3dVQU1JR1VNUXN3Q1FZRFZRUUdFd0pWVXpFVE1CRUcKQTFVRUNBd0tRMkZzYVdadmNtNXBZVEVXTUJRR0ExVUVCd3dOVTJGdUlFWnlZVzVqYVhOamJ6RU5NQXNHQTFVRUNnd0VUMnQwWVRFVQpNQklHQTFVRUN3d0xVMU5QVUhKdmRtbGtaWEl4RlRBVEJnTlZCQU1NREdWNGNHVnlhV0Z1TFc1aFl6RWNNQm9HQ1NxR1NJYjNEUUVKCkFSWU5hVzVtYjBCdmEzUmhMbU52YlRBZUZ3MHhOekE0TURNd05UVTNORGxhRncweU56QTRNRE13TlRVNE5EaGFNSUdVTVFzd0NRWUQKVlFRR0V3SlZVekVUTUJFR0ExVUVDQXdLUTJGc2FXWnZjbTVwWVRFV01CUUdBMVVFQnd3TlUyRnVJRVp5WVc1amFYTmpiekVOTUFzRwpBMVVFQ2d3RVQydDBZVEVVTUJJR0ExVUVDd3dMVTFOUFVISnZkbWxrWlhJeEZUQVRCZ05WQkFNTURHVjRjR1Z5YVdGdUxXNWhZekVjCk1Cb0dDU3FHU0liM0RRRUpBUllOYVc1bWIwQnZhM1JoTG1OdmJUQ0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0MKZ2dFQkFJR21lUnRZMWo1cFFWQjJyeS9hMGxRT25UNy9iMGtxM2p6ckRwNDQ4VW1oOUtIajhkNVBjcDZuUkV3UVNZOW5OMXo3MHNGQgpCS01wOUhybzJ4MDJjSUhoWWtjN1Z0NkZEdENJMDFDVWdwN2FnOTNKc1dTRWlob0pKRTdNaVM0YVAySjl0OUN3aGt2M1hpd2l3SHFPCk9JdHU0L2VzclYvRDNoS09sYkRtbS9FZGVVL3B1MjhMWEJFckxuRUJPamlpR2pYQjdzcnBWclZ3RzdDMXhrUjJmSHJheUo4VDFTa1QKaHdTQVNCZ0tPZFo1TkoydUJqRWQyQmlkU1F6WDVkKzlod05ReDVVL0VGczdDVXFsR0k3Wks1aVJrVGtrNytGVkFDVTkwUHlsVzRsWQpQVUN1SUZZNTUxcks4ejkycU5qcUhQKzBCVVlJaUl0V1pYUGhPMk13UGJzQ0F3RUFBVEFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBCmZXRXlKbW5Nd1VieFBIQ3lOWlFNMG83UzRhc0c3RytEZXR2MDAwQnBwb05QZWFzMWhUeFJwUEpFMHB2OGpQVVR6YjJpWDVjMithbU4KM2JpU01BODI3T3J1NjlDREc2VUNpblRKN2I4dmExZGp5T2RNYWdianUybEw1eGlMdG9laHFuNEVmaURudWFCdHNaOFo2L1VLZi8zdwpZUHdvSlBMdWlqZnVNZE1ic3pjcGFZL1Y2OUxRS055K3M3RHVHWjVPK2NqZytTMnBFSG5scDFuZkF6TmszVzh1QzdRUVNoMjFoY3VoClgrN3hibFA1dlFBckJSUExiUkVER052ZWV2WVFtcU8vU2QwOEtjTVBYRE9keGpPVDNIRDZmejVzaUxyNURPc3dlQzZBRlhjdFlBR3QKQmljblRyY2xQTU5Mby84N2kzOFA2aXRrY3AzYys0TkpYdllDN1E9PTwvZHM6WDUwOUNlcnRpZmljYXRlPjwvZHM6WDUwOURhdGE%2BPC9kczpLZXlJbmZvPjwvZHM6U2lnbmF0dXJlPjxzYW1sMjpTdWJqZWN0IHhtbG5zOnNhbWwyPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YXNzZXJ0aW9uIj48c2FtbDI6TmFtZUlEIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6MS4xOm5hbWVpZC1mb3JtYXQ6ZW1haWxBZGRyZXNzIj5tYWltb29uYS5mMzk5QGdtYWlsLmNvbTwvc2FtbDI6TmFtZUlEPjxzYW1sMjpTdWJqZWN0Q29uZmlybWF0aW9uIE1ldGhvZD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmNtOmJlYXJlciI%2BPHNhbWwyOlN1YmplY3RDb25maXJtYXRpb25EYXRhIEluUmVzcG9uc2VUbz0iXzk1ZGMyYWVhNDdjNDFjNzQwYjFmNzUxNTIzNTAxMjZmZDFhZDM5NzViMCIgTm90T25PckFmdGVyPSIyMDI2LTAzLTA5VDA4OjQ2OjIzLjc1M1oiIFJlY2lwaWVudD0iaHR0cHM6Ly9kZXZlbG9wZXIuZXhwZXJpYW4uY29tL3NpbXBsZXNhbWwvbW9kdWxlLnBocC9zYW1sL3NwL3NhbWwyLWFjcy5waHAvZGVmYXVsdC1zcCIvPjwvc2FtbDI6U3ViamVjdENvbmZpcm1hdGlvbj48L3NhbWwyOlN1YmplY3Q%2BPHNhbWwyOkNvbmRpdGlvbnMgTm90QmVmb3JlPSIyMDI2LTAzLTA5VDA4OjM2OjIzLjc1M1oiIE5vdE9uT3JBZnRlcj0iMjAyNi0wMy0wOVQwODo0NjoyMy43NTNaIiB4bWxuczpzYW1sMj0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFzc2VydGlvbiI%2BPHNhbWwyOkF1ZGllbmNlUmVzdHJpY3Rpb24%2BPHNhbWwyOkF1ZGllbmNlPmh0dHA6Ly9kcnVwYWwtbXlzcWwtcGVyc2lzdGVudC1nbG9iYWwtZGV2ZWxvcGVyLXByb2QuYS1pbnRlcm5hbC5hcHBjYW52YXMubmV0L3Byb2QtYjJjLXNwPC9zYW1sMjpBdWRpZW5jZT48L3NhbWwyOkF1ZGllbmNlUmVzdHJpY3Rpb24%2BPC9zYW1sMjpDb25kaXRpb25zPjxzYW1sMjpBdXRoblN0YXRlbWVudCBBdXRobkluc3RhbnQ9IjIwMjYtMDMtMDlUMDg6NDE6MjMuNzUzWiIgU2Vzc2lvbkluZGV4PSJfOTVkYzJhZWE0N2M0MWM3NDBiMWY3NTE1MjM1MDEyNmZkMWFkMzk3NWIwIiB4bWxuczpzYW1sMj0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFzc2VydGlvbiI%2BPHNhbWwyOkF1dGhuQ29udGV4dD48c2FtbDI6QXV0aG5Db250ZXh0Q2xhc3NSZWY%2BdXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFjOmNsYXNzZXM6UGFzc3dvcmRQcm90ZWN0ZWRUcmFuc3BvcnQ8L3NhbWwyOkF1dGhuQ29udGV4dENsYXNzUmVmPjwvc2FtbDI6QXV0aG5Db250ZXh0Pjwvc2FtbDI6QXV0aG5TdGF0ZW1lbnQ%2BPHNhbWwyOkF0dHJpYnV0ZVN0YXRlbWVudCB4bWxuczpzYW1sMj0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFzc2VydGlvbiI%2BPHNhbWwyOkF0dHJpYnV0ZSBOYW1lPSJFbWFpbCIgTmFtZUZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmF0dHJuYW1lLWZvcm1hdDpiYXNpYyI%2BPHNhbWwyOkF0dHJpYnV0ZVZhbHVlIHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHNpOnR5cGU9InhzOnN0cmluZyI%2BbWFpbW9vbmEuZjM5OUBnbWFpbC5jb208L3NhbWwyOkF0dHJpYnV0ZVZhbHVlPjwvc2FtbDI6QXR0cmlidXRlPjxzYW1sMjpBdHRyaWJ1dGUgTmFtZT0iRmlyc3ROYW1lIiBOYW1lRm9ybWF0PSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YXR0cm5hbWUtZm9ybWF0OmJhc2ljIj48c2FtbDI6QXR0cmlidXRlVmFsdWUgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4c2k6dHlwZT0ieHM6c3RyaW5nIj5NYWltb29uYTwvc2FtbDI6QXR0cmlidXRlVmFsdWU%2BPC9zYW1sMjpBdHRyaWJ1dGU%2BPHNhbWwyOkF0dHJpYnV0ZSBOYW1lPSJMYXN0TmFtZSIgTmFtZUZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmF0dHJuYW1lLWZvcm1hdDpiYXNpYyI%2BPHNhbWwyOkF0dHJpYnV0ZVZhbHVlIHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHNpOnR5cGU9InhzOnN0cmluZyI%2BRmF0aW1hPC9zYW1sMjpBdHRyaWJ1dGVWYWx1ZT48L3NhbWwyOkF0dHJpYnV0ZT48c2FtbDI6QXR0cmlidXRlIE5hbWU9IlVzZXJuYW1lIiBOYW1lRm9ybWF0PSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YXR0cm5hbWUtZm9ybWF0OmJhc2ljIj48c2FtbDI6QXR0cmlidXRlVmFsdWUgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4c2k6dHlwZT0ieHM6c3RyaW5nIj5tYWltb29uYS5mMzk5QGdtYWlsLmNvbTwvc2FtbDI6QXR0cmlidXRlVmFsdWU%2BPC9zYW1sMjpBdHRyaWJ1dGU%2BPHNhbWwyOkF0dHJpYnV0ZSBOYW1lPSJjb3VudHJ5Q29kZSIgTmFtZUZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmF0dHJuYW1lLWZvcm1hdDpiYXNpYyI%2BPHNhbWwyOkF0dHJpYnV0ZVZhbHVlIHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHNpOnR5cGU9InhzOnN0cmluZyI%2BVVM8L3NhbWwyOkF0dHJpYnV0ZVZhbHVlPjwvc2FtbDI6QXR0cmlidXRlPjxzYW1sMjpBdHRyaWJ1dGUgTmFtZT0iR3JvdXBOYW1lIiBOYW1lRm9ybWF0PSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YXR0cm5hbWUtZm9ybWF0OmJhc2ljIj48c2FtbDI6QXR0cmlidXRlVmFsdWUgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4c2k6dHlwZT0ieHM6c3RyaW5nIj5BUElfRGV2X0RlZmF1bHRfUm9sZTwvc2FtbDI6QXR0cmlidXRlVmFsdWU%2BPC9zYW1sMjpBdHRyaWJ1dGU%2BPC9zYW1sMjpBdHRyaWJ1dGVTdGF0ZW1lbnQ%2BPC9zYW1sMjpBc3NlcnRpb24%2BPC9zYW1sMnA6UmVzcG9uc2U%2B
+                  RelayState: https%3A%2F%2Fdeveloper.experian.com%2Fsaml_login%3Fdestination%3D%252Fhome
+      responses:
+        "200":
+          description: Success
+  /saml_login:
+    get:
+      tags:
+        - saml_login
+      summary: GET /saml_login
+      operationId: get_saml_login
+      parameters:
+        - name: destination
+          in: query
+          required: false
+          schema:
+            type: string
+          example: /home
+      responses:
+        "200":
+          description: Success
+  /login/{id}:
+    get:
+      tags:
+        - login
+      summary: GET /login/{id}
+      operationId: get_login_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: sessionCookieRedirect
+        - name: checkAccountSetupComplete
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: token
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 20111--XZfo64om1KFaqmXFOCZkuPJsC7RjUK2DoLofBGNf5cftSBH_
+        - name: redirectUrl
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://developer.experian.com/saml_login?destination=/home
+      responses:
+        "200":
+          description: Success
+  /app/{id}/{id2}/sso/saml:
+    get:
+      tags:
+        - app
+      summary: GET /app/{id}/{id2}/sso/saml
+      operationId: get_app_id_id2_sso_saml
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: experian_globaldeveloperportal_1
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: exkeszueibMmAfAl91t7
+        - name: SAMLRequest
+          in: query
+          required: false
+          schema:
+            type: string
+          example: fVJLbxoxEP4rK9+9LyAUC5C2QVWRkhYF2kMvaNY7BCte2/F4adJfH+/S0PTCydLMfI/5PHOCVjtRdeFoHvC5QwrJS6sNiaGxYJ03wgIpEgZaJBGk2Fb3d6JMc+G8DVZazT5AriOACH1Q1rBkvVqw/WzSyBIQxlM5LuR0nNfFYTopJuVokhflzaEpoBnNppM6Z8lP9BSRCxaJIpyow7WhACbEUl7e8HzE89ku/yTGhShHv1iyitsoA2FAHUNwJLIMXxx6BYYbkKl9CpBK22bg3KWzf9S2Bt3gCbWNJWd9AL0v4sAT0p8OVX3fVodKz4owzYhs1i/Okup9uVtrqGvRb9GflMQfD3f/5C+s6bvcoE+qdRp7nqy1TacxdUc38GZ0fksOkoZqgwfodODkWLL5+wWflWmUebyefn0eIvF1t9vwzfftji3nPbcY0vTL3mTv0XcONG9f6Vlz18dOAU3g51z4ZQUeD6BJgSsT0BvQaUxRgjkBpQZD1nd5XcpodJ59lJmfj+5bNLhebaxW8jX5Yn0L4br/vqIafhhGRfBgSEVfMXmt7e9bjxBwwYLvkGXLs+T/p718Aw==
+        - name: RelayState
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://developer.experian.com/saml_login?destination=%2Fhome
+      responses:
+        "200":
+          description: Success
+  /id:
+    get:
+      tags:
+        - id
+      summary: GET /id
+      operationId: get_id
+      parameters:
+        - name: d_visid_ver
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 5.5.0
+        - name: d_fieldgroup
+          in: query
+          required: false
+          schema:
+            type: string
+          example: MC
+        - name: d_rtbd
+          in: query
+          required: false
+          schema:
+            type: string
+          example: json
+        - name: d_ver
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2"
+        - name: d_orgid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: A9103BC75245B0CD0A490D4D@AdobeOrg
+        - name: d_nsid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: d_mid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "72583643514802979174095997100831054670"
+        - name: d_blob
+          in: query
+          required: false
+          schema:
+            type: string
+          example: RKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y
+        - name: ts
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1773045673731"
+      responses:
+        "200":
+          description: Success
+  /dest5.html:
+    get:
+      tags:
+        - dest5.html
+      summary: GET /dest5.html
+      operationId: get_dest5_html
+      parameters:
+        - name: d_nsid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+      responses:
+        "200":
+          description: Success
+  /b/ss/expi-gda-sfportal,expi-global-prod/{id}/JS-2.27.0-LEWM/s08703067597359:
+    get:
+      tags:
+        - b
+      summary: GET /b/ss/expi-gda-sfportal,expi-global-prod/{id}/JS-2.27.0-LEWM/s08703067597359
+      operationId: get_b_ss_expi_gda_sfportal_expi_global_prod_id_JS_2_27_0_LEWM_s08703067597359
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: AQB
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ndh
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pf
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: t
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 9/2/2026 14:11:14 1 -330
+        - name: mid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "72583643514802979174095997100831054670"
+        - name: aamlh
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "12"
+        - name: ce
+          in: query
+          required: false
+          schema:
+            type: string
+          example: UTF-8
+        - name: g
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://developer.experian.com/
+        - name: cc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: USD
+        - name: aamb
+          in: query
+          required: false
+          schema:
+            type: string
+          example: RKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y
+        - name: c64
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Techouts|Software and Technology
+        - name: v64
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Techouts|Software and Technology
+        - name: v65
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Vaishnavi's Cynosure Opp. Rttc Telecom Nagar Ext Fl 5|Hyderabad|Telangana|500032|India|Southern Asia
+        - name: v66
+          in: query
+          required: false
+          schema:
+            type: string
+          example: techouts.com|$10M - $25M|250 - 499|316
+        - name: v67
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 7379|Computer Related Services Not Elsewhere Classified|54151|Computer Systems Design and Related Services
+        - name: pe
+          in: query
+          required: false
+          schema:
+            type: string
+          example: lnk_o
+        - name: pev2
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6 sense
+        - name: s
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1536x864
+        - name: c
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "32"
+        - name: j
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1.6"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: N
+        - name: k
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Y
+        - name: bw
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1536"
+        - name: bh
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "528"
+        - name: mcorgid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: A9103BC75245B0CD0A490D4D@AdobeOrg
+        - name: AQE
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /sites/default/files/2020-09/gettyimages-1250287341.mp4:
+    get:
+      tags:
+        - sites
+      summary: GET /sites/default/files/2020-09/gettyimages-1250287341.mp4
+      operationId: get_sites_default_files_2020_09_gettyimages_1250287341_mp4
+      responses:
+        "200":
+          description: Success
+  /api/v1/authn:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/authn
+      operationId: post_api_v1_authn
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  password: Tester@786
+                  username: maimoona.f399@gmail.com
+                  options:
+                    warnBeforePasswordExpired: true
+                    multiOptionalFactorEnroll: false
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - api
+      summary: OPTIONS /api/v1/authn
+      operationId: options_api_v1_authn
+      responses:
+        "200":
+          description: Success
+  /m2/experianltd/mbox/json:
+    get:
+      tags:
+        - m2
+      summary: GET /m2/experianltd/mbox/json
+      operationId: get_m2_experianltd_mbox_json
+      parameters:
+        - name: mbox
+          in: query
+          required: false
+          schema:
+            type: string
+          example: target-global-mbox
+        - name: mboxSession
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 3dbdca4bdc2c4f3099081e9d9c30d4f2
+        - name: mboxPC
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 30050d68fd594592ad8a2cf7383c5054.41_0
+        - name: mboxPage
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ea75c2446e6843699b49eba78120a01e
+        - name: mboxRid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1c5a2ea401ab45d7ba146cd69ef76040
+        - name: mboxVersion
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 1.8.3
+        - name: mboxCount
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: mboxTime
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1773065489148"
+        - name: mboxHost
+          in: query
+          required: false
+          schema:
+            type: string
+          example: developer.experian.com
+        - name: mboxURL
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://developer.experian.com/
+        - name: mboxReferrer
+          in: query
+          required: false
+          schema:
+            type: string
+          example: https://experian-nac.okta.com/
+        - name: browserHeight
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "695"
+        - name: browserWidth
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1070"
+        - name: browserTimeOffset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+        - name: screenHeight
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "864"
+        - name: screenWidth
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1536"
+        - name: colorDepth
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "32"
+        - name: devicePixelRatio
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1.25"
+        - name: screenOrientation
+          in: query
+          required: false
+          schema:
+            type: string
+          example: landscape
+        - name: webGLRenderer
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)
+        - name: mboxMCSDID
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 15193A89033A1F97-408E80ADE631E3BB
+        - name: mboxMCGVID
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "80670366522850068813719651524293883602"
+        - name: mboxAAMB
+          in: query
+          required: false
+          schema:
+            type: string
+          example: RKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y
+        - name: mboxMCGLH
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "12"
+      responses:
+        "200":
+          description: Success
+  /sdk/bc-v4.min.html:
+    get:
+      tags:
+        - sdk
+      summary: GET /sdk/bc-v4.min.html
+      operationId: get_sdk_bc_v4_min_html
+      responses:
+        "200":
+          description: Success
+  /consentconfig/{id}/settings.json:
+    get:
+      tags:
+        - consentconfig
+      summary: GET /consentconfig/{id}/settings.json
+      operationId: get_consentconfig_id_settings_json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: c3e680e0-0260-442a-b2ef-6f552c9e2348
+      responses:
+        "200":
+          description: Success
+  /recaptcha/api2/anchor:
+    get:
+      tags:
+        - recaptcha
+      summary: GET /recaptcha/api2/anchor
+      operationId: get_recaptcha_api2_anchor
+      parameters:
+        - name: ar
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: k
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 6LcFY4EUAAAAADa4p-oY9veBbgzKLXezOAjia7yG
+        - name: co
+          in: query
+          required: false
+          schema:
+            type: string
+          example: aHR0cHM6Ly9kZXZlbG9wZXIuZXhwZXJpYW4uY29tOjQ0Mw..
+        - name: hl
+          in: query
+          required: false
+          schema:
+            type: string
+          example: en
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: image
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: QvLuXwupqtKMva7GIh5eGl3U
+        - name: theme
+          in: query
+          required: false
+          schema:
+            type: string
+          example: light
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: normal
+        - name: anchor-ms
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "20000"
+        - name: execute-ms
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "30000"
+        - name: cb
+          in: query
+          required: false
+          schema:
+            type: string
+          example: axkldb13gis4
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPostRequest:
+      type: object
+      properties:
+        password:
+          type: string
+        username:
+          type: string
+        options:
+          type: object
+          properties:
+            warnBeforePasswordExpired:
+              type: boolean
+            multiOptionalFactorEnroll:
+              type: boolean
+          required:
+            - warnBeforePasswordExpired
+            - multiOptionalFactorEnroll
+      required:
+        - password
+        - username
+        - options
