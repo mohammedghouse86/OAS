@@ -1,0 +1,296 @@
+openapi: 3.0.3
+info:
+  title: Modern Money Experts App
+  version: 1.0.0
+servers:
+  - url: https://rtl-market.modernmoneyexperts.com
+tags:
+  - name: ai
+  - name: auth
+  - name: historical
+  - name: ois
+  - name: options-flow
+  - name: smart-flow
+  - name: "{id}"
+paths:
+  /api/auth/verify-flexible:
+    post:
+      tags:
+        - auth
+      summary: POST /api/auth/verify-flexible
+      operationId: post_api_auth_verify_flexible
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthPostRequest"
+            examples:
+              fromHar:
+                value:
+                  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0b2Nrcy5tb2Rlcm5tb25leWV4cGVydHMuY29tIiwiaWF0IjoxNzczMjE5Mjc1LCJuYmYiOjE3NzMyMTkyNzUsImV4cCI6MTc3MzI0ODA3NSwianRpIjoiYzRiOGE4YjItMzZlZC00M2EzLWFiOWYtYmIxMjdlNmI1YzRjIiwiZGF0YSI6eyJ1c2VyIjp7ImlkIjozNiwidXNlcm5hbWUiOiJHaGFtZGFuIFRlc3QiLCJlbWFpbCI6ImdoYW1kYW5fc21hcnRAeWFob28uY29tIn19fQ._SnJF9n4VHWq49W1Z8cXb65AQ6vUIWwPNSwgYR-NBnA
+      responses:
+        "200":
+          description: Success
+  /api/{id}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /api/{id}
+      operationId: get_api_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: accumulated-data
+        - name: source
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rtl
+        - name: underlyings
+          in: query
+          required: false
+          schema:
+            type: string
+          example: SPX,SPY,GLD,NVDA,TSLA,AMD,AMZN,AAPL,MSFT
+        - name: expiry_range
+          in: query
+          required: false
+          schema:
+            type: string
+          example: annual
+        - name: strike_range
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "20"
+      responses:
+        "200":
+          description: Success
+  /api/ai/watchlist/load:
+    get:
+      tags:
+        - ai
+      summary: GET /api/ai/watchlist/load
+      operationId: get_api_ai_watchlist_load
+      responses:
+        "200":
+          description: Success
+  /api/ai/providers:
+    get:
+      tags:
+        - ai
+      summary: GET /api/ai/providers
+      operationId: get_api_ai_providers
+      responses:
+        "200":
+          description: Success
+  /api/smart-flow/{id}:
+    get:
+      tags:
+        - smart-flow
+      summary: GET /api/smart-flow/{id}
+      operationId: get_api_smart_flow_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: available-symbols
+      responses:
+        "200":
+          description: Success
+  /api/smart-flow/opportunities:
+    get:
+      tags:
+        - smart-flow
+      summary: GET /api/smart-flow/opportunities
+      operationId: get_api_smart_flow_opportunities
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5000"
+        - name: min_flow_score
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: option_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+        - name: moneyness
+          in: query
+          required: false
+          schema:
+            type: string
+          example: all
+      responses:
+        "200":
+          description: Success
+  /api/options-flow/flow:
+    get:
+      tags:
+        - options-flow
+      summary: GET /api/options-flow/flow
+      operationId: get_api_options_flow_flow
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "500"
+      responses:
+        "200":
+          description: Success
+  /api/options-flow/screeners:
+    get:
+      tags:
+        - options-flow
+      summary: GET /api/options-flow/screeners
+      operationId: get_api_options_flow_screeners
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "300"
+      responses:
+        "200":
+          description: Success
+  /api/ois/report-view:
+    get:
+      tags:
+        - ois
+      summary: GET /api/ois/report-view
+      operationId: get_api_ois_report_view
+      responses:
+        "200":
+          description: Success
+  /api/historical/eod:
+    get:
+      tags:
+        - historical
+      summary: GET /api/historical/eod
+      operationId: get_api_historical_eod
+      parameters:
+        - name: underlying_symbol
+          in: query
+          required: false
+          schema:
+            type: string
+          example: SPY
+        - name: strike_eq
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "686"
+        - name: exp_date_eq
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-13
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: call
+        - name: tradetime_from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-02-11
+        - name: tradetime_to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-11
+        - name: page_limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1000"
+        - name: page_offset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+      responses:
+        "200":
+          description: Success
+  /api/historical/{id}:
+    get:
+      tags:
+        - historical
+      summary: GET /api/historical/{id}
+      operationId: get_api_historical_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: intraday-gamma-shift
+        - name: underlying
+          in: query
+          required: false
+          schema:
+            type: string
+          example: SPY
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-11
+        - name: strike_eq
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "686"
+        - name: exp_date_eq
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-13
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: put
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    AuthPostRequest:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+        - token
