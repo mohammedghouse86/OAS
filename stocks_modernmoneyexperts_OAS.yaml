@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Stocks ModernMoneyExperts App
+  version: 1.0.0
+servers:
+  - url: https://stocks.modernmoneyexperts.com
+tags:
+  - name: account-2
+  - name: wp-login.php
+  - name: premium-dashboard
+paths:
+  /wp-login.php:
+    post:
+      tags:
+        - wp-login.php
+      summary: POST /wp-login.php
+      operationId: post_wp_login_php
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  log: test%40test.com
+                  pwd: TEST123%21%40%23%40%40%40%40%40%40%40%40%21
+                  lh_agree_to_terms-accept: "1"
+                  lh_agree_to_terms-type: login
+                  wp-submit: Log+In
+                  redirect_to: "%2Fpremium-dashboard%2F"
+                  testcookie: "1"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - wp-login.php
+      summary: GET /wp-login.php
+      operationId: get_wp_login_php
+      parameters:
+        - name: mepr-unauth-page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "233"
+        - name: redirect_to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: /premium-dashboard/
+      responses:
+        "200":
+          description: Success
+  /account-2:
+    get:
+      tags:
+        - account-2
+      summary: GET /account-2
+      operationId: get_account_2
+      parameters:
+        - name: action
+          in: query
+          required: false
+          schema:
+            type: string
+          example: home
+      responses:
+        "200":
+          description: Success
+  /premium-dashboard:
+    get:
+      tags:
+        - premium-dashboard
+      summary: GET /premium-dashboard
+      operationId: get_premium_dashboard
+      responses:
+        "200":
+          description: Success
+components:
+  schemas: {}
