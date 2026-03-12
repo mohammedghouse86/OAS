@@ -1,0 +1,2016 @@
+openapi: 3.0.3
+info:
+  title: Stellnoir App
+  version: 1.0.0
+servers:
+  - url: https://staging.stellnoir.com
+tags:
+  - name: account
+  - name: api
+  - name: build
+  - name: cart
+  - name: checkout
+  - name: concierge
+  - name: default
+  - name: festivities
+  - name: login
+  - name: logout
+  - name: products
+  - name: register
+  - name: shipping
+  - name: story
+  - name: trace
+  - name: v1
+  - name: v2
+  - name: wishlist
+paths:
+  /register:
+    post:
+      tags:
+        - register
+      summary: POST /register
+      operationId: post_register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: test2 mir
+                  email: test2mir786@gmail.com
+                  phone: ""
+                  password: Welcome@1234
+                  password_confirmation: Welcome@1234
+      responses:
+        "200":
+          description: Success
+  /account:
+    get:
+      tags:
+        - account
+      summary: GET /account
+      operationId: get_account
+      responses:
+        "200":
+          description: Success
+  /logout:
+    post:
+      tags:
+        - logout
+      summary: POST /logout
+      operationId: post_logout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LogoutPostRequest"
+            examples:
+              fromHar:
+                value: {}
+      responses:
+        "200":
+          description: Success
+  /:
+    get:
+      tags:
+        - default
+      summary: GET /
+      operationId: get_root
+      responses:
+        "200":
+          description: Success
+  /login:
+    get:
+      tags:
+        - login
+      summary: GET /login
+      operationId: get_login
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - login
+      summary: POST /login
+      operationId: post_login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: test2mir786@gmail.com
+                  password: Welcome@1234
+                  remember: false
+      responses:
+        "200":
+          description: Success
+  /story:
+    get:
+      tags:
+        - story
+      summary: GET /story
+      operationId: get_story
+      responses:
+        "200":
+          description: Success
+  /concierge:
+    get:
+      tags:
+        - concierge
+      summary: GET /concierge
+      operationId: get_concierge
+      responses:
+        "200":
+          description: Success
+  /products:
+    get:
+      tags:
+        - products
+      summary: GET /products
+      operationId: get_products
+      parameters:
+        - name: material[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Full-Grain Vegetable-Tanned Leather (Cognac)
+        - name: color[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Cognac Brown
+        - name: category[]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: belts
+      responses:
+        "200":
+          description: Success
+  /wishlist/check/{id}:
+    get:
+      tags:
+        - wishlist
+      summary: GET /wishlist/check/{id}
+      operationId: get_wishlist_check_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18"
+        - name: product_variant_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "33"
+      responses:
+        "200":
+          description: Success
+  /wishlist/toggle:
+    post:
+      tags:
+        - wishlist
+      summary: POST /wishlist/toggle
+      operationId: post_wishlist_toggle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WishlistPostRequest"
+            examples:
+              fromHar:
+                value:
+                  product_id: 18
+                  product_variant_id: 33
+      responses:
+        "200":
+          description: Success
+  /products/{id}:
+    get:
+      tags:
+        - products
+      summary: GET /products/{id}
+      operationId: get_products_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: perla-woven-crossbody
+      responses:
+        "200":
+          description: Success
+  /cart:
+    post:
+      tags:
+        - cart
+      summary: POST /cart
+      operationId: post_cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CartPostRequest"
+            examples:
+              fromHar:
+                value:
+                  product_id: 17
+                  product_variant_id: 32
+                  quantity: 1
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - cart
+      summary: GET /cart
+      operationId: get_cart
+      responses:
+        "200":
+          description: Success
+  /trace/{id}:
+    get:
+      tags:
+        - trace
+      summary: GET /trace/{id}
+      operationId: get_trace_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 8ac21b083cc94bc98c8b33bc3703ab8e808698b486dd49c18e2672c0e0bbccdd
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - trace
+      summary: POST /trace/{id}
+      operationId: post_trace_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: verify-ownership
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TracePostRequest"
+            examples:
+              fromHar:
+                value:
+                  order_reference: ORD-78561
+                  email: test2mir786@gmail.com
+                  otp: "796111"
+                  product_id: 17
+      responses:
+        "200":
+          description: Success
+  /checkout:
+    get:
+      tags:
+        - checkout
+      summary: GET /checkout
+      operationId: get_checkout
+      responses:
+        "200":
+          description: Success
+  /shipping/calculate-rates:
+    post:
+      tags:
+        - shipping
+      summary: POST /shipping/calculate-rates
+      operationId: post_shipping_calculate_rates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ShippingPostRequest"
+            examples:
+              fromHar:
+                value:
+                  to_pincode: "400001"
+      responses:
+        "200":
+          description: Success
+  /checkout/razorpay/create-order:
+    post:
+      tags:
+        - checkout
+      summary: POST /checkout/razorpay/create-order
+      operationId: post_checkout_razorpay_create_order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CheckoutPostRequest"
+            examples:
+              fromHar:
+                value:
+                  amount: 106200
+                  currency: INR
+                  order_data:
+                    email: test2mir786@gmail.com
+                    phone: "917428730894"
+                    newsletter: false
+                    firstName: test2
+                    lastName: mir
+                    addressLine1: kashmir gate 2
+                    addressLine2: sultan road
+                    pin: "400001"
+                    city: Pahlgam
+                    state: Jammu and Kashmir
+                    country: India
+                    giftNote: hi
+                    shippingMethod: standard
+                    paymentMethod: razorpay
+                    total: "106200.00"
+      responses:
+        "200":
+          description: Success
+  /v1/track:
+    post:
+      tags:
+        - v1
+      summary: POST /v1/track
+      operationId: post_v1_track
+      parameters:
+        - name: key_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rzp_test_RsCxluB0k2uAYV
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  key: ZmY5N2M0YzVkN2JiYzkyMWM1ZmVmYWJk
+                  mode: live
+                  events:
+                    - event: open
+                      timestamp: 1773290514314
+                      checkout_id: SQBb9hk3aSAW9R
+                      merchant_id: ""
+                      event_version: v2
+                      event_type: checkout
+                      build_id: 22888930478
+                      platform: 1
+                      product: 1
+                      view: 1
+                      env: 1
+                      properties:
+                        options:
+                          key: rzp_test_RsCxluB0k2uAYV
+                          amount: 10620000
+                          currency: INR
+                          name: Stellnoir
+                          description: Luxury Products Purchase
+                          order_id: order_SQBb9fv3OW7YDK
+                          prefill.name: test2 mir
+                          prefill.email: test2mir786@gmail.com
+                          prefill.contact: "917428730894"
+                          theme.color: "#000000"
+                        in_iframe: 0
+      responses:
+        "200":
+          description: Success
+  /v2/{id}/preferences:
+    post:
+      tags:
+        - v2
+      summary: POST /v2/{id}/preferences
+      operationId: post_v2_id_preferences
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: standard_checkout
+        - name: key_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rzp_test_RsCxluB0k2uAYV
+        - name: session_token
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 9B53926D9D2A4D5FBF35DFA681DD2AB7C846857224FACA4FAAD6C9E9765CB0484EBEC8673BCB917F2528DCFA964DDDB59CF30C52064FB7070DE42CF5D7C2DCF4B28244630C5684EE53F13858A40F7D2BC52A06DCA1ED18FF4AD43E9EF18C637B2902EEB872EE80DC
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V2PostRequest"
+            examples:
+              fromHar:
+                value:
+                  query:
+                    - resource: checkout_version_config
+                    - resource: merchant
+                    - resource: merchant_features
+                    - resource: downtime
+                    - resource: customer
+                    - resource: customer_tokens
+                    - resource: truecaller
+                    - resource: methods
+                    - resource: experiments
+                    - resource: offers
+                    - resource: checkout_config
+                    - resource: order
+                    - resource: invoice
+                    - resource: buyer_protection
+                    - resource: ads_slot_config
+                  query_params:
+                    device_id: 1.3d0256a291584c18ac80ed03defbe8938f88e1dd.1773290289124.11303549
+                    rtb_device_id: 3d0256a291584c18ac80ed03defbe8938f88e1dd
+                    amount: 10620000
+                    currency: INR
+                    option_currency: INR
+                    truecaller: false
+                    qr_required: true
+                    checkout_id: SQBb9hk3aSAW9R
+                    library: checkoutjs
+                    platform: browser
+                    referrer_domain: staging.stellnoir.com
+                    order_id: order_SQBb9fv3OW7YDK
+                  action: get
+      responses:
+        "200":
+          description: Success
+  /v1/{id}/customers/status/+917428730894:
+    get:
+      tags:
+        - v1
+      summary: GET /v1/{id}/customers/status/+917428730894
+      operationId: get_v1_id_customers_status__917428730894
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: standard_checkout
+        - name: key_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rzp_test_RsCxluB0k2uAYV
+        - name: session_token
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 9B53926D9D2A4D5FBF35DFA681DD2AB7C846857224FACA4FAAD6C9E9765CB0484EBEC8673BCB917F2528DCFA964DDDB59CF30C52064FB7070DE42CF5D7C2DCF4B28244630C5684EE53F13858A40F7D2BC52A06DCA1ED18FF4AD43E9EF18C637B2902EEB872EE80DC
+        - name: skip_otp
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: strict
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: otp_verify_v2
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: _[platform]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: browser
+      responses:
+        "200":
+          description: Success
+  /festivities/configs.json:
+    get:
+      tags:
+        - festivities
+      summary: GET /festivities/configs.json
+      operationId: get_festivities_configs_json
+      responses:
+        "200":
+          description: Success
+  /v1/{id}/checkout/prefill/encrypt:
+    post:
+      tags:
+        - v1
+      summary: POST /v1/{id}/checkout/prefill/encrypt
+      operationId: post_v1_id_checkout_prefill_encrypt
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: standard_checkout
+        - name: key_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rzp_test_RsCxluB0k2uAYV
+        - name: session_token
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 9B53926D9D2A4D5FBF35DFA681DD2AB7C846857224FACA4FAAD6C9E9765CB0484EBEC8673BCB917F2528DCFA964DDDB59CF30C52064FB7070DE42CF5D7C2DCF4B28244630C5684EE53F13858A40F7D2BC52A06DCA1ED18FF4AD43E9EF18C637B2902EEB872EE80DC
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  contact: "+917428730894"
+                  email: test2mir786@gmail.com
+      responses:
+        "200":
+          description: Success
+  /api/{id}/envelope:
+    post:
+      tags:
+        - api
+      summary: POST /api/{id}/envelope
+      operationId: post_api_id_envelope
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "4507106068135936"
+        - name: sentry_key
+          in: query
+          required: false
+          schema:
+            type: string
+          example: a7126d6b447b936097b47e179cb9749e
+        - name: sentry_version
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "7"
+        - name: sentry_client
+          in: query
+          required: false
+          schema:
+            type: string
+          example: sentry.javascript.browser/7.64.0
+      requestBody:
+        required: true
+        content:
+          text/plain;charset=UTF-8:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: |-
+                  {"sent_at":"2026-03-12T04:41:57.911Z","sdk":{"name":"sentry.javascript.browser","version":"7.64.0"}}
+                  {"type":"session"}
+                  {"sid":"6857fbc2bc1841f09da45a4a3dd1e441","init":true,"started":"2026-03-12T04:41:57.911Z","timestamp":"2026-03-12T04:41:57.911Z","status":"ok","errors":0,"attrs":{"release":"9f0327fc36ecadb5b083b3c002a4fac3e4c545c4","environment":"production","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"}}
+      responses:
+        "200":
+          description: Success
+  /v1/{id}/consents:
+    post:
+      tags:
+        - v1
+      summary: POST /v1/{id}/consents
+      operationId: post_v1_id_consents
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: standard_checkout
+        - name: key_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rzp_test_RsCxluB0k2uAYV
+        - name: session_token
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 9B53926D9D2A4D5FBF35DFA681DD2AB7C846857224FACA4FAAD6C9E9765CB0484EBEC8673BCB917F2528DCFA964DDDB59CF30C52064FB7070DE42CF5D7C2DCF4B28244630C5684EE53F13858A40F7D2BC52A06DCA1ED18FF4AD43E9EF18C637B2902EEB872EE80DC
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: test2mir786@gmail.com
+                  is_email_verified: false
+                  source_product: standard_checkout
+                  contact: "+917428730894"
+                  is_contact_verified: false
+                  touchpoint:
+                    device_id: 1.3d0256a291584c18ac80ed03defbe8938f88e1dd.1773290289124.11303549
+                  consents:
+                    - clause_id: QrMVqBsbfcoHtT
+                      is_active: true
+                    - clause_id: QrMVrs7UwSIecG
+                      is_active: true
+                    - clause_id: QrMVsRSMy81Hyi
+                      is_active: true
+      responses:
+        "200":
+          description: Success
+  /v1/events:
+    post:
+      tags:
+        - v1
+      summary: POST /v1/events
+      operationId: post_v1_events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: "\x1f
+
+                  \x03\x1fA´n\b
+
+                  ¶ë¿íG4î9qèu{ÏÉÇËvËØ!!+a7?¾>3ª\x0e+n\x06,÷§ÎÎUaBab^²÷ó:FoÈ\x02ÇÃ¾·4\x06µtè\x14iÉïà¢Z©v,§cy+Æ\
+                  Õ}ZÿÖT¹S`Y´T*àÅ\t\x15KEh9\e²à¢\x01<uÝ@·ü\x0f-Çp
+
+                  qqsîl2\eS/Z^ö¥oq_
+
+                  Òóx\x17Ñ\x12f³LÑ'SIáëxfS|\rO´É>BSÎÇ\0¢N\bn<44hH$ýs®W\x19é\x1cÂ +«û\x1c«
+                  L\x06UjO±hp?\x1e>¶W.${§_\x1c¹P×\x18\x18É¿\x13\x18\x1c¢-mb_ÏÒÛíÍRýöÑ+¿¥tà¨oVÃíCzV@\x04åÇß:a¢\
+                  ßùTØî½Vö26ñõiÔ¯¢ÊÎ´ÿªN÷TúJÙ½=°\\ ?Þ´\x06å³Á\x12êu\rì°´òô¥»/Ñz\\@ûOí·þéYçæ¢h®æçºÒö¿ÜñÐü\
+                  Î\x12³\f#ÅC¡i¿\x17H§ÌÀÅ\f×\x0e¦QÜ¦\\ÿ¡gðßX¼\\\x17·Y&Wò1ÖRJ9¶N¨<JÊÈ)Fé\x1dC<A&ð@¥æG\x01®Fº\
+                  åõâáã\x1f!ì6®E\x13àÔ}'¹C¨`$ìkEþ\x1a&Þ,_Ù¨\f\x0fGFª\x1f¨Æ\x18\x11l>q\x0e0ââx%mXøå&¥ÇS^ü0è\"_á\
+                  \x10fó¸Ü É«î»1àÅrUN\x066î\\\x19e?äÜF
+
+                  õJx`Þû1\a÷í©\f\x060Ö3RkZÚ®ÒU\x0eC§!o¤Z\"å\ao#äÏåGRåÞø?ë­Çh.0\x03úÍaM9\x06G\x1eµ­\0d\e}Í_ò\
+                  \x11'<\x02UQ¡ú
+
+                  ³î\\dàQ\x11¾XJöMsÑ\r±CÐO`3H\\Í¯¬Hf\x1a\\ò \x14î\x0f<¥³B\\¦ØÄ«¤|B¶ã?£»'´Q\bx.\x10÷?t4\x10z­ªæj*FT\
+                  9lÅ&IÕ,3èB\x1ey@ÑB\x01]Ç*¼\e*I\x14F<\x16jGÅüá\eÔl\x04Ã~ýô\ed³ê}\x1e¯Ôú\x15Ì`iAÝwvØÃ¨7£G±ç\x1féä\
+                  LXÕ3\x19Ìïä\x15SéÉ½Â\aSÔÑÌ/\aÂÅ9{øÍ\x14¿\a¶`ùµ\x03o8¤\x1cl£1»§¥^LD·¡£ÔP¶²\x1d\x0fÚ0£F\"Â\
+                  \x0eTêëá[¢Ó¼ãâ}õ}\0z{T-1­ÏüñsFmnðÐï£\x0e&fS+Ra_¼¾iV½CöÌk\x05ÓaZÙ\x06Cù9M.e1j\x12
+                  ËyÑ\ek;û\x19\x1cf\"
+
+                  bîË3ÔÅØ1É_NtÊÅ!é\x19o\x19©tÖ#³ÙpV\x171BþD\x15Ñ\x05\x04\x0fp,SPB\\rõ5\x11Ü\x1aùýÎ¦­~x`¨èéoÊ^\
+                  \x05ãÔ1kñ)\x0eZ¨ÈG½ÂÎð¹ü¨³ÙÞÓâÓÃù\x0ew=HH$¤xX×
+
+                  ¾´k\t\x1fVå¬ý»úÏ¤ªýï\x15'A\x11'¹u¡/÷ü\tãé\x0eS°³S%º¼ò\x18&õÓ½§xHiSg¨[Îì\x1aùeznsEÄ{*ñwâ\
+                  (¦ìcü\x0e\x14DN~oÒÜeZZ\x1dDCÌPtÿ96Tø\eñ@KH<\x11Â8\bY_FDl£cgA¾:4;?#\x1d·4+D38IúzFÞý*2y&-[JXx)0\x17\
+                  \x11Ø\\z\x10\x17w(c\x117/0RBÒ\bjY6QÅm\x12¤ÉÀ}}v#ý¥^F(2¤ßäÂpíâè«\x17îÈÓþÄm{åÕì\x04õàð\x11uQ°]fþ\
+                  ½j\x04fH'ÅN§&Ô%!RG)|¸`\x10âmð&e\r¿º9ìü°÷Ü¼\aî9\0h®\rw\x1fií
+
+                  Ô\x16gI4\x1a_Ãð¹ðJØCã)N§¯meÃ®\x1cíÊ%\x14¾\0\x03\x1ab¡Bl§\x1e>4F=\x1f=-\tÜâfñò<Sæ\x1d¾YáäÅ\
+                  ¾ö\x06°[ua\t.éyÆYVë}hÚUBR¤é\ 
+
+                  \x1cAÍåPÓK\ró¼\x01H y~èk\bè\x0e°²Î¸k\x10¬Ãl/ Ê¥\x1c\x0e\x02ÂÄ\bîÊ× $ë¶'Uï@àóç·\e
+
+                  Þx\"O\x02Pà\0'ü¸lö½ã\x12¡\x04\x1eæ:¶Aéd!~[Ñ%%<Ûæ\x186&Ü\x19³aWÙ6Â¶ÉTør^í1°óo\x1f2\x19·:²¼¢ù$\x03\
+                  Þ\\Éø§ÙY\x1d+\0gr.Rëñ­Õï8\x13\a\r\x11@ÜàùÁ4¹ÉÛÔ5
+                  \x11µä<]×ÿZ6ú½íp(¥âP/®=ä¤ØJ~\x17I.o/µíÐ¥Oý\x02^¼\x01ÛíjÇ@Çìtò1,Ï}\x15Ã,z: }ác\x05ô\tµÀ\x1d2*\
+                  \x02rM«å£kôÒ/³bË´Ë¦HÍß\x04*±QÕ-9´F
+                  ý{bSÐ¶M\x13\x19Õ\x12%\x19\0æsA¤±\x16C\v1x7KQ\x10l/\x14C×?y\\Ö± 9r·¾«5|þ\tÜÆð-~ùC
+
+                  Õ¼ê³\\;¦\x02¼ûwÑàÊ\x13y6HÕÏ%\týèÅ¨\a¯é0upn\0X?\x0eèe¹GÐhÐ¨iÃû9\x11ÍvUjëAe{Kß\x16üýþgFÎ½«\
+                  \x11}^\x17ýç£Â\x1eÎ\x03uÖÝ£\x1fY\"Tcgãq\x04\x1dw³6\x12C\t­\"Áçõ\fu^Ú@c(öoä\x06Ü;\x15ABêCé
+
+                  \ ÏPp\x10\aÛòÎgY]DR\x13í9å\x15£°#a\f]#?¸þÚÚ\0\x06Tzt3\x14OÄ õJ¦\\T<Ý|w#8Q·µ\x19Å\x1aÏùåhAª-¹âa»\
+                  \aÆÞÍÌ}ô\x05\x15òô±ü¿àÉSI\x18°E\"«»öj8¹!UflÑ\x16Þ´\t¦¢¦4Ìï\x02ÚèáÎ¦®XÛ39IËb°]ÝÈÎWÇdÚÃ¢HÑz\
+                  \rà]I4[æxa\vm_RV¢ª²u\x18Í4lÀ³é²ÉZ©1-\f=ä¼¨ñUtûZìd\x194ä\x17C\x12çãn¿þÉ\x05\x1aÊÖÙ\x10\x11\x05\
+                  ÇÏÇJ¿s~¾7jn VèÉuô6{\x04<ùl\x14Xah\x06ã¨»\x17+{0ùÇN\x10\"\t§aï\x14\"\x1d\v§
+                  ÚË+\x1a4B$'\vÉý\x06e\x0eHUæÃ\x06\eº\x17\x19\x1c\x15kF*þcÉ>6qd¤4ÛJSÝÎ£-KÕ²CslõÓ¦é4÷ð§,´ð­ù5G\
+                  \eêÿoü6Êpïõ-êP=­9¼ÕÄ©_aTpüeJ[×ë\f¶ÿ\x01\x1fÚ
+
+                  Þú`\x15\x12R9¥u~«kBt^\x05ÚWHÄhÜà;\x10çEÔ^Yr4£Ä§¯\x04O\x1cìIÔUªà©´ÓáiÆr\x04k·\x1dp¬È6«¬â´*î}~\
+                  \x19Ìª1)Ã¿õ\x19ª¢íÚ\x01ÌÊV\x10O|r\aÈlã7Æ<VÆ¦{q×'`îQ¿\x15Bd\x16Æ AÍù¯X\x1cï·(-¼²ï2>m\x14\rÄ,Ð
+
+                  Ëü£Y\tjÅ|\\ÕOß{Y\x17|ÄM3OÞ#ï\x12\x11$ÍÚ\x1c\x17\0Ë$i²ø7Ä=suê@ÉsWõÍ ø¡ÃRÃUéu%Oà\x1d\x19\t²[{\
+                  |ã£Ï³Z\x0ed\x18Ç»Ú¦f\f­\"ô¯o\eRk`à\0³z\r\x16ðEû!\x1eM¡Ù/3\x1fßâ..¡Ï·øÛúÛ\vB[\eë\v
+                  ½\\y\x06C­\x17©ÂoÜ­NmazQÊWÿõH¹]\vÔ\x13>k){\0\bûµãÙ¤·D{:Ä¼øm\x19Dkq\x14[Tw;\"\x1evv¸1\0xjó+Y(w\
+                  ÉÚ)[±p¯0¥§vÈ¯ß\vÛ·d´dö6\"³®&´\f¾|3©2
+
+                  kV¾A
+                  \x01\vêµv¾Û9HûSfêÅ<\\¯=©\eÑtxæÍý\x11mïËÅqx¤á1®\x1f\vÜìqMñ\x1a\x03¤\x13D4§MÓßy¾\fw}L±+Õ\fö¦\
+                  \x10\x1a¨ðZf~ª\x143\x13Í¿Î®\x1f\x14OÿD½\x18ÝM?ªp\\Çþ8Ä|j°\x17]-U½\x14Èï·lÇ\x1e}wo-7§OÀ¥Ouí:ðæh\
+                  [Ät+YXw¦{µÐiP\\,)g*ñ\rFñ³­X8§|Õüov]\x05¶¤µÅs<\\Õ|O\"@d l¢d·ãÖäMãÎ
+                  ÏÇFù);ô¡ùëü74ö!ê¹|\x13i2\x15Õ-sP¿ëc\x0ey×YuO|)÷·mé\x1eKc¶b\0½xd\x11õV¦\07p\x1c\x19±P\x17¦¢\
+                  \x1dáC\x04}ÏouÓ¬\x05üü¦M)Túâ´\x12pÿu©¬=iz¤Nõ\x13õÃö®Û\x1c\x02¶\a]\x0e«+o\x12øÑËl\x1fÈEz©¬ý×c\
+                  ;/ô3
+
+                  8UÑüE/Ý{ô¢Áª
+
+                  Åçø\0²jÌÙ_3òT)º6C\x1fh±)m\x13fÛð°\x04Ô©/²¯W\x1cÆ?\x01\x1cnnú\bTî/\x11{\"Î\x01³T(NÔH\x04¯Þ2\
+                  Ýésü\rZú/'À7*fdí\egvÿ\\óèÅ [ñCXN\x02íl\x14ÿJn\x1azWí3ô=¼ÊB'T»Ä\x140
+
+                  g\a\x144S\x1dÍ\x17Ñ\x020ÃPòËtëv#¯^¡\x18àR%pÑ×ô ²îþ}ÜgAËúýOã5T±\x16Ô¢Ó¹¯±nõÈ~
+                  þô#+Ò®\\k´¥È§{|\x17-ü=.­<¸óúñ\x1a)ª[îHr¨ ¡¸(ì-éT\x1dÖëm\x1c¾\x16]
+                  £Æ\x1d\x05»\\Ñ¶9±ð1:\v¾¦sóc\x1aÇLe\x104åìW\x17©#&ÚqsÆGG:f\x15¤\x0f\x12ëÊ+5{\t+óc\x1cµbÝ\x1fç\
+                  \x05y\x04ÿ£Û*L:\x05\vp¸£±½¥Xë\x1cùà\x06Qþ\x0f¡ª¡kÌµ14YÝ\b¬§O/ZûQ|¡2ü\x15~yï*åÜVöUè}àÎd\
+                  ¥/FK>«\x11\a[gx\x10Ä º¨kF÷A\x101Ýa`$@9Õ\rç¼X
+
+                  \x10 e2Ch4¡.Ë\x19å\x14»ã\"ðßËe®ôøÊB\x10î\x12\"ðm;|Á\x0e\x03\0x?A\eNÜdD\x15nÀ\x1eR¬¡\x19ó\"(\
+                  Ã:ÓäW[çX¯C8§eç«'ÛÇª\x17å&\vt\eátAÔã§B\x18 b¿é¦©]%úB\tÞ5´¨\x03Ø q-ÔC_\x05Ú¾\x1au:Ée¾¯î¹ð«%­?R¢\
+                  %jÔ\x1f(÷OÄ®F³2°\x17Iv>äûjÔþxº\r©ïÍ\x05Â\x01íPÆ\x1c¾$S½\x13Ð|©d=(®a[3lu?&Éë\v½;p
+                  \x12­6þÑ5\x04¾â>êë¤=>ø\x1cËÒIÓ¦-¥Òc¥ñ\rÀ§M\x1a}§Û¤þPF;Ù\x17/üs£#\aKp'âª{\az\x03/ïlHÓWâz$\
+                  \x1e³õK\x19+òjù\x0foÁØ{*\x01M\v\x15ìK|\x1aÞ(ÐËý#RÒS©F¢CÒÏm¶\0G!ÀÉ8*\x17m@Ð¾¹pb\x05×meè¢!\x0f(~¹\
+                  \x013jø)(ÇÈ!ÆºÒ²ßNàQ²\v>}ñ\\\"1\x13ÝbgGÌ«àaw\x03
+                  >\x14'÷A9öü¿7W\x18X\x11¹À\x12}djîóÜ\x16²G ðoj;~~îse!í8UgUF\x1f~H¡L-ºyçË\x15äVæÆy1-¿²N@Uc=·\
+                  \x11>
+
+                  ¯8±ñà\x15ØÌ3­DÙOüii®­)ð\x1axU\\þø-§!J\x1f­ÁÁ¯G5\rßÒn´Å¦8\x13t\bÓ¾=¸zE|¥\x1a5¡µb\x10å­©uë\t\
+                  \x1d¢RfG&ú_¸4Ð6;\x19%<9qf¥n@±×e¿#|-¢i O\x19:\x1dyz\x1eé7NÖ-TîºÒä\0$;\a¬v\x1aYLåQ?üíîêT­ÑÁ`\
+                  {-hN½\x06¤¼N\t]³\x01ì\x1c\fd¾Uz\a\x14Æb¬ö\x151\x1c¾¥JtÚdöó\x0ebd\a¶Ic\rn\x10ÍÕÑk¤´:,·_ÌßY¦øª\
+                  \tnùÊG\x01Èn¨r£Àxhz\x1cG.Ü\t7°*ò®`^z\x047~haöö©sÈ5f*°êFÅ`5\x01¼Á2W\x11ô~OÉæ\0­)\x15]H>\
+                  ~\x0e\r×C~\x15iûu©S ¾®nÀ]É\x0fzùÁ0\x15Å£¹p
+
+                  1cÝ>ÂÌmïv±/üa\x14\x1f)¬SU\x16Î\af®2T6\0ée,j¯¤³\x02'¬\x05|%^®É\0},Qx¼ÃAÕcð»âfâ\vût6:\x04×ÂÀZ\
+                  \x197:Aßñ\x01\x02dQ\fì-)7åz¥\x1aaMxí\x01
+
+                  Ú`é3s\x144\x13ÙÏ©ÊØ´)ÛDl@ff 'âµf/§¸Ì\x12÷;L!:Ø\x1cßá
+                  ©\x06&ÿ[#zÔæmÂ\x1e¼-,îâ1LJIc\x04(7_Ç\x1e}ØWð*9iùyæ¤ß\x02øa'éê\x1f>A,0\r*:¢%)u*øC¾Kéuç\eÒ\
+                  Ó»·àï½ò|ÛÜ=÷ÒÝ`8rÙ¥HÆx\x1a
+
+                  Ä\vVøxÓÎ\f§à0þS²= w¹O]\x1a¶íä\\
+
+                  pU§yÞ#<¯´ïBá\x1d§òí~Ä\x19÷\v<\"ðÐQ@Ë7[\x06cÿq'ÊÐã\x0e¼\fjÚb
+
+                  \x10^×lþhWh{!?ßY:ì\x1e¤w~cþ\x1c¶Û\x03Æa\x1ey-KlÞ
+
+                  ØW\x1c\x1f\x02l«½$àÁÙ¤t¨-\x14\"8,¨ ûãT4ÑTLÏ\r\x11ù6O¢0¨À\x04\x15n}\x02!\x1c2¯y_ü×\tî\x1a=\fRè^Ç\
+                  -I\x1e\x14ìd]4ßãd@BÌ^K
+                  ]Ð%Ù]¥óéÝÜÛ\rñÖÀb1j#ÁgÄ¤\v(pü§äËé\x0e=![\0zÎÐE3oRì²øq_îNÔo@\x14ÐY¾<Ý|$@²å½×Ä}Üå?w£ËH\a%÷´ÇY7\
+                  Ï\x19stÃOu-\x15ùÁe\x10ì¡\x14¢D|\x03²n\x1c\r/ò*ÿ1ë<´ôm\050´°TÎ\x16${23ý\f\x1d;µ#Â\0¯FKÂ`©øn¸æK¯\
+                  \x17gO©¹gdÎCj\04\b­\x13´\tá--\x1fka©9*{H|a|èØÈñÂJÅbË®U´î\x16zPé)¤¸Ü0r\x12Ú®!(!Öþ¦r\"ÒÇ(\bÆ\
+                  \x04*Ìût5«åTÅiáVFJ¸$)±iÏwû<Í\x12¬Ïn?b÷\x0e\x02¤á³×p¯ªë{~2î4¿{0\0O\"h±G~\x01ø¹Ï#öô~a$pËÒHè¤\
+                  ;1\x19\t\x1dÿÞMÚ«$vp® ýÝá@Y'\x15CÕDR
+                  ¤\x04Ê\x06¶è2Ào0Ý]\x1fåéÜãX¤\x16\x01_;nw\aÓ^®p,¨FÝ¬û\x16EECô·W\b9l\x10\x1adugÊ\x18÷_RofS\
+                  bÃæû\x03¢}AU5×\x19¿Ñ*àà\x06;0ç«Ò½ìbØD\x13Xø]2\x19ü«ý(gYÍºT_ô\x06'ä´¨elP©~ÀíU¨^.éDq}WèKä¥+öp<@
+                  0è£Ðß!\x17=ôÌz\x15ûkäp)0à\x03qðïô®÷GÕÌðXº\x18M¿©l@ºã\x04óª$÷i^\x0fØ`Ö}\x15h8ûÇÀÖcI\vd\x02\
+                  ®¶Çnéa¶#S¤Aåý×lºrÓ
+                  ò\x1cf±ÇÆ8zOb\vôMzSÎ\x12g\t,¤ÙªÎÇ\x13n\x16,¼¹(qûa93¯}s§i0\x18eÕ0Ù>@Áø|5\x021Ói\x0ed±(ì§Ôªmw\
+                  ¶H{}\a(M²0]e¯¡luä\eµ\x13\x034\"Ñ¿iíÊ¹\x19Í#b\vÙ¯
+                  \tÈ²Ùu:qÃ¡\\°\\½\"ÅÊÚ+ZrAe#ö1ß\x19µï\x17²ªMX>\e¾Ï.¢%ÔÀåÕ&¹\x10úu«ºjcKÖ\v>\a´b+Ì½(ËW\x13\x11\
+                  \edê
+                  ¾/°ñ\x0e®+\x171Ü²Ùà ß¼_RXÜ¿boûßa´\x13§È2ï&õYÒÍ\" õ¤Ä²¢³¨S$8!lFÛ\r²+äÆ\aZl\r9\eÔ¾\x14ag\x1a¯t\
+                  ´ \aQl\x02Ö=@\x14L%\x197­ÿ&\x17\x15Ü¬²é_*\x18±i~¾\x06S\x10ÅR¢iI<\f0\x13ØsT|ìÓ\x1fG\x1fð'\
+                  \x10q0ÖÍ\x1f7¥0U\rv-Ú5ÿúÞ°Ó\x1aÍ\x10§õÓ$³?¸Ì\0Bõ\a/Å¦4}ó'gRAWV}\x1dÔ·×\0°\x1f·bëúFÅ3Ä¬Ûù\
+                  DÓäÅ±Ð\x13\avNã\x03\x1aó]Ölû¨\x01ÃÄ\x0f\em\bÓF¶c«\x1cE\rîâOÎºxRìë31ç´å]\x1a·ðøª\x11Löôå'õ\x10pçQ\
+                  \x03'´Ø\x1du;Ïo\aÙê\x17MÜÿ3'PMÒl§Y]¾5\x14BSë\\gX$O^(X8û#=ÿi&np´N÷X|)ó\x02~bê^PÉ\0S]\e¦\
+                  #ì\x10¡ÿÌ\x18ZÆêhQi¾\x114^ªf£è>á\x13ñT_¯ÜÃ½?ÉrIK\x16ÌªÈu$\x16]\x05æ\x1e_àà\x15ÐZC\a\x02õ8ý>1/r\
+                  \x1cÐMup\x05B¢WkDUc\x1d©åB\a
+
+                  Tþì¶ýc¤\x1c\x1c#è1ð'\füÎ`\x18ûë\\´ËsX;\x1a~£ØbÎÖúî\x17Ü\x0eÑ\vôÒ\bñsÓu\x0ff\x14Æ]ÜÛB!A©[0Ìh}¨]7\
+                  ¢+v\x02\x18«
+                  ^Ú8(£=\x17XÉi\x10\x14sËdpê\x13ÿümë«1Ì¶K^r²zFý0Uÿ\a0\x02VØñèV+\t\bèT!¸-\x12ÅAl*çiZà\
+                  ìcðÍ;A\x17%.rwå|½ëÂðp\rN¢FÇ£\x03)XÀh\x02ðùÌ©z\x19âR\x0eSÉ©Q\a\x0fÚûô\f\0ú[@\b«\x1eS\x10@iã\bà\
+                  ºô pN±\x15z¿7¼ëÑ\x11o\x06\eU<z¯\x06¶ÏCb^ÊO¿ëÜÀhzÇ¾'Î\x12\0Æ÷·¿×ßÞ¬±Ê+×\x13ÁjÌ3J\x11\x11ð÷*¨\
+                  ÃE2ü¨eã\föB_yn.VÕ½Pù\\uú*7³ÕçuÛOÿ¼)=¡\x0fíÕi/\b¨?²¦»Òû§xR®_L!\x1c\x01HÃâm¬¯N½ê¿\x17CFPÜaq¡\
+                  \rÖÛ\\ÀtÕC¿/Td|è»@d\eæ×Ê[ö^KÖEôF40ØÙM.UK#&\x15­=§íìùîóÙQ6-ÁpÇ\x19îÄó`d|uÑ­±\x0fÀ~´zX\x1eeõ\
+                  °2v¡Ód©7@ywM¦D\f»\x1334÷Êÿi¹*MÎÃEÄ1àn§\x15½Èð¸ÃÇ£S¼\x0f¼\\\x12_¹\x05ãÜ¸¹ö!ÞÍß\x06¯)Ð%£§.\
+                  kCºIoj<áacÌåã5Â¹\x13e±/!zê\x1f'\x05½ú£\x19b°sÔ»\x15Ù\x15waéÞÔ2îuVIç8 ÔîÎ*Óg\x01Y\vrä#$ê\
+                  ¾³±ûSE\x12BQ¼Ü©495ÓÕ\t]ÁUu|9©\f\x1aQ\vÅúÆ¡\x1dñz\x1aß\x1a´X\x1fîh.²åi]fGPN¾Hní}®\eyë*?Oßú×T\
+                  %w\x011\x05\x1c
+                  (óú\x15àw\\lèG6_zÎ¿3¨ª\x16ªÒÞÕ²Â\x17®°<ÃÇw¹s±øN·\r\x1aÁ~\x10\x1c'luÈ\"\"h,zuËQÀ)e1v\x06¾\
+                  \0ßE¼Ô]\x0f\rSÌ3àO¦>#°Q\a1l@w/\x1e(m\eWc«y¶`\x03tZ¹®ü[~¤pL\x1eB»IÇß¦ú¿ßl\a§°DÙ\f¨Þà\\iB;ö¥G\
+                  \x18\x15{`}Ö,à\x12Böë§w\x19N\x12dÐþ¯\tQ\e\x06à[\x1355ßl¯üT!(ûpý\x1cy^\x140+{³®h[x\x12@gÐ;û¡uÿ«\
+                  \få¡ñZÆ~¢*ÿR`Ûò#ä.ÆS\rÊªfB\x17r*·®×<\x16ê°M8\x17PËóÄY\x0e­lÁÒ±=\f[æ\x1c{'\x06©Åï»èý}êÃ~èi$Ò8\
+                  LFp
+
+                  ìGdâë\x15,\x03\x05\x18Ïá|¢Ñ<\x1e÷\x1fòö\x1eÁ²\"ÿFìñ\aZÉ>*¢®Êâð¦Q
+
+                  Ãã|M\x10ªnG¯évz©ü¹ËR\x14Ãî®KrõWlåMs?:Ò>[K)8Ò·x\x15Ö_ß\x05*Ü\x1dÉÅYÕ\x13åð|\a>¼îY$=aýU³ºÜ®ó~\x19\
+                  i[û]½\x17uä»øöF\x03ä]F¤/\x10m{d5\x16\x1f\x16*+ß*|4ñÐÐ.(¸M\f>îgÇ\x02yè¹\a0×\v­*ßÇaäy\x05Î,\
+                  óm¢ð\x05\x1ccWÈpû\x1f\x0fZÚ0}AÎ\x1e¸èìÛW|Fõd,¬bXÜ¥ú)ò,²s\"ÛðÍÈlÑK\x1dé%_AÚ&¦ç÷¬\x1eFMüç\
+                  \x1fÔ\x06\x1cÂX\x1dä@Ï§æ2¯ùúâmáU.®\b·km\x0eR-ZJ\x0e9Ø($ý.%zùÅwÁÒíHEúê,´=\x05lñotcF5ÚÏ\x03E4\
+                  Í.o<!¨Ýx>ºÚ\x15¨k`CÔþCÎÕ\x18)¥¼ÿ\x025çÞ/+Ri\tò\\ZD\v\x01\0Sð\f6\x1emÆE³\x1e!K0L\x1c#bÒ\
+                  \x05Y¤µ2ó@Uf¿³6®\0±Øfyóhÿ)ëá¸øà\aÅ÷²ÓI\x151Ú°AR\x193#\tq\x01Ü\x12ÙàÚµ¶Mç\rYù\a'Îã1·'\x02.¬3RÀ\
+                  \x0eñÓ½$b´ÓE\x107ÿ­J 1s!áP1 \x1f´oAÀ¾5¨­\aDPtìÿ·\x0f7^÷ðÙü\x1fó1×\x126\x17'Ï~å²
+                  ä_¬û¦\x06\x19ÓY¹\f«ùµ¤¦ºËÆ\ea\0<ô1¶\x1e7?´Ó\x05ð\x03|Ém÷]+§ï/±ú'Hû\bÓ`]\x18òo^\x14Ýæi\x0eêzå\
+                  * 70¹àhRi8a×²Ëó\aä×Mwÿi\"KüC×@ÃWõÓ*%óDuòTo'ô}z©\e¸Xë 
+
+                  pé\x11^¬\f\aÅFæSÏd×8±å¸.Í
+
+                  KÏ\x06\x1a\x14xÔ\x1d·./\x0eÌb¼ÉñGä'ElÀVu©@ª</\x13à#ÜÙÿ.Ç\f;É¬ÇS/¸¶\a\x1aäº)vsü¯Ü,\epIÅ#¥\\Dþ§\
+                  Ü¿þ¨]Ïß¥¾x0mú\x01\x19uð¹IÊÎRK¡og\x0eÞlBØW[Q¢ü¨b$·ªJPv}ìÞUV½]ã4^~iËíNRÁ\t5\x0f¦Ö$Ñ\e,>±½B°\
+                  \x1c-7(-ºhÀÚhfI@i\vãésã#.°\x16|u=0F\\ËxüÐEá\f£T5l:{¹îèA\x1c6°r\fO§J\x1fßXÜÒ_7úJ1P.MJõÉÕ£\
+                  \x16¸§ú¤?\a²7<Øë}\x0eW=Ö\x05õ´#|áÊ\fÌ\x12ÃReèÍ04/3ÇÆ`¼È+ùùR4\x03½¥\x020­=âªùÇ-$À.nbïL\
+                  \x0e·ÉË\x12CÄX¡¥B¼\eöÖ³ÞÅ¯VÃ5Îê²YÌ²\tü÷ñ06é\x02¨Rá+7^Èíº(i\x17á¸þã}{3=ÖO,\x15V'g:¢\"éGVÎæ;±ÿ\
+                  Çü¿\x1f\x1aÑÞÁôþå¿»@
+
+                  _Q\e8úáÈNÝ+;4eìá)l¤ã©
+
+                  åè%ú\x1cþ§\x1d\x1fÅX£7«£³íÀaå58r6\t5iÜ:ó'ìÇ?\0µ\x1e]}Í´\v\"TiµÈ´ý*#/<\x0e?v¿ÿ·\x01Eøþ/ÏÆÂæÖçÔ¼\
+                  6z+ûù®ÿH\x02¢ïZ\x13`$\\EW0Ø\x16NaU]ø«\x0e^=\x1eQ\x12eAñÔ\x10Ý!¶É\"£.\x06eéÎ'k\x18\\¬
+
+                  T÷Uþ\x18pá~à°í¯|L[\x14NOÀÛæY|ÇN\x043Íîþ\x1aã´½y²]-ó¡\x01{+XMcÂG\x0e\x05\x1cxf,êë=Iêà\x18a\\\
+                  ÍG\x01Tv\x16´\x18\\óez.T£µC\x10Âò@öxXÉä\x029Î\vÆ^¾úTXFßü\x16IÕâ$ÜDº¶\x0eçG\x1f\x14¦ù-\0X:VºêbV\
+                  {­ç\x16o»\x1dBWEJ\x12&ÚÆ£`ÿ¤ªuÂ\x14QQ²Ù*Mîn¥)ü_m/µSGCk9îÄ¦õ\x05;'\x05÷\x14ÝDxË³ôr
+                  äÿèÛ¦s±÷ñ|â\x10/>\fM\"\x17¸ÉÕÂdÄ\a8Y´x¾¡2^2ÐG\x15L\x18¾¿a´iõÌt¤\x0f
+
+                  îã
+
+                  \r]\x1d)ê\x1dî\x1f\x02Ä\x1cÖ¶Pºý¦×^³Ïî úÔ+>øÐ«ëÅmÍ·\b'4éâ\x18\x01@Ìb.%$Ð~\x1dsA
+
+                  5^À#nmýñC\x12\fô\rZgÕõ\\\r´úq*H~è,Ð\x02gH\bz¼]}8ÄÔ$©Máup÷¼®\f\\LüÂ}Ò\rdâÜgSxÃ\bä
+
+                  n¾_y_[åÛ^ÔÀW°T\t[Â¨3+gÍVPM¹rk\x1c\x17\x10ÄWy¹r\e¥+ôÇ\x13ÚÑ2¬\x1ciÑ)\tÒóÊeâuô
+                  Ö½5c½àÏu¡VÅU¡,Yú1X¡&ipµÂ\x1e;
+                  ¼ô¢>nìô`\x1e\x1d$I<ÎN³ºò1M\x13Ã/95×¤pÌß2b\0\x0e©°\x14¸\x05>AÃ5H1UAÒÀà\v!
+                  9=DóÕ\e\x10÷HÍ\x03Ü{½å\x11µ9¡xØ\x1a `\x05AöÍ÷pe\x1d;²\x01Þ¾r À\x02Mäx\x1eo¿\x10[P¤\b\\ïR©Nfu\b\
+                  ïÅ&\x10L\fÔ\x01ä+ò%y½^J|-ÃSoèF÷\x12\b
+                  \x04¹Üu\"c°{Zì7<é¿l#9,PÍj¤¥1~yÜ\b°úÉ¹ïq\x01]{®!©ö÷¹óë*gÿ\0\x14R«T&\x1c\x02®\0_\\ó@µÃqòûþ°Óó²\
+                  ;Vq£·Úø»î÷X\t\x18Û÷õBÛ6U×h+M\x06ù,Â£\x04)R-ô»\x0ek¡õª¤1\tp(?þ\b7õFOZ\x0eý\x17\x0eU\x03\
+                  \x1cVIvYÆ\x1a³³ñ¨Ã­ÔS)«¶öÎH\x1cÀÑXÅ\têýò{u\x18²0±Åp­\x15ªñË6öA
+
+                  )M¯¦\x12~On\x15WQ\x03#>Oi{®?- ÀÛ
+
+                  ·cÒw\x11ï¼æAw¡R¿\fÓ,q·á«TsðÌ\x13Í
+                  X\x1a\x19á¥û¼WaFU÷õ\x05ÐRC\x01²³nø¡æþ«ô!V2èF\x12&/æöä¦â´\aêÃ\x13Õ+\x11Eéñ¼ã\v\x10Â×r
+                  S\x1aº¹(1\\ÎN°>\e¶Å5ªkÖ\x0f.÷h·wL\\µrx3©,EÆÆ¸*Ìûc²Ep&38-&D¼å*¶÷£¯Ü\x04ºm~0²°ÿÕe­mw¼¡\x16öP6=Ò\
+                  ¯sG\x0fNymóCd²ÙSÑ\b\0´6D&EñáÁ3{jõã8\x0e¦Dù×ÆÝVâ9Æ`H¬`Gª=þ\0Ô¡P­¿Df.õr¨Aa¥mãN¹ºj\x11¼«¾½\f~-\
+                  üc@z[Õ#Ý;£a\fj\x16Äô\x10®©\x02ÿÿÞ3¶Ð*`½á\x0f¯?{z\x0396âìzJ^æÞÒU¯\x01\x01¯ë¶®Ìda\x1cþR:BÏãÖ\
+                  ó6~ãi\x1dIÞCáaYãÞV\x15Äu£:/A:·ßo@ PP¾í\x11ÚýBû1}ÌX!)g_Êdû¹
+                  îâ\x1aÆ÷0ÊYRÁIÈ`ùø\bem\x12´Ê9¿T\x13ÞÇ\x1fv@ù»#\t}òÛõ¥ô·Ù.ùÄ@>]'G@\e\x11âf1ðÈKþ^ákq×ãÅûóxy\
+                  zbIá£$d¡ßÖÉ
+
+                  9\aÕJ\x1câUk§({ßó\x19Â:a\e$½É¡J¾û\a\x16ï)2}­¾-qQ\x066å±L''¹¾\"¿O[?Ò\x1a´Py\x10î\x0eÛ\rÛ÷\
+                  \x11®\x14÷âDæ!{Á­Ñ¡\\Q½û¸\x0f¾4KF¸m\x16KÚ¶âc\x06é#£\x06\tIÈô´ýhß\x01]Ë¶áÍþb\x15³_\x11.æ:\
+                  \x0ePÚå9NU«,­HÖ\bcn\x12£\x18»Å\x14?ç·Æ\x17O{fh\0at?ì\aÓ-¥å\x17~ìè\x06ãi4Ì·Ø¨èt:0ÏN\e¸E®áR\vb~¶ò\
+                  ìMC\x18m\x06~'À'<Û\bÌoðföÅ[\x19»ûL\x1a\x14~¦\x1fN¹!)ëÞ\x1d5mÍÝíßn\bÅX¨ì\fÔ:ÊÐÜÜ\x10n\x03´¿\
+                  ÊNmKRu[[\t\0¤-«\x1d5Ù\x1f.3¶á\x03ÃîÈ#@¼\f\x10+íÏ82¥;¥«¥¿·/\x05 ìÕêç%¥\\\x17DÅ\x17\"æA¾
+                  P5ES½p\x13äïy\tO\x05\x17¡þû-¯=e®ÆÕ\x17\x10ë9\b1©ïü>\x1eÃVlÅm=\\ªâ3¬1ÀÏùÀî\x05±·OÞA\x17\eß\e\
+                  \x11T5¨;
+
+                  ît\vË¬ üL_õÍ¹¤¯¶=å/!\bÞvD>û¿Ö_`Öü\t­ámc\0.}ijüÎ{\x04äN\x1e³8¹Q:ø§þëè9}\x16§|\x11ª;»ôvJ²¸£·\
+                  <Æû®vìe{sò/\x17§hýæÁ\x0e3fûFRR[õb'£õD\x04¢\x13~Å
+                  ×c|2UIãzÔ­\x03Î'ÎkYVßÀEuµ&bâOW¾\x10\x0f\"0ê\\\x18WN0\x196öTïwR7Ø\a¹þ»´V}1Ü+\x03yF\x1e@_#TÜ[\b7»\
+                  (Y_\x04Õ8S#Q-Zÿà7\x02ÎÇÿX+o~ºD:MO]4'xÓp^Â\x18mH\0j§Û\tay@
+                  ÞÏâ\vÓmB)\a×öpp*H@\x16M½w,úî¾$\x18Xd¡RXÛ3ÓqYÖG}ÿ\x18pN\x05ÆYÎ\x14bæÑÖ|»¼qdÏV_b];ÕØÿÍP[Â\
+                  \x12ôÌÜÈºRÚàwâÁÝÖÎ'ç%qe;ùt{ßi\t2µCÍì®e÷h\x13\b\"¦RL³­sEë\x15B¢ÓÙ¥væ½ó\x03W8dM\x19\x1d.ÕéÅh
+                  \x16I-O~¿\x19m\v¯½úþMa÷\x10\x11\x11Çw6
+
+                  x®%?\\6ò\x1fIM[\x0eM<=\x1fIÈ\0®dÂ¿¥ëjÏñ²ßÖ5JPv×qéªýT\x02_\0ìÇ!m¼\x19xï­i<ÔÈ\x19\x17\x17\rÙ\x0f\
+                  ±\x10·\x04~ÐÞFûòÿôpZ·(\x01¤þÀ\x05ÌÄ_\vH\x04pE¶\0\r}l\rº\x198vL±úâ'A\x15\x10I·?ØLgÛ&qiÚcñø¿\
+                  ñÃwî¡5Ë\"\x02\x0eµ6Ró¾@<7ºëÆ)b:ÈÐ¡<N&\x16ÛwíjïØ£\x06\x03ýeF*!ýOÔN?°G
+                  <\x1a´U\x19c]~[÷pþ)p¼eO!çù4
+                  \x13Éß!½\x0e{ËÎó\"*¥.üí¿¼ý\fÒ/Ã>¶T»·¨a|±oVç'þç\x1eä$È¼&\x05×®¾lZ8¤GQ`}Åj_\x15\foe\x0fÇj\x147{\
+                  \x1a·e%]Öá#öðÞ\t:@Ü\bOÀ#>ð\x04úód6ù4nýçLeqÍÑ{:ßWH®w§ØMS6³Bnâ\x02\"±Â\bè'[jÖ^A[Ø\x06SkáC®\
+                  \x12o:1\x1d+ê]Ð¬Ø¥Ð¯ÏõªzKÉ`gß`\x18yùL-]²zi1ë/ÖÂ\x1d\bRì4\0f¢§7+xfº\t\x01ù\x11¡\x04ÀÇ;a)*8Wèà\
+                  ìMì¹þjQb¯Á\x0eÁw7L±Â[\x10®Êù\x14%8ÃÍ0\x1fÃEÒ~e\x03½ÕÏþ+tµ¥Y\x15\x12Ð/RÐñfIß\x1f0Á\x1f»\x05e[¸/\
+                  -ÒúÄ?
+                  äÜfH\\\x17ÖÐ\x02»è²Fn©\e$¤ß1æÀËpI¯Mn©\\eM\a¾\x01H¦ÓÀÆ\a\x10Á:x\x1fôyÉ\tpÛMa^Z¨¤zá%®ùPöb^1r\
+                  ­Ä°bcñZÙ\x05ËG\x0e^±sÖ\x03t\x13\b\e\fAuñ8¿zu`@D1âàþ+F?ºB\x17;i²SWäÏáÏeÌYÁzã°\fy4[×Æ±)<ò\x1d>Z\
+                  ãë\f\x14¥Mõm\aîL\e\b¨2b½X>ÍÀ4ÇIÑ{\x05a£eÇ\x1c3XÐ±Â%\x19/¦hfÀqbL\\Ï0( ÆY\eÓpk\b¾È¦\v3â+ûÕL\
+                  éIö\0/bPòº2fÄ]DØ\x1fqSh¬\e\x0497Ý\x10Æ­jÔ%ôBè/j«\x14nFËsù#]2=»Ê\x06ëå\x19¹ìéWÓ­\x1fPÉtkÄ%¾\
+                  \x04!ö,ð\x14\rß³¡6ïT\f%\x02j*ã\x1d2 \x1f\x02tÕá¢
+
+                  v0Ý À¢­È*\x1d:\\Æâhë¬³\x1c\x11ÑWeÿ4XÈýåÜ\x03\b\x15§Q³\f,±?
+                  hLsà¬;õíz:ú±¥?ûHgxÛXú\x19ÌÎ\x05Ù2=ÁÈÔB\x10{W\fQÊ
+
+                  dþª9qqp7¦?A±¢ß´üi°\x1aboÌÏF¶¯\x18KD\x1f{1¸\"\bÂÒUL§7rffêÇ$²Â~\x01[ª]ðdfi\x14£4 J1©\v
+                  ¬±\"¯(µ.×sr1Ï¢ÂúiU_Ív¯aH$\e\x17Öîþ\x12ËòÅOQ½\x11ZsÙ¶e$ý×£Ê\x19kÞäm\x05¥Ç\rM~*\x14«¾h\x01`ì\
+                  \x140NÜ/ª%§=_÷àEå×WÉSàT¬«B\"]ÃÇ\ráV1ª\x17ï|¼\x05n²ÒTÇ³É~\x01Ó4?n¢a/NýýøS¼5^\ei@Ým®\x03\x14jk\
+                  \x1eF,²ìÝ±ëcÿy3M\x06R«\x15z\x14\x19L±¢\féëñ\x05)»àIm{äÈ¹K_´ñ@ãK@È:®ò\x02-kQó\x02­ÇctÜÉÖ®Äé\
+                  \x0ekXßX(N7_´\x0eEî\x13SUô\x19jò\rùò\x1døymÇø®KU#Öö;-­~¦®%\x14ö3ºù\x0fÖNÂ~°¥àXc\eåÀÑ
+
+                  +,\v
+
+                  ñ
+
+                  ¨>°Ucò\"\x14Üìu¤Ùkâ\x16\x15\x13ì\x18µ[ê»Ó1ïØ&¼ÿÜ,VöÏªÓ8\x05mÈ2\\@Îu\x13ÿÝ[8ÎH>\v\x02áëßÐV\x01iä\
+                  ö,wåLI\bc\euÖ\x02qQc\x03ËZP%Ê\x19ââ@¢åEq\e×\x1fÃÉ\x17ÑÁGj¤fTµ¸#T#à1gÃB¬î\x05öÆfÊºËû¢3¹Ó7ò\
+                  6:Ôæ¡?\x01m\x01\x1dÃé \\°\e»¼x+Ü£í\x17\x19ø\x1ayT\e£çÝÓ¾® â~\x19Üq@7b¼õn7¯ò\x02\x17I×g¿\
+                  \x0eÏ\fA¨%\eNÈã\x15Û50-Ù(Ü\r¶\x0e`/Z\b¸u°½xµ?#dQ-Ï\fV(¶\x1e5åÛ¤ÀÖÔ\x10×«\x13P7Ë{83×½n¯\t\x05¢~Ã\
+                   Lè\x03^Áû@¯~(ðOG\x1f\x16»\x1f\0ÉÊ·UÃ7sìO\0­ÆÔÍA½W\aQÐ.eåU-õûz&,Pº\x06\x14<\x1daOU°@Ê;}óNu>\
+                  é>¾$»Ã\x1cêªØqBÃ©ÂRFÑåú2»={R¦\"\x02õ
+                  /b¥|°Ùù´\0Zõd_½,f§*RîÌ\x02\x17ÝÆ±½\0Æ¡§æÐï:²Rb\x15ç1á\b\x13\x14eõ¥ÛÄ£¾ýLh?y$/Ã­ä¤p±\tÓÀ \
+                  °y
+
+                  \x12¾ì¥Î¸%ÖJO\x03°Í[PnJÉÅô\x03¾
+                  xÅÃ5}ÃEPüú[ÎâÁ­ç\t.â\x16¼>híº\x13Þ½åÒL/PÃ\x1cëü£/l+m§-+oO\x19X{R#ÖFÃKCRç!ç^7¤öö!¡\x1a¡Äa$ó
+
+                  \x01ë®¾|É:ø \x1fFnXç\\G7ß-ìw ®¨±ÃD#5-´_äC«<];K:Þß\x1còhtë±\x0fjF°U\x1c\x02Ïà½ÌnYÜ\beÒQ\x1aOûÖ\
+                  \x0fá\e»l\"2\bú¶Û\x11êÓ`ùýõ
+
+                  rÂ\x16U\x1e²ÃBè\x17\b\x18iâWGUû¿,<Õãm9\x06LCÒ¨\x11u,æ=O¦ão4>ê¶KÒ\x0eOÇl®Ò®G,f\x10#ý!u\
+                  ¿åz\x1e_UÒxr`ñ\x116äÏÃ1J#\x18¥mMô¨_\x1a?Õç\x19$Nd¤U{\x1c\x1f\x19\x12\x17ð_h¢à\x04[áñÕ\x1dQ\
+                  \x15sú,õGiÜåÿM\x01¶!vÉ\x0eÙz¦r3Ï\x12\"pd^q,ÆÜ.NK2×ðö#\x11\x0eÐÝ¶ÊëíÑpäö\x103o\x1787ÝÞ/¾Ù\
+                  ¡îw_ïì5\a²Ô\aV\x12ª¼¤\x13[\x16çO¯ã(Æ²;·Dtî\b@Å+\x1e>G{b±è¨3·çÐÛ÷õ¾Ô3­lr\x05£%l?\
+                  ó*!èéõ×Ów©N
+                  ø\x1e{Zº¡ïwò\azf¶?æ_\x13%Ë?ÍÄRðäÀw¿Ä\x13Ý-¼Ï¯y¯\x1fc\r\x16\x17çnriG¶3Í¤uÁÿ{en=ÓäÇMÜbL*?¿÷®<\
+                  @ëÇ|ÝÆ\v\v¼Äòðç~rã!¦ì©ybñ¿úä\x1fá<?Óâvð°²\x02àð·'Y5ñE\x14wv}+ñmR©ÅTu\x1eß¡¹ð}Ii[Sëkå\
+                  %zPí0#«u]ö¹%î\x0e\x1eËr\x14\"\0~æ¸Í¯¦\x15W\x13§%úSÃ²\x03Ò²²,\x11T=\x15àk\x1aoD.RH¤ñ2xtõ\x18I¼\x0f\
+                  \x02õ0\x1dçDvØ
+                  gBç±bÓs8o\x18¥xo£h`ÂØéÞÿ¥nåwù¿¤´e`Âj\x04T{·P`È^\x18fälåy+ÙýK \x05ÿ°tñ/ª×\0´µ\x13±C*ê\b}ð Ô\
+                  \t³m\x05\x1eþ}{\x14qãHXã\x13SNk\x11È°
+                  u,\x13RÄ0Æ6±»¯A\\l;×ºÚîø):Âe\x05zõ!Y°¦2&\\3Ç/è]¬{åïY[c\x04ÝäW6n¦½Jÿ½\x12(j
+                  Ï´\a$¸±Ê-\x06aÊý6MþáÊ
+
+                  IGøX¥=Mþýá1(ß¼\x14Â(\fê¹
+
+                  ~ð½\x19bR\x1eÈ_ì°BjQÙµ)3p~ÑmZ\0dôæÖÃ~>áZp´TO\x11~\f°\x1cã<³·3ÿR¦Ü¬\x11dÅ®Æ`õ}g\x02ûê0¦¾yÂ¿Ú@\
+                  \b×Mr/\\ýÔXXü~½ÿìB¸?g4äÓu«~¦¹A¢29Xâ3\x16È\f»(BÄÔJZÀ\x03§#LB¸\f¯`
+
+                  ]F,z\a\x0e!\v~{¾2sø=\f\x14Ù~°î¥Ã\x03-n±ÿ|\x11
+                  É\t\f·RRëÕmjùåksoîÓ4ú¹\x0eë\x0fú\x17Y½`\"Ý\f·l¬\br°uJÞ¨¢}T
+
+                  du?Jh1R.Ô É.o¯$\x03®*¥Ì&\x1crzî\fm'©ÙQ;\x1a\x06îÔÓõ!\x01räg)6ÇÛIÂ\x03!)´f¸\x1d\"¡ZÛxÎ¦?ñ­\x04\
+                  ~cu\x15<\x10$Í[\x02¼ô\x12oYÄC\x1e\x05È+¨½ j\x16/¡\x04ì\x0e\rÙ\x1aEúV¸&­;&Üâ\x01êOä´\bóðDUøï÷H\
+                  Ä:´C\e\x17-Á`§íPÚv\x1c\x1a-\x03qä!\x16¥ûðÂ\\¦Íù¥¨ræIsÁ4\x10³%¿1B} Ö©\x15
+                  Þ\x0fËpÑ\x1eß½ZuCV7xvjºç±
+
+                  \x1deVþ+IÓ²j\a[\x11\x12ï¡ûÀ¹\x14ÌÇVytÅ¢:²kh-X<\a\x13Ôä2ì.H´¤)ù¥×9\0OC¡Úñe~ö4\x11ê6\x02\
+                  \x10j\v2¾j@\x05½ôÝ\x15\eÑØöy®\x15i)#'\x0f;¤dÇLÄ\x16Ð
+
+                  g¨6;,5\x112-\x12\x0f§\x0fVïþ]ä9ôò¼á\f\eLoþ\f½°¦âò.­¥]cÄ\x124ÑyveRÞ}óÎBM0¸{\0àµ\x12¬7fEv\x10¦5\
+                  Àaÿçc²Æäæà8ý@X\0\x1e«R²±7<k;\x11hS\bMI\x17-¹¾\x01l²BômÈÓã5Âù\x16Aë«ÅÆa\tIÚòj¥|±ÿ$\"¯Ñ\x14z,\aç\
+                  i+Ñz¨\x12\x16ëUâòp©¥\a+ÒÌÀËb4}YÅ)ÇØ\x05ºýý×DFÆ´(©`\t¿Ð·¿¡n¥>x³Ñ¸jyè´É\x0ea\x01x·\x1e}CJy\
+                  _Á6ÅXI9¼ü\x1a)(E8#ÉÔ\x04z¹^nÓ§0\x16ó¿tÍ\x12gsÅö\râå(§\x0f¢Fq9tM|\x04çD/òª¼8!.\x11^Å|â%\tèZéÇ×<\
+                  \x18%`V\v¢ÉÇóqG\x18-wÀ3ý×ëtÖÛÀÒ¬\\(\x1d£÷(zfn\x1e\r b9Ä¶
+
+                  I\x12ä:gGl;ÝÏd%¥#¾OP=k±S©ï ã÷¦ã¯Ù.l²ærãk'!D*¬XkÕô­?Ö ïó'®
+
+                  ±ÊA$suÓþ»×\x03\x06ëáôfZ¿5\x03¡\x11\eÜ0æEÎ+§A2ÒÑµO\x04±Ë¿ò¯f\x16Ç\x0f\x06§.´\x184iÙ|õæ¶êJ\
+                  ¨-\x01ËiÉ¸µ\aB>Hµ·Û\x10k[¾SÀ»·\x03Êª\x11ø³MÇ(\x1a\x18ûYôg\x11q3\x03ýÍ\b¥\x02D\x12#:~¿«z\
+                  \x02¥}iª\eX4tºTQ!\x1cË6)9®·t\x01?Ør\x14\x0f¬à¢;k>àþñGóu!³©rÇ\x03I¢àÐ
+
+                  ¯ìzP£ÓÅó\x1a¶÷\rý\x1eGàFÓVG\x17
+                  ¬²\vh_°\x13Fì\x1cÿßÄPë4i¼'A%U¾~î\x0e3õ¸êrqa_Ãb¨X\x0f@ÎÇU\x02jÓ\x1f,Í&ë³M¡·\x12÷öÞ{)!ÖtWÌ\
+                  _QG+Øzñ=²$ù\x04³'yB?Ù%\x159ùë&a@\eâ\x10Ä\x1czº¦\x13SÎKp±1¥ÒrÿT¥vjÿx\x0fgw©÷ò \x04O0{v¨é<1inò\
+                  s¢¨µ$ÊÛ¡¾D;0H^s\x16ÑÙÑq
+                  ù±­^@_TOâ¾XÑWîZ\x15|¡ÊÍ\x1f°_i\\fµµ^è÷v\th=\aq'\x145(ÛÇiuõ\x01R¡M2®\x12\x19ûZèÅÆâþIê«
+
+                  hjÙ¾Á',ÃdgÑf§j6_m°Åb~Í­b|\x12ü\x15\x1crNZg'épÛ\x10©ÂÄó\x1dT%çË÷+IKà{t\x14ËUòXì8\x15}6Ûåw÷L\
+                  ÒTÌ\x04!NMM²áéwÉl3ó@Åò'úWð¥À½²úÞT¤\x04:ýO¶\x17\x055¯ 5­<G9ÁT\x05ÆMÔº:mð\"¿&u\x15[ù\x1a\x1fíàò\
+                  »Ù\x03¥®E¥:º26ec!4Rr\x1ecgÄÜ¹,cèN)ê±\x17¿\"WÆ¾\\÷ðNs$\v}ä¹èùÛ©¥QÙE\04[ã\b5±êÁbgÇ\x1c\x10b\
+                  ¹KI´ütì¢8û½ ÆßHE\x05Õ£X*°³(\x13:V@¯¨²e m§ùkÛ ªGäòhT­
+
+                  vu\a
+
+                  Q?r#\x1f\x1e8÷\x0f@8¤ÆKdÏ¥ûë>ñ\x02ýÏ(£\x03\e\"\x16%þ\x1avWÌ>x6¾1\bw\x06\a\x04ÄïI\x16
+
+                  Å¡wº\x1c\x16Ï\x1c@Í¸¾ë\x16Ç»I\x1f
+                  ¬\x01µCç^E¿µ\x16Úº´Z¦¡|3K¹¼é3'\x16ÂÚùuKÙ\x01ü9ð¦+NÞÙãO°ûP¶;î¨h(ÏnDKI¾ëk\x13R¶D­¹q)g\x16¦
+
+                  Þ\aêÀÌØæF@0øiÔ÷hb!Îã§[fO\x1e\a²kuz|
+                  åH¤\x14?\b2Â¯É¬û\x11¤/Ñ7\x0e¯ôd{ÊÊ7ZY´\x02ù<u¸Ê\x1a\x1a\x15Mn'Újûskz#ð;`Ò1úãî¨NQà\tï\0~\0\
+                  \x19»P33\x18mfÛAÈ\x14Äi.þ$>\x1e\"9«\x1e17\x11âäsÖßÍG:£ê\x1dGy\x0fòÇm\x19ë¨0\x10lã!#æ\x05étö.í\
+                  GIñÌEÉWüý\\&²uâ\x03äHÓ\x1aËÚGÌja@JJó§\x1e\x1a.¹g\x02\x1f{§¼-ß \x1d|Ç@kn\e84Þzµ¯à\x15ð¤\x1fcæY\
+                  ökïÏÆa\tY&iúÑù¿ íß:;a«\x0fÒ\x1d&Uù\x1dÿù3\x02:^Ø­)où\0ßå8#Þ°%¬æX[ªßÄGWÓ1u\x03TMÒ±­]îhÜ\b\
+                  \aC²éw\x13Ôj{Ñø5MßÖu\x1aþA-h\x12ð¼:îRÕÛ\x14Ä=¢½\x18³Ûxa¥zKw57ew-Oûp>SÉ8¿;»Cååü,Cëó1kxeµ\fíõ\
+                  }ÜOL±R%z»ºB¦@R«`\0u§3=Îí{éK:,¹Qý«¯ê\x01\x1eO2uæ«\x03õiû@í××}-1Ðþjg$,ë\b÷ÓNå²IÅ%VÓZ4äÑ±>?'\
+                  ÊÅ]Þ¹Ø²Òb~àm\x11LÞÉ!LG\x1c\v\\\\\x1cë@Lk¬:g3¹
+
+                  1âÀ5ø§T\x17¸\t®àîérï OÏsQX
+
+                  Á\x15Hè*
+                  }·\aÝ@èCd\x1dé\x1ec/ºtF¥Þwôm.hc¿0ïâä7_Fd\x0fh\x05\x14 \x10ÐpõÛ)$åi6§U1ð\x15ëøN\x05à.¨®ð;·~K¶\
+                  ¶ÝºL\b¤3U\x12\a\x17YìUúj\x10Ê²9*$6Ç©àºÍ©å2\x0f²¢x\x03D\eão¿9\vöÙV3lÂW\x01\x02\b¦ªÎòNT<ÄH\
+                  ÿnê;.tùjà¶I%]3\x15ÿ­\x1f\\\x04|j\x19V0Zýl5·\"µÜ^`W_¨ô¾\x1fNB{&÷Vµ\0J\x1f)v]@?£Ó¥\x04C\x035V\
+                  \x1aPvn\x06¨^B¯VZz\x1dZH¦\x0fÌNÎr.¡{T#Êªð\x143\0tý¨ÍÚK{p$\e\x15ïAÛ\x12måöÌñÝ©²Ó¤¹Ç¦¸ªél\
+                  \x12_t(Û#áëp²z7C=&\x18CËúÛÙo(JRÓÒ­\eÀwßÞ~û/lÒÆÓê05>g\x15Òö¤j¯\x01a{÷«aê Q
+                  \x1aFxðÍË¡p\x187É*ÛØÿµ½:6Ô(e\x10éÕ^\e­¿¾¬\x1a³p¾hõw¬\fVò\x0e\\\tI\x1dî\x01´
+
+                  «o\x0fí¹¿j£vPmOJúFybì¯nIÔîj¡\x0fÿ$\x1eÏ(\x0e»rÐQÖlóÜdö&\vI\x06é¡zV£ÃöoÊ²1\x0f\x0e¨\aZ@00wV\
+                  \x11Þó\x11\aíWÿ\x10QÆ/\"h
+
+                  ïÂú(Ób¸R
+
+                  é¶ÖP4VCy
+
+                  )ÅsQ§Ä\x06pO\x02$Z\0 7?¤KFWµ*£\x14T³HKùC)ú\x11KÛ©UÔ\x05\x1cpÂ\a¬tÝ³uï«\am;u«dÉªö¡ø5?¤%ÄÜG½\
+                  ÓÏ¸3Ha|æs6\x17(I½+bì\x04Ï14c\x0f\t\"¼^¼|QÒá8@Êx¶©\x16ð)%ó\x13hÂñaUU¶-\a´wËÏb]W§%âG­%!H]ag\
+                  \x13£\x0fzõ%]¢8
+
+                  ÇfG:¿¤ÜÞT\tÊÖÐâ\x01ÏvwÝ\a>}W&2\t=Åàyc\x0e:J(\aûÎ·Þ\x16!«:Ï\a7=\a\v*bjÛÑôcÅÑ\eIJI¡¥\
+                  ´ò»w\x05ÏJ8Ôr©'.ÿÍæJd\x03¤¨f8ÏsâåBÛÏhcØËzûp^Ø3Ý®åqV`ìÃK\"£\x15CïªüÛ4' N\vx÷îJá\v
+
+                  gr\x19ÅWR)^Wu
+
+                  \x02§4JÓALj<à\x13ÞÙjß\x1dªm)@\"ù¬\x112+§]µùyF\x1e\x02¥çÍÁëe\vï\x14\x11­±«4f¡¸\x1as\x13\ekù\
+                  ö¬8\x13«ÊWuV¥)\x14+Ü]aO;I¾Zó\vñÅ@p\x14t`\\¦G¦°²uÔ]Ð§øêçóºfúÑJW(æ~©õ\x04æg0\x1fK¥(x\x18¬Þo
+                  FuQ`¦JG¾Öü\a2¨ºè¸emãt¦B\eß\b¥Ë\x04ÎìãÌø(èÑÓôT×Óß\x19=Ë(\x0e÷©Ã\0§ó\x04£\eþmuÈ*½¡ùò\x13Uie6\
+                  G½]³ÎÅ×·»nÂU8¸1`~xEéýµ¯Çñ©mpí©Å`\f¹>j«Îôû\r«³!¹*dë\x16pW£º\x10(Ù\x05äû¬CL±\x11\x03XD\x04\x19\
+                  \x18j}r\"TiM?É\"¾`\x05Åú|ÓzÜ\x10x\"[2^tweûuoðÚÿÅL¹zÁÛTðm¤;k=E\e\0æ\x18MÞ)h!Ýá\t\0\x17\x1d²§¿}\
+                  q2\b¡B\x1cç\x04û
+
+                  \x1fc¾Ý;ØÛ<\x02ºÞù2M^~!ní=Kø>§C·º\x06ó®\aÜð\x0eTÎ¾¨f\x02Ï\x1d0(y\x0f\x16ä-è«ÀQá¡¸3áÅFî^È]cÈ\f\
+                  \x04\x05,,ÔÍ;\x11yã4\x058~Ïð'A\x10O¹2p\x1c¦)\x15\x13\x16PØ3\x0fR3°\x1fû¦ózbú?H«ãê¹\x1a¾à¨¡?^¨\
+                  òÃ@ì\x13}Ëá\x17ãRó#³õèü \x02ÁîÕ\0Õ¤Wu.Ë :?ðjm\x13 \x180¿4_©ÌPÊò\eàßò\x13Çù©/\x0f~çrÔl\x18k
+                  u52ÏnsûUñrc\x01\x1eéÓñQ:hÍ\x17±}
+
+                  «K9º\x0f)¤Ä§¯|élÀT:òà
+
+                  ¬¢ñ½ØWL¸\x05?÷R\x02¼onþËs\x0e\x1d¾ën|Ö:\x14Çó\x10hüQ[\x15»W\v*L²\\Éï\x1cS°Éi\\ì\x18²ýThéKþc¦ª\
+                  \x1e\x06sôOU*ì[Ç|ëê\x05i\x04ËN±\0ºð¥Ä'<­½\f/;²q7w>;\x1a\x01tLøùÒÔ\x11ÀÜÆ\0Ù»¯}GÕltËÂ$*À\x18XE:$ø)\
+                  \x12ýý·g`ð8­P \x14\x1a\x1dµ§Ï\x1aQ#q..µññ\x18¨o·nÐ&@:Ì\e¥\x1f]¹O2~Tñ5¥IÆj£eí+5D±ÈÅAó¶su­ \
+                  \x0fMßxH°b@p\x13g¶3\aw\x12;n²CîÉ\x04\x1a\x1c\x0eË:Kw\x01^ä/*«;vOº°tB`¢6\t½3ëò°è·ÙzÏZ´ì§Õp\
+                  \x14Àdí§ÔÜ:Ç!d\r\x03èÓ7ãgñé¿Qæ{mÆ
+
+                  \br¤\x01ÚÝ\x14,³\x13¹ìÛ\x0fõ:9»$\"²±*l!çÿÞïÕ;X<Æ¶@\x1fð\x01{ó\"Ë*¾¦¢Û£;T\"c?£QÂ¡a08ÚÍÀt­Çð¾\
+                  Æs1×\rÀ
+                  `\f$rD@´uòÆº+\rÓÙØ3\x10\b¾ÁÖ;±îÀ×Ëæòiå¢Óu_-°\x1dDåí'Ñ¸%A¼^·\x16¢Ï\x1e÷\x06a.\\É\x12ÐÊQñpÍªMÄü\
+                  \x11h
+                  \x14|¨Âd\x13Ð¸©½k¤\x05o«lÚÂd\x1c[3ZD>\x106,Z\x16Ñ&cw=9Pn/zá3ëÓô\a\x13×4X²ëWåM½Á¨6gI\x13¦ÂËã\x16\
+                  [8\x19¢æÛÎÚt\toZ¯k\x18\x13½­¶#ÕW!zJ±ú\x14Ë¹Ìëë³ÆR\x14\x02ö¢%qÐÌï´¼Õo\x0eo\x1fû\x06H\x04\vú\
+                  \x1d¡ß@ÞcÒ²ÚTØÇ²\f/ð½Þn(\x12ï©½µ\x05LÀÇ¬\x02\tÌu\0.p\x01¾À\\\x0f»{¶QÑt4UèNdÙ,l\x1d\09ÑÐ\
+                  \x02]ï\x06Ü*æ\f\x1dÖÕnüqÒ@Ï\t&çd\r\x19>»À\x1d½ðÛ½\0+Ê\x1f½JéV×
+
+                  i®\x12þmv²µoÿS÷¨V\\\x12NÁiïhT>~r0Õuç6·=ñ\rd\x1eyqV\t¡Kj;I\x06»,ô¯ÇèT`TH£I9ñ\x17å¥ñ=ÏZÓ  \
+                  \x16É\x1eÔ\x12\x04YdóÚ@¹Aöî\x16Y\b Y®cT=À\x0f6;>7p1{£\rv*Ý+BL´°\0\v
+
+                  ÊWz\x10\x1f5\f\ei$\x14.¥:­óNdÞªÖ%!^Ñg´4&Dz¿X0\t\b\x12p½×²Å\x1f2k\vÆ[\x0fN\x1e\x14ªý6²IYÞôµ\
+                  \rDÊm\x19QÁ¶Òù¢\x11«éý\x1dyïÕ4º
+
+                  ÀùEÛ\tÌÅN?ïØ-9á\x11
+
+                  C\x11(ßÏÊ$Mô#*É5hqJÃèÕÈG¾mõH\x05ö`ôál¼µ\vù¼L.å|Ðpî²ZJ³þU^h±\x1fè³ÿ­©{Ïpfk¿:3\\Lnê\t½\
+                  \x15\e{f°ëÝ?UH]jÐ\x03OC}\x19z$NdDE¦®¼\x0e5Øfýy8²g\e\x10©V\x18;\x13î0.d\x11OÄÀÒUÝ3\x0fó\x1aWehýÃ\
+                  ÷C¸Zæ\x12ðMõãÊ\x02Ú\x11\x010Ýis9±w1G
+
+                  Õ¹¨ìõ#\x01*lÅ¥\x10®°ï\x11S'å\x1fçõXSV®ê½\x1e\x0221PÆãÛ·ÏÆ¨øÝÝÛ;P¼àîLõamGRDLRt[²h\x04(1\x16\e\
+                  `UàÞC  ÌSWÒ2ì8øÔâ6HÍ\eZ,gyb\x1c\x1fI:\x14rq\t¨\x1cÃÃWùió9¶\x18\x03¦$\f1¤n\x17Õ½9á]¡EÌz\
+                  ì5\x11Â®$YodñÛjpön®Àn¢jï9héD\b
+
+                  Æñ~ÂwÒ\t\f¤ðéæ2ðÿô\x1c\x06Õò|¦Ü\e\tEh;\x1fîÍî-\x12Æ\x19\x04*&Â¼\x1f¶dá¬0b\"½\rõ\x19Ñ\fmG\x19\
+                  Üfõ¤Nýß\eý\x04µ\x02¥,?5º\x1c4Á\x16Ãº\x12Ô·¶(é,ª-TY\x14¯k\x06Ñ¤þÅª×®,?\x18Îøõ¼ÉyzJÎ³½\x19¶=\
+                  ÛO¤\x0e!£;&ø%°ï@ô_z@-\x1a^1ä-g¯½Z\x03B.ÚødîÚ\x1fñÿ\x12t¹Ái#BÊX\x0e¸¢DFïj>P¸/\x0fwø\x14ÞpÆÁu®Ï\
+                  P#Ff¿­@º\x10O¹\x1etÌö×úM\x049\x1a.vk-õÆm|¡º£
+
+                  HÓF_kè_\x11sRÛ\x1cù¾Óxï\x14zÜÊ»üáÕ%\x04j¨xF\x1a42â\\_\x18ëJ\x03n¹óùr{ÖéÍ`LãÓB\x1cþûÈ\x06\
+                  \x01GèCÅ±¢\v\x19g&jÄ¡dpÕ\x01Õ¶:om½År
+                  ÝÉï\x01E\x123[ÞÌ\x15\x15Tôú×ô,kíÇW\tP\b«l¦°ÚCLÔ*F\x03ûAÏ\f\x14Ç×<ÕAnõnæ£7¢³àJ>ÏrÝ\x18i¿Û,)T\
+                  \x01Õ´¿n^í×\x0f®$Î\x01>y97\axy¿óòÞêb½2îGä¬À\eóÐxA#\x1a^a¦Rt\t3\x0f\x155³D? *Ç¹¥\x1c´ÊI;Ñ$\x04\
+                  ônX]V&\av+\bR:\r\aº½\x1cö>.Í}|ó\t\x12ë\x14¡HL\x10\x1càt£ÓáÙÁÇÒ÷øv\x0f!ðÆÛö¼\t\x1f1¥2¶Í²Þ+d`ì\
+                  {X_\x13ØdvO«`©,·g
+
+                  +¬\a¥çþÕM\x10ôÓædHÞÿ*ä&â\x18vt­×ý¦ÍÀá:\x1c³K{Ïõ\x1c\x19Ns½)õ\"äFc?O9
+
+                  XG\x15d¡´S¸\r°ÛC\a\x1e\x1fe²DÁö|ât¥\x1fMÞmFK0ü8ßï\x1aíÁ±h(µ]\"\r«\x18Óº®Ò\eØÐªN\x04ùÅâ\
+                  \x01Óñ¡¦FmëW:øZU!4n».ÌÈ\v\x0ejT\r*°\x1d8û°Eú1§$I¹\x17¨þ+Æ¶²g0b\"]ó/?µ\\ÖÙóK\e[±öxÓßÎíùëN\fË\
+                  \x19\b¯\x038v®³'¯\x12AÕ¥«nÈq,\aUóÑõ>^kpøWíÓäÛâ[w®ËåÖTÊÐp+·qË_ píed\x18#å\x0fçS\eôawÍM\x16û9\
+                  µ2X\x1a]Ø¡Ùá÷cùpLÝ\0µÿ°8îY¸·²l¬\x04DýÛb
+
+                  &µïÿ\x01,íN»Æbàï%±I8ÞüÍ5v^wÖþïX)cTÿò[Î1§Ù}4¢Ü0[¦À×¨BÏë=X5\x02h@;.f°\"qPQP9ÃM¿e\x0fqy\
+                  \x14ÜR\x15è9¸Ç81wØ\x12u\eU\r¾
+
+                  5`\x17ã.\x14S÷[5Y\eßÕ+úÒpê\"->£~ä\x1a`.
+
+                  \x11Yj±\b\x1f£^¤s0\x19Û]jã×FupÑ_×B>íQÌk¹Ü\a°õãæY5þCaN
+                  QòY\x06ôÄ<ØîÖçQRß\x12uÝdÄïw;\x16ó¸G8È{´\fx°ú¡Ë³Q9ýnî\x12³o#EËà?Ædû\x04*¯a\x1aÝÎôÛ2Rì\t7\
+                  \x01\bgZ¨µGb\x19W\x13¼{Æ7øY\x14C:¸NÓde\x14íøeÝ\x04ðA0wP¸\x03]\b\x1dF±£àt8øé\rã\"f¤
+
+                  r?Òp¢@¹!ôo\x14\x17cä¥<=³.¯\x05\r\x12ÝiW­ð4ú¤fTîfÏsG­ÈÍÅ\"\x12ñ½üP¦é]ßK´©ù¨;\x01|¥\x0e·8DR¦iõ\
+                  \x15HÚYvþ ¥\f=É\x0eWà\x0ecnÓ§8xg¶\x17B'#ÝlÊ7R6\r¨$X©5ÎO-k
+
+                  hdt{««äÇ<8uè\x05r\f!Ñ¨¦0t;ª¾ê­\x14-!þKÉ U,þS¹§ÍIÛ\tç¾3kÜ`_²³\x0eÄ\v9½æ¡Á!¯ß'C'-¾ÛÙ45w+Ï\t»\
+                  \x06\x06!:hD\x18UGÑ$ÇE6éPÿ,ã3\x06SHÜ\\i|ªX`æì­ç
+
+                  ìF'ñ×_¼chÅçw¯¾§6XnêÛè\vhî6¸M\fèäË>´¤=\0\x03À>Áp±,±\x1fcüuÁïæb\"Þ¢\x13\x1f`½Oäö¤óèXUS®Q\0\x19\
+                  çt'çs\x05\x05ú5\açòöÚár9¿½+\x04§\x15\x17Ñ6n¿¤Yä­µ6Èqu»Î\x0e%Rø\x12æø2Á\x1eù\x133ÌÅÔè¬eÐ@OðWî\
+                  \x0e1¥î;\x1c\x14\x12¶±Ã´ªéå° ã¡M·Ajñs]v(+ÀÝßï½\bºå/CåÈ\vÆFéâB\x02\x18¬ÝRló§µ?ÛÂ{ÖYgvÖ¡ÅæÃ\x1d\
+                  .O»º>zz¬Á\r K\x12¬þ\x10°iT8}_0\x11O±ýò\x0e=\"Ý/ÐV¥NoX\x0e¤\x1f\x02FS2IÈïcïWÖ/\x18\x1c±=!õy\x02\
+                  \e@i\x1fÝòæÿYnì?«×ÏO¬, þeT\x01×\x06gM5¿3e²\x0eV¨Á5±Q(xt>\x191ÕÌ+^\x12Ð¢%§ÞPQ\x18&©%÷R\x0fy\
+                  EÂ2B\x19
+
+                  î\\äµAè  ;ðæ\x15C´G|óÌnÝCµ/&Ã\x04ìnL
+                  EEE\x02±ü!ÇIN§Z@#\tT\vø{Ö¸´\x014\x01ÒhF:r$÷{d\a«7.\x16yP¸\eh&Õ¬L8ÌÞryèsììeceâ*Éþ\x01\x1eÜ´\
+                  \x1e¥x
+
+                  :\x1c}ª·z·ç\x02ðV\x17°(ÔM<H=\bèÚsÛ¿\x04ÛR\x1cMÍ`#¿`\x03\x19Fg§A@æN\x18LÄØq\x03®á\v¶ý\x1c¢%ÿfQ\
+                  ÌG>\x01³\a±óÕgO§Ï^³5ßõª÷xÍ¼0ÃOJ\f2ÏÓØÛ½ìµü(¾ËxEqÜm×§Þfa#Eðÿþ\0Ó\x1f5\x02¨\x14þ\\\x02\x13ÐÐ¹0ïK\
+                  É«ÄA#²îDÁS¨Ü¬ÈA2\x144üÏ.\x06\x1eð(\rÞ|'ºQs\x02ÏLS¿¾úÒÆ°\x1aÕ\x17ì\v(7qÎ¤Ñ>i@f^éûRã\x04\"\
+                  \x17±)éÉï\x1dK³&hJyåävÂÐÁ@_¹`\x1d×yÊup´\x1d<\x14@:\vîV\eF]ÿèçV>°=b+nÃ\x10üº¢xf½yR¥ôØÞygJ1¢\x06;·~\
+                  \bP\x060ì¬3\x03\x1eÙÖ\x1dÁ_Þl)ü-ÔæØ±å×oúL¡#\"È_@\axSÒ)]ì\b\x04_?äKÿ:ºþ2.\x04\tÁÔÜ§¢ÿ\x04¿¼÷ÔÖÔ\
+                  \x1dg\0cr\x1cm;©£|¥Ä\x06Á±;EÊ¿\x11\"\x1c\x1a\x06§ÂÂd\x1fÍ@CpKæ2cWöî¶ÿ\x0eëñíj°^³ Äå¾å
+
+                  .¹k\x0f8XÌôÙo\0íÑX.½»£åº}\x1eJaÞnèTA§ºdêt´³.\x1c@ksG!ÉOøo°´cÄcâ×Mb\e]RDk\x14F\x1f5YSK¡A5±ºA\
+                  \f¥ØVÑï;M\x1f\x1dJãÛ\x1cµ©üüÕÖø^\x1e\x17>47ÒÛ¬¤Ëîþá¤Ëä\x10
+
+                  Å/`Ûç¨Ñ\aê\x12ÇjGÂ\t[?öÏ+¶îDÒeZ\x17D7\e`(î\t¾×ÿÖ=[BÏóìqßÒ\x05\x04g¸mcXýÖ2\x04é
+
+                  \x1e»ZÂá\x0e\x18Xîë5Ã¾?KaK@ÒÅöPê÷u\x1aó¼]3DDÞ±(³I@îÎä\x06:­×&¬àÔL¡³ÑÀ3Ê·¨dØÉX©®ÅP¦[Ý<\x19\
+                  \x02¹e­\rTÜÑy0°¦Ì©ã¦9\t\x19³>.ýxÙTÄ9@¡?ç²ÎpQ%r\x10¿`Â\x03~)ÚñÖÒMwú1j#~Ï:úÓNXôíó\x12Î]\v÷Ø\fzùbX\
+                  \x0eº¡èÀ\x06\x15\x113¹\x1e\x1cR¤\x19ì</\"\x1aðXÚ(tsK\x1eÕ\x1dçdÇK¬
+                  \vÑ65Px·sìKg\x1d¢3Ótf.\x162\x01Î®´Á\x03R%0\x01WnÆýõçJlíÐP®egÓ\x0eéðoâoÌ5\x15»Ú­È]\"2\x18à´1Ótê7KÙ\
+                  %k\vÝw
+                  cñL£¹@?4bb±ÙB¥à\x05¯\x19VC¹Þ\x1aÙ4¿cà)\x01¬\x1ftM}\twJQ:\x17N¿lG/ÇS2øl\x04üR&{ÞëÛ¶YÇöHù\
+                  \x16\"ë³TVó¨Ù}×ÀÓ6ê\x1dùÄ*H±Î´AëöÈ²_\"ÖÂ\x11l¡èbwYòZ\x01TÅ=yðµ\vÐ\x13@À\x0e2gb\x04Q³Â©²EÕ_@¿t1,\
+                  ^!Ïv
+                  ú_Í\x18uK¿\x17Mµ\x10\x11$\v#\x14'y+Hº\x14ÕÜÕ\x12f¾:w<4ËcÈÏräF.\x0eÒSÐ\tÔí»ËÇgÎÁ^gèXý¸YW´md4þïÇ\
+                  \e\x18UÚ!,ÔÈ¶E!õð\x06ò¼yþ+ýbí&a£¯c+¥Ó/\x03[\x0eíðí¬Ùé<s&FÏú\x13Ûå\x1fG¡¸kÏ§#µG\rÖ¨\fóÙ\aÛ\
+                  ,À5¿¥1í³80uÿ,á\x03õ):^Áâb´&1_6\x12WÄìyi}eûÒðÙÒY9oLr\v\x1e\x01÷åË\x182`½2\x0eÊÎ
+                  ûkØ\x05ÒëÕ¡\x14É/ÍÕsf&*)Qen\x11\x10RÖÅ\x02H8Z­Ù±\x18F÷\x17Ø2u
+
+                  /n\x13£Ä\x0ed_\x1a
+
+                  @cIÀ 13­ ÁC½\x06§ú\x13\x03õ\x1a\x0f\x06¥6Å7Þìqù$0\x06\b\x1cýâ+û\v~âß
+                  jz\x0e!Õí\x11Íýs0~)~vÓ\bq¿ñüª-ÿ5Ù6óüÿÐªÊ
+
+                  ÓûÅA¤WNm·±&l\"À1zDø\x1da\x1fÕè.Ëç×x5ºó¸Û)²ÏÕÉe¶îi\x13´Àó³r³ò(\x1f8QÈ26\b'k@«*vürNâæÀë\x0fó\x11\
+                  \x0eÛ7:ùDì¡ê]]îÄÙÇãÊá\x05û¹vpu\x13Ë\v\x13.½¹\"\x04Ò-ãs\x0fÇé\r\x02»!¼ÇxSZ\r­\x16ëRv¿B\
+                  \x17\x03æ\eÒ¼ï×\x05¥&¤k\x1eO:)
+                  ×xnâ!§(a\x03¾Óu5ç(¿äsËºôîºÍÌnãjÄ£QÛÚ\x0fìõìH\x1e0\x0fÛQÒ\x1c­gp?Üé©$ÒëÅ\x14\x18~\r\b°a\x03öc\
+                  àîË°©¹%mçç\0ý«,9\x17°³¬7jzú%O0\x1a¦ú\x10b5æ°ÿ}è¤ïÙ¾Tw×9.k|ÆsdC`m}$ý\x04IÍm¬z.<ËépoõÊ»\
+                  \x03Z\x03\x1eßäÒ<¬\x02Wk\x18Àìª±wÔô\x0eSÖ\x16°«D´i-\x03½2`M±' %4xT\x02²\x1d\x04\rÍ/Bý\a6K3\r%ô \
+                  \x11)K!Cz\x05G0°ñ\t\x06JLY*~¥F/?F2ëÏ!\re-9ÆU@(Ê\x1f¶é$û/p?¤ì£õo¶uK\x19Õ,\x16F\x10ý07D\x1cw\0\
+                  ¡ð\x15k)Ù@á\enî\x19Û\0m[ÎÇ\x1a1qYx\0õ¬\x1cÿÁøë¹x¢¶è)ì\x12¾.DkþogJbsÒl/\x15V±­\x17½§ö$ß÷AöK¯&\
+                  \x12g¼½g BìÓõt|üõ\f9j\"Ep\x19¶/osa\x1e»6ô$ä'µ\x0f@¥{ý®mÎ\x1c>9\bT4á¿³§\x18{3iÃ¤y¸¿R>+gjEøD±N\
+                  ðç\x12¹ÑjW\x16Lw\0Xê\x05v=5¶Såx\eæ2³¯Ír\x04\x14PÝ\"Ê±s¶ÁA\x05¡`DùÓai\x10-«9\x1e9æ\x06©\"³ÓÖ|\
+                  ¨àñþOÅØ+­i\a\x11¯§\x13¿²RÙùmëýg@ÿ¦\x1f¬Úi%
+
+                  c\acf÷nÙn>!Õ\x14ó²\x17×hª±ç¸S\x14ÚmÍÖÏìÉ\x18­ÊèQàë_Ø¼Ê\vzÚï3d²9¦\x1cÂ\x10_Ã¦\x03\0ÆÃ(z?\x027\
+                  L^Î>r3\\Ü3Xl³v@Ð>@®f´+Yó\x0f\0ÍÄv?ÀÏÄ#\vÊ\x1aå \x0fí^'Mµu[\x10ÅÿÝÏq\x0eã\a°8e`\x14q]L\x13eß\
+                  \x14¨ü\b¶ªB øJµ>
+                  èØú¤é\x06k¹\fI·m.Ð~+ \x04â%&Il s+2t\x0e¼§#¾º¾ÈX¦éõ}è£Ôµ\x18\vÏ\x18¡ð}\04ÁÞ\r±óXÎøÓ}\
+                  \x1f¸C8\x03\x12j©â°4Ã#8pZ~]É6ê9úÔ?Ó@\0ê¶)1î<^&B¥\x15DÁì$Ñ1xÍÓeúÌa¾!|=ÒûÖ²Å¡âAç¯´ïVT]Q\x1e¬\
+                  ~¶u.j|O\x0fGßÄÇ/a~Ý$*|\x03`´õF5¦#ß0.}êý°:uðõuè$\x10\x16u^×àÍéË0$Ä\x18Ì$eH-&}çµ2Ó\x04\x1fq¯·'6Ä\
+                  c1X©7«£P\x01¢ðö¼ÀmR\x10Cõ\b:?mÅz¾s½¹Ã¶Ý\x16jOÏÒu^Oê\f=&ÂÜß+{ÛZÅ$¥þ¸çP¤G\x12@#èsþ\eÊÃ\x15\e\
+                  3X\x1cs¨àónÑÔG\x0f\x05«hì
+
+                  ¬NñÈ\x1cýy2Ã\x18£\x05þÃ[¿XCZ»\x1d}GZ\x1aøù;çG¹Øgå(\0Y%A×¥>0ñ±\eÒÈi\x15\x19®y²$Ïd\0Ãmj4\
+                  \rÖ\r\x1cb¢\x14~W  \tB\x1a\x10ô}ô'Vvôc&n\x05ÑfÒoÛtìb\x05À'n\x0f'÷\eØ\x0e2\x1dÀ\x15tfÍÎ7æEû@(¡\
+                  \x11 \x1f\b\x15)ÚÍ\x10£j\x1c¾ÿ;ADþ\eWNJ %Ñ=Ï½b\x18÷Æ\\a6éÅ
+                  Å\x06×lNnJxR_\x10\x11¾­Æð=ÞÀå\b\x05üåÏg\x06äf¬¨ÜÌ¹M®\"c#\\\x0fßUL´\"ôü
+
+                  ­±\x0e¥B\r§å#ÍêµÝÝdßé@|\x01ù6âv¥ðäð\x10èoõSaNqv = 8^R\x0f\r÷ô+=g\x17±I·W>§
+                  mh½Ä4ÆjQ´Ý\x1e~<\"¨. ®¼ö\x10bß\r\x1e×\vwNÿ4®l]\x1e÷,^¸¥EþÎ¥¥}üàA\x18ññgì1û³¯L\x02¹2?Y\x19\x15
+
+                  xÊÃ7lL \x06**ÌÄ#\x0fæ¯\r\\\x11ëÏ$qê\x19\x11>àbèx38
+                  q\x03©ogb.±®!°÷)\x10\x01©\x1f]mHA\x1cîÕò\x027]c¯°@ÐÜ\x15<\x06Enµ%¬ï\x0fÿå@Æ±ög­R`:\x12\x05\
+                  .#ÁÏïÕ\bzÓ*ü\x03P¼j,LàÍª\x14b\x1eªìZ5\0ïè\x03ë-l\x03\e/)ßÿy{ãí3'\x03\x16ÂÈ$¨\x02r\x14Qñ\
+                  «Â:DKs0Ì¿#\x1c÷»Ö\x0eá»ñjÅá÷ÉE1¹fR¤=CZ2\v>Nâr\x1e¼\x15¬\x1e7ëg}sÐ\x1fù/¸_Äÿùý\x12*«\x18
+
+                  ]#Êëû{p ÈµSíþ¯\x15\x04\x02·¯õ®ç¡=mV0Lox>yöÑ~\x10>þ`¨/!X\vküíB\a@\x17*\x1f\x16ã«K\x1cn?]¿­\v\aÏXó\
+                  ¢s\b\f\x1fL\0$\x1c»Yç%ô%¾6EêÅ05M:Í²Grge$ÏJ1ýgÛk\x0fg®%\x1f¦>í
+
+                  PBz\x1ai\x10QuÓ²ÈO!@O @¬ØÅøë|vÖÑî¾nQ)òÏ\\¹»è=×¬7ä=U(Äé¸TÅ\bÏýØûØ\x0fg£\x12¹\x063P\x1cÿ´èë\
+                  <Í&ÜPtÊqy\v\x0euò-£ïvç)¼'_óØ£e´ E¾În¹\"º4ÇºÕ/m9*£C<p\x11C\x1e\x05\x1cÁ\x15kø`ü
+
+                  HYÏâWº¨¥ù¢\x17'Ä÷}©VN;Á\fyÓ¹\ea1õ\x02àôh61\x11\x10\x15§=¨uÇÇ\x11Å1PwïXù\tp\x03\x04É\x0f\
+                  \x0e.Ó\x03nLþ\x01I©êô¨E\x04¥ÑÖî³&ÍÈvë\e\\|¥<¥%êEÒß¸Ñ\x1foÿáSû\fÀ«Xüá\x1a¦@J3T³\v_õÚ`ý÷5Pì\
+                  þá3ßè\fâá>zãÕô!±kñÁJ±·Ý\x05Òr±ü@)({<è6\x0ek»~\x03æ\\Î§ÃÈø\x11Ò\"¦RQ~â·N¿éaTÂÌ,}þ-q¸¨±I;ñ>ì\x0f×\
+                  \x16ð\tÀü¹ox\x1dSåÜZ·aû\x01-ß³L
+
+                  \r\x05Ç³CÊl\x16æÙ{^kò>\0ò\x18á\x10Í\"ü\x14?r°'MrjÚ\"\x0f¶#E\x126ðPë.#/ \x1dÓ
+                  \x18~§SGT¤L\b\x19Þ6\x1eyq¯YjeßÚøi±«àWàÂÌ¾ªö]gÄ[!\x19\x0f\rÓ¡ÙÈö\x18T\x11cÐÂ\"\\°]ß+e3¤ÏI`©Õïåx\
+                  òà\eÈgü\x10ÅERá4Øé^y\x18ò©Ýîb K¶±\x1a¤{ë®\aÒ%^\"Øü/ÐÃ>[>i]üæ`úô\v\a'nodá÷¾Þºú!\x040ºmt²¶É´\
+                  ä7
+
+                  Ó\vC\x01à_¦^M³IU
+
+                  äüà´\x06\tu\x12cfsËËb!>©OÅ {î!ÞðOh\t¯7ã\x12¦\x19õ=ã+àãÙ\e\vv\x16-gÀõ1,ÞÓÏ\eº¸Ð\x1fÔÚÚe\t\
+                  \x02X¥MF¯,\x13<pMe´d7\"bªÚ0>\x1fâ¯»á&æìHz\a'?¹çP¼g!Òëö7ÙAMO±óbQFÞZ\x15Áý-Ï|]à\x15TR]àoý~G·\v\
+                  ÷ô~,­¶·æL«»ý5û¾\x0f/ pÂÑ,\x1e1~,;\r=½WÒÃ^¨ö\x1c®\x17t6¼±9m\r$ØçµàúóPÐ+¥ìuÙý}q\x1d
+                  ©\x0e\x17{\x1d}KyÆ\tØ\x03.\x0eLl\x1d\x11ÜÝÂtã²Y\x06-£Ò?\x1e<DÓ¡\x11Ï ^}Åc±
+
+                  Â
+
+                  ¢Îv\x12×90E\x04ºÎèã2ï]\f\x1f^\x14
+
+                  ÌaÝ*\tÂz)Iÿôìº?k\x14\x12\x1eO1PÍRf§(gtµß\x10;¦,ø²wnÌû¡\x0f\\iSÝK}rÄÓº­K)g5ü\x18Ô3\x05S«Ã÷ºð:\
+                  \x19+ã)ñýøÙæ)s\x12ç­BéoòBÇ¶5®}24ø:ô®¢åð$$¿äÁ¬\\°>kö¯ðÄ+\"Ì(ãñã:\x11èT[ÅqÍ¨àÕÓÃÚl¢îk×ã\v£#}'\
+                  ®¢ÀèÌ§\x18øq,?×ký½_ô÷7Äñ!Pw©'xE²Ôó!(#_$;§aôX¢\"|H\x1aÉ³GKINE&åEDGCt\\ï6ÿ\x10ÃFôÆ={;\x1a\
+                  \x05ü\x06=²{·\x17óÎakí¦7\x19Z\x03¹[ºýBC%,p¯wMÕ®@²$jNrMî\a³*ðIé!yu­}ôÜH@½Û©23Ïnwq(þ\aI1æí*q\x02Â\
+                  H1\rþÆÉ©¢A\x02rIèÛK´.;R\x01IæÐ\x05Ú(¦²&­\x13d:%øDü_*ìIíû>a\x12&9\x04¢ Ì¡ WLfG\fnûÄe®à\
+                  Ycñ/5R-;¦çÖ¼\x05ëá¥V_\x1cNCÍ%FÿöÄD&\r0ÓÖà\x16Û\x10¨¼Þ\x16\x0eM\x0eÔá\x0f×\x05ê¦}³\x03ÿí|Û
+
+                  ûÊ>èÿÉq0ðà?c^,KdÞÎ\x1f}oý\x19\x1dà\x1cus[ïv¹)½Ï$E\x01¹$îWe¹÷Ëá\aW¼càá¾­Y\x1aËÊFKZ\x18ø|,\
+                  <5Ý+­*³ÉNT¢°þ>ÙÄrT7WÐ\x05m|cøv\x10\x1e8Ç5¯\x1c\x1c¹åvêí\0^GÔÆ%\eìè-­Aí\x0f]uÎ¬Ä|²iz\x1c\x1a¯L\
+                  wØÔ\\Q[nÉ»a´ÐÒ<¸!´\x06(ôÿ\x16^Õ\x1c&2ê\e\x10\x13\x1d=ë÷?
+
+                  1 º½\x11¤ñ±6ü0møIÀTâ¸ßÚl¼v\x16'Sd]DÝ<ô0ð\x1eð. \x16Ì·æ²ð<¯_þ2\x13Ã\x14î?Úó\"$Ú\\EmtÎ§&\x04ÔÄ\
+                  \x03ghRLjý\x16\e\x19Â§OöD/\x10Ý»h×!qÎ=»Gû$\vÏs³KÜÅäß\e
+
+                  ØÂ©\x13Jñ;_\x1cÛËËâ\x03ùps)­{SO«Up\x13,Ê\x10B\b\x15\r?\x05ÀÒGAyÃ\x18°wuq\x1cqqI\a`c¹¶¨zýÄtg¼\
+                  BG7Qµ§¤\x10éÄÅ\bt°úî\\i9îYÛúcL \x06UB\x02¢ðÔ'¬Ò\x12:2vèHïU1§\vîÌ\x1ch@âÈë$d\x1dÐ\x14[F»eG·ó\
+                  ¸üYñ\x104v{à\x17T-±¢¶ÔÍ*PõEo5\x03ÝÊÊ6ôE^iä\x1f°ÕãÏß×r÷ã%wg¼^\x03eNøs`Ø¦\x1d\x06hÖÍÎ¨Ùå\
+                  å3üt2x99KÕ\0\x05\x03%%¶&M#õïZ¶7Ç²mÞÇP¹NÉån\x10\fàÔ7\x18]l£ù\r\0Ï¾IÐÓ¸?æ£°`_¹À+}Ü|;\x18(\
+                  xì \x06Ääº;RÔðúKü¨é'P®÷M\bÈæÐÅ¡É|Â|Âß\b×m\abqÇ\x1f\x04i\x0f×:ÛöF|ÊÑ5J|ñ½ñÃ.mü\x04ïkÆQoÔJ\
+                  \x03\x19Å7Ñ\x13]:¤§
+
+                  Å½ú\x1aY$½ð\\LXè\":}ÕÊì?\týÚq\x14Åiî©7Ïq,}k½ÂÉùm?\x14ÏrÌj\x1cÆ¼GVzÛ)\x04\x16ÙHSÒÈ¦%¦pf\x0eô=½Ñ UZ\
+                  ¦ÿ±8É§a®oª¹Bm094·ú\x03Ô2E_JcaBF£ÀªÔm0<¬&S\x1a;LrîlÕf*µI·º}°\x12\x14\x05ü¸m¦\x18,z
+                  &\rÝ~_Ü1%êªÔý¨7\e*\\x!ïãË\0Qæ\x04t­¨+w®î7}g\x1eÀ^Ó~õÅà¯\x18±µå9Ý\x01ÚLrz§\x1d\x1aÒ\x05>ù´Eåâ\"z\
+                  4 µ\x03\x12¢º\vZ³\x04¼+³\x05¸£¾\b2ôB~f\x13Õo8X\x15\x1dHB÷ýg¸_ëý,;Tj@øÍ:\x13ÖëÑÜå)áPpÛÕBJ»î¡\
+                  _ûiØ\x01\bºtUR2À[iq¨\t&{ÚEñÚNý²\x1fÜØMGá\f±­Î\x10\x10wsImñ\r®ÖÝ\x15Dëjö³­¨Rm)ø\x11v£ý¥gÆÉ4Í\
+                  ºFÜ4XK\x04;<40­^tÏûÎÑh}(y^4-QÀDÝ\vß«\x14¤\0÷c1­ÏÍê%tQ°\x12Ë1ÍdZé«Ý\x19íX«0É)®\x04¨õÎ±¼îFgøÑq¬\
+                  }ô×ö£â­âgÞ\"T\x1a\x03Y¼T\\cómÉýÖKÈ\aI*Ç\x03ßópÿ@å5KBlù~¢tQ·àjS
+
+                  zªmçø¹^ü<2\"\x10eT\x12¢K?xÔ\x11h³Ë6u­Hz¸\x16c\x1d=Aû½ Ûùï\x15£»/õ6\x12·³^+(«i\rãz$«ßÂÃ'g\
+                  \x16*¤Î\x17u/ñ\x06!`\rB\x16W\0ÕTNe¶³ØÙu´wLã(»Á¿NIÍeÉF\x13\x03\e¡±tÕÝ-öB¿\x03ùÌÉ:Û9¹\
+                  \x05{y\x05Ôÿ\x0f`²Ö\tÎ¶Ûo^9k12¥bg¹Ù9Ð2Ûn¸köôfï7l2srõ\bµï\x15­l¶\x05D­S\x15åg\"P\b÷m¤*1T<ö8\
+                  ÉÍî\x13^#KåÐ|ÒÌ`í,¾\x1cÞdúéFÍ4>Y`c÷\x02´û,åÄ3nEhð?h÷Õ=àMBÒ\x14Ö
+                  9ì-ß_\tÏ\"'vKµ\tï¶£áo:¢ýÅê5!QgÓÆòY³\r¤F\x05\x11ô\vXeþ*qkHêîEª¬\v¢¦¨=UM\x1epÈúCùM£¸PmèU\r·\
+                  \x13;\x05&\x17{Y \x19\x03I»%r;¹TíªRmaõ.(¯Sg«[0+7;R¥^®ÉXÔ1üG\rô©E\tñ4ûT<ø½K\biücú97À×\
+                  \x10hl4SE;ÅîZPv5ÕÉBÝ¶òåYeÌ\x14Ñ(µ\x1fI#\x04 u\x19\x04Öj6ÝB\x04AA¾ô¡ä
+                  Ñ´3\x03n\x13|K#±ûÝú!>wÁÂ\rë¼ä¶J¥\x06Üçx:øß2j¨Nåõ\eôù~à¬1ýñj¥g´\x18yôt
+                  ºàü³ö\rõ B~3G³vv/¨\x1dç¤ê¶¸¯Í\t,Ý³Lz®\x1fû¦ÿÔ:3i®èÉ7`µÞ³-]¥yXë¡\x1f!-iq!W\x0f\x19\x141\x03\
+                  ²mÈKMr¥è\x1d·à|a\x1a%J-[!iz[©~(ýr¶|jNÈÊ¿pd\aLT\x1fa(ë2p\t0<2©\x04M¨CqÃEõ\x13Û!Z.uròãò7\b¥i-9eb\
+                  _r6Rå\x18\x16^\x1aí\x19£º\x11DÃ\x15,\x13B¾äÙ\x0fSýcø+ã´Èß\x12'\x13þ\x16\x04\x14V~£ï\x16ý\x1e®Ü4\f\
+                  \x18<ÙI]ùF\x03é<xqä<tÚ;ì\t\x03:ÃÞhWY»B'_ö\x13SçAã\x04\x1f²(g\x06f\x03h8ª/dÍ\a\x04å%U¨ÃÇG\x1a\
+                  éwul\r\x17«\v1gÈÂ@\x03øC¡´H%\x15ÀlX\",ºZõàð\x1f
+
+                  rY¡+=!ùUwËgH1<>8\t-ÆaêôåA3^±ûGF\x1aÝ\x15__\x1e¼\aAR>ûÄ}Ã$E\vÛGw\x10ô\x16\vã\x10×\x1e\x1d\
+                  \t!F¼[Þ8âò\x11JR\x19±7°7\x11Ö)4&Æ9ÎØc\x18\tó´)k\eïnÕ·ü.º<+Í(p\x12ú`ÚçS|úÆ´¿Q«ûÝï*ÚÍ¥|^&Ç\\\
+                  Æ?'8á\x02¦!¬\"µôà#¿¶9{ÑQ{«a'¸úô=Ì Þìv§\x181´ûi\x03ýzå\x1eàÓÑnø0SEñòôÑ>u\x04 òÇ^N±
+
+                  ÷Te\x16Mfx;\x11þõ\r\x19£;·§Ð\x03\x11ö «2HåÁF\tþñKI¦(\b+W\fÃ4uíñãy'¤®æw'²Î\x13./õI(\x12þ\x12¾\
+                  i!\rT\x1d±´ÍÊÂê:ü2&rµqPÆ¶71Ð\x1c!<\x03ø ûóQ5%\x03«kÎuÏ¬üQ\x14O\x1f/­+M]@4µ´+·,6ìQÉØ©¤\x12ô~¦\
+                  \x1e²þ¹`ÚàËJÈÒ'û9ï×\r§Wx»,¸õÕÎSñ±\x1c\x1dä?ÃQ<y-\tc¤\x01gCn>ÑÒ\rl\x11WiòÅ9id¥\x1a\x01Y_ý^§\
+                  \\\x14\x17\x05e¥M\x13+¶Gk±ìKdb¡ì\x03¬H×r¡¤zó¦ôJ\x1e0tß-\x13Ý2Ù\e_×+xÌî6Væ÷¯R)í\x1fTÔª\x03ØÿÀw\
+                  ÓMåSM'|·ßÉk°Ú\bK,¾±PÛüc¡vã!½ æ\x04\x17ªä|²?S Ô6\fÀËØùp{\x1dQ@sôØ\x14/»­¦°ò\x01»U7u:¿\
+                  \x11ÔÖÂ¯A;\x1fÕQúv!\rÍ;² ­3&©\\\x0eµâÖô¬ÞØ,O4²\r§\faEÌ1¡Õõp3f!À©ìÒ|Y¼eN9Oî\x06[fÍ4ÏD@uEÄ\
+                  l×Eï½®ÿÞi©H´]^KIrzøÒ­ÛÊ`?÷ÒÊ?¾(ìD|G\r×Çc÷½ÞqEM¢47Ð(\x13\x16à\x1cyi½+)¶õMrSCÎáöx§¢,a¿)LÂ1I\
+                  \"2HG«ÕuöRg®7\vï#º3Ýµò\tAXêëúéÝbd\x06Ê¸DÒ.7\x15%?ò¿Æïì÷S%'ÄÎÕý\x13ÂÈD§£¼@\x02\x12DOJ»ú\x12\
+                  ¿}Gí¼\x01
+
+                  \x04ÁåÒ¬¡^¿mv¨GÌ\x04Eè``ÖV¥Ì\x18Õ¢ú¡³ß\x01\x16\x0féÆFØê+â,ÐgpªØ£Û9Xº\x14ÕûÝËïÃ\x1e*\x0eÀ\e¼pùÅ\
+                  \x0e@\x15PuWC\x0fÄ\x02âº96Ý^7Mòd¬¡÷ÞI\bs£\x18rs\x05ßÝ÷Päâ\r1\x0fÖeÄk³-¤âÖhêñ.Á\x16-L_bØÌ\
+                  \x01Ì\b´\x11BÆtßD(\a÷WIH*·\"ÎQ-\x02l\x03lUX¼O´rï¿äÃöæT\x04qwêo\x1fÁ\x05Mòt;Î÷\x10×^CýE\eÚ´=\
+                  ìqjJ=aÆõ\x1d\x03\x02Ôa¸Ki
+
+                  \x1fínaý/nó\x1c½\x06ZÑ-R'Jù\x0e-}1I}Ç9Û[!¬÷îô)Øß½9ÀÙÄýÞ­Ñß8³\x04\\\x18ôn\bô·?\x1d«RÒ\x0f¿QCyÂ\x17\
+                  \x01ª³¦3~G\x1ao?\bu6úë,ÏwR²#ª\x06\x12´g|dè,ã\x04R0\x05ÆW
+                  5Á]\00|ö  =Ï\aRÖyiáÉI°«jiH©®*2\e,#è\x1c2\0ðþ¼þb^BÛã\x17¬}¾\f8ÉV_¤Ð\x05\x16\x05ö\x04ª¯d«PµÌb:¶\
+                  \x1ec\x12TdØ`\x19qiiÒð>¨7ìò>.TÍÄ³\x04TIS'«Î#Lþ \x05¼\bC}6h_>\eÓÖaAMÌ}éØðì:J@T½ÏÿCG9®³|Ì\
+                  Ô-\x17\x1f)?D\x13Ûðä@@è§j\x063³Kö\a\x0e\x13+dJÇ'Ñ¥Ï«N/p¥ÈI|\x01ms¯ñÉ?5{òS\x0fÎcuÒddÍ
+
+                  G+Áef\x1cr
+
+                  _w=(ö\x17¨³;ò\x1cª¿I(Z¾8Y\x03ÒÎO\x18ßø`±K5\vtÃ¯:²zW0'ÐWÑO#óg¦<ç¡Ï{QÛ\0\x12¤Ø5)pëÔ\x15\x0e\f\
+                  \a9g±\x0e0÷)Çgß\x11Òå3\x17Ð,ÑzG;Ó\x05q³ºÜ0ß\\\x17\x10}á¦j\"ÉNwPfý\"ëRVÓT\aøÃêkßS\x10,x[ÃZ\
+                  \x18y~k]ÊCÕÍüñ2Ã2F­ËÒ©ãä!\e«¿`-ÍyõÆA\03\x14
+
+                  Ì_ï7Qßd\0?Øò¤ò9¥\x03'EÏ>\"ÄZ»b\x17´*ËÃ\x0eô\x14×­H¯t|1$hv\x15\x1d{I~r0Å¾\e$\x11Ï-ÀÊ\
+                  \x1d¯ö'\x1e$¾ôèÀ×^Ï£\x18¬ \x1f½Eé©mî\a\x13`\x02¸N¼ñm¤eöæ´nµ%451Ü÷\t«öÛw)ùwiA¥Ã\r0ú\x06\
+                  \x17*ã·\x06%²Íu³çiäé>üÚyKX:ã\rì°hâ\0yá$?MÌªh\x14\x1e}tà25ÿWÖÒU\x1f
+
+                  p<3_Irt»
+
+                  ¿³-3\x05p\rô
+                  ­ëmg{\bâ`XHÐè<º¤s#ú¸\x0e\x10úö¯®à*çå\r\x0epôøfy¼¯N¿T=\bnÍ_\x02\x0eïFÕ\x17\x0féyiW ¯\x17,\té\
+                  zò\x18\x02(6_àD^úouÁë`Y\vò\x02´ßè\tÀ¸\x11\x15éN²´ÓÐËØâ\x1ag¼îÞCø5
+                  G\x02kAÒÓyÈä¹\v¸´ÒÊ¥ÕÊrº\tÜ\x19\x05ùïfÃ\x06ñ¦-¶(±W&ßB]\x1d\e¤O!¢Õ\v#IZñÕ÷öÜ\x18ø£\0\x1c\f\
+                  \x10§½ûeýÌ\x19N\x18 ?h´/»cv³ÁDFx\x16¯gHrdÍp¸ü\t\b&knzÌêz;pQÐ´fU\x18|þû\x11ôsêÎ5Íi\tèµÌ\\\
+                  Ñ.béÇI¡`a ë\e5óá¦¢\b1¦Àâ`Î\x06å\x1fSrÅþr¥6P«/8/Oø¯ñÎè[sm\x03Va¡bª\x16Aó\"ñæÜlªDô×È°`\x0eP/\x190¼\
+                  dÒ¤èL6uQü¸'ÙJÑ\x04»êí\x1a¤/pn©UÉÂáY¨Ì
+                  ÿàJ\x03\ve¾þI\x1eUÎ\x1co`[S±èTI\x026\x1eám| *ð\x0f\x04¢Å¯MµYäd\x0exhI\eð\x12R\x10\x04à¯ñ¾\
+                  \x15tê¯´f0ã\r<ô
+                  ØvR2el\x1d\x17=|v~m@\\nR{´\x13Iºý}W4U¥«¢tG«m\x14C~\\±ÃM\x05]Èr\x10ÅÝñd\f}íþ\x14Ð|Ñ¨\x1aW\
+                  ØÐ\tw\x17ú´­%Õ0 ÚöÚíhÄmÈ\e\x19òÃ)ð¨ï·\x01\x13p%\x03çêÁÍºÎ@ðA\x06ï:OÉí\x15Ò;XuÁ\x1c¾Â\x18Ø¦¥:·öq\
+                  ÂÝÅgý5OÜâb&\ry!\x15öój~9õMà%ìeECá1ß%×ÀÏ©\v7\x18ì,×\x16ÐsyÔ\b²ÆÑ[\x12úÿ¶â\x11üIiéh*©«7Ð'Ø%¥®cx?N-\
+                  \x16+\x18ø`Q\x18YÑÒï!ñ³Ð2ô>Ò\x14úêxÄ?\f¡¼\x02o/h×\r\x1aWT~\x04¯?\x05O\x1açüc³lâ¾\0\e²Lâ)\x04\
+                  ÎÙ¦bÀ\fj4õ×©yñÉL¬³ÖÕ\x17MD²¶¢¨F·?
+
+                  Ë_à(æÈ­4ãÆ\x19u5¡Ê
+
+                  r`¯\x14,\x1e§L­¶±âç£¥
+                  ì\x1as\\$.¥ÜéÖÏKÔÕêUCÔ\x14\x1c\x13Ù^r\x1e´1}\x14s#\x11WQ\x19\x1eÄìÌ+Ókæµ²0ÓOàì¹ñ=Ë®E!°Q_>\
+                  \x19ÆÂôHx$â]D­7þecÄü1$[þ3tÒ_^àcQ\x01\x04Ä6Ù#|EH+\x14©)<$ù¸·\x18<\x1c\x02^@÷¤ÕeTi.ÑAsª£b\x1c\
+                  \x16§Áö\x06iDKtY\eQ%&Õ»h¿2ÿlp>j¿]»Ì(|®\x01\eh,J¤°iAâ(gÉíðJì8Ñ\x05 Ì\x12ý\\ SÜ\x10×ë¾ö¼\x1eXå\
+                  ÎÐÉZ»|\x1f/üõÙåTÜñ.ÃÕ}E¥ ñ\x15¹]7\x13%$BâÕè ï\x1e ËÂø*\f\x10²L\x13\x16¡jm+\r\x15\x13Õ¿Ø\\`ï\
+                  \tÈ\x17oq,\x1d\x19¾aÿdI\x10}Áz\x1a\x0fT\x14\t2ª!)zÎ0á½Á
+
+                  it;{?ÿ$¾¥*ùF¼\x10;'YßÈ\x1a][\x19åî 9ÝÌO\x03en¸Ôx\0hµKE\x1azèD¶9Ù\aV½\"»!Öæ?f\x01Ìw±R^?þe¡WË_*\
+                  \x1c»-^xDU²M\x1dB³\x03TÇÊJ©*m\x1aõ«çeùBKEu\x03hq\x02\x18/\x138\x1c1±t$\x16¯S£\x10âÊÀ¨2Rv5
+
+                  1\x19l\tøímKÝIDqçÞ&W½÷Y(rL{J®\x1a9£W\v8i½;\x17êµÚrfÔ8Ì!ù=\x0eê®ËÄR%©PÝïÌ¿ôû<É{áô7òáªä7@Ó§\
+                  Nm\x0ep^&7Äp¤5\a\x10ÚÜòÏ¦°\x17f/WÓz¹;;\"\rt\x01Ü<nùjÁEc_Û\x06\b\x1c24hùrå·x(ÊÎ$1»U`¸W:#ÃOÌÂÖd)ò\
+                  ?\x1cÕu4ÿ\eÅ\x0fnàEÙBè\x13ù\x1f½D\x04Ö\eic#Ù¤tù½n\x115huX¾·»8õÐBMÈ*S°¸R9O.8Ó¹\x1d\x1f´©îµùæÖ\
+                  -Ú«ý'õíuÂ.r¥ÔY¥CK\x1cXôÐóð0\x14\tS\x10IJ{ wrÄVÂéÉ[MÒÏí§²p3\vNa¹±\x19(0)´|Ç$Ïx$ydØ\aÎAC¾hý^
+                  w-ûL\x15\x06\\¿F×½\x144Ô´tðn\",ÔH-8¼\x16KÌE\eÿM£:oðnøÐÑL\tþÍÀ\x1fX\x13ã}£È´5
+                  \x06ÉÔøjOÆÏ\a\x1cT_õL%þ4\x13ÈzNmYã¿Ìd\x0ehé(£±cÀ%ú\x1cXÅ¯hª,róm\vÆb\x11õ¥\x04o\x1d'\x12µ\x12\
+                  \x02ilÂÇmqX\x19ç4¤û\r\x1eìl'4<¿T?Âf¹0~9Î×\x106Îõ¼\x0e)6\x0e©p-d{j&,Eì¦Ò$µÞ»¦\x17¡âbt\x1dè\
+                  T0|@Õaq¦Mù×H³=W®\x0eIC¡ ¤hvs`JÇ\\7¼Öñã[6\x11Aò\x0eÆT\x15Gà?'ïßè»ö»câAø®VÍóïfM6zýeØ0®\x02ù\
+                  \rKÛtHe+Hrëäë6M®\0}{\rÇv!YÕ1«GdSÞ\x04³\v?I7ñP(>É¦sèS´¸Ý~\v5x¯K\x05ú$dÑsHóUM'ýBo\x1enÔC¸E|B6^\
+                  CP^uzÓ]niÑ\x19\x04°,nk¹G#õ§õ°/ Ä«~ò¤\x13@bVy{üRçH;õôöº×@Hä\x14Í\tÜ\x1d\x1fõG;¸èÍ×cÉYW\x19ÛÚ©i\
+                  4¯Z\x11.-\b-\0¥\x03\x17Îå·URÝ\x1a/÷¯=åÄK}AG¸#\x05½\x1aØ\x1dðGÄ8w  ò¾¬SÄàT\x032þå!\x18¢\x03\
+                  ¯ÚË0#½\x1aRó¨f\x06ß^+ii²¼Æª\x1a£u!`}ªJ>/Y\x02°,´q%ùâ\x04_H¶\x02Å^\0mx\x1cr6\a0\x15(P?æº¶¼ÖÑ®/\
+                  U÷ª¿\x1ePäÃÂ6kÖUýdÅtË\x11Ðk]ÑX²rÑË\x1aWÞ¡B\x17È9Dï\x06U«¡õ¦czÓS{m»~\x050ürJà\bßVL1\x1c¨Ó\
+                  ¦H^¿Ê[xäÈz«k\x06\x0ew0·6Õ\x04­\ac5¸å(\x18>Í{U/\r)s#¢(8Ð`©0á´æ\vùSÐÐ\x1fSò\x10Ï\bdÚKÂÐðDÇ\
+                  p.°ÅÐn\x16ûJç©SPuf/Ù jOÃì¡tòdó·Æ÷3\x11O\eqvzp(ÃÏùA\fÛ\x17B#.oàðE)](\x06z\rj9Í#nçi\x12ÇtR¤\
+                  \rÑ4\x02 ÉÁi°.øÝ\eÃF;&ÓFÿ2A¯_¬bGÏRwlÅ³9GÎ®!a²ê\x0fÓDg\x04$ËÉ/BxæâqWCN-
+                  >xµd.hn¿Î\x15\0-æåÎ\x1d¤Á\x12
+
+                  @z^yÆ¯¦ûëXî\rël\0¬V\x1eST\vh\bJSö¨g\x03\x18É=èÐÿ¦£ß5Ð< x¼©Äë¨G£¯7P({\x17x'ATÍ\v¸#ÿ\t\x12\
+                  \x18V\x1eÞ Í_m
+
+                  Ô|XLì¢èèª\x1afèÁf¬×ÂÝWÏñÝ~<6*pÌ\v\b{Óð`îzDÄD¼Zí\x0fÏsí/¸Ð\x06+6\x1alü
+                  \x12Â]X\x18Ð5ü\x15ü«S¤8Ó5\x13àSQï¥ª±0.åÊ´ï\x06æþ\x03PÅ}¡Bl&[èì¸â\\-o\x1c\x1ajµyu~ªÏ\x05íäÒZ
+                  yãXè~ÃôÞËRLpï$yð@i·\x12pzú.93^Aùö§o3R¢\x13ÌÏ§è\x17KÔâiÏ\x19´¯ZhVA\x10Æi.Ë±§C1ÒÉ\0s\x02S#\
+                  =@'Ó>\x04ñ\x0eGÖñEâÍÓyïÚ¿É\f5+Ãõ³¿qø8È7l
+                  Ú¬§Óúm\x03;yé^\x10ææjy2f6ùß\x15ÜÙFís\x11¦\x1cJ´TÆ{3ÀÞú­\aDªö´RL%§U¥ÿ÷¡ÖÒý¡ó\x10\x14°C
+                  âaM\x19A\x13éH¥ÝëA\x02°e\x13?ÿíû?ä¼¨\x13s*Áäø\"¸kÇ;Kp$Þá©[\x18M@\"u[:Ü·bñ~J»G{I-°I\x11Ñ}ø3»¯\
+                  \x16\\uÙjFÉöß×\f01:£\x14zß1?ýÉþM¾ô¿}õ\x12_JO¸É\x19©¬ì\x18ôT\eï%ó?NQ3¦6ØÖ-ÖÓNá2ðRù2à%Á\
+                  À/t{elÌS==½:9'OÌnU\eGº\fºà¶­\0Ìm°§\vÞæ\x18njëI¾æ46J°À¥ß\x011Èù&ýp·Üp²°òõãàáÃ*hZ¬^\x13AÈo¼n«w\
+                  \x02ËCk£EúÈ\x10-êBô\\$O¸ú2fZ6²Ébý|Z\x12ÿ\tTól\x0f±5\bµ¨ïC^¢¡\\\tè\tdN\"¬\x1eäÃ÷\x1eã\"cBé_e\
+                  (\x1ci$Óó,\x1cP®ÌGxÆ\x03È§Hû\x12*È{Cî\x12`\x01ñ*»\x19[ù\x1c\x16¤_fõ¢Å/¤fcsIî¤\x101\x03Ñf³\
+                  ÐûàÀJª 6ûº©å¢¥¢°;Wä(`­º¼>Á¶mEò»ÖñÞÀü|ád\x1c\ruù
+
+                  0¶\x13­·Ö68\fJ(\x17÷é\x04I?>¯Þ)Ú`G³5ý{£ü*\x06Éë\x06\vÝQ\x10\x16OßÍXò\x19ñ\x16\x01óªê­\r\t¯\
+                  \x1f\x1a\r÷\x01ÍQÕÝW|èQ0KÑ\r¥mºPä \x1f[8äè\x10\x05\x02
+
+                  1]·(\r\x15ë\x02ÃD|cÀ\x19\x05y¤Ù\x0fiÀõxQjcô9VcõU¿íâ£\x16ÿ«eòíóªçá\x11ÿÛ¼hILH¥BÔ·ýÒ@s¥Òïª\
+                  \x15\x02\"\x04ª5ß©ê\x02ªl°VMnO\r¸ö3\x15\x12ßo\0ò¼\"}Ä\x1e\x19\x1c&¤à\f\x19±ÐvÅS@ÑÜ¦õ\x11bÊ£&ðü\
+                  \x0eÑY\x10WO2\x03\x19pxØ{\x03WÈ\fIÓq²Ã#ï33Æ7|k\f
+                  \x13(ÿ/ÏÞø\fþ°øuôý\x0eämØ¹ôP¶T·í%ê0ÙÁÏáÇ^/ç.I)¡
+
+                  ¾¸÷Á¤ö\x062ûÌSÙ¢Â³Ne:KÔÈ]È¥ER\x0e§ælNÔD¦¯x\x13$¿\tCH'.0ë9Ñê¨w­®B\x1f,ïà&¡\x1f»r4óªs\tëÏc_iãC\
+                  ³q·\vØ|ºªo\vâ
+                  3x\x11}caÌÇ÷y\x01Ó!\x0e;\x0f¯CX[ê¾í!­h»Ëzª:Fýåé©(/c¨,£á\x05ÃCÌE)KoÑèñÍA¯pE\x1fCð§+×.îv»Å\
+                  ­©õìÇ<ïtköÉo¬©\x0fwÿ®7[\x18&½Î6Sd=;\x17\x14ª\e\x02\x1cE*nÞ\a<ÛG¡å\x12\x1eXÄ7IØµûi©\aX\x044\
+                  ]{æ|\x02OtOü\x11(Ï)HÆ\x06ö\x1d\x1e7ú.AA"
+      responses:
+        "200":
+          description: Success
+  /v1/{id}/payment/iin:
+    get:
+      tags:
+        - v1
+      summary: GET /v1/{id}/payment/iin
+      operationId: get_v1_id_payment_iin
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: standard_checkout
+        - name: key_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rzp_test_RsCxluB0k2uAYV
+        - name: session_token
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 9B53926D9D2A4D5FBF35DFA681DD2AB7C846857224FACA4FAAD6C9E9765CB0484EBEC8673BCB917F2528DCFA964DDDB59CF30C52064FB7070DE42CF5D7C2DCF4B28244630C5684EE53F13858A40F7D2BC52A06DCA1ED18FF4AD43E9EF18C637B2902EEB872EE80DC
+        - name: iin
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "512035010"
+      responses:
+        "200":
+          description: Success
+  /v2/{id}/otp/create:
+    post:
+      tags:
+        - v2
+      summary: POST /v2/{id}/otp/create
+      operationId: post_v2_id_otp_create
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: standard_checkout
+        - name: key_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rzp_test_RsCxluB0k2uAYV
+        - name: session_token
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 9B53926D9D2A4D5FBF35DFA681DD2AB7C846857224FACA4FAAD6C9E9765CB0484EBEC8673BCB917F2528DCFA964DDDB59CF30C52064FB7070DE42CF5D7C2DCF4B28244630C5684EE53F13858A40F7D2BC52A06DCA1ED18FF4AD43E9EF18C637B2902EEB872EE80DC
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  contact: "%2B917428730894"
+                  otp_reason: save_card_v2
+      responses:
+        "200":
+          description: Success
+  /v1/{id}/payments/create/ajax:
+    post:
+      tags:
+        - v1
+      summary: POST /v1/{id}/payments/create/ajax
+      operationId: post_v1_id_payments_create_ajax
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: standard_checkout
+        - name: key_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rzp_test_RsCxluB0k2uAYV
+        - name: session_token
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 9B53926D9D2A4D5FBF35DFA681DD2AB7C846857224FACA4FAAD6C9E9765CB0484EBEC8673BCB917F2528DCFA964DDDB59CF30C52064FB7070DE42CF5D7C2DCF4B28244630C5684EE53F13858A40F7D2BC52A06DCA1ED18FF4AD43E9EF18C637B2902EEB872EE80DC
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  description: Luxury%20Products%20Purchase
+                  key_id: rzp_test_RsCxluB0k2uAYV
+                  contact: "%2B917428730894"
+                  email: test2mir786%40gmail.com
+                  currency: INR
+                  _%5Bcheckout_id%5D: SQBb9hk3aSAW9R
+                  _%5Bdevice.id%5D: 1.3d0256a291584c18ac80ed03defbe8938f88e1dd.1773290289124.11303549
+                  _%5Blibrary%5D: checkoutjs
+                  _%5Blibrary_src%5D: no-src
+                  _%5Bcurrent_script_src%5D: no-src
+                  _%5Bplatform%5D: browser
+                  _%5Benv%5D: ""
+                  _%5Bis_magic_script%5D: "false"
+                  _%5Bos%5D: windows
+                  _%5Breferer%5D: https%3A%2F%2Fstaging.stellnoir.com%2Fcheckout
+                  _%5Bshield%5D%5Bfhash%5D: 3d0256a291584c18ac80ed03defbe8938f88e1dd
+                  _%5Bshield%5D%5Btz%5D: "330"
+                  _%5Bdevice_id%5D: 1.3d0256a291584c18ac80ed03defbe8938f88e1dd.1773290289124.11303549
+                  _%5Bbuild%5D: "22888930478"
+                  _%5Brequest_index%5D: "0"
+                  amount: "10620000"
+                  order_id: order_SQBb9fv3OW7YDK
+                  user_risk_providers_token: W3sibmFtZSI6InNhcmRpbmUiLCJtZXRhZGF0YSI6eyJzZXNzaW9uX2lkIjoiU1FCYjloazNhU0FXOVIifX1d
+                  method: card
+                  card%5Bnumber%5D: "5120350100064537"
+                  card%5Bcvv%5D: "786"
+                  card%5Bname%5D: test2%20mir
+                  card%5Bexpiry_month%5D: "06"
+                  card%5Bexpiry_year%5D: "26"
+      responses:
+        "200":
+          description: Success
+  /build/assets/json/payment-status-generic-desktop.motion.671c9035.json:
+    get:
+      tags:
+        - build
+      summary: GET /build/assets/json/payment-status-generic-desktop.motion.671c9035.json
+      operationId: get_build_assets_json_payment_status_generic_desktop_motion_671c9035_json
+      responses:
+        "200":
+          description: Success
+  /v1/{id}/checkout/{id2}:
+    get:
+      tags:
+        - v1
+      summary: GET /v1/{id}/checkout/{id2}
+      operationId: get_v1_id_checkout_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: standard_checkout
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: preferred_methods
+        - name: key_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rzp_test_RsCxluB0k2uAYV
+        - name: session_token
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 9B53926D9D2A4D5FBF35DFA681DD2AB7C846857224FACA4FAAD6C9E9765CB0484EBEC8673BCB917F2528DCFA964DDDB59CF30C52064FB7070DE42CF5D7C2DCF4B28244630C5684EE53F13858A40F7D2BC52A06DCA1ED18FF4AD43E9EF18C637B2902EEB872EE80DC
+        - name: contact
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "+917428730894"
+        - name: amount
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10620000"
+        - name: country_code
+          in: query
+          required: false
+          schema:
+            type: string
+          example: in
+        - name: device_platform
+          in: query
+          required: false
+          schema:
+            type: string
+          example: browser
+        - name: device_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desktop
+        - name: p13n_filter
+          in: query
+          required: false
+          schema:
+            type: string
+          example: control
+        - name: order_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: order_SQBb9fv3OW7YDK
+      responses:
+        "200":
+          description: Success
+  /v1/customers/eligibility/otp/send:
+    post:
+      tags:
+        - v1
+      summary: POST /v1/customers/eligibility/otp/send
+      operationId: post_v1_customers_eligibility_otp_send
+      parameters:
+        - name: key_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: rzp_test_RsCxluB0k2uAYV
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  contact: "+917428730894"
+      responses:
+        "200":
+          description: Success
+  /checkout/razorpay/cancel-payment:
+    post:
+      tags:
+        - checkout
+      summary: POST /checkout/razorpay/cancel-payment
+      operationId: post_checkout_razorpay_cancel_payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CheckoutPostRequest"
+            examples:
+              fromHar:
+                value:
+                  razorpay_order_id: order_SQBb9fv3OW7YDK
+      responses:
+        "200":
+          description: Success
+  /cart/{id}:
+    put:
+      tags:
+        - cart
+      summary: PUT /cart/{id}
+      operationId: put_cart_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "139"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CartPutRequest"
+            examples:
+              fromHar:
+                value:
+                  quantity: 2
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - cart
+      summary: DELETE /cart/{id}
+      operationId: delete_cart_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "139"
+      responses:
+        "200":
+          description: Success
+  /trace/request-otp:
+    post:
+      tags:
+        - trace
+      summary: POST /trace/request-otp
+      operationId: post_trace_request_otp
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TracePostRequest"
+            examples:
+              fromHar:
+                value:
+                  order_reference: order_SQBleCgxpzPoq9
+                  email: test2mir786@gmail.com
+                  product_id: 17
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    RegisterPostRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        password:
+          type: string
+        password_confirmation:
+          type: string
+      required:
+        - name
+        - email
+        - phone
+        - password
+        - password_confirmation
+    LogoutPostRequest:
+      type: object
+      properties: {}
+      required: []
+    LoginPostRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        remember:
+          type: boolean
+      required:
+        - email
+        - password
+        - remember
+    WishlistPostRequest:
+      type: object
+      properties:
+        product_id:
+          type: integer
+        product_variant_id:
+          type: integer
+      required:
+        - product_id
+        - product_variant_id
+    CartPostRequest:
+      type: object
+      properties:
+        product_id:
+          type: integer
+        product_variant_id:
+          type: integer
+        quantity:
+          type: integer
+      required:
+        - product_id
+        - product_variant_id
+        - quantity
+    ShippingPostRequest:
+      type: object
+      properties:
+        to_pincode:
+          type: string
+      required:
+        - to_pincode
+    CheckoutPostRequest:
+      type: object
+      properties:
+        amount:
+          type: integer
+        currency:
+          type: string
+        order_data:
+          type: object
+          properties:
+            email:
+              type: string
+            phone:
+              type: string
+            newsletter:
+              type: boolean
+            firstName:
+              type: string
+            lastName:
+              type: string
+            addressLine1:
+              type: string
+            addressLine2:
+              type: string
+            pin:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            country:
+              type: string
+            giftNote:
+              type: string
+            shippingMethod:
+              type: string
+            paymentMethod:
+              type: string
+            total:
+              type: string
+          required:
+            - email
+            - phone
+            - newsletter
+            - firstName
+            - lastName
+            - addressLine1
+            - addressLine2
+            - pin
+            - city
+            - state
+            - country
+            - giftNote
+            - shippingMethod
+            - paymentMethod
+            - total
+      required:
+        - amount
+        - currency
+        - order_data
+    V1PostRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        mode:
+          type: string
+        events:
+          type: array
+          items:
+            type: object
+            properties:
+              event:
+                type: string
+              timestamp:
+                type: integer
+              checkout_id:
+                type: string
+              merchant_id:
+                type: string
+              event_version:
+                type: string
+              event_type:
+                type: string
+              build_id:
+                type: integer
+              platform:
+                type: integer
+              product:
+                type: integer
+              view:
+                type: integer
+              env:
+                type: integer
+              properties:
+                type: object
+                properties:
+                  options:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                      amount:
+                        type: integer
+                      currency:
+                        type: string
+                      name:
+                        type: string
+                      description:
+                        type: string
+                      order_id:
+                        type: string
+                      prefill.name:
+                        type: string
+                      prefill.email:
+                        type: string
+                      prefill.contact:
+                        type: string
+                      theme.color:
+                        type: string
+                    required:
+                      - key
+                      - amount
+                      - currency
+                      - name
+                      - description
+                      - order_id
+                      - prefill.name
+                      - prefill.email
+                      - prefill.contact
+                      - theme.color
+                  in_iframe:
+                    type: integer
+                required:
+                  - options
+                  - in_iframe
+            required:
+              - event
+              - timestamp
+              - checkout_id
+              - merchant_id
+              - event_version
+              - event_type
+              - build_id
+              - platform
+              - product
+              - view
+              - env
+              - properties
+      required:
+        - key
+        - mode
+        - events
+    V2PostRequest:
+      type: object
+      properties:
+        query:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+            required:
+              - resource
+        query_params:
+          type: object
+          properties:
+            device_id:
+              type: string
+            rtb_device_id:
+              type: string
+            amount:
+              type: integer
+            currency:
+              type: string
+            option_currency:
+              type: string
+            truecaller:
+              type: boolean
+            qr_required:
+              type: boolean
+            checkout_id:
+              type: string
+            library:
+              type: string
+            platform:
+              type: string
+            referrer_domain:
+              type: string
+            order_id:
+              type: string
+          required:
+            - device_id
+            - rtb_device_id
+            - amount
+            - currency
+            - option_currency
+            - truecaller
+            - qr_required
+            - checkout_id
+            - library
+            - platform
+            - referrer_domain
+            - order_id
+        action:
+          type: string
+      required:
+        - query
+        - query_params
+        - action
+    CartPutRequest:
+      type: object
+      properties:
+        quantity:
+          type: integer
+      required:
+        - quantity
+    TracePostRequest:
+      type: object
+      properties:
+        order_reference:
+          type: string
+        email:
+          type: string
+        product_id:
+          type: integer
+      required:
+        - order_reference
+        - email
+        - product_id
