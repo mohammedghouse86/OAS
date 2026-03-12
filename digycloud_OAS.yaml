@@ -1,0 +1,828 @@
+openapi: 3.0.3
+info:
+  title: Digycloud App
+  version: 1.0.0
+servers:
+  - url: https://87z71f2mxj.execute-api.us-west-2.amazonaws.com
+tags:
+  - name: prod
+paths:
+  /prod/auth/signin:
+    post:
+      tags:
+        - prod
+      summary: POST /prod/auth/signin
+      operationId: post_prod_auth_signin
+      parameters:
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdPostRequest"
+            examples:
+              fromHar:
+                value:
+                  captchaToken: ""
+                  staySignIn: true
+      responses:
+        "200":
+          description: Success
+  /prod/roles/get-roles:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/roles/get-roles
+      operationId: get_prod_roles_get_roles
+      parameters:
+        - name: is_org_admin
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /prod/projects/get-projects:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/projects/get-projects
+      operationId: get_prod_projects_get_projects
+      parameters:
+        - name: project_status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: activated
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: search_text
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: filter_text
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5"
+        - name: sorting_key
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt
+        - name: sorting_order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: descending
+        - name: last_evaluate_key
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "null"
+      responses:
+        "200":
+          description: Success
+  /prod/users/{id}/projects:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/users/{id}/projects
+      operationId: get_prod_users_id_projects
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: db2df08a-5272-4307-a858-051da41737be
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "100"
+        - name: search_text
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: filter_text
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: last_evaluate_key
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /prod/profile-picture:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/profile-picture
+      operationId: get_prod_profile_picture
+      responses:
+        "200":
+          description: Success
+  /prod/auth/get-profile:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/auth/get-profile
+      operationId: get_prod_auth_get_profile
+      parameters:
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /prod/create-pdf:
+    post:
+      tags:
+        - prod
+      summary: POST /prod/create-pdf
+      operationId: post_prod_create_pdf
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdPostRequest"
+            examples:
+              fromHar:
+                value:
+                  data:
+                    filterOptions: []
+                    OverviewCardData:
+                      - title: Pass
+                        value: 0
+                      - title: Failed
+                        value: 0
+                      - title: Aborted
+                        value: 0
+                      - title: In Progress
+                        value: 0
+                    filteredDate:
+                      label: Date Range
+                      dateRange:
+                        from: 2026-03-10T09:38:15.181Z
+                        to: 2026-03-12T09:38:15.181Z
+                      valueforHome: 2d
+                    testSuites: []
+                    pageUrl: https://digycloud.digy4.com/test-suite?filterOptions=&page=1
+                    generatedTime: 12 Mar 2026 (15:09:19:21)
+                  type: TEST_SUITE
+      responses:
+        "200":
+          description: Success
+  /prod/dashboard:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/dashboard
+      operationId: get_prod_dashboard
+      parameters:
+        - name: search_text
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: search_key
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5"
+        - name: last_evaluate_key
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "null"
+        - name: sorting_key
+          in: query
+          required: false
+          schema:
+            type: string
+          example: createdAt
+        - name: sorting_order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: descending
+        - name: page_number
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /prod/dashboard/filter-list:
+    post:
+      tags:
+        - prod
+      summary: POST /prod/dashboard/filter-list
+      operationId: post_prod_dashboard_filter_list
+      parameters:
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdPostRequest"
+            examples:
+              fromHar:
+                value: {}
+      responses:
+        "200":
+          description: Success
+  /prod/auth/update-profile:
+    post:
+      tags:
+        - prod
+      summary: POST /prod/auth/update-profile
+      operationId: post_prod_auth_update_profile
+      parameters:
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdPostRequest"
+            examples:
+              fromHar:
+                value:
+                  firstName: workhubsq
+      responses:
+        "200":
+          description: Success
+  /prod/plans/current-plan:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/plans/current-plan
+      operationId: get_prod_plans_current_plan
+      parameters:
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /prod/project-list:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/project-list
+      operationId: get_prod_project_list
+      parameters:
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /prod/purge:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/purge
+      operationId: get_prod_purge
+      parameters:
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - prod
+      summary: PUT /prod/purge
+      operationId: put_prod_purge
+      parameters:
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdPutRequest"
+            examples:
+              fromHar:
+                value:
+                  days: 1
+                  type: storage-based
+                  percentage: 55
+                  project: dummmy
+      responses:
+        "200":
+          description: Success
+  /prod/projects/add-project:
+    post:
+      tags:
+        - prod
+      summary: POST /prod/projects/add-project
+      operationId: post_prod_projects_add_project
+      parameters:
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdPostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: P1
+                  line_of_business: B1
+                  team: Team1
+                  description: This is a new project
+                  comments: ""
+      responses:
+        "200":
+          description: Success
+  /prod/projects/{id}:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/projects/{id}
+      operationId: get_prod_projects_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 34408efc-b3f7-4a6a-8f08-c2693013dfc4
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - prod
+      summary: POST /prod/projects/{id}
+      operationId: post_prod_projects_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 34408efc-b3f7-4a6a-8f08-c2693013dfc4
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdPostRequest"
+            examples:
+              fromHar:
+                value:
+                  comments_updated: true
+                  comments: Remember
+      responses:
+        "200":
+          description: Success
+  /prod/projects/{id}/change-status:
+    put:
+      tags:
+        - prod
+      summary: PUT /prod/projects/{id}/change-status
+      operationId: put_prod_projects_id_change_status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2aa89af2-9f9d-42c2-9863-ffe6ba4164de
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdPutRequest"
+            examples:
+              fromHar:
+                value:
+                  status: deactivated
+      responses:
+        "200":
+          description: Success
+  /prod/projects/{id}/audit-logs:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/projects/{id}/audit-logs
+      operationId: get_prod_projects_id_audit_logs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2aa89af2-9f9d-42c2-9863-ffe6ba4164de
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5"
+        - name: last_evaluate_key
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "null"
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /prod/integrations/add-integration:
+    post:
+      tags:
+        - prod
+      summary: POST /prod/integrations/add-integration
+      operationId: post_prod_integrations_add_integration
+      parameters:
+        - name: isStripeNeeded
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: byoc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdPostRequest"
+            examples:
+              fromHar:
+                value:
+                  type: jira
+                  base_url: https://new.com
+                  xray_client_id: "12345"
+                  xray_client_secret: "67890"
+      responses:
+        "200":
+          description: Success
+  /prod/hub/metadata:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/hub/metadata
+      operationId: get_prod_hub_metadata
+      responses:
+        "200":
+          description: Success
+  /prod/hub:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/hub
+      operationId: get_prod_hub
+      responses:
+        "200":
+          description: Success
+  /prod/hub/get-options:
+    get:
+      tags:
+        - prod
+      summary: GET /prod/hub/get-options
+      operationId: get_prod_hub_get_options
+      responses:
+        "200":
+          description: Success
+  /prod/{id}:
+    post:
+      tags:
+        - prod
+      summary: POST /prod/{id}
+      operationId: post_prod_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: execute-graphql-query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProdPostRequest"
+            examples:
+              fromHar:
+                value:
+                  graphQLUrl: https://hub.digy4.com/
+                  username: ""
+                  password: ""
+                  query: "
+
+                    \t\t\t\t\t{
+
+                    \t\t\t\t\t\tsessionsInfo {
+
+                    \t\t\t\t\t\t\tsessions {
+
+                    \t\t\t\t\t\t\t\tid
+
+                    \t\t\t\t\t\t\t\tcapabilities
+
+                    \t\t\t\t\t\t\t\tstartTime
+
+                    \t\t\t\t\t\t\t\turi
+
+                    \t\t\t\t\t\t\t\tnodeId
+
+                    \t\t\t\t\t\t\t\tnodeUri
+
+                    \t\t\t\t\t\t\t\tsessionDurationMillis
+
+                    \t\t\t\t\t\t\t\tslot {
+
+                    \t\t\t\t\t\t\t\t\tid
+
+                    \t\t\t\t\t\t\t\t\tstereotype
+
+                    \t\t\t\t\t\t\t\t\tlastStarted
+
+                    \t\t\t\t\t\t\t\t\t__typename
+
+                    \t\t\t\t\t\t\t\t}
+
+                    \t\t\t\t\t\t\t\t__typename
+
+                    \t\t\t\t\t\t\t}
+
+                    \t\t\t\t\t\t\tsessionQueueRequests
+
+                    \t\t\t\t\t\t\t__typename
+
+                    \t\t\t\t\t\t}
+
+                    \t\t\t\t\t}
+
+                    \t\t\t\t"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ProdPostRequest:
+      type: object
+      properties:
+        captchaToken:
+          type: string
+        staySignIn:
+          type: boolean
+      required:
+        - captchaToken
+        - staySignIn
+    ProdPutRequest:
+      type: object
+      properties:
+        days:
+          type: integer
+        type:
+          type: string
+        percentage:
+          type: integer
+        project:
+          type: string
+      required:
+        - days
+        - type
+        - percentage
+        - project
