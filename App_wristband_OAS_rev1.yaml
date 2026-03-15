@@ -1,0 +1,1309 @@
+openapi: 3.0.3
+info:
+  title: Wristband App
+  version: 1.0.0
+servers:
+  - url: https://ghouse.dashboard.wristband.dev
+tags:
+  - name: api
+paths:
+  /api/v1/session-data:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/session-data
+      operationId: get_api_v1_session_data
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/{id2}
+      operationId: get_api_v1_applications_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: application-context
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,displayName,tenantVisibility
+        - name: include_predefined_permission_boundaries
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: type ne "PREDEFINED"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/{id2}
+      operationId: post_api_v1_applications_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: role-assignment-policy-data
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: defaultIdpUserSyncRoles,defaultSignupRoles
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}
+      operationId: get_api_v1_applications_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/custom-domains:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/custom-domains
+      operationId: get_api_v1_applications_id_custom_domains
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/tenants:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/tenants
+      operationId: get_api_v1_applications_id_tenants
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,type,name,displayName,logoUrl,status
+      responses:
+        "200":
+          description: Success
+  /api/v1/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/{id}
+      operationId: get_api_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: users-table-data
+        - name: entity_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: APPLICATION
+        - name: entity_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,applicationId,tenantId,identityProviderType,email,status,givenName,familyName,pictureUrl
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: invitationType eq "EMAIL" and status eq "PENDING_INVITE_ACCEPTANCE"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/{id}
+      operationId: post_api_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: identity-providers
+        - name: upsert
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  ownerId: dh2yr7byfzf5fgvr773r7vv6wq
+                  ownerType: APPLICATION
+                  name: wristband
+                  type: WRISTBAND
+                  status: DISABLED
+                  loginIdentifiers:
+                    - EMAIL
+                  loginFactors:
+                    - MAGIC_LINK
+                    - PASSWORD
+                  primaryLoginFactor: MAGIC_LINK
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/tenants/{id}/{id2}
+      operationId: get_api_v1_tenants_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: p2ytmfew5vdebbcevtozg5whqa
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: assignable-role-select-options
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/clients:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/clients
+      operationId: get_api_v1_applications_id_clients
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,type
+      responses:
+        "200":
+          description: Success
+  /api/v1/edit-user-data/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/edit-user-data/{id}
+      operationId: get_api_v1_edit_user_data_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: nbkfdzfkrbcapgv4yokpyawbvq
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/{id2}/{id3}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/{id2}/{id3}
+      operationId: get_api_v1_applications_id_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: refresh-token-table-data
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: nbkfdzfkrbcapgv4yokpyawbvq
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/{id2}/{id3}
+      operationId: post_api_v1_applications_id_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: auth-session-policies
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: cookiePersistenceType,idleSessionTimeout,absoluteSessionTimeout
+      responses:
+        "200":
+          description: Success
+  /api/v1/users/{id}/auth-sessions:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/users/{id}/auth-sessions
+      operationId: get_api_v1_users_id_auth_sessions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: nbkfdzfkrbcapgv4yokpyawbvq
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/users/{id}:
+    patch:
+      tags:
+        - api
+      summary: PATCH /api/v1/users/{id}
+      operationId: patch_api_v1_users_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: nbkfdzfkrbcapgv4yokpyawbvq
+        - name: replace_custom_metadata
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  status: INACTIVE
+      responses:
+        "200":
+          description: Success
+  /api/v1/clients:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/clients
+      operationId: post_api_v1_clients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  ownerType: APPLICATION
+                  ownerId: dh2yr7byfzf5fgvr773r7vv6wq
+                  name: OAuth_client-1
+                  type: MACHINE_TO_MACHINE
+                  grantTypes:
+                    - CLIENT_CREDENTIALS
+                  accessTokenLifetime: PT1440M
+      responses:
+        "200":
+          description: Success
+  /api/v1/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/{id}/{id2}
+      operationId: get_api_v1_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: edit-client-data
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: rqx4pkh2cbhwva5attitbwr27a
+      responses:
+        "200":
+          description: Success
+  /api/v1/clients/{id}:
+    patch:
+      tags:
+        - api
+      summary: PATCH /api/v1/clients/{id}
+      operationId: patch_api_v1_clients_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: rqx4pkh2cbhwva5attitbwr27a
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  name: OAuth_client-1
+                  description: c
+                  type: MACHINE_TO_MACHINE
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/{id2}/wristband/{id3}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/{id2}/wristband/{id3}
+      operationId: post_api_v1_applications_id_id2_wristband_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: identity-providers
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/{id2}/social/{id3}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/{id2}/social/{id3}
+      operationId: post_api_v1_applications_id_id2_social_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: identity-providers
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/roles:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/roles
+      operationId: get_api_v1_applications_id_roles
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,displayName,tenantVisibility
+        - name: include_predefined_roles
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: type eq "CUSTOM"
+      responses:
+        "200":
+          description: Success
+  /api/v1/roles:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/roles
+      operationId: post_api_v1_roles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  ownerType: APPLICATION
+                  ownerId: dh2yr7byfzf5fgvr773r7vv6wq
+                  name: "12"
+                  displayName: basic user
+                  tenantVisibility: ALL
+                  tenantVisibilityInclusionList: []
+      responses:
+        "200":
+          description: Success
+  /api/v1/roles/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/roles/{id}/{id2}
+      operationId: get_api_v1_roles_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: uasx5ksgofec5khib7udp3sape
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: permission-boundary-select-options
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,displayName
+        - name: application_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: entityType eq "USER"
+      responses:
+        "200":
+          description: Success
+  /api/v1/roles/{id}/permissions:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/roles/{id}/permissions
+      operationId: get_api_v1_roles_id_permissions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: uasx5ksgofec5khib7udp3sape
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,type,value
+      responses:
+        "200":
+          description: Success
+  /api/v1/roles/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/roles/{id}
+      operationId: get_api_v1_roles_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: uasx5ksgofec5khib7udp3sape
+      responses:
+        "200":
+          description: Success
+    patch:
+      tags:
+        - api
+      summary: PATCH /api/v1/roles/{id}
+      operationId: patch_api_v1_roles_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: uasx5ksgofec5khib7udp3sape
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  displayName: basic user
+                  description: this is the role for basic user
+                  permissionBoundaryId: hk77u7x4lzdqvpt4nlivypkzjq
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/permissions:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/permissions
+      operationId: get_api_v1_applications_id_permissions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,type,value,description,tenantVisibility,metadata
+        - name: include_predefined_permissions
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: type eq "CUSTOM"
+      responses:
+        "200":
+          description: Success
+  /api/v1/permissions:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/permissions
+      operationId: post_api_v1_permissions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  type: CUSTOM
+                  applicationId: dh2yr7byfzf5fgvr773r7vv6wq
+                  value: basic permission
+                  description: a
+                  tenantVisibility: NONE
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/mfa-policies/{id2}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/mfa-policies/{id2}
+      operationId: post_api_v1_applications_id_mfa_policies_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: enrollmentStrategy,allowedAuthFactors,totpSettings
+      responses:
+        "200":
+          description: Success
+  /api/v1/mfa-policies:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/mfa-policies
+      operationId: post_api_v1_mfa_policies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  ownerType: APPLICATION
+                  ownerId: dh2yr7byfzf5fgvr773r7vv6wq
+                  allowedAuthFactors: []
+                  enrollmentStrategy: OPTIONAL
+                  totpSettings:
+                    issuer: aa
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/custom-claims:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/custom-claims
+      operationId: get_api_v1_applications_id_custom_claims
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/signing-keys:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/signing-keys
+      operationId: get_api_v1_applications_id_signing_keys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/signing-keys/rotate:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/signing-keys/rotate
+      operationId: post_api_v1_applications_id_signing_keys_rotate
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/page-brandings/{id2}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/page-brandings/{id2}
+      operationId: post_api_v1_applications_id_page_brandings_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: pageBackgroundType,pageBackgroundColor,pageBackgroundImageUrl,panelBackgroundColor,panelTextColor,panelBorderRadiusPixels,panelBorderColor,panelBoxShadowEnabled,primaryButtonBackgroundColor,primaryButtonTextColor,primaryButtonBorderRadiusPixels,primaryButtonBorderColor,primaryButtonFocusColor,secondaryButtonBackgroundColor,secondaryButtonTextColor,secondaryButtonBorderRadiusPixels,secondaryButtonBorderColor,secondaryButtonFocusColor,inputBackgroundColor,inputTextColor,inputBorderRadiusPixels,inputBorderColor,inputFocusColor,inputIconColor,inputIconButtonHoverColor,linkColor,linkHoverColor,linkUnderlineAppearance,errorColor,successColor,logoUrl,logoHeightPixels,faviconUrl,websiteUrl,termsOfServiceUrl,privacyPolicyUrl,supportUrl,supportEmail
+        - name: application_signup_page_branding_fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: tenant_signup_page_branding_fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: application_login_page_branding_fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: tenant_login_page_branding_fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      responses:
+        "200":
+          description: Success
+  /api/v1/page-brandings:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/page-brandings
+      operationId: post_api_v1_page_brandings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  ownerType: APPLICATION
+                  ownerId: dh2yr7byfzf5fgvr773r7vv6wq
+                  pageBackgroundType: IMAGE
+                  pageBackgroundColor: "#FBFBFB"
+                  pageBackgroundImageUrl: ""
+                  panelBackgroundColor: "#FBFBFB"
+                  panelTextColor: "#0C0C0C"
+                  panelBorderRadiusPixels: 0
+                  panelBorderColor: "#FBFBFB"
+                  panelBoxShadowEnabled: false
+                  primaryButtonBackgroundColor: "#0C0C0C"
+                  primaryButtonTextColor: "#FFFFFF"
+                  primaryButtonBorderRadiusPixels: 6
+                  primaryButtonBorderColor: "#0C0C0C"
+                  primaryButtonFocusColor: "#00CC9A"
+                  secondaryButtonBackgroundColor: "#FFFFFF"
+                  secondaryButtonTextColor: "#0C0C0C"
+                  secondaryButtonBorderRadiusPixels: 6
+                  secondaryButtonBorderColor: "#0C0C0C"
+                  secondaryButtonFocusColor: "#00CC9A"
+                  inputBackgroundColor: "#FFFFFF"
+                  inputTextColor: "#0C0C0C"
+                  inputBorderRadiusPixels: 6
+                  inputBorderColor: "#C1C1C1"
+                  inputFocusColor: "#00CC9A"
+                  inputIconColor: "#626262"
+                  inputIconButtonHoverColor: "#E5E5E5"
+                  linkColor: "#00664D"
+                  linkHoverColor: "#00664D"
+                  linkUnderlineAppearance: ON_HOVER_ONLY
+                  errorColor: "#FF2E00"
+                  successColor: "#00CC9A"
+                  logoUrl: ""
+                  logoHeightPixels: 40
+                  faviconUrl: ""
+                  websiteUrl: ""
+                  termsOfServiceUrl: ""
+                  privacyPolicyUrl: ""
+                  supportUrl: ""
+                  supportEmail: ""
+                  applicationSignupPageBranding:
+                    sidePanel:
+                      layout: NONE
+                      type: IMAGE
+                      widthPercent: 50
+                      breakpointPixels: 992
+                      imageUrl: ""
+                      iframeSrcUrl: ""
+                  tenantSignupPageBranding:
+                    sidePanel:
+                      layout: NONE
+                      type: IMAGE
+                      widthPercent: 50
+                      breakpointPixels: 992
+                      imageUrl: ""
+                      iframeSrcUrl: ""
+                  applicationLoginPageBranding:
+                    sidePanel:
+                      layout: NONE
+                      type: IMAGE
+                      widthPercent: 50
+                      breakpointPixels: 992
+                      imageUrl: ""
+                      iframeSrcUrl: ""
+                  tenantLoginPageBranding:
+                    sidePanel:
+                      layout: NONE
+                      type: IMAGE
+                      widthPercent: 50
+                      breakpointPixels: 992
+                      imageUrl: ""
+                      iframeSrcUrl: ""
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/email-brandings/{id2}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/email-brandings/{id2}
+      operationId: post_api_v1_applications_id_email_brandings_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: primaryButtonBackgroundColor,primaryButtonTextColor,primaryButtonBorderRadiusPixels,primaryButtonBorderColor,logoUrl,logoAltText,logoWidthPixels,logoHeightPixels,supportEmail,websiteUrl,supportUrl,fromName,fromAddress,logoDisplayed
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/email-domains:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/email-domains
+      operationId: get_api_v1_applications_id_email_domains
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/email-policies/{id2}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/email-policies/{id2}
+      operationId: post_api_v1_applications_id_email_policies_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,emailType,actionLinkUrl,actionLinkLifetime,actionLinkLifetimeUnit
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/user-schemas/{id2}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/user-schemas/{id2}
+      operationId: post_api_v1_applications_id_user_schemas_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: dh2yr7byfzf5fgvr773r7vv6wq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: baseProfile.required
+      responses:
+        "200":
+          description: Success
+  /api/v1/user-schemas:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/user-schemas
+      operationId: post_api_v1_user_schemas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  ownerType: APPLICATION
+                  ownerId: dh2yr7byfzf5fgvr773r7vv6wq
+                  required:
+                    - email
+                    - familyName
+                    - fullName
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/tenants/{id}
+      operationId: get_api_v1_tenants_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: c5fb3u67obhezl7paigbs37e5m
+      responses:
+        "200":
+          description: Success
+  /api/v1/workspaces/{id}/applications:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/workspaces/{id}/applications
+      operationId: get_api_v1_workspaces_id_applications
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: duw4x4hwovditfydld4h2neklu
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,vanityDomain,displayName,isMultiTenant,environmentType,status,metadata.creationTime
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPatchRequest:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    ApiPostRequest:
+      type: object
+      properties:
+        ownerType:
+          type: string
+        ownerId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        grantTypes:
+          type: array
+          items:
+            type: string
+        accessTokenLifetime:
+          type: string
+      required:
+        - ownerType
+        - ownerId
+        - name
+        - type
+        - grantTypes
+        - accessTokenLifetime
