@@ -1,0 +1,579 @@
+openapi: 3.0.3
+info:
+  title: EdgeLabs App
+  version: 1.0.0
+servers:
+  - url: https://portal.edgelabs.ai
+tags:
+  - name: api
+paths:
+  /api/summary/tenant/changes:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/tenant/changes
+      operationId: get_api_summary_tenant_changes
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:37:00
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:37:00
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/notification/latest:
+    get:
+      tags:
+        - api
+      summary: GET /api/notification/latest
+      operationId: get_api_notification_latest
+      parameters:
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/notification/count-unread:
+    get:
+      tags:
+        - api
+      summary: GET /api/notification/count-unread
+      operationId: get_api_notification_count_unread
+      parameters:
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/users/role:
+    get:
+      tags:
+        - api
+      summary: GET /api/users/role
+      operationId: get_api_users_role
+      parameters:
+        - name: roles
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ROLE_USER,ROLE_TENANT_ADMIN
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          example: first_name,asc
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/settings/tenant:
+    get:
+      tags:
+        - api
+      summary: GET /api/settings/tenant
+      operationId: get_api_settings_tenant
+      parameters:
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/summary/highlights:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/highlights
+      operationId: get_api_summary_highlights
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/summary/incident-funnel:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/incident-funnel
+      operationId: get_api_summary_incident_funnel
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/summary/basic-incidents/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/basic-incidents/{id}
+      operationId: get_api_summary_basic_incidents_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: current-user-assigned
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/summary/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/{id}
+      operationId: get_api_summary_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: incidents-assigned
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/summary/basic-incidents:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/basic-incidents
+      operationId: get_api_summary_basic_incidents
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: severities
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Critical,High
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/summary/network-attacks:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/network-attacks
+      operationId: get_api_summary_network_attacks
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/agent-alerts/chart:
+    get:
+      tags:
+        - api
+      summary: GET /api/agent-alerts/chart
+      operationId: get_api_agent_alerts_chart
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/endpoint-alerts/chart:
+    get:
+      tags:
+        - api
+      summary: GET /api/endpoint-alerts/chart
+      operationId: get_api_endpoint_alerts_chart
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/summary/alerts/chart-type-ips:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/alerts/chart-type-ips
+      operationId: get_api_summary_alerts_chart_type_ips
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/summary/attacker-count:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/attacker-count
+      operationId: get_api_summary_attacker_count
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/summary/edges/state:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/edges/state
+      operationId: get_api_summary_edges_state
+      parameters:
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/summary/traffic-chart:
+    get:
+      tags:
+        - api
+      summary: GET /api/summary/traffic-chart
+      operationId: get_api_summary_traffic_chart
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:36:53
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:36:53
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/compliance/highlights:
+    get:
+      tags:
+        - api
+      summary: GET /api/compliance/highlights
+      operationId: get_api_compliance_highlights
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:37:34
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:37:34
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/security-scan/summary:
+    get:
+      tags:
+        - api
+      summary: GET /api/security-scan/summary
+      operationId: get_api_security_scan_summary
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:37:34
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:37:34
+        - name: periodDurationHours
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "24"
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/security-scan/events/categories/summary:
+    get:
+      tags:
+        - api
+      summary: GET /api/security-scan/events/categories/summary
+      operationId: get_api_security_scan_events_categories_summary
+      parameters:
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-22T09:37:34
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-03-23T09:37:34
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/compliance/checklist/cra/summary:
+    get:
+      tags:
+        - api
+      summary: GET /api/compliance/checklist/cra/summary
+      operationId: get_api_compliance_checklist_cra_summary
+      parameters:
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+  /api/compliance/checklist/nis2/summary:
+    get:
+      tags:
+        - api
+      summary: GET /api/compliance/checklist/nis2/summary
+      operationId: get_api_compliance_checklist_nis2_summary
+      parameters:
+        - name: tzOffsetMinutes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "330"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas: {}
