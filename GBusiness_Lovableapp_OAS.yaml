@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: NutanixTestDrive App
+  title: Business_Lovableapp App
   version: 1.0.0
 servers:
   - url: https://kgsgrguqkxqpgbrqxjbe.supabase.co
