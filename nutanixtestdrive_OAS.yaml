@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: NutanixTestDrive App
+  version: 1.0.0
+servers:
+  - url: https://cloud.nutanixtestdrive.com
+tags:
+  - name: api
+paths:
+  /api/v3/users/testdrives/start:
+    post:
+      tags:
+        - api
+      summary: POST /api/v3/users/testdrives/start
+      operationId: post_api_v3_users_testdrives_start
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: rashid5674@7t56gq.onmicrosoft.com
+                  tdtype: nkp
+      responses:
+        "200":
+          description: Success
+  /api/v3/users/testdrives:
+    post:
+      tags:
+        - api
+      summary: POST /api/v3/users/testdrives
+      operationId: post_api_v3_users_testdrives
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: rashid5674@7t56gq.onmicrosoft.com
+                  region: us
+                  tdtype: ncp
+                  referral_param: TD_Dashboard
+                  partner_tracking_key: ""
+                  accountid: ""
+      responses:
+        "200":
+          description: Success
+  /api/v3/users/{id}/testdrives:
+    get:
+      tags:
+        - api
+      summary: GET /api/v3/users/{id}/testdrives
+      operationId: get_api_v3_users_id_testdrives
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: active
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: rashid5674@7t56gq.onmicrosoft.com
+      responses:
+        "200":
+          description: Success
+  /api/v3/users/testdrives/extend:
+    post:
+      tags:
+        - api
+      summary: POST /api/v3/users/testdrives/extend
+      operationId: post_api_v3_users_testdrives_extend
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: rashid5674@7t56gq.onmicrosoft.com
+                  tdtype: ncp
+                  add_hours: 2
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPostRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        tdtype:
+          type: string
+      required:
+        - email
+        - tdtype
