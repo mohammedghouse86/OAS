@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: NutanixTestDrive App
+  version: 1.0.0
+servers:
+  - url: https://kgsgrguqkxqpgbrqxjbe.supabase.co
+tags:
+  - name: auth
+  - name: rest
+paths:
+  /auth/v1/logout:
+    post:
+      tags:
+        - auth
+      summary: POST /auth/v1/logout
+      operationId: post_auth_v1_logout
+      parameters:
+        - name: scope
+          in: query
+          required: false
+          schema:
+            type: string
+          example: global
+      responses:
+        "200":
+          description: Success
+  /auth/v1/token:
+    post:
+      tags:
+        - auth
+      summary: POST /auth/v1/token
+      operationId: post_auth_v1_token
+      parameters:
+        - name: grant_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: owner.group@demo.com
+                  password: Owner@2026!
+                  gotrue_meta_security: {}
+      responses:
+        "200":
+          description: Success
+  /rest/v1/profiles:
+    get:
+      tags:
+        - rest
+      summary: GET /rest/v1/profiles
+      operationId: get_rest_v1_profiles
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: user_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.b5e89326-ad5c-48da-a970-b31b6d4b4d22
+      responses:
+        "200":
+          description: Success
+  /rest/v1/rpc/{id}:
+    post:
+      tags:
+        - rest
+      summary: POST /rest/v1/rpc/{id}
+      operationId: post_rest_v1_rpc_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: get_user_roles_with_tenants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RestPostRequest"
+            examples:
+              fromHar:
+                value:
+                  _user_id: b5e89326-ad5c-48da-a970-b31b6d4b4d22
+      responses:
+        "200":
+          description: Success
+  /rest/v1/tenants:
+    get:
+      tags:
+        - rest
+      summary: GET /rest/v1/tenants
+      operationId: get_rest_v1_tenants
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: is_active
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.true
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name.asc
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    AuthPostRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        gotrue_meta_security:
+          type: object
+          properties: {}
+          required: []
+      required:
+        - email
+        - password
+        - gotrue_meta_security
+    RestPostRequest:
+      type: object
+      properties:
+        _user_id:
+          type: string
+      required:
+        - _user_id
