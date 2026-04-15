@@ -3,7 +3,7 @@ info:
   title: VulnBank App
   version: 1.0.0
 servers:
-  - url: https://vulnbank.org/api
+  - url: https://vulnbank.org
 tags:
   - name: api
   - name: beacon.min.js
