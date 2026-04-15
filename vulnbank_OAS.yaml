@@ -1,0 +1,485 @@
+openapi: 3.0.3
+info:
+  title: VulnBank App
+  version: 1.0.0
+servers:
+  - url: https://vulnbank.org/api
+tags:
+  - name: api
+  - name: beacon.min.js
+  - name: cdn-cgi
+  - name: css2
+  - name: dashboard
+  - name: login
+  - name: request_loan
+  - name: transactions
+  - name: transfer
+  - name: update_bio
+paths:
+  /dashboard:
+    get:
+      tags:
+        - dashboard
+      summary: GET /dashboard
+      operationId: get_dashboard
+      responses:
+        "200":
+          description: Success
+  /login:
+    get:
+      tags:
+        - login
+      summary: GET /login
+      operationId: get_login
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - login
+      summary: POST /login
+      operationId: post_login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginPostRequest"
+            examples:
+              fromHar:
+                value:
+                  username: joelmiller890321
+                  password: 71bu06,NV68r
+      responses:
+        "200":
+          description: Success
+  /cdn-cgi/rum:
+    post:
+      tags:
+        - cdn-cgi
+      summary: POST /cdn-cgi/rum
+      operationId: post_cdn_cgi_rum
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cdn-cgiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  memory:
+                    totalJSHeapSize: 9384821
+                    usedJSHeapSize: 8309089
+                    jsHeapSizeLimit: 4294967296
+                  resources: []
+                  referrer: https://vulnbank.org/login
+                  eventType: 1
+                  firstPaint: 580
+                  firstContentfulPaint: 580
+                  startTime: 1776242528379.5
+                  versions:
+                    fl: 2024.11.0
+                    js: 2026.2.0
+                    timings: 2
+                  pageloadId: c7184b65-1562-4598-8296-e76141e0fbf0
+                  location: https://vulnbank.org/dashboard
+                  nt: navigate
+                  timingsV2:
+                    nextHopProtocol: h3
+                    domainLookupStart: 8.200000017881393
+                    domainLookupEnd: 8.200000017881393
+                    connectStart: 8.200000017881393
+                    connectEnd: 8.200000017881393
+                    requestStart: 10.200000017881393
+                    responseStart: 463.40000000596046
+                    responseEnd: 620.5
+                    domInteractive: 622.3000000119209
+                    domComplete: 634.2000000178814
+                    loadEventStart: 634.2000000178814
+                    loadEventEnd: 634.2000000178814
+                    finalResponseHeadersStart: 463.40000000596046
+                    firstInterimResponseStart: 0
+                    transferSize: 7095
+                    decodedBodySize: 27747
+                  dt: ""
+                  siteToken: 33081947b1cc42c6af62c2c84d28a474
+                  st: 2
+      responses:
+        "200":
+          description: Success
+  /transfer:
+    post:
+      tags:
+        - transfer
+      summary: POST /transfer
+      operationId: post_transfer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransferPostRequest"
+            examples:
+              fromHar:
+                value:
+                  to_account: "458796321045"
+                  amount: "5000"
+                  description: ""
+      responses:
+        "200":
+          description: Success
+  /request_loan:
+    post:
+      tags:
+        - request_loan
+      summary: POST /request_loan
+      operationId: post_request_loan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Request_loanPostRequest"
+            examples:
+              fromHar:
+                value:
+                  amount: "500000"
+      responses:
+        "200":
+          description: Success
+  /api/virtual-cards/create:
+    post:
+      tags:
+        - api
+      summary: POST /api/virtual-cards/create
+      operationId: post_api_virtual_cards_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  card_limit: "500000"
+                  currency: USD
+                  card_type: standard
+      responses:
+        "200":
+          description: Success
+  /api/virtual-cards:
+    get:
+      tags:
+        - api
+      summary: GET /api/virtual-cards
+      operationId: get_api_virtual_cards
+      responses:
+        "200":
+          description: Success
+  /api/billers/by-category/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/billers/by-category/{id}
+      operationId: get_api_billers_by_category_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3"
+      responses:
+        "200":
+          description: Success
+  /api/bill-payments/create:
+    post:
+      tags:
+        - api
+      summary: POST /api/bill-payments/create
+      operationId: post_api_bill_payments_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  biller_id: 5
+                  amount: 1000
+                  payment_method: virtual_card
+                  description: Bill Payment
+                  card_id: 663
+      responses:
+        "200":
+          description: Success
+  /api/bill-payments/history:
+    get:
+      tags:
+        - api
+      summary: GET /api/bill-payments/history
+      operationId: get_api_bill_payments_history
+      responses:
+        "200":
+          description: Success
+  /transactions/{id}:
+    get:
+      tags:
+        - transactions
+      summary: GET /transactions/{id}
+      operationId: get_transactions_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "0278818310"
+      responses:
+        "200":
+          description: Success
+  /update_bio:
+    post:
+      tags:
+        - update_bio
+      summary: POST /update_bio
+      operationId: post_update_bio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Update_bioPostRequest"
+            examples:
+              fromHar:
+                value:
+                  bio: ""
+      responses:
+        "200":
+          description: Success
+  /beacon.min.js/{id}:
+    get:
+      tags:
+        - beacon.min.js
+      summary: GET /beacon.min.js/{id}
+      operationId: get_beacon_min_js_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: v8c78df7c7c0f484497ecbca7046644da1771523124516
+      responses:
+        "200":
+          description: Success
+  /css2:
+    get:
+      tags:
+        - css2
+      summary: GET /css2
+      operationId: get_css2
+      parameters:
+        - name: family
+          in: query
+          required: false
+          schema:
+            type: string
+          example: JetBrains Mono:wght@400;500;600;700
+        - name: display
+          in: query
+          required: false
+          schema:
+            type: string
+          example: swap
+      responses:
+        "200":
+          description: Success
+  /api/bill-categories:
+    get:
+      tags:
+        - api
+      summary: GET /api/bill-categories
+      operationId: get_api_bill_categories
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    Cdn-cgiPostRequest:
+      type: object
+      properties:
+        memory:
+          type: object
+          properties:
+            totalJSHeapSize:
+              type: integer
+            usedJSHeapSize:
+              type: integer
+            jsHeapSizeLimit:
+              type: integer
+          required:
+            - totalJSHeapSize
+            - usedJSHeapSize
+            - jsHeapSizeLimit
+        resources:
+          type: array
+          items:
+            type: string
+        referrer:
+          type: string
+        eventType:
+          type: integer
+        firstPaint:
+          type: integer
+        firstContentfulPaint:
+          type: integer
+        startTime:
+          type: number
+        versions:
+          type: object
+          properties:
+            fl:
+              type: string
+            js:
+              type: string
+            timings:
+              type: integer
+          required:
+            - fl
+            - js
+            - timings
+        pageloadId:
+          type: string
+        location:
+          type: string
+        nt:
+          type: string
+        timingsV2:
+          type: object
+          properties:
+            nextHopProtocol:
+              type: string
+            domainLookupStart:
+              type: number
+            domainLookupEnd:
+              type: number
+            connectStart:
+              type: number
+            connectEnd:
+              type: number
+            requestStart:
+              type: number
+            responseStart:
+              type: number
+            responseEnd:
+              type: number
+            domInteractive:
+              type: number
+            domComplete:
+              type: number
+            loadEventStart:
+              type: number
+            loadEventEnd:
+              type: number
+            finalResponseHeadersStart:
+              type: number
+            firstInterimResponseStart:
+              type: integer
+            transferSize:
+              type: integer
+            decodedBodySize:
+              type: integer
+          required:
+            - nextHopProtocol
+            - domainLookupStart
+            - domainLookupEnd
+            - connectStart
+            - connectEnd
+            - requestStart
+            - responseStart
+            - responseEnd
+            - domInteractive
+            - domComplete
+            - loadEventStart
+            - loadEventEnd
+            - finalResponseHeadersStart
+            - firstInterimResponseStart
+            - transferSize
+            - decodedBodySize
+        dt:
+          type: string
+        siteToken:
+          type: string
+        st:
+          type: integer
+      required:
+        - memory
+        - resources
+        - referrer
+        - eventType
+        - firstPaint
+        - firstContentfulPaint
+        - startTime
+        - versions
+        - pageloadId
+        - location
+        - nt
+        - timingsV2
+        - dt
+        - siteToken
+        - st
+    TransferPostRequest:
+      type: object
+      properties:
+        to_account:
+          type: string
+        amount:
+          type: string
+        description:
+          type: string
+      required:
+        - to_account
+        - amount
+        - description
+    Request_loanPostRequest:
+      type: object
+      properties:
+        amount:
+          type: string
+      required:
+        - amount
+    ApiPostRequest:
+      type: object
+      properties:
+        card_limit:
+          type: string
+        currency:
+          type: string
+        card_type:
+          type: string
+      required:
+        - card_limit
+        - currency
+        - card_type
+    Update_bioPostRequest:
+      type: object
+      properties:
+        bio:
+          type: string
+      required:
+        - bio
+    LoginPostRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
