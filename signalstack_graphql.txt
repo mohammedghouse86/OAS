@@ -1,0 +1,42 @@
+# Auto-generated from sample request/response captures
+# Note: This schema is best-effort; unknown referenced types are stubbed as scalars
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  account: String
+  Account: String @deprecated(reason: "operationName alias for root field 'account'")
+  accountStripePortalSession: String
+  AccountStripePortalSession: String @deprecated(reason: "operationName alias for root field 'accountStripePortalSession'")
+  actions(createdAtFrom: Float, limit: Int, name: String, search: String): String
+  Actions(createdAtFrom: Float, limit: Int, name: String, search: String): String @deprecated(reason: "operationName alias for root field 'actions'")
+  actionsOrderCounters(createdAtTo: Float!, isGroup: Boolean, isTest: Boolean): String
+  ActionsOrderCounters(createdAtTo: Float!, isGroup: Boolean, isTest: Boolean): String @deprecated(reason: "operationName alias for root field 'actionsOrderCounters'")
+  connectors: String
+  Connectors: String @deprecated(reason: "operationName alias for root field 'connectors'")
+  hooks(connectorKey: String): String
+  Hooks(connectorKey: String): String @deprecated(reason: "operationName alias for root field 'hooks'")
+  userPasscode: String
+  UserPasscode: String @deprecated(reason: "operationName alias for root field 'userPasscode'")
+  userTokens(isApp: Boolean): String
+  UserTokens(isApp: Boolean): String @deprecated(reason: "operationName alias for root field 'userTokens'")
+}
+
+type Mutation {
+  connectorActivate(credentials: [String], providerName: String!): String
+  ConnectorActivate(credentials: [String], providerName: String!): String @deprecated(reason: "operationName alias for root field 'connectorActivate'")
+  connectorCreate(providerName: String!): String
+  ConnectorCreate(providerName: String!): String @deprecated(reason: "operationName alias for root field 'connectorCreate'")
+  userTokenCreate(metadata: JSON): String
+  UserTokenCreate(metadata: JSON): String @deprecated(reason: "operationName alias for root field 'userTokenCreate'")
+}
+
+# ---- Auto-added scalar stubs for missing types ----
+scalar JSON
+scalar This
+scalar best
+scalar is
+# ---- End auto-added stubs ----
