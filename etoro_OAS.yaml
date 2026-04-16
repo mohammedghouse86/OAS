@@ -3,7 +3,7 @@ info:
   title: Etoro App
   version: 1.0.0
 servers:
-  - url: https://www.etoro.com/api/
+  - url: https://www.etoro.com
 tags:
   - name: Validate
   - name: _next
