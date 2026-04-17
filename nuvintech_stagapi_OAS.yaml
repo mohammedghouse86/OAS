@@ -1,0 +1,413 @@
+openapi: 3.0.3
+info:
+  title: Nuvintech Prod App
+  version: 1.0.0
+servers:
+  - url: https://legal.nuvintech.ai
+tags:
+  - name: analytics
+  - name: create_session
+  - name: document_list
+  - name: get_session
+  - name: list_sessions
+  - name: meetings
+  - name: text
+  - name: user
+  - name: "{id}"
+paths:
+  /stagapi/{id}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /stagapi/{id}
+      operationId: get_stagapi_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: jurisdiction_list
+        - name: org_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /stagapi/list_sessions:
+    post:
+      tags:
+        - list_sessions
+      summary: POST /stagapi/list_sessions
+      operationId: post_stagapi_list_sessions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/List_sessionsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  user_id: 165
+                  jurisdiction_id: 1
+      responses:
+        "200":
+          description: Success
+  /stagapi/analytics/dashboard:
+    get:
+      tags:
+        - analytics
+      summary: GET /stagapi/analytics/dashboard
+      operationId: get_stagapi_analytics_dashboard
+      parameters:
+        - name: user_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "165"
+      responses:
+        "200":
+          description: Success
+  /stagapi/get_session:
+    post:
+      tags:
+        - get_session
+      summary: POST /stagapi/get_session
+      operationId: post_stagapi_get_session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Get_sessionPostRequest"
+            examples:
+              fromHar:
+                value:
+                  user_id: 165
+                  session_id: 24504
+      responses:
+        "200":
+          description: Success
+  /stagapi/create_session:
+    post:
+      tags:
+        - create_session
+      summary: POST /stagapi/create_session
+      operationId: post_stagapi_create_session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Create_sessionPostRequest"
+            examples:
+              fromHar:
+                value:
+                  user_id: 165
+                  jurisdiction_id: 1
+      responses:
+        "200":
+          description: Success
+  /stagapi/document_list:
+    post:
+      tags:
+        - document_list
+      summary: POST /stagapi/document_list
+      operationId: post_stagapi_document_list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Document_listPostRequest"
+            examples:
+              fromHar:
+                value:
+                  admin_id: 104
+                  category_id: 2
+                  jurisdiction_id: 3
+      responses:
+        "200":
+          description: Success
+  /stagapi/meetings/list:
+    get:
+      tags:
+        - meetings
+      summary: GET /stagapi/meetings/list
+      operationId: get_stagapi_meetings_list
+      parameters:
+        - name: user_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "165"
+      responses:
+        "200":
+          description: Success
+  /stagapi/meetings/dashboard-stats/frequency:
+    get:
+      tags:
+        - meetings
+      summary: GET /stagapi/meetings/dashboard-stats/frequency
+      operationId: get_stagapi_meetings_dashboard_stats_frequency
+      parameters:
+        - name: user_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "165"
+        - name: period
+          in: query
+          required: false
+          schema:
+            type: string
+          example: weekly
+        - name: start_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-04-12
+        - name: end_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-04-18
+      responses:
+        "200":
+          description: Success
+  /stagapi/meetings/dashboard-stats/duration:
+    get:
+      tags:
+        - meetings
+      summary: GET /stagapi/meetings/dashboard-stats/duration
+      operationId: get_stagapi_meetings_dashboard_stats_duration
+      parameters:
+        - name: user_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "165"
+        - name: period
+          in: query
+          required: false
+          schema:
+            type: string
+          example: weekly
+        - name: start_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-04-12
+        - name: end_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-04-18
+      responses:
+        "200":
+          description: Success
+  /stagapi/meetings/chat/history/recent:
+    get:
+      tags:
+        - meetings
+      summary: GET /stagapi/meetings/chat/history/recent
+      operationId: get_stagapi_meetings_chat_history_recent
+      parameters:
+        - name: user_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "165"
+      responses:
+        "200":
+          description: Success
+  /stagapi/meetings/query:
+    post:
+      tags:
+        - meetings
+      summary: POST /stagapi/meetings/query
+      operationId: post_stagapi_meetings_query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MeetingsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  query: what doe NDA mean
+                  user_id: 165
+      responses:
+        "200":
+          description: Success
+  /stagapi/user/{id}:
+    get:
+      tags:
+        - user
+      summary: GET /stagapi/user/{id}
+      operationId: get_stagapi_user_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "165"
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - user
+      summary: PUT /stagapi/user/{id}
+      operationId: put_stagapi_user_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "165"
+      requestBody:
+        required: true
+        content:
+          multipart/form-data; boundary=----WebKitFormBoundaryY3vARI3kO6JhmSBG:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: "------WebKitFormBoundaryY3vARI3kO6JhmSBG\r
+
+                  Content-Disposition: form-data; name=\"first_name\"\r
+
+                  \r
+
+                  Omni\r
+
+                  ------WebKitFormBoundaryY3vARI3kO6JhmSBG\r
+
+                  Content-Disposition: form-data; name=\"last_name\"\r
+
+                  \r
+
+                  User\r
+
+                  ------WebKitFormBoundaryY3vARI3kO6JhmSBG\r
+
+                  Content-Disposition: form-data; name=\"requester_id\"\r
+
+                  \r
+
+                  165\r
+
+                  ------WebKitFormBoundaryY3vARI3kO6JhmSBG--\r\n"
+      responses:
+        "200":
+          description: Success
+  /stagapi/text/diff-documents:
+    post:
+      tags:
+        - text
+      summary: POST /stagapi/text/diff-documents
+      operationId: post_stagapi_text_diff_documents
+      requestBody:
+        required: true
+        content:
+          multipart/form-data; boundary=----WebKitFormBoundaryFAFUz4cckniXWZnC:
+            schema:
+              type: string
+            examples:
+              fromHar:
+                value: "------WebKitFormBoundaryFAFUz4cckniXWZnC\r
+
+                  Content-Disposition: form-data; name=\"file1\"; filename=\"sample.docx\"\r
+
+                  Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document\r
+
+                  \r
+
+                  \r
+
+                  ------WebKitFormBoundaryFAFUz4cckniXWZnC\r
+
+                  Content-Disposition: form-data; name=\"file2\"; filename=\"sample.docx\"\r
+
+                  Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document\r
+
+                  \r
+
+                  \r
+
+                  ------WebKitFormBoundaryFAFUz4cckniXWZnC--\r\n"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    List_sessionsPostRequest:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        jurisdiction_id:
+          type: integer
+      required:
+        - user_id
+        - jurisdiction_id
+    Get_sessionPostRequest:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        session_id:
+          type: integer
+      required:
+        - user_id
+        - session_id
+    Create_sessionPostRequest:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        jurisdiction_id:
+          type: integer
+      required:
+        - user_id
+        - jurisdiction_id
+    Document_listPostRequest:
+      type: object
+      properties:
+        admin_id:
+          type: integer
+        category_id:
+          type: integer
+        jurisdiction_id:
+          type: integer
+      required:
+        - admin_id
+        - category_id
+        - jurisdiction_id
+    MeetingsPostRequest:
+      type: object
+      properties:
+        query:
+          type: string
+        user_id:
+          type: integer
+      required:
+        - query
+        - user_id
