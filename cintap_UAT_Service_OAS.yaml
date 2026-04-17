@@ -3,7 +3,7 @@ info:
   title: Cintap UAT Service App
   version: 1.0.0
 servers:
-  - url: https://services.cintapcloud.com/
+  - url: https://services.cintapcloud.com
 tags:
   - name: announcements
   - name: fileType
