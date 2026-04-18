@@ -1,0 +1,902 @@
+openapi: 3.0.3
+info:
+  title: Veeclinic QA App
+  version: 1.0.0
+servers:
+  - url: https://platform-qa.veeone.io
+tags:
+  - name: appointment
+  - name: country
+  - name: facilities
+  - name: facility
+  - name: partnersite
+  - name: partnersites
+  - name: platform
+  - name: schedule
+  - name: specialist
+  - name: speciality
+  - name: state
+  - name: timezone
+  - name: user
+  - name: "{id}"
+paths:
+  /api/user/info:
+    get:
+      tags:
+        - user
+      summary: GET /api/user/info
+      operationId: get_api_user_info
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/platform/setting/common:
+    get:
+      tags:
+        - platform
+      summary: GET /api/platform/setting/common
+      operationId: get_api_platform_setting_common
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/user/setting:
+    get:
+      tags:
+        - user
+      summary: GET /api/user/setting
+      operationId: get_api_user_setting
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/user/roles/Clinic:
+    get:
+      tags:
+        - user
+      summary: GET /api/user/roles/Clinic
+      operationId: get_api_user_roles_Clinic
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/partnersite/facility/{id}:
+    get:
+      tags:
+        - partnersite
+      summary: GET /api/partnersite/facility/{id}
+      operationId: get_api_partnersite_facility_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "163"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/appointment/list/filtered/count:
+    post:
+      tags:
+        - appointment
+      summary: POST /api/appointment/list/filtered/count
+      operationId: post_api_appointment_list_filtered_count
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AppointmentPostRequest"
+            examples:
+              fromHar:
+                value:
+                  to: null
+                  from: null
+                  mrn: null
+                  patientLastName: null
+                  patientFirstName: null
+                  specialistName: null
+                  pageIndex: 0
+                  pageSize: 10
+                  isFilterOn: false
+                  partnersiteId: 163
+      responses:
+        "200":
+          description: Success
+  /api/appointment/statuses:
+    get:
+      tags:
+        - appointment
+      summary: GET /api/appointment/statuses
+      operationId: get_api_appointment_statuses
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/partnersites/get:
+    get:
+      tags:
+        - partnersites
+      summary: GET /api/partnersites/get
+      operationId: get_api_partnersites_get
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/timezone/{id}:
+    get:
+      tags:
+        - timezone
+      summary: GET /api/timezone/{id}
+      operationId: get_api_timezone_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/facilities/groups/{id}:
+    get:
+      tags:
+        - facilities
+      summary: GET /api/facilities/groups/{id}
+      operationId: get_api_facilities_groups_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "163"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/facility/specialties/group/{id}:
+    get:
+      tags:
+        - facility
+      summary: GET /api/facility/specialties/group/{id}
+      operationId: get_api_facility_specialties_group_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "249"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/{id}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /api/{id}
+      operationId: get_api_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: specialist-outpatient-schedules
+        - name: year
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2026"
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "4"
+        - name: specialityId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5"
+        - name: partnerSiteID
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "163"
+        - name: facilityGroupId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "249"
+        - name: utcOffset
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "-18000"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+        - name: day
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "30"
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - "{id}"
+      summary: PUT /api/{id}
+      operationId: put_api_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: specialist-outpatient-schedules
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/{id}PutRequest"
+            examples:
+              fromHar:
+                value:
+                  facilityId: null
+                  facilityGroupId: 249
+                  specialityId: 5
+                  year: 2026
+                  month: 4
+                  day: "17"
+                  details:
+                    - id: 0
+                      isDeleted: false
+                      specialityId: 5
+                      specialistId: 980
+                      specialistFirstName: Ali
+                      specialistLastName: Hamza
+                      specialistFullName: Hamza Ali
+                      specialistMobileNumber: ""
+                      shiftId: 1
+                      shiftStartTime: 2026-04-17T05:00:00.000Z
+                      shiftEndTime: 2026-04-17T06:00:00.000Z
+                      shiftStartTimeInUTC: 2026-04-17T05:00:00.000Z
+                      shiftEndTimeInUTC: 2026-04-17T06:00:00.000Z
+                      utcDSTOffsetInSeconds: -18000
+                      timeZoneDescription: UTC
+                  inTimeZone: UTC
+                  utcOffset: -18000
+      responses:
+        "200":
+          description: Success
+  /api/facility/patient/list:
+    post:
+      tags:
+        - facility
+      summary: POST /api/facility/patient/list
+      operationId: post_api_facility_patient_list
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FacilityPostRequest"
+            examples:
+              fromHar:
+                value:
+                  pageIndex: 1
+                  pageSize: 10
+                  filter: ""
+      responses:
+        "200":
+          description: Success
+  /api/speciality/all:
+    get:
+      tags:
+        - speciality
+      summary: GET /api/speciality/all
+      operationId: get_api_speciality_all
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/appointment/history/v2/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}/{id9}:
+    get:
+      tags:
+        - appointment
+      summary: GET /api/appointment/history/v2/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}/{id9}
+      operationId: get_api_appointment_history_v2_id_id2_id3_id4_id5_id6_id7_id8_id9
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "163"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "0"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "2026"
+        - name: id4
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "4"
+        - name: id5
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18"
+        - name: id6
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "7"
+        - name: id7
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "0"
+        - name: id8
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "5"
+        - name: id9
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "0"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/appointment/history/count/v2/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}:
+    get:
+      tags:
+        - appointment
+      summary: GET /api/appointment/history/count/v2/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}
+      operationId: get_api_appointment_history_count_v2_id_id2_id3_id4_id5_id6_id7
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "163"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "0"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "2026"
+        - name: id4
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "4"
+        - name: id5
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "18"
+        - name: id6
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "7"
+        - name: id7
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "0"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/state/{id}:
+    get:
+      tags:
+        - state
+      summary: GET /api/state/{id}
+      operationId: get_api_state_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /api/country/all:
+    get:
+      tags:
+        - country
+      summary: GET /api/country/all
+      operationId: get_api_country_all
+      responses:
+        "200":
+          description: Success
+  /api/user/profile:
+    patch:
+      tags:
+        - user
+      summary: PATCH /api/user/profile
+      operationId: patch_api_user_profile
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  id: 13138
+                  firstName: Test User ab
+                  lastName: Nurse
+                  mobileNumber: "+12015553546"
+                  address: US
+                  address1: Tactics
+                  cityName: hyd
+                  countryId: 1
+                  zipCode: "22435"
+                  stateId: 64
+      responses:
+        "200":
+          description: Success
+  /api/appointment/action/history/{id}:
+    get:
+      tags:
+        - appointment
+      summary: GET /api/appointment/action/history/{id}
+      operationId: get_api_appointment_action_history_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "12101"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/schedule/master/shifts:
+    get:
+      tags:
+        - schedule
+      summary: GET /api/schedule/master/shifts
+      operationId: get_api_schedule_master_shifts
+      parameters:
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/specialist/available:
+    get:
+      tags:
+        - specialist
+      summary: GET /api/specialist/available
+      operationId: get_api_specialist_available
+      parameters:
+        - name: specialityId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5"
+        - name: facilityId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "null"
+        - name: facilityGroupId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "249"
+        - name: specialistName
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "null"
+        - name: year
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2026"
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "3"
+        - name: day
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "30"
+        - name: pageIndex
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "5"
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: outpatient
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+  /api/facility/patient/appointments/list/{id}:
+    get:
+      tags:
+        - facility
+      summary: GET /api/facility/patient/appointments/list/{id}
+      operationId: get_api_facility_patient_appointments_list_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "13452"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: v
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "2.1"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    AppointmentPostRequest:
+      type: object
+      properties:
+        to:
+          nullable: true
+        from:
+          nullable: true
+        mrn:
+          nullable: true
+        patientLastName:
+          nullable: true
+        patientFirstName:
+          nullable: true
+        specialistName:
+          nullable: true
+        pageIndex:
+          type: integer
+        pageSize:
+          type: integer
+        isFilterOn:
+          type: boolean
+        partnersiteId:
+          type: integer
+      required:
+        - to
+        - from
+        - mrn
+        - patientLastName
+        - patientFirstName
+        - specialistName
+        - pageIndex
+        - pageSize
+        - isFilterOn
+        - partnersiteId
+    FacilityPostRequest:
+      type: object
+      properties:
+        pageIndex:
+          type: integer
+        pageSize:
+          type: integer
+        filter:
+          type: string
+      required:
+        - pageIndex
+        - pageSize
+        - filter
+    UserPatchRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        mobileNumber:
+          type: string
+        address:
+          type: string
+        address1:
+          type: string
+        cityName:
+          type: string
+        countryId:
+          type: integer
+        zipCode:
+          type: string
+        stateId:
+          type: integer
+      required:
+        - id
+        - firstName
+        - lastName
+        - mobileNumber
+        - address
+        - address1
+        - cityName
+        - countryId
+        - zipCode
+        - stateId
+    "{id}PutRequest":
+      type: object
+      properties:
+        facilityId:
+          nullable: true
+        facilityGroupId:
+          type: integer
+        specialityId:
+          type: integer
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              isDeleted:
+                type: boolean
+              specialityId:
+                type: integer
+              specialistId:
+                type: integer
+              specialistFirstName:
+                type: string
+              specialistLastName:
+                type: string
+              specialistFullName:
+                type: string
+              specialistMobileNumber:
+                type: string
+              shiftId:
+                type: integer
+              shiftStartTime:
+                type: string
+              shiftEndTime:
+                type: string
+              shiftStartTimeInUTC:
+                type: string
+              shiftEndTimeInUTC:
+                type: string
+              utcDSTOffsetInSeconds:
+                type: integer
+              timeZoneDescription:
+                type: string
+            required:
+              - id
+              - isDeleted
+              - specialityId
+              - specialistId
+              - specialistFirstName
+              - specialistLastName
+              - specialistFullName
+              - specialistMobileNumber
+              - shiftId
+              - shiftStartTime
+              - shiftEndTime
+              - shiftStartTimeInUTC
+              - shiftEndTimeInUTC
+              - utcDSTOffsetInSeconds
+              - timeZoneDescription
+        inTimeZone:
+          type: string
+        utcOffset:
+          type: integer
+      required:
+        - facilityId
+        - facilityGroupId
+        - specialityId
+        - year
+        - month
+        - day
+        - details
+        - inTimeZone
+        - utcOffset
