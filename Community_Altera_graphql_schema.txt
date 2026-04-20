@@ -1,0 +1,538 @@
+# Auto-generated from sample request/response captures
+# Note: This schema is best-effort; unknown referenced types are stubbed as scalars
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  AdminNotePolicy: String
+  Analytics(eventsInput: AnalyticsInputEventsInput): String
+  AppContext(useCommunityPolicies: Boolean): String
+  AuthUser: String
+  AvatarAssetsForTheme(themeId: ID): String
+  BadgeProperties: String
+  BadgeSets: String
+  CanCloseAccountPolicies(id: ID): String
+  canRemoveTagList(messageId: ID): String
+  CanSwitchUser: String
+  CanUseNotifications: String
+  CategoryDetails(canManageFeaturedWidget: Boolean, canUpdateFeaturedWidget: Boolean, id: ID, useCanAccessCWAAuthorNotificationSetting: Boolean, useCanAccessCWAEditorNotificationSetting: Boolean, useCanAccessCWAPublisherNotificationSetting: Boolean, useCanAddMedia: Boolean, useCanAdminNode: Boolean, useCanAdminPermissions: Boolean, useCanAlwaysViewSpamMessages: Boolean, useCanArchiveMessage: Boolean, useCanBulkImportUserRoles: Boolean, useCanBypassFloodControl: Boolean, useCanCreateRoles: Boolean, useCanDeleteNode: Boolean, useCanEscalateMessage: Boolean, useCanEscalateOwnMessage: Boolean, useCanManageAbuseContent: Boolean, useCanManageDrafts: Boolean, useCanMentionMessages: Boolean, useCanMentionNodes: Boolean, useCanMentionUsers: Boolean, useCanModerateNode: Boolean, useCanMoveNode: Boolean, useCanReadNode: Boolean, useCanSendExternalOccasionInvites: Boolean, useCanSendNotificationForMessageAction: Boolean, useCanSendOccasionInvites: Boolean, useCanStartArticleBlog: Boolean, useCanStartOrEditArticleTkb: Boolean, useCanSubscribe: Boolean, useCanUpdateNode: Boolean, useCanViewAllDraftsBlog: Boolean, useCanViewAllDraftsTkb: Boolean, useCanViewAppealsDashboard: Boolean, useCanViewDrafts: Boolean, useCanViewEscalations: Boolean, useCanViewMessageHistory: Boolean, useCanViewRoles: Boolean, useCanViewSpamDashBoard: Boolean, useCanViewUserRoles: Boolean, useCategoryPolicies: Boolean, useManageArticleBlog: Boolean, useManageArticleTkb: Boolean): String
+  CommunityCookieProperties: String
+  CommunityLanguageProperties: String
+  CommunitySearchProperties: String
+  CommunitySsoProperties: String
+  CommunityUserCount(constraints: CommunityUserCountInputConstraints): String
+  ContextMessage(attachmentsAfter: String, attachmentsFirst: Int, id: ID, tagsAfter: String, tagsFirst: Int, truncateBodyLength: Int, useAcceptedSolutionButton: Boolean, useAppealData: Boolean, useAttachments: Boolean, useAuthorLogin: Boolean, useAuthorRank: Boolean, useAvatar: Boolean, useBody: Boolean, useContentWorkflow: Boolean, useHoverCard: Boolean, useImmediateParent: Boolean, useMessageRepliesStatus: Boolean, useMessageStatus: Boolean, useModerationData: Boolean, useNodeAncestors: Boolean, useOccasionData: Boolean, useParentTree: Boolean, usePreviewMedia: Boolean, useRawBody: Boolean, useRawTeaser: Boolean, useReadOnlyIcon: Boolean, useRepliesCount: Boolean, useRevision: Boolean, useSearchSnippet: Boolean, useSeoAttributes: Boolean, useSolvedBadge: Boolean, useTags: Boolean, useTextBody: Boolean, useTimeToRead: Boolean): String
+  ContextNode(childrenAfter: String, childrenConstraints: ContextNodeInputChildrenConstraints, childrenFirst: Int, childrenSorts: ContextNodeInputChildrenSorts, id: ID, useChildNodes: Boolean, useFullPageInfo: Boolean, useMembershipType: Boolean, useNodeAvatar: Boolean, useNodeDescription: Boolean, useNodeLatestActivityTime: Boolean, useNodeTopicsCount: Boolean, useNodeUnreadCount: Boolean, useTextDescriptionForNode: Boolean): String
+  ContextUser(id: ID): String
+  EmailNotificationCommunitySettings(isCasePortalEnabled: Boolean): String
+  EmailNotificationUserSettingsForm(isCasePortalEnabled: Boolean): String
+  ExternalCommunityGuideLineUrl(communityGuideLineType: String, enableFallbackToDefaultLocale: Boolean): String
+  ExternalPrivacyPolicyUrl(enableFallbackToDefaultLocale: Boolean, locale: String, policyType: String): String
+  FeaturedBadges(userId: ID): String
+  FeaturedContentWidget(attachmentsAfter: String, attachmentsFirst: Int, coreNodeId: ID, first: Int, instanceId: ID, quiltId: ID, removeProcessingText: Boolean, removeTocMarkup: Boolean, tagsAfter: String, tagsFirst: Int, truncateBodyLength: Int, useAcceptedSolutionButton: Boolean, useAppealData: Boolean, useAttachments: Boolean, useAuthorLogin: Boolean, useAuthorRank: Boolean, useAvatar: Boolean, useBody: Boolean, useContentWorkflow: Boolean, useKudosCount: Boolean, useLatestRevision: Boolean, useMedia: Boolean, useMessageStatus: Boolean, useModerationStatus: Boolean, useNodeAncestors: Boolean, useNodeHoverCard: Boolean, useOccasionData: Boolean, usePreviewSubjectModal: Boolean, useReadOnlyIcon: Boolean, useRepliesCount: Boolean, useRevision: Boolean, useSearchSnippet: Boolean, useSeoAttributes: Boolean, useSolvedBadge: Boolean, useSpoilerFreeBody: Boolean, useTags: Boolean, useTextBody: Boolean, useTextDescriptionForNode: Boolean, useTimeToRead: Boolean, useUnreadCount: Boolean, useUserHoverCard: Boolean): String
+  FeaturedPlacesWidget(childrenAfter: String, childrenConstraints: FeaturedPlacesWidgetInputChildrenConstraints, childrenFirst: Int, childrenSorts: FeaturedPlacesWidgetInputChildrenSorts, coreNodeId: ID, first: Int, instanceId: ID, quiltId: ID, useChildNodes: Boolean, useFullPageInfo: Boolean, useMembershipInformation: Boolean, useMembershipType: Boolean, useNodeAvatar: Boolean, useNodeCreationDate: Boolean, useNodeDescription: Boolean, useNodeFollowersCount: Boolean, useNodeIcon: Boolean, useNodeLatestActivityTime: Boolean, useNodeOwners: Boolean, useNodeParent: Boolean, useNodeTopicsCount: Boolean, useNodeUnreadCount: Boolean, useNodeUserContext: Boolean, useNodeViewsCount: Boolean, useTextDescriptionForNode: Boolean): String
+  getForm(id: ID): String
+  ImageExtensionsByEntityType(associatedEntityType: String): String
+  isEmailNotificationsEnabledOnUser: String
+  IsSsoUser: String
+  LocalizedCategoriesFeatureEnabled: String
+  MessageActionToolbar(id: ID): String
+  MessageModerationStatusQuery(id: ID): String
+  MessageReplies(after: String, attachmentsAfter: String, attachmentsFirst: Int, before: String, constraints: MessageRepliesInputConstraints, first: Int, id: ID, removeProcessingText: Boolean, removeTocMarkup: Boolean, repliesAfter: String, repliesConstraints: MessageRepliesInputRepliesConstraints, repliesFirst: Int, repliesFirstDepthThree: Int, repliesSorts: MessageRepliesInputRepliesSorts, sorts: MessageRepliesInputSorts, tagsAfter: String, tagsFirst: Int, truncateBodyLength: Int, useAcceptedSolutionButton: Boolean, useAppealData: Boolean, useAttachments: Boolean, useAuthorLogin: Boolean, useAuthorRank: Boolean, useAvatar: Boolean, useBody: Boolean, useContentWorkflow: Boolean, useKudosCount: Boolean, useLatestRevision: Boolean, useMedia: Boolean, useMessageStatus: Boolean, useModerationStatus: Boolean, useNodeAncestors: Boolean, useNodeHoverCard: Boolean, useOccasionData: Boolean, usePreviewSubjectModal: Boolean, useReadOnlyIcon: Boolean, useRepliesCount: Boolean, useRevision: Boolean, useSearchSnippet: Boolean, useSeoAttributes: Boolean, useSolvedBadge: Boolean, useSpoilerFreeBody: Boolean, useTags: Boolean, useTextBody: Boolean, useTextDescriptionForNode: Boolean, useTimeToRead: Boolean, useUnreadCount: Boolean, useUserHoverCard: Boolean): String
+  MessageRevisionsMetadata(constraints: MessageRevisionsMetadataInputConstraints, id: ID, useLatestRevision: Boolean, useRevisions: Boolean): String
+  MessageViewsForWidget(constraints: MessageViewsForWidgetInputConstraints, first: Int, removeProcessingText: Boolean, removeTocMarkup: Boolean, sorts: MessageViewsForWidgetInputSorts, tagsAfter: String, tagsFirst: Int, truncateBodyLength: Int, useAuthorRank: Boolean, useAvatar: Boolean, useBody: Boolean, useFullPageInfo: Boolean, useKudosCount: Boolean, useMedia: Boolean, useMessageStatus: Boolean, useOccasionData: Boolean, usePreviewSubjectModal: Boolean, useReadOnlyIcon: Boolean, useRepliesCount: Boolean, useSearchSnippet: Boolean, useSolvedBadge: Boolean, useSpoilerFreeBody: Boolean, useTags: Boolean, useTextBody: Boolean, useTimeToRead: Boolean, useUnreadCount: Boolean): String
+  NodeAttachmentProperties(id: ID): String
+  NodeEmojiProperties(id: ID): String
+  NodeImageProperties(id: ID): String
+  NodeLinkProperties(nodeId: ID): String
+  NodeLocalizedCategoriesProperties(id: ID): String
+  NodePrivateConversationProperties(id: ID): String
+  NodesPolicies(canCloseOwnCase: Boolean, canCreateSupportCases: Boolean, canManageFeaturedWidget: Boolean, canUpdateFeaturedWidget: Boolean, canUpdateSeoFields: Boolean, canViewSupportCases: Boolean, constraints: NodesPoliciesInputConstraints, first: Int, useCanAccessAuditLogs: Boolean, useCanAccessCWAAuthorNotificationSetting: Boolean, useCanAccessCWAEditorNotificationSetting: Boolean, useCanAccessCWAPublisherNotificationSetting: Boolean, useCanAccessLocalizedCategories: Boolean, useCanAccessPageBuilder: Boolean, useCanAddMedia: Boolean, useCanAdminBadges: Boolean, useCanAdminNode: Boolean, useCanAdminPermissions: Boolean, useCanAdminRanks: Boolean, useCanAdvancedAnalyticsUser: Boolean, useCanAlwaysViewSpamMessages: Boolean, useCanArchiveMessage: Boolean, useCanBulkImportUserRoles: Boolean, useCanBypassFloodControl: Boolean, useCanCreateRoles: Boolean, useCanCreateWorkstreams: Boolean, useCanDeleteNode: Boolean, useCanEscalateMessage: Boolean, useCanEscalateOwnMessage: Boolean, useCanIntegrateZoom: Boolean, useCanManageAbuseContent: Boolean, useCanManageDrafts: Boolean, useCanManageGuides: Boolean, useCanManageGuidesOnCommunity: Boolean, useCanManageIdea: Boolean, useCanManageRedirectRules: Boolean, useCanManageUsers: Boolean, useCanManageWorkstreams: Boolean, useCanMentionMessages: Boolean, useCanMentionNodes: Boolean, useCanMentionUsers: Boolean, useCanModerateNode: Boolean, useCanMoveNode: Boolean, useCanPostMessagesWithAdvancedHtml: Boolean, useCanPostMessagesWithAnyHtml: Boolean, useCanReadNode: Boolean, useCanReportAbuseDSA: Boolean, useCanRevokeBadges: Boolean, useCanSelectCoverImage: Boolean, useCanSendExternalOccasionInvites: Boolean, useCanSendNotificationForMessageAction: Boolean, useCanSendOccasionInvites: Boolean, useCanSendPrivateMessages: Boolean, useCanSetIdeaStatus: Boolean, useCanStartArticleBlog: Boolean, useCanStartOrEditArticleTkb: Boolean, useCanSubscribe: Boolean, useCanSwitchUser: Boolean, useCanUpdateNode: Boolean, useCanUploadAttachments: Boolean, useCanUploadAvatars: Boolean, useCanUseNotifications: Boolean, useCanUsePrivateNotes: Boolean, useCanViewAllDraftsBlog: Boolean, useCanViewAllDraftsTkb: Boolean, useCanViewAnalytics: Boolean, useCanViewAppealsDashboard: Boolean, useCanViewDrafts: Boolean, useCanViewEscalations: Boolean, useCanViewMessageHistory: Boolean, useCanViewRoles: Boolean, useCanViewRules: Boolean, useCanViewSpamDashBoard: Boolean, useCanViewUserRoles: Boolean, useCanViewWorkstreams: Boolean, useManageArticleBlog: Boolean, useManageArticleTkb: Boolean, useUnsplashUpload: Boolean): String
+  NodeVideoProperties(id: ID): String
+  NodeView(childrenAfter: String, childrenConstraints: NodeViewInputChildrenConstraints, childrenFirst: Int, childrenSorts: NodeViewInputChildrenSorts, id: ID, useChildNodes: Boolean, useFullPageInfo: Boolean, useMembershipInformation: Boolean, useMembershipType: Boolean, useNodeAvatar: Boolean, useNodeCreationDate: Boolean, useNodeDescription: Boolean, useNodeFollowersCount: Boolean, useNodeIcon: Boolean, useNodeLatestActivityTime: Boolean, useNodeOwners: Boolean, useNodeParent: Boolean, useNodeTopicsCount: Boolean, useNodeUnreadCount: Boolean, useNodeUserContext: Boolean, useNodeViewsCount: Boolean, useTextDescriptionForNode: Boolean): String
+  NodeViews(childrenAfter: String, childrenConstraints: NodeViewsInputChildrenConstraints, childrenFirst: Int, childrenSorts: NodeViewsInputChildrenSorts, constraints: NodeViewsInputConstraints, first: Int, sorts: NodeViewsInputSorts, useChildNodes: Boolean, useFullPageInfo: Boolean, useMembershipInformation: Boolean, useMembershipType: Boolean, useNodeAvatar: Boolean, useNodeCreationDate: Boolean, useNodeDescription: Boolean, useNodeFollowersCount: Boolean, useNodeIcon: Boolean, useNodeLatestActivityTime: Boolean, useNodeOwners: Boolean, useNodeParent: Boolean, useNodeTopicsCount: Boolean, useNodeUnreadCount: Boolean, useNodeUserContext: Boolean, useNodeViewsCount: Boolean, useTextDescriptionForNode: Boolean): String
+  NotificationList(first: Int, useNodeAncestors: Boolean, useNodeHoverCard: Boolean, useTextDescriptionForNode: Boolean, useUnreadCount: Boolean): String
+  NotificationsCount: String
+  NotificationUserSettingsForm: String
+  PersonalSettings(showLocalSettingValues: Boolean, useCustomFieldsForUpdate: Boolean, useInvalidReason: Boolean, useOverridingParent: Boolean, useSettingsForCustomFields: Boolean): String
+  PresetTags(id: ID): String
+  PrivateConversationCreationPolicies: String
+  PrivateConversations(constraints: PrivateConversationsInputConstraints, first: Int, noteHighlightText: String, truncateBodyLength: Int, useAttachments: Boolean, useSearchSnippet: Boolean, useStrippedBody: Boolean): String
+  PrivateConversationsStat: String
+  PrivateNotes(constraints: PrivateNotesInputConstraints, first: Int, noteHighlightText: String, sorts: PrivateNotesInputSorts): String
+  PrivateNotesPolicies: String
+  ProfileUser(id: ID): String
+  QAPageSchemaData(constraints: QAPageSchemaDataInputConstraints, first: Int, sorts: QAPageSchemaDataInputSorts): String
+  RelatedContent(attachmentsAfter: String, attachmentsFirst: Int, first: Int, postId: Int, removeProcessingText: Boolean, removeTocMarkup: Boolean, tagsAfter: String, tagsFirst: Int, truncateBodyLength: Int, useAcceptedSolutionButton: Boolean, useAppealData: Boolean, useAttachments: Boolean, useAuthorLogin: Boolean, useAuthorRank: Boolean, useAvatar: Boolean, useBody: Boolean, useContentWorkflow: Boolean, useFullPageInfo: Boolean, useKudosCount: Boolean, useLatestRevision: Boolean, useMedia: Boolean, useMessageStatus: Boolean, useModerationStatus: Boolean, useNodeAncestors: Boolean, useNodeHoverCard: Boolean, useOccasionData: Boolean, usePreviewSubjectModal: Boolean, useReadOnlyIcon: Boolean, useRepliesCount: Boolean, useRevision: Boolean, useSearchSnippet: Boolean, useSeoAttributes: Boolean, useSolvedBadge: Boolean, useSpoilerFreeBody: Boolean, useTags: Boolean, useTextBody: Boolean, useTextDescriptionForNode: Boolean, useTimeToRead: Boolean, useUnreadCount: Boolean, useUserHoverCard: Boolean): String
+  SecurityAndAccount: String
+  SecurityAndAccountPolicies: String
+  SsoPrepopulateValues: String
+  SsoRegistrationUserManagementProperties: String
+  TopTags(constraints: TopTagsInputConstraints, first: Int, id: ID, sorts: TopTagsInputSorts, useTagCounts: Boolean, useTagLastActivityTime: Boolean): String
+  UserCustomFieldsForEntityCreate(showLocalSettingValues: Boolean, useCustomFieldsForCreate: Boolean, useInvalidReason: Boolean, useOverridingParent: Boolean, useSettingsForCustomFields: Boolean): String
+  UserEarnedBadges(id: ID): String
+  UserEmojiProperties(nodeId: ID, userId: ID): String
+  UserFollowProperties(userId: ID): String
+  UserManagementProperties: String
+  UserNotificationProperties(userId: ID): String
+  UserPreferences: String
+  UserStatus(id: ID): String
+  UserView(id: ID, useAvatar: Boolean, useBadgesList: Boolean, useBiography: Boolean, useFollowersCount: Boolean, useIsOwner: Boolean, useJoinDate: Boolean, useKudosCount: Boolean, useMembershipRole: Boolean, useMessagesCount: Boolean, useRank: Boolean, useRegistrationData: Boolean, useSolutionCount: Boolean, useTopicsCount: Boolean): String
+  UserViews(after: String, constraints: UserViewsInputConstraints, first: Int, sorts: UserViewsInputSorts, useAvatar: Boolean, useBadgesList: Boolean, useBiography: Boolean, useFollowersCount: Boolean, useFullPageInfo: Boolean, useIsOwner: Boolean, useJoinDate: Boolean, useKudosCount: Boolean, useMembershipRole: Boolean, useMessagesCount: Boolean, useRank: Boolean, useRegistrationData: Boolean, useSolutionCount: Boolean, useTopicsCount: Boolean): String
+  ValueSurveyBehavior: String
+}
+
+type Mutation {
+  BanUserPolicy: String
+  CreatePrivateConversation(createInput: CreatePrivateConversationInputCreateInput, noteHighlightText: String, truncateBodyLength: Int, useAttachments: Boolean, useSearchSnippet: Boolean, useStrippedBody: Boolean): String
+  EndCurrentParentFrame(uuid: ID): String
+  Follows(constraints: FollowsInputConstraints, first: Int, removeProcessingText: Boolean, removeTocMarkup: Boolean, truncateBodyLength: Int, useAuthorRank: Boolean, useAvatar: Boolean, useFullPageInfo: Boolean, useNodeAncestors: Boolean, useNodeHoverCard: Boolean, useSearchSnippet: Boolean, useSpoilerFreeBody: Boolean, useTextBody: Boolean, useTextDescriptionForNode: Boolean, useUnreadCount: Boolean, useUserHoverCard: Boolean): String
+  GiveKudoToMessage(messageId: ID): String
+  MarkNotificationListAsReadOnUser: String
+  RevokeKudoFromMessage(messageId: ID): String
+  UpdateSsoUser(id: ID, updateInput: UpdateSsoUserInputUpdateInput): String
+  UpdateUserPersonalInfo(id: ID, showLocalSettingValues: Boolean, updateInput: UpdateUserPersonalInfoInputUpdateInput, useCustomFieldsForUpdate: Boolean, useInvalidReason: Boolean, useOverridingParent: Boolean, useSettingsForCustomFields: Boolean): String
+}
+
+input AnalyticsInputEventsInput {
+  domainContext: AnalyticsInputEventsInputDomainContext
+  messages: [AnalyticsInputEventsInputMessagesMessage]
+  pageView: AnalyticsInputEventsInputPageView
+}
+
+input AnalyticsInputEventsInputDomainContext {
+  target: AnalyticsInputEventsInputDomainContextTarget
+}
+
+input AnalyticsInputEventsInputDomainContextTarget {
+  id: ID
+}
+
+input AnalyticsInputEventsInputMessage {
+  target: AnalyticsInputEventsInputMessageTarget
+}
+
+input AnalyticsInputEventsInputMessageTarget {
+  id: ID
+}
+
+input AnalyticsInputEventsInputPageView {
+  name: String
+  url: String
+}
+
+input CommunityUserCountInputConstraints {
+  onlineStatus: CommunityUserCountInputConstraintsOnlineStatus
+}
+
+input CommunityUserCountInputConstraintsOnlineStatus {
+  eq: String
+}
+
+input CreatePrivateConversationInputCreateInput {
+  conversationRecipients: CreatePrivateConversationInputCreateInputConversationRecipients
+  newNote: CreatePrivateConversationInputCreateInputNewNote
+  subject: String
+}
+
+input CreatePrivateConversationInputCreateInputConversationRecipients {
+  items: [CreatePrivateConversationInputCreateInputConversationRecipientsItemsItem]
+}
+
+input CreatePrivateConversationInputCreateInputConversationRecipientsItem {
+  user: CreatePrivateConversationInputCreateInputConversationRecipientsItemUser
+}
+
+input CreatePrivateConversationInputCreateInputConversationRecipientsItemUser {
+  login: String
+}
+
+input CreatePrivateConversationInputCreateInputNewNote {
+  attachments: CreatePrivateConversationInputCreateInputNewNoteAttachments
+  body: String
+}
+
+input CreatePrivateConversationInputCreateInputNewNoteAttachments {
+  items: [String]
+}
+
+input FeaturedPlacesWidgetInputChildrenSorts {
+  communityStructure: FeaturedPlacesWidgetInputChildrenSortsCommunityStructure
+  position: FeaturedPlacesWidgetInputChildrenSortsPosition
+}
+
+input FeaturedPlacesWidgetInputChildrenSortsCommunityStructure {
+  direction: String
+  order: Int
+}
+
+input FeaturedPlacesWidgetInputChildrenSortsPosition {
+  direction: String
+  order: Int
+}
+
+input MessageRepliesInputRepliesSorts {
+  kudosSumWeight: MessageRepliesInputRepliesSortsKudosSumWeight
+  postTime: MessageRepliesInputRepliesSortsPostTime
+}
+
+input MessageRepliesInputRepliesSortsKudosSumWeight {
+  direction: String
+  order: Int
+}
+
+input MessageRepliesInputRepliesSortsPostTime {
+  direction: String
+  order: Int
+}
+
+input MessageRepliesInputSorts {
+  kudosSumWeight: MessageRepliesInputSortsKudosSumWeight
+  postTime: MessageRepliesInputSortsPostTime
+}
+
+input MessageRepliesInputSortsKudosSumWeight {
+  direction: String
+  order: Int
+}
+
+input MessageRepliesInputSortsPostTime {
+  direction: String
+  order: Int
+}
+
+input MessageRevisionsMetadataInputConstraints {
+  isPublished: MessageRevisionsMetadataInputConstraintsIsPublished
+}
+
+input MessageRevisionsMetadataInputConstraintsIsPublished {
+  eq: Boolean
+}
+
+input MessageViewsForWidgetInputConstraints {
+  authorId: MessageViewsForWidgetInputConstraintsAuthorId
+  boardId: MessageViewsForWidgetInputConstraintsBoardId
+  categoryId: MessageViewsForWidgetInputConstraintsCategoryId
+  conversationStyle: MessageViewsForWidgetInputConstraintsConversationStyle
+  depth: MessageViewsForWidgetInputConstraintsDepth
+  kudosSumWeight: MessageViewsForWidgetInputConstraintsKudosSumWeight
+  moderationStatus: MessageViewsForWidgetInputConstraintsModerationStatus
+  solution: MessageViewsForWidgetInputConstraintsSolution
+  visibilityScope: MessageViewsForWidgetInputConstraintsVisibilityScope
+}
+
+input MessageViewsForWidgetInputConstraintsAuthorId {
+  eq: String
+}
+
+input MessageViewsForWidgetInputConstraintsBoardId {
+  eq: String
+}
+
+input MessageViewsForWidgetInputConstraintsCategoryId {
+  eq: String
+}
+
+input MessageViewsForWidgetInputConstraintsConversationStyle {
+  eq: String
+}
+
+input MessageViewsForWidgetInputConstraintsDepth {
+  eq: Int
+}
+
+input MessageViewsForWidgetInputConstraintsKudosSumWeight {
+  gt: Int
+}
+
+input MessageViewsForWidgetInputConstraintsModerationStatus {
+  eq: String
+}
+
+input MessageViewsForWidgetInputConstraintsSolution {
+  eq: Boolean
+}
+
+input MessageViewsForWidgetInputConstraintsVisibilityScope {
+  eq: String
+}
+
+input MessageViewsForWidgetInputSorts {
+  conversationLastPostingActivityTime: MessageViewsForWidgetInputSortsConversationLastPostingActivityTime
+  kudosSumWeight: MessageViewsForWidgetInputSortsKudosSumWeight
+  lastPublishTime: MessageViewsForWidgetInputSortsLastPublishTime
+  postTime: MessageViewsForWidgetInputSortsPostTime
+}
+
+input MessageViewsForWidgetInputSortsConversationLastPostingActivityTime {
+  direction: String
+}
+
+input MessageViewsForWidgetInputSortsKudosSumWeight {
+  direction: String
+}
+
+input MessageViewsForWidgetInputSortsLastPublishTime {
+  direction: String
+}
+
+input MessageViewsForWidgetInputSortsPostTime {
+  direction: String
+}
+
+input NodesPoliciesInputConstraints {
+  id: NodesPoliciesInputConstraintsId
+}
+
+input NodesPoliciesInputConstraintsId {
+  in: [String]
+}
+
+input NodeViewsInputChildrenSorts {
+  communityStructure: NodeViewsInputChildrenSortsCommunityStructure
+  position: NodeViewsInputChildrenSortsPosition
+  title: NodeViewsInputChildrenSortsTitle
+}
+
+input NodeViewsInputChildrenSortsCommunityStructure {
+  direction: String
+  order: Int
+}
+
+input NodeViewsInputChildrenSortsPosition {
+  direction: String
+  order: Int
+}
+
+input NodeViewsInputChildrenSortsTitle {
+  direction: String
+}
+
+input NodeViewsInputConstraints {
+  ancestorId: NodeViewsInputConstraintsAncestorId
+  depth: NodeViewsInputConstraintsDepth
+  hidden: NodeViewsInputConstraintsHidden
+  nodeType: NodeViewsInputConstraintsNodeType
+  parentId: NodeViewsInputConstraintsParentId
+  userId: NodeViewsInputConstraintsUserId
+}
+
+input NodeViewsInputConstraintsAncestorId {
+  eq: String
+}
+
+input NodeViewsInputConstraintsHidden {
+  eq: Boolean
+}
+
+input NodeViewsInputConstraintsNodeType {
+  eq: String
+}
+
+input NodeViewsInputConstraintsParentId {
+  eq: String
+}
+
+input NodeViewsInputConstraintsUserId {
+  eq: String
+}
+
+input NodeViewsInputSorts {
+  communityStructure: NodeViewsInputSortsCommunityStructure
+  position: NodeViewsInputSortsPosition
+  title: NodeViewsInputSortsTitle
+}
+
+input NodeViewsInputSortsCommunityStructure {
+  direction: String
+  order: Int
+}
+
+input NodeViewsInputSortsPosition {
+  direction: String
+  order: Int
+}
+
+input NodeViewsInputSortsTitle {
+  direction: String
+}
+
+input PrivateConversationsInputConstraints {
+  readState: PrivateConversationsInputConstraintsReadState
+  viewType: PrivateConversationsInputConstraintsViewType
+}
+
+input PrivateConversationsInputConstraintsReadState {
+  eq: String
+}
+
+input PrivateConversationsInputConstraintsViewType {
+  eq: String
+}
+
+input PrivateNotesInputConstraints {
+  conversationId: PrivateNotesInputConstraintsConversationId
+  readState: PrivateNotesInputConstraintsReadState
+  statusType: PrivateNotesInputConstraintsStatusType
+}
+
+input PrivateNotesInputConstraintsConversationId {
+  eq: String
+}
+
+input PrivateNotesInputConstraintsReadState {
+  eq: String
+}
+
+input PrivateNotesInputConstraintsStatusType {
+  eq: String
+}
+
+input PrivateNotesInputSorts {
+  sentTime: PrivateNotesInputSortsSentTime
+}
+
+input PrivateNotesInputSortsSentTime {
+  direction: String
+}
+
+input QAPageSchemaDataInputConstraints {
+  boardId: QAPageSchemaDataInputConstraintsBoardId
+  depth: QAPageSchemaDataInputConstraintsDepth
+  solution: QAPageSchemaDataInputConstraintsSolution
+  topicId: QAPageSchemaDataInputConstraintsTopicId
+}
+
+input QAPageSchemaDataInputConstraintsBoardId {
+  eq: String
+}
+
+input QAPageSchemaDataInputConstraintsDepth {
+  neq: Int
+}
+
+input QAPageSchemaDataInputConstraintsSolution {
+  eq: Boolean
+}
+
+input QAPageSchemaDataInputConstraintsTopicId {
+  eq: String
+}
+
+input QAPageSchemaDataInputSorts {
+  kudosSumWeight: QAPageSchemaDataInputSortsKudosSumWeight
+  postTime: QAPageSchemaDataInputSortsPostTime
+}
+
+input QAPageSchemaDataInputSortsKudosSumWeight {
+  direction: String
+  order: Int
+}
+
+input QAPageSchemaDataInputSortsPostTime {
+  direction: String
+  order: Int
+}
+
+input TopTagsInputConstraints {
+  predefinedOnly: TopTagsInputConstraintsPredefinedOnly
+}
+
+input TopTagsInputConstraintsPredefinedOnly {
+  eq: Boolean
+}
+
+input TopTagsInputSorts {
+  postCount: TopTagsInputSortsPostCount
+  time: TopTagsInputSortsTime
+}
+
+input TopTagsInputSortsPostCount {
+  direction: String
+  order: Int
+}
+
+input TopTagsInputSortsTime {
+  direction: String
+  order: Int
+}
+
+input UpdateSsoUserInputUpdateInput {
+  customFields: [String]
+  login: String
+  timezone: String
+  userAcceptsTermsOfService: Boolean
+}
+
+input UpdateUserPersonalInfoInputUpdateInput {
+  biography: String
+  customFields: [String]
+  dateDisplayFormat: String
+  dateDisplayStyle: String
+  genderPronoun: String
+  location: String
+  notes: String
+  repliesFormat: String
+  repliesSortOrder: String
+  timeZone: String
+  webPageUrl: String
+}
+
+input UserViewsInputConstraints {
+  acceptedSolutionsCount: UserViewsInputConstraintsAcceptedSolutionsCount
+  excludedRole: UserViewsInputConstraintsExcludedRole
+  login: UserViewsInputConstraintsLogin
+  nodeId: UserViewsInputConstraintsNodeId
+}
+
+input UserViewsInputConstraintsAcceptedSolutionsCount {
+  gt: Int
+}
+
+input UserViewsInputConstraintsExcludedRole {
+  in: [String]
+}
+
+input UserViewsInputConstraintsLogin {
+  matches: String
+}
+
+input UserViewsInputConstraintsNodeId {
+  eq: String
+}
+
+input UserViewsInputSorts {
+  acceptedSolutionCount: UserViewsInputSortsAcceptedSolutionCount
+  kudosReceivedCount: UserViewsInputSortsKudosReceivedCount
+  login: UserViewsInputSortsLogin
+}
+
+input UserViewsInputSortsAcceptedSolutionCount {
+  direction: String
+}
+
+input UserViewsInputSortsKudosReceivedCount {
+  direction: String
+}
+
+input UserViewsInputSortsLogin {
+  direction: String
+}
+
+# ---- Auto-added scalar stubs for missing types ----
+scalar AnalyticsInputEventsInputMessagesMessage
+scalar ContextNodeInputChildrenConstraints
+scalar ContextNodeInputChildrenSorts
+scalar CreatePrivateConversationInputCreateInputConversationRecipientsItemsItem
+scalar FeaturedPlacesWidgetInputChildrenConstraints
+scalar FollowsInputConstraints
+scalar MessageRepliesInputConstraints
+scalar MessageRepliesInputRepliesConstraints
+scalar NodeViewInputChildrenConstraints
+scalar NodeViewInputChildrenSorts
+scalar NodeViewsInputChildrenConstraints
+scalar NodeViewsInputConstraintsDepth
+# ---- End auto-added stubs ----
