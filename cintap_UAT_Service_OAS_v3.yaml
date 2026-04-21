@@ -1,0 +1,2111 @@
+openapi: 3.0.3
+info:
+  title: Cintap UAT Service App
+  version: 1.0.0
+servers:
+  - url: https://uat.services.cintapcloud.com
+tags:
+  - name: api-catalog
+  - name: bpi
+  - name: bpi-service
+  - name: cintap-connect
+  - name: css2
+  - name: default
+  - name: edi-converter
+  - name: hcm-integration
+  - name: images
+  - name: language
+  - name: onboarding
+  - name: otc-service-v2
+  - name: otc-v2
+  - name: p2p
+  - name: partner-service
+  - name: pdf-xpert
+  - name: tpl
+  - name: tpl-service
+  - name: transportation
+  - name: v1
+  - name: wms
+  - name: wms-service
+  - name: "{id}"
+paths:
+  /cintap-connect:
+    get:
+      tags:
+        - cintap-connect
+      summary: GET /cintap-connect
+      operationId: get_cintap_connect
+      responses:
+        "200":
+          description: Success
+  /:
+    get:
+      tags:
+        - default
+      summary: GET /
+      operationId: get_root
+      parameters:
+        - name: isViewAllService
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /transportation:
+    get:
+      tags:
+        - transportation
+      summary: GET /transportation
+      operationId: get_transportation
+      responses:
+        "200":
+          description: Success
+  /cintap-connect/company-profile:
+    get:
+      tags:
+        - cintap-connect
+      summary: GET /cintap-connect/company-profile
+      operationId: get_cintap_connect_company_profile
+      parameters:
+        - name: token
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb2hhbW1lZGdob3VzZTg2LmJhY2t1cEBnbWFpbC5jb20iLCJzY29wZXMiOlsiUk9MRV9BRE1JTiJdLCJpYXQiOjE3NzY3NTI5OTMsImV4cCI6MTc3Njc1NDc5M30.zF5MsH1B6GlUm5Tlqr4ac-sxWTu65aA7ePZz7fEtsTw
+      responses:
+        "200":
+          description: Success
+  /onboarding:
+    get:
+      tags:
+        - onboarding
+      summary: GET /onboarding
+      operationId: get_onboarding
+      responses:
+        "200":
+          description: Success
+  /bpi:
+    get:
+      tags:
+        - bpi
+      summary: GET /bpi
+      operationId: get_bpi
+      responses:
+        "200":
+          description: Success
+  /api-catalog:
+    get:
+      tags:
+        - api-catalog
+      summary: GET /api-catalog
+      operationId: get_api_catalog
+      responses:
+        "200":
+          description: Success
+  /language:
+    get:
+      tags:
+        - language
+      summary: GET /language
+      operationId: get_language
+      responses:
+        "200":
+          description: Success
+  /edi-converter:
+    get:
+      tags:
+        - edi-converter
+      summary: GET /edi-converter
+      operationId: get_edi_converter
+      responses:
+        "200":
+          description: Success
+  /{id}:
+    get:
+      tags:
+        - "{id}"
+      summary: GET /{id}
+      operationId: get_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: subscription-billing
+      responses:
+        "200":
+          description: Success
+  /pdf-xpert:
+    get:
+      tags:
+        - pdf-xpert
+      summary: GET /pdf-xpert
+      operationId: get_pdf_xpert
+      responses:
+        "200":
+          description: Success
+  /wms:
+    get:
+      tags:
+        - wms
+      summary: GET /wms
+      operationId: get_wms
+      responses:
+        "200":
+          description: Success
+  /tpl:
+    get:
+      tags:
+        - tpl
+      summary: GET /tpl
+      operationId: get_tpl
+      responses:
+        "200":
+          description: Success
+  /p2p:
+    get:
+      tags:
+        - p2p
+      summary: GET /p2p
+      operationId: get_p2p
+      responses:
+        "200":
+          description: Success
+  /hcm-integration:
+    get:
+      tags:
+        - hcm-integration
+      summary: GET /hcm-integration
+      operationId: get_hcm_integration
+      responses:
+        "200":
+          description: Success
+  /otc-v2:
+    get:
+      tags:
+        - otc-v2
+      summary: GET /otc-v2
+      operationId: get_otc_v2
+      responses:
+        "200":
+          description: Success
+  /partner-service/auth/token:
+    post:
+      tags:
+        - partner-service
+      summary: POST /partner-service/auth/token
+      operationId: post_partner_service_auth_token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  userName: mohammedghouse86.backup@gmail.com
+                  password: 4B&YRy^C
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/auth/token
+      operationId: options_partner_service_auth_token
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/2fa/mohammedghouse86.backup@gmail.com/{id}:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/2fa/mohammedghouse86.backup@gmail.com/{id}
+      operationId: options_partner_service_v1_2fa_mohammedghouse86_backup_gmail_com_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "266291"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - partner-service
+      summary: POST /partner-service/v1/2fa/mohammedghouse86.backup@gmail.com/{id}
+      operationId: post_partner_service_v1_2fa_mohammedghouse86_backup_gmail_com_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "266291"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePostRequest"
+            examples:
+              fromHar:
+                value: {}
+      responses:
+        "200":
+          description: Success
+  /images/profile_pic/undefined:
+    get:
+      tags:
+        - images
+      summary: GET /images/profile_pic/undefined
+      operationId: get_images_profile_pic_undefined
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/{id}/{id2}:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/{id}/{id2}
+      operationId: options_partner_service_v1_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: fetchpartnerdetails
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/{id}/{id2}
+      operationId: get_partner_service_v1_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: fetchpartnerdetails
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - partner-service
+      summary: POST /partner-service/v1/{id}/{id2}
+      operationId: post_partner_service_v1_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: myassociatedtpandetp
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePostRequest"
+            examples:
+              fromHar:
+                value: {}
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/services:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/services
+      operationId: options_partner_service_v1_services
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/services
+      operationId: get_partner_service_v1_services
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/fileType:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/fileType
+      operationId: get_partner_service_v1_fileType
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/fileType
+      operationId: options_partner_service_v1_fileType
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/keyword:
+    post:
+      tags:
+        - partner-service
+      summary: POST /partner-service/v1/keyword
+      operationId: post_partner_service_v1_keyword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  keyword: ""
+                  pageNo: 0
+                  pageSize: 100
+                  partnerId: 0
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/keyword
+      operationId: options_partner_service_v1_keyword
+      responses:
+        "200":
+          description: Success
+  /images/profile_pic/null:
+    get:
+      tags:
+        - images
+      summary: GET /images/profile_pic/null
+      operationId: get_images_profile_pic_null
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/recentapp/{id}:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/recentapp/{id}
+      operationId: get_partner_service_v1_recentapp_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "363"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/recentapp/{id}
+      operationId: options_partner_service_v1_recentapp_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "363"
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/getAllLinks:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/getAllLinks
+      operationId: options_partner_service_v1_getAllLinks
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/getAllLinks
+      operationId: get_partner_service_v1_getAllLinks
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/announcements:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/announcements
+      operationId: options_partner_service_v1_announcements
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/announcements
+      operationId: get_partner_service_v1_announcements
+      responses:
+        "200":
+          description: Success
+  /bpi-service/v1/dashboard/{id}:
+    options:
+      tags:
+        - bpi-service
+      summary: OPTIONS /bpi-service/v1/dashboard/{id}
+      operationId: options_bpi_service_v1_dashboard_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - bpi-service
+      summary: GET /bpi-service/v1/dashboard/{id}
+      operationId: get_bpi_service_v1_dashboard_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+  /partner-service/{id}/{id2}/{id3}:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/{id}/{id2}/{id3}
+      operationId: options_partner_service_id_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: v1getInvoiceByPartnerIdAndYear
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "2026"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/{id}/{id2}/{id3}
+      operationId: get_partner_service_id_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: v1getInvoiceByPartnerIdAndYear
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "2026"
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/recentapps:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/recentapps
+      operationId: options_partner_service_v1_recentapps
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - partner-service
+      summary: POST /partner-service/v1/recentapps
+      operationId: post_partner_service_v1_recentapps
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  userId: 363
+                  appName: Procure to Pay (P2P)
+                  serviceId: 2
+      responses:
+        "200":
+          description: Success
+  /css2:
+    get:
+      tags:
+        - css2
+      summary: GET /css2
+      operationId: get_css2
+      parameters:
+        - name: family
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Inter:wght@100..900
+        - name: display
+          in: query
+          required: false
+          schema:
+            type: string
+          example: swap
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/services/landingpage:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/services/landingpage
+      operationId: get_partner_service_v1_services_landingpage
+      parameters:
+        - name: serviceId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: keyword
+          in: query
+          required: false
+          schema:
+            type: string
+          example: otc-v2
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/services/landingpage
+      operationId: options_partner_service_v1_services_landingpage
+      parameters:
+        - name: serviceId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: keyword
+          in: query
+          required: false
+          schema:
+            type: string
+          example: otc-v2
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/{id}:
+    post:
+      tags:
+        - partner-service
+      summary: POST /partner-service/v1/{id}
+      operationId: post_partner_service_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: subscriptionStatusForService
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  serviceId: 1
+                  userId: 363
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/{id}
+      operationId: options_partner_service_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: subscriptionStatusForService
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "363"
+        - name: partnerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/{id}
+      operationId: get_partner_service_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getBillingDetails
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "363"
+        - name: partnerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+  /otc-service-v2/v1/dashboard:
+    options:
+      tags:
+        - otc-service-v2
+      summary: OPTIONS /otc-service-v2/v1/dashboard
+      operationId: options_otc_service_v2_v1_dashboard
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - otc-service-v2
+      summary: POST /otc-service-v2/v1/dashboard
+      operationId: post_otc_service_v2_v1_dashboard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Otc-service-v2PostRequest"
+            examples:
+              fromHar:
+                value:
+                  fromDate: 2026-04-01
+                  partnerId: 70000390
+                  toDate: 2026-04-30
+      responses:
+        "200":
+          description: Success
+  /otc-service-v2/v1/trnsearch:
+    options:
+      tags:
+        - otc-service-v2
+      summary: OPTIONS /otc-service-v2/v1/trnsearch
+      operationId: options_otc_service_v2_v1_trnsearch
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - otc-service-v2
+      summary: POST /otc-service-v2/v1/trnsearch
+      operationId: post_otc_service_v2_v1_trnsearch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Otc-service-v2PostRequest"
+            examples:
+              fromHar:
+                value:
+                  filterType: DEFAULT
+                  moduleType: OTC
+                  sortBy: bpiLogId
+                  pageNo: 0
+                  pageSize: 30
+                  partnerId: 70000390
+                  status: ""
+                  transactionNumber: ""
+                  sortOrder: true
+      responses:
+        "200":
+          description: Success
+  /otc-service-v2/v1/pagination/tpdelimiter:
+    options:
+      tags:
+        - otc-service-v2
+      summary: OPTIONS /otc-service-v2/v1/pagination/tpdelimiter
+      operationId: options_otc_service_v2_v1_pagination_tpdelimiter
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - otc-service-v2
+      summary: POST /otc-service-v2/v1/pagination/tpdelimiter
+      operationId: post_otc_service_v2_v1_pagination_tpdelimiter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Otc-service-v2PostRequest"
+            examples:
+              fromHar:
+                value:
+                  pageNo: 0
+                  pageSize: 10
+                  partnerId: 70000390
+      responses:
+        "200":
+          description: Success
+  /otc-service-v2/v1/dashboard/details:
+    options:
+      tags:
+        - otc-service-v2
+      summary: OPTIONS /otc-service-v2/v1/dashboard/details
+      operationId: options_otc_service_v2_v1_dashboard_details
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - otc-service-v2
+      summary: POST /otc-service-v2/v1/dashboard/details
+      operationId: post_otc_service_v2_v1_dashboard_details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Otc-service-v2PostRequest"
+            examples:
+              fromHar:
+                value:
+                  transactionType: ORDCHG
+                  fromDate: 2026-04-21
+                  loggedInPartnerId: 70000390
+      responses:
+        "200":
+          description: Success
+  /{id}/v1/{id2}/{id3}:
+    options:
+      tags:
+        - v1
+      summary: OPTIONS /{id}/v1/{id2}/{id3}
+      operationId: options_id_v1_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: transport-service
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ediTypeByPartnerId
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - v1
+      summary: GET /{id}/v1/{id2}/{id3}
+      operationId: get_id_v1_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: transport-service
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ediTypeByPartnerId
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+  /{id}/v1/dashboard:
+    options:
+      tags:
+        - v1
+      summary: OPTIONS /{id}/v1/dashboard
+      operationId: options_id_v1_dashboard
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: transport-service
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v1
+      summary: POST /{id}/v1/dashboard
+      operationId: post_id_v1_dashboard
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: transport-service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  fromDate: 2026-04-21
+                  partnerId: 70000390
+                  toDate: 2026-04-21
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/ptnrtrn/{id}:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/ptnrtrn/{id}
+      operationId: get_partner_service_v1_ptnrtrn_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/ptnrtrn/{id}
+      operationId: options_partner_service_v1_ptnrtrn_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+  /tpl-service/v1/dashboard:
+    post:
+      tags:
+        - tpl-service
+      summary: POST /tpl-service/v1/dashboard
+      operationId: post_tpl_service_v1_dashboard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Tpl-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  fromDate: 2026-04-21
+                  partnerId: 70000390
+                  toDate: 2026-04-21
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - tpl-service
+      summary: OPTIONS /tpl-service/v1/dashboard
+      operationId: options_tpl_service_v1_dashboard
+      responses:
+        "200":
+          description: Success
+  /wms-service/v1/dashboard:
+    options:
+      tags:
+        - wms-service
+      summary: OPTIONS /wms-service/v1/dashboard
+      operationId: options_wms_service_v1_dashboard
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - wms-service
+      summary: POST /wms-service/v1/dashboard
+      operationId: post_wms_service_v1_dashboard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Wms-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  fromDate: 2026-04-21
+                  partnerId: 70000390
+                  toDate: 2026-04-21
+      responses:
+        "200":
+          description: Success
+  /wms-service/v1/trnsearch:
+    options:
+      tags:
+        - wms-service
+      summary: OPTIONS /wms-service/v1/trnsearch
+      operationId: options_wms_service_v1_trnsearch
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - wms-service
+      summary: POST /wms-service/v1/trnsearch
+      operationId: post_wms_service_v1_trnsearch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Wms-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  filterType: DEFAULT
+                  moduleType: OTC
+                  sortBy: bpiLogId
+                  pageNo: 0
+                  pageSize: 15
+                  partnerId: 70000390
+                  vendorPartnerId: -1
+                  status: -1
+                  transactionNumber: ""
+      responses:
+        "200":
+          description: Success
+  /wms-service/v1/pagination/tpdelimiter:
+    options:
+      tags:
+        - wms-service
+      summary: OPTIONS /wms-service/v1/pagination/tpdelimiter
+      operationId: options_wms_service_v1_pagination_tpdelimiter
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - wms-service
+      summary: POST /wms-service/v1/pagination/tpdelimiter
+      operationId: post_wms_service_v1_pagination_tpdelimiter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Wms-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  pageNo: 0
+                  pageSize: 10
+                  partnerId: 70000390
+      responses:
+        "200":
+          description: Success
+  /{id}/v1/edi/parser:
+    post:
+      tags:
+        - v1
+      summary: POST /{id}/v1/edi/parser
+      operationId: post_id_v1_edi_parser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cintap-edi-utility
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  ediData: "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *260421*1200*U*00401*000000001*0*T*>~\r
+
+                    GS*PO*SENDERID*RECEIVERID*20260421*1200*1*X*004010~\r
+
+                    ST*850*0001~\r
+
+                    BEG*00*NE*PO12345**20260421~\r
+
+                    REF*DP*001~\r
+
+                    N1*ST*ABC STORE*92*1001~\r
+
+                    PO1*1*5*EA*25.00**VP*ITEM001~\r
+
+                    PID*F****Test Product One~\r
+
+                    PO1*2*3*EA*15.00**VP*ITEM002~\r
+
+                    PID*F****Test Product Two~\r
+
+                    CTT*2~\r
+
+                    SE*10*0001~\r
+
+                    GE*1*1~\r
+
+                    IEA*1*000000001~"
+                  source: EDI
+                  partnerId: 70000390
+                  processType: VALIDATE
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - v1
+      summary: OPTIONS /{id}/v1/edi/parser
+      operationId: options_id_v1_edi_parser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cintap-edi-utility
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/getInvoice/{id}:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/getInvoice/{id}
+      operationId: options_partner_service_v1_getInvoice_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/getInvoice/{id}
+      operationId: get_partner_service_v1_getInvoice_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/getPayment/{id}:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/getPayment/{id}
+      operationId: options_partner_service_v1_getPayment_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/getPayment/{id}
+      operationId: get_partner_service_v1_getPayment_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/ptnruser/{id}:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/ptnruser/{id}
+      operationId: options_partner_service_v1_ptnruser_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/ptnruser/{id}
+      operationId: get_partner_service_v1_ptnruser_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/ptnruser:
+    post:
+      tags:
+        - partner-service
+      summary: POST /partner-service/v1/ptnruser
+      operationId: post_partner_service_v1_ptnruser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  firstName: Joe
+                  middleInitial: Rane
+                  lastName: Myti
+                  emailAddress: test@gmail.com
+                  contactNumber: "9898123456"
+                  permission: Read Only
+                  type: outbound
+                  partnerId: 70000390
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/ptnruser
+      operationId: options_partner_service_v1_ptnruser
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/getKeys/{id}:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/getKeys/{id}
+      operationId: options_partner_service_v1_getKeys_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/getKeys/{id}
+      operationId: get_partner_service_v1_getKeys_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/generateApiKey:
+    post:
+      tags:
+        - partner-service
+      summary: POST /partner-service/v1/generateApiKey
+      operationId: post_partner_service_v1_generateApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  partnerId: 70000390
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/generateApiKey
+      operationId: options_partner_service_v1_generateApiKey
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/partner:
+    put:
+      tags:
+        - partner-service
+      summary: PUT /partner-service/v1/partner
+      operationId: put_partner_service_v1_partner
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePutRequest"
+            examples:
+              fromHar:
+                value:
+                  firstName: ghouse1
+                  lastName: mohammed
+                  partnerEmail: mohammedghouse86.backup@gmail.com
+                  primaryTelephone: "4566764664121"
+                  partnerId: 70000390
+                  partnerUserAssociation:
+                    userId: 3387
+                  profilePicData: null
+                  profilePicOriginalName: ""
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/partner
+      operationId: options_partner_service_v1_partner
+      responses:
+        "200":
+          description: Success
+  /images/profile_pic/115_primo.jfif:
+    get:
+      tags:
+        - images
+      summary: GET /images/profile_pic/115_primo.jfif
+      operationId: get_images_profile_pic_115_primo_jfif
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/getContactInfo/{id}:
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/getContactInfo/{id}
+      operationId: options_partner_service_v1_getContactInfo_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000202"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/getContactInfo/{id}
+      operationId: get_partner_service_v1_getContactInfo_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000202"
+      responses:
+        "200":
+          description: Success
+  /{id}/v1/cintap/modules/search:
+    get:
+      tags:
+        - v1
+      summary: GET /{id}/v1/cintap/modules/search
+      operationId: get_id_v1_cintap_modules_search
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cintap-api-service
+        - name: keyword
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - v1
+      summary: OPTIONS /{id}/v1/cintap/modules/search
+      operationId: options_id_v1_cintap_modules_search
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cintap-api-service
+        - name: keyword
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /bpi-service/v1/pagination/connection:
+    options:
+      tags:
+        - bpi-service
+      summary: OPTIONS /bpi-service/v1/pagination/connection
+      operationId: options_bpi_service_v1_pagination_connection
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - bpi-service
+      summary: POST /bpi-service/v1/pagination/connection
+      operationId: post_bpi_service_v1_pagination_connection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Bpi-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  partnerId: 70000390
+                  pageNo: 0
+                  pageSize: 15
+                  connectionName: ""
+      responses:
+        "200":
+          description: Success
+  /bpi-service/v1/pagination/maps:
+    options:
+      tags:
+        - bpi-service
+      summary: OPTIONS /bpi-service/v1/pagination/maps
+      operationId: options_bpi_service_v1_pagination_maps
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - bpi-service
+      summary: POST /bpi-service/v1/pagination/maps
+      operationId: post_bpi_service_v1_pagination_maps
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Bpi-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  pageNo: 0
+                  pageSize: 15
+                  partnerId: 70000390
+      responses:
+        "200":
+          description: Success
+  /bpi-service/v1/pagination/process:
+    options:
+      tags:
+        - bpi-service
+      summary: OPTIONS /bpi-service/v1/pagination/process
+      operationId: options_bpi_service_v1_pagination_process
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - bpi-service
+      summary: POST /bpi-service/v1/pagination/process
+      operationId: post_bpi_service_v1_pagination_process
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Bpi-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  pageNo: 0
+                  pageSize: 15
+                  partnerId: 70000390
+                  name: ""
+      responses:
+        "200":
+          description: Success
+  /bpi-service/v1/connection/{id}:
+    options:
+      tags:
+        - bpi-service
+      summary: OPTIONS /bpi-service/v1/connection/{id}
+      operationId: options_bpi_service_v1_connection_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - bpi-service
+      summary: POST /bpi-service/v1/connection/{id}
+      operationId: post_bpi_service_v1_connection_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Bpi-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  partnerId: 70000390
+      responses:
+        "200":
+          description: Success
+  /bpi-service/v1/maps/{id}:
+    options:
+      tags:
+        - bpi-service
+      summary: OPTIONS /bpi-service/v1/maps/{id}
+      operationId: options_bpi_service_v1_maps_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - bpi-service
+      summary: GET /bpi-service/v1/maps/{id}
+      operationId: get_bpi_service_v1_maps_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+  /bpi-service/v1/pagination/processFlow:
+    options:
+      tags:
+        - bpi-service
+      summary: OPTIONS /bpi-service/v1/pagination/processFlow
+      operationId: options_bpi_service_v1_pagination_processFlow
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - bpi-service
+      summary: POST /bpi-service/v1/pagination/processFlow
+      operationId: post_bpi_service_v1_pagination_processFlow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Bpi-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  pageNo: 0
+                  pageSize: 15
+                  partnerId: 70000390
+                  name: ""
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/getAllCards:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/getAllCards
+      operationId: get_partner_service_v1_getAllCards
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "363"
+        - name: partnerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/getAllCards
+      operationId: options_partner_service_v1_getAllCards
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "363"
+        - name: partnerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "70000390"
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/support/incidents/partner:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/support/incidents/partner
+      operationId: get_partner_service_v1_support_incidents_partner
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "20"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/support/incidents/partner
+      operationId: options_partner_service_v1_support_incidents_partner
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "20"
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/support/incidents/stats:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/support/incidents/stats
+      operationId: get_partner_service_v1_support_incidents_stats
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/support/incidents/stats
+      operationId: options_partner_service_v1_support_incidents_stats
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/support/incidents/categories:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/support/incidents/categories
+      operationId: get_partner_service_v1_support_incidents_categories
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/support/incidents/categories
+      operationId: options_partner_service_v1_support_incidents_categories
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/support/incidents:
+    post:
+      tags:
+        - partner-service
+      summary: POST /partner-service/v1/support/incidents
+      operationId: post_partner_service_v1_support_incidents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  subject: Test
+                  description: testing
+                  severity: MEDIUM
+                  category: TECHNICAL
+                  preferredContact: EMAIL
+                  reporterPhone: "9898123456"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/support/incidents
+      operationId: options_partner_service_v1_support_incidents
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/support/incidents/{id}:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/support/incidents/{id}
+      operationId: get_partner_service_v1_support_incidents_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/support/incidents/{id}
+      operationId: options_partner_service_v1_support_incidents_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3"
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - partner-service
+      summary: PUT /partner-service/v1/support/incidents/{id}
+      operationId: put_partner_service_v1_support_incidents_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePutRequest"
+            examples:
+              fromHar:
+                value:
+                  subject: Test21
+                  description: testing
+                  severity: MEDIUM
+                  category: TECHNICAL
+                  preferredContact: EMAIL
+                  reporterPhone: "9898123456"
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - partner-service
+      summary: DELETE /partner-service/v1/support/incidents/{id}
+      operationId: delete_partner_service_v1_support_incidents_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "4"
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/support/incidents/{id}/comments:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/support/incidents/{id}/comments
+      operationId: get_partner_service_v1_support_incidents_id_comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/support/incidents/{id}/comments
+      operationId: options_partner_service_v1_support_incidents_id_comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - partner-service
+      summary: POST /partner-service/v1/support/incidents/{id}/comments
+      operationId: post_partner_service_v1_support_incidents_id_comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner-servicePostRequest"
+            examples:
+              fromHar:
+                value:
+                  content: Inc test
+                  visibility: PUBLIC
+      responses:
+        "200":
+          description: Success
+  /partner-service/v1/support/incidents/{id}/history:
+    get:
+      tags:
+        - partner-service
+      summary: GET /partner-service/v1/support/incidents/{id}/history
+      operationId: get_partner_service_v1_support_incidents_id_history
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3"
+      responses:
+        "200":
+          description: Success
+    options:
+      tags:
+        - partner-service
+      summary: OPTIONS /partner-service/v1/support/incidents/{id}/history
+      operationId: options_partner_service_v1_support_incidents_id_history
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    Partner-servicePostRequest:
+      type: object
+      properties:
+        userName:
+          type: string
+        password:
+          type: string
+      required:
+        - userName
+        - password
+    Otc-service-v2PostRequest:
+      type: object
+      properties:
+        fromDate:
+          type: string
+        partnerId:
+          type: integer
+        toDate:
+          type: string
+      required:
+        - fromDate
+        - partnerId
+        - toDate
+    V1PostRequest:
+      type: object
+      properties:
+        fromDate:
+          type: string
+        partnerId:
+          type: integer
+        toDate:
+          type: string
+      required:
+        - fromDate
+        - partnerId
+        - toDate
+    Tpl-servicePostRequest:
+      type: object
+      properties:
+        fromDate:
+          type: string
+        partnerId:
+          type: integer
+        toDate:
+          type: string
+      required:
+        - fromDate
+        - partnerId
+        - toDate
+    Wms-servicePostRequest:
+      type: object
+      properties:
+        fromDate:
+          type: string
+        partnerId:
+          type: integer
+        toDate:
+          type: string
+      required:
+        - fromDate
+        - partnerId
+        - toDate
+    Partner-servicePutRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        partnerEmail:
+          type: string
+        primaryTelephone:
+          type: string
+        partnerId:
+          type: integer
+        partnerUserAssociation:
+          type: object
+          properties:
+            userId:
+              type: integer
+          required:
+            - userId
+        profilePicData:
+          nullable: true
+        profilePicOriginalName:
+          type: string
+      required:
+        - firstName
+        - lastName
+        - partnerEmail
+        - primaryTelephone
+        - partnerId
+        - partnerUserAssociation
+        - profilePicData
+        - profilePicOriginalName
+    Bpi-servicePostRequest:
+      type: object
+      properties:
+        partnerId:
+          type: integer
+        pageNo:
+          type: integer
+        pageSize:
+          type: integer
+        connectionName:
+          type: string
+      required:
+        - partnerId
+        - pageNo
+        - pageSize
+        - connectionName
