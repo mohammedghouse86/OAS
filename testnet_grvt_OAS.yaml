@@ -1,0 +1,198 @@
+openapi: 3.0.3
+info:
+  title: Testnet Grvt App
+  version: 1.0.0
+servers:
+  - url: https://trades.testnet.grvt.io
+tags:
+  - name: v1
+paths:
+  /lite/v1/{id}:
+    post:
+      tags:
+        - v1
+      summary: POST /lite/v1/{id}
+      operationId: post_lite_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: funding_account_summary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  c: USD
+      responses:
+        "200":
+          description: Success
+  /lite/v1/account_summary:
+    post:
+      tags:
+        - v1
+      summary: POST /lite/v1/account_summary
+      operationId: post_lite_v1_account_summary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  sa: "8908146821093598"
+      responses:
+        "200":
+          description: Success
+  /lite/v1/positions:
+    post:
+      tags:
+        - v1
+      summary: POST /lite/v1/positions
+      operationId: post_lite_v1_positions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  sa: "8908146821093598"
+                  k:
+                    - PERPETUAL
+                    - CALL
+                    - PUT
+      responses:
+        "200":
+          description: Success
+  /lite/v1/pre_order_check:
+    post:
+      tags:
+        - v1
+      summary: POST /lite/v1/pre_order_check
+      operationId: post_lite_v1_pre_order_check
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  sa: "8908146821093598"
+                  o:
+                    - sa: "8908146821093598"
+                      im: false
+                      ti: GOOD_TILL_TIME
+                      po: false
+                      ro: false
+                      l:
+                        - i: BTC_USDT_Perp
+                          s: ""
+                          lp: "77311.5"
+                          ib: true
+                    - sa: "8908146821093598"
+                      im: false
+                      ti: GOOD_TILL_TIME
+                      po: false
+                      ro: false
+                      l:
+                        - i: BTC_USDT_Perp
+                          s: ""
+                          lp: "77311.5"
+                          ib: false
+      responses:
+        "200":
+          description: Success
+  /lite/v1/open_orders:
+    post:
+      tags:
+        - v1
+      summary: POST /lite/v1/open_orders
+      operationId: post_lite_v1_open_orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  k:
+                    - PERPETUAL
+                  b:
+                    - BTC
+                  q:
+                    - USDT
+                  sa: "8908146821093598"
+      responses:
+        "200":
+          description: Success
+  /lite/v1/fill_history:
+    post:
+      tags:
+        - v1
+      summary: POST /lite/v1/fill_history
+      operationId: post_lite_v1_fill_history
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  l: 200
+                  st: "1776967200000000000"
+                  et: "1777174948618000000"
+                  sa: "8908146821093598"
+                  k:
+                    - PERPETUAL
+                  b:
+                    - BTC
+                  q:
+                    - USDT
+      responses:
+        "200":
+          description: Success
+  /lite/v1/order_group:
+    post:
+      tags:
+        - v1
+      summary: POST /lite/v1/order_group
+      operationId: post_lite_v1_order_group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  sa: "8908146821093598"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    V1PostRequest:
+      type: object
+      properties:
+        c:
+          type: string
+      required:
+        - c
