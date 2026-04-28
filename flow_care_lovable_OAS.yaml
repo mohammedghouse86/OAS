@@ -1,0 +1,945 @@
+openapi: 3.0.3
+info:
+  title: Flow Care Lovable App
+  version: 1.0.0
+servers:
+  - url: https://ztvpbqebgmjkvpmmteps.supabase.co
+tags:
+  - name: v1
+paths:
+  /rest/v1/profiles:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/profiles
+      operationId: get_rest_v1_profiles
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*,organizations(name)"
+        - name: user_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.8009042a-7bab-4539-b8d3-d0d0aba278b7
+        - name: organization_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.b9f9526e-c555-4001-a6f7-13e2c5c56dfd
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at.desc
+      responses:
+        "200":
+          description: Success
+    patch:
+      tags:
+        - v1
+      summary: PATCH /rest/v1/profiles
+      operationId: patch_rest_v1_profiles
+      parameters:
+        - name: user_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.8009042a-7bab-4539-b8d3-d0d0aba278b7
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PatchRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Joel Miller
+                  phone: "456676466"
+      responses:
+        "200":
+          description: Success
+  /rest/v1/user_roles:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/user_roles
+      operationId: get_rest_v1_user_roles
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: role
+        - name: user_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.8009042a-7bab-4539-b8d3-d0d0aba278b7
+      responses:
+        "200":
+          description: Success
+  /rest/v1/appointments:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/appointments
+      operationId: get_rest_v1_appointments
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: date.desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v1
+      summary: POST /rest/v1/appointments
+      operationId: post_rest_v1_appointments
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  patient_id: f177275f-e976-4493-8e97-ae28027192fc
+                  provider_id: 8009042a-7bab-4539-b8d3-d0d0aba278b7
+                  date: 2026-04-30
+                  time: 10:00
+                  duration: 15
+                  type: consultation
+                  reason: Diabetes check up
+                  notes: ""
+                  patient_name: Jack Doe
+                  provider_name: Joel Miller
+                  organization_id: b9f9526e-c555-4001-a6f7-13e2c5c56dfd
+                  status: scheduled
+      responses:
+        "200":
+          description: Success
+    patch:
+      tags:
+        - v1
+      summary: PATCH /rest/v1/appointments
+      operationId: patch_rest_v1_appointments
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.8669bd1a-d72f-42b2-a197-c1e7887a132e
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PatchRequest"
+            examples:
+              fromHar:
+                value:
+                  status: checked-in
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - v1
+      summary: DELETE /rest/v1/appointments
+      operationId: delete_rest_v1_appointments
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.f999c39b-d6f6-4ba5-b356-cf8dac9e0111
+      responses:
+        "200":
+          description: Success
+  /rest/v1/patients:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/patients
+      operationId: get_rest_v1_patients
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at.desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v1
+      summary: POST /rest/v1/patients
+      operationId: post_rest_v1_patients
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Jack Doe
+                  email: jack@tester.com
+                  phone: "456676466"
+                  date_of_birth: 2026-04-20
+                  gender: male
+                  address: 3667 Sydney Ct
+                  blood_type: O-
+                  insurance_provider: Bupa
+                  insurance_policy_number: 78241WC
+                  organization_id: b9f9526e-c555-4001-a6f7-13e2c5c56dfd
+                  allergies: []
+                  conditions: []
+                  emergency_contact: {}
+      responses:
+        "200":
+          description: Success
+  /rest/v1/lab_orders:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/lab_orders
+      operationId: get_rest_v1_lab_orders
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ordered_date.desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v1
+      summary: POST /rest/v1/lab_orders
+      operationId: post_rest_v1_lab_orders
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  patient_id: f177275f-e976-4493-8e97-ae28027192fc
+                  patient_name: Jack Doe
+                  provider_id: 8009042a-7bab-4539-b8d3-d0d0aba278b7
+                  provider_name: Joel Miller
+                  tests:
+                    - CBC
+                  priority: stat
+                  organization_id: b9f9526e-c555-4001-a6f7-13e2c5c56dfd
+                  status: ordered
+      responses:
+        "200":
+          description: Success
+    patch:
+      tags:
+        - v1
+      summary: PATCH /rest/v1/lab_orders
+      operationId: patch_rest_v1_lab_orders
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.685466af-3c97-4a88-9fdf-525ca5bd9446
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PatchRequest"
+            examples:
+              fromHar:
+                value:
+                  status: collected
+      responses:
+        "200":
+          description: Success
+  /rest/v1/invoices:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/invoices
+      operationId: get_rest_v1_invoices
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at.desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v1
+      summary: POST /rest/v1/invoices
+      operationId: post_rest_v1_invoices
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  patient_id: f177275f-e976-4493-8e97-ae28027192fc
+                  patient_name: Jack Doe
+                  items:
+                    - description: CBC test
+                      code: "78474"
+                      amount: 100
+                  subtotal: 100
+                  tax: 8
+                  total: 108
+                  insurance_covered: 80
+                  patient_responsibility: 28
+                  due_date: 2026-04-28
+                  organization_id: b9f9526e-c555-4001-a6f7-13e2c5c56dfd
+                  status: draft
+      responses:
+        "200":
+          description: Success
+    patch:
+      tags:
+        - v1
+      summary: PATCH /rest/v1/invoices
+      operationId: patch_rest_v1_invoices
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.434c2fb4-50e0-401a-8e87-b6ef2be67989
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PatchRequest"
+            examples:
+              fromHar:
+                value:
+                  status: sent
+      responses:
+        "200":
+          description: Success
+  /rest/v1/prescriptions:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/prescriptions
+      operationId: get_rest_v1_prescriptions
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: prescribed_date.desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v1
+      summary: POST /rest/v1/prescriptions
+      operationId: post_rest_v1_prescriptions
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  patient_id: f177275f-e976-4493-8e97-ae28027192fc
+                  provider_id: 8009042a-7bab-4539-b8d3-d0d0aba278b7
+                  medication: Selective Serotonin Reuptake Inhibitors (SSRIs) and Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)
+                  dosage: 2mg
+                  frequency: twice daily
+                  duration: 50 days
+                  refills: 1
+                  pharmacy: Med Plus
+                  expiry_date: ""
+                  patient_name: Jack Doe
+                  provider_name: Joel Miller
+                  organization_id: b9f9526e-c555-4001-a6f7-13e2c5c56dfd
+                  status: active
+                  refills_used: 0
+      responses:
+        "200":
+          description: Success
+  /rest/v1/tasks:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/tasks
+      operationId: get_rest_v1_tasks
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at.desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v1
+      summary: POST /rest/v1/tasks
+      operationId: post_rest_v1_tasks
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  title: Blood Draw
+                  description: Blood Draw for Jack
+                  assignee_id: 8009042a-7bab-4539-b8d3-d0d0aba278b7
+                  queue: lab
+                  priority: high
+                  due_date: 2026-04-28
+                  assignee_name: Joel Miller
+                  assigner_id: 8009042a-7bab-4539-b8d3-d0d0aba278b7
+                  organization_id: b9f9526e-c555-4001-a6f7-13e2c5c56dfd
+                  status: pending
+      responses:
+        "200":
+          description: Success
+    patch:
+      tags:
+        - v1
+      summary: PATCH /rest/v1/tasks
+      operationId: patch_rest_v1_tasks
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.ea807988-8b73-481f-a917-7b788a4db538
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PatchRequest"
+            examples:
+              fromHar:
+                value:
+                  status: in-progress
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - v1
+      summary: DELETE /rest/v1/tasks
+      operationId: delete_rest_v1_tasks
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.cfdf3660-1170-4c7f-8252-088a630a903f
+      responses:
+        "200":
+          description: Success
+  /rest/v1/notifications:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/notifications
+      operationId: get_rest_v1_notifications
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at.desc
+      responses:
+        "200":
+          description: Success
+  /rest/v1/encounters:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/encounters
+      operationId: get_rest_v1_encounters
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: date.desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v1
+      summary: POST /rest/v1/encounters
+      operationId: post_rest_v1_encounters
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  patient_id: f177275f-e976-4493-8e97-ae28027192fc
+                  provider_id: 8009042a-7bab-4539-b8d3-d0d0aba278b7
+                  date: 2026-04-28
+                  type: telehealth
+                  chief_complaint: Head Ace
+                  subjective: Head Ace
+                  objective: stress
+                  assessment: chronic stress
+                  plan: anxiety medicine
+                  patient_name: Jack Doe
+                  provider_name: Joel Miller
+                  organization_id: b9f9526e-c555-4001-a6f7-13e2c5c56dfd
+                  status: in-progress
+                  diagnoses: []
+      responses:
+        "200":
+          description: Success
+    patch:
+      tags:
+        - v1
+      summary: PATCH /rest/v1/encounters
+      operationId: patch_rest_v1_encounters
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.763cc12b-7b1d-4bbe-b1f4-4113fcb795fc
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PatchRequest"
+            examples:
+              fromHar:
+                value:
+                  status: completed
+      responses:
+        "200":
+          description: Success
+  /rest/v1/{id}:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/{id}
+      operationId: get_rest_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: insurance_policies
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at.desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v1
+      summary: POST /rest/v1/{id}
+      operationId: post_rest_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: insurance_policies
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  patient_id: 4d703f36-6d57-4fd6-9b22-0e8a49fc4bbb
+                  provider: Bupa
+                  policy_number: "4745"
+                  group_number: "41"
+                  copay: "25"
+                  deductible: "2000"
+                  effective_date: 2025-03-05
+                  expiry_date: 2026-02-05
+                  patient_name: Test Patient
+                  organization_id: b9f9526e-c555-4001-a6f7-13e2c5c56dfd
+                  status: active
+      responses:
+        "200":
+          description: Success
+    patch:
+      tags:
+        - v1
+      summary: PATCH /rest/v1/{id}
+      operationId: patch_rest_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: prior_authorizations
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.cb470c6c-4df3-49ab-9d69-8cd03a346597
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PatchRequest"
+            examples:
+              fromHar:
+                value:
+                  status: denied
+                  decided_date: 2026-04-28
+      responses:
+        "200":
+          description: Success
+  /rest/v1/messages:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/messages
+      operationId: get_rest_v1_messages
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at.desc
+      responses:
+        "200":
+          description: Success
+  /rest/v1/documents:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/documents
+      operationId: get_rest_v1_documents
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at.desc
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - v1
+      summary: POST /rest/v1/documents
+      operationId: post_rest_v1_documents
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/V1PostRequest"
+            examples:
+              fromHar:
+                value:
+                  name: CBC result
+                  category: lab-report
+                  uploaded_by: 8009042a-7bab-4539-b8d3-d0d0aba278b7
+                  uploaded_by_name: Joel Miller
+                  organization_id: b9f9526e-c555-4001-a6f7-13e2c5c56dfd
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - v1
+      summary: DELETE /rest/v1/documents
+      operationId: delete_rest_v1_documents
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: eq.500f14c4-de65-4837-92e9-8001f66178cb
+      responses:
+        "200":
+          description: Success
+  /rest/v1/audit_logs:
+    get:
+      tags:
+        - v1
+      summary: GET /rest/v1/audit_logs
+      operationId: get_rest_v1_audit_logs
+      parameters:
+        - name: select
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          example: created_at.desc
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    V1PostRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        date_of_birth:
+          type: string
+        gender:
+          type: string
+        address:
+          type: string
+        blood_type:
+          type: string
+        insurance_provider:
+          type: string
+        insurance_policy_number:
+          type: string
+        organization_id:
+          type: string
+        allergies:
+          type: array
+          items:
+            type: string
+        conditions:
+          type: array
+          items:
+            type: string
+        emergency_contact:
+          type: object
+          properties: {}
+          required: []
+      required:
+        - name
+        - email
+        - phone
+        - date_of_birth
+        - gender
+        - address
+        - blood_type
+        - insurance_provider
+        - insurance_policy_number
+        - organization_id
+        - allergies
+        - conditions
+        - emergency_contact
+    V1PatchRequest:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
