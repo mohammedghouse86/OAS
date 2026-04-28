@@ -1,0 +1,1152 @@
+openapi: 3.0.3
+info:
+  title: Wristband App
+  version: 1.0.0
+servers:
+  - url: https://jadriel.dashboard.wristband.dev
+tags:
+  - name: api
+paths:
+  /api/v1/session-data:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/session-data
+      operationId: get_api_v1_session_data
+      responses:
+        "200":
+          description: Success
+  /api/v1/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/{id}/{id2}
+      operationId: get_api_v1_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: profile-settings-data
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ottaotqpqrc3rdp3njo2jih5du
+      responses:
+        "200":
+          description: Success
+  /api/v1/users/{id}:
+    patch:
+      tags:
+        - api
+      summary: PATCH /api/v1/users/{id}
+      operationId: patch_api_v1_users_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ottaotqpqrc3rdp3njo2jih5du
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  pictureUrl: https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}:
+    patch:
+      tags:
+        - api
+      summary: PATCH /api/v1/tenants/{id}
+      operationId: patch_api_v1_tenants_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 5awe6diozjgw7ld43knxe2fvpe
+        - name: replace_custom_metadata
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPatchRequest"
+            examples:
+              fromHar:
+                value:
+                  displayName: jadriel1
+                  description: ""
+                  logoUrl: ""
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/tenants/{id}
+      operationId: get_api_v1_tenants_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/tenants/{id}/{id2}
+      operationId: get_api_v1_tenants_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 5awe6diozjgw7ld43knxe2fvpe
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: tenant-admins-table-data
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,tenantId,applicationId,identityProviderType,givenName,familyName,email,pictureUrl,status
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: invitationType eq "EMAIL" and status eq "PENDING_INVITE_ACCEPTANCE"
+      responses:
+        "200":
+          description: Success
+  /api/v1/invite-new-user:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/invite-new-user
+      operationId: post_api_v1_invite_new_user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  tenantId: 5awe6diozjgw7ld43knxe2fvpe
+                  email: qatestuser2@example.com
+                  rolesToAssign:
+                    - mji4lwbr6jgdvftrawxnuobjie
+      responses:
+        "200":
+          description: Success
+  /api/v1/{id}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/{id}
+      operationId: post_api_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: cancel-new-user-invite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  newUserInvitationRequestId: ibs2sftgnrdmhhy53p67gga4om
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/{id}
+      operationId: get_api_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: users-table-data
+        - name: entity_type
+          in: query
+          required: false
+          schema:
+            type: string
+          example: TENANT
+        - name: entity_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,applicationId,tenantId,identityProviderType,email,fullName,givenName,familyName,pictureUrl,status
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: invitationType eq "EMAIL" and status eq "PENDING_INVITE_ACCEPTANCE"
+      responses:
+        "200":
+          description: Success
+  /api/v1/workspaces/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/workspaces/{id}/{id2}
+      operationId: get_api_v1_workspaces_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 45vuijz5kbhsxlwhu7ckiqpsti
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: application-usage-select-options
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/workspaces/{id}/{id2}
+      operationId: post_api_v1_workspaces_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 45vuijz5kbhsxlwhu7ckiqpsti
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-account-usage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  startDate: 2026-04-01
+                  endDate: 2026-04-28
+                  overageThreshold: 10000
+                  globalTenantOverageThreshold: 10000
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/{id2}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications/{id}/{id2}
+      operationId: post_api_v1_applications_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: q6ehkcyrrbbnvpybk7zchwzo4q
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-account-usage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  startDate: 2026-04-01
+                  endDate: 2026-04-28
+                  overageThreshold: 10000
+                  globalTenantOverageThreshold: 10000
+      responses:
+        "200":
+          description: Success
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/{id2}
+      operationId: get_api_v1_applications_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: vurkcywah5gvndx2hhrk4z6t64
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: application-context
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}
+      operationId: get_api_v1_applications_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: vurkcywah5gvndx2hhrk4z6t64
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/custom-domains:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/custom-domains
+      operationId: get_api_v1_applications_id_custom_domains
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: vurkcywah5gvndx2hhrk4z6t64
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications/{id}/tenants:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/applications/{id}/tenants
+      operationId: get_api_v1_applications_id_tenants
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: vurkcywah5gvndx2hhrk4z6t64
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,type,name,displayName,logoUrl,status
+        - name: ?count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: type eq "GLOBAL"
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/tenants
+      operationId: post_api_v1_tenants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  applicationId: vurkcywah5gvndx2hhrk4z6t64
+                  type: STANDARD
+                  displayName: T1
+                  name: customer01
+      responses:
+        "200":
+          description: Success
+  /api/v1/users:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/users
+      operationId: post_api_v1_users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  tenantId: ukuhjeau7fhdxafymuwitm4zoq
+                  identityProviderName: wristband
+                  email: user1@gmail.com
+                  sendInvitation: false
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/clients:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/tenants/{id}/clients
+      operationId: get_api_v1_tenants_id_clients
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,type
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: type eq "MACHINE_TO_MACHINE"
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/{id2}/wristband/{id3}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/tenants/{id}/{id2}/wristband/{id3}
+      operationId: post_api_v1_tenants_id_id2_wristband_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: identity-providers
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/{id2}/social/{id3}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/tenants/{id}/{id2}/social/{id3}
+      operationId: post_api_v1_tenants_id_id2_social_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: identity-providers
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/{id2}/enterprise/{id3}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/tenants/{id}/{id2}/enterprise/{id3}
+      operationId: post_api_v1_tenants_id_id2_enterprise_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: identity-providers
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/override-toggle:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/tenants/{id}/override-toggle
+      operationId: post_api_v1_tenants_id_override_toggle
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  overridePath: identity-provider
+                  overrideStatus: ENABLED
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/roles:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/tenants/{id}/roles
+      operationId: get_api_v1_tenants_id_roles
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,displayName,tenantVisibility
+        - name: include_predefined_roles
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: type eq "CUSTOM"
+      responses:
+        "200":
+          description: Success
+  /api/v1/roles:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/roles
+      operationId: post_api_v1_roles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  ownerType: TENANT
+                  ownerId: ukuhjeau7fhdxafymuwitm4zoq
+                  name: role1
+                  displayName: my role
+                  tenantVisibility: OWNER
+                  tenantVisibilityInclusionList: []
+      responses:
+        "200":
+          description: Success
+  /api/v1/roles/{id}/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/roles/{id}/{id2}
+      operationId: get_api_v1_roles_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ke6hgji5zrduxfmf5bvcotqvue
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: permission-boundary-select-options
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,name,displayName
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: entityType eq "USER"
+        - name: application_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: vurkcywah5gvndx2hhrk4z6t64
+      responses:
+        "200":
+          description: Success
+  /api/v1/roles/{id}/permissions:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/roles/{id}/permissions
+      operationId: get_api_v1_roles_id_permissions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ke6hgji5zrduxfmf5bvcotqvue
+        - name: start_index
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id,type,value
+      responses:
+        "200":
+          description: Success
+  /api/v1/roles/{id}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/roles/{id}
+      operationId: get_api_v1_roles_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ke6hgji5zrduxfmf5bvcotqvue
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/{id2}/{id3}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/tenants/{id}/{id2}/{id3}
+      operationId: post_api_v1_tenants_id_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: auth-session-policies
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: cookiePersistenceType,idleSessionTimeout,absoluteSessionTimeout
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/mfa-policies/{id2}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/tenants/{id}/mfa-policies/{id2}
+      operationId: post_api_v1_tenants_id_mfa_policies_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: enrollmentStrategy,allowedAuthFactors,totpSettings
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/page-brandings/{id2}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/tenants/{id}/page-brandings/{id2}
+      operationId: post_api_v1_tenants_id_page_brandings_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: pageBackgroundType,pageBackgroundColor,pageBackgroundImageUrl,panelBackgroundColor,panelTextColor,panelBorderRadiusPixels,panelBorderColor,panelBoxShadowEnabled,primaryButtonBackgroundColor,primaryButtonTextColor,primaryButtonBorderRadiusPixels,primaryButtonBorderColor,primaryButtonFocusColor,secondaryButtonBackgroundColor,secondaryButtonTextColor,secondaryButtonBorderRadiusPixels,secondaryButtonBorderColor,secondaryButtonFocusColor,inputBackgroundColor,inputTextColor,inputBorderRadiusPixels,inputBorderColor,inputFocusColor,inputIconColor,inputIconButtonHoverColor,linkColor,linkHoverColor,linkUnderlineAppearance,errorColor,successColor,logoUrl,logoHeightPixels,faviconUrl,websiteUrl,termsOfServiceUrl,privacyPolicyUrl,supportUrl,supportEmail
+        - name: tenant_signup_page_branding_fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+        - name: tenant_login_page_branding_fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "*"
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/email-brandings/{id2}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/tenants/{id}/email-brandings/{id2}
+      operationId: post_api_v1_tenants_id_email_brandings_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: primaryButtonBackgroundColor,primaryButtonTextColor,primaryButtonBorderRadiusPixels,primaryButtonBorderColor,logoUrl,logoAltText,logoWidthPixels,logoHeightPixels,supportEmail,websiteUrl,supportUrl,fromName,fromAddress,logoDisplayed
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/custom-domains:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/tenants/{id}/custom-domains
+      operationId: get_api_v1_tenants_id_custom_domains
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/email-domains:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/tenants/{id}/email-domains
+      operationId: get_api_v1_tenants_id_email_domains
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/email-policies/{id2}:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/tenants/{id}/email-policies/{id2}
+      operationId: get_api_v1_tenants_id_email_policies_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+      responses:
+        "200":
+          description: Success
+  /api/v1/email-policies:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/email-policies
+      operationId: post_api_v1_email_policies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  emailType: USER_ACTIVATION
+                  ownerType: TENANT
+                  ownerId: ukuhjeau7fhdxafymuwitm4zoq
+                  actionLinkUrl: ""
+                  actionLinkLifetime: 2
+                  actionLinkLifetimeUnit: DAYS
+      responses:
+        "200":
+          description: Success
+  /api/v1/tenants/{id}/user-schemas/{id2}:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/tenants/{id}/user-schemas/{id2}
+      operationId: post_api_v1_tenants_id_user_schemas_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: ukuhjeau7fhdxafymuwitm4zoq
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: resolve-overrides
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: baseProfile.required
+      responses:
+        "200":
+          description: Success
+  /api/v1/user-schemas:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/user-schemas
+      operationId: post_api_v1_user_schemas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  ownerType: TENANT
+                  ownerId: ukuhjeau7fhdxafymuwitm4zoq
+                  required:
+                    - email
+                    - familyName
+      responses:
+        "200":
+          description: Success
+  /api/v1/workspaces/{id}/applications:
+    get:
+      tags:
+        - api
+      summary: GET /api/v1/workspaces/{id}/applications
+      operationId: get_api_v1_workspaces_id_applications
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 45vuijz5kbhsxlwhu7ckiqpsti
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          example: id
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          example: name eq "app999"
+      responses:
+        "200":
+          description: Success
+  /api/v1/applications:
+    post:
+      tags:
+        - api
+      summary: POST /api/v1/applications
+      operationId: post_api_v1_applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApiPostRequest"
+            examples:
+              fromHar:
+                value:
+                  workspaceId: 45vuijz5kbhsxlwhu7ckiqpsti
+                  displayName: app999
+                  name: app999
+                  loginUrl: https://app999-jadriel.us.wristband.dev/login-url-placeholder
+                  environmentType: DEVELOPMENT
+                  isMultiTenant: true
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    ApiPatchRequest:
+      type: object
+      properties:
+        pictureUrl:
+          type: string
+      required:
+        - pictureUrl
+    ApiPostRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        email:
+          type: string
+        rolesToAssign:
+          type: array
+          items:
+            type: string
+      required:
+        - tenantId
+        - email
+        - rolesToAssign
