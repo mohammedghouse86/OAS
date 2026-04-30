@@ -1,0 +1,448 @@
+openapi: 3.0.3
+info:
+  title: Replit Finance App
+  version: 1.0.0
+servers:
+  - url: https://finance-os-syedhai2002.replit.app
+tags:
+  - name: accounts
+  - name: audit-logs
+  - name: auth
+  - name: bank-accounts
+  - name: budgets
+  - name: customers
+  - name: dashboard
+  - name: employees
+  - name: expenses
+  - name: investments
+  - name: invoices
+  - name: journal-entries
+  - name: loans
+  - name: payroll-runs
+  - name: reports
+  - name: tenants
+  - name: users
+  - name: vendor-bills
+paths:
+  /api/auth/token:
+    post:
+      tags:
+        - auth
+      summary: POST /api/auth/token
+      operationId: post_api_auth_token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: mohammedghouse86.backup@gmail.com
+                  password: Ghouse_Tester@786
+      responses:
+        "200":
+          description: Success
+  /api/auth/register:
+    post:
+      tags:
+        - auth
+      summary: POST /api/auth/register
+      operationId: post_api_auth_register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthPostRequest"
+            examples:
+              fromHar:
+                value:
+                  email: mohammedghouse86.backup@gmail.com
+                  password: Ghouse_Tester@786
+                  name: ghouse mohammed
+                  companyName: Executive G Org
+      responses:
+        "200":
+          description: Success
+  /api/dashboard/summary:
+    get:
+      tags:
+        - dashboard
+      summary: GET /api/dashboard/summary
+      operationId: get_api_dashboard_summary
+      responses:
+        "200":
+          description: Success
+  /api/dashboard/revenue-chart:
+    get:
+      tags:
+        - dashboard
+      summary: GET /api/dashboard/revenue-chart
+      operationId: get_api_dashboard_revenue_chart
+      responses:
+        "200":
+          description: Success
+  /api/dashboard/activity:
+    get:
+      tags:
+        - dashboard
+      summary: GET /api/dashboard/activity
+      operationId: get_api_dashboard_activity
+      responses:
+        "200":
+          description: Success
+  /api/tenants/current:
+    get:
+      tags:
+        - tenants
+      summary: GET /api/tenants/current
+      operationId: get_api_tenants_current
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - tenants
+      summary: PUT /api/tenants/current
+      operationId: put_api_tenants_current
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TenantsPutRequest"
+            examples:
+              fromHar:
+                value:
+                  name: Executive G Org
+                  industry: General
+                  currency: USD
+                  timezone: UTC
+      responses:
+        "200":
+          description: Success
+  /api/accounts:
+    get:
+      tags:
+        - accounts
+      summary: GET /api/accounts
+      operationId: get_api_accounts
+      responses:
+        "200":
+          description: Success
+  /api/journal-entries:
+    get:
+      tags:
+        - journal-entries
+      summary: GET /api/journal-entries
+      operationId: get_api_journal_entries
+      responses:
+        "200":
+          description: Success
+  /api/budgets:
+    get:
+      tags:
+        - budgets
+      summary: GET /api/budgets
+      operationId: get_api_budgets
+      responses:
+        "200":
+          description: Success
+  /api/invoices:
+    get:
+      tags:
+        - invoices
+      summary: GET /api/invoices
+      operationId: get_api_invoices
+      responses:
+        "200":
+          description: Success
+  /api/customers:
+    get:
+      tags:
+        - customers
+      summary: GET /api/customers
+      operationId: get_api_customers
+      responses:
+        "200":
+          description: Success
+  /api/expenses:
+    get:
+      tags:
+        - expenses
+      summary: GET /api/expenses
+      operationId: get_api_expenses
+      responses:
+        "200":
+          description: Success
+  /api/vendor-bills:
+    get:
+      tags:
+        - vendor-bills
+      summary: GET /api/vendor-bills
+      operationId: get_api_vendor_bills
+      responses:
+        "200":
+          description: Success
+  /api/bank-accounts:
+    get:
+      tags:
+        - bank-accounts
+      summary: GET /api/bank-accounts
+      operationId: get_api_bank_accounts
+      responses:
+        "200":
+          description: Success
+  /api/loans:
+    get:
+      tags:
+        - loans
+      summary: GET /api/loans
+      operationId: get_api_loans
+      responses:
+        "200":
+          description: Success
+  /api/investments:
+    get:
+      tags:
+        - investments
+      summary: GET /api/investments
+      operationId: get_api_investments
+      responses:
+        "200":
+          description: Success
+  /api/investments/{id}:
+    get:
+      tags:
+        - investments
+      summary: GET /api/investments/{id}
+      operationId: get_api_investments_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: portfolio-summary
+      responses:
+        "200":
+          description: Success
+  /api/employees:
+    get:
+      tags:
+        - employees
+      summary: GET /api/employees
+      operationId: get_api_employees
+      responses:
+        "200":
+          description: Success
+  /api/payroll-runs:
+    get:
+      tags:
+        - payroll-runs
+      summary: GET /api/payroll-runs
+      operationId: get_api_payroll_runs
+      responses:
+        "200":
+          description: Success
+  /api/reports/balance-sheet:
+    get:
+      tags:
+        - reports
+      summary: GET /api/reports/balance-sheet
+      operationId: get_api_reports_balance_sheet
+      parameters:
+        - name: asOf
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-04-30
+      responses:
+        "200":
+          description: Success
+  /api/reports/profit-and-loss:
+    get:
+      tags:
+        - reports
+      summary: GET /api/reports/profit-and-loss
+      operationId: get_api_reports_profit_and_loss
+      parameters:
+        - name: dateFrom
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-01
+        - name: dateTo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-04-30
+      responses:
+        "200":
+          description: Success
+  /api/reports/cash-flow:
+    get:
+      tags:
+        - reports
+      summary: GET /api/reports/cash-flow
+      operationId: get_api_reports_cash_flow
+      parameters:
+        - name: dateFrom
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-01-01
+        - name: dateTo
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-04-30
+      responses:
+        "200":
+          description: Success
+  /api/users:
+    get:
+      tags:
+        - users
+      summary: GET /api/users
+      operationId: get_api_users
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - users
+      summary: POST /api/users
+      operationId: post_api_users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UsersPostRequest"
+            examples:
+              fromHar:
+                value:
+                  fullName: jack doe
+                  email: jack@tester.com
+                  role: finance_admin
+                  password: Ghouse_Tester@786
+      responses:
+        "200":
+          description: Success
+  /api/audit-logs:
+    get:
+      tags:
+        - audit-logs
+      summary: GET /api/audit-logs
+      operationId: get_api_audit_logs
+      responses:
+        "200":
+          description: Success
+  /api/users/{id}:
+    put:
+      tags:
+        - users
+      summary: PUT /api/users/{id}
+      operationId: put_api_users_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: user_3D4PFCZE4PfgS5VOZjHNtEW3tW6
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UsersPutRequest"
+            examples:
+              fromHar:
+                value:
+                  role: finance_admin
+                  isActive: false
+                  password: Ghouse_Tester@786
+      responses:
+        "200":
+          description: Success
+    delete:
+      tags:
+        - users
+      summary: DELETE /api/users/{id}
+      operationId: delete_api_users_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: user_3D4PFCZE4PfgS5VOZjHNtEW3tW6
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    AuthPostRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+    TenantsPutRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        industry:
+          type: string
+        currency:
+          type: string
+        timezone:
+          type: string
+      required:
+        - name
+        - industry
+        - currency
+        - timezone
+    UsersPostRequest:
+      type: object
+      properties:
+        fullName:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        password:
+          type: string
+      required:
+        - fullName
+        - email
+        - role
+        - password
+    UsersPutRequest:
+      type: object
+      properties:
+        role:
+          type: string
+        isActive:
+          type: boolean
+        password:
+          type: string
+      required:
+        - role
+        - isActive
+        - password
