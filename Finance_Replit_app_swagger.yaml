@@ -1,423 +1,1383 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
-  title: Replit Finance App
-  version: 1.0.0
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: FinanceOS API specification
 servers:
-  - url: https://finance-os-syedhai2002.replit.app
+  - url: https://finance-os-syedhai2002.replit.app/api
+    description: Base API path
 tags:
-  - name: accounts
-  - name: audit-logs
-  - name: auth
-  - name: bank-accounts
-  - name: budgets
-  - name: customers
-  - name: dashboard
-  - name: employees
-  - name: expenses
-  - name: investments
-  - name: invoices
-  - name: journal-entries
-  - name: loans
-  - name: payroll-runs
-  - name: reports
+  - name: health
   - name: tenants
   - name: users
+  - name: accounts
+  - name: journal-entries
+  - name: budgets
+  - name: customers
+  - name: invoices
+  - name: expenses
   - name: vendor-bills
+  - name: bank-accounts
+  - name: loans
+  - name: investments
+  - name: employees
+  - name: payroll
+  - name: reports
+  - name: dashboard
+  - name: audit-logs
+
 paths:
-  /api/auth/token:
-    post:
-      tags:
-        - auth
-      summary: POST /api/auth/token
-      operationId: post_api_auth_token
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AuthPostRequest"
-            examples:
-              fromHar:
-                value:
-                  email: mohammedghouse86.backup@gmail.com
-                  password: Ghouse_Tester@786
-      responses:
-        "200":
-          description: Success
-  /api/auth/register:
-    post:
-      tags:
-        - auth
-      summary: POST /api/auth/register
-      operationId: post_api_auth_register
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AuthPostRequest"
-            examples:
-              fromHar:
-                value:
-                  email: mohammedghouse86.backup@gmail.com
-                  password: Ghouse_Tester@786
-                  name: ghouse mohammed
-                  companyName: Executive G Org
-      responses:
-        "200":
-          description: Success
-  /api/dashboard/summary:
+  /healthz:
     get:
-      tags:
-        - dashboard
-      summary: GET /api/dashboard/summary
-      operationId: get_api_dashboard_summary
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
       responses:
         "200":
-          description: Success
-  /api/dashboard/revenue-chart:
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  # ─── TENANTS ─────────────────────────────────────────────────────────────────
+  /tenants/current:
     get:
-      tags:
-        - dashboard
-      summary: GET /api/dashboard/revenue-chart
-      operationId: get_api_dashboard_revenue_chart
+      operationId: getCurrentTenant
+      tags: [tenants]
+      summary: Get current tenant
       responses:
         "200":
-          description: Success
-  /api/dashboard/activity:
-    get:
-      tags:
-        - dashboard
-      summary: GET /api/dashboard/activity
-      operationId: get_api_dashboard_activity
-      responses:
-        "200":
-          description: Success
-  /api/tenants/current:
-    get:
-      tags:
-        - tenants
-      summary: GET /api/tenants/current
-      operationId: get_api_tenants_current
-      responses:
-        "200":
-          description: Success
+          description: Tenant
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tenant"
     put:
-      tags:
-        - tenants
-      summary: PUT /api/tenants/current
-      operationId: put_api_tenants_current
+      operationId: updateCurrentTenant
+      tags: [tenants]
+      summary: Update tenant settings
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TenantsPutRequest"
-            examples:
-              fromHar:
-                value:
-                  name: Executive G Org
-                  industry: General
-                  currency: USD
-                  timezone: UTC
+              $ref: "#/components/schemas/UpdateTenantBody"
       responses:
         "200":
-          description: Success
-  /api/accounts:
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tenant"
+
+  # ─── USERS ───────────────────────────────────────────────────────────────────
+  /users:
     get:
-      tags:
-        - accounts
-      summary: GET /api/accounts
-      operationId: get_api_accounts
+      operationId: listUsers
+      tags: [users]
+      summary: List users in tenant
       responses:
         "200":
-          description: Success
-  /api/journal-entries:
-    get:
-      tags:
-        - journal-entries
-      summary: GET /api/journal-entries
-      operationId: get_api_journal_entries
+          description: Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      operationId: inviteUser
+      tags: [users]
+      summary: Invite a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InviteUserBody"
       responses:
-        "200":
-          description: Success
-  /api/budgets:
-    get:
-      tags:
-        - budgets
-      summary: GET /api/budgets
-      operationId: get_api_budgets
-      responses:
-        "200":
-          description: Success
-  /api/invoices:
-    get:
-      tags:
-        - invoices
-      summary: GET /api/invoices
-      operationId: get_api_invoices
-      responses:
-        "200":
-          description: Success
-  /api/customers:
-    get:
-      tags:
-        - customers
-      summary: GET /api/customers
-      operationId: get_api_customers
-      responses:
-        "200":
-          description: Success
-  /api/expenses:
-    get:
-      tags:
-        - expenses
-      summary: GET /api/expenses
-      operationId: get_api_expenses
-      responses:
-        "200":
-          description: Success
-  /api/vendor-bills:
-    get:
-      tags:
-        - vendor-bills
-      summary: GET /api/vendor-bills
-      operationId: get_api_vendor_bills
-      responses:
-        "200":
-          description: Success
-  /api/bank-accounts:
-    get:
-      tags:
-        - bank-accounts
-      summary: GET /api/bank-accounts
-      operationId: get_api_bank_accounts
-      responses:
-        "200":
-          description: Success
-  /api/loans:
-    get:
-      tags:
-        - loans
-      summary: GET /api/loans
-      operationId: get_api_loans
-      responses:
-        "200":
-          description: Success
-  /api/investments:
-    get:
-      tags:
-        - investments
-      summary: GET /api/investments
-      operationId: get_api_investments
-      responses:
-        "200":
-          description: Success
-  /api/investments/{id}:
-    get:
-      tags:
-        - investments
-      summary: GET /api/investments/{id}
-      operationId: get_api_investments_id
+        "201":
+          description: Invited
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+  /users/{userId}:
+    put:
+      operationId: updateUser
+      tags: [users]
       parameters:
-        - name: id
+        - name: userId
           in: path
           required: true
           schema:
             type: string
-          example: portfolio-summary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserBody"
       responses:
         "200":
-          description: Success
-  /api/employees:
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    delete:
+      operationId: removeUser
+      tags: [users]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Removed
+
+  /users/me:
     get:
-      tags:
-        - employees
-      summary: GET /api/employees
-      operationId: get_api_employees
+      operationId: getMe
+      tags: [users]
+      summary: Get current user profile
       responses:
         "200":
-          description: Success
-  /api/payroll-runs:
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+  # ─── CHART OF ACCOUNTS ───────────────────────────────────────────────────────
+  /accounts:
     get:
-      tags:
-        - payroll-runs
-      summary: GET /api/payroll-runs
-      operationId: get_api_payroll_runs
+      operationId: listAccounts
+      tags: [accounts]
+      summary: List chart of accounts
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+        - name: isActive
+          in: query
+          schema:
+            type: boolean
       responses:
         "200":
-          description: Success
-  /api/reports/balance-sheet:
+          description: Accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+    post:
+      operationId: createAccount
+      tags: [accounts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAccountBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+
+  /accounts/{accountId}:
+    put:
+      operationId: updateAccount
+      tags: [accounts]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateAccountBody"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+
+  # ─── JOURNAL ENTRIES ─────────────────────────────────────────────────────────
+  /journal-entries:
     get:
-      tags:
-        - reports
-      summary: GET /api/reports/balance-sheet
-      operationId: get_api_reports_balance_sheet
+      operationId: listJournalEntries
+      tags: [journal-entries]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Journal entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/JournalEntry"
+    post:
+      operationId: createJournalEntry
+      tags: [journal-entries]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateJournalEntryBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JournalEntry"
+
+  /journal-entries/{entryId}:
+    get:
+      operationId: getJournalEntry
+      tags: [journal-entries]
+      parameters:
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Journal entry with lines
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JournalEntryWithLines"
+
+  /journal-entries/{entryId}/post:
+    post:
+      operationId: postJournalEntry
+      tags: [journal-entries]
+      parameters:
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Posted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JournalEntry"
+
+  # ─── BUDGETS ─────────────────────────────────────────────────────────────────
+  /budgets:
+    get:
+      operationId: listBudgets
+      tags: [budgets]
+      parameters:
+        - name: fiscalYear
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Budgets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Budget"
+    post:
+      operationId: createBudget
+      tags: [budgets]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBudgetBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Budget"
+
+  /budgets/{budgetId}:
+    get:
+      operationId: getBudget
+      tags: [budgets]
+      parameters:
+        - name: budgetId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Budget with lines
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BudgetWithLines"
+
+  /budgets/vs-actual:
+    get:
+      operationId: getBudgetVsActual
+      tags: [budgets]
+      parameters:
+        - name: budgetId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Budget vs actual comparison
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BudgetVsActualLine"
+
+  # ─── CUSTOMERS ───────────────────────────────────────────────────────────────
+  /customers:
+    get:
+      operationId: listCustomers
+      tags: [customers]
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+    post:
+      operationId: createCustomer
+      tags: [customers]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCustomerBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+
+  /customers/{customerId}:
+    get:
+      operationId: getCustomer
+      tags: [customers]
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+    put:
+      operationId: updateCustomer
+      tags: [customers]
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCustomerBody"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+
+  # ─── INVOICES ────────────────────────────────────────────────────────────────
+  /invoices:
+    get:
+      operationId: listInvoices
+      tags: [invoices]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: customerId
+          in: query
+          schema:
+            type: string
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Invoices
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Invoice"
+    post:
+      operationId: createInvoice
+      tags: [invoices]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateInvoiceBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+
+  /invoices/{invoiceId}:
+    get:
+      operationId: getInvoice
+      tags: [invoices]
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Invoice with lines
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceWithLines"
+    put:
+      operationId: updateInvoice
+      tags: [invoices]
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateInvoiceBody"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+
+  /invoices/{invoiceId}/status:
+    put:
+      operationId: updateInvoiceStatus
+      tags: [invoices]
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateStatusBody"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+
+  # ─── EXPENSES ────────────────────────────────────────────────────────────────
+  /expenses:
+    get:
+      operationId: listExpenses
+      tags: [expenses]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: category
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Expenses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Expense"
+    post:
+      operationId: createExpense
+      tags: [expenses]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateExpenseBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Expense"
+
+  /expenses/{expenseId}:
+    get:
+      operationId: getExpense
+      tags: [expenses]
+      parameters:
+        - name: expenseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Expense
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Expense"
+    put:
+      operationId: updateExpense
+      tags: [expenses]
+      parameters:
+        - name: expenseId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateExpenseBody"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Expense"
+
+  /expenses/{expenseId}/approve:
+    post:
+      operationId: approveExpense
+      tags: [expenses]
+      parameters:
+        - name: expenseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Approved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Expense"
+
+  /expenses/{expenseId}/reject:
+    post:
+      operationId: rejectExpense
+      tags: [expenses]
+      parameters:
+        - name: expenseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Expense"
+
+  # ─── VENDOR BILLS ────────────────────────────────────────────────────────────
+  /vendor-bills:
+    get:
+      operationId: listVendorBills
+      tags: [vendor-bills]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Vendor bills
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VendorBill"
+    post:
+      operationId: createVendorBill
+      tags: [vendor-bills]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateVendorBillBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VendorBill"
+
+  # ─── BANK ACCOUNTS ───────────────────────────────────────────────────────────
+  /bank-accounts:
+    get:
+      operationId: listBankAccounts
+      tags: [bank-accounts]
+      responses:
+        "200":
+          description: Bank accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BankAccount"
+    post:
+      operationId: createBankAccount
+      tags: [bank-accounts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBankAccountBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankAccount"
+
+  /bank-accounts/{accountId}/transactions:
+    get:
+      operationId: listBankTransactions
+      tags: [bank-accounts]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BankTransaction"
+    post:
+      operationId: createBankTransaction
+      tags: [bank-accounts]
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBankTransactionBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankTransaction"
+
+  # ─── LOANS ───────────────────────────────────────────────────────────────────
+  /loans:
+    get:
+      operationId: listLoans
+      tags: [loans]
+      responses:
+        "200":
+          description: Loans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Loan"
+    post:
+      operationId: createLoan
+      tags: [loans]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateLoanBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Loan"
+
+  /loans/{loanId}:
+    get:
+      operationId: getLoan
+      tags: [loans]
+      parameters:
+        - name: loanId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Loan with repayment schedule
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoanWithSchedule"
+
+  /loans/{loanId}/repayments/{repaymentId}/pay:
+    post:
+      operationId: markRepaymentPaid
+      tags: [loans]
+      parameters:
+        - name: loanId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: repaymentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Marked paid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoanRepayment"
+
+  # ─── INVESTMENTS ─────────────────────────────────────────────────────────────
+  /investments:
+    get:
+      operationId: listInvestments
+      tags: [investments]
+      responses:
+        "200":
+          description: Investment holdings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Investment"
+    post:
+      operationId: createInvestment
+      tags: [investments]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateInvestmentBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Investment"
+
+  /investments/portfolio-summary:
+    get:
+      operationId: getPortfolioSummary
+      tags: [investments]
+      summary: Portfolio summary with totals and sector allocation
+      responses:
+        "200":
+          description: Portfolio summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PortfolioSummary"
+
+  /investments/{investmentId}/transactions:
+    get:
+      operationId: listInvestmentTransactions
+      tags: [investments]
+      parameters:
+        - name: investmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Investment transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InvestmentTransaction"
+    post:
+      operationId: createInvestmentTransaction
+      tags: [investments]
+      parameters:
+        - name: investmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateInvestmentTransactionBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvestmentTransaction"
+
+  # ─── EMPLOYEES ───────────────────────────────────────────────────────────────
+  /employees:
+    get:
+      operationId: listEmployees
+      tags: [employees]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: department
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Employees
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Employee"
+    post:
+      operationId: createEmployee
+      tags: [employees]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEmployeeBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+
+  /employees/{employeeId}:
+    get:
+      operationId: getEmployee
+      tags: [employees]
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Employee
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+    put:
+      operationId: updateEmployee
+      tags: [employees]
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEmployeeBody"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+
+  /employees/{employeeId}/salary-structure:
+    get:
+      operationId: getEmployeeSalaryStructure
+      tags: [employees]
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Salary structure
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SalaryStructure"
+    post:
+      operationId: setEmployeeSalaryStructure
+      tags: [employees]
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSalaryStructureBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SalaryStructure"
+
+  # ─── PAYROLL ─────────────────────────────────────────────────────────────────
+  /payroll-runs:
+    get:
+      operationId: listPayrollRuns
+      tags: [payroll]
+      responses:
+        "200":
+          description: Payroll runs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PayrollRun"
+    post:
+      operationId: createPayrollRun
+      tags: [payroll]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePayrollRunBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PayrollRun"
+
+  /payroll-runs/{runId}:
+    get:
+      operationId: getPayrollRun
+      tags: [payroll]
+      parameters:
+        - name: runId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Payroll run with payslips
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PayrollRunWithPayslips"
+
+  /payroll-runs/{runId}/commit:
+    post:
+      operationId: commitPayrollRun
+      tags: [payroll]
+      parameters:
+        - name: runId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Committed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PayrollRun"
+
+  # ─── REPORTS ─────────────────────────────────────────────────────────────────
+  /reports/profit-and-loss:
+    get:
+      operationId: getProfitAndLoss
+      tags: [reports]
+      parameters:
+        - name: dateFrom
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: dateTo
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: compareFrom
+          in: query
+          schema:
+            type: string
+        - name: compareTo
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: P&L report
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfitAndLossReport"
+
+  /reports/balance-sheet:
+    get:
+      operationId: getBalanceSheet
+      tags: [reports]
       parameters:
         - name: asOf
           in: query
-          required: false
-          schema:
-            type: string
-          example: 2026-04-30
-      responses:
-        "200":
-          description: Success
-  /api/reports/profit-and-loss:
-    get:
-      tags:
-        - reports
-      summary: GET /api/reports/profit-and-loss
-      operationId: get_api_reports_profit_and_loss
-      parameters:
-        - name: dateFrom
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 2026-01-01
-        - name: dateTo
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 2026-04-30
-      responses:
-        "200":
-          description: Success
-  /api/reports/cash-flow:
-    get:
-      tags:
-        - reports
-      summary: GET /api/reports/cash-flow
-      operationId: get_api_reports_cash_flow
-      parameters:
-        - name: dateFrom
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 2026-01-01
-        - name: dateTo
-          in: query
-          required: false
-          schema:
-            type: string
-          example: 2026-04-30
-      responses:
-        "200":
-          description: Success
-  /api/users:
-    get:
-      tags:
-        - users
-      summary: GET /api/users
-      operationId: get_api_users
-      responses:
-        "200":
-          description: Success
-    post:
-      tags:
-        - users
-      summary: POST /api/users
-      operationId: post_api_users
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UsersPostRequest"
-            examples:
-              fromHar:
-                value:
-                  fullName: jack doe
-                  email: jack@tester.com
-                  role: finance_admin
-                  password: Ghouse_Tester@786
-      responses:
-        "200":
-          description: Success
-  /api/audit-logs:
-    get:
-      tags:
-        - audit-logs
-      summary: GET /api/audit-logs
-      operationId: get_api_audit_logs
-      responses:
-        "200":
-          description: Success
-  /api/users/{id}:
-    put:
-      tags:
-        - users
-      summary: PUT /api/users/{id}
-      operationId: put_api_users_id
-      parameters:
-        - name: id
-          in: path
           required: true
           schema:
             type: string
-          example: user_3D4PFCZE4PfgS5VOZjHNtEW3tW6
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UsersPutRequest"
-            examples:
-              fromHar:
-                value:
-                  role: finance_admin
-                  isActive: false
-                  password: Ghouse_Tester@786
       responses:
         "200":
-          description: Success
-    delete:
-      tags:
-        - users
-      summary: DELETE /api/users/{id}
-      operationId: delete_api_users_id
+          description: Balance sheet
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BalanceSheetReport"
+
+  /reports/cash-flow:
+    get:
+      operationId: getCashFlow
+      tags: [reports]
       parameters:
-        - name: id
-          in: path
+        - name: dateFrom
+          in: query
           required: true
           schema:
             type: string
-          example: user_3D4PFCZE4PfgS5VOZjHNtEW3tW6
+        - name: dateTo
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
         "200":
-          description: Success
+          description: Cash flow statement
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CashFlowReport"
+
+  # ─── DASHBOARD ───────────────────────────────────────────────────────────────
+  /dashboard/summary:
+    get:
+      operationId: getDashboardSummary
+      tags: [dashboard]
+      summary: Dashboard KPI summary
+      responses:
+        "200":
+          description: Dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummary"
+
+  /dashboard/revenue-chart:
+    get:
+      operationId: getRevenueChart
+      tags: [dashboard]
+      summary: Revenue vs expenses by month (last 12 months)
+      responses:
+        "200":
+          description: Monthly revenue/expense data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MonthlyFinancialData"
+
+  /dashboard/activity:
+    get:
+      operationId: getDashboardActivity
+      tags: [dashboard]
+      summary: Recent activity feed
+      responses:
+        "200":
+          description: Activity items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ActivityItem"
+
+  /dashboard/expense-categories:
+    get:
+      operationId: getExpenseCategoryBreakdown
+      tags: [dashboard]
+      summary: Top expense categories
+      responses:
+        "200":
+          description: Expense category breakdown
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ExpenseCategoryData"
+
+  # ─── AUDIT LOGS ──────────────────────────────────────────────────────────────
+  /audit-logs:
+    get:
+      operationId: listAuditLogs
+      tags: [audit-logs]
+      parameters:
+        - name: module
+          in: query
+          schema:
+            type: string
+        - name: userId
+          in: query
+          schema:
+            type: string
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Audit logs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AuditLog"
+
 components:
   schemas:
-    AuthPostRequest:
+    HealthStatus:
       type: object
       properties:
-        email:
+        status:
           type: string
-        password:
+      required: [status]
+
+    Tenant:
+      type: object
+      properties:
+        id:
           type: string
-      required:
-        - email
-        - password
-    TenantsPutRequest:
+        name:
+          type: string
+        subdomain:
+          type: string
+        logoUrl:
+          type: string
+          nullable: true
+        currency:
+          type: string
+        fiscalYearStart:
+          type: integer
+        timezone:
+          type: string
+        industry:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type: string
+      required: [id, name, subdomain, currency, fiscalYearStart, timezone, industry, status, createdAt]
+
+    UpdateTenantBody:
       type: object
       properties:
         name:
           type: string
-        industry:
+        logoUrl:
           type: string
         currency:
           type: string
+        fiscalYearStart:
+          type: integer
         timezone:
           type: string
-      required:
-        - name
-        - industry
-        - currency
-        - timezone
-    UsersPostRequest:
+        industry:
+          type: string
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum: [tenant_admin, finance_admin, finance_accountant, clerk]
+        isActive:
+          type: boolean
+        lastLogin:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+      required: [id, tenantId, fullName, email, role, isActive, createdAt]
+
+    InviteUserBody:
       type: object
       properties:
         fullName:
@@ -426,23 +1386,1158 @@ components:
           type: string
         role:
           type: string
-        password:
-          type: string
-      required:
-        - fullName
-        - email
-        - role
-        - password
-    UsersPutRequest:
+          enum: [tenant_admin, finance_admin, finance_accountant, clerk]
+      required: [fullName, email, role]
+
+    UpdateUserBody:
       type: object
       properties:
         role:
           type: string
+          enum: [tenant_admin, finance_admin, finance_accountant, clerk]
         isActive:
           type: boolean
-        password:
+
+    Account:
+      type: object
+      properties:
+        id:
           type: string
-      required:
-        - role
-        - isActive
-        - password
+        tenantId:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum: [asset, liability, equity, revenue, expense]
+        subType:
+          type: string
+        currency:
+          type: string
+        description:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+      required: [id, tenantId, code, name, type, subType, currency, isActive, createdAt]
+
+    CreateAccountBody:
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum: [asset, liability, equity, revenue, expense]
+        subType:
+          type: string
+        currency:
+          type: string
+        description:
+          type: string
+      required: [code, name, type, subType, currency]
+
+    UpdateAccountBody:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+
+    JournalEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        date:
+          type: string
+        reference:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [draft, posted, locked]
+        createdBy:
+          type: string
+        createdAt:
+          type: string
+      required: [id, tenantId, date, reference, description, status, createdBy, createdAt]
+
+    JournalLine:
+      type: object
+      properties:
+        id:
+          type: string
+        journalEntryId:
+          type: string
+        accountId:
+          type: string
+        accountName:
+          type: string
+        accountCode:
+          type: string
+        debit:
+          type: number
+        credit:
+          type: number
+      required: [id, journalEntryId, accountId, accountName, accountCode, debit, credit]
+
+    JournalEntryWithLines:
+      allOf:
+        - $ref: "#/components/schemas/JournalEntry"
+        - type: object
+          properties:
+            lines:
+              type: array
+              items:
+                $ref: "#/components/schemas/JournalLine"
+          required: [lines]
+
+    CreateJournalEntryBody:
+      type: object
+      properties:
+        date:
+          type: string
+        reference:
+          type: string
+        description:
+          type: string
+        lines:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+              debit:
+                type: number
+              credit:
+                type: number
+            required: [accountId, debit, credit]
+      required: [date, reference, description, lines]
+
+    Budget:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        name:
+          type: string
+        fiscalYear:
+          type: integer
+        department:
+          type: string
+        version:
+          type: string
+        status:
+          type: string
+          enum: [draft, active, locked]
+        createdAt:
+          type: string
+      required: [id, tenantId, name, fiscalYear, department, version, status, createdAt]
+
+    BudgetLine:
+      type: object
+      properties:
+        id:
+          type: string
+        budgetId:
+          type: string
+        accountId:
+          type: string
+        accountName:
+          type: string
+        jan:
+          type: number
+        feb:
+          type: number
+        mar:
+          type: number
+        apr:
+          type: number
+        may:
+          type: number
+        jun:
+          type: number
+        jul:
+          type: number
+        aug:
+          type: number
+        sep:
+          type: number
+        oct:
+          type: number
+        nov:
+          type: number
+        dec:
+          type: number
+        annualTotal:
+          type: number
+      required: [id, budgetId, accountId, accountName, jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec, annualTotal]
+
+    BudgetWithLines:
+      allOf:
+        - $ref: "#/components/schemas/Budget"
+        - type: object
+          properties:
+            lines:
+              type: array
+              items:
+                $ref: "#/components/schemas/BudgetLine"
+          required: [lines]
+
+    CreateBudgetBody:
+      type: object
+      properties:
+        name:
+          type: string
+        fiscalYear:
+          type: integer
+        department:
+          type: string
+        version:
+          type: string
+        lines:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+              jan:
+                type: number
+              feb:
+                type: number
+              mar:
+                type: number
+              apr:
+                type: number
+              may:
+                type: number
+              jun:
+                type: number
+              jul:
+                type: number
+              aug:
+                type: number
+              sep:
+                type: number
+              oct:
+                type: number
+              nov:
+                type: number
+              dec:
+                type: number
+            required: [accountId]
+      required: [name, fiscalYear, department, version]
+
+    BudgetVsActualLine:
+      type: object
+      properties:
+        accountId:
+          type: string
+        accountName:
+          type: string
+        budgeted:
+          type: number
+        actual:
+          type: number
+        variance:
+          type: number
+        variancePct:
+          type: number
+      required: [accountId, accountName, budgeted, actual, variance, variancePct]
+
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        name:
+          type: string
+        company:
+          type: string
+          nullable: true
+        email:
+          type: string
+        phone:
+          type: string
+          nullable: true
+        billingAddress:
+          type: string
+          nullable: true
+        currency:
+          type: string
+        paymentTerms:
+          type: integer
+        creditLimit:
+          type: number
+        createdAt:
+          type: string
+      required: [id, tenantId, name, email, currency, paymentTerms, creditLimit, createdAt]
+
+    CreateCustomerBody:
+      type: object
+      properties:
+        name:
+          type: string
+        company:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        billingAddress:
+          type: string
+        currency:
+          type: string
+        paymentTerms:
+          type: integer
+        creditLimit:
+          type: number
+      required: [name, email, currency, paymentTerms, creditLimit]
+
+    InvoiceLine:
+      type: object
+      properties:
+        id:
+          type: string
+        invoiceId:
+          type: string
+        description:
+          type: string
+        qty:
+          type: number
+        unitPrice:
+          type: number
+        taxRate:
+          type: number
+        lineTotal:
+          type: number
+      required: [id, invoiceId, description, qty, unitPrice, taxRate, lineTotal]
+
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        customerId:
+          type: string
+        customerName:
+          type: string
+        number:
+          type: string
+        date:
+          type: string
+        dueDate:
+          type: string
+        status:
+          type: string
+          enum: [draft, sent, partially_paid, paid, overdue, voided]
+        subtotal:
+          type: number
+        tax:
+          type: number
+        total:
+          type: number
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+      required: [id, tenantId, customerId, customerName, number, date, dueDate, status, subtotal, tax, total, createdAt]
+
+    InvoiceWithLines:
+      allOf:
+        - $ref: "#/components/schemas/Invoice"
+        - type: object
+          properties:
+            lines:
+              type: array
+              items:
+                $ref: "#/components/schemas/InvoiceLine"
+          required: [lines]
+
+    CreateInvoiceBody:
+      type: object
+      properties:
+        customerId:
+          type: string
+        date:
+          type: string
+        dueDate:
+          type: string
+        notes:
+          type: string
+        lines:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              qty:
+                type: number
+              unitPrice:
+                type: number
+              taxRate:
+                type: number
+            required: [description, qty, unitPrice, taxRate]
+      required: [customerId, date, dueDate, lines]
+
+    UpdateStatusBody:
+      type: object
+      properties:
+        status:
+          type: string
+      required: [status]
+
+    Expense:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        submittedBy:
+          type: string
+        submittedByName:
+          type: string
+        date:
+          type: string
+        category:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        description:
+          type: string
+        projectCode:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [submitted, pending_approval, approved, rejected, reimbursed]
+        createdAt:
+          type: string
+      required: [id, tenantId, submittedBy, submittedByName, date, category, amount, currency, description, status, createdAt]
+
+    CreateExpenseBody:
+      type: object
+      properties:
+        date:
+          type: string
+        category:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        description:
+          type: string
+        projectCode:
+          type: string
+      required: [date, category, amount, currency, description]
+
+    VendorBill:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        vendor:
+          type: string
+        billDate:
+          type: string
+        dueDate:
+          type: string
+        total:
+          type: number
+        status:
+          type: string
+          enum: [draft, approved, partially_paid, paid, overdue]
+        createdAt:
+          type: string
+      required: [id, tenantId, vendor, billDate, dueDate, total, status, createdAt]
+
+    CreateVendorBillBody:
+      type: object
+      properties:
+        vendor:
+          type: string
+        billDate:
+          type: string
+        dueDate:
+          type: string
+        lines:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              amount:
+                type: number
+            required: [description, amount]
+      required: [vendor, billDate, dueDate, lines]
+
+    BankAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        bankName:
+          type: string
+        accountName:
+          type: string
+        accountNumber:
+          type: string
+        currency:
+          type: string
+        balance:
+          type: number
+        createdAt:
+          type: string
+      required: [id, tenantId, bankName, accountName, accountNumber, currency, balance, createdAt]
+
+    CreateBankAccountBody:
+      type: object
+      properties:
+        bankName:
+          type: string
+        accountName:
+          type: string
+        accountNumber:
+          type: string
+        currency:
+          type: string
+        openingBalance:
+          type: number
+      required: [bankName, accountName, accountNumber, currency, openingBalance]
+
+    BankTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+        bankAccountId:
+          type: string
+        date:
+          type: string
+        type:
+          type: string
+          enum: [deposit, withdrawal, transfer]
+        amount:
+          type: number
+        description:
+          type: string
+        reconciled:
+          type: boolean
+        createdAt:
+          type: string
+      required: [id, bankAccountId, date, type, amount, description, reconciled, createdAt]
+
+    CreateBankTransactionBody:
+      type: object
+      properties:
+        date:
+          type: string
+        type:
+          type: string
+          enum: [deposit, withdrawal, transfer]
+        amount:
+          type: number
+        description:
+          type: string
+      required: [date, type, amount, description]
+
+    LoanRepayment:
+      type: object
+      properties:
+        id:
+          type: string
+        loanId:
+          type: string
+        dueDate:
+          type: string
+        principal:
+          type: number
+        interest:
+          type: number
+        total:
+          type: number
+        paidAt:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [pending, paid, overdue]
+      required: [id, loanId, dueDate, principal, interest, total, status]
+
+    Loan:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        lender:
+          type: string
+        amount:
+          type: number
+        interestRate:
+          type: number
+        termMonths:
+          type: integer
+        disbursementDate:
+          type: string
+        repaymentFrequency:
+          type: string
+          enum: [monthly, quarterly, annually]
+        collateralNotes:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [active, paid_off, defaulted]
+        outstandingBalance:
+          type: number
+        totalRepaid:
+          type: number
+        totalInterestPaid:
+          type: number
+        nextPaymentDue:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+      required: [id, tenantId, lender, amount, interestRate, termMonths, disbursementDate, repaymentFrequency, status, outstandingBalance, totalRepaid, totalInterestPaid, createdAt]
+
+    LoanWithSchedule:
+      allOf:
+        - $ref: "#/components/schemas/Loan"
+        - type: object
+          properties:
+            schedule:
+              type: array
+              items:
+                $ref: "#/components/schemas/LoanRepayment"
+          required: [schedule]
+
+    CreateLoanBody:
+      type: object
+      properties:
+        lender:
+          type: string
+        amount:
+          type: number
+        interestRate:
+          type: number
+        termMonths:
+          type: integer
+        disbursementDate:
+          type: string
+        repaymentFrequency:
+          type: string
+          enum: [monthly, quarterly, annually]
+        collateralNotes:
+          type: string
+      required: [lender, amount, interestRate, termMonths, disbursementDate, repaymentFrequency]
+
+    Investment:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        ticker:
+          type: string
+        name:
+          type: string
+        assetType:
+          type: string
+          enum: [stock, etf, bond, mutual_fund, crypto]
+        quantity:
+          type: number
+        avgBuyPrice:
+          type: number
+        currentPrice:
+          type: number
+        marketValue:
+          type: number
+        unrealizedPnl:
+          type: number
+        unrealizedPnlPct:
+          type: number
+        sector:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+      required: [id, tenantId, ticker, name, assetType, quantity, avgBuyPrice, currentPrice, marketValue, unrealizedPnl, unrealizedPnlPct, createdAt]
+
+    PortfolioSummary:
+      type: object
+      properties:
+        totalInvested:
+          type: number
+        currentMarketValue:
+          type: number
+        totalGainLoss:
+          type: number
+        totalGainLossPct:
+          type: number
+        dayChange:
+          type: number
+        sectorAllocation:
+          type: array
+          items:
+            type: object
+            properties:
+              sector:
+                type: string
+              value:
+                type: number
+              pct:
+                type: number
+            required: [sector, value, pct]
+      required: [totalInvested, currentMarketValue, totalGainLoss, totalGainLossPct, dayChange, sectorAllocation]
+
+    CreateInvestmentBody:
+      type: object
+      properties:
+        ticker:
+          type: string
+        name:
+          type: string
+        assetType:
+          type: string
+          enum: [stock, etf, bond, mutual_fund, crypto]
+        quantity:
+          type: number
+        avgBuyPrice:
+          type: number
+        currentPrice:
+          type: number
+        sector:
+          type: string
+      required: [ticker, name, assetType, quantity, avgBuyPrice, currentPrice]
+
+    InvestmentTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+        investmentId:
+          type: string
+        date:
+          type: string
+        type:
+          type: string
+          enum: [buy, sell, dividend]
+        quantity:
+          type: number
+        price:
+          type: number
+        commission:
+          type: number
+        total:
+          type: number
+        realizedGainLoss:
+          type: number
+          nullable: true
+        createdAt:
+          type: string
+      required: [id, investmentId, date, type, quantity, price, commission, total, createdAt]
+
+    CreateInvestmentTransactionBody:
+      type: object
+      properties:
+        date:
+          type: string
+        type:
+          type: string
+          enum: [buy, sell, dividend]
+        quantity:
+          type: number
+        price:
+          type: number
+        commission:
+          type: number
+      required: [date, type, quantity, price, commission]
+
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        employeeCode:
+          type: string
+        fullName:
+          type: string
+        department:
+          type: string
+        title:
+          type: string
+        employmentType:
+          type: string
+          enum: [full_time, part_time, contractor]
+        startDate:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [active, on_leave, terminated]
+        createdAt:
+          type: string
+      required: [id, tenantId, employeeCode, fullName, department, title, employmentType, startDate, email, status, createdAt]
+
+    CreateEmployeeBody:
+      type: object
+      properties:
+        fullName:
+          type: string
+        department:
+          type: string
+        title:
+          type: string
+        employmentType:
+          type: string
+          enum: [full_time, part_time, contractor]
+        startDate:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        status:
+          type: string
+          enum: [active, on_leave, terminated]
+      required: [fullName, department, title, employmentType, startDate, email]
+
+    SalaryStructure:
+      type: object
+      properties:
+        id:
+          type: string
+        employeeId:
+          type: string
+        effectiveDate:
+          type: string
+        basicSalary:
+          type: number
+        housingAllowance:
+          type: number
+        transportAllowance:
+          type: number
+        bonus:
+          type: number
+        healthInsuranceDeduction:
+          type: number
+        taxDeduction:
+          type: number
+        pensionContribution:
+          type: number
+        grossPay:
+          type: number
+        netPay:
+          type: number
+      required: [id, employeeId, effectiveDate, basicSalary, housingAllowance, transportAllowance, bonus, healthInsuranceDeduction, taxDeduction, pensionContribution, grossPay, netPay]
+
+    CreateSalaryStructureBody:
+      type: object
+      properties:
+        effectiveDate:
+          type: string
+        basicSalary:
+          type: number
+        housingAllowance:
+          type: number
+        transportAllowance:
+          type: number
+        bonus:
+          type: number
+        healthInsuranceDeduction:
+          type: number
+        taxDeduction:
+          type: number
+        pensionContribution:
+          type: number
+      required: [effectiveDate, basicSalary, housingAllowance, transportAllowance, bonus, healthInsuranceDeduction, taxDeduction, pensionContribution]
+
+    Payslip:
+      type: object
+      properties:
+        id:
+          type: string
+        payrollRunId:
+          type: string
+        employeeId:
+          type: string
+        employeeName:
+          type: string
+        grossPay:
+          type: number
+        totalDeductions:
+          type: number
+        netPay:
+          type: number
+      required: [id, payrollRunId, employeeId, employeeName, grossPay, totalDeductions, netPay]
+
+    PayrollRun:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        periodStart:
+          type: string
+        periodEnd:
+          type: string
+        status:
+          type: string
+          enum: [draft, committed]
+        totalGross:
+          type: number
+        totalDeductions:
+          type: number
+        totalNet:
+          type: number
+        employeeCount:
+          type: integer
+        committedAt:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+      required: [id, tenantId, periodStart, periodEnd, status, totalGross, totalDeductions, totalNet, employeeCount, createdAt]
+
+    PayrollRunWithPayslips:
+      allOf:
+        - $ref: "#/components/schemas/PayrollRun"
+        - type: object
+          properties:
+            payslips:
+              type: array
+              items:
+                $ref: "#/components/schemas/Payslip"
+          required: [payslips]
+
+    CreatePayrollRunBody:
+      type: object
+      properties:
+        periodStart:
+          type: string
+        periodEnd:
+          type: string
+      required: [periodStart, periodEnd]
+
+    ReportLineItem:
+      type: object
+      properties:
+        label:
+          type: string
+        amount:
+          type: number
+        compareAmount:
+          type: number
+          nullable: true
+        isTotal:
+          type: boolean
+        indent:
+          type: integer
+      required: [label, amount, isTotal, indent]
+
+    ProfitAndLossReport:
+      type: object
+      properties:
+        dateFrom:
+          type: string
+        dateTo:
+          type: string
+        totalRevenue:
+          type: number
+        totalExpenses:
+          type: number
+        netProfit:
+          type: number
+        lines:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReportLineItem"
+      required: [dateFrom, dateTo, totalRevenue, totalExpenses, netProfit, lines]
+
+    BalanceSheetReport:
+      type: object
+      properties:
+        asOf:
+          type: string
+        totalAssets:
+          type: number
+        totalLiabilities:
+          type: number
+        totalEquity:
+          type: number
+        isBalanced:
+          type: boolean
+        lines:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReportLineItem"
+      required: [asOf, totalAssets, totalLiabilities, totalEquity, isBalanced, lines]
+
+    CashFlowReport:
+      type: object
+      properties:
+        dateFrom:
+          type: string
+        dateTo:
+          type: string
+        operatingActivities:
+          type: number
+        investingActivities:
+          type: number
+        financingActivities:
+          type: number
+        netCashFlow:
+          type: number
+        lines:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReportLineItem"
+      required: [dateFrom, dateTo, operatingActivities, investingActivities, financingActivities, netCashFlow, lines]
+
+    DashboardSummary:
+      type: object
+      properties:
+        totalRevenue:
+          type: number
+        totalRevenuePrevMonth:
+          type: number
+        totalExpenses:
+          type: number
+        totalExpensesPrevMonth:
+          type: number
+        netProfit:
+          type: number
+        netProfitPrevMonth:
+          type: number
+        cashBalance:
+          type: number
+        outstandingInvoicesCount:
+          type: integer
+        outstandingInvoicesAmount:
+          type: number
+        portfolioValue:
+          type: number
+        portfolioDayChange:
+          type: number
+        budgetUtilizationPct:
+          type: number
+        pendingExpenses:
+          type: integer
+        upcomingLoanPayments:
+          type: integer
+      required: [totalRevenue, totalRevenuePrevMonth, totalExpenses, totalExpensesPrevMonth, netProfit, netProfitPrevMonth, cashBalance, outstandingInvoicesCount, outstandingInvoicesAmount, portfolioValue, portfolioDayChange, budgetUtilizationPct, pendingExpenses, upcomingLoanPayments]
+
+    MonthlyFinancialData:
+      type: object
+      properties:
+        month:
+          type: string
+        revenue:
+          type: number
+        expenses:
+          type: number
+        profit:
+          type: number
+      required: [month, revenue, expenses, profit]
+
+    ActivityItem:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        amount:
+          type: number
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+        module:
+          type: string
+      required: [id, type, description, createdAt, module]
+
+    ExpenseCategoryData:
+      type: object
+      properties:
+        category:
+          type: string
+        amount:
+          type: number
+        pct:
+          type: number
+        count:
+          type: integer
+      required: [category, amount, pct, count]
+
+    AuditLog:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        userId:
+          type: string
+        userName:
+          type: string
+        action:
+          type: string
+          enum: [created, updated, deleted, approved, rejected, posted, committed]
+        module:
+          type: string
+        recordRef:
+          type: string
+        ipAddress:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+      required: [id, tenantId, userId, userName, action, module, recordRef, createdAt]
