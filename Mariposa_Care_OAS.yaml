@@ -1,0 +1,1925 @@
+openapi: 3.0.3
+info:
+  title: Mariposa Care App
+  version: 1.0.0
+servers:
+  - url: https://preprod-api.mariposa.care
+tags:
+  - name: assessment
+  - name: bookvitals
+  - name: careCircle
+  - name: configCare
+  - name: organizations
+  - name: partner
+  - name: user
+paths:
+  /partner/caregivers/{id}:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/caregivers/{id}
+      operationId: get_partner_caregivers_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+      responses:
+        "200":
+          description: Success
+  /partner/careCircles/{id}:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/careCircles/{id}
+      operationId: get_partner_careCircles_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: apiRequestedFor
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /partner/requests/clock-in-out/{id}:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/requests/clock-in-out/{id}
+      operationId: get_partner_requests_clock_in_out_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+      responses:
+        "200":
+          description: Success
+  /careCircle/chat/{id}:
+    get:
+      tags:
+        - careCircle
+      summary: GET /careCircle/chat/{id}
+      operationId: get_careCircle_chat_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: hasUnreadMsgForPartner
+        - name: partnerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+      responses:
+        "200":
+          description: Success
+  /partner/shifts/withPagination2/{id}:
+    post:
+      tags:
+        - partner
+      summary: POST /partner/shifts/withPagination2/{id}
+      operationId: post_partner_shifts_withPagination2_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: isParent
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PartnerPostRequest"
+            examples:
+              fromHar:
+                value:
+                  careCircleName: ""
+                  startDate: ""
+                  shiftType: ""
+                  status: UNASSIGNED,CAREGIVER_APPROVAL,CAREGIVER_APPROVED,CANCELLED,FAMILY_APPROVED,CLOCKED_IN,CLOCKED_OUT
+                  resetFilter: false
+                  filterFor: SHIFT
+                  savedFilter:
+                    resetFilter: false
+                    shiftType: []
+                    startDate: ""
+                    status:
+                      - UNASSIGNED
+                      - CAREGIVER_APPROVAL
+                      - CAREGIVER_APPROVED
+                      - CANCELLED
+                      - FAMILY_APPROVED
+                      - CLOCKED_IN
+                      - CLOCKED_OUT
+                  lastShiftId: null
+                  lastCreatedDateTime: null
+                  limit: 10
+                  pageNumber: 0
+                  timezone: Asia/Calcutta
+      responses:
+        "200":
+          description: Success
+  /partner/{id}:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/{id}
+      operationId: get_partner_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getShiftTimeAdjustmentListForMCC
+        - name: partnerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: shiftId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: careCircleId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: undefined
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - partner
+      summary: POST /partner/{id}
+      operationId: post_partner_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getOperationalMetrixDetails
+        - name: partnerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PartnerPostRequest"
+            examples:
+              fromHar:
+                value:
+                  partnerId: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+                  startDateTimeInUTC: 2025-12-31T18:30:00
+                  endDateTimeInUTC: 2026-05-06T18:29:59
+                  startDateTimeInLocal: 2026-01-01T00:00:00
+                  endDateTimeInLocal: 2026-05-06T23:59:59
+                  timezone: Asia/Calcutta
+                  duration: YTD
+                  careCircleIds: []
+                  caregiverIds: []
+      responses:
+        "200":
+          description: Success
+  /partner/{id}/{id2}:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/{id}/{id2}
+      operationId: get_partner_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: notificationChecksum
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - partner
+      summary: POST /partner/{id}/{id2}
+      operationId: post_partner_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getCaregiversList
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: basedOnUnAvailability
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PartnerPostRequest"
+            examples:
+              fromHar:
+                value:
+                  careCircleId: e61829b0-8d29-482b-8cb3-9bd135b7104f
+                  partnerId: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+                  startDateTime: 2026-05-07T15:30:00
+                  endDateTime: 2026-05-08T15:30:00
+                  endsOn: 2026-10-31T15:30:00
+                  repeat: []
+                  timezone: Asia/Calcutta
+                  shiftBatchId: 04e92576-915e-48a6-add0-e37a6149b31c
+      responses:
+        "200":
+          description: Success
+  /partner/clientType/{id}:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/clientType/{id}
+      operationId: get_partner_clientType_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getAllClientTypes
+      responses:
+        "200":
+          description: Success
+  /partner/shifts/list/{id}:
+    post:
+      tags:
+        - partner
+      summary: POST /partner/shifts/list/{id}
+      operationId: post_partner_shifts_list_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-05-03T18:30:00
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-05-10T18:29:59
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PartnerPostRequest"
+            examples:
+              fromHar:
+                value:
+                  careCircleIds:
+                    - e61829b0-8d29-482b-8cb3-9bd135b7104f
+                    - c224ee4f-9584-4595-a2d1-c16fb6721d69
+                    - d401e41f-c6ae-4218-98b4-94c92d35706a
+                    - 207e0393-a514-4f78-b676-50f10ff3d360
+                    - a9c2c7fe-6e10-4b1b-b62d-693a5155b6bd
+                    - d880fcac-3c4e-44b1-96ad-b1f56280e262
+                    - 9a96baae-35cd-421d-a12a-17c826df398c
+                    - 96df09ea-8382-4a0c-a82c-7037549ab4d2
+                    - 91c3ccc8-67f1-4c83-83d1-e95ea5c1d672
+                    - 2252cbbe-f008-4be4-b86a-3ce744f9602e
+                    - c1b2bb50-d847-4485-9a5d-ab37b00bf987
+                    - 542cdfd1-4e4f-472d-a424-08239a515060
+                    - 9b61c931-2af9-4e4d-99d8-73958494b019
+                    - 9947a0ec-4213-454e-94a9-7c212748b2ef
+                    - 0f26be64-3219-4964-be48-a3db5b9b72c3
+                    - 3c4daa92-ad54-4715-ac68-5b4cd523478e
+                    - 0522685b-83a1-4b73-ac6e-7b510d63e539
+                    - 51ff814f-9ada-4dc0-bf05-4660a6f3ce39
+                    - b69fec80-0f91-4ee8-9067-6875b0f01e5f
+                    - 21b0eca0-521b-45e2-8da8-08b8c51cd4d5
+                    - bdc4495a-eeee-4d8a-a34a-f4947abb9a36
+                    - 146149b6-bd43-4b36-92ec-fb68791d1b3c
+                    - 87fbf854-e3cd-4605-8b6e-85b9b2b7ece2
+                    - c2430540-140c-41e3-8f31-d8d72fcc751f
+                    - 2b3ca27b-9f31-41f7-a681-2d7971fae440
+                    - 88b5dda6-79fe-4376-a26a-86784e521869
+                    - 19419dc4-ef6d-4441-be9c-b2d7cfecfe27
+                    - 49c53b22-0d3e-4506-85d2-9a3070447764
+                    - fc0beda1-a086-4029-8432-077ef35de456
+                    - c24f42c3-ef4f-43f2-81a8-5a20ed36e035
+                    - df765e2d-7259-4ffa-be14-4e6c15de99a1
+                    - 7dd02ebe-194d-4bba-9c38-374cf69d98d1
+                    - 2549047b-c31a-4f34-b87b-60d33234d4cd
+                    - 0cc82559-0525-4d76-a6bf-b823490626c6
+                    - e440596b-4863-4c4d-9d66-02fce5e7c6af
+                    - 67f7d492-3f7c-4567-83c6-cac197f8d50f
+                    - d16abae0-fdb7-44df-bad1-13da70d7666f
+                    - e25870cd-ba4b-4816-90e6-cdfb5f194300
+                    - c08c032b-0c7e-44c8-bcfb-1eaff111152a
+                    - 66463be8-d0f1-4b11-9098-80e3d79ceeb5
+                    - 861a2e95-724b-4fa5-9d60-03c52e694835
+                    - 8bc3685e-ab4c-49ab-a873-9e795d85debb
+                    - 9557eb13-528a-4b1b-b9e8-e796aa6640fd
+                    - c3fdc91b-e217-44ae-8df1-0b7fbf771445
+                    - eed5c3c8-8ae6-431e-b123-16864c38bd1e
+                    - 6e040f99-0ea4-4a84-bd2f-03570b86e1c7
+                    - 747f77ba-cb06-4562-9c37-2f4657588480
+                    - 2e2e2c0c-6c7f-477f-9640-aad79c1e3dec
+                    - 4f494897-624d-4fc9-accf-28f44afdfc79
+                    - 977138dc-77ed-43d3-b373-963dcde92777
+                    - 3c14a7c5-3f67-4cfb-b392-c715f8d1e56a
+                    - ebc53e96-8642-425b-acc7-df5299290ac2
+                    - e2f73858-fee5-4838-93f2-b291e207eef0
+                    - 62182e10-9c98-47d2-b8b4-b3f890a98db2
+                    - d062403b-e344-408d-aab3-6227284a659a
+                    - ef736703-dee3-41f5-8c0d-6d7e6497b5ae
+                    - fa194524-e47c-475c-9d5c-b65b99bdb7c0
+                    - 16982ccd-07f9-4e3b-b50f-dcaf0bbfcda3
+                    - 75b3e649-9590-4c57-ab9c-4ad4b49aee80
+                    - ec89661c-f372-48e2-8467-942708113d0b
+                    - 1a0863a7-3a30-471b-ab53-d42c752fa236
+                    - 0afd4fd0-7076-4309-b7ac-cf3bf9b6f65e
+                    - 74c19500-987a-402c-9dc6-5e7d6f6fb983
+                    - 8d023426-6cc3-424e-8644-a4c859cb7e40
+                    - 0392d165-d6a3-40e7-8f6c-47f91e168f33
+                    - dc5bb12b-5db8-4444-b3ba-ac6401800774
+                    - d00fc15d-c6d6-476a-abf3-73b8e65df7be
+                    - e297bbdb-64e9-4c95-9c57-c93c07d08944
+                    - a3cf95fb-c4bf-48bf-9798-6488beea3266
+                    - ceab5caf-257a-4178-b5bc-6493425536da
+                    - 518cca02-9dec-4be6-a14d-39127012bc32
+                    - 5e5b9bdb-ada8-4342-b5dc-775d3e7e426d
+                    - 90f816bd-9f5f-4295-a51f-8ec0674171ec
+                    - b0a0b645-0e92-45e9-935e-8d5754482522
+                    - efac6397-15a4-4bef-8c1f-f33c460a1822
+                    - 047322ca-febc-488a-8e9b-e80cd43c9313
+                    - 3b3d6a35-af4f-4861-b2f9-02c259249417
+                    - 464b608f-449d-4083-b47e-53bb0f3d3cdc
+                    - 0636ee7c-0b9c-4705-80e6-b97dc77866e2
+                    - 38728815-ca04-4d1e-82a1-d1055b423b91
+                    - 1a5cae49-2113-4d00-9da7-4a51f5e6938d
+                    - 3fdcf3de-ee42-429d-bf83-15c02ffe36ec
+                    - 5c8f1731-54ce-422f-9529-92dfc5f647e9
+                    - 540d49cf-30e5-4249-b0dc-afde00d38cd0
+                    - a0434a33-8fdb-40ab-bf05-71ac8713a51e
+                    - e60af096-2f82-45fb-9f6f-2d04cb8cf82d
+                    - 9898c23f-a176-437c-a0cf-61d13637c304
+                    - 0268e80c-777b-428f-9518-37afe2793313
+                    - 86678868-e38f-4f19-9475-7b9d334c3043
+                    - c58c48d1-5b5e-44a8-9492-e666ae432df1
+                    - 9460af79-f896-4713-8694-f1caaab36237
+                    - 423a35fb-2ea9-48b8-a86b-ed087f3ca613
+                    - 3a779b39-a415-4d4d-b33d-da13f5037165
+                    - c8b8bc04-a973-453f-815c-709825705cfa
+                    - 324849d3-e3ca-46a7-8c8d-0d0ff29491d9
+                    - 007c84f2-d5cf-4db2-965a-016be4a491e0
+                    - f7950760-9bdd-4525-97f7-7baf70d17635
+                    - f2d9a0ed-9f13-40ae-ab13-5b2f312d5ea3
+                    - e119c20c-baa9-4dc5-a4f8-5254c103d184
+                    - 22a269e3-26b7-49f1-a697-c550ebd9c817
+                    - 924aea12-21bc-4ee3-b74a-87eb5bb3462e
+                    - 926c56fd-7b56-4b0b-9144-abf26bb4a512
+                    - 926dda3f-9af2-4953-ada1-8f850a8b9cd6
+                    - 5c7360b9-669d-424a-9930-6e7d818af666
+                    - e51b8410-ba0b-43b2-9daf-8abd2fb3c6e0
+                    - bc1619ee-d9e2-4b65-bc99-8888efbcf315
+                    - e7a06fe3-ed0b-4802-95ad-0d3339c5e129
+                    - 5224f2ba-6c8f-48fa-80f5-a2ef17932a94
+                    - 1b348bc2-884b-4a14-9b00-e594117b0cab
+                    - 96b3332e-0df6-4bdd-afb9-9abbf8d6af05
+                    - 43f8af5c-e6e6-4913-a402-e62565c1d101
+                    - 34013850-3e14-4e93-8ec6-59a77d64e53e
+                    - a83bf6cf-8d38-4c3c-8ab8-98e9ed78857b
+                    - 83e16ab2-2628-455b-bd22-1fbb1b2c7701
+                    - cfdc41b4-09c2-4f83-9001-f462bbae82c1
+                    - 2068e022-a9ea-4914-b36a-b5d912e884e7
+                    - b54cabea-bc70-4a5c-8806-e728e2d8c805
+                    - 09573614-67c6-46d1-9624-db6b8c62df79
+                    - ff40e689-43de-4728-8fab-ce4200744f95
+                    - c32e8590-7403-44e5-9722-bb2e9280d412
+                    - 9a73966f-3a71-45b6-a8bc-7347969b174f
+                    - 1a9e72a5-44e6-424d-9ade-c40ca56a6c54
+                    - 89f77fa9-4316-43b6-8628-4a71a3773bd8
+                    - 7c635c96-9559-49ef-8ffd-ec64940fa282
+                    - adecd484-2db2-456d-b476-d4a1cee34157
+                    - 32c95fb4-e2f3-4321-9a5e-8663ec5deff1
+                    - 1b2532f6-4570-45f6-8631-2309f78b554b
+                    - 4e882d78-0de8-467c-8655-bf670f7405e9
+                    - aa5ea60d-61b7-46a7-b244-a46cca8b5e8a
+                    - d14fa7f6-4414-427e-8ce5-c0543f06ca94
+                    - 118352bf-4a0d-410d-b766-c7f1a1b37ae5
+                    - 561d1a42-1c5e-4648-842b-8f3605fa307b
+                    - 63de0bc4-ea83-4f97-94f3-4b8eaf0405eb
+                    - 72586b4a-b2c7-4c3a-9e10-722ba5cc78c1
+                    - 16a24e0e-dbce-4fff-8706-db187b31859f
+                    - 5034cc92-86b8-4b8d-ae70-284a5c041d3b
+                    - babe757d-83c5-4cdc-8652-a9302e293f13
+                    - a3f97e6c-2bf3-43ac-8a3c-681fafe86ac9
+                    - e518122b-9586-4867-930f-b468f72969ad
+                    - 51f49a95-0aee-43ab-afc8-1516056a6862
+                    - 8e2b82e5-10ff-4a6c-b4ec-baa7aae87c36
+                    - 26fa0244-86be-4112-9d49-3c864d8c516e
+                    - 0188998d-cfe8-4504-bc1e-be38797cb72f
+                    - 2c69e29b-2062-4b0d-9d40-aa941d0fc8b1
+                    - 3186cc8d-d9a9-4d79-a765-844acd133f15
+                    - 92f54108-63e5-42ef-8c46-087f5f14108d
+                    - b779cc78-1740-49a1-a307-79e57804dd22
+                    - 935eb4c5-2951-4419-a533-f9f58b2a17ac
+                    - 4c490cd9-ead2-4375-9a2f-4cf81ff6e2de
+                    - 595a2968-85e6-401a-b546-7fa4d850904b
+                    - 37ebd311-128d-4b0a-b414-4ded46030c8c
+                    - 7f224208-a774-4968-b278-808f4d9ae342
+                    - 874c29c8-3e21-4710-bd31-ce9d8927c0e1
+                    - 7470dc51-0b2a-460f-ade9-5e40ccbe5656
+                    - ac3734e2-fd49-4b38-85b1-ebc64b82d079
+                    - 4aca5586-589f-47bf-a8b5-83e8d62dc40e
+                  caregiverIds:
+                    - UNASSIGNED
+                    - 02a52f80-876a-4a84-a405-b1a7211883a2
+                    - 03383492-8c97-45f2-af35-49fa41cff980
+                    - 05090906-2459-4941-a88c-72593bd30428
+                    - 0d5b7c3e-44d7-4fa4-8cb6-e5694e4bc5f9
+                    - 1010715b-46bd-418e-8874-da402c2f262f
+                    - 106c91f2-4595-4a47-b662-0aa2614739b8
+                    - 12c2d8d6-8fb5-48ab-b09e-681039d25f59
+                    - 1539fe75-75e1-4bff-b2af-bc6f685c68aa
+                    - 15ba50ee-dd4e-413f-b08c-23786deea3b6
+                    - 15bbe07e-ba10-4d7f-88b7-2ff1fd9b8268
+                    - 162aaada-cab2-47ff-a373-2c727dfda2d9
+                    - 16761a51-65cd-4e05-aed7-abacb35ad1a7
+                    - 1909fd5c-2d84-437d-9ebf-fe8550ed673e
+                    - 198aab16-b575-4168-b191-fa7f655145e4
+                    - 1cbb5ebb-7b28-4f02-a086-7d52ab3b1be2
+                    - 1d66377f-f6fc-41cc-99a5-a887df45f199
+                    - 1e8dd4be-e163-49cc-a785-f479caa1cf9d
+                    - 1ff89809-6853-4fdf-a045-b3615c7dc987
+                    - 20dbafa2-aaaf-49b6-8250-169d384f2ca0
+                    - 220c4354-a4fd-4f1f-b0ea-a83184b95b10
+                    - 249bccbd-5995-493a-b2b8-8bfe60c563a3
+                    - 292acb6e-9f86-4354-ad7a-9a5985dc32f5
+                    - 2a0989bd-4c36-412b-819a-e4587719bd8c
+                    - 2c1ad45c-d9e5-4400-bbaa-23fd35d5c672
+                    - 2c4974bb-5fc3-451d-8877-6c4efb91664b
+                    - 327a7f6b-451a-4fb1-a3f9-40f66b2111d5
+                    - 35a160c8-4d68-4565-bf8d-4a2b64acd546
+                    - 3663c395-631c-4d0d-9e56-be9eed349f07
+                    - 3680a8b7-0c59-4619-83e5-09eb1660abe0
+                    - 379bd798-18cd-4a80-b356-484cf29d906a
+                    - 38c5f70b-0530-4c26-8cc8-0484841a64c6
+                    - 38f032e5-9862-4b91-82dd-0e91f279efd7
+                    - 38fa8be7-ac93-495b-8512-189badf66834
+                    - 393ee664-56d6-4118-9525-a3007f35d5d0
+                    - 3b7b3fcc-09b1-45de-8cee-1340cef91d68
+                    - 407475fb-9653-4b7f-a5ed-266795e768c6
+                    - 41fa1830-b1a3-4858-91da-2830dbfa05ed
+                    - 4242c9d6-b544-46ef-a0bb-1a65c13a87a4
+                    - 4639b8e3-731c-4135-a1a9-ebb80fb0a426
+                    - 469a2779-2e02-4132-b286-7788662e2829
+                    - 4848524a-49da-4c93-a18d-2aa9b1f5dcd1
+                    - 48dd3a65-502b-48cb-844e-8a79c90339c2
+                    - 4978c381-4eab-46f7-b9e4-6a9d40f7b2a3
+                    - 4a6d71a9-ffd9-4082-b1b0-d94e44ed3173
+                    - 4bdce639-ef68-4d98-9ade-05b6c3ded954
+                    - 4d6e1c4f-2196-430a-bd10-3de54a3e931a
+                    - 4ddb79c3-464d-4ce9-90fa-d4ed442ff085
+                    - 4e0ffedf-6666-433e-8fdf-bf582172cb0e
+                    - 4f101712-64d3-472f-8c84-93e8f3c56c0a
+                    - 4fb84260-e1f5-4ee0-9241-a9110dfb336e
+                    - 51d4da54-7924-4e33-a765-b9ff92b1a08f
+                    - 5292703d-8182-4211-b85f-0370eab4d02b
+                    - 5341f80a-a867-497c-adea-ebbe09002d4a
+                    - 5dd3c74c-bded-4445-aa43-3a6d638a4362
+                    - 6022ebdc-410f-423b-a832-8e0592b6e478
+                    - 624118b7-8d40-41d7-ab10-ca3aeab4e749
+                    - 635407d0-21b2-4cf0-a159-cd6ffbe6a4fd
+                    - 640d6e70-118b-4de2-bf1a-e40c3e0a309e
+                    - 65cfd830-8f07-49d6-b366-416a66510937
+                    - 6618af24-48aa-4d58-88e2-24f895d0fee1
+                    - 69b84cdc-f7c4-4445-9863-b4cc27db05f5
+                    - 69d9294a-26b8-447e-893d-c61e7acd1aa9
+                    - 69f6976d-8a02-4008-96ad-b7f515eb8579
+                    - 6f7d3d06-d38c-47ed-ad1b-e0778dccf41d
+                    - 70aef0bd-da7b-4e5b-a719-40cca2ae5d89
+                    - 724aab9f-4839-4318-a461-0ac444f5538d
+                    - 744cdf95-27f6-4800-a6e1-01355bb0d388
+                    - 74d775d6-cee2-46c0-b05a-b51660b04ea3
+                    - 74edde5a-6ca3-4998-a6ce-192bc620cc55
+                    - 74fdca22-a098-4d5d-a110-b7b697047753
+                    - 783176ce-e188-42fb-b77a-e3931bee2cff
+                    - 78ed1619-1ad2-4c13-adbd-76099d8384ee
+                    - 7b3bfdee-712e-4575-95ff-67906c65088c
+                    - 7eb96644-a15a-4917-8ebf-e68d03b58e8c
+                    - 7ffe2f72-d019-43f9-93b2-8aafc4530490
+                    - 80c24d41-c38e-4d32-a020-b34194f8f4f2
+                    - 82e5d1b4-fc16-46cb-a562-477a69390d66
+                    - 85247012-183d-43c0-8d03-02460c3a2008
+                    - 86d22f8a-fb21-4c18-8741-87b7badf92eb
+                    - 88bab9de-3a86-4818-b800-6140ae8bc2fb
+                    - 8deb30d7-d026-4540-903f-89a58b813ef5
+                    - 9204c367-0779-4ca2-b5f8-43188c62eb27
+                    - 9204c367-0779-4ca2-b5f8-43188c62eb27
+                    - 93b48605-9659-4e80-8bd8-01ce78973d7d
+                    - 94e425d9-8d88-4926-bb4b-11ab95efcf34
+                    - 971a0c0c-f9b3-4780-8180-4fd577c5a4c1
+                    - 97993501-979c-465b-9a17-43edf3253fb1
+                    - 97a161a6-5d84-466c-8ae9-8f99209463ea
+                    - 9aa879f9-1adf-4d7a-810a-e86212f88a15
+                    - 9b22608f-c0a2-4b6f-bfe5-3cba03270ea9
+                    - 9b2ecd9c-c86a-4226-beff-b4315f4fbe2e
+                    - 9ea8d25f-d473-4310-be36-660acf8fae79
+                    - 9f122c7e-546e-4586-b1c7-077b269289e2
+                    - a23388e8-075e-478c-8fd4-220b72fbabb8
+                    - a5be4f19-c4ff-40a6-ae8b-34f543288aa7
+                    - a6c60158-fa2c-4523-a6f0-2b8ba771f319
+                    - a9cb9214-52d3-4a6a-bac2-270451161749
+                    - aa85e0a5-1c4d-40dc-8aa7-5192b5271188
+                    - aae641a1-f5ea-4568-b8e3-99d85231cb6c
+                    - abd456fe-34e7-4bb6-8236-db7be02ab5dd
+                    - afc8b18d-488f-4a21-a1fc-d3583796a22e
+                    - b16dafff-26be-46f1-b505-0210db76d76c
+                    - b665af7e-1079-4143-bf9b-4927569728ef
+                    - b6de7038-3e04-4766-8bb5-506c3db46f04
+                    - bea8d6e2-cbe4-4683-9f33-d202ab4fce53
+                    - c277cd7d-c5b3-47ef-8bc2-aa64375d7844
+                    - c2a1192c-b480-4e0b-985e-baf2ffb790e2
+                    - c3260577-ec63-4ddc-9156-ce2ce055d77c
+                    - c489f124-9e09-4e0f-8b2d-0311d192a057
+                    - c50b18f0-8f2f-4098-b79d-0e6d7d75f7e1
+                    - c592b0c6-8f2b-4fa1-b84b-0d39bf2fcb1e
+                    - c5bdd66f-5589-4b09-b904-d43d95f33c8a
+                    - c5e03dce-81aa-4460-ab93-1a521f2e8e64
+                    - c6de84ed-81fc-460a-beab-ddb38a72b7e6
+                    - c82c820d-96e0-4853-8ad4-8272f6de6840
+                    - c89527e7-91ff-4113-b930-cb5b2bae6210
+                    - c92351c6-2737-493c-a642-1e662ac7a6bf
+                    - c929b447-485d-4d32-8192-a8c45b3a74e9
+                    - c93ec994-a7e8-42b8-afa6-c3e792bcc311
+                    - cc045cb7-e393-4cbd-97d6-928bd57611e1
+                    - cc501468-98ce-42c9-81c3-95ddf52ed47c
+                    - cce9dcfa-ccb0-477f-92d7-cbfeea2ae1e4
+                    - cdb7bf0a-77c3-455b-b6fc-23d67f2722f8
+                    - ce65efbe-a9e9-4e55-a3ff-a6b059e88653
+                    - cffd5509-b03f-4cb6-8125-cc2e584a43be
+                    - d0045d6a-e91d-4d9b-8ada-0c004da550e2
+                    - d08c76a1-72ee-47a0-9cd7-0127a54976ad
+                    - d246822e-1f75-4a57-a4ff-41f3c951b085
+                    - d7311f3f-c1d1-4a1a-be75-6e0e980acf10
+                    - db58e98d-e87c-4fa7-8a4f-cd0d5511710b
+                    - dce476f8-3373-4019-a7d1-45a89095ae90
+                    - df912661-c5a3-4332-bb33-e4a8e722103e
+                    - dfee6aa2-435c-4874-b9c0-a463c4794113
+                    - e0d9b0c6-1cff-493f-966f-66d11fb006a6
+                    - e12874c3-f2ab-457b-a51a-1cdd2e781c60
+                    - e145acf1-d619-423d-81b3-830ce95ba595
+                    - e1982dc5-f6c8-4ae3-997d-2a44f89317ba
+                    - e4d03f43-276e-481f-8941-f167a2ca253a
+                    - e72bee5a-37e6-437e-be28-c924eae56fdc
+                    - e93a3b47-5b6b-45c4-8659-d993c049eb01
+                    - eb37189c-dc6f-49ed-8336-6dc1a877711c
+                    - efdb4339-0fe5-4f88-b6ed-be66e7b93df4
+                    - f1c38d21-2cbf-4dcf-b7da-a1174b859f9a
+                    - f2c0860f-8fc5-474d-aa2d-ac5dc82f34b7
+                    - f52d953d-6e46-4876-872d-2b6b3eb7e98d
+                    - f5a8c38a-4f32-4a47-bc7f-e520cdcf007e
+                    - f8a53c35-1520-496f-9b63-4be45b4d5516
+                    - f9d08d97-9eaf-4053-8210-fbe1c6ed214d
+                    - fb005abd-9a4e-4c21-858f-0d903c869f53
+                    - fc99cc6b-e1e0-4dba-b0b9-4d22f558a860
+                    - fef4b567-a50a-4dfd-90fb-1f2f2f8b2016
+                    - ff24dea1-b5f1-4fed-bb67-82cbdf8fa772
+                  shiftType: ""
+                  clientType: []
+                  status: CAREGIVER_APPROVAL,CAREGIVER_APPROVED,UNASSIGNED,CANCELLED_ADMIN,CANCELLED_PROFESSIONAL_CAREGIVER,FAMILY_APPROVED,CLOCKED_IN,CLOCKED_OUT
+                  shiftBroadcasted: "0"
+                  filterFor: MASTER_CALENDAR
+                  savedFilter:
+                    selectedDate: 2026-05-06T11:50:11.162Z
+                    selectedCaregivers:
+                      - userId: UNASSIGNED
+                        userName: Unassigned Caregiver
+                      - userId: 02a52f80-876a-4a84-a405-b1a7211883a2
+                        userName: vaibhaw vaibhaw
+                      - userId: 03383492-8c97-45f2-af35-49fa41cff980
+                        userName: Abhishek Pandey
+                      - userId: 05090906-2459-4941-a88c-72593bd30428
+                        userName: New Mem
+                      - userId: 0d5b7c3e-44d7-4fa4-8cb6-e5694e4bc5f9
+                        userName: Apple Test
+                      - userId: 1010715b-46bd-418e-8874-da402c2f262f
+                        userName: Super Test
+                      - userId: 106c91f2-4595-4a47-b662-0aa2614739b8
+                        userName: Ryan Caregiver
+                      - userId: 12c2d8d6-8fb5-48ab-b09e-681039d25f59
+                        userName: Imran Khan
+                      - userId: 1539fe75-75e1-4bff-b2af-bc6f685c68aa
+                        userName: Johnny Thomas
+                      - userId: 15ba50ee-dd4e-413f-b08c-23786deea3b6
+                        userName: new pr  caregiver
+                      - userId: 15bbe07e-ba10-4d7f-88b7-2ff1fd9b8268
+                        userName: Marco Smith
+                      - userId: 162aaada-cab2-47ff-a373-2c727dfda2d9
+                        userName: Richer Smith
+                      - userId: 16761a51-65cd-4e05-aed7-abacb35ad1a7
+                        userName: Bolt caregiver
+                      - userId: 1909fd5c-2d84-437d-9ebf-fe8550ed673e
+                        userName: Bill Turner
+                      - userId: 198aab16-b575-4168-b191-fa7f655145e4
+                        userName: John Bravo
+                      - userId: 1cbb5ebb-7b28-4f02-a086-7d52ab3b1be2
+                        userName: NK1 Agency
+                      - userId: 1d66377f-f6fc-41cc-99a5-a887df45f199
+                        userName: Alok Ranjan
+                      - userId: 1e8dd4be-e163-49cc-a785-f479caa1cf9d
+                        userName: Testing Caregivers
+                      - userId: 1ff89809-6853-4fdf-a045-b3615c7dc987
+                        userName: CareGiver test IPad test Test
+                      - userId: 20dbafa2-aaaf-49b6-8250-169d384f2ca0
+                        userName: Shalu Sha
+                      - userId: 220c4354-a4fd-4f1f-b0ea-a83184b95b10
+                        userName: Antonio Smith
+                      - userId: 249bccbd-5995-493a-b2b8-8bfe60c563a3
+                        userName: PC ALOK
+                      - userId: 292acb6e-9f86-4354-ad7a-9a5985dc32f5
+                        userName: Johnson Johnson
+                      - userId: 2a0989bd-4c36-412b-819a-e4587719bd8c
+                        userName: Stephan Stephan
+                      - userId: 2c1ad45c-d9e5-4400-bbaa-23fd35d5c672
+                        userName: Jai  Singh
+                      - userId: 2c4974bb-5fc3-451d-8877-6c4efb91664b
+                        userName: Nucleya Music
+                      - userId: 327a7f6b-451a-4fb1-a3f9-40f66b2111d5
+                        userName: Test 12345
+                      - userId: 35a160c8-4d68-4565-bf8d-4a2b64acd546
+                        userName: Euree Kim
+                      - userId: 3663c395-631c-4d0d-9e56-be9eed349f07
+                        userName: Hayden Anderson
+                      - userId: 3680a8b7-0c59-4619-83e5-09eb1660abe0
+                        userName: "><script>alert('1')</script> ><script>alert('1')</script>"
+                      - userId: 379bd798-18cd-4a80-b356-484cf29d906a
+                        userName: TestingCG Caregiver
+                      - userId: 38c5f70b-0530-4c26-8cc8-0484841a64c6
+                        userName: Amit Test Email
+                      - userId: 38f032e5-9862-4b91-82dd-0e91f279efd7
+                        userName: Sophia Caregiver
+                      - userId: 38fa8be7-ac93-495b-8512-189badf66834
+                        userName: NK2 Agency
+                      - userId: 393ee664-56d6-4118-9525-a3007f35d5d0
+                        userName: ProfessionalCaregiver Alok
+                      - userId: 3b7b3fcc-09b1-45de-8cee-1340cef91d68
+                        userName: Thomash James
+                      - userId: 407475fb-9653-4b7f-a5ed-266795e768c6
+                        userName: " prpr  care"
+                      - userId: 41fa1830-b1a3-4858-91da-2830dbfa05ed
+                        userName: Apple Test
+                      - userId: 4242c9d6-b544-46ef-a0bb-1a65c13a87a4
+                        userName: Brandon Brandon
+                      - userId: 4639b8e3-731c-4135-a1a9-ebb80fb0a426
+                        userName: PR Caregiver
+                      - userId: 469a2779-2e02-4132-b286-7788662e2829
+                        userName: Ritika Chhabra
+                      - userId: 4848524a-49da-4c93-a18d-2aa9b1f5dcd1
+                        userName: Ella cg
+                      - userId: 48dd3a65-502b-48cb-844e-8a79c90339c2
+                        userName: Johny caregiverTest
+                      - userId: 4978c381-4eab-46f7-b9e4-6a9d40f7b2a3
+                        userName: Test yadav
+                      - userId: 4a6d71a9-ffd9-4082-b1b0-d94e44ed3173
+                        userName: Micheal John
+                      - userId: 4bdce639-ef68-4d98-9ade-05b6c3ded954
+                        userName: Michel Smith
+                      - userId: 4d6e1c4f-2196-430a-bd10-3de54a3e931a
+                        userName: Test123 ING
+                      - userId: 4ddb79c3-464d-4ce9-90fa-d4ed442ff085
+                        userName: Pam Caregiver
+                      - userId: 4e0ffedf-6666-433e-8fdf-bf582172cb0e
+                        userName: Drane Sami
+                      - userId: 4f101712-64d3-472f-8c84-93e8f3c56c0a
+                        userName: Shivanshu Mehta
+                      - userId: 4fb84260-e1f5-4ee0-9241-a9110dfb336e
+                        userName: Julie Smith
+                      - userId: 51d4da54-7924-4e33-a765-b9ff92b1a08f
+                        userName: Ritviz Music
+                      - userId: 5292703d-8182-4211-b85f-0370eab4d02b
+                        userName: Caregiver Nimisha
+                      - userId: 5341f80a-a867-497c-adea-ebbe09002d4a
+                        userName: "Country  Caregiver "
+                      - userId: 5dd3c74c-bded-4445-aa43-3a6d638a4362
+                        userName: Julie smith
+                      - userId: 6022ebdc-410f-423b-a832-8e0592b6e478
+                        userName: A M
+                      - userId: 624118b7-8d40-41d7-ab10-ca3aeab4e749
+                        userName: NK11 Agency
+                      - userId: 635407d0-21b2-4cf0-a159-cd6ffbe6a4fd
+                        userName: Plymouth Seniors Agency
+                      - userId: 640d6e70-118b-4de2-bf1a-e40c3e0a309e
+                        userName: vishal caregiver
+                      - userId: 65cfd830-8f07-49d6-b366-416a66510937
+                        userName: Fateh Rapper
+                      - userId: 6618af24-48aa-4d58-88e2-24f895d0fee1
+                        userName: vishalAgency testing
+                      - userId: 69b84cdc-f7c4-4445-9863-b4cc27db05f5
+                        userName: vishal testing
+                      - userId: 69d9294a-26b8-447e-893d-c61e7acd1aa9
+                        userName: S2 S2
+                      - userId: 69f6976d-8a02-4008-96ad-b7f515eb8579
+                        userName: Independent Caregiver
+                      - userId: 6f7d3d06-d38c-47ed-ad1b-e0778dccf41d
+                        userName: Alice Scott
+                      - userId: 70aef0bd-da7b-4e5b-a719-40cca2ae5d89
+                        userName: Bohemia Rapper
+                      - userId: 724aab9f-4839-4318-a461-0ac444f5538d
+                        userName: Ruth Scott
+                      - userId: 744cdf95-27f6-4800-a6e1-01355bb0d388
+                        userName: Dana caregiver
+                      - userId: 74d775d6-cee2-46c0-b05a-b51660b04ea3
+                        userName: New Caregiver
+                      - userId: 74edde5a-6ca3-4998-a6ce-192bc620cc55
+                        userName: Scott Caregiver
+                      - userId: 74fdca22-a098-4d5d-a110-b7b697047753
+                        userName: Johny Caregiver
+                      - userId: 783176ce-e188-42fb-b77a-e3931bee2cff
+                        userName: Senior TS Caregiver
+                      - userId: 78ed1619-1ad2-4c13-adbd-76099d8384ee
+                        userName: Kuba Karna
+                      - userId: 7b3bfdee-712e-4575-95ff-67906c65088c
+                        userName: Senior 4
+                      - userId: 7eb96644-a15a-4917-8ebf-e68d03b58e8c
+                        userName: Emily Henry
+                      - userId: 7ffe2f72-d019-43f9-93b2-8aafc4530490
+                        userName: Jules Bay
+                      - userId: 80c24d41-c38e-4d32-a020-b34194f8f4f2
+                        userName: Devin Dev
+                      - userId: 82e5d1b4-fc16-46cb-a562-477a69390d66
+                        userName: qss new
+                      - userId: 85247012-183d-43c0-8d03-02460c3a2008
+                        userName: Grand Sin
+                      - userId: 86d22f8a-fb21-4c18-8741-87b7badf92eb
+                        userName: Doctor Zeus
+                      - userId: 88bab9de-3a86-4818-b800-6140ae8bc2fb
+                        userName: G T
+                      - userId: 8deb30d7-d026-4540-903f-89a58b813ef5
+                        userName: Amritprofessional Caregiver
+                      - userId: 9204c367-0779-4ca2-b5f8-43188c62eb27
+                        userName: dan lie
+                      - userId: 9204c367-0779-4ca2-b5f8-43188c62eb27
+                        userName: dan lie
+                      - userId: 93b48605-9659-4e80-8bd8-01ce78973d7d
+                        userName: Edwin Jarvis
+                      - userId: 94e425d9-8d88-4926-bb4b-11ab95efcf34
+                        userName: Test3 yadav
+                      - userId: 971a0c0c-f9b3-4780-8180-4fd577c5a4c1
+                        userName: Jacob Jacob
+                      - userId: 97993501-979c-465b-9a17-43edf3253fb1
+                        userName: Shubhakar Ghosh
+                      - userId: 97a161a6-5d84-466c-8ae9-8f99209463ea
+                        userName: Ghosh Shubhakar
+                      - userId: 9aa879f9-1adf-4d7a-810a-e86212f88a15
+                        userName: Shivam Caregiver
+                      - userId: 9b22608f-c0a2-4b6f-bfe5-3cba03270ea9
+                        userName: Brien Brien
+                      - userId: 9b2ecd9c-c86a-4226-beff-b4315f4fbe2e
+                        userName: Max Alxer
+                      - userId: 9ea8d25f-d473-4310-be36-660acf8fae79
+                        userName: Rani Sign
+                      - userId: 9f122c7e-546e-4586-b1c7-077b269289e2
+                        userName: Testing Caregiver
+                      - userId: a23388e8-075e-478c-8fd4-220b72fbabb8
+                        userName: NK6 Agency
+                      - userId: a5be4f19-c4ff-40a6-ae8b-34f543288aa7
+                        userName: testing test
+                      - userId: a6c60158-fa2c-4523-a6f0-2b8ba771f319
+                        userName: Test Shorya2
+                      - userId: a9cb9214-52d3-4a6a-bac2-270451161749
+                        userName: Mike John
+                      - userId: aa85e0a5-1c4d-40dc-8aa7-5192b5271188
+                        userName: Jhonas Millon
+                      - userId: aae641a1-f5ea-4568-b8e3-99d85231cb6c
+                        userName: Fotty Seven
+                      - userId: abd456fe-34e7-4bb6-8236-db7be02ab5dd
+                        userName: Testing Malik
+                      - userId: afc8b18d-488f-4a21-a1fc-d3583796a22e
+                        userName: Hayden Anderson
+                      - userId: b16dafff-26be-46f1-b505-0210db76d76c
+                        userName: Cathe Cathall
+                      - userId: b665af7e-1079-4143-bf9b-4927569728ef
+                        userName: Test123 ING
+                      - userId: b6de7038-3e04-4766-8bb5-506c3db46f04
+                        userName: Rahul Chhabraa
+                      - userId: bea8d6e2-cbe4-4683-9f33-d202ab4fce53
+                        userName: NK Agency
+                      - userId: c277cd7d-c5b3-47ef-8bc2-aa64375d7844
+                        userName: Apple Test
+                      - userId: c2a1192c-b480-4e0b-985e-baf2ffb790e2
+                        userName: new test testing j pr care
+                      - userId: c3260577-ec63-4ddc-9156-ce2ce055d77c
+                        userName: Bilal Saeed
+                      - userId: c489f124-9e09-4e0f-8b2d-0311d192a057
+                        userName: vishal yadav
+                      - userId: c50b18f0-8f2f-4098-b79d-0e6d7d75f7e1
+                        userName: Jim Lightsey
+                      - userId: c592b0c6-8f2b-4fa1-b84b-0d39bf2fcb1e
+                        userName: Testing Caregiver 2
+                      - userId: c5bdd66f-5589-4b09-b904-d43d95f33c8a
+                        userName: Amit Malik
+                      - userId: c5e03dce-81aa-4460-ab93-1a521f2e8e64
+                        userName: Hector Barbosa
+                      - userId: c6de84ed-81fc-460a-beab-ddb38a72b7e6
+                        userName: Ricky Pointing
+                      - userId: c82c820d-96e0-4853-8ad4-8272f6de6840
+                        userName: Test CaregiverV
+                      - userId: c89527e7-91ff-4113-b930-cb5b2bae6210
+                        userName: t1 t2
+                      - userId: c92351c6-2737-493c-a642-1e662ac7a6bf
+                        userName: abc abc
+                      - userId: c929b447-485d-4d32-8192-a8c45b3a74e9
+                        userName: Johny  Jackson
+                      - userId: c93ec994-a7e8-42b8-afa6-c3e792bcc311
+                        userName: Eva Xalxo
+                      - userId: cc045cb7-e393-4cbd-97d6-928bd57611e1
+                        userName: Sophie Sophie
+                      - userId: cc501468-98ce-42c9-81c3-95ddf52ed47c
+                        userName: Testing Care Giver 1
+                      - userId: cce9dcfa-ccb0-477f-92d7-cbfeea2ae1e4
+                        userName: Adam Adam
+                      - userId: cdb7bf0a-77c3-455b-b6fc-23d67f2722f8
+                        userName: Abhishek Gupta
+                      - userId: ce65efbe-a9e9-4e55-a3ff-a6b059e88653
+                        userName: test yadav
+                      - userId: cffd5509-b03f-4cb6-8125-cc2e584a43be
+                        userName: Kamsu Mama
+                      - userId: d0045d6a-e91d-4d9b-8ada-0c004da550e2
+                        userName: Shirlee Jacobs
+                      - userId: d08c76a1-72ee-47a0-9cd7-0127a54976ad
+                        userName: alok test
+                      - userId: d246822e-1f75-4a57-a4ff-41f3c951b085
+                        userName: "Swati Tiwari "
+                      - userId: d7311f3f-c1d1-4a1a-be75-6e0e980acf10
+                        userName: Ethan Admin
+                      - userId: db58e98d-e87c-4fa7-8a4f-cd0d5511710b
+                        userName: Emma Caregiver
+                      - userId: dce476f8-3373-4019-a7d1-45a89095ae90
+                        userName: Harleen Quinzel
+                      - userId: df912661-c5a3-4332-bb33-e4a8e722103e
+                        userName: Professional Caregiver Testing
+                      - userId: dfee6aa2-435c-4874-b9c0-a463c4794113
+                        userName: Ethan Family
+                      - userId: e0d9b0c6-1cff-493f-966f-66d11fb006a6
+                        userName: Professional  Alok
+                      - userId: e12874c3-f2ab-457b-a51a-1cdd2e781c60
+                        userName: Shivanshu Mittal
+                      - userId: e145acf1-d619-423d-81b3-830ce95ba595
+                        userName: Last Caregiver
+                      - userId: e1982dc5-f6c8-4ae3-997d-2a44f89317ba
+                        userName: Kuba Karna
+                      - userId: e4d03f43-276e-481f-8941-f167a2ca253a
+                        userName: Mittal Namosh
+                      - userId: e72bee5a-37e6-437e-be28-c924eae56fdc
+                        userName: Deep Kumar
+                      - userId: e93a3b47-5b6b-45c4-8659-d993c049eb01
+                        userName: T S
+                      - userId: eb37189c-dc6f-49ed-8336-6dc1a877711c
+                        userName: Ethan Senior
+                      - userId: efdb4339-0fe5-4f88-b6ed-be66e7b93df4
+                        userName: Testing PC CAREGIVER
+                      - userId: f1c38d21-2cbf-4dcf-b7da-a1174b859f9a
+                        userName: Divine Rapper
+                      - userId: f2c0860f-8fc5-474d-aa2d-ac5dc82f34b7
+                        userName: peter parker
+                      - userId: f52d953d-6e46-4876-872d-2b6b3eb7e98d
+                        userName: Caregiver Anna j
+                      - userId: f5a8c38a-4f32-4a47-bc7f-e520cdcf007e
+                        userName: Surpanaka Lanka
+                      - userId: f8a53c35-1520-496f-9b63-4be45b4d5516
+                        userName: Josie Calum
+                      - userId: f9d08d97-9eaf-4053-8210-fbe1c6ed214d
+                        userName: Michael Michael
+                      - userId: fb005abd-9a4e-4c21-858f-0d903c869f53
+                        userName: Cecelia Ahern
+                      - userId: fc99cc6b-e1e0-4dba-b0b9-4d22f558a860
+                        userName: Harvey Dent
+                      - userId: fef4b567-a50a-4dfd-90fb-1f2f2f8b2016
+                        userName: PC Deepanshu Yadav
+                      - userId: ff24dea1-b5f1-4fed-bb67-82cbdf8fa772
+                        userName: Henry CG
+                    shiftTypes: []
+                    shiftStatus:
+                      - id: UNASSIGNED
+                        value: Unassigned shifts
+                      - id: CAREGIVER_APPROVAL
+                        value: Caregiver confirmation Pending
+                      - id: CAREGIVER_APPROVED
+                        value: Caregiver didn’t clock-in/out
+                      - id: CANCELLED_ADMIN
+                        value: Cancelled by Client
+                      - id: CANCELLED_PROFESSIONAL_CAREGIVER
+                        value: Cancelled by Caregiver/Agency
+                      - null
+                      - id: FAMILY_APPROVED
+                        value: Assigned shifts
+                      - id: CLOCKED_IN
+                        value: Confirmed but not completed
+                      - id: CLOCKED_OUT
+                        value: Completed shifts
+                    clientType: []
+                    shiftBroadcasted: false
+                  timezone: Asia/Calcutta
+      responses:
+        "200":
+          description: Success
+  /partner/getPartnerData:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/getPartnerData
+      operationId: get_partner_getPartnerData
+      parameters:
+        - name: partnerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: partnerUserId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 22b90727-2168-4db0-8fb9-28578f2c137d
+      responses:
+        "200":
+          description: Success
+  /partner/stages/{id}:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/stages/{id}
+      operationId: get_partner_stages_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+      responses:
+        "200":
+          description: Success
+  /assessment/{id}:
+    get:
+      tags:
+        - assessment
+      summary: GET /assessment/{id}
+      operationId: get_assessment_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getPartnerGeoFencing
+        - name: partnerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: careCircleId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+      responses:
+        "200":
+          description: Success
+  /careCircle/zworks/config/status:
+    get:
+      tags:
+        - careCircle
+      summary: GET /careCircle/zworks/config/status
+      operationId: get_careCircle_zworks_config_status
+      parameters:
+        - name: partnerId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+      responses:
+        "200":
+          description: Success
+  /partner/getPartnerInfo/{id}:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/getPartnerInfo/{id}
+      operationId: get_partner_getPartnerInfo_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: partnerUserId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 22b90727-2168-4db0-8fb9-28578f2c137d
+      responses:
+        "200":
+          description: Success
+  /partner/{id}/{id2}/{id3}:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/{id}/{id2}/{id3}
+      operationId: get_partner_id_id2_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: caregiverDetails
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 635407d0-21b2-4cf0-a159-cd6ffbe6a4fd
+      responses:
+        "200":
+          description: Success
+  /user:
+    put:
+      tags:
+        - user
+      summary: PUT /user
+      operationId: put_user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPutRequest"
+            examples:
+              fromHar:
+                value:
+                  userId: 635407d0-21b2-4cf0-a159-cd6ffbe6a4fd
+                  referralTypesId: null
+                  referralTypesName: null
+                  firstName: Plymouth Seniors
+                  lastName: Agency
+                  nickName: null
+                  userName: Plymouth Seniors Agency
+                  email: nimisha.test2207+test20@gmail.com
+                  password: null
+                  mobile: "2122111116"
+                  profilePic: null
+                  userType: PROFESSIONAL_CAREGIVER
+                  userTypeList: null
+                  configuration: null
+                  resetKey: null
+                  relation: null
+                  status: Accepted
+                  mobileStatus: null
+                  refreshToken: null
+                  careCircleStatus: null
+                  careCircleId: null
+                  deviceDetails: null
+                  lastDevice: null
+                  countryCode: "+01"
+                  partnerId: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+                  details:
+                    location: "Los Angeles, "
+                    country: US
+                    state: California
+                    city: Los Angeles
+                    zipcode: "90001"
+                    height: ""
+                    weight: ""
+                    hireDate: 2025-12-01T06:00:00.000Z
+                    employmentType: permanent
+                    rate: 18
+                    gender: MALE
+                    dob: 2002-01-02T06:00:00.000Z
+                    dobDate: 2002-01-02T11:30:00+05:30
+                    notes: null
+                    about: null
+                  invitedDate: null
+                  about: null
+                  currentDateTime: null
+                  partnersActive: "1"
+                  isTos: null
+                  loginStatus: null
+                  lastCareCircleId: null
+                  tempPassword: null
+                  createdDate: 2025-12-12T16:18:21.987+00:00
+                  lastUpdatedDate: 2026-01-13T03:53:02.178+00:00
+                  careCircleCount: 2
+                  activeShiftsCount: 0
+                  billingRate: null
+                  configureBreakOutTime: null
+                  userCreated: false
+                  ipAddress: null
+                  timezone: Asia/Calcutta
+                  encryptionKey: null
+                  decryptionKey: null
+                  createdFrom: null
+                  clientTypeId: null
+                  isAvailable: null
+                  seniorServed: 2
+                  acgStatus: ACTIVE
+                  careCircles:
+                    - TestingN
+                    - MargeretL2
+                  categoryId: null
+                  externalEmployeeId: null
+                  eeId: "16172"
+                  stageId: null
+                  preferredName: PSA
+                  isActive: true
+                  isRoleSwitchingEnabled: null
+                  applicationId: null
+                  otp: null
+                  age: "24"
+                  dob: 2002-01-02T06:00:00.000Z
+                  heightInches: ""
+                  heightFeet: ""
+                  country: US
+                  dobDate: 2002-01-02T11:30:00+05:30
+                  paramFor: caregiver
+      responses:
+        "200":
+          description: Success
+  /assessment:
+    get:
+      tags:
+        - assessment
+      summary: GET /assessment
+      operationId: get_assessment
+      parameters:
+        - name: careCircleId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 22b90727-2168-4db0-8fb9-28578f2c137d
+      responses:
+        "200":
+          description: Success
+  /partner/{id}/{id2}/care-circle/undefined:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/{id}/{id2}/care-circle/undefined
+      operationId: get_partner_id_id2_care_circle_undefined
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: miscellaneous-expenses
+      responses:
+        "200":
+          description: Success
+  /careCircle/{id}:
+    get:
+      tags:
+        - careCircle
+      summary: GET /careCircle/{id}
+      operationId: get_careCircle_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+        - name: ccId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+        - name: careCircleId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+      responses:
+        "200":
+          description: Success
+  /partner/{id}/{id2}/care-circle/{id3}:
+    get:
+      tags:
+        - partner
+      summary: GET /partner/{id}/{id2}/care-circle/{id3}
+      operationId: get_partner_id_id2_care_circle_id3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: mileage-expenses
+        - name: id3
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+      responses:
+        "200":
+          description: Success
+  /assessment/{id}/{id2}:
+    post:
+      tags:
+        - assessment
+      summary: POST /assessment/{id}/{id2}
+      operationId: post_assessment_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: assessmentReport
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssessmentPostRequest"
+            examples:
+              fromHar:
+                value:
+                  carecircles:
+                    - 2252cbbe-f008-4be4-b86a-3ce744f9602e
+                  careCircleId: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+                  reportType: ASSESSMENT
+                  timezone: Asia/Calcutta
+      responses:
+        "200":
+          description: Success
+  /careCircle/document/{id}:
+    get:
+      tags:
+        - careCircle
+      summary: GET /careCircle/document/{id}
+      operationId: get_careCircle_document_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getAllDOCByCareCircleId
+        - name: careCircleId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+      responses:
+        "200":
+          description: Success
+  /assessment/getAllDocuments:
+    get:
+      tags:
+        - assessment
+      summary: GET /assessment/getAllDocuments
+      operationId: get_assessment_getAllDocuments
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+        - name: userType
+          in: query
+          required: false
+          schema:
+            type: string
+          example: SENIOR
+      responses:
+        "200":
+          description: Success
+  /configCare/{id}/menuList:
+    get:
+      tags:
+        - configCare
+      summary: GET /configCare/{id}/menuList
+      operationId: get_configCare_id_menuList
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getScheduleRecurringCare
+        - name: careCircleId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+      responses:
+        "200":
+          description: Success
+  /bookvitals/{id}/{id2}/MCC:
+    get:
+      tags:
+        - bookvitals
+      summary: GET /bookvitals/{id}/{id2}/MCC
+      operationId: get_bookvitals_id_id2_MCC
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getScheduledActivity
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-05-02T18:30:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-05-09T18:29:59
+        - name: requestedFrom
+          in: query
+          required: false
+          schema:
+            type: string
+          example: MCC_CALENDER
+        - name: timezone
+          in: query
+          required: false
+          schema:
+            type: string
+          example: Asia/Calcutta
+      responses:
+        "200":
+          description: Success
+  /configCare/{id}/{id2}/TODAY:
+    get:
+      tags:
+        - configCare
+      summary: GET /configCare/{id}/{id2}/TODAY
+      operationId: get_configCare_id_id2_TODAY
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getMedicationScheduledRecurringCareByDay
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-05-05T18:30:00
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-05-06T18:29:59
+      responses:
+        "200":
+          description: Success
+  /configCare/{id}:
+    get:
+      tags:
+        - configCare
+      summary: GET /configCare/{id}
+      operationId: get_configCare_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getRoutineScheduledByCCID
+        - name: careCircleId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+      responses:
+        "200":
+          description: Success
+  /bookvitals/{id}:
+    post:
+      tags:
+        - bookvitals
+      summary: POST /bookvitals/{id}
+      operationId: post_bookvitals_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: getPostsByPagination
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookvitalsPostRequest"
+            examples:
+              fromHar:
+                value:
+                  careCircleId: 2252cbbe-f008-4be4-b86a-3ce744f9602e
+                  userId: null
+                  timezone: Asia/Calcutta
+                  limit: 10
+                  pageNumber: 1
+      responses:
+        "200":
+          description: Success
+  /organizations/{id}/service-rates:
+    get:
+      tags:
+        - organizations
+      summary: GET /organizations/{id}/service-rates
+      operationId: get_organizations_id_service_rates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 4f633b9a-23aa-4e61-ad66-7bb8c86aef11
+        - name: activeOnly
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    PartnerPostRequest:
+      type: object
+      properties:
+        careCircleName:
+          type: string
+        startDate:
+          type: string
+        shiftType:
+          type: string
+        status:
+          type: string
+        resetFilter:
+          type: boolean
+        filterFor:
+          type: string
+        savedFilter:
+          type: object
+          properties:
+            resetFilter:
+              type: boolean
+            shiftType:
+              type: array
+              items:
+                type: string
+            startDate:
+              type: string
+            status:
+              type: array
+              items:
+                type: string
+          required:
+            - resetFilter
+            - shiftType
+            - startDate
+            - status
+        lastShiftId:
+          nullable: true
+        lastCreatedDateTime:
+          nullable: true
+        limit:
+          type: integer
+        pageNumber:
+          type: integer
+        timezone:
+          type: string
+      required:
+        - careCircleName
+        - startDate
+        - shiftType
+        - status
+        - resetFilter
+        - filterFor
+        - savedFilter
+        - lastShiftId
+        - lastCreatedDateTime
+        - limit
+        - pageNumber
+        - timezone
+    UserPutRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+        referralTypesId:
+          nullable: true
+        referralTypesName:
+          nullable: true
+        firstName:
+          type: string
+        lastName:
+          type: string
+        nickName:
+          nullable: true
+        userName:
+          type: string
+        email:
+          type: string
+        password:
+          nullable: true
+        mobile:
+          type: string
+        profilePic:
+          nullable: true
+        userType:
+          type: string
+        userTypeList:
+          nullable: true
+        configuration:
+          nullable: true
+        resetKey:
+          nullable: true
+        relation:
+          nullable: true
+        status:
+          type: string
+        mobileStatus:
+          nullable: true
+        refreshToken:
+          nullable: true
+        careCircleStatus:
+          nullable: true
+        careCircleId:
+          nullable: true
+        deviceDetails:
+          nullable: true
+        lastDevice:
+          nullable: true
+        countryCode:
+          type: string
+        partnerId:
+          type: string
+        details:
+          type: object
+          properties:
+            location:
+              type: string
+            country:
+              type: string
+            state:
+              type: string
+            city:
+              type: string
+            zipcode:
+              type: string
+            height:
+              type: string
+            weight:
+              type: string
+            hireDate:
+              type: string
+            employmentType:
+              type: string
+            rate:
+              type: integer
+            gender:
+              type: string
+            dob:
+              type: string
+            dobDate:
+              type: string
+            notes:
+              nullable: true
+            about:
+              nullable: true
+          required:
+            - location
+            - country
+            - state
+            - city
+            - zipcode
+            - height
+            - weight
+            - hireDate
+            - employmentType
+            - rate
+            - gender
+            - dob
+            - dobDate
+            - notes
+            - about
+        invitedDate:
+          nullable: true
+        about:
+          nullable: true
+        currentDateTime:
+          nullable: true
+        partnersActive:
+          type: string
+        isTos:
+          nullable: true
+        loginStatus:
+          nullable: true
+        lastCareCircleId:
+          nullable: true
+        tempPassword:
+          nullable: true
+        createdDate:
+          type: string
+        lastUpdatedDate:
+          type: string
+        careCircleCount:
+          type: integer
+        activeShiftsCount:
+          type: integer
+        billingRate:
+          nullable: true
+        configureBreakOutTime:
+          nullable: true
+        userCreated:
+          type: boolean
+        ipAddress:
+          nullable: true
+        timezone:
+          type: string
+        encryptionKey:
+          nullable: true
+        decryptionKey:
+          nullable: true
+        createdFrom:
+          nullable: true
+        clientTypeId:
+          nullable: true
+        isAvailable:
+          nullable: true
+        seniorServed:
+          type: integer
+        acgStatus:
+          type: string
+        careCircles:
+          type: array
+          items:
+            type: string
+        categoryId:
+          nullable: true
+        externalEmployeeId:
+          nullable: true
+        eeId:
+          type: string
+        stageId:
+          nullable: true
+        preferredName:
+          type: string
+        isActive:
+          type: boolean
+        isRoleSwitchingEnabled:
+          nullable: true
+        applicationId:
+          nullable: true
+        otp:
+          nullable: true
+        age:
+          type: string
+        dob:
+          type: string
+        heightInches:
+          type: string
+        heightFeet:
+          type: string
+        country:
+          type: string
+        dobDate:
+          type: string
+        paramFor:
+          type: string
+      required:
+        - userId
+        - referralTypesId
+        - referralTypesName
+        - firstName
+        - lastName
+        - nickName
+        - userName
+        - email
+        - password
+        - mobile
+        - profilePic
+        - userType
+        - userTypeList
+        - configuration
+        - resetKey
+        - relation
+        - status
+        - mobileStatus
+        - refreshToken
+        - careCircleStatus
+        - careCircleId
+        - deviceDetails
+        - lastDevice
+        - countryCode
+        - partnerId
+        - details
+        - invitedDate
+        - about
+        - currentDateTime
+        - partnersActive
+        - isTos
+        - loginStatus
+        - lastCareCircleId
+        - tempPassword
+        - createdDate
+        - lastUpdatedDate
+        - careCircleCount
+        - activeShiftsCount
+        - billingRate
+        - configureBreakOutTime
+        - userCreated
+        - ipAddress
+        - timezone
+        - encryptionKey
+        - decryptionKey
+        - createdFrom
+        - clientTypeId
+        - isAvailable
+        - seniorServed
+        - acgStatus
+        - careCircles
+        - categoryId
+        - externalEmployeeId
+        - eeId
+        - stageId
+        - preferredName
+        - isActive
+        - isRoleSwitchingEnabled
+        - applicationId
+        - otp
+        - age
+        - dob
+        - heightInches
+        - heightFeet
+        - country
+        - dobDate
+        - paramFor
+    AssessmentPostRequest:
+      type: object
+      properties:
+        carecircles:
+          type: array
+          items:
+            type: string
+        careCircleId:
+          type: string
+        reportType:
+          type: string
+        timezone:
+          type: string
+      required:
+        - carecircles
+        - careCircleId
+        - reportType
+        - timezone
+    BookvitalsPostRequest:
+      type: object
+      properties:
+        careCircleId:
+          type: string
+        userId:
+          nullable: true
+        timezone:
+          type: string
+        limit:
+          type: integer
+        pageNumber:
+          type: integer
+      required:
+        - careCircleId
+        - userId
+        - timezone
+        - limit
+        - pageNumber
