@@ -1,0 +1,1383 @@
+openapi: 3.0.3
+info:
+  title: Altera Learn App
+  version: 1.0.0
+servers:
+  - url: https://learn.altera.com
+tags:
+  - name: admin
+  - name: ecommerce
+  - name: enrollment
+  - name: learn
+  - name: lms
+  - name: loki
+  - name: manage
+  - name: pages
+  - name: setup
+  - name: share
+paths:
+  /manage/v1/site/bootstrap:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/site/bootstrap
+      operationId: get_manage_v1_site_bootstrap
+      responses:
+        "200":
+          description: Success
+  /lms/index.php:
+    get:
+      tags:
+        - lms
+      summary: GET /lms/index.php
+      operationId: get_lms_index_php
+      parameters:
+        - name: r
+          in: query
+          required: false
+          schema:
+            type: string
+          example: site/openSessionViaToken
+      responses:
+        "200":
+          description: Success
+  /ecommerce/v1/currencies:
+    get:
+      tags:
+        - ecommerce
+      summary: GET /ecommerce/v1/currencies
+      operationId: get_ecommerce_v1_currencies
+      responses:
+        "200":
+          description: Success
+  /manage/v1/user/session:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/user/session
+      operationId: get_manage_v1_user_session
+      responses:
+        "200":
+          description: Success
+  /manage/v1/cookie_policy:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/cookie_policy
+      operationId: get_manage_v1_cookie_policy
+      responses:
+        "200":
+          description: Success
+  /ecommerce/v1/personal-wallet:
+    get:
+      tags:
+        - ecommerce
+      summary: GET /ecommerce/v1/personal-wallet
+      operationId: get_ecommerce_v1_personal_wallet
+      responses:
+        "200":
+          description: Success
+  /manage/v1/user/{id}/settings:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/user/{id}/settings
+      operationId: get_manage_v1_user_id_settings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "45390"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+      responses:
+        "200":
+          description: Success
+  /learn/v1/lp/{id}:
+    get:
+      tags:
+        - learn
+      summary: GET /learn/v1/lp/{id}
+      operationId: get_learn_v1_lp_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "80"
+        - name: get_courses_instructors
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: course_status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: published
+      responses:
+        "200":
+          description: Success
+  /manage/v1/event-tracking/token:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/event-tracking/token
+      operationId: get_manage_v1_event_tracking_token
+      responses:
+        "200":
+          description: Success
+  /manage/v1/user/{id}:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/user/{id}
+      operationId: get_manage_v1_user_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "45390"
+      responses:
+        "200":
+          description: Success
+  /manage/v1/user/managers:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/user/managers
+      operationId: get_manage_v1_user_managers
+      parameters:
+        - name: manager_type_statuses[0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: pending
+      responses:
+        "200":
+          description: Success
+  /learn/v1/sub_record:
+    get:
+      tags:
+        - learn
+      summary: GET /learn/v1/sub_record
+      operationId: get_learn_v1_sub_record
+      parameters:
+        - name: my_records
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "200"
+      responses:
+        "200":
+          description: Success
+  /manage/v1/site/paas/token:
+    post:
+      tags:
+        - manage
+      summary: POST /manage/v1/site/paas/token
+      operationId: post_manage_v1_site_paas_token
+      responses:
+        "200":
+          description: Success
+  /setup/v1/wbe/config/notification:
+    get:
+      tags:
+        - setup
+      summary: GET /setup/v1/wbe/config/notification
+      operationId: get_setup_v1_wbe_config_notification
+      responses:
+        "200":
+          description: Success
+  /manage/v1/site/translations:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/site/translations
+      operationId: get_manage_v1_site_translations
+      parameters:
+        - name: lang_code
+          in: query
+          required: false
+          schema:
+            type: string
+          example: en
+        - name: lang
+          in: query
+          required: false
+          schema:
+            type: string
+          example: en
+      responses:
+        "200":
+          description: Success
+  /enrollment/v1/learningplans/{id}/users/{id2}/unlocked:
+    head:
+      tags:
+        - enrollment
+      summary: HEAD /enrollment/v1/learningplans/{id}/users/{id2}/unlocked
+      operationId: head_enrollment_v1_learningplans_id_users_id2_unlocked
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "80"
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "45390"
+      responses:
+        "200":
+          description: Success
+  /learn/v1/sub_bundle:
+    get:
+      tags:
+        - learn
+      summary: GET /learn/v1/sub_bundle
+      operationId: get_learn_v1_sub_bundle
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "200"
+        - name: published
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /ecommerce/v1/payment/get:
+    get:
+      tags:
+        - ecommerce
+      summary: GET /ecommerce/v1/payment/get
+      operationId: get_ecommerce_v1_payment_get
+      responses:
+        "200":
+          description: Success
+  /ecommerce/v1/billing/get:
+    get:
+      tags:
+        - ecommerce
+      summary: GET /ecommerce/v1/billing/get
+      operationId: get_ecommerce_v1_billing_get
+      parameters:
+        - name: user_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "45390"
+      responses:
+        "200":
+          description: Success
+  /ecommerce/v1/ecommerce/countries:
+    get:
+      tags:
+        - ecommerce
+      summary: GET /ecommerce/v1/ecommerce/countries
+      operationId: get_ecommerce_v1_ecommerce_countries
+      responses:
+        "200":
+          description: Success
+  /ecommerce/v1/stripe-sca/vat-types:
+    get:
+      tags:
+        - ecommerce
+      summary: GET /ecommerce/v1/stripe-sca/vat-types
+      operationId: get_ecommerce_v1_stripe_sca_vat_types
+      responses:
+        "200":
+          description: Success
+  /pages/v1/pages/{id}:
+    get:
+      tags:
+        - pages
+      summary: GET /pages/v1/pages/{id}
+      operationId: get_pages_v1_pages_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "40"
+      responses:
+        "200":
+          description: Success
+  /manage/v1/upload/presigned_url:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/upload/presigned_url
+      operationId: get_manage_v1_upload_presigned_url
+      parameters:
+        - name: operation
+          in: query
+          required: false
+          schema:
+            type: string
+          example: read
+        - name: filename
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 20ad63717ffc18fce7bc727984c529290fec2bbb.jpg
+        - name: mime
+          in: query
+          required: false
+          schema:
+            type: string
+          example: image/jpeg
+        - name: collection
+          in: query
+          required: false
+          schema:
+            type: string
+          example: uploads
+      responses:
+        "200":
+          description: Success
+  /learn/v1/catalog_content/internal/preview:
+    get:
+      tags:
+        - learn
+      summary: GET /learn/v1/catalog_content/internal/preview
+      operationId: get_learn_v1_catalog_content_internal_preview
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: virtual_catalogs
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: my_catalogs
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: get_total_count
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: items_per_catalog
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "25"
+        - name: sort_attr
+          in: query
+          required: false
+          schema:
+            type: string
+          example: catalogue_id
+        - name: sort_dir
+          in: query
+          required: false
+          schema:
+            type: string
+          example: desc
+        - name: all_catalogs
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: catalog_ids[0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "14"
+        - name: catalog_ids[1]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "22"
+      responses:
+        "200":
+          description: Success
+  /learn/v1/catalog_content/internal/calendar:
+    get:
+      tags:
+        - learn
+      summary: GET /learn/v1/catalog_content/internal/calendar
+      operationId: get_learn_v1_catalog_content_internal_calendar
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "200"
+        - name: date_start
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-04-25 18:30:00
+        - name: date_end
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-06-06 18:29:59
+        - name: sort_attr
+          in: query
+          required: false
+          schema:
+            type: string
+          example: date_start
+        - name: sort_dir
+          in: query
+          required: false
+          schema:
+            type: string
+          example: asc
+        - name: catalog_ids[0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+      responses:
+        "200":
+          description: Success
+  /learn/v1/categories:
+    get:
+      tags:
+        - learn
+      summary: GET /learn/v1/categories
+      operationId: get_learn_v1_categories
+      parameters:
+        - name: node_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /learn/v1/catalog/{id}:
+    get:
+      tags:
+        - learn
+      summary: GET /learn/v1/catalog/{id}
+      operationId: get_learn_v1_catalog_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: internal_filters
+        - name: show_language
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+      responses:
+        "200":
+          description: Success
+  /pages/v1/pages:
+    get:
+      tags:
+        - pages
+      summary: GET /pages/v1/pages
+      operationId: get_pages_v1_pages
+      parameters:
+        - name: search_text
+          in: query
+          required: false
+          schema:
+            type: string
+          example: my_courses
+      responses:
+        "200":
+          description: Success
+  /loki/widget/v1/courses/{id}:
+    get:
+      tags:
+        - loki
+      summary: GET /loki/widget/v1/courses/{id}
+      operationId: get_loki_widget_v1_courses_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "45390"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "18"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          example: enrolled_date_desc
+        - name: exclude_courses_in_lp
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "false"
+        - name: with_visibility
+          in: query
+          required: false
+          schema:
+            type: string
+          example: visible
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: not_started
+      responses:
+        "200":
+          description: Success
+  /loki/widget/v1/channels/settings:
+    get:
+      tags:
+        - loki
+      summary: GET /loki/widget/v1/channels/settings
+      operationId: get_loki_widget_v1_channels_settings
+      responses:
+        "200":
+          description: Success
+  /loki/widget/v1/user_profile/{id}:
+    get:
+      tags:
+        - loki
+      summary: GET /loki/widget/v1/user_profile/{id}
+      operationId: get_loki_widget_v1_user_profile_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "45390"
+      responses:
+        "200":
+          description: Success
+  /manage/v1/user/events:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/user/events
+      operationId: get_manage_v1_user_events
+      parameters:
+        - name: start_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-04-25
+        - name: end_date
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2026-06-08
+        - name: sort_attr
+          in: query
+          required: false
+          schema:
+            type: string
+          example: start
+        - name: sort_dir
+          in: query
+          required: false
+          schema:
+            type: string
+          example: asc
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "200"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+      responses:
+        "200":
+          description: Success
+  /loki/widget/v1/gamification:
+    get:
+      tags:
+        - loki
+      summary: GET /loki/widget/v1/gamification
+      operationId: get_loki_widget_v1_gamification
+      parameters:
+        - name: tabs[badges][content]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: tabs[badges][page_size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "11"
+        - name: id_user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "45390"
+      responses:
+        "200":
+          description: Success
+  /loki/widget/v1/task:
+    get:
+      tags:
+        - loki
+      summary: GET /loki/widget/v1/task
+      operationId: get_loki_widget_v1_task
+      parameters:
+        - name: tabs[upcoming_ilt_webinars][page_size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: tabs[upcoming_ilt_webinars][counter]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: tabs[upcoming_ilt_webinars][level]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: student
+        - name: tabs[upcoming_ilt_webinars][sort_by]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: session_start_asc
+        - name: tabs[upcoming_ilt_webinars][type][0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: classroom
+        - name: tabs[upcoming_ilt_webinars][show_upcoming_sessions]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: tabs[upcoming_ilt_webinars][status]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: id_user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "45390"
+        - name: tabs[not_started][page_size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: tabs[not_started][counter]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: tabs[not_started][level][0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: student
+        - name: tabs[not_started][sort_by]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: enrolled_date_asc
+        - name: tabs[not_started][type][0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: tabs[in_progress][page_size]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: tabs[in_progress][counter]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "true"
+        - name: tabs[in_progress][level][0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: student
+        - name: tabs[in_progress][sort_by]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: enrolled_date_asc
+        - name: tabs[in_progress][type][0]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ""
+        - name: tabs[upcoming_ilt_webinars][page]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: tabs[not_started][page]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: tabs[in_progress][page]
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /loki/widget/v1/{id}/{id2}:
+    get:
+      tags:
+        - loki
+      summary: GET /loki/widget/v1/{id}/{id2}
+      operationId: get_loki_widget_v1_id_id2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: activity_overview
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "45390"
+      responses:
+        "200":
+          description: Success
+  /admin/index.php:
+    post:
+      tags:
+        - admin
+      summary: POST /admin/index.php
+      operationId: post_admin_index_php
+      parameters:
+        - name: r
+          in: query
+          required: false
+          schema:
+            type: string
+          example: TranscriptsApp/TranscriptsUser/indexPartial
+        - name: id_user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "45390"
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+          example: dashboard
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  YII_CSRF_TOKEN: 32db4c0cb127361fd40d144d4e7ef38f33aa3b65af75b2780a0368f83c80dff1
+      responses:
+        "200":
+          description: Success
+  /manage/v1/workforce/skills:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/workforce/skills
+      operationId: get_manage_v1_workforce_skills
+      parameters:
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /share/v1/playlists:
+    get:
+      tags:
+        - share
+      summary: GET /share/v1/playlists
+      operationId: get_share_v1_playlists
+      parameters:
+        - name: id_content
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "432"
+        - name: type_content
+          in: query
+          required: false
+          schema:
+            type: string
+          example: my-course
+        - name: ignore_private
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "0"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "-1"
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+        - share
+      summary: POST /share/v1/playlists
+      operationId: post_share_v1_playlists
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SharePostRequest"
+            examples:
+              fromHar:
+                value:
+                  channels: []
+                  id_source: 1
+                  title: zubair
+                  description: zubair
+                  tags: []
+                  is_private: true
+                  id_content: 432
+                  type_content: my-course
+      responses:
+        "200":
+          description: Success
+  /manage/v1/channels:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/channels
+      operationId: get_manage_v1_channels
+      parameters:
+        - name: inc
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "50"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /manage/v1/tags:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/tags
+      operationId: get_manage_v1_tags
+      parameters:
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "10"
+        - name: search_tag
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ad
+      responses:
+        "200":
+          description: Success
+  /loki/share/v1/playlist/{id}:
+    get:
+      tags:
+        - loki
+      summary: GET /loki/share/v1/playlist/{id}
+      operationId: get_loki_share_v1_playlist_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "114"
+        - name: uid
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "45390"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "200"
+      responses:
+        "200":
+          description: Success
+  /share/v1/publish/{id}:
+    get:
+      tags:
+        - share
+      summary: GET /share/v1/publish/{id}
+      operationId: get_share_v1_publish_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "114"
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+        - share
+      summary: PUT /share/v1/publish/{id}
+      operationId: put_share_v1_publish_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "114"
+      responses:
+        "200":
+          description: Success
+  /share/v1/playlists/{id}:
+    put:
+      tags:
+        - share
+      summary: PUT /share/v1/playlists/{id}
+      operationId: put_share_v1_playlists_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "114"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SharePutRequest"
+            examples:
+              fromHar:
+                value:
+                  tags:
+                    - 108
+                    - 222
+      responses:
+        "200":
+          description: Success
+  /learn/v1/courses/{id}:
+    get:
+      tags:
+        - learn
+      summary: GET /learn/v1/courses/{id}
+      operationId: get_learn_v1_courses_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "201"
+        - name: get_all_sessions
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /learn/v1/courses/{id}/by_category:
+    get:
+      tags:
+        - learn
+      summary: GET /learn/v1/courses/{id}/by_category
+      operationId: get_learn_v1_courses_id_by_category
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "445"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "12"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: show_user_price
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: show_enrollment_info
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: Success
+  /manage/v1/{id}:
+    get:
+      tags:
+        - manage
+      summary: GET /manage/v1/{id}
+      operationId: get_manage_v1_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: enrollment_fields
+        - name: visible_to_user
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "200"
+        - name: course_id
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "445"
+      responses:
+        "200":
+          description: Success
+  /ecommerce/v1/billing/save:
+    post:
+      tags:
+        - ecommerce
+      summary: POST /ecommerce/v1/billing/save
+      operationId: post_ecommerce_v1_billing_save
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EcommercePostRequest"
+            examples:
+              fromHar:
+                value:
+                  user_id: 45390
+                  company_name: Executive G Org
+                  vat_number: ""
+                  email: mohammedghouse86.backup@gmail.com
+                  address1: 6-3-349/9
+                  address2: Rd Number 2
+                  city: Hyderabad
+                  state: Telangana
+                  zip: "500034"
+                  country_code: IO
+      responses:
+        "200":
+          description: Success
+  /ecommerce/v1/cart/checkout:
+    post:
+      tags:
+        - ecommerce
+      summary: POST /ecommerce/v1/cart/checkout
+      operationId: post_ecommerce_v1_cart_checkout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EcommercePostRequest"
+            examples:
+              fromHar:
+                value:
+                  items:
+                    - type: subscription_plan
+                      id: 2
+                      quantity: 1
+                      user_id: 45390
+                    - type: coursepath
+                      id: 69
+                      quantity: 1
+                      user_id: 45390
+                    - type: coursepath
+                      id: 80
+                      quantity: 1
+                      user_id: 45390
+                    - type: subscription_plan
+                      id: 14
+                      quantity: 1
+                      user_id: 45390
+                    - type: coursepath
+                      id: 61
+                      quantity: 1
+                      user_id: 45390
+                  payment_method: paypal_payments
+      responses:
+        "200":
+          description: Success
+components:
+  schemas:
+    SharePostRequest:
+      type: object
+      properties:
+        channels:
+          type: array
+          items:
+            type: string
+        id_source:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        is_private:
+          type: boolean
+        id_content:
+          type: integer
+        type_content:
+          type: string
+      required:
+        - channels
+        - id_source
+        - title
+        - description
+        - tags
+        - is_private
+        - id_content
+        - type_content
+    SharePutRequest:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            type: integer
+      required:
+        - tags
+    EcommercePostRequest:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        company_name:
+          type: string
+        vat_number:
+          type: string
+        email:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country_code:
+          type: string
+      required:
+        - user_id
+        - company_name
+        - vat_number
+        - email
+        - address1
+        - address2
+        - city
+        - state
+        - zip
+        - country_code
