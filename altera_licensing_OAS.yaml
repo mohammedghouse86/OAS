@@ -1,0 +1,686 @@
+openapi: 3.0.3
+info:
+  title: Altera Licensing App
+  version: 1.0.0
+servers:
+  - url: https://licensing.altera.com
+tags:
+  - name: sslc
+paths:
+  /sslc/s/sfsites/aura:
+    post:
+      tags:
+        - sslc
+      summary: POST /sslc/s/sfsites/aura
+      operationId: post_sslc_s_sfsites_aura
+      parameters:
+        - name: r
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "8"
+        - name: ui-instrumentation-components-beacon.InstrumentationBeacon.sendData
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: aura.ApexAction.execute
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: aura.RecordUi.getRecordCreateDefaults
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: aura.RecordUi.getPicklistValuesByRecordType
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-self-service-components-profileMenu.ProfileMenu.getProfileMenuResponse
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-comm-runtime-components-aura-components-siteforce-controller.PubliclyCacheableAttributeLoader.getComponentAttributes
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-chatter-components-messages.Messages.getMessagingPermAndPref
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-notifications-components-notifications-controller.Notifications.getInitializationValues
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: aura.Component.getComponent
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-communities-components-aura-components-forceCommunity-navigationMenu.NavigationMenuDataProvider.getNavigationMenu
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-comm-runtime-components-aura-components-siteforce-qb.Quarterback.validateRoute
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-communities-components-aura-components-forceCommunity-objectHome.ObjectHomeCommunities.getBrowserTitle
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-communities-components-aura-components-forceCommunity-objectHome.ObjectHomeCommunities.getEntityName
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-communities-components-aura-components-forceCommunity-objectHome.ObjectHomeCommunities.getListViewIdObject
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-force-components-controllers-lists-listViewManager.ListViewManager.getMetadataInitialLoad
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-force-components-controllers-lists-listViewDataManager.ListViewDataManager.getItems
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-force-components-controllers-lists-listViewManagerGrid.ListViewManagerGrid.getRecordLayoutComponent
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-global-components-one-actionsManager.ActionsManager.handleAction
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-identity-components-sessiontimeoutwarn.SessionTimeoutWarn.getSessionTimeoutConfig
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-notifications-components-notifications-controller.Notifications.getNotifications
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: aura.Component.reportFailedAction
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-force-components-controllers-recordGlobalValueProvider.RecordGvp.getRecord
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-force-components-controllers-lists-listViewManagerGrid.ListViewManagerGrid.updateUserTextWrappingPref
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-force-components-controllers-lists-listViewPickerDataProvider.ListViewPickerDataProvider.getInitialListViews
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: aura.NavEventManager.getClassicNonSetupPageReferenceMappings
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-comm-runtime-components-aura-components-siteforce-recordservicecomponent.RecordServiceComponent.getActionMetadata
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-force-components-controllers-browserTabTitleUtil.BrowserTabTitleUtil.getBrowserTabTitle
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: aura.Lookup.getLookupMetadata
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: aura.RecordUi.getRecordUis
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: aura.RecordUi.createRecord
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+        - name: ui-force-components-controllers-empApi.EmpApi.getEmpConfig
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1"
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            examples:
+              fromHar:
+                value:
+                  message: "%7B%22actions%22%3A%5B%7B%22id%22%3A%22206%3Ba%22%2C%22descriptor%22%3A%22serviceComponent%3A%2F%2Fui.instrum\
+                    entation.components.beacon.InstrumentationBeaconController%2FACTION%24sendData%22%2C%22callingDescr\
+                    iptor%22%3A%22UNKNOWN%22%2C%22params%22%3A%7B%22batch%22%3A%5B%7B%22topic%22%3A%22ailtn%22%2C%22sch\
+                    emaType%22%3A%22LightningInteraction%22%2C%22payload%22%3A%22%7B%5C%22id%5C%22%3A%5C%22ltng%3Ainter\
+                    action%5C%22%2C%5C%22ts%5C%22%3A21312.4%2C%5C%22pageStartTime%5C%22%3A1778559872028%2C%5C%22owner%5\
+                    C%22%3A%5C%22siteforce%3ArouterInitializer%5C%22%2C%5C%22unixTS%5C%22%3Afalse%2C%5C%22rootId%5C%22%\
+                    3A%5C%224592847af134e176%5C%22%2C%5C%22eventType%5C%22%3A%5C%22user%5C%22%2C%5C%22eventSource%5C%22\
+                    %3A%5C%22synthetic-communitynavigation%5C%22%2C%5C%22attributes%5C%22%3A%7B%5C%22pageViewCounter%5C\
+                    %22%3A1%2C%5C%22cdnEnabled%5C%22%3Afalse%2C%5C%22cdnProviderFlags%5C%22%3A4%2C%5C%22uriDefsEnabled%\
+                    5C%22%3Atrue%2C%5C%22oneRT%5C%22%3Afalse%2C%5C%22gates%5C%22%3A%7B%7D%7D%2C%5C%22locator%5C%22%3A%7\
+                    B%5C%22target%5C%22%3A%5C%22link%5C%22%2C%5C%22scope%5C%22%3A%5C%22communitynavigation%5C%22%2C%5C%\
+                    22context%5C%22%3A%7B%5C%22unifiedEventType%5C%22%3A%5C%22COMMUNITY_PAGE_NAVIGATION%5C%22%2C%5C%22r\
+                    eferrer%5C%22%3A%5C%22%2Fsslc%2Fs%2F%5C%22%2C%5C%22requestURI%5C%22%3A%5C%22%2Fsslc%2Fs%2F%5C%22%2C\
+                    %5C%22entityId%5C%22%3Anull%7D%7D%2C%5C%22sequence%5C%22%3A4%2C%5C%22page%5C%22%3A%7B%5C%22context%\
+                    5C%22%3A%5C%22home%5C%22%2C%5C%22attributes%5C%22%3A%7B%5C%22url%5C%22%3A%5C%22%2Fsslc%2Fs%2F%5C%22\
+                    %7D%7D%2C%5C%22clientSessionId%5C%22%3A%5C%2217aa34eb28b8c4c9%5C%22%7D%22%7D%2C%7B%22topic%22%3A%22\
+                    ailtn%22%2C%22schemaType%22%3A%22LightningPerformance%22%2C%22payload%22%3A%22%7B%5C%22id%5C%22%3A%\
+                    5C%22ltng%3Aperformance%5C%22%2C%5C%22ts%5C%22%3A21313.09%2C%5C%22duration%5C%22%3A17842%2C%5C%22pa\
+                    geStartTime%5C%22%3A1778559872028%2C%5C%22marks%5C%22%3A%7B%7D%2C%5C%22owner%5C%22%3A%5C%22siteforc\
+                    e%3ArouterInitializer%5C%22%2C%5C%22unixTS%5C%22%3Afalse%2C%5C%22rootId%5C%22%3A%5C%224592847af134e\
+                    176%5C%22%2C%5C%22eventType%5C%22%3A%5C%22performance%5C%22%2C%5C%22eventSource%5C%22%3A%5C%22pageT\
+                    racker%5C%22%2C%5C%22attributes%5C%22%3A%7B%5C%22pageId%5C%22%3A1%2C%5C%22phase%5C%22%3A%5C%22END%5\
+                    C%22%2C%5C%22defaultCmp%5C%22%3A%5B%5C%22selfService%3AuserProfileMenu%5C%22%2C%5C%22c%3APortal_Cor\
+                    e_Footer%5C%22%2C%5C%22forceCommunity%3ArichTextInline%5C%22%2C%5C%22c%3Asslc_Check_PSG%5C%22%5D%2C\
+                    %5C%22nonDefaultCmp%5C%22%3A%5B%5D%2C%5C%22backgroundTime%5C%22%3A1822%2C%5C%22trxDeleted%5C%22%3A%\
+                    7B%7D%2C%5C%22cdnEnabled%5C%22%3Afalse%2C%5C%22cdnProviderFlags%5C%22%3A4%2C%5C%22uriDefsEnabled%5C\
+                    %22%3Atrue%2C%5C%22oneRT%5C%22%3Afalse%2C%5C%22gates%5C%22%3A%7B%7D%7D%2C%5C%22clientSessionId%5C%2\
+                    2%3A%5C%2217aa34eb28b8c4c9%5C%22%7D%22%7D%2C%7B%22topic%22%3A%22ailtn%22%2C%22schemaType%22%3A%22Li\
+                    ghtningInteraction%22%2C%22payload%22%3A%22%7B%5C%22id%5C%22%3A%5C%22ltng%3Ainteraction%5C%22%2C%5C\
+                    %22ts%5C%22%3A21313.4%2C%5C%22pageStartTime%5C%22%3A1778559872028%2C%5C%22owner%5C%22%3A%5C%22sitef\
+                    orce%3ArouterInitializer%5C%22%2C%5C%22unixTS%5C%22%3Afalse%2C%5C%22rootId%5C%22%3A%5C%224592847af1\
+                    34e176%5C%22%2C%5C%22eventType%5C%22%3A%5C%22system%5C%22%2C%5C%22eventSource%5C%22%3A%5C%22defsUsa\
+                    ge%5C%22%2C%5C%22attributes%5C%22%3A%7B%5C%22defs%5C%22%3A%5B%5C%22DEPRECATED_SEE_W-12458083%5C%22%\
+                    5D%2C%5C%22lwcDefs%5C%22%3A%5B%5C%22runtime_feature_usage_sdk%3AfeatureUsageCollector%5C%22%2C%5C%2\
+                    2o11y_schema%3Asf_featureUsageAnalytics%5C%22%5D%2C%5C%22auraDefs%5C%22%3A%5B%5D%2C%5C%22pageCounte\
+                    r%5C%22%3A1%2C%5C%22phase%5C%22%3A%5C%22navFromPage%5C%22%2C%5C%22pageViewCounter%5C%22%3A1%2C%5C%2\
+                    2cdnEnabled%5C%22%3Afalse%2C%5C%22cdnProviderFlags%5C%22%3A4%2C%5C%22uriDefsEnabled%5C%22%3Atrue%2C\
+                    %5C%22oneRT%5C%22%3Afalse%2C%5C%22gates%5C%22%3A%7B%7D%7D%2C%5C%22locator%5C%22%3A%7B%5C%22target%5\
+                    C%22%3A%5C%22defsUsage%5C%22%2C%5C%22scope%5C%22%3A%5C%22defsUsage%5C%22%7D%2C%5C%22sequence%5C%22%\
+                    3A5%2C%5C%22page%5C%22%3A%7B%5C%22context%5C%22%3A%5C%22home%5C%22%2C%5C%22attributes%5C%22%3A%7B%5\
+                    C%22url%5C%22%3A%5C%22%2Fsslc%2Fs%2F%5C%22%7D%7D%2C%5C%22clientSessionId%5C%22%3A%5C%2217aa34eb28b8\
+                    c4c9%5C%22%7D%22%7D%2C%7B%22topic%22%3A%22ailtn%22%2C%22schemaType%22%3A%22LightningInteraction%22%\
+                    2C%22payload%22%3A%22%7B%5C%22id%5C%22%3A%5C%22ltng%3Ainteraction%5C%22%2C%5C%22ts%5C%22%3A21382.2%\
+                    2C%5C%22pageStartTime%5C%22%3A1778559872028%2C%5C%22owner%5C%22%3Anull%2C%5C%22unixTS%5C%22%3Afalse\
+                    %2C%5C%22eventType%5C%22%3A%5C%22system%5C%22%2C%5C%22eventSource%5C%22%3A%5C%22componentTracker%5C\
+                    %22%2C%5C%22attributes%5C%22%3A%7B%5C%22pageViewCounter%5C%22%3A2%2C%5C%22cdnEnabled%5C%22%3Afalse%\
+                    2C%5C%22cdnProviderFlags%5C%22%3A4%2C%5C%22uriDefsEnabled%5C%22%3Atrue%2C%5C%22oneRT%5C%22%3Afalse%\
+                    2C%5C%22gates%5C%22%3A%7B%7D%7D%2C%5C%22locator%5C%22%3A%7B%5C%22target%5C%22%3A%5C%22default%5C%22\
+                    %2C%5C%22scope%5C%22%3A%5C%22component%5C%22%2C%5C%22context%5C%22%3A%7B%5C%22devNameOrId%5C%22%3A%\
+                    5B%5C%22forceCommunity%3ArichTextInline%5C%22%2C%5C%22c%3Asslc_Check_PSG%5C%22%5D%7D%7D%2C%5C%22seq\
+                    uence%5C%22%3A6%2C%5C%22page%5C%22%3A%7B%5C%22context%5C%22%3A%5C%22home%5C%22%2C%5C%22attributes%5\
+                    C%22%3A%7B%5C%22url%5C%22%3A%5C%22%2Fsslc%2Fs%2F%5C%22%7D%7D%2C%5C%22clientSessionId%5C%22%3A%5C%22\
+                    17aa34eb28b8c4c9%5C%22%7D%22%7D%2C%7B%22topic%22%3A%22ailtn%22%2C%22schemaType%22%3A%22LightningPag\
+                    eView%22%2C%22payload%22%3A%22%7B%5C%22id%5C%22%3A%5C%22ltng%3ApageView%5C%22%2C%5C%22ts%5C%22%3A21\
+                    313.9%2C%5C%22duration%5C%22%3A69%2C%5C%22pageStartTime%5C%22%3A1778559872028%2C%5C%22marks%5C%22%3\
+                    A%7B%5C%22transport%5C%22%3A%5B%7B%5C%22ts%5C%22%3A3625.59%2C%5C%22context%5C%22%3A%7B%5C%22auraXHR\
+                    Id%5C%22%3A1%2C%5C%22requestLength%5C%22%3A1326%2C%5C%22background%5C%22%3Atrue%2C%5C%22actionDefs%\
+                    5C%22%3A%5B%5C%2288%3Ba%5C%22%5D%2C%5C%22requestId%5C%22%3A%5C%2236255000003dd8a26a%5C%22%2C%5C%22s\
+                    tatus%5C%22%3A200%2C%5C%22statusText%5C%22%3A%5C%22%5C%22%2C%5C%22responseLength%5C%22%3A1857%2C%5C\
+                    %22xhrDuration%5C%22%3A335%2C%5C%22xhrStall%5C%22%3A1%2C%5C%22startTime%5C%22%3A3626%2C%5C%22fetchS\
+                    tart%5C%22%3A3626%2C%5C%22requestStart%5C%22%3A3627%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%3A0%2C%\
+                    5C%22ttfb%5C%22%3A326%2C%5C%22transfer%5C%22%3A8%2C%5C%22transferSize%5C%22%3A1218%2C%5C%22nextHopP\
+                    rotocol%5C%22%3A%5C%22h2%5C%22%2C%5C%22serverTime%5C%22%3A102%2C%5C%22xhrDelay%5C%22%3A1%7D%2C%5C%2\
+                    2duration%5C%22%3A336%7D%2C%7B%5C%22ts%5C%22%3A3623%2C%5C%22context%5C%22%3A%7B%5C%22auraXHRId%5C%2\
+                    2%3A0%2C%5C%22requestLength%5C%22%3A2167%2C%5C%22background%5C%22%3Afalse%2C%5C%22actionDefs%5C%22%\
+                    3A%5B%5C%2230%3Ba%5C%22%2C%5C%2241%3Ba%5C%22%2C%5C%2277%3Ba%5C%22%2C%5C%2281%3Ba%5C%22%2C%5C%2295%3\
+                    Ba%5C%22%5D%2C%5C%22requestId%5C%22%3A%5C%223623000000d0797bf5%5C%22%2C%5C%22status%5C%22%3A200%2C%\
+                    5C%22statusText%5C%22%3A%5C%22%5C%22%2C%5C%22responseLength%5C%22%3A17063%2C%5C%22xhrDuration%5C%22\
+                    %3A441%2C%5C%22xhrStall%5C%22%3A1%2C%5C%22startTime%5C%22%3A3624%2C%5C%22fetchStart%5C%22%3A3624%2C\
+                    %5C%22requestStart%5C%22%3A3626%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%3A0%2C%5C%22ttfb%5C%22%3A43\
+                    4%2C%5C%22transfer%5C%22%3A7%2C%5C%22transferSize%5C%22%3A5803%2C%5C%22nextHopProtocol%5C%22%3A%5C%\
+                    22h2%5C%22%2C%5C%22serverTime%5C%22%3A209%2C%5C%22xhrDelay%5C%22%3A3%7D%2C%5C%22duration%5C%22%3A44\
+                    4%7D%2C%7B%5C%22ts%5C%22%3A3964.7%2C%5C%22context%5C%22%3A%7B%5C%22auraXHRId%5C%22%3A2%2C%5C%22requ\
+                    estLength%5C%22%3A1204%2C%5C%22background%5C%22%3Afalse%2C%5C%22actionDefs%5C%22%3A%5B%5C%22101%3Ba\
+                    %5C%22%5D%2C%5C%22requestId%5C%22%3A%5C%22396459000009d83454%5C%22%2C%5C%22status%5C%22%3A200%2C%5C\
+                    %22statusText%5C%22%3A%5C%22%5C%22%2C%5C%22responseLength%5C%22%3A3055%2C%5C%22xhrDuration%5C%22%3A\
+                    297%2C%5C%22xhrStall%5C%22%3A1%2C%5C%22startTime%5C%22%3A3965%2C%5C%22fetchStart%5C%22%3A3965%2C%5C\
+                    %22requestStart%5C%22%3A3966%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%3A0%2C%5C%22ttfb%5C%22%3A290%2\
+                    C%5C%22transfer%5C%22%3A6%2C%5C%22transferSize%5C%22%3A1670%2C%5C%22nextHopProtocol%5C%22%3A%5C%22h\
+                    2%5C%22%2C%5C%22serverTime%5C%22%3A62%2C%5C%22xhrDelay%5C%22%3A0%7D%2C%5C%22duration%5C%22%3A297%7D\
+                    %2C%7B%5C%22ts%5C%22%3A3473.4%2C%5C%22context%5C%22%3A%7B%5C%22defLoaderId%5C%22%3A0%2C%5C%22initia\
+                    torType%5C%22%3A%5C%22script%5C%22%2C%5C%22nextHopProtocol%5C%22%3A%5C%22h2%5C%22%2C%5C%22duration%\
+                    5C%22%3A814%2C%5C%22startTime%5C%22%3A3473%2C%5C%22fetchStart%5C%22%3A3473%2C%5C%22serverTime%5C%22\
+                    %3A175%2C%5C%22redirect%5C%22%3A0%2C%5C%22requestStart%5C%22%3A3474%2C%5C%22incompleteTimings%5C%22\
+                    %3Afalse%2C%5C%22transferSize%5C%22%3A93309%2C%5C%22encodedBodySize%5C%22%3A93009%2C%5C%22decodedBo\
+                    dySize%5C%22%3A462482%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%3A0%2C%5C%22ttfb%5C%22%3A606%2C%5C%22\
+                    transfer%5C%22%3A208%2C%5C%22defs%5C%22%3A%5B%5C%22sitelayout%3A%2F%2Fsiteforce-generatedpage-23d40\
+                    bfb-a938-4d1d-9f8e-1845a1d06b7f.c10%5C%22%5D%2C%5C%22xhrDelay%5C%22%3A5%7D%2C%5C%22duration%5C%22%3\
+                    A819%7D%2C%7B%5C%22ts%5C%22%3A4314.7%2C%5C%22context%5C%22%3A%7B%5C%22auraXHRId%5C%22%3A4%2C%5C%22r\
+                    equestLength%5C%22%3A1502%2C%5C%22background%5C%22%3Afalse%2C%5C%22actionDefs%5C%22%3A%5B%5C%22142%\
+                    3Ba%5C%22%5D%2C%5C%22requestId%5C%22%3A%5C%224314700000c363dbc3%5C%22%2C%5C%22status%5C%22%3A200%2C\
+                    %5C%22statusText%5C%22%3A%5C%22%5C%22%2C%5C%22responseLength%5C%22%3A1855%2C%5C%22xhrDuration%5C%22\
+                    %3A249%2C%5C%22xhrStall%5C%22%3A1%2C%5C%22startTime%5C%22%3A4315%2C%5C%22fetchStart%5C%22%3A4315%2C\
+                    %5C%22requestStart%5C%22%3A4316%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%3A0%2C%5C%22ttfb%5C%22%3A24\
+                    5%2C%5C%22transfer%5C%22%3A4%2C%5C%22transferSize%5C%22%3A1205%2C%5C%22nextHopProtocol%5C%22%3A%5C%\
+                    22h2%5C%22%2C%5C%22serverTime%5C%22%3A28%2C%5C%22xhrDelay%5C%22%3A2%7D%2C%5C%22duration%5C%22%3A251\
+                    %7D%2C%7B%5C%22ts%5C%22%3A3646.5%2C%5C%22context%5C%22%3A%7B%5C%22defLoaderId%5C%22%3A2%2C%5C%22ini\
+                    tiatorType%5C%22%3A%5C%22script%5C%22%2C%5C%22nextHopProtocol%5C%22%3A%5C%22h2%5C%22%2C%5C%22durati\
+                    on%5C%22%3A935%2C%5C%22startTime%5C%22%3A3646%2C%5C%22fetchStart%5C%22%3A3646%2C%5C%22serverTime%5C\
+                    %22%3A26%2C%5C%22redirect%5C%22%3A0%2C%5C%22requestStart%5C%22%3A4326%2C%5C%22incompleteTimings%5C%\
+                    22%3Afalse%2C%5C%22transferSize%5C%22%3A6004%2C%5C%22encodedBodySize%5C%22%3A5704%2C%5C%22decodedBo\
+                    dySize%5C%22%3A18707%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%3A0%2C%5C%22ttfb%5C%22%3A932%2C%5C%22t\
+                    ransfer%5C%22%3A2%2C%5C%22defs%5C%22%3A%5B%5C%22markup%3A%2F%2Flightning%3Af6Controller%5C%22%5D%2C\
+                    %5C%22xhrDelay%5C%22%3A1%7D%2C%5C%22duration%5C%22%3A936%7D%2C%7B%5C%22ts%5C%22%3A3645.3%2C%5C%22co\
+                    ntext%5C%22%3A%7B%5C%22defLoaderId%5C%22%3A1%2C%5C%22initiatorType%5C%22%3A%5C%22script%5C%22%2C%5C\
+                    %22nextHopProtocol%5C%22%3A%5C%22h2%5C%22%2C%5C%22duration%5C%22%3A1112%2C%5C%22startTime%5C%22%3A3\
+                    646%2C%5C%22fetchStart%5C%22%3A3646%2C%5C%22serverTime%5C%22%3A27%2C%5C%22redirect%5C%22%3A0%2C%5C%\
+                    22requestStart%5C%22%3A4293%2C%5C%22incompleteTimings%5C%22%3Afalse%2C%5C%22transferSize%5C%22%3A24\
+                    056%2C%5C%22encodedBodySize%5C%22%3A23756%2C%5C%22decodedBodySize%5C%22%3A82085%2C%5C%22dns%5C%22%3\
+                    A0%2C%5C%22tcp%5C%22%3A0%2C%5C%22ttfb%5C%22%3A896%2C%5C%22transfer%5C%22%3A215%2C%5C%22defs%5C%22%3\
+                    A%5B%5C%22markup%3A%2F%2Finstrumentation%3Ao11ySecondaryLoader%5C%22%5D%2C%5C%22xhrDelay%5C%22%3A2%\
+                    7D%2C%5C%22duration%5C%22%3A1114%7D%2C%7B%5C%22ts%5C%22%3A4271.59%2C%5C%22context%5C%22%3A%7B%5C%22\
+                    auraXHRId%5C%22%3A3%2C%5C%22requestLength%5C%22%3A1370%2C%5C%22background%5C%22%3Afalse%2C%5C%22act\
+                    ionDefs%5C%22%3A%5B%5C%22134%3Ba%5C%22%5D%2C%5C%22requestId%5C%22%3A%5C%2242715900005bdb6310%5C%22%\
+                    2C%5C%22status%5C%22%3A200%2C%5C%22statusText%5C%22%3A%5C%22%5C%22%2C%5C%22responseLength%5C%22%3A4\
+                    847%2C%5C%22xhrDuration%5C%22%3A607%2C%5C%22xhrStall%5C%22%3A1%2C%5C%22startTime%5C%22%3A4271%2C%5C\
+                    %22fetchStart%5C%22%3A4271%2C%5C%22requestStart%5C%22%3A4272%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%2\
+                    2%3A0%2C%5C%22ttfb%5C%22%3A597%2C%5C%22transfer%5C%22%3A9%2C%5C%22transferSize%5C%22%3A1740%2C%5C%2\
+                    2nextHopProtocol%5C%22%3A%5C%22h2%5C%22%2C%5C%22serverTime%5C%22%3A374%2C%5C%22xhrDelay%5C%22%3A16%\
+                    7D%2C%5C%22duration%5C%22%3A623%7D%2C%7B%5C%22ts%5C%22%3A4099.09%2C%5C%22context%5C%22%3A%7B%5C%22d\
+                    efLoaderId%5C%22%3A3%2C%5C%22initiatorType%5C%22%3A%5C%22script%5C%22%2C%5C%22nextHopProtocol%5C%22\
+                    %3A%5C%22h2%5C%22%2C%5C%22duration%5C%22%3A1109%2C%5C%22startTime%5C%22%3A4099%2C%5C%22fetchStart%5\
+                    C%22%3A4099%2C%5C%22serverTime%5C%22%3A30%2C%5C%22redirect%5C%22%3A0%2C%5C%22requestStart%5C%22%3A4\
+                    547%2C%5C%22incompleteTimings%5C%22%3Afalse%2C%5C%22transferSize%5C%22%3A179369%2C%5C%22encodedBody\
+                    Size%5C%22%3A179069%2C%5C%22decodedBodySize%5C%22%3A737411%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%\
+                    3A0%2C%5C%22ttfb%5C%22%3A703%2C%5C%22transfer%5C%22%3A406%2C%5C%22defs%5C%22%3A%5B%5C%22markup%3A%2\
+                    F%2Flightning%3AiconSvgTemplatesUtility%5C%22%5D%2C%5C%22xhrDelay%5C%22%3A4%7D%2C%5C%22duration%5C%\
+                    22%3A1113%7D%2C%7B%5C%22ts%5C%22%3A5523.5%2C%5C%22context%5C%22%3A%7B%5C%22auraXHRId%5C%22%3A6%2C%5\
+                    C%22requestLength%5C%22%3A1370%2C%5C%22background%5C%22%3Afalse%2C%5C%22actionDefs%5C%22%3A%5B%5C%2\
+                    2158%3Ba%5C%22%2C%5C%22160%3Ba%5C%22%5D%2C%5C%22requestId%5C%22%3A%5C%225523500000bba46183%5C%22%2C\
+                    %5C%22status%5C%22%3A200%2C%5C%22statusText%5C%22%3A%5C%22%5C%22%2C%5C%22responseLength%5C%22%3A314\
+                    0%2C%5C%22xhrDuration%5C%22%3A291%2C%5C%22xhrStall%5C%22%3A6%2C%5C%22startTime%5C%22%3A5525%2C%5C%2\
+                    2fetchStart%5C%22%3A5525%2C%5C%22requestStart%5C%22%3A5531%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%\
+                    3A0%2C%5C%22ttfb%5C%22%3A286%2C%5C%22transfer%5C%22%3A4%2C%5C%22transferSize%5C%22%3A2032%2C%5C%22n\
+                    extHopProtocol%5C%22%3A%5C%22h2%5C%22%2C%5C%22serverTime%5C%22%3A60%2C%5C%22xhrDelay%5C%22%3A2%7D%2\
+                    C%5C%22duration%5C%22%3A293%7D%2C%7B%5C%22ts%5C%22%3A5511.9%2C%5C%22context%5C%22%3A%7B%5C%22auraXH\
+                    RId%5C%22%3A5%2C%5C%22requestLength%5C%22%3A59459%2C%5C%22background%5C%22%3Atrue%2C%5C%22actionDef\
+                    s%5C%22%3A%5B%5C%22157%3Ba%5C%22%5D%2C%5C%22requestId%5C%22%3A%5C%22551190000046409247%5C%22%2C%5C%\
+                    22status%5C%22%3A200%2C%5C%22statusText%5C%22%3A%5C%22%5C%22%2C%5C%22responseLength%5C%22%3A2079%2C\
+                    %5C%22xhrDuration%5C%22%3A706%2C%5C%22xhrStall%5C%22%3A4%2C%5C%22startTime%5C%22%3A5513%2C%5C%22fet\
+                    chStart%5C%22%3A5513%2C%5C%22requestStart%5C%22%3A5517%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%3A0%\
+                    2C%5C%22ttfb%5C%22%3A703%2C%5C%22transfer%5C%22%3A2%2C%5C%22transferSize%5C%22%3A1252%2C%5C%22nextH\
+                    opProtocol%5C%22%3A%5C%22h2%5C%22%2C%5C%22serverTime%5C%22%3A474%2C%5C%22xhrDelay%5C%22%3A2%7D%2C%5\
+                    C%22duration%5C%22%3A708%7D%2C%7B%5C%22ts%5C%22%3A6265.09%2C%5C%22context%5C%22%3A%7B%5C%22auraXHRI\
+                    d%5C%22%3A7%2C%5C%22requestLength%5C%22%3A24214%2C%5C%22background%5C%22%3Atrue%2C%5C%22actionDefs%\
+                    5C%22%3A%5B%5C%22164%3Ba%5C%22%5D%2C%5C%22requestId%5C%22%3A%5C%226265090000b0f1f46d%5C%22%2C%5C%22\
+                    status%5C%22%3A200%2C%5C%22statusText%5C%22%3A%5C%22%5C%22%2C%5C%22responseLength%5C%22%3A2034%2C%5\
+                    C%22xhrDuration%5C%22%3A455%2C%5C%22xhrStall%5C%22%3A1%2C%5C%22startTime%5C%22%3A6265%2C%5C%22fetch\
+                    Start%5C%22%3A6265%2C%5C%22requestStart%5C%22%3A6267%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%3A0%2C\
+                    %5C%22ttfb%5C%22%3A454%2C%5C%22transfer%5C%22%3A0%2C%5C%22transferSize%5C%22%3A1237%2C%5C%22nextHop\
+                    Protocol%5C%22%3A%5C%22h2%5C%22%2C%5C%22serverTime%5C%22%3A231%2C%5C%22xhrDelay%5C%22%3A1%7D%2C%5C%\
+                    22duration%5C%22%3A456%7D%2C%7B%5C%22ts%5C%22%3A6765.59%2C%5C%22context%5C%22%3A%7B%5C%22defLoaderI\
+                    d%5C%22%3A4%2C%5C%22initiatorType%5C%22%3A%5C%22script%5C%22%2C%5C%22nextHopProtocol%5C%22%3A%5C%22\
+                    h2%5C%22%2C%5C%22duration%5C%22%3A718%2C%5C%22startTime%5C%22%3A6765%2C%5C%22fetchStart%5C%22%3A711\
+                    5%2C%5C%22serverTime%5C%22%3A29%2C%5C%22redirect%5C%22%3A349%2C%5C%22requestStart%5C%22%3A7116%2C%5\
+                    C%22incompleteTimings%5C%22%3Afalse%2C%5C%22transferSize%5C%22%3A2887%2C%5C%22encodedBodySize%5C%22\
+                    %3A2587%2C%5C%22decodedBodySize%5C%22%3A6733%2C%5C%22dns%5C%22%3A0%2C%5C%22tcp%5C%22%3A0%2C%5C%22tt\
+                    fb%5C%22%3A717%2C%5C%22transfer%5C%22%3A0%2C%5C%22defs%5C%22%3A%5B%5C%22markup%3A%2F%2Fruntime_feat\
+                    ure_usage_sdk%3AfeatureUsageCollector%5C%22%5D%2C%5C%22xhrDelay%5C%22%3A1%7D%2C%5C%22duration%5C%22\
+                    %3A719%7D%5D%2C%5C%22actions%5C%22%3A%5B%7B%5C%22ts%5C%22%3A3602.8%2C%5C%22context%5C%22%3A%7B%5C%2\
+                    2id%5C%22%3A%5C%2288%3Ba%5C%22%2C%5C%22abortable%5C%22%3Atrue%2C%5C%22storable%5C%22%3Atrue%2C%5C%2\
+                    2background%5C%22%3Atrue%2C%5C%22cmp%5C%22%3A%5C%22siteforce%3ApubliclyCacheableAttributeLoader%5C%\
+                    22%2C%5C%22def%5C%22%3A%5C%22serviceComponent%3A%2F%2Fui.comm.runtime.components.aura.components.si\
+                    teforce.controller.PubliclyCacheableAttributeLoaderController%2FACTION%24getComponentAttributes%5C%\
+                    22%2C%5C%22state%5C%22%3A%5C%22SUCCESS%5C%22%2C%5C%22cache%5C%22%3Afalse%7D%2C%5C%22xhrWait%5C%22%3\
+                    A3%2C%5C%22enqueueWait%5C%22%3A19%2C%5C%22serverTime%5C%22%3A%7B%5C%22total%5C%22%3A51%2C%5C%22db%5\
+                    C%22%3A7%2C%5C%22xhrServerTime%5C%22%3A102%2C%5C%22boxCarCount%5C%22%3A1%7D%2C%5C%22callbackTime%5C\
+                    %22%3A0%2C%5C%22duration%5C%22%3A360%7D%2C%7B%5C%22ts%5C%22%3A3526.9%2C%5C%22context%5C%22%3A%7B%5C\
+                    %22id%5C%22%3A%5C%2230%3Ba%5C%22%2C%5C%22abortable%5C%22%3Atrue%2C%5C%22storable%5C%22%3Atrue%2C%5C\
+                    %22background%5C%22%3Afalse%2C%5C%22cmp%5C%22%3A%5C%22forceChatter%3AmessagesManager%5C%22%2C%5C%22\
+                    def%5C%22%3A%5C%22serviceComponent%3A%2F%2Fui.chatter.components.messages.MessagesController%2FACTI\
+                    ON%24getMessagingPermAndPref%5C%22%2C%5C%22state%5C%22%3A%5C%22SUCCESS%5C%22%2C%5C%22cache%5C%22%3A\
+                    false%7D%2C%5C%22xhrWait%5C%22%3A1%2C%5C%22enqueueWait%5C%22%3A95%2C%5C%22serverTime%5C%22%3A%7B%5C\
+                    %22total%5C%22%3A13%2C%5C%22db%5C%22%3A2%2C%5C%22xhrServerTime%5C%22%3A208%2C%5C%22boxCarCount%5C%2\
+                    2%3A5%7D%2C%5C%22callbackTime%5C%22%3A0%2C%5C%22duration%5C%22%3A541%7D%2C%7B%5C%22ts%5C%22%3A3567%\
+                    2C%5C%22context%5C%22%3A%7B%5C%22id%5C%22%3A%5C%2241%3Ba%5C%22%2C%5C%22abortable%5C%22%3Afalse%2C%5\
+                    C%22storable%5C%22%3Afalse%2C%5C%22background%5C%22%3Afalse%2C%5C%22cmp%5C%22%3A%5C%22selfService%3\
+                    AprofileMenuAPI%5C%22%2C%5C%22def%5C%22%3A%5C%22serviceComponent%3A%2F%2Fui.self.service.components\
+                    .profileMenu.ProfileMenuController%2FACTION%24getProfileMenuResponse%5C%22%2C%5C%22state%5C%22%3A%5\
+                    C%22SUCCESS%5C%22%2C%5C%22cache%5C%22%3Afalse%7D%2C%5C%22xhrWait%5C%22%3A1%2C%5C%22enqueueWait%5C%2\
+                    2%3A55%2C%5C%22serverTime%5C%22%3A%7B%5C%22total%5C%22%3A40%2C%5C%22db%5C%22%3A14%2C%5C%22xhrServer\
+                    Time%5C%22%3A208%2C%5C%22boxCarCount%5C%22%3A5%7D%2C%5C%22callbackTime%5C%22%3A11%2C%5C%22duration%\
+                    5C%22%3A512%7D%2C%7B%5C%22ts%5C%22%3A3599.4%2C%5C%22context%5C%22%3A%7B%5C%22id%5C%22%3A%5C%2277%3B\
+                    a%5C%22%2C%5C%22abortable%5C%22%3Atrue%2C%5C%22storable%5C%22%3Atrue%2C%5C%22background%5C%22%3Afal\
+                    se%2C%5C%22cmp%5C%22%3A%5C%22force%3AempApi%5C%22%2C%5C%22def%5C%22%3A%5C%22serviceComponent%3A%2F%\
+                    2Fui.force.components.controllers.empApi.EmpApiController%2FACTION%24getEmpConfig%5C%22%2C%5C%22sta\
+                    te%5C%22%3A%5C%22SUCCESS%5C%22%2C%5C%22cache%5C%22%3Afalse%7D%2C%5C%22xhrWait%5C%22%3A1%2C%5C%22enq\
+                    ueueWait%5C%22%3A23%2C%5C%22serverTime%5C%22%3A%7B%5C%22total%5C%22%3A0%2C%5C%22db%5C%22%3A0%2C%5C%\
+                    22xhrServerTime%5C%22%3A208%2C%5C%22boxCarCount%5C%22%3A5%7D%2C%5C%22callbackTime%5C%22%3A1%2C%5C%2\
+                    2duration%5C%22%3A481%7D%2C%7B%5C%22ts%5C%22%3A3600.5%2C%5C%22context%5C%22%3A%7B%5C%22id%5C%22%3A%\
+                    5C%2281%3Ba%5C%22%2C%5C%22abortable%5C%22%3Atrue%2C%5C%22storable%5C%22%3Atrue%2C%5C%22background%5\
+                    C%22%3Afalse%2C%5C%22cmp%5C%22%3A%5C%22uns%3Anotifications%5C%22%2C%5C%22def%5C%22%3A%5C%22serviceC\
+                    omponent%3A%2F%2Fui.notifications.components.notifications.controller.NotificationsController%2FACT\
+                    ION%24getInitializationValues%5C%22%2C%5C%22state%5C%22%3A%5C%22SUCCESS%5C%22%2C%5C%22cache%5C%22%3\
+                    Afalse%7D%2C%5C%22xhrWait%5C%22%3A1%2C%5C%22enqueueWait%5C%22%3A22%2C%5C%22serverTime%5C%22%3A%7B%5\
+                    C%22total%5C%22%3A0%2C%5C%22db%5C%22%3A0%2C%5C%22xhrServerTime%5C%22%3A208%2C%5C%22boxCarCount%5C%2\
+                    2%3A5%7D%2C%5C%22callbackTime%5C%22%3A5%2C%5C%22duration%5C%22%3A485%7D%2C%7B%5C%22ts%5C%22%3A3605%\
+                    2C%5C%22context%5C%22%3A%7B%5C%22id%5C%22%3A%5C%2295%3Ba%5C%22%2C%5C%22abortable%5C%22%3Atrue%2C%5C\
+                    %22storable%5C%22%3Atrue%2C%5C%22background%5C%22%3Afalse%2C%5C%22cmp%5C%22%3A%5C%22force%3AhostCon\
+                    fig%5C%22%2C%5C%22def%5C%22%3A%5C%22serviceComponent%3A%2F%2Fui.force.components.controllers.hostCo\
+                    nfig.HostConfigController%2FACTION%24getConfigData%5C%22%2C%5C%22state%5C%22%3A%5C%22SUCCESS%5C%22%\
+                    2C%5C%22cache%5C%22%3Afalse%7D%2C%5C%22xhrWait%5C%22%3A1%2C%5C%22enqueueWait%5C%22%3A17%2C%5C%22ser\
+                    verTime%5C%22%3A%7B%5C%22total%5C%22%3A77%2C%5C%22db%5C%22%3A0%2C%5C%22xhrServerTime%5C%22%3A208%2C\
+                    %5C%22boxCarCount%5C%22%3A5%7D%2C%5C%22callbackTime%5C%22%3A1%2C%5C%22duration%5C%22%3A482%7D%2C%7B\
+                    %5C%22ts%5C%22%3A3964.59%2C%5C%22context%5C%22%3A%7B%5C%22id%5C%22%3A%5C%22101%3Ba%5C%22%2C%5C%22ab\
+                    ortable%5C%22%3Atrue%2C%5C%22storable%5C%22%3Afalse%2C%5C%22background%5C%22%3Afalse%2C%5C%22cmp%5C\
+                    %22%3A%5C%22none%5C%22%2C%5C%22def%5C%22%3A%5C%22aura%3A%2F%2FComponentController%2FACTION%24getCom\
+                    ponent%5C%22%2C%5C%22state%5C%22%3A%5C%22SUCCESS%5C%22%2C%5C%22cache%5C%22%3Afalse%7D%2C%5C%22param\
+                    s%5C%22%3A%7B%5C%22name%5C%22%3A%5C%22markup%3A%2F%2FforceCommunity%3AglobalNavigation%5C%22%7D%2C%\
+                    5C%22xhrWait%5C%22%3A0%2C%5C%22enqueueWait%5C%22%3A0%2C%5C%22serverTime%5C%22%3A%7B%5C%22total%5C%2\
+                    2%3A19%2C%5C%22db%5C%22%3A2%2C%5C%22xhrServerTime%5C%22%3A62%2C%5C%22boxCarCount%5C%22%3A1%7D%2C%5C\
+                    %22callbackTime%5C%22%3A8%2C%5C%22duration%5C%22%3A306%7D%2C%7B%5C%22ts%5C%22%3A4299.2%2C%5C%22cont\
+                    ext%5C%22%3A%7B%5C%22id%5C%22%3A%5C%22142%3Ba%5C%22%2C%5C%22abortable%5C%22%3Atrue%2C%5C%22storable\
+                    %5C%22%3Atrue%2C%5C%22background%5C%22%3Afalse%2C%5C%22cmp%5C%22%3A%5C%22forceCommunity%3ArichText%\
+                    5C%22%2C%5C%22def%5C%22%3A%5C%22serviceComponent%3A%2F%2Fui.communities.components.aura.components.\
+                    forceCommunity.richText.RichTextController%2FACTION%24getParsedRichTextValue%5C%22%2C%5C%22state%5C\
+                    %22%3A%5C%22SUCCESS%5C%22%2C%5C%22cache%5C%22%3Afalse%7D%2C%5C%22xhrWait%5C%22%3A0%2C%5C%22enqueueW\
+                    ait%5C%22%3A15%2C%5C%22serverTime%5C%22%3A%7B%5C%22total%5C%22%3A0%2C%5C%22db%5C%22%3A0%2C%5C%22xhr\
+                    ServerTime%5C%22%3A27%2C%5C%22boxCarCount%5C%22%3A1%7D%2C%5C%22callbackTime%5C%22%3A0%2C%5C%22durat\
+                    ion%5C%22%3A267%7D%2C%7B%5C%22ts%5C%22%3A4270.59%2C%5C%22context%5C%22%3A%7B%5C%22id%5C%22%3A%5C%22\
+                    134%3Ba%5C%22%2C%5C%22abortable%5C%22%3Atrue%2C%5C%22storable%5C%22%3Atrue%2C%5C%22background%5C%22\
+                    %3Afalse%2C%5C%22cmp%5C%22%3A%5C%22forceCommunity%3AnavigationMenuBase%5C%22%2C%5C%22def%5C%22%3A%5\
+                    C%22serviceComponent%3A%2F%2Fui.communities.components.aura.components.forceCommunity.navigationMen\
+                    u.NavigationMenuDataProviderController%2FACTION%24getNavigationMenu%5C%22%2C%5C%22state%5C%22%3A%5C\
+                    %22SUCCESS%5C%22%2C%5C%22cache%5C%22%3Afalse%7D%2C%5C%22params%5C%22%3A%7B%5C%22navigationLinkSetId\
+                    OrName%5C%22%3A%5C%22Sslc_External_Navigation_Menu%5C%22%2C%5C%22includeImageUrl%5C%22%3Afalse%2C%5\
+                    C%22addHomeMenuItem%5C%22%3Atrue%2C%5C%22menuItemTypesToSkip%5C%22%3A%5C%22%5B%5C%5C%5C%22SystemLin\
+                    k%5C%5C%5C%22%2C%5C%5C%5C%22Event%5C%5C%5C%22%2C%5C%5C%5C%22Modal%5C%5C%5C%22%5D%5C%22%2C%5C%22mast\
+                    erLabel%5C%22%3A%5C%22Default%20Navigation%5C%22%7D%2C%5C%22xhrWait%5C%22%3A0%2C%5C%22enqueueWait%5\
+                    C%22%3A1%2C%5C%22serverTime%5C%22%3A%7B%5C%22total%5C%22%3A339%2C%5C%22db%5C%22%3A30%2C%5C%22xhrSer\
+                    verTime%5C%22%3A374%2C%5C%22boxCarCount%5C%22%3A1%7D%2C%5C%22callbackTime%5C%22%3A4%2C%5C%22duratio\
+                    n%5C%22%3A629%7D%2C%7B%5C%22ts%5C%22%3A5516.3%2C%5C%22context%5C%22%3A%7B%5C%22id%5C%22%3A%5C%22158\
+                    %3Ba%5C%22%2C%5C%22abortable%5C%22%3Afalse%2C%5C%22storable%5C%22%3Afalse%2C%5C%22background%5C%22%\
+                    3Afalse%2C%5C%22cmp%5C%22%3A%5C%22salesforceIdentity%3AsessionTimeoutWarn%5C%22%2C%5C%22def%5C%22%3\
+                    A%5C%22serviceComponent%3A%2F%2Fui.identity.components.sessiontimeoutwarn.SessionTimeoutWarnControl\
+                    ler%2FACTION%24getSessionTimeoutConfig%5C%22%2C%5C%22state%5C%22%3A%5C%22SUCCESS%5C%22%2C%5C%22cach\
+                    e%5C%22%3Afalse%7D%2C%5C%22xhrWait%5C%22%3A0%2C%5C%22enqueueWait%5C%22%3A7%2C%5C%22serverTime%5C%22\
+                    %3A%7B%5C%22total%5C%22%3A10%2C%5C%22db%5C%22%3A5%2C%5C%22xhrServerTime%5C%22%3A60%2C%5C%22boxCarCo\
+                    unt%5C%22%3A2%7D%2C%5C%22callbackTime%5C%22%3A0%2C%5C%22duration%5C%22%3A301%7D%2C%7B%5C%22ts%5C%22\
+                    %3A5518.59%2C%5C%22context%5C%22%3A%7B%5C%22id%5C%22%3A%5C%22160%3Ba%5C%22%2C%5C%22abortable%5C%22%\
+                    3Afalse%2C%5C%22storable%5C%22%3Afalse%2C%5C%22background%5C%22%3Afalse%2C%5C%22cmp%5C%22%3A%5C%22u\
+                    ns%3Anotifications%5C%22%2C%5C%22def%5C%22%3A%5C%22serviceComponent%3A%2F%2Fui.notifications.compon\
+                    ents.notifications.controller.NotificationsController%2FACTION%24getNotifications%5C%22%2C%5C%22sta\
+                    te%5C%22%3A%5C%22SUCCESS%5C%22%2C%5C%22cache%5C%22%3Afalse%7D%2C%5C%22xhrWait%5C%22%3A0%2C%5C%22enq\
+                    ueueWait%5C%22%3A4%2C%5C%22serverTime%5C%22%3A%7B%5C%22total%5C%22%3A11%2C%5C%22db%5C%22%3A1%2C%5C%\
+                    22xhrServerTime%5C%22%3A60%2C%5C%22boxCarCount%5C%22%3A2%7D%2C%5C%22callbackTime%5C%22%3A0%2C%5C%22\
+                    duration%5C%22%3A299%7D%2C%7B%5C%22ts%5C%22%3A21317%2C%5C%22context%5C%22%3A%7B%5C%22id%5C%22%3A%5C\
+                    %22194%3Ba%5C%22%2C%5C%22abortable%5C%22%3Atrue%2C%5C%22storable%5C%22%3Atrue%2C%5C%22background%5C\
+                    %22%3Afalse%2C%5C%22cmp%5C%22%3A%5C%22forceCommunity%3ArichText%5C%22%2C%5C%22def%5C%22%3A%5C%22ser\
+                    viceComponent%3A%2F%2Fui.communities.components.aura.components.forceCommunity.richText.RichTextCon\
+                    troller%2FACTION%24getParsedRichTextValue%5C%22%2C%5C%22state%5C%22%3A%5C%22SUCCESS%5C%22%2C%5C%22c\
+                    ache%5C%22%3Atrue%7D%2C%5C%22callbackTime%5C%22%3A0%2C%5C%22enqueueWait%5C%22%3A4%2C%5C%22duration%\
+                    5C%22%3A4%7D%5D%2C%5C%22component%5C%22%3A%5B%7B%5C%22totalCreateTime%5C%22%3A232.5%2C%5C%22slowest\
+                    Creates%5C%22%3A%5B%7B%5C%22name%5C%22%3A%5C%22siteforce%3AcommunityApp%5C%22%2C%5C%22createCount%5\
+                    C%22%3A1%2C%5C%22createTimeTotal%5C%22%3A154.59%7D%2C%7B%5C%22name%5C%22%3A%5C%22forceCommunity%3Ar\
+                    ichTextInline%5C%22%2C%5C%22createCount%5C%22%3A2%2C%5C%22createTimeTotal%5C%22%3A8.09%7D%2C%7B%5C%\
+                    22name%5C%22%3A%5C%22siteforce-generatedpage-23d40bfb-a938-4d1d-9f8e-1845a1d06b7f.c10%5C%22%2C%5C%2\
+                    2createCount%5C%22%3A2%2C%5C%22createTimeTotal%5C%22%3A25.4%7D%2C%7B%5C%22name%5C%22%3A%5C%22ui%3Am\
+                    enu%5C%22%2C%5C%22createCount%5C%22%3A1%2C%5C%22createTimeTotal%5C%22%3A9%7D%2C%7B%5C%22name%5C%22%\
+                    3A%5C%22forceCommunity%3AglobalNavigation%5C%22%2C%5C%22createCount%5C%22%3A1%2C%5C%22createTimeTot\
+                    al%5C%22%3A8.09%7D%5D%7D%5D%7D%2C%5C%22owner%5C%22%3A%5C%22siteforce%3ArouterInitializer%5C%22%2C%5\
+                    C%22unixTS%5C%22%3Afalse%2C%5C%22rootId%5C%22%3A%5C%224592847af134e176%5C%22%2C%5C%22previousPage%5\
+                    C%22%3A%7B%5C%22context%5C%22%3A%5C%22home%5C%22%2C%5C%22attributes%5C%22%3A%7B%5C%22url%5C%22%3A%5\
+                    C%22%2Fsslc%2Fs%2F%5C%22%7D%7D%2C%5C%22attributes%5C%22%3A%7B%5C%22designTime%5C%22%3Afalse%2C%5C%2\
+                    2domain%5C%22%3A%5C%22https%3A%2F%2Flicensing.altera.com%5C%22%2C%5C%22template%5C%22%3A%5C%22Servi\
+                    ce%20Community%20Template%5C%22%2C%5C%22priorityDuration%5C%22%3A%7B%7D%2C%5C%22ltngRttMedian%5C%22\
+                    %3A224.5%2C%5C%22ltngDownloadMedian%5C%22%3A2.86%2C%5C%22ltngCacheHits%5C%22%3A0%2C%5C%22cdnRttMedi\
+                    an%5C%22%3A0%2C%5C%22cdnDownloadMedian%5C%22%3A0%2C%5C%22cdnCacheHits%5C%22%3A0%2C%5C%22longTaskTot\
+                    al%5C%22%3A0%2C%5C%22longestTask%5C%22%3A0%2C%5C%22network%5C%22%3A%7B%5C%22rtt%5C%22%3A50%2C%5C%22\
+                    downlink%5C%22%3A5.9%2C%5C%22maxAllowedParallelXHRs%5C%22%3A24%7D%2C%5C%22cores%5C%22%3A12%2C%5C%22\
+                    eptDeviation%5C%22%3Afalse%2C%5C%22expTime%5C%22%3A73%2C%5C%22expTimeDeviation%5C%22%3Afalse%2C%5C%\
+                    22expTimePageExists%5C%22%3Atrue%2C%5C%22inFlightXHRS%5C%22%3A0%2C%5C%22systemOrUntrackedNav%5C%22%\
+                    3Afalse%2C%5C%22routerNavigations%5C%22%3A1%2C%5C%22eptRedirectTime%5C%22%3A0%2C%5C%22density%5C%22\
+                    %3A%5C%22UNKNOWN%5C%22%2C%5C%22totalEpt%5C%22%3A68%2C%5C%22defaultCmp%5C%22%3A%5B%5C%22forceCommuni\
+                    ty%3ArichTextInline%5C%22%2C%5C%22c%3Asslc_Check_PSG%5C%22%5D%2C%5C%22gates%5C%22%3A%7B%5C%22ui.ser\
+                    vices.PageScopedCache.enabled%5C%22%3Atrue%2C%5C%22updatedEpt.instrumentation.ltng%5C%22%3Afalse%2C\
+                    %5C%22arrayAtPolyfillEnabled.instrumentation.ltng%5C%22%3Atrue%2C%5C%22browserIdleTime.instrumentat\
+                    ion.ltng%5C%22%3Afalse%2C%5C%22scenarioTrackerEnabled.instrumentation.ltng%5C%22%3Atrue%2C%5C%22lds\
+                    .useHttpUiapiOneApp%5C%22%3Afalse%2C%5C%22lds.pdl.useRelatedListsPredictions%5C%22%3Atrue%2C%5C%22l\
+                    ds.pdl.useRelatedListPlus%5C%22%3Atrue%2C%5C%22lds.useNewTrackedFieldBehavior%5C%22%3Atrue%2C%5C%22\
+                    lds.usePredictiveLoading%5C%22%3Atrue%2C%5C%22lds.pdl.canCombineRecordLayoutRequests%5C%22%3Atrue%2\
+                    C%5C%22lds.pdl.useLocalStorage%5C%22%3Atrue%2C%5C%22lds.pdl.applyRequestLimit%5C%22%3Afalse%2C%5C%2\
+                    2lds.pdl.useApexPredictions%5C%22%3Atrue%2C%5C%22lds.oneStoreGraphqlEnabled.ltng%5C%22%3Afalse%2C%5\
+                    C%22clientTelemetry.instrumentation.ltng%5C%22%3Atrue%2C%5C%22componentProfiler.instrumentation.ltn\
+                    g%5C%22%3Afalse%2C%5C%22colorIconsMenuItem.bc.ltng%5C%22%3Atrue%2C%5C%22bc.260.enableA11yMultiColSo\
+                    rtModal%5C%22%3Atrue%2C%5C%22bc.260.enableAssertContext260%5C%22%3Atrue%2C%5C%22bc.260.enableAssert\
+                    Context260Round2%5C%22%3Atrue%2C%5C%22mpe.260.enableAssertContextForBarcodeScanner%5C%22%3Atrue%2C%\
+                    5C%22bc.260.enableBaseComboboxNullCheck%5C%22%3Atrue%2C%5C%22bc.260.enableCalendarGridCellAriaFix%5\
+                    C%22%3Afalse%2C%5C%22bc.258.enableCalendarMinMaxNavigation%5C%22%3Atrue%2C%5C%22bc.260.enableCheckb\
+                    oxGroupStaticErrDom%5C%22%3Atrue%2C%5C%22bc.260.enableComboboxElementInternals%5C%22%3Afalse%2C%5C%\
+                    22bc.258.enableConsolidateTypeAttributes%5C%22%3Atrue%2C%5C%22bc.260.enableDTHeightCalcForScrollbar\
+                    %5C%22%3Afalse%2C%5C%22bc.258.enableDatatableHoverStyling%5C%22%3Atrue%2C%5C%22bc.258.enableDatatab\
+                    lePositionOverride%5C%22%3Atrue%2C%5C%22bc.260.enableDatatableUseClientWidth%5C%22%3Atrue%2C%5C%22b\
+                    c.258.enableDatatableVoiceoverFix%5C%22%3Atrue%2C%5C%22bc.258.enableDateInvalidYearHandling%5C%22%3\
+                    Atrue%2C%5C%22bc.258.enableDisabledRowsAttribute%5C%22%3Atrue%2C%5C%22bc.258.enableDropdownCloseDel\
+                    ay%5C%22%3Atrue%2C%5C%22bc.260.enableDualListboxA11yReqOptionErrFix%5C%22%3Atrue%2C%5C%22bc.258.ena\
+                    bleDualListboxSingleCharTypeahead%5C%22%3Atrue%2C%5C%22bc.260.enableFontSizeThirteen%5C%22%3Atrue%2\
+                    C%5C%22bc.260.enableFormattedRichTextParts%5C%22%3Atrue%2C%5C%22bc.260.enableGeolocationTimeout%5C%\
+                    22%3Atrue%2C%5C%22bc.258.enableInputModeOverride%5C%22%3Atrue%2C%5C%22bc.258.enableInputSearchCommi\
+                    tEvent%5C%22%3Atrue%2C%5C%22bc.258.enableLookupFieldObjApiName%5C%22%3Atrue%2C%5C%22bc.260.enableMa\
+                    nualImageUpload%5C%22%3Afalse%2C%5C%22bc.258.enableMaxEditLimit%5C%22%3Atrue%2C%5C%22bc.258.enableN\
+                    oDescribedbyTooltip%5C%22%3Atrue%2C%5C%22bc.258.enableOutputFieldReadOnlyClass%5C%22%3Afalse%2C%5C%\
+                    22bc.260.enablePftTelemetrySingleComp%5C%22%3Atrue%2C%5C%22bc.260.enablePositionLibFlipCalcWithView\
+                    portRight%5C%22%3Atrue%2C%5C%22bc.258.enablePositionLibraryFlipInOverlay%5C%22%3Atrue%2C%5C%22bc.26\
+                    0.enablePositionLibraryTransformScaleFix%5C%22%3Atrue%2C%5C%22bc.260.enableRadioGroupStaticErrDom%5\
+                    C%22%3Atrue%2C%5C%22bc.260.enableRelativeDateTimeLocale%5C%22%3Atrue%2C%5C%22bc.260.enableSelectSta\
+                    ticErrDom%5C%22%3Atrue%2C%5C%22bc.258.enableTextareaReadOnlyStatic%5C%22%3Atrue%2C%5C%22bc.258.enab\
+                    leTimeIntervalApi%5C%22%3Atrue%2C%5C%22bc.260.enableTooltipFlashingFix%5C%22%3Atrue%2C%5C%22bc.260.\
+                    enableTooltipHoverDismiss%5C%22%3Atrue%2C%5C%22bc.260.enableTreeGridSecondArrKeyUpdate%5C%22%3Atrue\
+                    %2C%5C%22bc.260.enableformattedtextlinkrouting%5C%22%3Afalse%2C%5C%22primitiveThemeProviderDisabled\
+                    .bc.ltng%5C%22%3Afalse%2C%5C%22o11yAuraActionsEnabled.instrumentation.ltng%5C%22%3Afalse%2C%5C%22o1\
+                    1yEnabled.instrumentation.ltng%5C%22%3Atrue%2C%5C%22webVitalsKillSwitch.instrumentation.ltng%5C%22%\
+                    3Atrue%2C%5C%22com.salesforce.aura.enableAuraO11yMetrics%5C%22%3Atrue%2C%5C%22disableFlushIfIdle.in\
+                    strumentation.ltng%5C%22%3Atrue%2C%5C%22scenarioTrackerMarksEnabled.instrumentation.ltng%5C%22%3Afa\
+                    lse%2C%5C%22limitPerfTrxMarks.instrumentation.ltng%5C%22%3Atrue%7D%2C%5C%22cdnEnabled%5C%22%3Afalse\
+                    %2C%5C%22cdnProviderFlags%5C%22%3A4%2C%5C%22uriDefsEnabled%5C%22%3Atrue%2C%5C%22oneRT%5C%22%3Afalse\
+                    %7D%2C%5C%22cacheStats%5C%22%3A%7B%5C%22AuraStorage_actions%5C%22%3A%7B%5C%22hits%5C%22%3A1%2C%5C%2\
+                    2misses%5C%22%3A0%7D%2C%5C%22total%5C%22%3A%7B%5C%22hits%5C%22%3A1%2C%5C%22misses%5C%22%3A0%7D%7D%2\
+                    C%5C%22complexity%5C%22%3Anull%2C%5C%22ept%5C%22%3A68%2C%5C%22sequence%5C%22%3A2%2C%5C%22page%5C%22\
+                    %3A%7B%5C%22context%5C%22%3A%5C%22home%5C%22%2C%5C%22attributes%5C%22%3A%7B%5C%22url%5C%22%3A%5C%22\
+                    %2Fsslc%2Fs%2F%5C%22%7D%7D%2C%5C%22clientSessionId%5C%22%3A%5C%2217aa34eb28b8c4c9%5C%22%7D%22%7D%5D\
+                    %2C%22metrics%22%3A%22%5B%7B%5C%22owner%5C%22%3A%5C%22Instrumentation%5C%22%2C%5C%22name%5C%22%3A%5\
+                    C%22scenarioTime.ms%5C%22%2C%5C%22type%5C%22%3A%5C%22PercentileHistogram%5C%22%2C%5C%22ts%5C%22%3A1\
+                    778559893410%2C%5C%22value%5C%22%3A%5B68%2C124%2C73%5D%7D%2C%7B%5C%22owner%5C%22%3A%5C%22Instrument\
+                    ation%5C%22%2C%5C%22name%5C%22%3A%5C%22bwUsageReceived.afterEpt.bytes%5C%22%2C%5C%22type%5C%22%3A%5\
+                    C%22PercentileHistogram%5C%22%2C%5C%22ts%5C%22%3A1778559893341%2C%5C%22value%5C%22%3A%5B9037%5D%7D%\
+                    2C%7B%5C%22owner%5C%22%3A%5C%22Instrumentation%5C%22%2C%5C%22name%5C%22%3A%5C%22bwUsageSent.afterEp\
+                    t.bytes%5C%22%2C%5C%22type%5C%22%3A%5C%22PercentileHistogram%5C%22%2C%5C%22ts%5C%22%3A1778559893341\
+                    %2C%5C%22value%5C%22%3A%5B85791%5D%7D%2C%7B%5C%22owner%5C%22%3A%5C%22Instrumentation%5C%22%2C%5C%22\
+                    name%5C%22%3A%5C%22bwUsage.instrSizePct%5C%22%2C%5C%22type%5C%22%3A%5C%22PercentileHistogram%5C%22%\
+                    2C%5C%22ts%5C%22%3A1778559893341%2C%5C%22value%5C%22%3A%5B1%5D%7D%2C%7B%5C%22owner%5C%22%3A%5C%22In\
+                    strumentation%5C%22%2C%5C%22name%5C%22%3A%5C%22pageview.ept.ms%5C%22%2C%5C%22type%5C%22%3A%5C%22Per\
+                    centileHistogram%5C%22%2C%5C%22ts%5C%22%3A1778559893411%2C%5C%22value%5C%22%3A%5B68%5D%7D%2C%7B%5C%\
+                    22name%5C%22%3A%5C%22acs.decode%5C%22%2C%5C%22owner%5C%22%3A%5C%22AuraClientService%5C%22%2C%5C%22t\
+                    ype%5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%5C%22%3A1778559893411%2C%5C%22value%5C%22%3A3%2C%5C%22ta\
+                    gs%5C%22%3A%7B%5C%22status%5C%22%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22acs.inte\
+                    rnalSend%5C%22%2C%5C%22owner%5C%22%3A%5C%22AuraClientService%5C%22%2C%5C%22type%5C%22%3A%5C%22Count\
+                    er%5C%22%2C%5C%22ts%5C%22%3A1778559893411%2C%5C%22value%5C%22%3A3%2C%5C%22tags%5C%22%3A%7B%5C%22sta\
+                    tus%5C%22%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22acs.receive%5C%22%2C%5C%22owner\
+                    %5C%22%3A%5C%22AuraClientService%5C%22%2C%5C%22type%5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%5C%22%3A\
+                    1778559893411%2C%5C%22value%5C%22%3A3%2C%5C%22tags%5C%22%3A%7B%5C%22status%5C%22%3A%5C%22success%5C\
+                    %22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22ars.render%5C%22%2C%5C%22owner%5C%22%3A%5C%22AuraClientServ\
+                    ice%5C%22%2C%5C%22type%5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%5C%22%3A1778559893411%2C%5C%22value%5\
+                    C%22%3A77%2C%5C%22tags%5C%22%3A%7B%5C%22status%5C%22%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5C\
+                    %22%3A%5C%22ars.rerender%5C%22%2C%5C%22owner%5C%22%3A%5C%22AuraClientService%5C%22%2C%5C%22type%5C%\
+                    22%3A%5C%22Counter%5C%22%2C%5C%22ts%5C%22%3A1778559893411%2C%5C%22value%5C%22%3A11%2C%5C%22tags%5C%\
+                    22%3A%7B%5C%22status%5C%22%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22ars.unrender%5\
+                    C%22%2C%5C%22owner%5C%22%3A%5C%22AuraClientService%5C%22%2C%5C%22type%5C%22%3A%5C%22Counter%5C%22%2\
+                    C%5C%22ts%5C%22%3A1778559893411%2C%5C%22value%5C%22%3A171%2C%5C%22tags%5C%22%3A%7B%5C%22status%5C%2\
+                    2%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22evt.executeHandlerIterator%5C%22%2C%5C%\
+                    22owner%5C%22%3A%5C%22AuraClientService%5C%22%2C%5C%22type%5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%5\
+                    C%22%3A1778559893411%2C%5C%22value%5C%22%3A62%2C%5C%22tags%5C%22%3A%7B%5C%22status%5C%22%3A%5C%22su\
+                    ccess%5C%22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22startRootActivity%5C%22%2C%5C%22owner%5C%22%3A%5C%2\
+                    2o11y%5C%22%2C%5C%22type%5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%5C%22%3A1778559893338%2C%5C%22value\
+                    %5C%22%3A3%2C%5C%22tags%5C%22%3A%7B%5C%22status%5C%22%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5\
+                    C%22%3A%5C%22startActivity%5C%22%2C%5C%22owner%5C%22%3A%5C%22o11y%5C%22%2C%5C%22type%5C%22%3A%5C%22\
+                    Counter%5C%22%2C%5C%22ts%5C%22%3A1778559893342%2C%5C%22value%5C%22%3A1%2C%5C%22tags%5C%22%3A%7B%5C%\
+                    22status%5C%22%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22incrementCounter%5C%22%2C%\
+                    5C%22owner%5C%22%3A%5C%22o11y%5C%22%2C%5C%22type%5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%5C%22%3A177\
+                    8559893411%2C%5C%22value%5C%22%3A7%2C%5C%22tags%5C%22%3A%7B%5C%22status%5C%22%3A%5C%22success%5C%22\
+                    %7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22activity.stop%5C%22%2C%5C%22owner%5C%22%3A%5C%22o11y%5C%22%2C%\
+                    5C%22type%5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%5C%22%3A1778559893411%2C%5C%22value%5C%22%3A4%2C%5\
+                    C%22tags%5C%22%3A%7B%5C%22status%5C%22%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22tr\
+                    ansactionStart%5C%22%2C%5C%22owner%5C%22%3A%5C%22aurametricsservice%5C%22%2C%5C%22type%5C%22%3A%5C%\
+                    22Counter%5C%22%2C%5C%22ts%5C%22%3A1778559893342%2C%5C%22value%5C%22%3A4%2C%5C%22tags%5C%22%3A%7B%5\
+                    C%22status%5C%22%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22transaction%5C%22%2C%5C%\
+                    22owner%5C%22%3A%5C%22aurametricsservice%5C%22%2C%5C%22type%5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%\
+                    5C%22%3A1778559893411%2C%5C%22value%5C%22%3A4%2C%5C%22tags%5C%22%3A%7B%5C%22status%5C%22%3A%5C%22su\
+                    ccess%5C%22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22activity.discard%5C%22%2C%5C%22owner%5C%22%3A%5C%22\
+                    o11y%5C%22%2C%5C%22type%5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%5C%22%3A1778559893410%2C%5C%22value%\
+                    5C%22%3A2%2C%5C%22tags%5C%22%3A%7B%5C%22status%5C%22%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5C\
+                    %22%3A%5C%22transactionEnd%5C%22%2C%5C%22owner%5C%22%3A%5C%22aurametricsservice%5C%22%2C%5C%22type%\
+                    5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%5C%22%3A1778559893412%2C%5C%22value%5C%22%3A2%2C%5C%22tags%5\
+                    C%22%3A%7B%5C%22status%5C%22%3A%5C%22success%5C%22%7D%7D%2C%7B%5C%22name%5C%22%3A%5C%22log%5C%22%2C\
+                    %5C%22owner%5C%22%3A%5C%22o11y%5C%22%2C%5C%22type%5C%22%3A%5C%22Counter%5C%22%2C%5C%22ts%5C%22%3A17\
+                    78559893342%2C%5C%22value%5C%22%3A2%2C%5C%22tags%5C%22%3A%7B%5C%22status%5C%22%3A%5C%22success%5C%2\
+                    2%7D%7D%5D%22%2C%22o11yLogs%22%3A%22CiAKBG8xMXkRzWT646bheUIYAyAAKAAyBzI2MC41LjA4ABL6Ggobc2YuaW5zdHJ\
+                    1bWVudGF0aW9uLkFjdGl2aXR5EvACCQAgOuOm4XlCEroBChBhMzEwNDE0ODFlZTI2NjNmEg9MZXhSb290QWN0aXZpdHkZZmZmZm\
+                    bGXkAigwEKFnNmLmxleC5TY2VuYXJpb1RyYWNrZXISaQgCGPallRAg5LScECgAMABSFWNvbW0tbmF2aWdhdGlvbl9faXRlbVo1c\
+                    2xkcy1jb250YWluZXJfZmx1aWQgc2xkcy1idXR0b24tLXJlc2V0IHNsZHMtdHJ1bmNhdGVhAAAAAAAAAABoAEABUABYAGAAGQAA\
+                    AMxs4dFAKAoyFnNpdGVmb3JjZTpjb21tdW5pdHlBcHA6PgoSc2YubGV4LlBhZ2VQYXlsb2FkEigIASIkaHR0cHM6Ly9saWNlbnN\
+                    pbmcuYWx0ZXJhLmNvbS9zc2xjL3MvQhZzaXRlZm9yY2U6Y29tbXVuaXR5QXBwSgI0Z1IVChFzZi5sZXguQXBwUGF5bG9hZBIAWA\
+                    JiEDE3YWEzNGViMjhiOGM0YzkS5xcJmuH146bheUISnxYKEDIwMjMyZmQ2NzZmOTQzMGESCHBhZ2V2aWV3GWZmZmZmJlFAIvEVC\
+                    g9zZi5sZXguUGFnZXZpZXcS3RUIAhEAAAAAAABRQCkAAAAAAABRQDEAAAAAAAAAAEEAAAAAAAAAAEkAAAAAAAAAAFAAWQAAAAAA\
+                    AElAYZqZmZmZmRdAcAGAARiKASN1aS5zZXJ2aWNlcy5QYWdlU2NvcGVkQ2FjaGUuZW5hYmxlZIoBK2FycmF5QXRQb2x5ZmlsbEV\
+                    uYWJsZWQuaW5zdHJ1bWVudGF0aW9uLmx0bmeKAStzY2VuYXJpb1RyYWNrZXJFbmFibGVkLmluc3RydW1lbnRhdGlvbi5sdG5nig\
+                    EibGRzLnBkbC51c2VSZWxhdGVkTGlzdHNQcmVkaWN0aW9uc4oBGmxkcy5wZGwudXNlUmVsYXRlZExpc3RQbHVzigEebGRzLnVzZ\
+                    U5ld1RyYWNrZWRGaWVsZEJlaGF2aW9yigEYbGRzLnVzZVByZWRpY3RpdmVMb2FkaW5nigEmbGRzLnBkbC5jYW5Db21iaW5lUmVj\
+                    b3JkTGF5b3V0UmVxdWVzdHOKARdsZHMucGRsLnVzZUxvY2FsU3RvcmFnZYoBGmxkcy5wZGwudXNlQXBleFByZWRpY3Rpb25zigE\
+                    kY2xpZW50VGVsZW1ldHJ5Lmluc3RydW1lbnRhdGlvbi5sdG5nigEaY29sb3JJY29uc01lbnVJdGVtLmJjLmx0bmeKASJiYy4yNj\
+                    AuZW5hYmxlQTExeU11bHRpQ29sU29ydE1vZGFsigEdYmMuMjYwLmVuYWJsZUFzc2VydENvbnRleHQyNjCKASNiYy4yNjAuZW5hY\
+                    mxlQXNzZXJ0Q29udGV4dDI2MFJvdW5kMooBLG1wZS4yNjAuZW5hYmxlQXNzZXJ0Q29udGV4dEZvckJhcmNvZGVTY2FubmVyigEi\
+                    YmMuMjYwLmVuYWJsZUJhc2VDb21ib2JveE51bGxDaGVja4oBJWJjLjI1OC5lbmFibGVDYWxlbmRhck1pbk1heE5hdmlnYXRpb26\
+                    KASZiYy4yNjAuZW5hYmxlQ2hlY2tib3hHcm91cFN0YXRpY0VyckRvbYoBJmJjLjI1OC5lbmFibGVDb25zb2xpZGF0ZVR5cGVBdH\
+                    RyaWJ1dGVzigEiYmMuMjU4LmVuYWJsZURhdGF0YWJsZUhvdmVyU3R5bGluZ4oBJmJjLjI1OC5lbmFibGVEYXRhdGFibGVQb3Npd\
+                    Glvbk92ZXJyaWRligEkYmMuMjYwLmVuYWJsZURhdGF0YWJsZVVzZUNsaWVudFdpZHRoigEiYmMuMjU4LmVuYWJsZURhdGF0YWJs\
+                    ZVZvaWNlb3ZlckZpeIoBJGJjLjI1OC5lbmFibGVEYXRlSW52YWxpZFllYXJIYW5kbGluZ4oBImJjLjI1OC5lbmFibGVEaXNhYmx\
+                    lZFJvd3NBdHRyaWJ1dGWKAR9iYy4yNTguZW5hYmxlRHJvcGRvd25DbG9zZURlbGF5igErYmMuMjYwLmVuYWJsZUR1YWxMaXN0Ym\
+                    94QTExeVJlcU9wdGlvbkVyckZpeIoBK2JjLjI1OC5lbmFibGVEdWFsTGlzdGJveFNpbmdsZUNoYXJUeXBlYWhlYWSKAR1iYy4yN\
+                    jAuZW5hYmxlRm9udFNpemVUaGlydGVlbooBI2JjLjI2MC5lbmFibGVGb3JtYXR0ZWRSaWNoVGV4dFBhcnRzigEfYmMuMjYwLmVu\
+                    YWJsZUdlb2xvY2F0aW9uVGltZW91dIoBHmJjLjI1OC5lbmFibGVJbnB1dE1vZGVPdmVycmlkZYoBI2JjLjI1OC5lbmFibGVJbnB\
+                    1dFNlYXJjaENvbW1pdEV2ZW50igEiYmMuMjU4LmVuYWJsZUxvb2t1cEZpZWxkT2JqQXBpTmFtZYoBGWJjLjI1OC5lbmFibGVNYX\
+                    hFZGl0TGltaXSKASFiYy4yNTguZW5hYmxlTm9EZXNjcmliZWRieVRvb2x0aXCKASNiYy4yNjAuZW5hYmxlUGZ0VGVsZW1ldHJ5U\
+                    2luZ2xlQ29tcIoBMWJjLjI2MC5lbmFibGVQb3NpdGlvbkxpYkZsaXBDYWxjV2l0aFZpZXdwb3J0UmlnaHSKASliYy4yNTguZW5h\
+                    YmxlUG9zaXRpb25MaWJyYXJ5RmxpcEluT3ZlcmxheYoBLWJjLjI2MC5lbmFibGVQb3NpdGlvbkxpYnJhcnlUcmFuc2Zvcm1TY2F\
+                    sZUZpeIoBI2JjLjI2MC5lbmFibGVSYWRpb0dyb3VwU3RhdGljRXJyRG9tigEjYmMuMjYwLmVuYWJsZVJlbGF0aXZlRGF0ZVRpbW\
+                    VMb2NhbGWKAR9iYy4yNjAuZW5hYmxlU2VsZWN0U3RhdGljRXJyRG9tigEjYmMuMjU4LmVuYWJsZVRleHRhcmVhUmVhZE9ubHlTd\
+                    GF0aWOKARxiYy4yNTguZW5hYmxlVGltZUludGVydmFsQXBpigEfYmMuMjYwLmVuYWJsZVRvb2x0aXBGbGFzaGluZ0ZpeIoBIGJj\
+                    LjI2MC5lbmFibGVUb29sdGlwSG92ZXJEaXNtaXNzigEnYmMuMjYwLmVuYWJsZVRyZWVHcmlkU2Vjb25kQXJyS2V5VXBkYXRligE\
+                    gbzExeUVuYWJsZWQuaW5zdHJ1bWVudGF0aW9uLmx0bmeKASh3ZWJWaXRhbHNLaWxsU3dpdGNoLmluc3RydW1lbnRhdGlvbi5sdG\
+                    5nigEpY29tLnNhbGVzZm9yY2UuYXVyYS5lbmFibGVBdXJhTzExeU1ldHJpY3OKASdkaXNhYmxlRmx1c2hJZklkbGUuaW5zdHJ1b\
+                    WVudGF0aW9uLmx0bmeKASZsaW1pdFBlcmZUcnhNYXJrcy5pbnN0cnVtZW50YXRpb24ubHRuZ5IBH3VwZGF0ZWRFcHQuaW5zdHJ1\
+                    bWVudGF0aW9uLmx0bmeSASRicm93c2VySWRsZVRpbWUuaW5zdHJ1bWVudGF0aW9uLmx0bmeSARZsZHMudXNlSHR0cFVpYXBpT25\
+                    lQXBwkgEZbGRzLnBkbC5hcHBseVJlcXVlc3RMaW1pdJIBH2xkcy5vbmVTdG9yZUdyYXBocWxFbmFibGVkLmx0bmeSASZjb21wb2\
+                    5lbnRQcm9maWxlci5pbnN0cnVtZW50YXRpb24ubHRuZ5IBJGJjLjI2MC5lbmFibGVDYWxlbmRhckdyaWRDZWxsQXJpYUZpeJIBJ\
+                    WJjLjI2MC5lbmFibGVDb21ib2JveEVsZW1lbnRJbnRlcm5hbHOSASViYy4yNjAuZW5hYmxlRFRIZWlnaHRDYWxjRm9yU2Nyb2xs\
+                    YmFykgEeYmMuMjYwLmVuYWJsZU1hbnVhbEltYWdlVXBsb2FkkgElYmMuMjU4LmVuYWJsZU91dHB1dEZpZWxkUmVhZE9ubHlDbGF\
+                    zc5IBJWJjLjI2MC5lbmFibGVmb3JtYXR0ZWR0ZXh0bGlua3JvdXRpbmeSASZwcmltaXRpdmVUaGVtZVByb3ZpZGVyRGlzYWJsZW\
+                    QuYmMubHRuZ5IBK28xMXlBdXJhQWN0aW9uc0VuYWJsZWQuaW5zdHJ1bWVudGF0aW9uLmx0bmeSATBzY2VuYXJpb1RyYWNrZXJNY\
+                    XJrc0VuYWJsZWQuaW5zdHJ1bWVudGF0aW9uLmx0bmeyAR1mb3JjZUNvbW11bml0eTpyaWNoVGV4dElubGluZbIBEGM6c3NsY19D\
+                    aGVja19QU0fIAQyCAg9QTEFDRUhPTERFUl9VUkyKAgRob21lkgIOUExBQ0VIT0xERVJfSURQAFgAYAAZAAAANHPQ1EAiEDQ1OTI\
+                    4NDdhZjEzNGUxNzYoDDIWc2l0ZWZvcmNlOmNvbW11bml0eUFwcDo%2BChJzZi5sZXguUGFnZVBheWxvYWQSKAgCIiRodHRwczov\
+                    L2xpY2Vuc2luZy5hbHRlcmEuY29tL3NzbGMvcy9CFnNpdGVmb3JjZTpjb21tdW5pdHlBcHBKAjRnUhUKEXNmLmxleC5BcHBQYXl\
+                    sb2FkEgBYAmIQMTdhYTM0ZWIyOGI4YzRjORLJAgolc2YuaW5zdHJ1bWVudGF0aW9uLklkbGVEZXRlY3RvclJlcG9ydBKfAgkAmG\
+                    jgpuF5QhJ0CWZmZmZmWKlAEQAAAAAAwHJAGAEgACoQQXVyYUlkbGVEZXRlY3RvcioMbzExeSBuZXR3b3JrKgxvMTF5IG5ldHdvc\
+                    msqDG8xMXkgbmV0d29yazIgAMDMzMyCnkAAQDMzMzWUQADAmZmZHYZAAICZmZmJfEAZAAAAMDNtukAoCTIMSWRsZURldGVjdG9y\
+                    Oj4KEnNmLmxleC5QYWdlUGF5bG9hZBIoCAEiJGh0dHBzOi8vbGljZW5zaW5nLmFsdGVyYS5jb20vc3NsYy9zL0IWc2l0ZWZvcmN\
+                    lOmNvbW11bml0eUFwcEoCNGdSFQoRc2YubGV4LkFwcFBheWxvYWQSAFgBYhAxN2FhMzRlYjI4YjhjNGM5EtICCg5zZi5sZXguUG\
+                    FnZUVuZBK%2FAgkA4PXjpuF5QhJ4CAERAAAAAIBs0UAaG3NlbGZTZXJ2aWNlOnVzZXJQcm9maWxlTWVudRoUYzpQb3J0YWxfQ29\
+                    yZV9Gb290ZXIaHWZvcmNlQ29tbXVuaXR5OnJpY2hUZXh0SW5saW5lGhBjOnNzbGNfQ2hlY2tfUFNHKQAAAAAAeJxAGQAAAMxs0N\
+                    RAIhA0NTkyODQ3YWYxMzRlMTc2KAsyFnNpdGVmb3JjZTpjb21tdW5pdHlBcHA6PgoSc2YubGV4LlBhZ2VQYXlsb2FkEigIASIka\
+                    HR0cHM6Ly9saWNlbnNpbmcuYWx0ZXJhLmNvbS9zc2xjL3MvQhZzaXRlZm9yY2U6Y29tbXVuaXR5QXBwSgI0Z1IVChFzZi5sZXgu\
+                    QXBwUGF5bG9hZBIAWAFiEDE3YWEzNGViMjhiOGM0YzkaACIA%22%2C%22c%22%3A%7B%22batch%22%3A17961%2C%22metrics\
+                    %22%3A2583%2C%22o11yLogs%22%3A5552%7D%7D%7D%5D%7D"
+                  aura.context: "%7B%22mode%22%3A%22PROD%22%2C%22fwuid%22%3A%22ZkJhOVpLN2NZQkJrd2NWd3pMcnFOdzJEa1N5enhOU3R5QWl2VzNveFZTbG\
+                    cxMy4tMjE0NzQ4MzY0OC4xMzEwNzIwMA%22%2C%22app%22%3A%22siteforce%3AcommunityApp%22%2C%22loaded%22%3A%\
+                    7B%22APPLICATION%40markup%3A%2F%2Fsiteforce%3AcommunityApp%22%3A%221544_-QE8H35gPOQmfpGx0OKiMg%22%7\
+                    D%2C%22dn%22%3A%5B%5D%2C%22globals%22%3A%7B%7D%2C%22uad%22%3Atrue%7D"
+                  aura.pageURI: "%2Fsslc%2Fs%2F"
+                  aura.token: eyJub25jZSI6IjZ1UTA3TWlkcWVJdmV5Nkc0cWJGUklOVlVJQkFWZERBZlg0STRVVXFPaW9cdTAwM2QiLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IntcInRcIjpcIjAwRFVpMDAwMDAwMDAwMVwiLFwidlwiOlwiMDJHVWkwMDAwMDAwMDAxXCIsXCJhXCI6XCJjYWltYW5zaWduZXJcIn0iLCJjcml0IjpbImlhdCJdLCJpYXQiOjE3Nzg1NTk4NzQxNDUsImV4cCI6MH0%3D..uOtbjk5HzhPIsvbV_nQoFd2B4K_pp6AWj25bgLfKu2k%3D
+      responses:
+        "200":
+          description: Success
+  /sslc/_nc_external/system/security/session/{id}:
+    get:
+      tags:
+        - sslc
+      summary: GET /sslc/_nc_external/system/security/session/{id}
+      operationId: get_sslc__nc_external_system_security_session_id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: SessionTimeServlet
+        - name: buster
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "1778559942555"
+      responses:
+        "200":
+          description: Success
+components:
+  schemas: {}
