@@ -1,0 +1,3840 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Anomali ThreatStream API",
+    "description": "Auto-generated OpenAPI specification ",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "https://stgeks2-optic.threatstream.com/api",
+      "description": "Staging environment"
+    }
+  ],
+  "paths": {
+    "/v1/user/feature_flags/": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "post_user_feature_flags",
+        "summary": "POST /v1/user/feature_flags/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "flags": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "flag": {
+                          "type": "string",
+                          "example": "global_navigation"
+                        },
+                        "type": {
+                          "type": "string",
+                          "example": "bool"
+                        }
+                      },
+                      "example": {
+                        "flag": "global_navigation",
+                        "type": "bool"
+                      }
+                    },
+                    "example": [
+                      {
+                        "flag": "global_navigation",
+                        "type": "bool"
+                      },
+                      {
+                        "flag": "global_navigation_chips",
+                        "type": "bool"
+                      },
+                      {
+                        "flag": "threatstream_new_landing_page",
+                        "type": "bool"
+                      },
+                      {
+                        "flag": "hide_ts",
+                        "type": "bool"
+                      },
+                      {
+                        "flag": "sso_role_management",
+                        "type": "bool"
+                      },
+                      {
+                        "flag": "global_navigation_ga",
+                        "type": "bool"
+                      },
+                      {
+                        "flag": "menu_chips",
+                        "type": "json"
+                      },
+                      {
+                        "flag": "role_based_permissions",
+                        "type": "bool"
+                      },
+                      {
+                        "flag": "dashboard_rf",
+                        "type": "bool"
+                      },
+                      {
+                        "flag": "JiraIntegration_JiraApiVersion",
+                        "type": "bool"
+                      },
+                      {
+                        "flag": "ThreatBulletin_CollaborativeEditor",
+                        "type": "bool"
+                      }
+                    ]
+                  }
+                },
+                "example": {
+                  "flags": [
+                    {
+                      "flag": "global_navigation",
+                      "type": "bool"
+                    },
+                    {
+                      "flag": "global_navigation_chips",
+                      "type": "bool"
+                    },
+                    {
+                      "flag": "threatstream_new_landing_page",
+                      "type": "bool"
+                    },
+                    {
+                      "flag": "hide_ts",
+                      "type": "bool"
+                    },
+                    {
+                      "flag": "sso_role_management",
+                      "type": "bool"
+                    },
+                    {
+                      "flag": "global_navigation_ga",
+                      "type": "bool"
+                    },
+                    {
+                      "flag": "menu_chips",
+                      "type": "json"
+                    },
+                    {
+                      "flag": "role_based_permissions",
+                      "type": "bool"
+                    },
+                    {
+                      "flag": "dashboard_rf",
+                      "type": "bool"
+                    },
+                    {
+                      "flag": "JiraIntegration_JiraApiVersion",
+                      "type": "bool"
+                    },
+                    {
+                      "flag": "ThreatBulletin_CollaborativeEditor",
+                      "type": "bool"
+                    }
+                  ]
+                }
+              },
+              "example": {
+                "flags": [
+                  {
+                    "flag": "global_navigation",
+                    "type": "bool"
+                  },
+                  {
+                    "flag": "global_navigation_chips",
+                    "type": "bool"
+                  },
+                  {
+                    "flag": "threatstream_new_landing_page",
+                    "type": "bool"
+                  },
+                  {
+                    "flag": "hide_ts",
+                    "type": "bool"
+                  },
+                  {
+                    "flag": "sso_role_management",
+                    "type": "bool"
+                  },
+                  {
+                    "flag": "global_navigation_ga",
+                    "type": "bool"
+                  },
+                  {
+                    "flag": "menu_chips",
+                    "type": "json"
+                  },
+                  {
+                    "flag": "role_based_permissions",
+                    "type": "bool"
+                  },
+                  {
+                    "flag": "dashboard_rf",
+                    "type": "bool"
+                  },
+                  {
+                    "flag": "JiraIntegration_JiraApiVersion",
+                    "type": "bool"
+                  },
+                  {
+                    "flag": "ThreatBulletin_CollaborativeEditor",
+                    "type": "bool"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "get_user",
+        "summary": "GET /v1/user/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/releasenotes/latest/": {
+      "get": {
+        "tags": [
+          "Releasenotes"
+        ],
+        "operationId": "get_releasenotes_latest",
+        "summary": "GET /v1/releasenotes/latest/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/userorganization/": {
+      "get": {
+        "tags": [
+          "Userorganization"
+        ],
+        "operationId": "get_userorganization",
+        "summary": "GET /v1/userorganization/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/channel/": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "operationId": "get_channel",
+        "summary": "GET /v1/channel/",
+        "parameters": [
+          {
+            "name": "can_publish",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "minimum_membership",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/feedconfigs/requests/": {
+      "get": {
+        "tags": [
+          "Feedconfigs"
+        ],
+        "operationId": "get_feedconfigs_requests",
+        "summary": "GET /v1/feedconfigs/requests/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/channelautoprovconfig/requests/": {
+      "get": {
+        "tags": [
+          "Channelautoprovconfig"
+        ],
+        "operationId": "get_channelautoprovconfig_requests",
+        "summary": "GET /v1/channelautoprovconfig/requests/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/notification/": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "operationId": "get_notification",
+        "summary": "GET /v1/notification/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "-created_ts"
+            }
+          },
+          {
+            "name": "status__in",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0,1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/orgtag/": {
+      "get": {
+        "tags": [
+          "Orgtag"
+        ],
+        "operationId": "get_orgtag",
+        "summary": "GET /v1/orgtag/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 500
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/banner/latest/": {
+      "get": {
+        "tags": [
+          "Banner"
+        ],
+        "operationId": "get_banner_latest",
+        "summary": "GET /v1/banner/latest/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 25
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/lens/quota/": {
+      "get": {
+        "tags": [
+          "Lens"
+        ],
+        "operationId": "get_lens_quota",
+        "summary": "GET /v1/lens/quota/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/plutono/search/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_plutono_search",
+        "summary": "GET /v1/xdr/plutono/search/",
+        "parameters": [
+          {
+            "name": "starred",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          },
+          {
+            "name": "layout",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "list"
+            }
+          },
+          {
+            "name": "dash_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "dash-db"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/user/permissions/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "get_user_permissions",
+        "summary": "GET /v1/user/permissions/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/plutono/dashboards/default/user/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_plutono_dashboards_default_user",
+        "summary": "GET /v1/xdr/plutono/dashboards/default/user/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/custom_copilot/semanticsearch/trendingquestions/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_custom_copilot_semanticsearch_trendingquestions",
+        "summary": "GET /v1/xdr/custom_copilot/semanticsearch/trendingquestions/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/custom_copilot/copilot_chat/settings/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_custom_copilot_copilot_chat_settings",
+        "summary": "GET /v1/xdr/custom_copilot/copilot_chat/settings/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/impact/": {
+      "get": {
+        "tags": [
+          "Impact"
+        ],
+        "operationId": "get_impact",
+        "summary": "GET /v1/impact/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/lens/serviceinfo/": {
+      "get": {
+        "tags": [
+          "Lens"
+        ],
+        "operationId": "get_lens_serviceinfo",
+        "summary": "GET /v1/lens/serviceinfo/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/custom_copilot/sessions/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_custom_copilot_sessions",
+        "summary": "GET /v1/xdr/custom_copilot/sessions/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "last_message_at__gte",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2026-05-08T11:56:15.711Z"
+            }
+          },
+          {
+            "name": "last_message_at__lte",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2026-05-15T11:56:15.711Z"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/event/lookup/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_event_lookup",
+        "summary": "GET /v1/xdr/event/lookup/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/workgroup/": {
+      "get": {
+        "tags": [
+          "Workgroup"
+        ],
+        "operationId": "get_workgroup",
+        "summary": "GET /v1/workgroup/",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1857
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Workgroup"
+        ],
+        "operationId": "post_workgroup",
+        "summary": "POST /v1/workgroup/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "aa"
+                  },
+                  "owner_org": {
+                    "nullable": true,
+                    "type": "string",
+                    "example": null
+                  },
+                  "avatar_s3_url": {
+                    "nullable": true,
+                    "type": "string",
+                    "example": null
+                  }
+                },
+                "example": {
+                  "name": "aa",
+                  "owner_org": null,
+                  "avatar_s3_url": null
+                }
+              },
+              "example": {
+                "name": "aa",
+                "owner_org": null,
+                "avatar_s3_url": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/custom_dashboard/": {
+      "get": {
+        "tags": [
+          "Custom Dashboard"
+        ],
+        "operationId": "get_custom_dashboard",
+        "summary": "GET /v1/custom_dashboard/",
+        "parameters": [
+          {
+            "name": "is_active",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v2/intelligence/": {
+      "get": {
+        "tags": [
+          "Intelligence"
+        ],
+        "operationId": "get_intelligence",
+        "summary": "GET /v2/intelligence/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "-created_ts"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v2/intelligence/contributions/": {
+      "get": {
+        "tags": [
+          "Intelligence"
+        ],
+        "operationId": "get_intelligence_contributions",
+        "summary": "GET /v2/intelligence/contributions/",
+        "parameters": [
+          {
+            "name": "days",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 7
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/myattacks/": {
+      "get": {
+        "tags": [
+          "Myattacks"
+        ],
+        "operationId": "get_myattacks",
+        "summary": "GET /v1/myattacks/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "modified_ts__gte",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2026-05-08T00:00:00Z"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v2/intelligence/sources/": {
+      "get": {
+        "tags": [
+          "Intelligence"
+        ],
+        "operationId": "get_intelligence_sources",
+        "summary": "GET /v2/intelligence/sources/",
+        "parameters": [
+          {
+            "name": "days",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 7
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/importsession/": {
+      "get": {
+        "tags": [
+          "Importsession"
+        ],
+        "operationId": "get_importsession",
+        "summary": "GET /v1/importsession/",
+        "parameters": [
+          {
+            "name": "date_modified__gte",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2026-05-08T00:00:00Z"
+            }
+          },
+          {
+            "name": "status__in",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "done"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/investigation/": {
+      "get": {
+        "tags": [
+          "Investigation"
+        ],
+        "operationId": "get_investigation",
+        "summary": "GET /v1/investigation/",
+        "parameters": [
+          {
+            "name": "modified_ts__gte",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2026-05-08T00:00:00Z"
+            }
+          },
+          {
+            "name": "status__in",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "pending"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/threat_model_search/": {
+      "get": {
+        "tags": [
+          "Threat Model Search"
+        ],
+        "operationId": "get_threat_model_search",
+        "summary": "GET /v1/threat_model_search/",
+        "parameters": [
+          {
+            "name": "assignee_user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1857
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 20
+            }
+          },
+          {
+            "name": "model_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "actor,campaign,customtm,incident,malware,signature,tipreport,ttp,attackpattern,courseofaction,identity,infrastructure,intrusionset,tool"
+            }
+          },
+          {
+            "name": "modified_ts__gte",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2026-05-08T00:00:00Z"
+            }
+          },
+          {
+            "name": "publication_status",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "review_requested"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/trustedcircleinvite/": {
+      "get": {
+        "tags": [
+          "Trustedcircleinvite"
+        ],
+        "operationId": "get_trustedcircleinvite",
+        "summary": "GET /v1/trustedcircleinvite/",
+        "parameters": [
+          {
+            "name": "invite_timestamp__gte",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2026-05-08T00:00:00Z"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "status__in",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0,30"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/latestactivity/": {
+      "get": {
+        "tags": [
+          "Latestactivity"
+        ],
+        "operationId": "get_latestactivity",
+        "summary": "GET /v1/latestactivity/",
+        "parameters": [
+          {
+            "name": "activity_types",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "threat_model,investigation,import,threatinbox"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/rule/": {
+      "get": {
+        "tags": [
+          "Rule"
+        ],
+        "operationId": "get_rule",
+        "summary": "GET /v1/rule/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "matched_ts__gte",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2026-05-08T00:00:00Z"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/feed/names/": {
+      "get": {
+        "tags": [
+          "Feed"
+        ],
+        "operationId": "get_feed_names",
+        "summary": "GET /v1/feed/names/",
+        "parameters": [
+          {
+            "name": "extra_fields",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "active"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/trustedcircle/": {
+      "get": {
+        "tags": [
+          "Trustedcircle"
+        ],
+        "operationId": "get_trustedcircle",
+        "summary": "GET /v1/trustedcircle/",
+        "parameters": [
+          {
+            "name": "brevity",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          },
+          {
+            "name": "exclude_service_accounts",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "name"
+            }
+          },
+          {
+            "name": "org_members",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1192
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/search_filter/": {
+      "get": {
+        "tags": [
+          "Search Filter"
+        ],
+        "operationId": "get_search_filter",
+        "summary": "GET /v1/search_filter/",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "ioc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/dashboard/": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "operationId": "get_dashboard",
+        "summary": "GET /v1/dashboard/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative",
+        "summary": "GET /v1/intelligence_initiative/",
+        "parameters": [
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "type"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/types/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_types",
+        "summary": "GET /v1/intelligence_initiative/types/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/ir/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_ir",
+        "summary": "GET /v1/intelligence_initiative/ir/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/irmap/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_irmap",
+        "summary": "GET /v1/intelligence_initiative/irmap/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/intelligence_sources/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_intelligence_sources",
+        "summary": "GET /v1/intelligence_initiative/intelligence_sources/",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/associated_collections/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_associated_collections",
+        "summary": "GET /v1/intelligence_initiative/associated_collections/",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/associated_investigations/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_associated_investigations",
+        "summary": "GET /v1/intelligence_initiative/associated_investigations/",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/associated_threat_models/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_associated_threat_models",
+        "summary": "GET /v1/intelligence_initiative/associated_threat_models/",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/associated_intelligence/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_associated_intelligence",
+        "summary": "GET /v1/intelligence_initiative/associated_intelligence/",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/associated_sandbox/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_associated_sandbox",
+        "summary": "GET /v1/intelligence_initiative/associated_sandbox/",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/associated_importsession/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_associated_importsession",
+        "summary": "GET /v1/intelligence_initiative/associated_importsession/",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/investigation_contributors/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_investigation_contributors",
+        "summary": "GET /v1/intelligence_initiative/investigation_contributors/",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/investigations/status/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_investigations_status",
+        "summary": "GET /v1/intelligence_initiative/investigations/status/",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/user/keep_alive/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "get_user_keep_alive",
+        "summary": "GET /v1/user/keep_alive/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/banner/": {
+      "get": {
+        "tags": [
+          "Banner"
+        ],
+        "operationId": "get_banner",
+        "summary": "GET /v1/banner/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 25
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/orgadmin/": {
+      "get": {
+        "tags": [
+          "Orgadmin"
+        ],
+        "operationId": "get_orgadmin",
+        "summary": "GET /v1/orgadmin/",
+        "parameters": [
+          {
+            "name": "is_active",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "email"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/orgwhitelist/": {
+      "get": {
+        "tags": [
+          "Orgwhitelist"
+        ],
+        "operationId": "get_orgwhitelist",
+        "summary": "GET /v1/orgwhitelist/",
+        "parameters": [
+          {
+            "name": "falsepos",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": false
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 100
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "-created_ts"
+            }
+          },
+          {
+            "name": "showFP",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          },
+          {
+            "name": "showNote",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/submit/parameters/": {
+      "get": {
+        "tags": [
+          "Submit"
+        ],
+        "operationId": "get_submit_parameters",
+        "summary": "GET /v1/submit/parameters/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/integration/": {
+      "get": {
+        "tags": [
+          "Integration"
+        ],
+        "operationId": "get_integration",
+        "summary": "GET /v1/integration/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 100
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/taxiisite/": {
+      "get": {
+        "tags": [
+          "Taxiisite"
+        ],
+        "operationId": "get_taxiisite",
+        "summary": "GET /v1/taxiisite/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/submit/search/": {
+      "get": {
+        "tags": [
+          "Submit"
+        ],
+        "operationId": "get_submit_search",
+        "summary": "GET /v1/submit/search/",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "owned"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 25
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "-date_added"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/threatinbox/": {
+      "get": {
+        "tags": [
+          "Threatinbox"
+        ],
+        "operationId": "get_threatinbox",
+        "summary": "GET /v1/threatinbox/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "-created_ts"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/userorganization/lens/whitelist/": {
+      "get": {
+        "tags": [
+          "Userorganization"
+        ],
+        "operationId": "get_userorganization_lens_whitelist",
+        "summary": "GET /v1/userorganization/lens/whitelist/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/feed/search/": {
+      "get": {
+        "tags": [
+          "Feed"
+        ],
+        "operationId": "get_feed_search",
+        "summary": "GET /v1/feed/search/",
+        "parameters": [
+          {
+            "name": "feed_type__in",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "taxii"
+            }
+          },
+          {
+            "name": "hidden",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "organization",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1192
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/mitreattackpattern/versions/": {
+      "get": {
+        "tags": [
+          "Mitreattackpattern"
+        ],
+        "operationId": "get_mitreattackpattern_versions",
+        "summary": "GET /v1/mitreattackpattern/versions/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 25
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/texttemplate/defaults/": {
+      "get": {
+        "tags": [
+          "Texttemplate"
+        ],
+        "operationId": "get_texttemplate_defaults",
+        "summary": "GET /v1/texttemplate/defaults/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/texttemplate/": {
+      "get": {
+        "tags": [
+          "Texttemplate"
+        ],
+        "operationId": "get_texttemplate",
+        "summary": "GET /v1/texttemplate/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "-modified_ts"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/identity-provider/": {
+      "get": {
+        "tags": [
+          "Identity Provider"
+        ],
+        "operationId": "get_identity_provider",
+        "summary": "GET /v1/identity-provider/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Identity Provider"
+        ],
+        "operationId": "post_identity_provider",
+        "summary": "POST /v1/identity-provider/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "codename": {
+                    "type": "string",
+                    "example": "g"
+                  },
+                  "attributes_names": {
+                    "type": "array",
+                    "items": {},
+                    "example": []
+                  }
+                },
+                "example": {
+                  "codename": "g",
+                  "attributes_names": []
+                }
+              },
+              "example": {
+                "codename": "g",
+                "attributes_names": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/channel/public/": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "operationId": "get_channel_public",
+        "summary": "GET /v1/channel/public/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 200
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/useraction/orgadmin/": {
+      "get": {
+        "tags": [
+          "Useraction"
+        ],
+        "operationId": "get_useraction_orgadmin",
+        "summary": "GET /v1/useraction/orgadmin/",
+        "parameters": [
+          {
+            "name": "action_type__in",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "signed-in,signed-in-sso,logout,session-lifetime-exceeded,uploaded-avatar,added-description,created,sent-feedback,commented,updated,deleted,added-permission,removed-permission,exported,marked-complete,updated-navigation,mssp-org-switch,mitre-score,mitre-version-change"
+            }
+          },
+          {
+            "name": "created_ts__gte",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2026-05-14T00:00:00Z"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 25
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "-created_ts"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/notification/token/": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "operationId": "get_notification_token",
+        "summary": "GET /v1/notification/token/",
+        "parameters": [
+          {
+            "name": "xscheduled",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/notification/latest/": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "operationId": "get_notification_latest",
+        "summary": "GET /v1/notification/latest/",
+        "parameters": [
+          {
+            "name": "xscheduled",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/workgroup/{id}/": {
+      "get": {
+        "tags": [
+          "Workgroup"
+        ],
+        "operationId": "get_workgroup_ById",
+        "summary": "GET /v1/workgroup/{id}/",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 7034
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Workgroup"
+        ],
+        "operationId": "delete_workgroup_ById",
+        "summary": "DELETE /v1/workgroup/{id}/",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 7034
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/workgroup/{id}/usage/": {
+      "get": {
+        "tags": [
+          "Workgroup"
+        ],
+        "operationId": "get_workgroup_ById_usage",
+        "summary": "GET /v1/workgroup/{id}/usage/",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 7034
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/userorganization/{id}/": {
+      "patch": {
+        "tags": [
+          "Userorganization"
+        ],
+        "operationId": "patch_userorganization_ById",
+        "summary": "PATCH /v1/userorganization/{id}/",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1192
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "perfai_poc"
+                  }
+                },
+                "example": {
+                  "title": "perfai_poc"
+                }
+              },
+              "example": {
+                "title": "perfai_poc"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/orgadmin/{id}/": {
+      "patch": {
+        "tags": [
+          "Orgadmin"
+        ],
+        "operationId": "patch_orgadmin_ById",
+        "summary": "PATCH /v1/orgadmin/{id}/",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1857
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "can_share_intelligence": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "can_see_api_key": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                },
+                "example": {
+                  "can_share_intelligence": true,
+                  "can_see_api_key": true
+                }
+              },
+              "example": {
+                "can_share_intelligence": true,
+                "can_see_api_key": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/useraction/": {
+      "post": {
+        "tags": [
+          "Useraction"
+        ],
+        "operationId": "post_useraction",
+        "summary": "POST /v1/useraction/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "example": "1857"
+                  },
+                  "action_type": {
+                    "type": "string",
+                    "example": "added-permission"
+                  },
+                  "r_type": {
+                    "type": "string",
+                    "example": "tsportal_profile"
+                  },
+                  "r_name": {
+                    "type": "string",
+                    "example": "can_see_api_key,admin_user@perfai.threatstream.com"
+                  }
+                },
+                "example": {
+                  "user_id": "1857",
+                  "action_type": "added-permission",
+                  "r_type": "tsportal_profile",
+                  "r_name": "can_see_api_key,admin_user@perfai.threatstream.com"
+                }
+              },
+              "example": {
+                "user_id": "1857",
+                "action_type": "added-permission",
+                "r_type": "tsportal_profile",
+                "r_name": "can_see_api_key,admin_user@perfai.threatstream.com"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/identity-provider/{id}/": {
+      "get": {
+        "tags": [
+          "Identity Provider"
+        ],
+        "operationId": "get_identity_provider_ById",
+        "summary": "GET /v1/identity-provider/{id}/",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1328
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/ssopermission/": {
+      "get": {
+        "tags": [
+          "Ssopermission"
+        ],
+        "operationId": "get_ssopermission",
+        "summary": "GET /v1/ssopermission/",
+        "parameters": [
+          {
+            "name": "identity_provider__id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1328
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1000
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "group"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/userprofile/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_userprofile",
+        "summary": "GET /v1/xdr/userprofile/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/avc/stats/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_avc_stats",
+        "summary": "GET /v1/xdr/avc/stats/",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1857
+            }
+          },
+          {
+            "name": "org_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1192
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/saved_search/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_saved_search",
+        "summary": "GET /v1/xdr/saved_search/",
+        "parameters": [
+          {
+            "name": "index_name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "eventsearch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/search/history/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_search_history",
+        "summary": "GET /v1/xdr/search/history/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/user_role/xdr_data/": {
+      "get": {
+        "tags": [
+          "User Role"
+        ],
+        "operationId": "get_user_role_xdr_data",
+        "summary": "GET /v1/user_role/xdr_data/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/user/ui_preferences/": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "patch_user_ui_preferences",
+        "summary": "PATCH /v1/user/ui_preferences/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "global_navigation": {
+                    "type": "string",
+                    "example": "collapsed"
+                  }
+                },
+                "example": {
+                  "global_navigation": "collapsed"
+                }
+              },
+              "example": {
+                "global_navigation": "collapsed"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/xdr/plutono/dashboards/tags/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_plutono_dashboards_tags",
+        "summary": "GET /v1/xdr/plutono/dashboards/tags/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/plutono/dashboards/db/": {
+      "post": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "post_xdr_plutono_dashboards_db",
+        "summary": "POST /v1/xdr/plutono/dashboards/db/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dashboard": {
+                    "type": "object",
+                    "properties": {
+                      "annotations": {
+                        "type": "object",
+                        "properties": {
+                          "list": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "builtIn": {
+                                  "type": "integer",
+                                  "example": 1
+                                },
+                                "datasource": {
+                                  "type": "string",
+                                  "example": "-- Plutono --"
+                                },
+                                "enable": {
+                                  "type": "boolean",
+                                  "example": true
+                                },
+                                "hide": {
+                                  "type": "boolean",
+                                  "example": true
+                                },
+                                "iconColor": {
+                                  "type": "string",
+                                  "example": "rgba(0, 211, 255, 1)"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Annotations & Alerts"
+                                },
+                                "type": {
+                                  "type": "string",
+                                  "example": "dashboard"
+                                }
+                              },
+                              "example": {
+                                "builtIn": 1,
+                                "datasource": "-- Plutono --",
+                                "enable": true,
+                                "hide": true,
+                                "iconColor": "rgba(0, 211, 255, 1)",
+                                "name": "Annotations & Alerts",
+                                "type": "dashboard"
+                              }
+                            },
+                            "example": [
+                              {
+                                "builtIn": 1,
+                                "datasource": "-- Plutono --",
+                                "enable": true,
+                                "hide": true,
+                                "iconColor": "rgba(0, 211, 255, 1)",
+                                "name": "Annotations & Alerts",
+                                "type": "dashboard"
+                              }
+                            ]
+                          }
+                        },
+                        "example": {
+                          "list": [
+                            {
+                              "builtIn": 1,
+                              "datasource": "-- Plutono --",
+                              "enable": true,
+                              "hide": true,
+                              "iconColor": "rgba(0, 211, 255, 1)",
+                              "name": "Annotations & Alerts",
+                              "type": "dashboard"
+                            }
+                          ]
+                        }
+                      },
+                      "childOrgPicker": {
+                        "type": "array",
+                        "items": {},
+                        "example": []
+                      },
+                      "childOrgPickerDashboard": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "contentView": {
+                        "type": "boolean",
+                        "example": false
+                      },
+                      "dashboardViewMode": {
+                        "type": "string",
+                        "example": "edit"
+                      },
+                      "editable": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "gnetId": {
+                        "nullable": true,
+                        "type": "string",
+                        "example": null
+                      },
+                      "graphTooltip": {
+                        "type": "integer",
+                        "example": 0
+                      },
+                      "id": {
+                        "nullable": true,
+                        "type": "string",
+                        "example": null
+                      },
+                      "links": {
+                        "type": "array",
+                        "items": {},
+                        "example": []
+                      },
+                      "optimize": {
+                        "type": "boolean",
+                        "example": false
+                      },
+                      "panelTagVersion": {
+                        "type": "integer",
+                        "example": 0
+                      },
+                      "panelTags": {
+                        "type": "object",
+                        "properties": {},
+                        "example": {}
+                      },
+                      "panels": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "datasource": {
+                              "nullable": true,
+                              "type": "string",
+                              "example": null
+                            },
+                            "forceSearchOnInit": {
+                              "type": "boolean",
+                              "example": false
+                            },
+                            "gridPos": {
+                              "type": "object",
+                              "properties": {
+                                "h": {
+                                  "type": "integer",
+                                  "example": 1
+                                },
+                                "w": {
+                                  "type": "integer",
+                                  "example": 24
+                                },
+                                "x": {
+                                  "type": "integer",
+                                  "example": 0
+                                },
+                                "y": {
+                                  "type": "integer",
+                                  "example": 0
+                                }
+                              },
+                              "example": {
+                                "h": 1,
+                                "w": 24,
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            "id": {
+                              "type": "integer",
+                              "example": 2
+                            },
+                            "title": {
+                              "type": "string",
+                              "example": "Row title"
+                            },
+                            "type": {
+                              "type": "string",
+                              "example": "row"
+                            }
+                          },
+                          "example": {
+                            "datasource": null,
+                            "forceSearchOnInit": false,
+                            "gridPos": {
+                              "h": 1,
+                              "w": 24,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "id": 2,
+                            "title": "Row title",
+                            "type": "row"
+                          }
+                        },
+                        "example": [
+                          {
+                            "datasource": null,
+                            "forceSearchOnInit": false,
+                            "gridPos": {
+                              "h": 1,
+                              "w": 24,
+                              "x": 0,
+                              "y": 0
+                            },
+                            "id": 2,
+                            "title": "Row title",
+                            "type": "row"
+                          }
+                        ]
+                      },
+                      "schemaVersion": {
+                        "type": "integer",
+                        "example": 27
+                      },
+                      "showTagFilter": {
+                        "type": "boolean",
+                        "example": false
+                      },
+                      "status": {
+                        "type": "object",
+                        "properties": {
+                          "end": {
+                            "type": "integer",
+                            "example": 1778848253019
+                          },
+                          "is_event_search": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "panels": {
+                            "type": "object",
+                            "properties": {},
+                            "example": {}
+                          },
+                          "progress": {
+                            "type": "integer",
+                            "example": 0
+                          },
+                          "scanned": {
+                            "type": "integer",
+                            "example": 0
+                          },
+                          "start": {
+                            "type": "integer",
+                            "example": 1778848253019
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "total": {
+                            "type": "integer",
+                            "example": 0
+                          }
+                        },
+                        "example": {
+                          "end": 1778848253019,
+                          "is_event_search": false,
+                          "panels": {},
+                          "progress": 0,
+                          "scanned": 0,
+                          "start": 1778848253019,
+                          "status": "",
+                          "total": 0
+                        }
+                      },
+                      "style": {
+                        "type": "string",
+                        "example": "dark"
+                      },
+                      "tabs": {
+                        "type": "array",
+                        "items": {},
+                        "example": []
+                      },
+                      "tags": {
+                        "type": "array",
+                        "items": {},
+                        "example": []
+                      },
+                      "templating": {
+                        "type": "object",
+                        "properties": {
+                          "list": {
+                            "type": "array",
+                            "items": {},
+                            "example": []
+                          }
+                        },
+                        "example": {
+                          "list": []
+                        }
+                      },
+                      "time": {
+                        "type": "object",
+                        "properties": {
+                          "from": {
+                            "type": "string",
+                            "example": "now-1h"
+                          },
+                          "raw": {
+                            "type": "object",
+                            "properties": {
+                              "from": {
+                                "type": "string",
+                                "example": "now-1h"
+                              },
+                              "to": {
+                                "type": "string",
+                                "example": "now"
+                              }
+                            },
+                            "example": {
+                              "from": "now-1h",
+                              "to": "now"
+                            }
+                          },
+                          "to": {
+                            "type": "string",
+                            "example": "now"
+                          }
+                        },
+                        "example": {
+                          "from": "now-1h",
+                          "raw": {
+                            "from": "now-1h",
+                            "to": "now"
+                          },
+                          "to": "now"
+                        }
+                      },
+                      "timepicker": {
+                        "type": "object",
+                        "properties": {},
+                        "example": {}
+                      },
+                      "timezone": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "title": {
+                        "type": "string",
+                        "example": "New dashboard Copy"
+                      },
+                      "uid": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "version": {
+                        "type": "integer",
+                        "example": 0
+                      },
+                      "hideControls": {
+                        "type": "boolean",
+                        "example": false
+                      }
+                    },
+                    "example": {
+                      "annotations": {
+                        "list": [
+                          {
+                            "builtIn": 1,
+                            "datasource": "-- Plutono --",
+                            "enable": true,
+                            "hide": true,
+                            "iconColor": "rgba(0, 211, 255, 1)",
+                            "name": "Annotations & Alerts",
+                            "type": "dashboard"
+                          }
+                        ]
+                      },
+                      "childOrgPicker": [],
+                      "childOrgPickerDashboard": true,
+                      "contentView": false,
+                      "dashboardViewMode": "edit",
+                      "editable": true,
+                      "gnetId": null,
+                      "graphTooltip": 0,
+                      "id": null,
+                      "links": [],
+                      "optimize": false,
+                      "panelTagVersion": 0,
+                      "panelTags": {},
+                      "panels": [
+                        {
+                          "datasource": null,
+                          "forceSearchOnInit": false,
+                          "gridPos": {
+                            "h": 1,
+                            "w": 24,
+                            "x": 0,
+                            "y": 0
+                          },
+                          "id": 2,
+                          "title": "Row title",
+                          "type": "row"
+                        }
+                      ],
+                      "schemaVersion": 27,
+                      "showTagFilter": false,
+                      "status": {
+                        "end": 1778848253019,
+                        "is_event_search": false,
+                        "panels": {},
+                        "progress": 0,
+                        "scanned": 0,
+                        "start": 1778848253019,
+                        "status": "",
+                        "total": 0
+                      },
+                      "style": "dark",
+                      "tabs": [],
+                      "tags": [],
+                      "templating": {
+                        "list": []
+                      },
+                      "time": {
+                        "from": "now-1h",
+                        "raw": {
+                          "from": "now-1h",
+                          "to": "now"
+                        },
+                        "to": "now"
+                      },
+                      "timepicker": {},
+                      "timezone": "",
+                      "title": "New dashboard Copy",
+                      "uid": "",
+                      "version": 0,
+                      "hideControls": false
+                    }
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "overwrite": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "folderId": {
+                    "type": "integer",
+                    "example": 0
+                  }
+                },
+                "example": {
+                  "dashboard": {
+                    "annotations": {
+                      "list": [
+                        {
+                          "builtIn": 1,
+                          "datasource": "-- Plutono --",
+                          "enable": true,
+                          "hide": true,
+                          "iconColor": "rgba(0, 211, 255, 1)",
+                          "name": "Annotations & Alerts",
+                          "type": "dashboard"
+                        }
+                      ]
+                    },
+                    "childOrgPicker": [],
+                    "childOrgPickerDashboard": true,
+                    "contentView": false,
+                    "dashboardViewMode": "edit",
+                    "editable": true,
+                    "gnetId": null,
+                    "graphTooltip": 0,
+                    "id": null,
+                    "links": [],
+                    "optimize": false,
+                    "panelTagVersion": 0,
+                    "panelTags": {},
+                    "panels": [
+                      {
+                        "datasource": null,
+                        "forceSearchOnInit": false,
+                        "gridPos": {
+                          "h": 1,
+                          "w": 24,
+                          "x": 0,
+                          "y": 0
+                        },
+                        "id": 2,
+                        "title": "Row title",
+                        "type": "row"
+                      }
+                    ],
+                    "schemaVersion": 27,
+                    "showTagFilter": false,
+                    "status": {
+                      "end": 1778848253019,
+                      "is_event_search": false,
+                      "panels": {},
+                      "progress": 0,
+                      "scanned": 0,
+                      "start": 1778848253019,
+                      "status": "",
+                      "total": 0
+                    },
+                    "style": "dark",
+                    "tabs": [],
+                    "tags": [],
+                    "templating": {
+                      "list": []
+                    },
+                    "time": {
+                      "from": "now-1h",
+                      "raw": {
+                        "from": "now-1h",
+                        "to": "now"
+                      },
+                      "to": "now"
+                    },
+                    "timepicker": {},
+                    "timezone": "",
+                    "title": "New dashboard Copy",
+                    "uid": "",
+                    "version": 0,
+                    "hideControls": false
+                  },
+                  "message": "",
+                  "overwrite": false,
+                  "folderId": 0
+                }
+              },
+              "example": {
+                "dashboard": {
+                  "annotations": {
+                    "list": [
+                      {
+                        "builtIn": 1,
+                        "datasource": "-- Plutono --",
+                        "enable": true,
+                        "hide": true,
+                        "iconColor": "rgba(0, 211, 255, 1)",
+                        "name": "Annotations & Alerts",
+                        "type": "dashboard"
+                      }
+                    ]
+                  },
+                  "childOrgPicker": [],
+                  "childOrgPickerDashboard": true,
+                  "contentView": false,
+                  "dashboardViewMode": "edit",
+                  "editable": true,
+                  "gnetId": null,
+                  "graphTooltip": 0,
+                  "id": null,
+                  "links": [],
+                  "optimize": false,
+                  "panelTagVersion": 0,
+                  "panelTags": {},
+                  "panels": [
+                    {
+                      "datasource": null,
+                      "forceSearchOnInit": false,
+                      "gridPos": {
+                        "h": 1,
+                        "w": 24,
+                        "x": 0,
+                        "y": 0
+                      },
+                      "id": 2,
+                      "title": "Row title",
+                      "type": "row"
+                    }
+                  ],
+                  "schemaVersion": 27,
+                  "showTagFilter": false,
+                  "status": {
+                    "end": 1778848253019,
+                    "is_event_search": false,
+                    "panels": {},
+                    "progress": 0,
+                    "scanned": 0,
+                    "start": 1778848253019,
+                    "status": "",
+                    "total": 0
+                  },
+                  "style": "dark",
+                  "tabs": [],
+                  "tags": [],
+                  "templating": {
+                    "list": []
+                  },
+                  "time": {
+                    "from": "now-1h",
+                    "raw": {
+                      "from": "now-1h",
+                      "to": "now"
+                    },
+                    "to": "now"
+                  },
+                  "timepicker": {},
+                  "timezone": "",
+                  "title": "New dashboard Copy",
+                  "uid": "",
+                  "version": 0,
+                  "hideControls": false
+                },
+                "message": "",
+                "overwrite": false,
+                "folderId": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/xdr/search/jobs/cancelled/": {
+      "delete": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "delete_xdr_search_jobs_cancelled",
+        "summary": "DELETE /v1/xdr/search/jobs/cancelled/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/xdr/plutono/dashboards/uid/": {
+      "get": {
+        "tags": [
+          "Xdr"
+        ],
+        "operationId": "get_xdr_plutono_dashboards_uid",
+        "summary": "GET /v1/xdr/plutono/dashboards/uid/",
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "d97611d2-dde5-4ca3-ada5-1dc21d4779e5"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/stix_import/": {
+      "get": {
+        "tags": [
+          "Stix Import"
+        ],
+        "operationId": "get_stix_import",
+        "summary": "GET /v1/stix_import/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 25
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/mitre_security_profile/": {
+      "get": {
+        "tags": [
+          "Mitre Security Profile"
+        ],
+        "operationId": "get_mitre_security_profile",
+        "summary": "GET /v1/mitre_security_profile/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 50
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "-modified_ts"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Mitre Security Profile"
+        ],
+        "operationId": "post_mitre_security_profile",
+        "summary": "POST /v1/mitre_security_profile/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "a"
+                  }
+                },
+                "example": {
+                  "name": "a"
+                }
+              },
+              "example": {
+                "name": "a"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/mitreattackpattern/stixid/": {
+      "get": {
+        "tags": [
+          "Mitreattackpattern"
+        ],
+        "operationId": "get_mitreattackpattern_stixid",
+        "summary": "GET /v1/mitreattackpattern/stixid/",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/mitreattackpattern/": {
+      "get": {
+        "tags": [
+          "Mitreattackpattern"
+        ],
+        "operationId": "get_mitreattackpattern",
+        "summary": "GET /v1/mitreattackpattern/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/ttp/mitre/score/": {
+      "get": {
+        "tags": [
+          "Ttp"
+        ],
+        "operationId": "get_ttp_mitre_score",
+        "summary": "GET /v1/ttp/mitre/score/",
+        "parameters": [
+          {
+            "name": "profile_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 4808
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/{id}/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_ById",
+        "summary": "GET /v1/intelligence_initiative/{id}/",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 18116
+            }
+          },
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "patch_intelligence_initiative_ById",
+        "summary": "PATCH /v1/intelligence_initiative/{id}/",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 18116
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "start_date": {
+                    "type": "string",
+                    "example": "2026-05-15"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "example": "2026-08-13"
+                  }
+                },
+                "example": {
+                  "start_date": "2026-05-15",
+                  "end_date": "2026-08-13"
+                }
+              },
+              "example": {
+                "start_date": "2026-05-15",
+                "end_date": "2026-08-13"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/appstore/suggestedfeeds/": {
+      "get": {
+        "tags": [
+          "Appstore"
+        ],
+        "operationId": "get_appstore_suggestedfeeds",
+        "summary": "GET /v1/appstore/suggestedfeeds/",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "intel_inits",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "brand-monitoring"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/intelligence_initiative/{id}/feeds/": {
+      "get": {
+        "tags": [
+          "Intelligence Initiative"
+        ],
+        "operationId": "get_intelligence_initiative_ById_feeds",
+        "summary": "GET /v1/intelligence_initiative/{id}/feeds/",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 18116
+            }
+          },
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Africa/Abidjan"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 25
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  }
+}
