@@ -1,0 +1,3874 @@
+openapi: 3.0.3
+info:
+  title: ThreatStream Optic API
+  description: 'Auto-generated from captured browser traffic. Base: https://stgeks2-optic.threatstream.com'
+  version: 1.0.0
+  contact:
+    name: ThreatStream
+    url: https://anomali.com
+servers:
+- url: https://stgeks2-optic.threatstream.com
+  description: Staging Environment
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: stgeks2opticsessionid
+      description: Session cookie
+    csrfToken:
+      type: apiKey
+      in: header
+      name: X-CSRFToken
+      description: CSRF protection token
+tags:
+- name: App Store
+- name: Attack Flow
+- name: Channels
+- name: Dashboard
+- name: Feeds
+- name: Imports
+- name: Integrations
+- name: Intelligence
+- name: Intelligence Initiative
+- name: Investigations
+- name: MITRE ATT&CK
+- name: Notifications
+- name: Rules
+- name: Sandbox
+- name: System
+- name: Tags
+- name: Threat Models
+- name: Threatinbox
+- name: Trusted Circles
+- name: User
+- name: Workgroups
+- name: XDR
+paths:
+  /api/v1/xdr/search/jobs/{job_id}:
+    delete:
+      summary: Delete job id
+      operationId: delete_xdr_search_jobs_job_id
+      tags:
+      - XDR
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: 2344995e063b4e1d837684b4aad7d62e
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+    get:
+      summary: Retrieve job id
+      operationId: get_xdr_search_jobs_job_id
+      tags:
+      - XDR
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: 2344995e063b4e1d837684b4aad7d62e
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/appstore/suggestedfeeds:
+    get:
+      summary: Retrieve suggestedfeeds
+      operationId: get_appstore_suggestedfeeds
+      tags:
+      - App Store
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 10
+      - name: intel_inits
+        in: query
+        required: true
+        schema:
+          type: string
+          example: brand-monitoring
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/attackflow:
+    get:
+      summary: Retrieve attackflow
+      operationId: get_attackflow
+      tags:
+      - Attack Flow
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 10
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -modified_ts
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/attackflow/actors:
+    get:
+      summary: Retrieve actors
+      operationId: get_attackflow_actors
+      tags:
+      - Attack Flow
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/attackflow/mitre_attack_patterns:
+    get:
+      summary: Retrieve mitre attack patterns
+      operationId: get_attackflow_mitre_attack_patterns
+      tags:
+      - Attack Flow
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/attackflow/{id}:
+    get:
+      summary: Retrieve id
+      operationId: get_attackflow_id
+      tags:
+      - Attack Flow
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/banner/latest:
+    get:
+      summary: Retrieve latest
+      operationId: get_banner_latest
+      tags:
+      - System
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/campaign/{id}:
+    get:
+      summary: Retrieve id
+      operationId: get_campaign_id
+      tags:
+      - Threat Models
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: skip_intelligence
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      - name: skip_associations
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/campaign/{id}/association_counts:
+    get:
+      summary: Retrieve association counts
+      operationId: get_campaign_id_association_counts
+      tags:
+      - Threat Models
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/campaign/{id}/comment:
+    get:
+      summary: Retrieve comment
+      operationId: get_campaign_id_comment
+      tags:
+      - Threat Models
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/campaign/{id}/investigations:
+    get:
+      summary: Retrieve investigations
+      operationId: get_campaign_id_investigations
+      tags:
+      - Threat Models
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 10
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: investigation__name
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/campaign/{id}/notes:
+    get:
+      summary: Retrieve notes
+      operationId: get_campaign_id_notes
+      tags:
+      - Threat Models
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -source_modified_ts
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/campaign/{id}/ttp:
+    get:
+      summary: Retrieve ttp
+      operationId: get_campaign_id_ttp
+      tags:
+      - Threat Models
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1000
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/channel:
+    get:
+      summary: Retrieve channel
+      operationId: get_channel
+      tags:
+      - Channels
+      parameters:
+      - name: can_publish
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: minimum_membership
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: name
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/channelautoprovconfig/requests:
+    get:
+      summary: Retrieve requests
+      operationId: get_channelautoprovconfig_requests
+      tags:
+      - Channels
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/custom_dashboard:
+    get:
+      summary: Retrieve custom dashboard
+      operationId: get_custom_dashboard
+      tags:
+      - Dashboard
+      parameters:
+      - name: is_active
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 100
+      - name: brevity
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/dashboard:
+    get:
+      summary: Retrieve dashboard
+      operationId: get_dashboard
+      tags:
+      - Dashboard
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/feed/appstore:
+    get:
+      summary: Retrieve appstore
+      operationId: get_feed_appstore
+      tags:
+      - Feeds
+      parameters:
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 10
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/feed/names:
+    get:
+      summary: Retrieve names
+      operationId: get_feed_names
+      tags:
+      - Feeds
+      parameters:
+      - name: extra_fields
+        in: query
+        required: true
+        schema:
+          type: string
+          example: active
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: name
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/feed/search:
+    get:
+      summary: Retrieve search
+      operationId: get_feed_search
+      tags:
+      - Feeds
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: hidden
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: org_inactive
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          example: ''
+      - name: feed_type__in
+        in: query
+        required: true
+        schema:
+          type: string
+          example: scraper
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -created_ts
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/feed/stats:
+    get:
+      summary: Retrieve stats
+      operationId: get_feed_stats
+      tags:
+      - Feeds
+      parameters:
+      - name: active
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/feedconfigs/requests:
+    get:
+      summary: Retrieve requests
+      operationId: get_feedconfigs_requests
+      tags:
+      - Feeds
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/genericlock:
+    get:
+      summary: Retrieve genericlock
+      operationId: get_genericlock
+      tags:
+      - Investigations
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 10
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: model_type
+        in: query
+        required: true
+        schema:
+          type: string
+          example: investigation
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/impact:
+    get:
+      summary: Retrieve impact
+      operationId: get_impact
+      tags:
+      - Feeds
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/importsession:
+    get:
+      summary: Retrieve importsession
+      operationId: get_importsession
+      tags:
+      - Imports
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/integration_package/enrichment:
+    get:
+      summary: Retrieve enrichment
+      operationId: get_integration_package_enrichment
+      tags:
+      - Integrations
+      parameters:
+      - name: entity_type
+        in: query
+        required: true
+        schema:
+          type: string
+          example: ipv4address,url,hash,emailaddress,ipv6,domain
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative:
+    get:
+      summary: Retrieve intelligence initiative
+      operationId: get_intelligence_initiative
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: type
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+    post:
+      summary: Create intelligence initiative
+      operationId: post_intelligence_initiative
+      tags:
+      - Intelligence Initiative
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              start_date: '2026-05-16'
+              end_date: '2026-08-14'
+              type: brand-monitoring
+  /api/v1/intelligence_initiative/associated_collections:
+    get:
+      summary: Retrieve associated collections
+      operationId: get_intelligence_initiative_associated_collections
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/associated_importsession:
+    get:
+      summary: Retrieve associated importsession
+      operationId: get_intelligence_initiative_associated_importsession
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/associated_intelligence:
+    get:
+      summary: Retrieve associated intelligence
+      operationId: get_intelligence_initiative_associated_intelligence
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/associated_investigations:
+    get:
+      summary: Retrieve associated investigations
+      operationId: get_intelligence_initiative_associated_investigations
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/associated_sandbox:
+    get:
+      summary: Retrieve associated sandbox
+      operationId: get_intelligence_initiative_associated_sandbox
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/associated_threat_models:
+    get:
+      summary: Retrieve associated threat models
+      operationId: get_intelligence_initiative_associated_threat_models
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/intelligence_sources:
+    get:
+      summary: Retrieve intelligence sources
+      operationId: get_intelligence_initiative_intelligence_sources
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/investigation_contributors:
+    get:
+      summary: Retrieve investigation contributors
+      operationId: get_intelligence_initiative_investigation_contributors
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/investigations/status:
+    get:
+      summary: Retrieve status
+      operationId: get_intelligence_initiative_investigations_status
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/ir:
+    get:
+      summary: Retrieve ir
+      operationId: get_intelligence_initiative_ir
+      tags:
+      - Intelligence Initiative
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/irmap:
+    get:
+      summary: Retrieve irmap
+      operationId: get_intelligence_initiative_irmap
+      tags:
+      - Intelligence Initiative
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/types:
+    get:
+      summary: Retrieve types
+      operationId: get_intelligence_initiative_types
+      tags:
+      - Intelligence Initiative
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/{id}:
+    get:
+      summary: Retrieve id
+      operationId: get_intelligence_initiative_id
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/{id}/feeds:
+    get:
+      summary: Retrieve feeds
+      operationId: get_intelligence_initiative_id_feeds
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/{id}/importsession:
+    get:
+      summary: Retrieve importsession
+      operationId: get_intelligence_initiative_id_importsession
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/{id}/investigations:
+    get:
+      summary: Retrieve investigations
+      operationId: get_intelligence_initiative_id_investigations
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -created_ts
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/{id}/rules:
+    get:
+      summary: Retrieve rules
+      operationId: get_intelligence_initiative_id_rules
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -created_ts
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/intelligence_initiative/{id}/sandbox:
+    get:
+      summary: Retrieve sandbox
+      operationId: get_intelligence_initiative_id_sandbox
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          example: ''
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: timezone
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Africa/Abidjan
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/investigation:
+    get:
+      summary: Retrieve investigation
+      operationId: get_investigation
+      tags:
+      - Investigations
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 5
+      - name: owner_org_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1193
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -created_ts
+      - name: local_only
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+    post:
+      summary: Create investigation
+      operationId: post_investigation
+      tags:
+      - Investigations
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/investigation/search:
+    get:
+      summary: Retrieve search
+      operationId: get_investigation_search
+      tags:
+      - Investigations
+      parameters:
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -created_ts
+      - name: owner_org_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1193
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          example: s
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/investigation/{id}:
+    get:
+      summary: Retrieve id
+      operationId: get_investigation_id
+      tags:
+      - Investigations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+    patch:
+      summary: Update id
+      operationId: patch_investigation_id
+      tags:
+      - Investigations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              graph_content:
+                attackflowgraph:
+                  type: LinkChart
+                  items:
+                  - id: attack-pattern--31e9abb4-84eb-4ca5-8b3f-23fec8ab8a91
+                    type: node
+                    fi:
+                      t: 58394
+                      c: '#fff'
+                    t: T1566.001 - Spearphishing Attachment
+                    name: T1566.001 - Spearphishing Attachment
+                    c: '#037F77'
+                    fc: '#0E1D27'
+                    d:
+                      id: attack-pattern--31e9abb4-84eb-4ca5-8b3f-23fec8ab8a91
+                      type: attack-pattern
+                      icon:
+                        t: 58394
+                        c: '#fff'
+                        bc: '#037F77'
+                        class: attackpattern--Zoz6d
+                        label: Attack Pattern
+                        plural: Attack Patterns
+                      name: T1566.001 - Spearphishing Attachment
+                      title: "T1566.001 \n- \nSpearphishing \nAttachment"
+                      created: '2025-07-02T17:49:49.834929Z'
+                      external_references:
+                      - description: MITRE ATT&CK Technique T1566.001
+                        external_id: T1566.001
+                        source_name: MITRE ATT&CK
+                        url: https://attack.mitre.org/techniques/T1566/001/
+                      modified: '2025-07-02T17:49:49.834929Z'
+                      spec_version: '2.1'
+                      technique_id: T1566.001
+                  - id: attack-pattern--c4a43beb-33b8-4b00-898c-e0eb75fe249a
+                    type: node
+                    fi:
+                      t: 58394
+                      c: '#fff'
+                    t: T1204.002 - User Execution
+                    name: T1204.002 - User Execution
+                    c: '#037F77'
+                    fc: '#0E1D27'
+                    d:
+                      id: attack-pattern--c4a43beb-33b8-4b00-898c-e0eb75fe249a
+                      type: attack-pattern
+                      icon:
+                        t: 58394
+                        c: '#fff'
+                        bc: '#037F77'
+                        class: attackpattern--Zoz6d
+                        label: Attack Pattern
+                        plural: Attack Patterns
+                      name: T1204.002 - User Execution
+                      title: "T1204.002 \n- \nUser \nExecution"
+                      created: '2025-07-02T17:49:51.187940Z'
+                      external_references:
+                      - description: MITRE ATT&CK Technique T1204.002
+                        external_id: T1204.002
+                        source_name: MITRE ATT&CK
+                        url: https://attack.mitre.org/techniques/T1204/002/
+                      modified: '2025-07-02T17:49:51.187940Z'
+                      spec_version: '2.1'
+                      technique_id: T1204.002
+                  - id: attack-pattern--5a0bf893-587d-4e58-97e7-29df5277277f
+                    type: node
+                    fi:
+                      t: 58394
+                      c: '#fff'
+                    t: T1059.001 - PowerShell
+                    name: T1059.001 - PowerShell
+                    c: '#037F77'
+                    fc: '#0E1D27'
+                    d:
+                      id: attack-pattern--5a0bf893-587d-4e58-97e7-29df5277277f
+                      type: attack-pattern
+                      icon:
+                        t: 58394
+                        c: '#fff'
+                        bc: '#037F77'
+                        class: attackpattern--Zoz6d
+                        label: Attack Pattern
+                        plural: Attack Patterns
+                      name: T1059.001 - PowerShell
+                      title: "T1059.001 \n- \nPowerShell"
+                      created: '2025-07-02T17:49:51.688065Z'
+                      external_references:
+                      - description: MITRE ATT&CK Technique T1059.001
+                        external_id: T1059.001
+                        source_name: MITRE ATT&CK
+                        url: https://attack.mitre.org/techniques/T1059/001/
+                      modified: '2025-07-02T17:49:51.688065Z'
+                      spec_version: '2.1'
+                      technique_id: T1059.001
+                  - id: attack-pattern--516cd189-0912-470a-ae2e-d04d368148bd
+                    type: node
+                    fi:
+                      t: 58394
+                      c: '#fff'
+                    t: T1552 - Unsecured Credentials
+                    name: T1552 - Unsecured Credentials
+                    c: '#037F77'
+                    fc: '#0E1D27'
+                    d:
+                      id: attack-pattern--516cd189-0912-470a-ae2e-d04d368148bd
+                      type: attack-pattern
+                      icon:
+                        t: 58394
+                        c: '#fff'
+                        bc: '#037F77'
+                        class: attackpattern--Zoz6d
+                        label: Attack Pattern
+                        plural: Attack Patterns
+                      name: T1552 - Unsecured Credentials
+                      title: "T1552 \n- \nUnsecured \nCredentials"
+                      created: '2025-07-02T17:49:52.319383Z'
+                      external_references:
+                      - description: MITRE ATT&CK Technique T1552
+                        external_id: T1552
+                        source_name: MITRE ATT&CK
+                        url: https://attack.mitre.org/techniques/T1552/
+                      modified: '2025-07-02T17:49:52.319383Z'
+                      spec_version: '2.1'
+                      technique_id: T1552
+                  - id: attack-pattern--0500d249-1430-4054-b905-344f02beff3b
+                    type: node
+                    fi:
+                      t: 58394
+                      c: '#fff'
+                    t: T1005 - Data from Local System
+                    name: T1005 - Data from Local System
+                    c: '#037F77'
+                    fc: '#0E1D27'
+                    d:
+                      id: attack-pattern--0500d249-1430-4054-b905-344f02beff3b
+                      type: attack-pattern
+                      icon:
+                        t: 58394
+                        c: '#fff'
+                        bc: '#037F77'
+                        class: attackpattern--Zoz6d
+                        label: Attack Pattern
+                        plural: Attack Patterns
+                      name: T1005 - Data from Local System
+                      title: "T1005 \n- \nData \nfrom \nLocal \nSystem"
+                      created: '2025-07-02T17:49:53.479468Z'
+                      external_references:
+                      - description: MITRE ATT&CK Technique T1005
+                        external_id: T1005
+                        source_name: MITRE ATT&CK
+                        url: https://attack.mitre.org/techniques/T1005/
+                      modified: '2025-07-02T17:49:53.479468Z'
+                      spec_version: '2.1'
+                      technique_id: T1005
+                  - id: attack-pattern--843bacb8-9e0d-495b-b966-26d3ee770a9a
+                    type: node
+                    fi:
+                      t: 58394
+                      c: '#fff'
+                    t: T1041 - Exfiltration Over C2 Channel
+                    name: T1041 - Exfiltration Over C2 Channel
+                    c: '#037F77'
+                    fc: '#0E1D27'
+                    d:
+                      id: attack-pattern--843bacb8-9e0d-495b-b966-26d3ee770a9a
+                      type: attack-pattern
+                      icon:
+                        t: 58394
+                        c: '#fff'
+                        bc: '#037F77'
+                        class: attackpattern--Zoz6d
+                        label: Attack Pattern
+                        plural: Attack Patterns
+                      name: T1041 - Exfiltration Over C2 Channel
+                      title: "T1041 \n- \nExfiltration \nOver \nC2 \nChannel"
+                      created: '2025-07-02T17:49:53.997794Z'
+                      external_references:
+                      - description: MITRE ATT&CK Technique T1041
+                        external_id: T1041
+                        source_name: MITRE ATT&CK
+                        url: https://attack.mitre.org/techniques/T1041/
+                      modified: '2025-07-02T17:49:53.997794Z'
+                      spec_version: '2.1'
+                      technique_id: T1041
+                  - id: attack-pattern--31e9abb4-84eb-4ca5-8b3f-23fec8ab8a91_attack-pattern--c4a43beb-33b8-4b00-898c-e0eb75fe249a
+                    type: link
+                    relation: ''
+                    t: ''
+                    id1: attack-pattern--c4a43beb-33b8-4b00-898c-e0eb75fe249a
+                    id2: attack-pattern--31e9abb4-84eb-4ca5-8b3f-23fec8ab8a91
+                    a1: true
+                  - id: attack-pattern--5a0bf893-587d-4e58-97e7-29df5277277f_attack-pattern--c4a43beb-33b8-4b00-898c-e0eb75fe249a
+                    type: link
+                    relation: ''
+                    t: ''
+                    id1: attack-pattern--5a0bf893-587d-4e58-97e7-29df5277277f
+                    id2: attack-pattern--c4a43beb-33b8-4b00-898c-e0eb75fe249a
+                    a1: true
+                  - id: attack-pattern--5a0bf893-587d-4e58-97e7-29df5277277f_attack-pattern--843bacb8-9e0d-495b-b966-26d3ee770a9a
+                    type: link
+                    relation: ''
+                    t: ''
+                    id1: attack-pattern--843bacb8-9e0d-495b-b966-26d3ee770a9a
+                    id2: attack-pattern--5a0bf893-587d-4e58-97e7-29df5277277f
+                    a1: true
+                  attackFlow:
+                    id: 745
+                    name: Excel Duplicate Test
+                    organization_id: 1
+                    created_by:
+                      email: tech@threatstream.com
+                      id: '1'
+                      name: tech@threatstream.com
+                      resource_uri: /api/v1/user/1/
+                    attackFlowBundleId: bundle--71b715bc-1213-43ed-b2d0-5d7dc4b47ec7
+                    attackFlowId: attack-flow--1f090d70-1308-4e35-a38c-fdfd7d2e6728
+              id: 82247
+  /api/v1/latestactivity:
+    get:
+      summary: Retrieve latestactivity
+      operationId: get_latestactivity
+      tags:
+      - System
+      parameters:
+      - name: activity_types
+        in: query
+        required: true
+        schema:
+          type: string
+          example: threat_model,investigation,import,threatinbox
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/lens/quota:
+    get:
+      summary: Retrieve quota
+      operationId: get_lens_quota
+      tags:
+      - Sandbox
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/lens/serviceinfo:
+    get:
+      summary: Retrieve serviceinfo
+      operationId: get_lens_serviceinfo
+      tags:
+      - Sandbox
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/malwareenum:
+    get:
+      summary: Retrieve malwareenum
+      operationId: get_malwareenum
+      tags:
+      - Threat Models
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/mitre_security_profile:
+    get:
+      summary: Retrieve mitre security profile
+      operationId: get_mitre_security_profile
+      tags:
+      - MITRE ATT&CK
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 50
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -modified_ts
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+    post:
+      summary: Create mitre security profile
+      operationId: post_mitre_security_profile
+      tags:
+      - MITRE ATT&CK
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              name: a
+  /api/v1/mitreattackpattern:
+    get:
+      summary: Retrieve mitreattackpattern
+      operationId: get_mitreattackpattern
+      tags:
+      - MITRE ATT&CK
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1000
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/mitreattackpattern/stixid:
+    get:
+      summary: Retrieve stixid
+      operationId: get_mitreattackpattern_stixid
+      tags:
+      - MITRE ATT&CK
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/myattacks:
+    get:
+      summary: Retrieve myattacks
+      operationId: get_myattacks
+      tags:
+      - System
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 10
+      - name: modified_ts__gte
+        in: query
+        required: true
+        schema:
+          type: string
+          example: '2026-05-09T00:00:00Z'
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/notification:
+    get:
+      summary: Retrieve notification
+      operationId: get_notification
+      tags:
+      - Notifications
+      parameters:
+      - name: status__in
+        in: query
+        required: true
+        schema:
+          type: string
+          example: 0,1
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 10
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -created_ts
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/orgtag:
+    get:
+      summary: Retrieve orgtag
+      operationId: get_orgtag
+      tags:
+      - Tags
+      parameters:
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 500
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: name
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/recipe/{id}:
+    get:
+      summary: Retrieve id
+      operationId: get_recipe_id
+      tags:
+      - App Store
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/releasenotes/latest:
+    get:
+      summary: Retrieve latest
+      operationId: get_releasenotes_latest
+      tags:
+      - System
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/rule:
+    get:
+      summary: Retrieve rule
+      operationId: get_rule
+      tags:
+      - Rules
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 50
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -id
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/search_filter:
+    get:
+      summary: Retrieve search filter
+      operationId: get_search_filter
+      tags:
+      - Rules
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: type
+        in: query
+        required: true
+        schema:
+          type: string
+          example: ioc
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/signature_type:
+    get:
+      summary: Retrieve signature type
+      operationId: get_signature_type
+      tags:
+      - Threat Models
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/stix2_common_object/locations:
+    get:
+      summary: Retrieve locations
+      operationId: get_stix2_common_object_locations
+      tags:
+      - Threat Models
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/stix2enum:
+    get:
+      summary: Retrieve stix2enum
+      operationId: get_stix2enum
+      tags:
+      - Threat Models
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/stix_import:
+    get:
+      summary: Retrieve stix import
+      operationId: get_stix_import
+      tags:
+      - Imports
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/submit/parameters:
+    get:
+      summary: Retrieve parameters
+      operationId: get_submit_parameters
+      tags:
+      - Sandbox
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/submit/search:
+    get:
+      summary: Retrieve search
+      operationId: get_submit_search
+      tags:
+      - Sandbox
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          example: ''
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -date_added
+      - name: category
+        in: query
+        required: true
+        schema:
+          type: string
+          example: owned
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/threat_model_search:
+    get:
+      summary: Retrieve threat model search
+      operationId: get_threat_model_search
+      tags:
+      - Threat Models
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 10
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -modified_ts
+      - name: model_type
+        in: query
+        required: true
+        schema:
+          type: string
+          example: actor
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/threatinbox:
+    get:
+      summary: Retrieve threatinbox
+      operationId: get_threatinbox
+      tags:
+      - Threatinbox
+      parameters:
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: created_ts
+      - name: remote_api
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: false
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/trustedcircle:
+    get:
+      summary: Retrieve trustedcircle
+      operationId: get_trustedcircle
+      tags:
+      - Trusted Circles
+      parameters:
+      - name: can_publish
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: name
+      - name: exclude_service_accounts
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/trustedcircle/public:
+    get:
+      summary: Retrieve public
+      operationId: get_trustedcircle_public
+      tags:
+      - Trusted Circles
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/trustedcircleinvite:
+    get:
+      summary: Retrieve trustedcircleinvite
+      operationId: get_trustedcircleinvite
+      tags:
+      - Trusted Circles
+      parameters:
+      - name: status__in
+        in: query
+        required: true
+        schema:
+          type: string
+          example: 0,30
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/ttp/mitre/score:
+    get:
+      summary: Retrieve score
+      operationId: get_ttp_mitre_score
+      tags:
+      - MITRE ATT&CK
+      parameters:
+      - name: profile_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 4849
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/user:
+    get:
+      summary: Retrieve user
+      operationId: get_user
+      tags:
+      - User
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/user/keep_alive:
+    get:
+      summary: Retrieve keep alive
+      operationId: get_user_keep_alive
+      tags:
+      - User
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/user/permissions:
+    get:
+      summary: Retrieve permissions
+      operationId: get_user_permissions
+      tags:
+      - User
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/user_role:
+    get:
+      summary: Retrieve user role
+      operationId: get_user_role
+      tags:
+      - User
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1000
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/user_role/names:
+    get:
+      summary: Retrieve names
+      operationId: get_user_role_names
+      tags:
+      - User
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/user_role/xdr_data:
+    get:
+      summary: Retrieve xdr data
+      operationId: get_user_role_xdr_data
+      tags:
+      - User
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/userorganization:
+    get:
+      summary: Retrieve userorganization
+      operationId: get_userorganization
+      tags:
+      - User
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/workgroup:
+    get:
+      summary: Retrieve workgroup
+      operationId: get_workgroup
+      tags:
+      - Workgroups
+      parameters:
+      - name: user_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1862
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/avc/stats:
+    get:
+      summary: Retrieve stats
+      operationId: get_xdr_avc_stats
+      tags:
+      - XDR
+      parameters:
+      - name: user_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1862
+      - name: org_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1193
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/cloud_link/template:
+    get:
+      summary: Retrieve template
+      operationId: get_xdr_cloud_link_template
+      tags:
+      - XDR
+      parameters:
+      - name: with_fields
+        in: query
+        required: true
+        schema:
+          type: string
+          example: params
+      - name: public
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/cloud_logsource/types:
+    get:
+      summary: Retrieve types
+      operationId: get_xdr_cloud_logsource_types
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/custom_copilot:
+    get:
+      summary: Retrieve custom copilot
+      operationId: get_xdr_custom_copilot
+      tags:
+      - XDR
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1000
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/custom_copilot/copilot_chat/settings:
+    get:
+      summary: Retrieve settings
+      operationId: get_xdr_custom_copilot_copilot_chat_settings
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+    post:
+      summary: Create settings
+      operationId: post_xdr_custom_copilot_copilot_chat_settings
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              regions:
+              - Africa
+              industry: chemical
+              org_size: medium
+  /api/v1/xdr/custom_copilot/semanticsearch/trendingquestions:
+    get:
+      summary: Retrieve trendingquestions
+      operationId: get_xdr_custom_copilot_semanticsearch_trendingquestions
+      tags:
+      - XDR
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 5
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/custom_copilot/sessions:
+    get:
+      summary: Retrieve sessions
+      operationId: get_xdr_custom_copilot_sessions
+      tags:
+      - XDR
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1000
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: last_message_at__gte
+        in: query
+        required: true
+        schema:
+          type: string
+          example: '2026-05-09T08:27:24.901Z'
+      - name: last_message_at__lte
+        in: query
+        required: true
+        schema:
+          type: string
+          example: '2026-05-16T08:27:24.901Z'
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/event/lookup:
+    get:
+      summary: Retrieve lookup
+      operationId: get_xdr_event_lookup
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/event_field/schema:
+    get:
+      summary: Retrieve schema
+      operationId: get_xdr_event_field_schema
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/macro:
+    get:
+      summary: Retrieve macro
+      operationId: get_xdr_macro
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/plutono/dashboards/default/user:
+    get:
+      summary: Retrieve user
+      operationId: get_xdr_plutono_dashboards_default_user
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/plutono/dashboards/tags:
+    get:
+      summary: Retrieve tags
+      operationId: get_xdr_plutono_dashboards_tags
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/plutono/dashboards/uid:
+    get:
+      summary: Retrieve uid
+      operationId: get_xdr_plutono_dashboards_uid
+      tags:
+      - XDR
+      parameters:
+      - name: uid
+        in: query
+        required: true
+        schema:
+          type: string
+          example: 1d415125-1029-47ec-8ab0-6d2af3654131
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/plutono/folders/uid:
+    get:
+      summary: Retrieve uid
+      operationId: get_xdr_plutono_folders_uid
+      tags:
+      - XDR
+      parameters:
+      - name: uid
+        in: query
+        required: true
+        schema:
+          type: string
+          example: 290db525-8441-4434-89d1-77966c0dd5df
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/plutono/search:
+    get:
+      summary: Retrieve search
+      operationId: get_xdr_plutono_search
+      tags:
+      - XDR
+      parameters:
+      - name: starred
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      - name: layout
+        in: query
+        required: true
+        schema:
+          type: string
+          example: list
+      - name: dash_type
+        in: query
+        required: true
+        schema:
+          type: string
+          example: dash-db
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/saved_search:
+    get:
+      summary: Retrieve saved search
+      operationId: get_xdr_saved_search
+      tags:
+      - XDR
+      parameters:
+      - name: index_name
+        in: query
+        required: true
+        schema:
+          type: string
+          example: eventsearch
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+    post:
+      summary: Create saved search
+      operationId: post_xdr_saved_search
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              name: a
+              description: a
+              index_name: eventsearch
+              query:
+                query_string: ''
+                index: eventsearch
+                time_range:
+                  from: 1778915615371
+                  to: 1778919215371
+  /api/v1/xdr/search/history:
+    get:
+      summary: Retrieve history
+      operationId: get_xdr_search_history
+      tags:
+      - XDR
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 1000
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/search/jobs/{job_id}/context:
+    get:
+      summary: Retrieve context
+      operationId: get_xdr_search_jobs_job_id_context
+      tags:
+      - XDR
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: 2344995e063b4e1d837684b4aad7d62e
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/search/jobs/{job_id}/results:
+    get:
+      summary: Retrieve results
+      operationId: get_xdr_search_jobs_job_id_results
+      tags:
+      - XDR
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: 2344995e063b4e1d837684b4aad7d62e
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      - name: fetch_size
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 25
+      - name: sort_fields
+        in: query
+        required: true
+        schema:
+          type: string
+          example: ''
+      - name: sort_order
+        in: query
+        required: true
+        schema:
+          type: string
+          example: ''
+      - name: schema
+        in: query
+        required: true
+        schema:
+          type: string
+          example: standard
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/search/jobs/{job_id}/summary:
+    get:
+      summary: Retrieve summary
+      operationId: get_xdr_search_jobs_job_id_summary
+      tags:
+      - XDR
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: 2344995e063b4e1d837684b4aad7d62e
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr/userprofile:
+    get:
+      summary: Retrieve userprofile
+      operationId: get_xdr_userprofile
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr_logsource:
+    get:
+      summary: Retrieve xdr logsource
+      operationId: get_xdr_logsource
+      tags:
+      - XDR
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 250
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -created_ts
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+    post:
+      summary: Create xdr logsource
+      operationId: post_xdr_logsource
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              status: Create Requested
+              description: ''
+              name: a
+              sourcetype: azure_ad
+              ingest_method: API
+              owner_id: '1862'
+              permissions: []
+              secrets:
+                account_name: a
+                account_key: a
+              params:
+                advanced:
+                  raw_events:
+                    enable: false
+                field_values: {}
+  /api/v1/xdr_logsource/owners:
+    get:
+      summary: Retrieve owners
+      operationId: get_xdr_logsource_owners
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr_search_job:
+    get:
+      summary: Retrieve xdr search job
+      operationId: get_xdr_search_job
+      tags:
+      - XDR
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 250
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -created_ts
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr_view:
+    get:
+      summary: Retrieve xdr view
+      operationId: get_xdr_view
+      tags:
+      - XDR
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 250
+      - name: offset
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/xdr_view/owners:
+    get:
+      summary: Retrieve owners
+      operationId: get_xdr_view_owners
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v2/intelligence:
+    get:
+      summary: Retrieve intelligence
+      operationId: get_intelligence
+      tags:
+      - Intelligence
+      parameters:
+      - name: order_by
+        in: query
+        required: true
+        schema:
+          type: string
+          example: -created_ts,id
+      - name: extend_source
+        in: query
+        required: true
+        schema:
+          type: boolean
+          example: true
+      - name: status
+        in: query
+        required: true
+        schema:
+          type: string
+          example: active
+      - name: created_ts__gte
+        in: query
+        required: true
+        schema:
+          type: string
+          example: '2026-04-16T00:00:00Z'
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 50
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v2/intelligence/contributions:
+    get:
+      summary: Retrieve contributions
+      operationId: get_intelligence_contributions
+      tags:
+      - Intelligence
+      parameters:
+      - name: days
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 7
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v2/intelligence/sources:
+    get:
+      summary: Retrieve sources
+      operationId: get_intelligence_sources
+      tags:
+      - Intelligence
+      parameters:
+      - name: days
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 7
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v2/intelligence/tags_by_org:
+    get:
+      summary: Retrieve tags by org
+      operationId: get_intelligence_tags_by_org
+      tags:
+      - Intelligence
+      parameters:
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 20
+      - name: term
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 67
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+  /api/v1/trustedcircle/{id}/inviterequest:
+    patch:
+      summary: Update inviterequest
+      operationId: patch_trustedcircle_id_inviterequest
+      tags:
+      - Trusted Circles
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example: {}
+  /api/v1/user/ui_preferences:
+    patch:
+      summary: Update ui preferences
+      operationId: patch_user_ui_preferences
+      tags:
+      - User
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              mitre_profile_preferences: 4849
+  /api/v1/intelligence/bulk_tagging:
+    post:
+      summary: Create bulk tagging
+      operationId: post_intelligence_bulk_tagging
+      tags:
+      - Intelligence
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              ids:
+              - 112731832
+              tags:
+              - name: Reconnaissance
+                tlp: red
+              remove_tags: []
+  /api/v1/intelligence_initiative/{id}/feeds/bulk_add:
+    post:
+      summary: Create bulk add
+      operationId: post_intelligence_initiative_id_feeds_bulk_add
+      tags:
+      - Intelligence Initiative
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 18129
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example: {}
+  /api/v1/user/feature_flags:
+    post:
+      summary: Create feature flags
+      operationId: post_user_feature_flags
+      tags:
+      - User
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              flags:
+              - flag: global_navigation
+                type: bool
+              - flag: global_navigation_chips
+                type: bool
+              - flag: threatstream_new_landing_page
+                type: bool
+              - flag: hide_ts
+                type: bool
+              - flag: sso_role_management
+                type: bool
+              - flag: global_navigation_ga
+                type: bool
+              - flag: menu_chips
+                type: json
+              - flag: role_based_permissions
+                type: bool
+              - flag: dashboard_rf
+                type: bool
+              - flag: JiraIntegration_JiraApiVersion
+                type: bool
+              - flag: ThreatBulletin_CollaborativeEditor
+                type: bool
+  /api/v1/useraction:
+    post:
+      summary: Create useraction
+      operationId: post_useraction
+      tags:
+      - System
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              user_id: '1862'
+              action_type: created
+              r_type: intelligenceinitiative
+              r_id: 18129
+              r_name: brand-monitoring
+  /api/v1/xdr/custom_copilot/semanticsearch/search:
+    post:
+      summary: Create search
+      operationId: post_xdr_custom_copilot_semanticsearch_search
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              query: What is lockbit 3.0?
+  /api/v1/xdr/plutono/dashboards/db:
+    post:
+      summary: Create db
+      operationId: post_xdr_plutono_dashboards_db
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              dashboard:
+                annotations:
+                  list:
+                  - builtIn: 1
+                    datasource: -- Plutono --
+                    enable: true
+                    hide: true
+                    iconColor: rgba(0, 211, 255, 1)
+                    name: Annotations & Alerts
+                    type: dashboard
+                childOrgPicker: []
+                childOrgPickerDashboard: true
+                contentView: false
+                dashboardViewMode: edit
+                editable: true
+                gnetId: null
+                graphTooltip: 0
+                id: null
+                links: []
+                optimize: false
+                panelTagVersion: 0
+                panelTags: {}
+                panels:
+                - collapsed: false
+                  datasource: null
+                  fieldConfig:
+                    defaults:
+                      custom:
+                        align: null
+                        editable: false
+                        editableFieldType: default
+                        filterable: false
+                      links: []
+                      mappings:
+                      - from: ''
+                        id: 1
+                        text: 'null'
+                        to: ''
+                        type: 1
+                        value: 'null'
+                      thresholds:
+                        mode: absolute
+                        steps:
+                        - color: green
+                          value: null
+                        - color: red
+                          value: 80
+                      unit: none
+                    overrides: []
+                  gridPos:
+                    h: 9
+                    w: 12
+                    x: 0
+                    y: 0
+                  id: 1
+                  options:
+                    allowInsert: false
+                    editable: false
+                    expandableRow: false
+                    multirowSelection: false
+                    showHeader: true
+                  pluginVersion: 7.5.21
+                  syntheticQuery: {}
+                  targets:
+                  - queryText: ''
+                    refId: A
+                  title: Panel Title
+                  type: table
+                schemaVersion: 27
+                showTagFilter: false
+                status:
+                  end: 1778919311337
+                  is_event_search: false
+                  panels: {}
+                  progress: 0
+                  scanned: 0
+                  start: 1778919311337
+                  status: ''
+                  total: 0
+                style: dark
+                tabs: []
+                tags: []
+                templating:
+                  list: []
+                time:
+                  from: now-1h
+                  to: now
+                timepicker: {}
+                timezone: ''
+                title: a
+                uid: ''
+                version: 0
+                hideControls: false
+              message: ''
+              overwrite: false
+              folderId: 0
+  /api/v1/xdr/plutono/folders:
+    post:
+      summary: Create folders
+      operationId: post_xdr_plutono_folders
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              title: new folder 73
+  /api/v1/xdr/search/jobs:
+    post:
+      summary: Create jobs
+      operationId: post_xdr_search_jobs
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              origin: event_search
+              fields: []
+              filter: ''
+              query: observables
+              fetchSize: 25
+              offset: 0
+              time_range:
+                from: 1778899885686
+                to: 1778919567917
+                timezone: UTC
+              limit: 1000
+              jobid: ''
+              previous_job_id: ''
+              nl_query: ''
+              sort: []
+              error: ''
+              relative_time_range: {}
+              event_schema: default
+              rawdata: true
+  /api/v1/xdr/search/validate:
+    post:
+      summary: Create validate
+      operationId: post_xdr_search_validate
+      tags:
+      - XDR
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - cookieAuth: []
+      - csrfToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              query: z | fields w
+              aql_view_config:
+                base_table: eventlog
+                name: z
+                description: z
+                owner_id: '1862'
+                constraints: 'eventlog ; '
+                permissions: []
+                id: ''
+                field_set:
+                - w
+                field_mapping:
+                  s: w
