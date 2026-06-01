@@ -1,0 +1,370 @@
+openapi: 3.0.3
+info:
+  title: Coronis Health Payment Portal API
+  description: Payment processing API for the FirstPay payment portal
+  version: 1.0.0
+servers:
+  - url: https://paynowtest.coronisglobal.com/FirstPay
+    description: Test environment
+
+paths:
+  /paymentInfoProcess.action:
+    post:
+      summary: Process Payment Information
+      description: >
+        Retrieves payment info and processes credit card (CC) or ACH payments.
+        The `doAction` field controls the operation being performed.
+      operationId: paymentInfoProcess
+      parameters:
+        - name: Cookie
+          in: header
+          required: true
+          schema:
+            type: string
+            example: JSESSIONID=B9hFXdwtro7tCg_jRa7JFu5SGevsQLLYSMVNYIjl.FC-T-slave-V4:FC-T-V4-B
+          description: Session cookie required for authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - org.apache.struts.taglib.html.TOKEN
+                - csrfToken
+                - invoiceDetails.invoiceNumber
+                - invoiceDetails.dob
+                - doAction
+              properties:
+                org.apache.struts.taglib.html.TOKEN:
+                  type: string
+                  description: Struts framework anti-CSRF token
+                  example: d2a737d711500a5d56bbfb0a20dee2f5
+                csrfToken:
+                  type: string
+                  format: uuid
+                  description: CSRF protection token
+                  example: f21d1273-65cc-494a-b786-f6575065dc3c
+                doAction:
+                  type: string
+                  description: Action to perform
+                  enum:
+                    - getPaymentInfo
+                    - getAccountInfo
+                    - submitData
+                    - addFANote
+                    - inactivateRecurringPayment
+                  example: getPaymentInfo
+                invoiceDetails.invoiceNumber:
+                  type: string
+                  maxLength: 9
+                  description: Patient account/invoice number
+                  example: "453884528"
+                invoiceDetails.dob:
+                  type: string
+                  description: Patient date of birth (MM/DD/YYYY)
+                  example: "10/04/1990"
+                invoiceDetails.patientName:
+                  type: string
+                  description: Patient full name (LASTNAME,FIRSTNAME)
+                  example: "COSPMVL,COZIBXF"
+                invoiceDetails.patientId:
+                  type: string
+                  description: Internal patient ID
+                  example: ""
+                invoiceDetails.jobCode:
+                  type: string
+                  description: Job/facility code
+                  example: "PLAA"
+                invoiceDetails.jobName:
+                  type: string
+                  description: Job/facility name
+                  example: "PALOS ANESTHESIA ASSOC SC"
+                invoiceDetails.paymentAmount:
+                  type: number
+                  format: float
+                  description: Amount to be paid
+                  example: 550.00
+                invoiceDetails.totalAmountDue:
+                  type: number
+                  format: float
+                  description: Total balance due
+                  example: 550.00
+                invoiceDetails.paymentType:
+                  type: string
+                  description: Payment method type
+                  enum:
+                    - CC
+                    - ACH
+                  example: CC
+                invoiceDetails.routingNumber:
+                  type: string
+                  maxLength: 16
+                  description: Bank routing number (ACH only)
+                invoiceDetails.bankAccountNumber:
+                  type: string
+                  maxLength: 16
+                  description: Bank account number (ACH only)
+                invoiceDetails.nameOnAccount:
+                  type: string
+                  maxLength: 50
+                  description: Name on bank account (ACH only)
+                cardDetails.cardType:
+                  type: string
+                  description: Card network code (CC only)
+                  enum:
+                    - MC
+                    - VS
+                    - DN
+                    - AM
+                  example: MC
+                cardDetails.cardNetwork:
+                  type: string
+                  description: Card type (CC only)
+                  enum:
+                    - Credit
+                    - Debit
+                    - HSA
+                    - Prepaid Card
+                  example: Credit
+                cardDetails.cardNumber:
+                  type: string
+                  maxLength: 16
+                  description: Card number (CC only)
+                cardDetails.expiryMonth:
+                  type: integer
+                  minimum: 1
+                  maximum: 12
+                  description: Card expiry month (CC only)
+                cardDetails.expiryYear:
+                  type: integer
+                  description: Card expiry year (CC only)
+                  example: 2027
+                cardDetails.CVV2Number:
+                  type: string
+                  minLength: 3
+                  maxLength: 4
+                  description: Card CVV/security code (CC only)
+                cardDetails.nameOnCard:
+                  type: string
+                  maxLength: 50
+                  description: Name as it appears on card
+                cardDetails.emailId:
+                  type: string
+                  format: email
+                  maxLength: 50
+                  description: Cardholder email address
+                cardType:
+                  type: string
+                  description: Pipe-separated list of accepted card types
+                  example: "MC_Master Card,VS_Visa,DN_Discover,AM_Amex"
+                ccCardSurChrgAmt:
+                  type: integer
+                  description: Credit card surcharge percentage
+                  example: 3
+                surchargeAmtFinal:
+                  type: number
+                  format: float
+                  description: Calculated surcharge amount
+                primaryInsName:
+                  type: string
+                  description: Primary insurance name
+                  example: "SELF-SELF PAY"
+                primaryContract:
+                  type: string
+                  description: Primary insurance contract/policy number
+                  example: "1234"
+                primaryGroup:
+                  type: string
+                  description: Primary insurance group number
+                secondaryInsName:
+                  type: string
+                  description: Secondary insurance name
+                secondaryContract:
+                  type: string
+                  description: Secondary insurance contract number
+                secondaryGroup:
+                  type: string
+                  description: Secondary insurance group number
+                insuranceDetails.insType:
+                  type: string
+                  description: Insurance update type
+                  enum:
+                    - P
+                    - S
+                    - B
+                  example: P
+                insuranceDetails.primaryInsName:
+                  type: string
+                  maxLength: 100
+                insuranceDetails.primaryContract:
+                  type: string
+                  maxLength: 50
+                insuranceDetails.primaryGroup:
+                  type: string
+                  maxLength: 50
+                insuranceDetails.primarySubscrName:
+                  type: string
+                  maxLength: 25
+                insuranceDetails.primaryRelation:
+                  type: string
+                  enum:
+                    - SELECT
+                    - SELF
+                    - SPOUSE
+                    - CHILD
+                    - OTHER
+                insuranceDetails.secondaryInsName:
+                  type: string
+                  maxLength: 100
+                insuranceDetails.secondaryContract:
+                  type: string
+                  maxLength: 50
+                insuranceDetails.secondaryGroup:
+                  type: string
+                  maxLength: 50
+                insuranceDetails.secondarySubscrName:
+                  type: string
+                  maxLength: 25
+                insuranceDetails.secondaryRelation:
+                  type: string
+                  enum:
+                    - SELECT
+                    - SELF
+                    - SPOUSE
+                    - CHILD
+                    - OTHER
+                insuranceDetails.noteDetail:
+                  type: string
+                  description: Free-text insurance note
+                addNoteInsInfo:
+                  type: string
+                  description: "Formatted note string: <invoiceNumber>&~&<note>&~&PAYNOW"
+                textingAuditId:
+                  type: string
+                  description: Audit ID for SMS/texting flow
+                paymentTypeFlag:
+                  type: string
+                  enum:
+                    - ACH
+                    - CC
+                  example: ACH
+                statementDetail:
+                  type: string
+                  description: >
+                    Tilde-separated statement detail string containing service
+                    date, code, description, charges, balance, and patient/provider info
+                  example: "12/03/2025~00350~ANESTHESIA SERVICE - DOCTOR~550.00~~550.00~0.0"
+                recurringPaymentFlag:
+                  type: string
+                  description: Recurring payment status flag
+                  enum:
+                    - A
+                    - ""
+                recurringPaymentReqFlag:
+                  type: string
+                  enum:
+                    - Y
+                    - N
+                recurrPayId:
+                  type: string
+                  description: Existing recurring payment ID
+                dueAmount:
+                  type: number
+                  format: float
+                  description: Total due for recurring payment plan
+                noOfPayments:
+                  type: integer
+                  minimum: 2
+                  maximum: 10
+                  description: Number of installments (recurring only)
+                firstAmount:
+                  type: number
+                  format: float
+                  description: First installment amount (recurring only)
+                subsequentAmount:
+                  type: number
+                  format: float
+                  description: Subsequent installment amount (recurring only)
+                startDate:
+                  type: string
+                  description: Next payment date for recurring plan (MM/DD/YYYY)
+                personEmail:
+                  type: string
+                  format: email
+                  description: Patient email (required for recurring)
+                personZipCode:
+                  type: string
+                  description: Patient zip code (required for recurring)
+                ppDate:
+                  type: string
+                  description: Payment plan reference date (MM/DD/YYYY)
+
+      responses:
+        "200":
+          description: >
+            Returns an HTML page with payment form populated with patient/invoice
+            data, or a JSON response for AJAX actions (e.g. getAccountInfo).
+          content:
+            text/html:
+              schema:
+                type: string
+                description: Rendered HTML payment portal page
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balance:
+                    type: number
+                    format: float
+                    description: Patient account balance
+                  patientName:
+                    type: string
+                  jobCode:
+                    type: string
+                  showPrimaryIns:
+                    type: string
+                  showPrimaryContract:
+                    type: string
+                  showPrimaryGroup:
+                    type: string
+                  showSecondaryIns:
+                    type: string
+                  showSecondaryContract:
+                    type: string
+                  showSecondaryGroup:
+                    type: string
+                  ccCardSurChrgAmt:
+                    type: number
+                  paymentTypeFlag:
+                    type: string
+                  cardTypes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cardKey:
+                          type: string
+                        cardValue:
+                          type: string
+                  showPPFlag:
+                    type: boolean
+                  paymentPlanAmount:
+                    type: number
+                    format: float
+                  failedCount:
+                    type: integer
+                  errorCode:
+                    type: string
+                  genericErrorMsg:
+                    type: string
+                  specificErrorMsg:
+                    type: string
+        "302":
+          description: Redirect after successful payment submission
+        "401":
+          description: Unauthorized — invalid or expired session (JSESSIONID)
+        "403":
+          description: Forbidden — invalid CSRF token
+
+security: []
