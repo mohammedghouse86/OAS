@@ -1,1152 +1,1689 @@
 openapi: 3.0.3
 info:
-  title: Wristband App
+  title: Wristband Dashboard API
+  description: API for the Wristband Dashboard — manages applications, tenants, users, clients, roles, permissions, policies,
+    and branding.
   version: 1.0.0
 servers:
-  - url: https://jadriel.dashboard.wristband.dev
+- url: https://purple.dashboard.wristband.dev
+  description: Production
 tags:
-  - name: api
+- name: Session
+  description: Session and profile data
+- name: Workspaces
+  description: Workspace-level operations
+- name: Applications
+  description: Application management
+- name: Tenants
+  description: Tenant management
+- name: Users
+  description: User management
+- name: Clients
+  description: OAuth client management
+- name: Identity Providers
+  description: Identity provider configuration
+- name: Roles
+  description: Role management
+- name: Permissions
+  description: Permission management
+- name: Permission Groups
+  description: Permission group management
+- name: Permission Boundaries
+  description: Permission boundary management
+- name: Signing Keys
+  description: JWT signing key management
+- name: Policies
+  description: Auth session, MFA, password, bot-detection, role-assignment, webhook, workflow, and email policies
+- name: Brandings
+  description: Page and email branding
+- name: Custom Claims
+  description: Custom JWT claims
 paths:
   /api/v1/session-data:
     get:
       tags:
-        - api
-      summary: GET /api/v1/session-data
-      operationId: get_api_v1_session_data
+      - Session
+      summary: Get session data
+      description: Returns the current authenticated user's session information.
+      operationId: getSessionData
       responses:
-        "200":
-          description: Success
-  /api/v1/{id}/{id2}:
+        '200':
+          description: Session data returned successfully.
+  /api/v1/profile-settings-data/{userId}:
     get:
       tags:
-        - api
-      summary: GET /api/v1/{id}/{id2}
-      operationId: get_api_v1_id_id2
+      - Session
+      summary: Get profile settings data for a user
+      operationId: getProfileSettingsData
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: profile-settings-data
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ottaotqpqrc3rdp3njo2jih5du
+      - $ref: '#/components/parameters/userId'
       responses:
-        "200":
-          description: Success
-  /api/v1/users/{id}:
+        '200':
+          description: Profile settings returned successfully.
+  /api/v1/workspaces/{workspaceId}/applications:
+    get:
+      tags:
+      - Workspaces
+      summary: List applications in a workspace
+      operationId: listWorkspaceApplications
+      parameters:
+      - $ref: '#/components/parameters/workspaceId'
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to return.
+        example: id,name,vanityDomain,displayName,isMultiTenant,environmentType,status,metadata.creationTime
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of applications returned.
+  /api/v1/workspaces/{workspaceId}/application-usage-select-options:
+    get:
+      tags:
+      - Workspaces
+      summary: Get application usage select options for a workspace
+      operationId: getWorkspaceApplicationUsageSelectOptions
+      parameters:
+      - $ref: '#/components/parameters/workspaceId'
+      responses:
+        '200':
+          description: Select options returned.
+  /api/v1/workspaces/{workspaceId}/resolve-account-usage:
+    post:
+      tags:
+      - Workspaces
+      summary: Resolve account usage for a workspace
+      operationId: resolveWorkspaceAccountUsage
+      parameters:
+      - $ref: '#/components/parameters/workspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResolveAccountUsageRequest'
+            example:
+              startDate: '2026-06-01'
+              endDate: '2026-06-09'
+              overageThreshold: 10000
+              globalTenantOverageThreshold: 10000
+      responses:
+        '200':
+          description: Account usage resolved successfully.
+  /api/v1/applications/{applicationId}:
+    get:
+      tags:
+      - Applications
+      summary: Get an application
+      operationId: getApplication
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      responses:
+        '200':
+          description: Application returned.
     patch:
       tags:
-        - api
-      summary: PATCH /api/v1/users/{id}
-      operationId: patch_api_v1_users_id
+      - Applications
+      summary: Update an application
+      operationId: updateApplication
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ottaotqpqrc3rdp3njo2jih5du
+      - $ref: '#/components/parameters/applicationId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiPatchRequest"
-            examples:
-              fromHar:
-                value:
-                  pictureUrl: https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png
+              $ref: '#/components/schemas/UpdateApplicationRequest'
+            example:
+              displayName: ASP.NET (C#) backend, React frontend Demo
+              tenantClassifier: COMPANY
+              loginUrl: http://localhost:6001/api/auth/login
+              logoutUrls:
+              - http://localhost:6001
+              allowedOrigins:
+              - http://localhost:6001
+              signupEnabled: true
       responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}:
-    patch:
-      tags:
-        - api
-      summary: PATCH /api/v1/tenants/{id}
-      operationId: patch_api_v1_tenants_id
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: 5awe6diozjgw7ld43knxe2fvpe
-        - name: replace_custom_metadata
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "false"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ApiPatchRequest"
-            examples:
-              fromHar:
-                value:
-                  displayName: jadriel1
-                  description: ""
-                  logoUrl: ""
-      responses:
-        "200":
-          description: Success
+        '200':
+          description: Application updated.
+  /api/v1/applications/{applicationId}/application-context:
     get:
       tags:
-        - api
-      summary: GET /api/v1/tenants/{id}
-      operationId: get_api_v1_tenants_id
+      - Applications
+      summary: Get application context
+      operationId: getApplicationContext
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
+      - $ref: '#/components/parameters/applicationId'
       responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/{id2}:
+        '200':
+          description: Application context returned.
+  /api/v1/applications/{applicationId}/custom-domains:
     get:
       tags:
-        - api
-      summary: GET /api/v1/tenants/{id}/{id2}
-      operationId: get_api_v1_tenants_id_id2
+      - Applications
+      summary: List custom domains for an application
+      operationId: listApplicationCustomDomains
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: 5awe6diozjgw7ld43knxe2fvpe
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: tenant-admins-table-data
-        - name: start_index
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: count
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: id,tenantId,applicationId,identityProviderType,givenName,familyName,email,pictureUrl,status
-        - name: query
-          in: query
-          required: false
-          schema:
-            type: string
-          example: invitationType eq "EMAIL" and status eq "PENDING_INVITE_ACCEPTANCE"
+      - $ref: '#/components/parameters/applicationId'
       responses:
-        "200":
-          description: Success
-  /api/v1/invite-new-user:
+        '200':
+          description: Custom domains returned.
+  /api/v1/applications/{applicationId}/tenant-select-options:
+    get:
+      tags:
+      - Applications
+      summary: Get tenant select options for an application
+      operationId: getApplicationTenantSelectOptions
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      responses:
+        '200':
+          description: Tenant select options returned.
+  /api/v1/applications/{applicationId}/resolve-account-usage:
     post:
       tags:
-        - api
-      summary: POST /api/v1/invite-new-user
-      operationId: post_api_v1_invite_new_user
+      - Applications
+      summary: Resolve account usage for an application
+      operationId: resolveApplicationAccountUsage
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  tenantId: 5awe6diozjgw7ld43knxe2fvpe
-                  email: qatestuser2@example.com
-                  rolesToAssign:
-                    - mji4lwbr6jgdvftrawxnuobjie
+              $ref: '#/components/schemas/ResolveAccountUsageRequest'
+            example:
+              startDate: '2026-06-01'
+              endDate: '2026-06-09'
+              overageThreshold: 10000
+              globalTenantOverageThreshold: 10000
       responses:
-        "200":
-          description: Success
-  /api/v1/{id}:
+        '200':
+          description: Account usage resolved.
+  /api/v1/applications/{applicationId}/tenants:
+    get:
+      tags:
+      - Applications
+      - Tenants
+      summary: List tenants for an application
+      operationId: listApplicationTenants
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to return.
+        example: id,type,name,displayName,logoUrl,status
+        schema:
+          type: string
+      - name: query
+        in: query
+        description: Filter expression (e.g. `type eq "GLOBAL"`).
+        example: type eq "GLOBAL"
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tenant list returned.
+  /api/v1/applications/{applicationId}/clients:
+    get:
+      tags:
+      - Applications
+      - Clients
+      summary: List clients for an application
+      operationId: listApplicationClients
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to return.
+        example: id,name,type
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Client list returned.
+  /api/v1/applications/{applicationId}/roles:
+    get:
+      tags:
+      - Applications
+      - Roles
+      summary: List roles for an application
+      operationId: listApplicationRoles
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
+      - name: fields
+        in: query
+        example: id,name,displayName,tenantVisibility
+        schema:
+          type: string
+      - name: include_predefined_roles
+        in: query
+        description: Whether to include predefined roles.
+        example: false
+        schema:
+          type: boolean
+      - name: query
+        in: query
+        description: Filter expression.
+        example: type eq "CUSTOM"
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Role list returned.
+  /api/v1/applications/{applicationId}/permissions:
+    get:
+      tags:
+      - Applications
+      - Permissions
+      summary: List permissions for an application
+      operationId: listApplicationPermissions
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
+      - name: fields
+        in: query
+        example: id,type,value,description,tenantVisibility,metadata
+        schema:
+          type: string
+      - name: include_predefined_permissions
+        in: query
+        example: false
+        schema:
+          type: boolean
+      - name: query
+        in: query
+        example: type eq "CUSTOM"
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Permission list returned.
+  /api/v1/applications/{applicationId}/permission-groups:
+    get:
+      tags:
+      - Applications
+      - Permission Groups
+      summary: List permission groups for an application
+      operationId: listApplicationPermissionGroups
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
+      - name: fields
+        in: query
+        example: id,name,displayName,tenantVisibility
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Permission group list returned.
+  /api/v1/applications/{applicationId}/permission-boundaries:
+    get:
+      tags:
+      - Applications
+      - Permission Boundaries
+      summary: List permission boundaries for an application
+      operationId: listApplicationPermissionBoundaries
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
+      - name: fields
+        in: query
+        example: id,type,name,displayName,tenantVisibility
+        schema:
+          type: string
+      - name: include_predefined_permission_boundaries
+        in: query
+        example: false
+        schema:
+          type: boolean
+      - name: query
+        in: query
+        example: type ne "PREDEFINED"
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Permission boundary list returned.
+  /api/v1/applications/{applicationId}/signing-keys:
+    get:
+      tags:
+      - Applications
+      - Signing Keys
+      summary: List signing keys for an application
+      operationId: listApplicationSigningKeys
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      responses:
+        '200':
+          description: Signing keys returned.
+  /api/v1/applications/{applicationId}/signing-keys/rotate:
     post:
       tags:
-        - api
-      summary: POST /api/v1/{id}
-      operationId: post_api_v1_id
+      - Applications
+      - Signing Keys
+      summary: Rotate signing keys for an application
+      operationId: rotateApplicationSigningKeys
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: cancel-new-user-invite
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  newUserInvitationRequestId: ibs2sftgnrdmhhy53p67gga4om
+      - $ref: '#/components/parameters/applicationId'
       responses:
-        "200":
-          description: Success
+        '200':
+          description: Signing keys rotated.
+  /api/v1/applications/{applicationId}/custom-claims:
     get:
       tags:
-        - api
-      summary: GET /api/v1/{id}
-      operationId: get_api_v1_id
+      - Applications
+      - Custom Claims
+      summary: List custom claims for an application
+      operationId: listApplicationCustomClaims
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: users-table-data
-        - name: entity_type
-          in: query
-          required: false
-          schema:
-            type: string
-          example: TENANT
-        - name: entity_id
-          in: query
-          required: false
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: count
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: start_index
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: id,applicationId,tenantId,identityProviderType,email,fullName,givenName,familyName,pictureUrl,status
-        - name: query
-          in: query
-          required: false
-          schema:
-            type: string
-          example: invitationType eq "EMAIL" and status eq "PENDING_INVITE_ACCEPTANCE"
+      - $ref: '#/components/parameters/applicationId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
       responses:
-        "200":
-          description: Success
-  /api/v1/workspaces/{id}/{id2}:
+        '200':
+          description: Custom claims returned.
+  /api/v1/applications/{applicationId}/refresh-token-table-data/{userId}:
     get:
       tags:
-        - api
-      summary: GET /api/v1/workspaces/{id}/{id2}
-      operationId: get_api_v1_workspaces_id_id2
+      - Applications
+      - Users
+      summary: Get refresh token table data for a user within an application
+      operationId: getRefreshTokenTableData
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: 45vuijz5kbhsxlwhu7ckiqpsti
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: application-usage-select-options
+      - $ref: '#/components/parameters/applicationId'
+      - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
       responses:
-        "200":
-          description: Success
+        '200':
+          description: Refresh token data returned.
+  /api/v1/applications/{applicationId}/auth-session-policies/resolve-overrides:
     post:
       tags:
-        - api
-      summary: POST /api/v1/workspaces/{id}/{id2}
-      operationId: post_api_v1_workspaces_id_id2
+      - Applications
+      - Policies
+      summary: Resolve auth session policy overrides for an application
+      operationId: resolveAuthSessionPolicyOverrides
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: 45vuijz5kbhsxlwhu7ckiqpsti
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-account-usage
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  startDate: 2026-04-01
-                  endDate: 2026-04-28
-                  overageThreshold: 10000
-                  globalTenantOverageThreshold: 10000
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        example: cookiePersistenceType,idleSessionTimeout,absoluteSessionTimeout
+        schema:
+          type: string
       responses:
-        "200":
-          description: Success
-  /api/v1/applications/{id}/{id2}:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/applications/{applicationId}/bot-detection-policies/resolve-overrides:
     post:
       tags:
-        - api
-      summary: POST /api/v1/applications/{id}/{id2}
-      operationId: post_api_v1_applications_id_id2
+      - Applications
+      - Policies
+      summary: Resolve bot detection policy overrides for an application
+      operationId: resolveBotDetectionPolicyOverrides
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: q6ehkcyrrbbnvpybk7zchwzo4q
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-account-usage
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  startDate: 2026-04-01
-                  endDate: 2026-04-28
-                  overageThreshold: 10000
-                  globalTenantOverageThreshold: 10000
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        example: loginCaptchaEnforcementStrategy
+        schema:
+          type: string
       responses:
-        "200":
-          description: Success
-    get:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/applications/{applicationId}/mfa-policies/resolve-overrides:
+    post:
       tags:
-        - api
-      summary: GET /api/v1/applications/{id}/{id2}
-      operationId: get_api_v1_applications_id_id2
+      - Applications
+      - Policies
+      summary: Resolve MFA policy overrides for an application
+      operationId: resolveMfaPolicyOverrides
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: vurkcywah5gvndx2hhrk4z6t64
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: application-context
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        example: enrollmentStrategy,allowedAuthFactors,totpSettings
+        schema:
+          type: string
       responses:
-        "200":
-          description: Success
-  /api/v1/applications/{id}:
-    get:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/applications/{applicationId}/password-policies/resolve-overrides:
+    post:
       tags:
-        - api
-      summary: GET /api/v1/applications/{id}
-      operationId: get_api_v1_applications_id
+      - Applications
+      - Policies
+      summary: Resolve password policy overrides for an application
+      operationId: resolvePasswordPolicyOverrides
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: vurkcywah5gvndx2hhrk4z6t64
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        example: minimumLength,lowercaseCharRequired,uppercaseCharRequired,digitRequired,specialCharRequired,breachedPwdDetectionEnabled,breachedPwdLoginRemediationStrategy
+        schema:
+          type: string
       responses:
-        "200":
-          description: Success
-  /api/v1/applications/{id}/custom-domains:
-    get:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/applications/{applicationId}/role-assignment-policy-data:
+    post:
       tags:
-        - api
-      summary: GET /api/v1/applications/{id}/custom-domains
-      operationId: get_api_v1_applications_id_custom_domains
+      - Applications
+      - Policies
+      summary: Get role assignment policy data for an application
+      operationId: getRoleAssignmentPolicyData
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: vurkcywah5gvndx2hhrk4z6t64
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        example: defaultIdpUserSyncRoles,defaultSignupRoles
+        schema:
+          type: string
       responses:
-        "200":
-          description: Success
-  /api/v1/applications/{id}/tenants:
-    get:
+        '200':
+          description: Role assignment policy data returned.
+  /api/v1/applications/{applicationId}/webhook-policies/resolve-overrides:
+    post:
       tags:
-        - api
-      summary: GET /api/v1/applications/{id}/tenants
-      operationId: get_api_v1_applications_id_tenants
+      - Applications
+      - Policies
+      summary: Resolve webhook policy overrides for an application
+      operationId: resolveWebhookPolicyOverrides
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: vurkcywah5gvndx2hhrk4z6t64
-        - name: start_index
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: count
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: id,type,name,displayName,logoUrl,status
-        - name: ?count
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "0"
-        - name: query
-          in: query
-          required: false
-          schema:
-            type: string
-          example: type eq "GLOBAL"
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        example: webhooksEnabled
+        schema:
+          type: string
       responses:
-        "200":
-          description: Success
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/applications/{applicationId}/workflow-policies/resolve-overrides:
+    post:
+      tags:
+      - Applications
+      - Policies
+      summary: Resolve workflow policy overrides for an application
+      operationId: resolveWorkflowPolicyOverrides
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        example: type,customRedirectEnabled,customRedirectUrl,emailVerificationStrategy,userActivationStrategy,enabledStrategies,rememberTenantsEnabled,verificationStep,immediateLoginEnabled,unverifiedEmailAction,allowChangingTenants,missingPwdRemediationStrategy,invitationLinkLifetime,customInvitationLinkUrl,customPasswordResetLinkUrl,passwordResetLinkLifetime
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/applications/{applicationId}/email-policies/resolve-overrides:
+    post:
+      tags:
+      - Applications
+      - Policies
+      summary: Resolve email policy overrides for an application
+      operationId: resolveEmailPolicyOverrides
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        example: id,emailType,actionLinkUrl,actionLinkLifetime,actionLinkLifetimeUnit
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/applications/{applicationId}/user-schemas/resolve-overrides:
+    post:
+      tags:
+      - Applications
+      summary: Resolve user schema overrides for an application
+      operationId: resolveUserSchemaOverrides
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        example: baseProfile.required
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/applications/{applicationId}/identity-providers/wristband/resolve-overrides:
+    post:
+      tags:
+      - Applications
+      - Identity Providers
+      summary: Resolve Wristband identity provider overrides for an application
+      operationId: resolveWristbandIdpOverrides
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/applications/{applicationId}/identity-providers/social/resolve-overrides:
+    post:
+      tags:
+      - Applications
+      - Identity Providers
+      summary: Resolve social identity provider overrides for an application
+      operationId: resolveSocialIdpOverrides
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/applications/{applicationId}/page-brandings/resolve-overrides:
+    post:
+      tags:
+      - Applications
+      - Brandings
+      summary: Resolve page branding overrides for an application
+      operationId: resolvePageBrandingOverrides
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        description: Comma-separated list of branding fields to resolve.
+        example: pageBackgroundType,pageBackgroundColor,pageBackgroundImageUrl,panelBackgroundColor,panelTextColor,panelBorderRadiusPixels,panelBorderColor,panelBoxShadowEnabled,primaryButtonBackgroundColor,primaryButtonTextColor,logoUrl,logoHeightPixels,faviconUrl,websiteUrl,termsOfServiceUrl,privacyPolicyUrl,supportUrl,supportEmail
+        schema:
+          type: string
+      - name: application_signup_page_branding_fields
+        in: query
+        example: '*'
+        schema:
+          type: string
+      - name: tenant_signup_page_branding_fields
+        in: query
+        example: '*'
+        schema:
+          type: string
+      - name: application_login_page_branding_fields
+        in: query
+        example: '*'
+        schema:
+          type: string
+      - name: tenant_login_page_branding_fields
+        in: query
+        example: '*'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved page branding overrides returned.
+  /api/v1/applications/{applicationId}/email-brandings/resolve-overrides:
+    post:
+      tags:
+      - Applications
+      - Brandings
+      summary: Resolve email branding overrides for an application
+      operationId: resolveEmailBrandingOverrides
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: fields
+        in: query
+        example: primaryButtonBackgroundColor,primaryButtonTextColor,primaryButtonBorderRadiusPixels,primaryButtonBorderColor,logoUrl,logoAltText,logoWidthPixels,logoHeightPixels,supportEmail,websiteUrl,supportUrl,fromName,fromAddress,logoDisplayed
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved email branding overrides returned.
   /api/v1/tenants:
     post:
       tags:
-        - api
-      summary: POST /api/v1/tenants
-      operationId: post_api_v1_tenants
+      - Tenants
+      summary: Create a tenant
+      operationId: createTenant
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  applicationId: vurkcywah5gvndx2hhrk4z6t64
-                  type: STANDARD
-                  displayName: T1
-                  name: customer01
+              $ref: '#/components/schemas/CreateTenantRequest'
+            example:
+              applicationId: 4hkv6bxrwzcbtnw7pt264auuki
+              type: STANDARD
+              displayName: new tenant
+              name: newtenant11
       responses:
-        "200":
-          description: Success
+        '200':
+          description: Tenant created.
+  /api/v1/tenants/{tenantId}:
+    patch:
+      tags:
+      - Tenants
+      summary: Update a tenant
+      operationId: updateTenant
+      parameters:
+      - $ref: '#/components/parameters/tenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequest'
+            example:
+              displayName: purple1
+              description: This is a test account.
+              logoUrl: ''
+      responses:
+        '200':
+          description: Tenant updated.
+  /api/v1/tenants/{tenantId}/assignable-role-select-options:
+    get:
+      tags:
+      - Tenants
+      - Roles
+      summary: Get assignable role select options for a tenant
+      operationId: getTenantAssignableRoleSelectOptions
+      parameters:
+      - $ref: '#/components/parameters/tenantId'
+      responses:
+        '200':
+          description: Assignable role options returned.
+  /api/v1/tenants/{tenantId}/tenant-admins-table-data:
+    get:
+      tags:
+      - Tenants
+      summary: Get tenant admins table data
+      operationId: getTenantAdminsTableData
+      parameters:
+      - $ref: '#/components/parameters/tenantId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
+      - name: fields
+        in: query
+        example: id,tenantId,applicationId,identityProviderType,givenName,familyName,email,pictureUrl,status
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tenant admins table data returned.
+  /api/v1/tenants/{tenantId}/admin-invitation-requests:
+    get:
+      tags:
+      - Tenants
+      summary: List admin invitation requests for a tenant
+      operationId: listTenantAdminInvitationRequests
+      parameters:
+      - $ref: '#/components/parameters/tenantId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
+      - name: fields
+        in: query
+        example: id,email,inviteeName,invitationType,tenantId,rolesToAssign
+        schema:
+          type: string
+      - name: query
+        in: query
+        example: invitationType eq "EMAIL" and status eq "PENDING_INVITE_ACCEPTANCE"
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Invitation requests returned.
   /api/v1/users:
     post:
       tags:
-        - api
-      summary: POST /api/v1/users
-      operationId: post_api_v1_users
+      - Users
+      summary: Create a user
+      operationId: createUser
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  tenantId: ukuhjeau7fhdxafymuwitm4zoq
-                  identityProviderName: wristband
-                  email: user1@gmail.com
-                  sendInvitation: false
+              $ref: '#/components/schemas/CreateUserRequest'
+            example:
+              tenantId: rng6sb3pd5cfplqm24j4ja67bm
+              identityProviderName: wristband
+              email: jack@tester.com
+              sendInvitation: false
+              rolesToAssign:
+              - ipw2o6op65cpfbi5cowydv2asi
       responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/clients:
-    get:
+        '200':
+          description: User created.
+  /api/v1/users/{userId}:
+    patch:
       tags:
-        - api
-      summary: GET /api/v1/tenants/{id}/clients
-      operationId: get_api_v1_tenants_id_clients
+      - Users
+      summary: Update a user
+      operationId: updateUser
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: start_index
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: count
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: id,name,type
-        - name: query
-          in: query
-          required: false
-          schema:
-            type: string
-          example: type eq "MACHINE_TO_MACHINE"
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/{id2}/wristband/{id3}:
-    post:
-      tags:
-        - api
-      summary: POST /api/v1/tenants/{id}/{id2}/wristband/{id3}
-      operationId: post_api_v1_tenants_id_id2_wristband_id3
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: identity-providers
-        - name: id3
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-overrides
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/{id2}/social/{id3}:
-    post:
-      tags:
-        - api
-      summary: POST /api/v1/tenants/{id}/{id2}/social/{id3}
-      operationId: post_api_v1_tenants_id_id2_social_id3
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: identity-providers
-        - name: id3
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-overrides
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/{id2}/enterprise/{id3}:
-    post:
-      tags:
-        - api
-      summary: POST /api/v1/tenants/{id}/{id2}/enterprise/{id3}
-      operationId: post_api_v1_tenants_id_id2_enterprise_id3
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: identity-providers
-        - name: id3
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-overrides
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/override-toggle:
-    post:
-      tags:
-        - api
-      summary: POST /api/v1/tenants/{id}/override-toggle
-      operationId: post_api_v1_tenants_id_override_toggle
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
+      - $ref: '#/components/parameters/userId'
+      - name: replace_custom_metadata
+        in: query
+        description: If false, merges custom metadata instead of replacing it.
+        example: false
+        schema:
+          type: boolean
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  overridePath: identity-provider
-                  overrideStatus: ENABLED
+              $ref: '#/components/schemas/UpdateUserRequest'
+            example:
+              givenName: ''
+              middleName: ''
+              familyName: ''
+              honorificPrefix: null
+              honorificSuffix: II
+              nickname: ''
+              fullName: ''
+              displayName: ''
+              gender: ''
+              username: ''
+              externalId: ''
+              timeZone: America/Los_Angeles
+              locale: en-US
+              preferredLanguage: en-US
+              phoneNumber: ''
+              birthdate: null
+              pictureUrl: ''
       responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/roles:
+        '200':
+          description: User updated.
+  /api/v1/users/{userId}/auth-sessions:
     get:
       tags:
-        - api
-      summary: GET /api/v1/tenants/{id}/roles
-      operationId: get_api_v1_tenants_id_roles
+      - Users
+      summary: List auth sessions for a user
+      operationId: listUserAuthSessions
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: start_index
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: count
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: id,name,displayName,tenantVisibility
-        - name: include_predefined_roles
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "false"
-        - name: query
-          in: query
-          required: false
-          schema:
-            type: string
-          example: type eq "CUSTOM"
+      - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
       responses:
-        "200":
-          description: Success
+        '200':
+          description: Auth sessions returned.
+  /api/v1/users-table-data:
+    get:
+      tags:
+      - Users
+      summary: Get users table data
+      operationId: getUsersTableData
+      parameters:
+      - name: entity_type
+        in: query
+        description: The entity scope (e.g. APPLICATION).
+        example: APPLICATION
+        required: true
+        schema:
+          type: string
+          enum:
+          - APPLICATION
+          - TENANT
+      - name: entity_id
+        in: query
+        description: ID of the scoping entity.
+        example: 4hkv6bxrwzcbtnw7pt264auuki
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
+      - name: fields
+        in: query
+        example: id,applicationId,tenantId,identityProviderType,email,status,givenName,familyName,pictureUrl
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Users table data returned.
+  /api/v1/new-user-invites-table-data:
+    get:
+      tags:
+      - Users
+      summary: Get new user invitations table data
+      operationId: getNewUserInvitesTableData
+      parameters:
+      - name: entity_type
+        in: query
+        example: APPLICATION
+        required: true
+        schema:
+          type: string
+          enum:
+          - APPLICATION
+          - TENANT
+      - name: entity_id
+        in: query
+        example: 4hkv6bxrwzcbtnw7pt264auuki
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/startIndex'
+      - $ref: '#/components/parameters/count'
+      - name: query
+        in: query
+        example: invitationType eq "EMAIL" and status eq "PENDING_INVITE_ACCEPTANCE"
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User invitations table data returned.
+  /api/v1/create-user-data/{tenantId}:
+    get:
+      tags:
+      - Users
+      summary: Get create-user form data for a tenant
+      operationId: getCreateUserData
+      parameters:
+      - $ref: '#/components/parameters/tenantId'
+      responses:
+        '200':
+          description: Create user form data returned.
+  /api/v1/edit-user-data/{userId}:
+    get:
+      tags:
+      - Users
+      summary: Get edit-user form data for a user
+      operationId: getEditUserData
+      parameters:
+      - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: Edit user form data returned.
+  /api/v1/clients:
+    post:
+      tags:
+      - Clients
+      summary: Create a client
+      operationId: createClient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClientRequest'
+            example:
+              ownerType: APPLICATION
+              ownerId: 4hkv6bxrwzcbtnw7pt264auuki
+              name: new client
+              type: MACHINE_TO_MACHINE
+              grantTypes:
+              - CLIENT_CREDENTIALS
+              accessTokenLifetime: PT1440M
+      responses:
+        '200':
+          description: Client created.
+  /api/v1/edit-client-data/{clientId}:
+    get:
+      tags:
+      - Clients
+      summary: Get edit-client form data
+      operationId: getEditClientData
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        description: The client ID.
+        example: tmhertdeuvhb5nx4yncentcy5q
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Edit client form data returned.
+  /api/v1/identity-providers:
+    post:
+      tags:
+      - Identity Providers
+      summary: Create or upsert an identity provider
+      operationId: upsertIdentityProvider
+      parameters:
+      - name: upsert
+        in: query
+        description: If true, performs an upsert instead of a strict create.
+        example: true
+        schema:
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIdentityProviderRequest'
+            example:
+              ownerId: 4hkv6bxrwzcbtnw7pt264auuki
+              ownerType: APPLICATION
+              name: wristband
+              type: WRISTBAND
+              status: ENABLED
+              loginIdentifiers:
+              - EMAIL
+              loginFactors:
+              - PASSWORD
+              primaryLoginFactor: PASSWORD
+      responses:
+        '200':
+          description: Identity provider created or updated.
   /api/v1/roles:
     post:
       tags:
-        - api
-      summary: POST /api/v1/roles
-      operationId: post_api_v1_roles
+      - Roles
+      summary: Create a role
+      operationId: createRole
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  ownerType: TENANT
-                  ownerId: ukuhjeau7fhdxafymuwitm4zoq
-                  name: role1
-                  displayName: my role
-                  tenantVisibility: OWNER
-                  tenantVisibilityInclusionList: []
+              $ref: '#/components/schemas/CreateRoleRequest'
+            example:
+              ownerType: APPLICATION
+              ownerId: 4hkv6bxrwzcbtnw7pt264auuki
+              name: saa
+              displayName: aaa
+              tenantVisibility: NONE
+              tenantVisibilityInclusionList: []
       responses:
-        "200":
-          description: Success
-  /api/v1/roles/{id}/{id2}:
-    get:
-      tags:
-        - api
-      summary: GET /api/v1/roles/{id}/{id2}
-      operationId: get_api_v1_roles_id_id2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ke6hgji5zrduxfmf5bvcotqvue
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: permission-boundary-select-options
-        - name: start_index
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: count
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: id,name,displayName
-        - name: query
-          in: query
-          required: false
-          schema:
-            type: string
-          example: entityType eq "USER"
-        - name: application_id
-          in: query
-          required: false
-          schema:
-            type: string
-          example: vurkcywah5gvndx2hhrk4z6t64
-      responses:
-        "200":
-          description: Success
-  /api/v1/roles/{id}/permissions:
-    get:
-      tags:
-        - api
-      summary: GET /api/v1/roles/{id}/permissions
-      operationId: get_api_v1_roles_id_permissions
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ke6hgji5zrduxfmf5bvcotqvue
-        - name: start_index
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "1"
-        - name: count
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "10"
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: id,type,value
-      responses:
-        "200":
-          description: Success
-  /api/v1/roles/{id}:
-    get:
-      tags:
-        - api
-      summary: GET /api/v1/roles/{id}
-      operationId: get_api_v1_roles_id
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ke6hgji5zrduxfmf5bvcotqvue
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/{id2}/{id3}:
+        '200':
+          description: Role created.
+  /api/v1/permissions:
     post:
       tags:
-        - api
-      summary: POST /api/v1/tenants/{id}/{id2}/{id3}
-      operationId: post_api_v1_tenants_id_id2_id3
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: auth-session-policies
-        - name: id3
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-overrides
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: cookiePersistenceType,idleSessionTimeout,absoluteSessionTimeout
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/mfa-policies/{id2}:
-    post:
-      tags:
-        - api
-      summary: POST /api/v1/tenants/{id}/mfa-policies/{id2}
-      operationId: post_api_v1_tenants_id_mfa_policies_id2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-overrides
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: enrollmentStrategy,allowedAuthFactors,totpSettings
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/page-brandings/{id2}:
-    post:
-      tags:
-        - api
-      summary: POST /api/v1/tenants/{id}/page-brandings/{id2}
-      operationId: post_api_v1_tenants_id_page_brandings_id2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-overrides
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: pageBackgroundType,pageBackgroundColor,pageBackgroundImageUrl,panelBackgroundColor,panelTextColor,panelBorderRadiusPixels,panelBorderColor,panelBoxShadowEnabled,primaryButtonBackgroundColor,primaryButtonTextColor,primaryButtonBorderRadiusPixels,primaryButtonBorderColor,primaryButtonFocusColor,secondaryButtonBackgroundColor,secondaryButtonTextColor,secondaryButtonBorderRadiusPixels,secondaryButtonBorderColor,secondaryButtonFocusColor,inputBackgroundColor,inputTextColor,inputBorderRadiusPixels,inputBorderColor,inputFocusColor,inputIconColor,inputIconButtonHoverColor,linkColor,linkHoverColor,linkUnderlineAppearance,errorColor,successColor,logoUrl,logoHeightPixels,faviconUrl,websiteUrl,termsOfServiceUrl,privacyPolicyUrl,supportUrl,supportEmail
-        - name: tenant_signup_page_branding_fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "*"
-        - name: tenant_login_page_branding_fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: "*"
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/email-brandings/{id2}:
-    post:
-      tags:
-        - api
-      summary: POST /api/v1/tenants/{id}/email-brandings/{id2}
-      operationId: post_api_v1_tenants_id_email_brandings_id2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-overrides
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: primaryButtonBackgroundColor,primaryButtonTextColor,primaryButtonBorderRadiusPixels,primaryButtonBorderColor,logoUrl,logoAltText,logoWidthPixels,logoHeightPixels,supportEmail,websiteUrl,supportUrl,fromName,fromAddress,logoDisplayed
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/custom-domains:
-    get:
-      tags:
-        - api
-      summary: GET /api/v1/tenants/{id}/custom-domains
-      operationId: get_api_v1_tenants_id_custom_domains
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/email-domains:
-    get:
-      tags:
-        - api
-      summary: GET /api/v1/tenants/{id}/email-domains
-      operationId: get_api_v1_tenants_id_email_domains
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-      responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/email-policies/{id2}:
-    get:
-      tags:
-        - api
-      summary: GET /api/v1/tenants/{id}/email-policies/{id2}
-      operationId: get_api_v1_tenants_id_email_policies_id2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-overrides
-      responses:
-        "200":
-          description: Success
-  /api/v1/email-policies:
-    post:
-      tags:
-        - api
-      summary: POST /api/v1/email-policies
-      operationId: post_api_v1_email_policies
+      - Permissions
+      summary: Create a permission
+      operationId: createPermission
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  emailType: USER_ACTIVATION
-                  ownerType: TENANT
-                  ownerId: ukuhjeau7fhdxafymuwitm4zoq
-                  actionLinkUrl: ""
-                  actionLinkLifetime: 2
-                  actionLinkLifetimeUnit: DAYS
+              $ref: '#/components/schemas/CreatePermissionRequest'
+            example:
+              type: CUSTOM
+              applicationId: 4hkv6bxrwzcbtnw7pt264auuki
+              value: aa
+              description: aa
+              tenantVisibility: ALL
       responses:
-        "200":
-          description: Success
-  /api/v1/tenants/{id}/user-schemas/{id2}:
+        '200':
+          description: Permission created.
+  /api/v1/permission-groups:
     post:
       tags:
-        - api
-      summary: POST /api/v1/tenants/{id}/user-schemas/{id2}
-      operationId: post_api_v1_tenants_id_user_schemas_id2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: ukuhjeau7fhdxafymuwitm4zoq
-        - name: id2
-          in: path
-          required: true
-          schema:
-            type: string
-          example: resolve-overrides
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: baseProfile.required
-      responses:
-        "200":
-          description: Success
-  /api/v1/user-schemas:
-    post:
-      tags:
-        - api
-      summary: POST /api/v1/user-schemas
-      operationId: post_api_v1_user_schemas
+      - Permission Groups
+      summary: Create a permission group
+      operationId: createPermissionGroup
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  ownerType: TENANT
-                  ownerId: ukuhjeau7fhdxafymuwitm4zoq
-                  required:
-                    - email
-                    - familyName
+              $ref: '#/components/schemas/CreatePermissionGroupRequest'
+            example:
+              ownerType: APPLICATION
+              ownerId: 4hkv6bxrwzcbtnw7pt264auuki
+              name: newpemissiongroup
+              displayName: New Permission Group
+              tenantVisibility: NONE
       responses:
-        "200":
-          description: Success
-  /api/v1/workspaces/{id}/applications:
-    get:
-      tags:
-        - api
-      summary: GET /api/v1/workspaces/{id}/applications
-      operationId: get_api_v1_workspaces_id_applications
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-          example: 45vuijz5kbhsxlwhu7ckiqpsti
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          example: id
-        - name: query
-          in: query
-          required: false
-          schema:
-            type: string
-          example: name eq "app999"
-      responses:
-        "200":
-          description: Success
-  /api/v1/applications:
+        '200':
+          description: Permission group created.
+  /api/v1/permission-boundaries:
     post:
       tags:
-        - api
-      summary: POST /api/v1/applications
-      operationId: post_api_v1_applications
+      - Permission Boundaries
+      summary: Create a permission boundary
+      operationId: createPermissionBoundary
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiPostRequest"
-            examples:
-              fromHar:
-                value:
-                  workspaceId: 45vuijz5kbhsxlwhu7ckiqpsti
-                  displayName: app999
-                  name: app999
-                  loginUrl: https://app999-jadriel.us.wristband.dev/login-url-placeholder
-                  environmentType: DEVELOPMENT
-                  isMultiTenant: true
+              $ref: '#/components/schemas/CreatePermissionBoundaryRequest'
+            example:
+              ownerType: APPLICATION
+              ownerId: 4hkv6bxrwzcbtnw7pt264auuki
+              type: TENANT_EXCLUSION_LIST
+              name: permissionboundaries
+              displayName: Permission Boundaries
+              value: null
+              resourceList:
+              - zwfn3nwlpvcllaz7hj7l4b4p5q
+              tenantVisibility: NONE
       responses:
-        "200":
-          description: Success
+        '200':
+          description: Permission boundary created.
+  /api/v1/auth-session-policies:
+    post:
+      tags:
+      - Policies
+      summary: Create or update an auth session policy
+      operationId: upsertAuthSessionPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthSessionPolicyRequest'
+            example:
+              ownerType: APPLICATION
+              ownerId: 4hkv6bxrwzcbtnw7pt264auuki
+              cookiePersistenceType: PERSISTENT
+              idleSessionTimeout: PT4320M
+              absoluteSessionTimeout: PT10080M
+      responses:
+        '200':
+          description: Auth session policy saved.
+  /api/v1/bot-detection-policies:
+    post:
+      tags:
+      - Policies
+      summary: Create or update a bot detection policy
+      operationId: upsertBotDetectionPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BotDetectionPolicyRequest'
+            example:
+              ownerType: APPLICATION
+              ownerId: 4hkv6bxrwzcbtnw7pt264auuki
+              loginCaptchaEnforcementStrategy: NEVER
+      responses:
+        '200':
+          description: Bot detection policy saved.
+  /api/v1/mfa-policies:
+    post:
+      tags:
+      - Policies
+      summary: Create or update an MFA policy
+      operationId: upsertMfaPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MfaPolicyRequest'
+            example:
+              ownerType: APPLICATION
+              ownerId: 4hkv6bxrwzcbtnw7pt264auuki
+              allowedAuthFactors: []
+              enrollmentStrategy: OPTIONAL
+              totpSettings:
+                issuer: null
+      responses:
+        '200':
+          description: MFA policy saved.
+  /api/v1/password-policies:
+    post:
+      tags:
+      - Policies
+      summary: Create or update a password policy
+      operationId: upsertPasswordPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordPolicyRequest'
+            example:
+              ownerType: APPLICATION
+              ownerId: 4hkv6bxrwzcbtnw7pt264auuki
+              minimumLength: 8
+              lowercaseCharRequired: true
+              uppercaseCharRequired: false
+              digitRequired: false
+              specialCharRequired: false
+              breachedPwdDetectionEnabled: false
+              breachedPwdLoginRemediationStrategy: NONE
+      responses:
+        '200':
+          description: Password policy saved.
+  /api/v1/role-assignment-policies:
+    post:
+      tags:
+      - Policies
+      summary: Create or update a role assignment policy
+      operationId: upsertRoleAssignmentPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleAssignmentPolicyRequest'
+            example:
+              ownerType: APPLICATION
+              ownerId: 4hkv6bxrwzcbtnw7pt264auuki
+              defaultSignupRoles:
+              - ybaqs4tmh5cwpj4p2dnchwf5na
+              defaultIdpUserSyncRoles:
+              - ybaqs4tmh5cwpj4p2dnchwf5na
+              - vs62a73zyveyfe5bvtcy3vts6e
+      responses:
+        '200':
+          description: Role assignment policy saved.
+  /api/v1/signing-keys/{signingKeyId}:
+    delete:
+      tags:
+      - Signing Keys
+      summary: Delete a signing key
+      operationId: deleteSigningKey
+      parameters:
+      - name: signingKeyId
+        in: path
+        required: true
+        description: The signing key ID.
+        example: ydtvovcvejev3ogxl6lcxfzaya
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Signing key deleted.
 components:
+  parameters:
+    applicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: The application ID.
+      example: 4hkv6bxrwzcbtnw7pt264auuki
+      schema:
+        type: string
+    workspaceId:
+      name: workspaceId
+      in: path
+      required: true
+      description: The workspace ID.
+      example: 6yolumoxvngfpppgimaowlvypm
+      schema:
+        type: string
+    tenantId:
+      name: tenantId
+      in: path
+      required: true
+      description: The tenant ID.
+      example: xzzfjkk4fbh75amy2zggyglueu
+      schema:
+        type: string
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: The user ID.
+      example: xj3syphvovfolkmeqwycpllu4y
+      schema:
+        type: string
+    startIndex:
+      name: start_index
+      in: query
+      description: 1-based index of the first record to return.
+      example: 1
+      schema:
+        type: integer
+        default: 1
+    count:
+      name: count
+      in: query
+      description: Maximum number of records to return.
+      example: 10
+      schema:
+        type: integer
+        default: 10
   schemas:
-    ApiPatchRequest:
+    ResolveAccountUsageRequest:
       type: object
       properties:
-        pictureUrl:
+        startDate:
           type: string
-      required:
-        - pictureUrl
-    ApiPostRequest:
+          format: date
+          example: '2026-06-01'
+        endDate:
+          type: string
+          format: date
+          example: '2026-06-09'
+        overageThreshold:
+          type: integer
+          example: 10000
+        globalTenantOverageThreshold:
+          type: integer
+          example: 10000
+    UpdateApplicationRequest:
       type: object
+      properties:
+        displayName:
+          type: string
+        tenantClassifier:
+          type: string
+          enum:
+          - COMPANY
+          - PERSONAL
+          - ANY
+        loginUrl:
+          type: string
+          format: uri
+        logoutUrls:
+          type: array
+          items:
+            type: string
+            format: uri
+        allowedOrigins:
+          type: array
+          items:
+            type: string
+            format: uri
+        signupEnabled:
+          type: boolean
+    CreateTenantRequest:
+      type: object
+      required:
+      - applicationId
+      - type
+      - displayName
+      - name
+      properties:
+        applicationId:
+          type: string
+        type:
+          type: string
+          enum:
+          - STANDARD
+          - GLOBAL
+        displayName:
+          type: string
+        name:
+          type: string
+    UpdateTenantRequest:
+      type: object
+      properties:
+        displayName:
+          type: string
+        description:
+          type: string
+        logoUrl:
+          type: string
+    CreateUserRequest:
+      type: object
+      required:
+      - tenantId
+      - identityProviderName
+      - email
       properties:
         tenantId:
           type: string
+        identityProviderName:
+          type: string
         email:
           type: string
+          format: email
+        sendInvitation:
+          type: boolean
         rolesToAssign:
           type: array
           items:
             type: string
+    UpdateUserRequest:
+      type: object
+      properties:
+        givenName:
+          type: string
+        middleName:
+          type: string
+        familyName:
+          type: string
+        honorificPrefix:
+          type: string
+          nullable: true
+        honorificSuffix:
+          type: string
+          nullable: true
+        nickname:
+          type: string
+        fullName:
+          type: string
+        displayName:
+          type: string
+        gender:
+          type: string
+        username:
+          type: string
+        externalId:
+          type: string
+        timeZone:
+          type: string
+          example: America/Los_Angeles
+        locale:
+          type: string
+          example: en-US
+        preferredLanguage:
+          type: string
+          example: en-US
+        phoneNumber:
+          type: string
+        birthdate:
+          type: string
+          format: date
+          nullable: true
+        pictureUrl:
+          type: string
+    CreateClientRequest:
+      type: object
       required:
-        - tenantId
-        - email
-        - rolesToAssign
+      - ownerType
+      - ownerId
+      - name
+      - type
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+        ownerId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - MACHINE_TO_MACHINE
+          - PUBLIC
+          - CONFIDENTIAL
+        grantTypes:
+          type: array
+          items:
+            type: string
+            enum:
+            - CLIENT_CREDENTIALS
+            - AUTHORIZATION_CODE
+            - REFRESH_TOKEN
+        accessTokenLifetime:
+          type: string
+          description: ISO 8601 duration.
+          example: PT1440M
+    CreateIdentityProviderRequest:
+      type: object
+      required:
+      - ownerId
+      - ownerType
+      - name
+      - type
+      properties:
+        ownerId:
+          type: string
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - WRISTBAND
+          - SOCIAL
+        status:
+          type: string
+          enum:
+          - ENABLED
+          - DISABLED
+        loginIdentifiers:
+          type: array
+          items:
+            type: string
+            enum:
+            - EMAIL
+            - PHONE
+        loginFactors:
+          type: array
+          items:
+            type: string
+            enum:
+            - PASSWORD
+            - MAGIC_LINK
+            - OTP
+        primaryLoginFactor:
+          type: string
+          enum:
+          - PASSWORD
+          - MAGIC_LINK
+          - OTP
+    CreateRoleRequest:
+      type: object
+      required:
+      - ownerType
+      - ownerId
+      - name
+      - displayName
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+        ownerId:
+          type: string
+        name:
+          type: string
+        displayName:
+          type: string
+        tenantVisibility:
+          type: string
+          enum:
+          - NONE
+          - ALL
+          - INCLUSION_LIST
+        tenantVisibilityInclusionList:
+          type: array
+          items:
+            type: string
+    CreatePermissionRequest:
+      type: object
+      required:
+      - type
+      - applicationId
+      - value
+      properties:
+        type:
+          type: string
+          enum:
+          - CUSTOM
+          - PREDEFINED
+        applicationId:
+          type: string
+        value:
+          type: string
+        description:
+          type: string
+        tenantVisibility:
+          type: string
+          enum:
+          - NONE
+          - ALL
+          - INCLUSION_LIST
+    CreatePermissionGroupRequest:
+      type: object
+      required:
+      - ownerType
+      - ownerId
+      - name
+      - displayName
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+        ownerId:
+          type: string
+        name:
+          type: string
+        displayName:
+          type: string
+        tenantVisibility:
+          type: string
+          enum:
+          - NONE
+          - ALL
+          - INCLUSION_LIST
+    CreatePermissionBoundaryRequest:
+      type: object
+      required:
+      - ownerType
+      - ownerId
+      - type
+      - name
+      - displayName
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+        ownerId:
+          type: string
+        type:
+          type: string
+          enum:
+          - TENANT_EXCLUSION_LIST
+          - TENANT_INCLUSION_LIST
+        name:
+          type: string
+        displayName:
+          type: string
+        value:
+          type: string
+          nullable: true
+        resourceList:
+          type: array
+          items:
+            type: string
+        tenantVisibility:
+          type: string
+          enum:
+          - NONE
+          - ALL
+          - INCLUSION_LIST
+    AuthSessionPolicyRequest:
+      type: object
+      required:
+      - ownerType
+      - ownerId
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+        ownerId:
+          type: string
+        cookiePersistenceType:
+          type: string
+          enum:
+          - PERSISTENT
+          - SESSION
+        idleSessionTimeout:
+          type: string
+          description: ISO 8601 duration.
+          example: PT4320M
+        absoluteSessionTimeout:
+          type: string
+          description: ISO 8601 duration.
+          example: PT10080M
+    BotDetectionPolicyRequest:
+      type: object
+      required:
+      - ownerType
+      - ownerId
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+        ownerId:
+          type: string
+        loginCaptchaEnforcementStrategy:
+          type: string
+          enum:
+          - NEVER
+          - ALWAYS
+          - RISK_BASED
+    MfaPolicyRequest:
+      type: object
+      required:
+      - ownerType
+      - ownerId
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+        ownerId:
+          type: string
+        allowedAuthFactors:
+          type: array
+          items:
+            type: string
+        enrollmentStrategy:
+          type: string
+          enum:
+          - OPTIONAL
+          - REQUIRED
+        totpSettings:
+          type: object
+          properties:
+            issuer:
+              type: string
+              nullable: true
+    PasswordPolicyRequest:
+      type: object
+      required:
+      - ownerType
+      - ownerId
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+        ownerId:
+          type: string
+        minimumLength:
+          type: integer
+          example: 8
+        lowercaseCharRequired:
+          type: boolean
+        uppercaseCharRequired:
+          type: boolean
+        digitRequired:
+          type: boolean
+        specialCharRequired:
+          type: boolean
+        breachedPwdDetectionEnabled:
+          type: boolean
+        breachedPwdLoginRemediationStrategy:
+          type: string
+          enum:
+          - NONE
+          - FORCE_RESET
+          - WARN
+    RoleAssignmentPolicyRequest:
+      type: object
+      required:
+      - ownerType
+      - ownerId
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+        ownerId:
+          type: string
+        defaultSignupRoles:
+          type: array
+          items:
+            type: string
+        defaultIdpUserSyncRoles:
+          type: array
+          items:
+            type: string
