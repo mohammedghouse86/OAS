@@ -1,0 +1,931 @@
+openapi: 3.0.3
+info:
+  title: Snooplay API
+  description: >
+    API specification for snooplay.in — a Shopify-based toy e-commerce platform.
+    Derived from HAR traffic capture. Includes Shopify core endpoints (cart, products)
+    and the Flits app endpoints (account, wishlist, credits, referrals, profile).
+  version: 1.0.0
+  contact:
+    url: https://snooplay.in
+
+servers:
+  - url: https://snooplay.in
+    description: Production
+
+tags:
+  - name: Cart
+    description: Shopping cart operations
+  - name: Products
+    description: Product catalog
+  - name: Account
+    description: Customer account pages
+  - name: Auth
+    description: Authentication / Shop login
+  - name: Flits – Profile
+    description: Flits app — customer profile management
+  - name: Flits – Wishlist
+    description: Flits app — wishlist
+  - name: Flits – Credits
+    description: Flits app — store credits and refund credits
+  - name: Flits – Referrals
+    description: Flits app — refer-a-friend
+  - name: Flits – Rules
+    description: Flits app — loyalty/discount rules
+  - name: Analytics
+    description: Shopify analytics beacon
+
+# ---------------------------------------------------------------------------
+# Reusable components
+# ---------------------------------------------------------------------------
+components:
+  parameters:
+    customerId:
+      name: customer_id
+      in: path
+      required: true
+      description: Numeric Shopify customer ID
+      schema:
+        type: string
+        example: "9084858957885"
+
+    shopId:
+      name: shop_id
+      in: path
+      required: true
+      description: Numeric Flits shop ID
+      schema:
+        type: string
+        example: "23264"
+
+    customerHash:
+      name: customer_hash
+      in: query
+      required: true
+      description: HMAC customer authentication hash issued by Flits
+      schema:
+        type: string
+        example: "4201add56cda3c57058ccffe0ffcf25271eadc7593afd50329a2936b16833854"
+
+    token:
+      name: token
+      in: query
+      required: true
+      description: Flits session token
+      schema:
+        type: string
+        example: "c1ab630d3017980756c8892517969c30"
+
+    variantId:
+      name: variant_id
+      in: path
+      required: true
+      description: Shopify product variant ID
+      schema:
+        type: string
+        example: "42640749756477"
+
+    productHandle:
+      name: product_handle
+      in: path
+      required: true
+      description: Shopify product URL handle (slug)
+      schema:
+        type: string
+        example: "jukku-resembling-mercedes-benz-gt-r-diecast-car"
+
+  schemas:
+    CartItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Variant ID
+        quantity:
+          type: integer
+        title:
+          type: string
+        price:
+          type: integer
+          description: Price in paise (INR × 100)
+        variant_id:
+          type: integer
+        product_id:
+          type: integer
+        handle:
+          type: string
+        properties:
+          type: object
+          additionalProperties: true
+
+    Cart:
+      type: object
+      properties:
+        token:
+          type: string
+        note:
+          type: string
+          nullable: true
+        attributes:
+          type: object
+        original_total_price:
+          type: integer
+        total_price:
+          type: integer
+        total_discount:
+          type: integer
+        total_weight:
+          type: number
+        item_count:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
+        requires_shipping:
+          type: boolean
+        currency:
+          type: string
+          example: INR
+        items_subtotal_price:
+          type: integer
+        cart_level_discount_applications:
+          type: array
+          items:
+            type: object
+
+    ProductVariant:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        option1:
+          type: string
+          nullable: true
+        option2:
+          type: string
+          nullable: true
+        price:
+          type: string
+        compare_at_price:
+          type: string
+          nullable: true
+        available:
+          type: boolean
+        sku:
+          type: string
+        inventory_quantity:
+          type: integer
+        weight:
+          type: number
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        handle:
+          type: string
+        vendor:
+          type: string
+        product_type:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariant'
+        images:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              src:
+                type: string
+              alt:
+                type: string
+                nullable: true
+        options:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              values:
+                type: array
+                items:
+                  type: string
+
+    FlitsCredit:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        credit:
+          type: number
+          description: Store credit balance
+        currency:
+          type: string
+          example: INR
+
+    FlitsRefundCredit:
+      type: object
+      properties:
+        status:
+          type: string
+        credits:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              amount:
+                type: number
+              description:
+                type: string
+              created_at:
+                type: string
+                format: date-time
+        total:
+          type: integer
+          description: Total number of records for pagination
+
+    FlitsWishlist:
+      type: object
+      properties:
+        status:
+          type: string
+        wishlist:
+          type: array
+          items:
+            type: object
+            properties:
+              product_id:
+                type: integer
+              variant_id:
+                type: integer
+              handle:
+                type: string
+              added_at:
+                type: string
+                format: date-time
+
+    FlitsReferralData:
+      type: object
+      properties:
+        status:
+          type: string
+        referral_code:
+          type: string
+        referral_link:
+          type: string
+        referred_count:
+          type: integer
+        reward_earned:
+          type: number
+
+    FlitsCustomFields:
+      type: object
+      properties:
+        status:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+
+    AnalyticsPayload:
+      type: object
+      required:
+        - v
+        - s
+        - r
+      properties:
+        v:
+          type: integer
+          description: Payload version
+          example: 1
+        s:
+          type: object
+          description: Session state flags
+          properties:
+            wd:
+              type: boolean
+            ua:
+              type: boolean
+            cf:
+              type: boolean
+            be:
+              type: boolean
+            nm:
+              type: boolean
+            nc:
+              type: boolean
+            ka:
+              type: boolean
+            sa:
+              type: boolean
+            ta:
+              type: boolean
+            pt:
+              type: boolean
+            mp:
+              type: boolean
+            sd:
+              type: boolean
+        r:
+          type: string
+          description: Reason for beacon (periodic, change)
+          enum:
+            - periodic
+            - change
+
+# ---------------------------------------------------------------------------
+# Paths
+# ---------------------------------------------------------------------------
+paths:
+
+  # ── Cart ──────────────────────────────────────────────────────────────────
+
+  /cart.json:
+    get:
+      tags: [Cart]
+      summary: Get cart (JSON)
+      description: Returns the current session cart as JSON. Used by both core Shopify and Flits.
+      parameters:
+        - name: app
+          in: query
+          required: false
+          description: Pass `flits` when called from the Flits widget
+          schema:
+            type: string
+            example: flits
+      responses:
+        '200':
+          description: Current cart contents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+
+  /cart:
+    get:
+      tags: [Cart]
+      summary: Get cart (HTML / AJAX section)
+      description: Returns cart as a rendered HTML section. Used for AJAX drawer updates.
+      parameters:
+        - name: view
+          in: query
+          required: false
+          description: Template variant (e.g. `ajax`)
+          schema:
+            type: string
+            example: ajax
+        - name: t
+          in: query
+          required: false
+          description: Cache-busting timestamp
+          schema:
+            type: integer
+            example: 1781095438997
+      responses:
+        '200':
+          description: Rendered cart HTML fragment
+          content:
+            text/html:
+              schema:
+                type: string
+
+  /cart/add.js:
+    post:
+      tags: [Cart]
+      summary: Add item to cart
+      description: Adds a product variant to the cart. Returns the updated cart object.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - id
+                - quantity
+              properties:
+                id:
+                  type: integer
+                  description: Variant ID to add
+                  example: 42640749756477
+                quantity:
+                  type: integer
+                  example: 1
+                form_type:
+                  type: string
+                  example: product
+                utf8:
+                  type: string
+                  example: "✓"
+                product-id:
+                  type: integer
+                  description: Parent product ID
+                  example: 7719090192445
+                section-id:
+                  type: string
+                  description: Shopify section ID for section rendering
+                Color:
+                  type: string
+                  description: Option value (name matches product option name)
+                  example: Green
+      responses:
+        '200':
+          description: Cart after adding the item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '422':
+          description: Item unavailable or validation error
+
+  /cart.js:
+    get:
+      tags: [Cart]
+      summary: Get cart (legacy JS endpoint)
+      description: Legacy Shopify cart endpoint returning cart JSON wrapped as JavaScript.
+      responses:
+        '200':
+          description: Cart object
+          content:
+            text/javascript:
+              schema:
+                type: string
+
+  # ── Products ──────────────────────────────────────────────────────────────
+
+  /products/{product_handle}.json:
+    get:
+      tags: [Products]
+      summary: Get product by handle (JSON)
+      description: Returns full product data including variants, images, and options.
+      parameters:
+        - name: product_handle
+          in: path
+          required: true
+          description: URL slug / handle of the product
+          schema:
+            type: string
+            example: jukku-resembling-mercedes-benz-gt-r-diecast-car-pullback-openable-doors-1-36-scale-3-years-till-grown-ups
+      responses:
+        '200':
+          description: Product data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
+
+  /products/{product_handle}:
+    get:
+      tags: [Products]
+      summary: Get product page (HTML)
+      description: Returns rendered product page HTML, optionally for a specific variant or section.
+      parameters:
+        - name: product_handle
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: variant
+          in: query
+          required: false
+          description: Pre-select a variant ID
+          schema:
+            type: integer
+            example: 42640749756477
+        - name: view
+          in: query
+          required: false
+          description: Template variant override
+          schema:
+            type: string
+        - name: section_id
+          in: query
+          required: false
+          description: Render only a specific Shopify section
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rendered product HTML
+          content:
+            text/html:
+              schema:
+                type: string
+
+  /products/{product_handle}.js:
+    get:
+      tags: [Products]
+      summary: Get product data (JS endpoint)
+      description: Legacy Shopify product JS endpoint returning product JSON.
+      parameters:
+        - name: product_handle
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product object as JavaScript
+          content:
+            text/javascript:
+              schema:
+                type: string
+
+  //variants/{variant_id}/:
+    get:
+      tags: [Products]
+      summary: Get variant section (HTML)
+      description: >
+        Returns a rendered Shopify section for a specific product variant.
+        Note: the double leading slash is as observed in the HAR traffic.
+      parameters:
+        - $ref: '#/components/parameters/variantId'
+        - name: section_id
+          in: query
+          required: false
+          description: Shopify section to render (e.g. `store-availability`)
+          schema:
+            type: string
+            example: store-availability
+      responses:
+        '200':
+          description: Rendered variant section HTML
+          content:
+            text/html:
+              schema:
+                type: string
+
+  # ── Account ───────────────────────────────────────────────────────────────
+
+  /account:
+    get:
+      tags: [Account]
+      summary: Customer account page
+      description: Returns rendered customer account HTML (orders, profile, etc.)
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: type
+          in: query
+          required: false
+          description: Filter orders by type
+          schema:
+            type: string
+            example: order
+      responses:
+        '200':
+          description: Rendered account HTML
+          content:
+            text/html:
+              schema:
+                type: string
+        '302':
+          description: Redirect to login if not authenticated
+
+  # ── Auth ──────────────────────────────────────────────────────────────────
+
+  /services/login_with_shop/buyer/finalize:
+    get:
+      tags: [Auth]
+      summary: Finalize Shop Pay login
+      description: Callback endpoint that finalises a Shop Pay (login-with-shop) authentication flow.
+      responses:
+        '200':
+          description: Login finalised; returns session info
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+
+  # ── Analytics ─────────────────────────────────────────────────────────────
+
+  /api/collect:
+    post:
+      tags: [Analytics]
+      summary: Send analytics beacon
+      description: >
+        Shopify Web Pixels / analytics beacon. Sent periodically and on state
+        changes to report session feature flags.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyticsPayload'
+      responses:
+        '200':
+          description: Beacon accepted (empty body)
+
+  # ── Flits – Profile ───────────────────────────────────────────────────────
+
+  /apps/flits/api/1/{shop_id}/{customer_id}/profile_save:
+    post:
+      tags: [Flits – Profile]
+      summary: Save customer profile
+      description: Updates the customer's profile fields (name, gender, phone, birthdate, etc.)
+      parameters:
+        - $ref: '#/components/parameters/shopId'
+        - $ref: '#/components/parameters/customerId'
+        - $ref: '#/components/parameters/customerHash'
+        - $ref: '#/components/parameters/token'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: Joel
+                last_name:
+                  type: string
+                  example: Miller
+                gender:
+                  type: string
+                  example: male
+                phone:
+                  type: string
+                  example: "+919876543210"
+                email:
+                  type: string
+                  format: email
+                birthdate:
+                  type: string
+                  example: "1990-05-15"
+                customer_hash:
+                  type: string
+                token:
+                  type: string
+                from_page:
+                  type: string
+                  description: Page context (e.g. account)
+      responses:
+        '200':
+          description: Profile saved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+
+  /apps/flits/api/1/{shop_id}/{customer_id}/custom-fields/get:
+    get:
+      tags: [Flits – Profile]
+      summary: Get custom profile fields
+      description: Returns merchant-defined custom fields for the customer's profile form.
+      parameters:
+        - $ref: '#/components/parameters/shopId'
+        - $ref: '#/components/parameters/customerId'
+        - $ref: '#/components/parameters/customerHash'
+        - $ref: '#/components/parameters/token'
+        - name: currentPage
+          in: query
+          required: false
+          description: Page context
+          schema:
+            type: string
+            example: account
+        - name: lastProfileUpdated
+          in: query
+          required: false
+          description: Unix timestamp (ms) of last profile update for cache invalidation
+          schema:
+            type: integer
+            example: 1781095446707
+      responses:
+        '200':
+          description: Custom fields definition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlitsCustomFields'
+
+  # ── Flits – Wishlist ──────────────────────────────────────────────────────
+
+  /apps/flits/api/1/{shop_id}/wishlist:
+    get:
+      tags: [Flits – Wishlist]
+      summary: Get customer wishlist
+      description: Returns all products/variants on the customer's wishlist.
+      parameters:
+        - $ref: '#/components/parameters/shopId'
+        - name: customer_id
+          in: query
+          required: true
+          description: Shopify customer ID
+          schema:
+            type: string
+            example: "9084858957885"
+        - $ref: '#/components/parameters/customerHash'
+        - $ref: '#/components/parameters/token'
+      responses:
+        '200':
+          description: Wishlist items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlitsWishlist'
+
+  # ── Flits – Credits ───────────────────────────────────────────────────────
+
+  /apps/flits/api/1/{shop_id}/{customer_id}/credit/get_credit:
+    get:
+      tags: [Flits – Credits]
+      summary: Get store credit balance
+      description: Returns the current store credit balance for the customer.
+      parameters:
+        - $ref: '#/components/parameters/shopId'
+        - $ref: '#/components/parameters/customerId'
+        - $ref: '#/components/parameters/customerHash'
+        - $ref: '#/components/parameters/token'
+      responses:
+        '200':
+          description: Credit balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlitsCredit'
+
+  /apps/flits/api/1/{shop_id}/{customer_id}/get_credit:
+    post:
+      tags: [Flits – Credits]
+      summary: Get applicable credits for cart
+      description: >
+        Calculates applicable store credits for the current cart. Accepts the
+        serialised cart as a base64-encoded parameter.
+      parameters:
+        - $ref: '#/components/parameters/shopId'
+        - $ref: '#/components/parameters/customerId'
+        - $ref: '#/components/parameters/customerHash'
+        - $ref: '#/components/parameters/token'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - customer_hash
+                - token
+                - cart
+              properties:
+                customer_hash:
+                  type: string
+                token:
+                  type: string
+                cart:
+                  type: string
+                  description: Base64-encoded serialised cart JSON
+      responses:
+        '200':
+          description: Applicable credits for cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  applicable_credit:
+                    type: number
+                  max_credit:
+                    type: number
+
+  /apps/flits/api/1/{shop_id}/{customer_id}/refund_credit/get_credit:
+    get:
+      tags: [Flits – Credits]
+      summary: Get refund credit history
+      description: Returns paginated list of refund credit transactions.
+      parameters:
+        - $ref: '#/components/parameters/shopId'
+        - $ref: '#/components/parameters/customerId'
+        - $ref: '#/components/parameters/customerHash'
+        - $ref: '#/components/parameters/token'
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+            example: 1
+        - name: per_page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+            example: 50
+      responses:
+        '200':
+          description: Paginated refund credit transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlitsRefundCredit'
+
+  # ── Flits – Referrals ─────────────────────────────────────────────────────
+
+  /apps/flits/api/1/{shop_id}/{customer_id}/refer_friend/get_referral_data:
+    get:
+      tags: [Flits – Referrals]
+      summary: Get referral data
+      description: Returns the customer's referral code, link, and referral stats.
+      parameters:
+        - $ref: '#/components/parameters/shopId'
+        - $ref: '#/components/parameters/customerId'
+        - $ref: '#/components/parameters/customerHash'
+        - $ref: '#/components/parameters/token'
+      responses:
+        '200':
+          description: Referral program data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlitsReferralData'
+
+  # ── Flits – Rules ─────────────────────────────────────────────────────────
+
+  /apps/flits/api/1/{shop_id}/{customer_id}/get_rule:
+    post:
+      tags: [Flits – Rules]
+      summary: Get loyalty / discount rules
+      description: >
+        Returns the active loyalty and discount rules for the shop and customer.
+        Used to determine earn/burn rates and applicable promotions.
+      parameters:
+        - $ref: '#/components/parameters/shopId'
+        - $ref: '#/components/parameters/customerId'
+        - $ref: '#/components/parameters/customerHash'
+        - $ref: '#/components/parameters/token'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - customer_hash
+                - token
+              properties:
+                customer_hash:
+                  type: string
+                token:
+                  type: string
+                theme_id:
+                  type: string
+                  description: Active Shopify theme ID
+                  example: "136371535933"
+      responses:
+        '200':
+          description: Loyalty and discount rules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  rules:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+                  settings:
+                    type: object
+                    additionalProperties: true
