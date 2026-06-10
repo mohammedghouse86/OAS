@@ -1,0 +1,514 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "The Tarzan Way APP",
+    "description": "API for The Tarzan Way travel platform, served via mercury.tarzanway.com.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://mercury.tarzanway.com",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    { "name": "User", "description": "User profile management" },
+    { "name": "Itinerary", "description": "Travel itinerary operations" },
+    { "name": "Geos", "description": "Geographic search and destinations" },
+    { "name": "Payment", "description": "Payment initiation" }
+  ],
+  "paths": {
+    "/api/v1/user/": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Update user profile",
+        "operationId": "updateUser",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UserUpdateRequest" },
+              "example": {
+                "name": "Gh",
+                "country": "India",
+                "whatsapp_opt_in": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User profile updated successfully"
+          },
+          "400": { "description": "Bad request" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/api/v1/user/update_email/initiate/": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Initiate email update",
+        "description": "Sends a verification to the new email address to begin the email change flow.",
+        "operationId": "initiateEmailUpdate",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/EmailUpdateRequest" },
+              "example": {
+                "email": "user@example.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Verification email sent" },
+          "400": {
+            "description": "Bad request (e.g. email already in use or invalid)"
+          },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/api/v1/itinerary/my-plans/": {
+      "get": {
+        "tags": ["Itinerary"],
+        "summary": "List user's itinerary plans",
+        "operationId": "listMyPlans",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "query",
+            "schema": { "type": "string", "example": "INR" },
+            "description": "Currency code for pricing"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": { "type": "integer", "example": 9 },
+            "description": "Number of results to return"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": { "type": "integer", "example": 0 },
+            "description": "Pagination offset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of itinerary plans",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ItineraryListResponse" }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/api/v1/itinerary/{itineraryId}/": {
+      "get": {
+        "tags": ["Itinerary"],
+        "summary": "Get itinerary details",
+        "operationId": "getItinerary",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "$ref": "#/components/parameters/itineraryId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Itinerary details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Itinerary" }
+              }
+            }
+          },
+          "404": { "description": "Itinerary not found" }
+        }
+      }
+    },
+    "/api/v1/itinerary/{itineraryId}/status/": {
+      "get": {
+        "tags": ["Itinerary"],
+        "summary": "Get itinerary status",
+        "operationId": "getItineraryStatus",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "$ref": "#/components/parameters/itineraryId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Itinerary status",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ItineraryStatus" }
+              }
+            }
+          },
+          "404": { "description": "Itinerary not found" }
+        }
+      }
+    },
+    "/api/v1/itinerary/{itineraryId}/gallery/": {
+      "get": {
+        "tags": ["Itinerary"],
+        "summary": "Get itinerary gallery images",
+        "operationId": "getItineraryGallery",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "$ref": "#/components/parameters/itineraryId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gallery images for the itinerary",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GalleryResponse" }
+              }
+            }
+          },
+          "404": { "description": "Itinerary not found" }
+        }
+      }
+    },
+    "/api/v1/itinerary/{itineraryId}/bookings/": {
+      "get": {
+        "tags": ["Itinerary"],
+        "summary": "List itinerary bookings",
+        "operationId": "listItineraryBookings",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "$ref": "#/components/parameters/itineraryId" },
+          {
+            "name": "booking_type",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["ancillary", "hotel", "transfer", "flight"],
+              "example": "ancillary"
+            },
+            "description": "Filter bookings by type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of bookings",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BookingsResponse" }
+              }
+            }
+          },
+          "404": { "description": "Itinerary not found" }
+        }
+      }
+    },
+    "/api/v1/itinerary/{itineraryId}/bookings/hotels/": {
+      "get": {
+        "tags": ["Itinerary"],
+        "summary": "List hotel bookings for an itinerary",
+        "operationId": "listHotelBookings",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "$ref": "#/components/parameters/itineraryId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of hotel bookings",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BookingsResponse" }
+              }
+            }
+          },
+          "404": { "description": "Itinerary not found" }
+        }
+      }
+    },
+    "/api/v1/itinerary/{itineraryId}/bookings/transfers/": {
+      "get": {
+        "tags": ["Itinerary"],
+        "summary": "List transfer bookings for an itinerary",
+        "operationId": "listTransferBookings",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "$ref": "#/components/parameters/itineraryId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of transfer bookings",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BookingsResponse" }
+              }
+            }
+          },
+          "404": { "description": "Itinerary not found" }
+        }
+      }
+    },
+    "/api/v1/itinerary/{itineraryId}/cart/": {
+      "get": {
+        "tags": ["Itinerary"],
+        "summary": "Get itinerary cart",
+        "operationId": "getCart",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "$ref": "#/components/parameters/itineraryId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart details for the itinerary",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CartResponse" }
+              }
+            }
+          },
+          "404": { "description": "Itinerary not found" }
+        }
+      }
+    },
+    "/api/v1/itinerary/{itineraryId}/reprice/bookings": {
+      "get": {
+        "tags": ["Itinerary"],
+        "summary": "Reprice bookings for an itinerary",
+        "operationId": "repriceBookings",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "$ref": "#/components/parameters/itineraryId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Repriced booking details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BookingsResponse" }
+              }
+            }
+          },
+          "404": { "description": "Itinerary not found" }
+        }
+      }
+    },
+    "/api/v1/geos/search/hot_destinations/": {
+      "get": {
+        "tags": ["Geos"],
+        "summary": "Get hot/trending destinations",
+        "operationId": "getHotDestinations",
+        "responses": {
+          "200": {
+            "description": "List of trending destinations",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DestinationsResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment/initiate/": {
+      "post": {
+        "tags": ["Payment"],
+        "summary": "Initiate a payment",
+        "operationId": "initiatePayment",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/PaymentInitiateRequest" },
+              "example": {
+                "payment_information_id": "67483cd0-2dac-45e5-b094-42225b829f19",
+                "payment_type": "full_payment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Payment initiated successfully" },
+          "400": { "description": "Bad request (e.g. invalid payment info or already paid)" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "itineraryId": {
+        "name": "itineraryId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid",
+          "example": "92be4dc7-78d9-4b42-a62a-bee1a79320ec"
+        },
+        "description": "UUID of the itinerary"
+      }
+    },
+    "schemas": {
+      "UserUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "example": "John Doe" },
+          "country": { "type": "string", "example": "India" },
+          "whatsapp_opt_in": { "type": "boolean", "example": true }
+        }
+      },
+      "EmailUpdateRequest": {
+        "type": "object",
+        "required": ["email"],
+        "properties": {
+          "email": { "type": "string", "format": "email", "example": "user@example.com" }
+        }
+      },
+      "PaymentInitiateRequest": {
+        "type": "object",
+        "required": ["payment_information_id", "payment_type"],
+        "properties": {
+          "payment_information_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "67483cd0-2dac-45e5-b094-42225b829f19"
+          },
+          "payment_type": {
+            "type": "string",
+            "enum": ["full_payment", "partial_payment"],
+            "example": "full_payment"
+          }
+        }
+      },
+      "ItineraryListResponse": {
+        "type": "object",
+        "properties": {
+          "count": { "type": "integer", "example": 3 },
+          "next": { "type": "string", "nullable": true, "format": "uri" },
+          "previous": { "type": "string", "nullable": true, "format": "uri" },
+          "results": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ItinerarySummary" }
+          }
+        }
+      },
+      "ItinerarySummary": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "title": { "type": "string" },
+          "status": { "type": "string" },
+          "currency": { "type": "string" },
+          "total_price": { "type": "number" }
+        }
+      },
+      "Itinerary": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "title": { "type": "string" },
+          "status": { "type": "string" },
+          "days": { "type": "integer" },
+          "destinations": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "ItineraryStatus": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "status": {
+            "type": "string",
+            "enum": ["draft", "confirmed", "cancelled", "completed"]
+          }
+        }
+      },
+      "GalleryResponse": {
+        "type": "object",
+        "properties": {
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": { "type": "string", "format": "uri" },
+                "caption": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "BookingsResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Booking" }
+          }
+        }
+      },
+      "Booking": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "booking_type": { "type": "string" },
+          "status": { "type": "string" },
+          "price": { "type": "number" },
+          "currency": { "type": "string" }
+        }
+      },
+      "CartResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string", "format": "uuid" },
+                "type": { "type": "string" },
+                "price": { "type": "number" },
+                "currency": { "type": "string" }
+              }
+            }
+          },
+          "total": { "type": "number" },
+          "currency": { "type": "string" }
+        }
+      },
+      "DestinationsResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "name": { "type": "string" },
+                "country": { "type": "string" },
+                "image_url": { "type": "string", "format": "uri" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
