@@ -3,7 +3,7 @@ info:
   title: Fastn API
   description: REST API for the Fastn platform (live.gcp.fastn.ai). Generated from
     HAR network capture.
-  version: v1
+  version: v2
   contact:
     url: https://fastn.ai
 servers:
@@ -80,7 +80,7 @@ paths:
       parameters:
       - name: domain
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: joelsapp.com
@@ -161,7 +161,7 @@ paths:
       parameters:
       - name: threadId
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: orch_mq90nukv_yrbp
@@ -211,7 +211,7 @@ paths:
       parameters:
       - name: threadId
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: orch_mq90nukv_yrbp
@@ -277,52 +277,6 @@ paths:
               name: Alert01
               condition: latency_p99
               threshold: 5
-  /api/v1/alerts/{alert_c092d50dc0f2}:
-    put:
-      tags:
-      - alerts
-      operationId: putAlertsAlertC092D50Dc0F2
-      summary: PUT /api/v1/alerts/{alert_c092d50dc0f2}
-      parameters:
-      - name: alert_c092d50dc0f2
-        in: path
-        required: true
-        schema:
-          type: string
-        example: alert_c092d50dc0f2
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-        '401':
-          description: Unauthorized
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Alert01
-                condition:
-                  type: string
-                  example: latency_p99
-                threshold:
-                  type: integer
-                  example: 6
-              required:
-              - name
-              - condition
-              - threshold
-            example:
-              name: Alert01
-              condition: latency_p99
-              threshold: 6
   /api/v1/api-keys:
     get:
       tags:
@@ -332,7 +286,7 @@ paths:
       parameters:
       - name: mode
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: live
@@ -399,7 +353,7 @@ paths:
       parameters:
       - name: limit
         in: query
-        required: false
+        required: true
         schema:
           type: integer
         example: '8'
@@ -451,7 +405,7 @@ paths:
       parameters:
       - name: connectorId
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: 403d3efe-f8c9-4e35-acc7-2100b3b86c14
@@ -473,19 +427,39 @@ paths:
       parameters:
       - name: status
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: ACTIVE
       - name: orgId
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: bb5a70d2-5163-4d50-8d07-8ece6735f5f3
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+      - connections
+      operationId: postConnections
+      summary: POST /api/v1/connections
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -501,7 +475,7 @@ paths:
       parameters:
       - name: deleted
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: 'true'
@@ -825,19 +799,19 @@ paths:
       parameters:
       - name: tier
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: tenant
       - name: parent_id
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: personal_joelmiller890321-gmail
       - name: parent
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: personal_joelmiller890321-gmail
@@ -903,14 +877,35 @@ paths:
               tier: tenant
               parentId: personal_joelmiller890321-gmail
               external_ref: '123456'
-  /api/v1/orgs/{id}:
+  /api/v1/orgs/{orgId}:
+    get:
+      tags:
+      - orgs
+      operationId: getOrgsOrgid
+      summary: GET /api/v1/orgs/{orgId}
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: personal_joelmiller890321-gmail
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
     put:
       tags:
       - orgs
       operationId: putOrgsId
       summary: PUT /api/v1/orgs/{id}
       parameters:
-      - name: id
+      - name: orgId
         in: path
         required: true
         schema:
@@ -944,28 +939,6 @@ paths:
             example:
               adminEmail: backupemail.seyada1@gmail.com
               adminUserId: 43dde5fa-19d7-41b9-a4ce-f267b19611fc
-  /api/v1/orgs/{orgId}:
-    get:
-      tags:
-      - orgs
-      operationId: getOrgsOrgid
-      summary: GET /api/v1/orgs/{orgId}
-      parameters:
-      - name: orgId
-        in: path
-        required: true
-        schema:
-          type: string
-        example: personal_joelmiller890321-gmail
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-        '401':
-          description: Unauthorized
   /api/v1/orgs/{orgId}/config:
     get:
       tags:
@@ -1204,6 +1177,26 @@ paths:
                 type: object
         '401':
           description: Unauthorized
+    post:
+      tags:
+      - roles
+      operationId: postRoles
+      summary: POST /api/v1/roles
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
   /api/v1/schedulers:
     get:
       tags:
@@ -1213,13 +1206,81 @@ paths:
       parameters:
       - name: limit
         in: query
-        required: false
+        required: true
         schema:
           type: integer
         example: '8'
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+      - schedulers
+      operationId: postSchedulers
+      summary: POST /api/v1/schedulers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: tttrtete
+                rate:
+                  type: object
+                  properties:
+                    value:
+                      type: integer
+                      example: 5
+                    unit:
+                      type: string
+                      example: minutes
+                timezone:
+                  type: string
+                  example: Asia/Calcutta
+                delayMinutes:
+                  type: integer
+                  example: 0
+                routes:
+                  type: array
+                  items:
+                    type: object
+                dlqConfiguration:
+                  type: object
+                  properties:
+                    maxRetries:
+                      type: integer
+                      example: 0
+                    backoffStrategy:
+                      type: string
+                      example: exponential
+              required:
+              - name
+            example:
+              name: tttrtete
+              rate:
+                value: 5
+                unit: minutes
+              timezone: Asia/Calcutta
+              delayMinutes: 0
+              routes:
+              - routeId: wrkfl1
+                headers: {}
+                payload: {}
+              dlqConfiguration:
+                maxRetries: 0
+                backoffStrategy: exponential
+      responses:
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -1313,7 +1374,7 @@ paths:
       parameters:
       - name: end_org_id
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: current
@@ -1335,7 +1396,7 @@ paths:
       parameters:
       - name: scope
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: org
@@ -1444,6 +1505,27 @@ paths:
                 type: object
         '401':
           description: Unauthorized
+    delete:
+      tags:
+      - users
+      operationId: deleteUsersUserId
+      summary: DELETE /api/v1/users/{userId}
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 43dde5fa-19d7-41b9-a4ce-f267b19611fc
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
   /api/v1/webhooks:
     get:
       tags:
@@ -1453,7 +1535,7 @@ paths:
       parameters:
       - name: limit
         in: query
-        required: false
+        required: true
         schema:
           type: integer
         example: '8'
@@ -1481,6 +1563,26 @@ paths:
                 type: object
         '401':
           description: Unauthorized
+    post:
+      tags:
+      - widgets
+      operationId: postWidgets
+      summary: POST /api/v1/widgets
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
   /api/v1/widgets/insights:
     get:
       tags:
@@ -1490,13 +1592,13 @@ paths:
       parameters:
       - name: range
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: 7d
       - name: tz
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: Asia/Calcutta
@@ -1524,6 +1626,26 @@ paths:
                 type: object
         '401':
           description: Unauthorized
+    post:
+      tags:
+      - workflows
+      operationId: postWorkflows
+      summary: POST /api/v1/workflows
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
   /api/v1/workflows/executions:
     get:
       tags:
@@ -1533,16 +1655,1134 @@ paths:
       parameters:
       - name: status
         in: query
-        required: false
+        required: true
         schema:
           type: string
         example: failed
       - name: limit
         in: query
-        required: false
+        required: true
         schema:
           type: integer
         example: '10'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/activity/track:
+    get:
+      tags:
+      - activity
+      operationId: getActivityTrack
+      summary: GET /api/v1/activity/track
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+      - activity
+      operationId: postActivityTrack
+      summary: POST /api/v1/activity/track
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                event:
+                  type: string
+                  example: login
+                source:
+                  type: string
+                  example: dashboard
+                userAgent:
+                  type: string
+                  example: Mozilla/5.0
+              required:
+              - event
+            example:
+              event: login
+              source: dashboard
+              userAgent: Mozilla/5.0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/agent/workflow-builder-standalone/stream:
+    post:
+      tags:
+      - agent/orchestrator
+      operationId: postAgentWorkflowBuilderStandaloneStream
+      summary: POST /api/v1/agent/workflow-builder-standalone/stream
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: Re-validate workflow
+              required:
+              - message
+            example:
+              message: Re-validate workflow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    put:
+      tags:
+      - agent/orchestrator
+      operationId: putAgentWorkflowBuilderStandaloneStream
+      summary: PUT /api/v1/agent/workflow-builder-standalone/stream
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Wrkfl115
+                code:
+                  type: string
+                enabled:
+                  type: boolean
+                  example: true
+                executionTier:
+                  type: string
+                  example: instant
+                timeoutMs:
+                  type: integer
+                  example: 60000
+              required:
+              - name
+              - code
+            example:
+              name: Wrkfl115
+              code: 'export default async function(ctx) { return { result: "Hello"
+                }; }'
+              enabled: true
+              executionTier: instant
+              timeoutMs: 60000
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/alerts/{alertId}:
+    get:
+      tags:
+      - alerts
+      operationId: getAlertsAlertId
+      summary: GET /api/v1/alerts/{alertId}
+      parameters:
+      - name: alertId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: alert_901f1de572cf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    put:
+      tags:
+      - alerts
+      operationId: putAlertsAlertId
+      summary: PUT /api/v1/alerts/{alertId}
+      parameters:
+      - name: alertId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: alert_cb950cc4d41e
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: RTRDS
+                condition:
+                  type: string
+                  example: error_rate
+                threshold:
+                  type: integer
+                  example: 10
+              required:
+              - name
+              - condition
+              - threshold
+            example:
+              name: RTRDS
+              condition: error_rate
+              threshold: 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    delete:
+      tags:
+      - alerts
+      operationId: deleteAlertsAlertId
+      summary: DELETE /api/v1/alerts/{alertId}
+      parameters:
+      - name: alertId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: alert_f3a5d8e27fda
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/actions:
+    get:
+      tags:
+      - workflows
+      operationId: getActions
+      summary: GET /api/v1/actions
+      parameters:
+      - name: deleted
+        in: query
+        required: true
+        schema:
+          type: string
+        example: 'true'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/audit-logs:
+    get:
+      tags:
+      - audit-log
+      operationId: getAuditLogs
+      summary: GET /api/v1/audit-logs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/connectors/{connectorId}:
+    put:
+      tags:
+      - connectors
+      operationId: putConnectorsConnectorId
+      summary: PUT /api/v1/connectors/{connectorId}
+      parameters:
+      - name: connectorId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 76b7fa39-6d60-4c08-aa0a-547ec5aa37d3
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: TestCon
+                visibility:
+                  type: string
+                  example: private
+                protocol:
+                  type: string
+                  example: REST
+                authMethods:
+                  type: array
+                  items:
+                    type: object
+            example:
+              name: TestCon
+              visibility: private
+              protocol: REST
+              authMethods:
+              - type: OAUTH_2
+                title: OAuth 2.0
+                isDefault: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    delete:
+      tags:
+      - connectors
+      operationId: deleteConnectorsConnectorId
+      summary: DELETE /api/v1/connectors/{connectorId}
+      parameters:
+      - name: connectorId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 984a536a-b052-4bd0-a97d-4db7a1054f24
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/connectors/{connectorId}/export:
+    get:
+      tags:
+      - connectors
+      operationId: getConnectorsConnectorIdExport
+      summary: GET /api/v1/connectors/{connectorId}/export
+      parameters:
+      - name: connectorId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 22783a20-4a6c-4279-b8bc-e63acca68308
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/connectors/import:
+    post:
+      tags:
+      - connectors
+      operationId: postConnectorsImport
+      summary: POST /api/v1/connectors/import
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/dlq:
+    get:
+      tags:
+      - schedulers
+      operationId: getDlq
+      summary: GET /api/v1/dlq
+      parameters:
+      - name: triggerId
+        in: query
+        required: true
+        schema:
+          type: string
+        example: 94b6b9c8-fecc-4344-9ea3-3e77cd9eaa60
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+        example: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/embed/token:
+    post:
+      tags:
+      - auth-providers
+      operationId: postEmbedToken
+      summary: POST /api/v1/embed/token
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/oauth/initiate:
+    get:
+      tags:
+      - auth-providers
+      operationId: getOauthInitiate
+      summary: GET /api/v1/oauth/initiate
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+      - auth-providers
+      operationId: postOauthInitiate
+      summary: POST /api/v1/oauth/initiate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                connectorId:
+                  type: string
+                  example: 8de5d696-5289-4c9c-ade4-de918d019d06
+                authMethodId:
+                  type: string
+                  example: 7195748d-a02f-49e4-9e76-7e48d76a3b3c
+                authProviderId:
+                  type: string
+                  example: oauth_1b21d3a03270
+                returnUrl:
+                  type: string
+                  example: /integrations?tab=triggers
+                dashboardOrigin:
+                  type: string
+                  example: https://app.live.gcp.fastn.ai
+                oauthProxyUrl:
+                  type: string
+                  example: https://oauth.live.fastn.ai
+              required:
+              - connectorId
+              - authMethodId
+              - authProviderId
+              - returnUrl
+              - dashboardOrigin
+              - oauthProxyUrl
+            example:
+              connectorId: 8de5d696-5289-4c9c-ade4-de918d019d06
+              authMethodId: 7195748d-a02f-49e4-9e76-7e48d76a3b3c
+              authProviderId: oauth_1b21d3a03270
+              returnUrl: /integrations?tab=triggers
+              dashboardOrigin: https://app.live.gcp.fastn.ai
+              oauthProxyUrl: https://oauth.live.fastn.ai
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/roles/{roleId}:
+    put:
+      tags:
+      - roles
+      operationId: putRolesRoleId
+      summary: PUT /api/v1/roles/{roleId}
+      parameters:
+      - name: roleId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: role_abc123
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    delete:
+      tags:
+      - roles
+      operationId: deleteRolesRoleId
+      summary: DELETE /api/v1/roles/{roleId}
+      parameters:
+      - name: roleId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: role_abc123
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/schedulers/{schedulerId}:
+    get:
+      tags:
+      - schedulers
+      operationId: getSchedulersSchedulerId
+      summary: GET /api/v1/schedulers/{schedulerId}
+      parameters:
+      - name: schedulerId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 6ebbb945-2400-4184-b8f5-05bc27b08da1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    put:
+      tags:
+      - schedulers
+      operationId: putSchedulersSchedulerId
+      summary: PUT /api/v1/schedulers/{schedulerId}
+      parameters:
+      - name: schedulerId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 94b6b9c8-fecc-4344-9ea3-3e77cd9eaa60
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: tttrteteUUU
+                rate:
+                  type: object
+                timezone:
+                  type: string
+                  example: Asia/Calcutta
+                delayMinutes:
+                  type: integer
+                  example: 0
+                routes:
+                  type: array
+                  items:
+                    type: object
+                dlqConfiguration:
+                  type: object
+            example:
+              name: tttrteteUUU
+              rate:
+                value: 5
+                unit: minutes
+              timezone: Asia/Calcutta
+              delayMinutes: 0
+              routes:
+              - routeId: wrkfl1
+                headers: {}
+                payload: {}
+              dlqConfiguration:
+                maxRetries: 0
+                backoffStrategy: exponential
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    delete:
+      tags:
+      - schedulers
+      operationId: deleteSchedulersSchedulerId
+      summary: DELETE /api/v1/schedulers/{schedulerId}
+      parameters:
+      - name: schedulerId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 94b6b9c8-fecc-4344-9ea3-3e77cd9eaa60
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/schedulers/{schedulerId}/trigger:
+    get:
+      tags:
+      - schedulers
+      operationId: getSchedulersSchedulerIdTrigger
+      summary: GET /api/v1/schedulers/{schedulerId}/trigger
+      parameters:
+      - name: schedulerId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 6ebbb945-2400-4184-b8f5-05bc27b08da1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+      - schedulers
+      operationId: postSchedulersSchedulerIdTrigger
+      summary: POST /api/v1/schedulers/{schedulerId}/trigger
+      parameters:
+      - name: schedulerId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 94b6b9c8-fecc-4344-9ea3-3e77cd9eaa60
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+            example: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/schedulers/{schedulerId}/stats:
+    get:
+      tags:
+      - schedulers
+      operationId: getSchedulersSchedulerIdStats
+      summary: GET /api/v1/schedulers/{schedulerId}/stats
+      parameters:
+      - name: schedulerId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 94b6b9c8-fecc-4344-9ea3-3e77cd9eaa60
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/users/me/memberships:
+    get:
+      tags:
+      - users
+      operationId: getUsersMeMemberships
+      summary: GET /api/v1/users/me/memberships
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/widgets/{widgetId}:
+    delete:
+      tags:
+      - widgets
+      operationId: deleteWidgetsWidgetId
+      summary: DELETE /api/v1/widgets/{widgetId}
+      parameters:
+      - name: widgetId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: widget_abc123
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/workflows/test:
+    post:
+      tags:
+      - workflows
+      operationId: postWorkflowsTest
+      summary: POST /api/v1/workflows/test
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  example: 'export default async function(ctx) { return { result:
+                    "Hello" }; }'
+                input:
+                  type: object
+                  example:
+                    userId: '12345'
+                    name: John Doe
+                timeoutMs:
+                  type: integer
+                  example: 60000
+              required:
+              - code
+            example:
+              code: 'export default async function(ctx) { return { result: "Hello"
+                }; }'
+              input:
+                userId: '12345'
+                name: John Doe
+              timeoutMs: 60000
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/workflows/{workflowId}:
+    put:
+      tags:
+      - workflows
+      operationId: putWorkflowsWorkflowId
+      summary: PUT /api/v1/workflows/{workflowId}
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: wf_de65cda670b2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Wrkfl115
+                description:
+                  type: string
+                  example: Workflow description
+                code:
+                  type: string
+                enabled:
+                  type: boolean
+                  example: true
+                executionTier:
+                  type: string
+                  example: instant
+                timeoutMs:
+                  type: integer
+                  example: 60000
+                testCases:
+                  type: array
+                  items:
+                    type: object
+            example:
+              name: Wrkfl115
+              description: Workflow description
+              enabled: true
+              executionTier: instant
+              timeoutMs: 60000
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+    delete:
+      tags:
+      - workflows
+      operationId: deleteWorkflowsWorkflowId
+      summary: DELETE /api/v1/workflows/{workflowId}
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: wf_1fe4fa99b497
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/workflows/{workflowId}/test:
+    post:
+      tags:
+      - workflows
+      operationId: postWorkflowsWorkflowIdTest
+      summary: POST /api/v1/workflows/{workflowId}/test
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: wf_de65cda670b2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                input:
+                  type: object
+                  example:
+                    userId: '12345'
+                    name: John Doe
+                    email: john.doe@example.com
+                    role: admin
+                    status: active
+            example:
+              input:
+                userId: '12345'
+                name: John Doe
+                email: john.doe@example.com
+                role: admin
+                status: active
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/workflows/{workflowId}/publish:
+    post:
+      tags:
+      - workflows
+      operationId: postWorkflowsWorkflowIdPublish
+      summary: POST /api/v1/workflows/{workflowId}/publish
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: wf_de65cda670b2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: Fixed
+              required:
+              - message
+            example:
+              message: Fixed
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/workflows/{workflowId}/deploy:
+    post:
+      tags:
+      - workflows
+      operationId: postWorkflowsWorkflowIdDeploy
+      summary: POST /api/v1/workflows/{workflowId}/deploy
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: wf_de65cda670b2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                env_id:
+                  type: string
+                  example: wenv_b8a1174523a8
+                version_id:
+                  type: string
+                  example: wv_88e93ce87911
+              required:
+              - env_id
+              - version_id
+            example:
+              env_id: wenv_b8a1174523a8
+              version_id: wv_88e93ce87911
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/workflows/{workflowId}/generate-docs:
+    post:
+      tags:
+      - workflows
+      operationId: postWorkflowsWorkflowIdGenerateDocs
+      summary: POST /api/v1/workflows/{workflowId}/generate-docs
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: wf_de65cda670b2
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/workflows/{workflowId}/versions:
+    get:
+      tags:
+      - workflows
+      operationId: getWorkflowsWorkflowIdVersions
+      summary: GET /api/v1/workflows/{workflowId}/versions
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: wf_de65cda670b2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/workflows/{workflowId}/deployments:
+    get:
+      tags:
+      - workflows
+      operationId: getWorkflowsWorkflowIdDeployments
+      summary: GET /api/v1/workflows/{workflowId}/deployments
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: wf_de65cda670b2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/workflows/{workflowId}/executions:
+    get:
+      tags:
+      - workflows
+      operationId: getWorkflowsWorkflowIdExecutions
+      summary: GET /api/v1/workflows/{workflowId}/executions
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: wf_de65cda670b2
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+        example: 20
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+  /api/v1/users/{id}/role:
+    put:
+      tags:
+      - users
+      operationId: putUsersUserIdRole
+      summary: PUT /api/v1/users/{userId}/role
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 43dde5fa-19d7-41b9-a4ce-f267b19611fc
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  type: string
+                  example: operator
+              required:
+              - role
+            example:
+              role: operator
       responses:
         '200':
           description: OK
