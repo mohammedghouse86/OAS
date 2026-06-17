@@ -1,8 +1,7 @@
 openapi: 3.0.3
 info:
   title: Wristband Dashboard API
-  description: API for the Wristband Dashboard — manages applications, tenants, users, clients, roles, permissions, policies,
-    and branding.
+  description: API for the Wristband Dashboard — manages applications, tenants, users, clients, roles, permissions, policies, and branding.
   version: 1.0.0
 servers:
 - url: https://purple.dashboard.wristband.dev
@@ -38,6 +37,8 @@ tags:
   description: Page and email branding
 - name: Custom Claims
   description: Custom JWT claims
+- name: Billing
+  description: Billing and account usage data
 paths:
   /api/v1/session-data:
     get:
@@ -680,6 +681,17 @@ paths:
       responses:
         '200':
           description: Tenant updated.
+    get:
+      tags:
+      - Tenants
+      summary: Get a tenant
+      operationId: getTenant
+      parameters:
+      - &id001
+        $ref: '#/components/parameters/tenantId'
+      responses:
+        '200':
+          description: Tenant returned.
   /api/v1/tenants/{tenantId}/assignable-role-select-options:
     get:
       tags:
@@ -1186,6 +1198,362 @@ paths:
       responses:
         '204':
           description: Signing key deleted.
+  /api/v1/billing/data:
+    get:
+      tags:
+      - Billing
+      summary: Get billing data
+      operationId: getBillingData
+      responses:
+        '200':
+          description: Billing data returned.
+  /api/v1/edit-admin-data/{userId}:
+    get:
+      tags:
+      - Users
+      - Tenants
+      summary: Get edit-admin form data for a tenant admin user
+      operationId: getEditAdminData
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The admin user ID.
+        example: t6v7qx7se5ea3blmaoxaedxkwm
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Edit admin form data returned.
+  /api/v1/tenants/{tenantId}/application-context:
+    get:
+      tags:
+      - Tenants
+      summary: Get application context for a tenant
+      operationId: getTenantApplicationContext
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Application context returned.
+  /api/v1/tenants/{tenantId}/clients:
+    get:
+      tags:
+      - Tenants
+      - Clients
+      summary: List clients for a tenant
+      operationId: listTenantClients
+      parameters:
+      - *id001
+      - &id002
+        $ref: '#/components/parameters/startIndex'
+      - &id003
+        $ref: '#/components/parameters/count'
+      - name: fields
+        in: query
+        example: id,name,type
+        schema:
+          type: string
+      - name: query
+        in: query
+        example: type eq "MACHINE_TO_MACHINE"
+        schema:
+          type: string
+        description: Filter expression.
+      responses:
+        '200':
+          description: Client list returned.
+  /api/v1/tenants/{tenantId}/custom-domains:
+    get:
+      tags:
+      - Tenants
+      summary: List custom domains for a tenant
+      operationId: listTenantCustomDomains
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Custom domains returned.
+  /api/v1/tenants/{tenantId}/email-domains:
+    get:
+      tags:
+      - Tenants
+      summary: List email domains for a tenant
+      operationId: listTenantEmailDomains
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Email domains returned.
+  /api/v1/tenants/{tenantId}/email-policies/resolve-overrides:
+    get:
+      tags:
+      - Tenants
+      - Policies
+      summary: Resolve email policy overrides for a tenant
+      operationId: resolveTenantEmailPolicyOverrides
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/tenants/{tenantId}/override-toggle-status:
+    get:
+      tags:
+      - Tenants
+      summary: Get policy override toggle status for a tenant
+      operationId: getTenantOverrideToggleStatus
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Override toggle status returned.
+  /api/v1/tenants/{tenantId}/roles:
+    get:
+      tags:
+      - Tenants
+      - Roles
+      summary: List roles for a tenant
+      operationId: listTenantRoles
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      - name: fields
+        in: query
+        example: id,name,displayName,tenantVisibility
+        schema:
+          type: string
+      - name: include_predefined_roles
+        in: query
+        example: 'false'
+        schema:
+          type: boolean
+        description: Whether to include predefined roles.
+      - name: query
+        in: query
+        example: type eq "CUSTOM"
+        schema:
+          type: string
+        description: Filter expression.
+      responses:
+        '200':
+          description: Role list returned.
+  /api/v1/applications:
+    post:
+      tags:
+      - Applications
+      summary: Create an application
+      operationId: createApplication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationRequest'
+            example:
+              workspaceId: 6yolumoxvngfpppgimaowlvypm
+              displayName: test
+              name: test1234
+              loginUrl: https://test1234-purple.us.wristband.dev/login-url-placeholder
+              environmentType: DEVELOPMENT
+              isMultiTenant: true
+      responses:
+        '200':
+          description: Application created.
+  /api/v1/cancel-new-user-invite:
+    post:
+      tags:
+      - Users
+      summary: Cancel a pending new-user invitation
+      operationId: cancelNewUserInvite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelNewUserInviteRequest'
+            example:
+              newUserInvitationRequestId: qrpct5i7mne7taymkoorkn2o2m
+      responses:
+        '200':
+          description: Invitation cancelled.
+  /api/v1/email-policies:
+    post:
+      tags:
+      - Policies
+      summary: Create or update an email policy
+      operationId: upsertEmailPolicy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailPolicyRequest'
+            example:
+              emailType: USER_ACTIVATION
+              ownerType: TENANT
+              ownerId: thokf2zyz5fzvnm4ybnngg7ssq
+              actionLinkUrl: ''
+              actionLinkLifetime: 2
+              actionLinkLifetimeUnit: DAYS
+      responses:
+        '200':
+          description: Email policy saved.
+  /api/v1/invite-new-user:
+    post:
+      tags:
+      - Users
+      summary: Invite a new user
+      operationId: inviteNewUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteNewUserRequest'
+            example:
+              tenantId: xzzfjkk4fbh75amy2zggyglueu
+              email: qwerty@gmail.com
+              rolesToAssign:
+              - xhmwelq5fjetfmugxtwdy5oziy
+      responses:
+        '200':
+          description: User invited.
+  /api/v1/tenants/{tenantId}/account-settings:
+    post:
+      tags:
+      - Tenants
+      summary: Update tenant account settings
+      operationId: updateTenantAccountSettings
+      parameters:
+      - *id001
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantAccountSettingsRequest'
+            example:
+              description: tenant1
+              logoUrl: https://mountainous-equivalent.name
+      responses:
+        '200':
+          description: Account settings updated.
+  /api/v1/tenants/{tenantId}/auth-session-policies/resolve-overrides:
+    post:
+      tags:
+      - Tenants
+      - Policies
+      summary: Resolve auth session policy overrides for a tenant
+      operationId: resolveTenantAuthSessionPolicyOverrides
+      parameters:
+      - *id001
+      - name: fields
+        in: query
+        example: cookiePersistenceType,idleSessionTimeout,absoluteSessionTimeout
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/tenants/{tenantId}/email-brandings/resolve-overrides:
+    post:
+      tags:
+      - Tenants
+      - Brandings
+      summary: Resolve email branding overrides for a tenant
+      operationId: resolveTenantEmailBrandingOverrides
+      parameters:
+      - *id001
+      - name: fields
+        in: query
+        example: primaryButtonBackgroundColor,primaryButtonTextColor,primaryButtonBorderRadiusPixels,primaryButtonBorderColor,logoUrl,logoAltText,logoWidthPixels,logoHeightPixels,supportEmail,websiteUrl,supportUrl,fromName,fromAddress,logoDisplayed
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/tenants/{tenantId}/page-brandings/resolve-overrides:
+    post:
+      tags:
+      - Tenants
+      - Brandings
+      summary: Resolve page branding overrides for a tenant
+      operationId: resolveTenantPageBrandingOverrides
+      parameters:
+      - *id001
+      - name: fields
+        in: query
+        example: pageBackgroundType,pageBackgroundColor,pageBackgroundImageUrl,panelBackgroundColor,panelTextColor,panelBorderRadiusPixels,panelBorderColor,panelBoxShadowEnabled,primaryButtonBackgroundColor,primaryButtonTextColor,primaryButtonBorderRadiusPixels,primaryButtonBorderColor,primaryButtonFocusColor,secondaryButtonBackgroundColor,secondaryButtonTextColor,secondaryButtonBorderRadiusPixels,secondaryButtonBorderColor,secondaryButtonFocusColor,inputBackgroundColor,inputTextColor,inputBorderRadiusPixels,inputBorderColor,inputFocusColor,inputIconColor,inputIconButtonHoverColor,linkColor,linkHoverColor,linkUnderlineAppearance,errorColor,successColor,logoUrl,logoHeightPixels,faviconUrl,websiteUrl,termsOfServiceUrl,privacyPolicyUrl,supportUrl,supportEmail
+        schema:
+          type: string
+      - name: tenant_signup_page_branding_fields
+        in: query
+        example: '*'
+        schema:
+          type: string
+      - name: tenant_login_page_branding_fields
+        in: query
+        example: '*'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/tenants/{tenantId}/user-schemas/resolve-overrides:
+    post:
+      tags:
+      - Tenants
+      summary: Resolve user schema overrides for a tenant
+      operationId: resolveTenantUserSchemaOverrides
+      parameters:
+      - *id001
+      - name: fields
+        in: query
+        example: baseProfile.required
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/tenants/{tenantId}/workflow-policies/resolve-overrides:
+    post:
+      tags:
+      - Tenants
+      - Policies
+      summary: Resolve workflow policy overrides for a tenant
+      operationId: resolveTenantWorkflowPolicyOverrides
+      parameters:
+      - *id001
+      - name: fields
+        in: query
+        example: type,customRedirectEnabled,customRedirectUrl,emailVerificationStrategy,userActivationStrategy,enabledStrategies,rememberTenantsEnabled,verificationStep,immediateLoginEnabled,unverifiedEmailAction,allowChangingTenants,missingPwdRemediationStrategy,invitationLinkLifetime,customInvitationLinkUrl,customPasswordResetLinkUrl,passwordResetLinkLifetime
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved overrides returned.
+  /api/v1/user-schemas:
+    post:
+      tags:
+      - Users
+      summary: Create or update a user schema
+      operationId: upsertUserSchema
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSchemaRequest'
+            example:
+              ownerType: TENANT
+              ownerId: thokf2zyz5fzvnm4ybnngg7ssq
+              required:
+              - email
+      responses:
+        '200':
+          description: User schema saved.
 components:
   parameters:
     applicationId:
@@ -1684,6 +2052,102 @@ components:
           items:
             type: string
         defaultIdpUserSyncRoles:
+          type: array
+          items:
+            type: string
+    CreateApplicationRequest:
+      type: object
+      required:
+      - workspaceId
+      - displayName
+      - name
+      properties:
+        workspaceId:
+          type: string
+        displayName:
+          type: string
+        name:
+          type: string
+        loginUrl:
+          type: string
+          format: uri
+        environmentType:
+          type: string
+          enum:
+          - DEVELOPMENT
+          - PRODUCTION
+        isMultiTenant:
+          type: boolean
+    CancelNewUserInviteRequest:
+      type: object
+      required:
+      - newUserInvitationRequestId
+      properties:
+        newUserInvitationRequestId:
+          type: string
+    InviteNewUserRequest:
+      type: object
+      required:
+      - tenantId
+      - email
+      properties:
+        tenantId:
+          type: string
+        email:
+          type: string
+          format: email
+        rolesToAssign:
+          type: array
+          items:
+            type: string
+    TenantAccountSettingsRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        logoUrl:
+          type: string
+    EmailPolicyRequest:
+      type: object
+      required:
+      - emailType
+      - ownerType
+      - ownerId
+      properties:
+        emailType:
+          type: string
+          example: USER_ACTIVATION
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+          - TENANT
+        ownerId:
+          type: string
+        actionLinkUrl:
+          type: string
+        actionLinkLifetime:
+          type: integer
+          example: 2
+        actionLinkLifetimeUnit:
+          type: string
+          enum:
+          - HOURS
+          - DAYS
+    UserSchemaRequest:
+      type: object
+      required:
+      - ownerType
+      - ownerId
+      properties:
+        ownerType:
+          type: string
+          enum:
+          - APPLICATION
+          - TENANT
+        ownerId:
+          type: string
+        required:
           type: array
           items:
             type: string
