@@ -1,0 +1,3027 @@
+openapi: 3.0.3
+info:
+  title: VoiceAgent SaaS Platform API
+  description: |
+    A comprehensive SaaS platform designed to facilitate voice-based stakeholder interviews. 
+    The platform automatically generates technical documentation and Replit prompts using advanced AI.
+    
+    ## Features
+    - Voice-based stakeholder interviews with AI-powered conversation
+    - Video/audio file upload with background transcription processing
+    - Automatic transcription and analysis with enhanced formatting
+    - Real-time progress tracking for uploaded files
+    - Multi-perspective documentation generation
+    - Technical requirements creation
+    - Replit-specific prompt generation
+    - Multi-tenant architecture with secure data isolation
+    - Subscription billing with Stripe integration
+    - Real-time audio processing and WebSocket communication
+    - Admin dashboard with analytics and user management
+    - Blog management system
+    - Visitor tracking and conversion analytics
+    - OpenAI cost monitoring and budget controls
+    
+    ## Authentication
+    The API supports two authentication methods:
+    1. **Replit OAuth** - Uses OpenID Connect for seamless integration with Replit accounts
+    2. **Email/Password** - Traditional authentication with password recovery
+    
+    ## UUID Security
+    All main entities (projects, interviews, documents, conversations, transcripts, users) 
+    use UUID primary keys to prevent resource enumeration attacks while maintaining 
+    security in anonymous contexts.
+    
+    ## Rate Limiting & Usage Controls
+    The API implements sophisticated usage controls:
+    - Subscription-based feature limits
+    - OpenAI cost tracking with budget alerts
+    - Pay-as-you-go pricing for overages
+    - Real-time budget monitoring
+    
+  version: 1.0.0
+  contact:
+    name: Colab Jetpack Support
+    url: https://colabjetpack.com
+    email: support@colabjetpack.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://your-domain.replit.app/api
+    description: Production server
+  - url: http://localhost:5000/api
+    description: Development server
+
+paths:
+  # Authentication Endpoints
+  /auth/user:
+    get:
+      summary: Get authenticated user information
+      description: Retrieves the current authenticated user's profile data
+      tags:
+        - Authentication
+      security:
+        - CookieAuth: []
+      responses:
+        '200':
+          description: User information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized - user not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/forgot-password:
+    post:
+      summary: Request password reset
+      description: Initiates password recovery process by sending reset email
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address for password reset
+              required:
+                - email
+      responses:
+        '200':
+          description: Password reset email sent (if email exists)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "If this email exists, a password reset link will be sent."
+        '400':
+          description: Bad request - missing email
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/reset-password:
+    post:
+      summary: Reset password with token
+      description: Resets user password using the token from email
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: Password reset token from email
+                newPassword:
+                  type: string
+                  minLength: 8
+                  description: New password for the account
+              required:
+                - token
+                - newPassword
+      responses:
+        '200':
+          description: Password reset successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Password reset successfully"
+        '400':
+          description: Invalid or expired token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/cancel-account:
+    post:
+      summary: Cancel user account
+      description: Cancels the authenticated user's account
+      tags:
+        - Authentication
+      security:
+        - CookieAuth: []
+      responses:
+        '200':
+          description: Account cancelled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Account cancelled successfully"
+                  user:
+                    $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Project Management
+  /projects:
+    get:
+      summary: Get user's projects
+      description: Retrieves all projects belonging to the authenticated user
+      tags:
+        - Projects
+      security:
+        - CookieAuth: []
+      responses:
+        '200':
+          description: Projects retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      summary: Create new project
+      description: Creates a new project for the authenticated user
+      tags:
+        - Projects
+      security:
+        - CookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectInput'
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /projects/{id}:
+    get:
+      summary: Get project by ID
+      description: Retrieves a specific project by its UUID
+      tags:
+        - Projects
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Project UUID
+      responses:
+        '200':
+          description: Project retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    patch:
+      summary: Update project
+      description: Updates an existing project
+      tags:
+        - Projects
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Project UUID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectInput'
+      responses:
+        '200':
+          description: Project updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      summary: Delete project
+      description: Deletes a project and all associated data
+      tags:
+        - Projects
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Project UUID
+      responses:
+        '200':
+          description: Project deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Project deleted successfully"
+        '404':
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Interview Management
+  /projects/{projectId}/interviews:
+    get:
+      summary: Get project interviews
+      description: Retrieves all interviews for a specific project
+      tags:
+        - Interviews
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Project UUID
+      responses:
+        '200':
+          description: Interviews retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Interview'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      summary: Create interview
+      description: Creates a new interview within a project
+      tags:
+        - Interviews
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Project UUID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InterviewInput'
+      responses:
+        '201':
+          description: Interview created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Interview'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /projects/{projectId}/interviews/upload:
+    post:
+      summary: Upload video/audio for interview
+      description: |
+        Uploads a video or audio file for background transcription and interview creation.
+        Supports files up to 25MB (OpenAI Whisper limit). Processing happens in the background
+        with real-time progress tracking available via the progress endpoint.
+      tags:
+        - Interviews
+        - File Upload
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Project ID
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Audio or video file (max 25MB)
+                name:
+                  type: string
+                  description: Name for the interview
+                stakeholderType:
+                  type: string
+                  description: Type of stakeholder being interviewed
+              required:
+                - file
+                - name
+                - stakeholderType
+      responses:
+        '201':
+          description: File uploaded successfully, interview created and processing started
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Interview'
+                  - type: object
+                    properties:
+                      status:
+                        type: string
+                        enum: [processing]
+                        description: Interview status during background processing
+                      progress:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: Processing progress percentage
+        '400':
+          description: Invalid file or request data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '413':
+          description: File too large (exceeds 25MB limit)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /interviews/{id}/progress:
+    get:
+      summary: Get interview processing progress
+      description: |
+        Retrieves the current processing progress for an uploaded interview.
+        Returns progress percentage and status for background transcription processing.
+      tags:
+        - Interviews
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Interview ID
+      responses:
+        '200':
+          description: Progress information retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: Interview ID
+                  status:
+                    type: string
+                    enum: [processing, completed, error]
+                    description: Current processing status
+                  progress:
+                    type: integer
+                    minimum: 0
+                    maximum: 100
+                    description: Processing progress percentage (0-100)
+                required:
+                  - id
+                  - status
+                  - progress
+        '404':
+          description: Interview not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /interviews/{id}:
+    get:
+      summary: Get interview by ID
+      description: Retrieves a specific interview by its UUID (supports anonymous access via share link)
+      tags:
+        - Interviews
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Interview UUID
+        - name: shareLink
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Share link UUID for anonymous access
+      responses:
+        '200':
+          description: Interview retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Interview'
+        '404':
+          description: Interview not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    patch:
+      summary: Update interview
+      description: Updates an existing interview
+      tags:
+        - Interviews
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Interview UUID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InterviewInput'
+      responses:
+        '200':
+          description: Interview updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Interview'
+        '404':
+          description: Interview not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Voice Processing & AI
+  /interviews/{id}/transcribe:
+    post:
+      summary: Transcribe audio
+      description: Transcribes audio from voice interviews using OpenAI Whisper
+      tags:
+        - Voice Processing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Interview UUID
+        - name: shareLink
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Share link UUID for anonymous access
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                audio:
+                  type: string
+                  format: binary
+                  description: Audio file to transcribe
+                context:
+                  type: string
+                  description: Additional context for better transcription
+      responses:
+        '200':
+          description: Transcription completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transcription:
+                    type: string
+                    description: Transcribed text from audio
+        '400':
+          description: Invalid request or audio file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /interviews/{id}/respond:
+    post:
+      summary: Generate AI response
+      description: Generates AI-powered response for interview conversation
+      tags:
+        - Voice Processing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Interview UUID
+        - name: shareLink
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Share link UUID for anonymous access
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: User message to respond to
+                context:
+                  type: string
+                  description: Conversation context
+                stakeholderType:
+                  type: string
+                  description: Type of stakeholder being interviewed
+              required:
+                - message
+      responses:
+        '200':
+          description: AI response generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    description: AI-generated response text
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /interviews/{id}/speech:
+    post:
+      summary: Generate speech audio
+      description: Converts text to speech using OpenAI TTS
+      tags:
+        - Voice Processing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Interview UUID
+        - name: shareLink
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Share link UUID for anonymous access
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Text to convert to speech
+                voice:
+                  type: string
+                  enum: [alloy, echo, fable, onyx, nova, shimmer]
+                  default: alloy
+                  description: Voice model to use for TTS
+              required:
+                - text
+      responses:
+        '200':
+          description: Speech audio generated successfully
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Conversations & Transcripts
+  /conversations:
+    post:
+      summary: Create conversation
+      description: Creates a new conversation record for an interview
+      tags:
+        - Conversations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversationInput'
+      responses:
+        '201':
+          description: Conversation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conversation'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /conversations/{id}:
+    get:
+      summary: Get conversation
+      description: Retrieves a conversation by its UUID (supports anonymous access)
+      tags:
+        - Conversations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Conversation UUID
+        - name: shareLink
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Share link UUID for anonymous access
+      responses:
+        '200':
+          description: Conversation retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conversation'
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /transcripts:
+    post:
+      summary: Create transcript
+      description: Creates a new transcript for an interview
+      tags:
+        - Transcripts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranscriptInput'
+      responses:
+        '201':
+          description: Transcript created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transcript'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /transcripts/{id}:
+    get:
+      summary: Get transcript
+      description: Retrieves a transcript by its UUID
+      tags:
+        - Transcripts
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Transcript UUID
+      responses:
+        '200':
+          description: Transcript retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transcript'
+        '404':
+          description: Transcript not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    patch:
+      summary: Update transcript
+      description: Updates an existing transcript (for corrections)
+      tags:
+        - Transcripts
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Transcript UUID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranscriptInput'
+      responses:
+        '200':
+          description: Transcript updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transcript'
+        '404':
+          description: Transcript not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Documentation Generation
+  /documents:
+    post:
+      summary: Generate documentation
+      description: Generates technical documentation from interview data
+      tags:
+        - Documentation
+      security:
+        - CookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentInput'
+      responses:
+        '201':
+          description: Documentation generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /documents/{id}:
+    get:
+      summary: Get document
+      description: Retrieves a document by its UUID
+      tags:
+        - Documentation
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Document UUID
+      responses:
+        '200':
+          description: Document retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    patch:
+      summary: Update document
+      description: Updates an existing document
+      tags:
+        - Documentation
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Document UUID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentInput'
+      responses:
+        '200':
+          description: Document updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # AI-Generated Prompts
+  /replit-prompts:
+    post:
+      summary: Generate Replit prompt
+      description: Generates optimized prompts for Replit development
+      tags:
+        - AI Prompts
+      security:
+        - CookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplitPromptInput'
+      responses:
+        '201':
+          description: Replit prompt generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplitPrompt'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /replit-prompts/{id}:
+    get:
+      summary: Get Replit prompt
+      description: Retrieves a Replit prompt by its UUID
+      tags:
+        - AI Prompts
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Replit prompt UUID
+      responses:
+        '200':
+          description: Replit prompt retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplitPrompt'
+        '404':
+          description: Replit prompt not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Subscription Management
+  /subscription-plans:
+    get:
+      summary: Get subscription plans
+      description: Retrieves all available subscription plans
+      tags:
+        - Subscriptions
+      responses:
+        '200':
+          description: Subscription plans retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscriptionPlan'
+
+  /check-usage-limit:
+    post:
+      summary: Check usage limits
+      description: Validates if user can perform an action based on their subscription plan
+      tags:
+        - Subscriptions
+      security:
+        - CookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  enum: [project, interview, summary, requirements, prompt]
+                  description: Action to check limit for
+                projectId:
+                  type: string
+                  format: uuid
+                  description: Project UUID (required for interview limit checks)
+              required:
+                - action
+      responses:
+        '200':
+          description: Usage limit check completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  canProceed:
+                    type: boolean
+                    description: Whether the user can proceed with the action
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # File Upload & Analysis
+  /upload-image:
+    post:
+      summary: Upload image
+      description: Uploads an image file for analysis or storage
+      tags:
+        - File Upload
+      security:
+        - CookieAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Image file to upload
+      responses:
+        '200':
+          description: Image uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: URL of the uploaded image
+                  filename:
+                    type: string
+                    description: Filename of the uploaded image
+        '400':
+          description: No file uploaded or invalid file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /analyze-image:
+    post:
+      summary: Analyze image with AI
+      description: Analyzes uploaded images using OpenAI Vision API
+      tags:
+        - AI Analysis
+      security:
+        - CookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageUrl:
+                  type: string
+                  description: URL or base64 data of image to analyze
+                context:
+                  type: string
+                  description: Context for image analysis
+              required:
+                - imageUrl
+      responses:
+        '200':
+          description: Image analysis completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  analysis:
+                    type: string
+                    description: AI-generated analysis of the image
+        '400':
+          description: Invalid image data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Analytics & Tracking
+  /track-visitor:
+    post:
+      summary: Track website visitor
+      description: Tracks visitor analytics for marketing attribution
+      tags:
+        - Analytics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionId:
+                  type: string
+                  description: Unique session identifier
+                referralSource:
+                  type: string
+                  description: Source of the referral (e.g., google, facebook)
+                referralMedium:
+                  type: string
+                  description: Medium of the referral (e.g., cpc, organic)
+                referralCampaign:
+                  type: string
+                  description: Campaign name
+                landingPage:
+                  type: string
+                  description: Landing page URL
+                userAgent:
+                  type: string
+                  description: User agent string
+              required:
+                - sessionId
+                - landingPage
+      responses:
+        '200':
+          description: Visitor tracked successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '400':
+          description: Missing required fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Admin Endpoints
+  /admin/model-configurations:
+    get:
+      summary: Get AI model configurations (Admin)
+      description: Retrieves all AI model configurations
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      responses:
+        '200':
+          description: Model configurations retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ModelConfiguration'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden - Admin access required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      summary: Create model configuration (Admin)
+      description: Creates a new AI model configuration
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelConfigurationInput'
+      responses:
+        '201':
+          description: Model configuration created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelConfiguration'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /admin/test-email:
+    post:
+      summary: Send test email (Admin)
+      description: Sends a test email to verify email service configuration
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address to send test to
+              required:
+                - email
+      responses:
+        '200':
+          description: Test email sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Test email sent successfully"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden - Admin access required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Admin Endpoints
+  /admin/users:
+    get:
+      summary: Get all users (Admin only)
+      description: Retrieves all users with admin-level access
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      responses:
+        '200':
+          description: Users retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Admin access required
+
+  /admin/users/{userId}:
+    patch:
+      summary: Update user (Admin only)
+      description: Updates user information as admin
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subscriptionTier:
+                  type: string
+                  enum: [free, basic, pro]
+                subscriptionStatus:
+                  type: string
+                  enum: [active, inactive, canceled, past_due]
+      responses:
+        '200':
+          description: User updated successfully
+        '401':
+          description: Unauthorized
+        '403':
+          description: Admin access required
+
+    delete:
+      summary: Delete user (Admin only)
+      description: Permanently deletes a user account
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully
+        '401':
+          description: Unauthorized
+        '403':
+          description: Admin access required
+
+  /admin/users/{userId}/reset-usage:
+    post:
+      summary: Reset user usage (Admin only)
+      description: Resets usage statistics for a user
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Usage reset successfully
+        '401':
+          description: Unauthorized
+        '403':
+          description: Admin access required
+
+  /admin/users/{userId}/cancel:
+    post:
+      summary: Cancel user subscription (Admin only)
+      description: Cancels a user's subscription as admin
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Subscription cancelled successfully
+        '401':
+          description: Unauthorized
+        '403':
+          description: Admin access required
+
+  /admin/users/{userId}/projects:
+    get:
+      summary: Get user projects (Admin only)
+      description: Retrieves all projects for a specific user
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Projects retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+
+  /admin/stats:
+    get:
+      summary: Get platform statistics (Admin only)
+      description: Retrieves comprehensive platform analytics
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      responses:
+        '200':
+          description: Statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalUsers:
+                    type: integer
+                  totalProjects:
+                    type: integer
+                  totalInterviews:
+                    type: integer
+                  monthlyActiveUsers:
+                    type: integer
+                  totalRevenue:
+                    type: number
+
+  /admin/financial-summary:
+    get:
+      summary: Get financial summary (Admin only)
+      description: Retrieves revenue and cost breakdown
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: month
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Financial summary retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stripeRevenue:
+                    type: number
+                  openaiCosts:
+                    type: number
+                  profitMargin:
+                    type: number
+
+  /admin/user-usage/{userId}:
+    get:
+      summary: Get user usage details (Admin only)
+      description: Retrieves detailed usage data for a specific user
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: month
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: User usage retrieved successfully
+
+  /admin/sync-subscriptions:
+    post:
+      summary: Sync all subscriptions (Admin only)
+      description: Synchronizes subscription data with Stripe
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      responses:
+        '200':
+          description: Subscriptions synced successfully
+
+  /admin/model-configurations/{id}:
+    patch:
+      summary: Update model configuration (Admin only)
+      description: Updates an existing AI model configuration
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelConfigurationInput'
+      responses:
+        '200':
+          description: Model configuration updated successfully
+
+    delete:
+      summary: Delete model configuration (Admin only)
+      description: Deletes an AI model configuration
+      tags:
+        - Admin
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Model configuration deleted successfully
+
+  # Blog Management
+  /blog/posts:
+    get:
+      summary: Get all blog posts
+      description: Retrieves all published blog posts
+      tags:
+        - Blog
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Blog posts retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlogPost'
+
+  /blog/posts/featured:
+    get:
+      summary: Get featured blog posts
+      description: Retrieves featured blog posts
+      tags:
+        - Blog
+      responses:
+        '200':
+          description: Featured posts retrieved successfully
+
+  /blog/posts/category/{category}:
+    get:
+      summary: Get posts by category
+      description: Retrieves blog posts filtered by category
+      tags:
+        - Blog
+      parameters:
+        - name: category
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Category posts retrieved successfully
+
+  /blog/posts/{slug}:
+    get:
+      summary: Get blog post by slug
+      description: Retrieves a specific blog post by its slug
+      tags:
+        - Blog
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Blog post retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+
+  /admin/blog/posts:
+    get:
+      summary: Get all blog posts (Admin only)
+      description: Retrieves all blog posts including drafts
+      tags:
+        - Admin
+        - Blog
+      security:
+        - CookieAuth: []
+      responses:
+        '200':
+          description: All blog posts retrieved successfully
+
+    post:
+      summary: Create blog post (Admin only)
+      description: Creates a new blog post
+      tags:
+        - Admin
+        - Blog
+      security:
+        - CookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogPostInput'
+      responses:
+        '201':
+          description: Blog post created successfully
+
+  /admin/blog/posts/{id}:
+    patch:
+      summary: Update blog post (Admin only)
+      description: Updates an existing blog post
+      tags:
+        - Admin
+        - Blog
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogPostInput'
+      responses:
+        '200':
+          description: Blog post updated successfully
+
+    delete:
+      summary: Delete blog post (Admin only)
+      description: Deletes a blog post
+      tags:
+        - Admin
+        - Blog
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Blog post deleted successfully
+
+  # Subscription Management
+
+  /track-visitor/{sessionId}/conversion:
+    patch:
+      summary: Update visitor conversion
+      description: Records visitor conversion (signup/subscription)
+      tags:
+        - Analytics
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                conversionType:
+                  type: string
+                  enum: [signup, subscription]
+                userId:
+                  type: string
+      responses:
+        '200':
+          description: Conversion tracked successfully
+
+  # Additional Project Endpoints
+  /projects/{id}/requirements:
+    get:
+      summary: Get project requirements
+      description: Retrieves generated requirements for a project
+      tags:
+        - Projects
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Requirements retrieved successfully
+
+    post:
+      summary: Generate project requirements
+      description: Generates new requirements for a project
+      tags:
+        - Projects
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Requirements generated successfully
+
+  /projects/{id}/summary:
+    get:
+      summary: Get project summary
+      description: Retrieves AI-generated summary for a project
+      tags:
+        - Projects
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Summary retrieved successfully
+
+  /projects/{id}/chat:
+    get:
+      summary: Get project chat history
+      description: Retrieves chat conversation history for a project
+      tags:
+        - Projects
+        - AI Partner
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Chat history retrieved successfully
+
+    post:
+      summary: Send chat message
+      description: Sends a message to the AI partner for a project
+      tags:
+        - Projects
+        - AI Partner
+      security:
+        - CookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                context:
+                  type: string
+      responses:
+        '200':
+          description: Chat response generated successfully
+
+  # Test Endpoints
+  /test-ending-scenarios:
+    post:
+      summary: Test ending scenarios
+      description: Tests different interview ending scenarios for development
+      tags:
+        - Testing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scenario:
+                  type: string
+                  enum: [user_wants_to_end, hard_time_limit, near_hard_limit, regular_time_limit]
+      responses:
+        '200':
+          description: Scenario test completed successfully
+
+  # Health Check
+  /health:
+    get:
+      summary: Health check
+      description: Returns the health status of the API
+      tags:
+        - System
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  timestamp:
+                    type: string
+                    format: date-time
+                  version:
+                    type: string
+                    example: "1.0.0"
+                  environment:
+                    type: string
+                    example: development
+
+components:
+  securitySchemes:
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: connect.sid
+      description: Session cookie for authentication
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+      required:
+        - message
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User UUID
+        email:
+          type: string
+          format: email
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        profileImageUrl:
+          type: string
+          nullable: true
+        authProvider:
+          type: string
+          enum: [replit, email]
+          default: replit
+        emailVerified:
+          type: boolean
+          default: false
+        subscriptionStatus:
+          type: string
+          enum: [active, inactive, canceled, past_due]
+          default: inactive
+        subscriptionTier:
+          type: string
+          enum: [free, basic, pro]
+          default: free
+        monthlyApiUsage:
+          type: integer
+          default: 0
+        monthlyApiCost:
+          type: integer
+          description: API cost in cents
+          default: 0
+        monthlyApiLimit:
+          type: integer
+          description: API cost limit in cents
+          default: 10000
+        monthlyBudget:
+          type: integer
+          description: User-set monthly budget in cents
+          default: 0
+        isAdmin:
+          type: boolean
+          default: false
+        accountStatus:
+          type: string
+          enum: [active, cancelled, deleted]
+          default: active
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - authProvider
+        - subscriptionStatus
+        - subscriptionTier
+        - createdAt
+        - updatedAt
+
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Project UUID
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        objective:
+          type: string
+          nullable: true
+        domain:
+          type: string
+          nullable: true
+        targetAudience:
+          type: string
+          nullable: true
+        keyFeatures:
+          type: array
+          items:
+            type: string
+        constraints:
+          type: string
+          nullable: true
+        references:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        requirements:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [planning, in_progress, completed, on_hold]
+          default: planning
+        userId:
+          type: string
+          description: Owner user UUID
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - userId
+        - createdAt
+        - updatedAt
+
+    ProjectInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+        objective:
+          type: string
+        domain:
+          type: string
+        targetAudience:
+          type: string
+        keyFeatures:
+          type: array
+          items:
+            type: string
+        constraints:
+          type: string
+        references:
+          type: string
+        summary:
+          type: string
+        requirements:
+          type: string
+        status:
+          type: string
+          enum: [planning, in_progress, completed, on_hold]
+      required:
+        - name
+
+    Interview:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Interview UUID
+        name:
+          type: string
+          description: Interview title
+        projectId:
+          type: string
+          format: uuid
+          description: Associated project UUID
+        stakeholderType:
+          type: string
+          enum: [end_user, business_owner, developer, designer, product_manager, other]
+        duration:
+          type: integer
+          nullable: true
+          description: Duration in minutes
+        status:
+          type: string
+          enum: [pending, in_progress, completed, cancelled, processing, error]
+          default: pending
+          description: Interview status - 'processing' and 'error' are used for uploaded files
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          nullable: true
+          description: Processing progress percentage for uploaded files (0-100)
+        interviewSource:
+          type: string
+          enum: [ai_agent, human_moderated]
+          default: ai_agent
+          description: Source of the interview - AI agent or uploaded file
+        transcriptionData:
+          type: object
+          nullable: true
+          description: Transcription metadata and speaker analysis data
+        shareLink:
+          type: string
+          format: uuid
+          description: Unique share link for anonymous access
+        participantName:
+          type: string
+          nullable: true
+        participantEmail:
+          type: string
+          format: email
+          nullable: true
+        selectedForDocumentation:
+          type: boolean
+          default: false
+        startedAt:
+          type: string
+          format: date-time
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        designData:
+          type: object
+          nullable: true
+          description: Design-specific data like Figma links, colors, fonts
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - projectId
+        - stakeholderType
+        - status
+        - shareLink
+        - createdAt
+        - updatedAt
+
+    InterviewInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        stakeholderType:
+          type: string
+          enum: [end_user, business_owner, developer, designer, product_manager, other]
+        duration:
+          type: integer
+          minimum: 5
+          maximum: 120
+        participantName:
+          type: string
+        participantEmail:
+          type: string
+          format: email
+        selectedForDocumentation:
+          type: boolean
+        notes:
+          type: string
+        designData:
+          type: object
+      required:
+        - name
+        - stakeholderType
+
+    Conversation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Conversation UUID
+        interviewId:
+          type: string
+          format: uuid
+          description: Associated interview UUID
+        participantMessage:
+          type: string
+          description: Message from participant
+        agentResponse:
+          type: string
+          description: AI agent response
+        audioUrl:
+          type: string
+          nullable: true
+          description: URL to audio recording
+        timestamp:
+          type: string
+          format: date-time
+        context:
+          type: string
+          nullable: true
+          description: Additional context for conversation
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - interviewId
+        - participantMessage
+        - agentResponse
+        - timestamp
+        - createdAt
+
+    ConversationInput:
+      type: object
+      properties:
+        interviewId:
+          type: string
+          format: uuid
+        participantMessage:
+          type: string
+          minLength: 1
+        agentResponse:
+          type: string
+          minLength: 1
+        audioUrl:
+          type: string
+          format: uri
+        context:
+          type: string
+      required:
+        - interviewId
+        - participantMessage
+        - agentResponse
+
+    Transcript:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Transcript UUID
+        interviewId:
+          type: string
+          format: uuid
+          description: Associated interview UUID
+        content:
+          type: string
+          description: Transcribed content
+        corrected:
+          type: boolean
+          default: false
+          description: Whether transcript has been manually corrected
+        originalContent:
+          type: string
+          nullable: true
+          description: Original content before correction
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - interviewId
+        - content
+        - createdAt
+        - updatedAt
+
+    TranscriptInput:
+      type: object
+      properties:
+        interviewId:
+          type: string
+          format: uuid
+        content:
+          type: string
+          minLength: 1
+        corrected:
+          type: boolean
+        originalContent:
+          type: string
+      required:
+        - interviewId
+        - content
+
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Document UUID
+        title:
+          type: string
+          description: Document title
+        content:
+          type: string
+          description: Document content in markdown format
+        projectId:
+          type: string
+          format: uuid
+          description: Associated project UUID
+        interviewIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Array of interview UUIDs used in documentation
+        stakeholderCount:
+          type: integer
+          default: 0
+          description: Number of stakeholders interviewed
+        status:
+          type: string
+          enum: [in_progress, completed, archived]
+          default: in_progress
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - content
+        - projectId
+        - status
+        - createdAt
+        - updatedAt
+
+    DocumentInput:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 255
+        content:
+          type: string
+          minLength: 1
+        projectId:
+          type: string
+          format: uuid
+        interviewIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        status:
+          type: string
+          enum: [in_progress, completed, archived]
+      required:
+        - title
+        - content
+        - projectId
+
+    ReplitPrompt:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Replit prompt UUID
+        title:
+          type: string
+          description: Prompt title
+        content:
+          type: string
+          description: Generated prompt content
+        projectId:
+          type: string
+          format: uuid
+          description: Associated project UUID
+        documentId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Source document UUID
+        type:
+          type: string
+          enum: [standard, optimized]
+          default: standard
+          description: Type of prompt generation
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - content
+        - projectId
+        - type
+        - createdAt
+        - updatedAt
+
+    ReplitPromptInput:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 255
+        content:
+          type: string
+          minLength: 1
+        projectId:
+          type: string
+          format: uuid
+        documentId:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum: [standard, optimized]
+      required:
+        - title
+        - content
+        - projectId
+
+    SubscriptionPlan:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Plan ID
+        name:
+          type: string
+          description: Plan name
+        price:
+          type: integer
+          description: Monthly price in cents
+        intervalCount:
+          type: integer
+          description: Billing interval count
+        interval:
+          type: string
+          enum: [month, year]
+          description: Billing interval
+        stripePriceId:
+          type: string
+          description: Stripe price ID
+        features:
+          type: array
+          items:
+            type: string
+          description: List of features included in the plan
+        limits:
+          type: object
+          properties:
+            projects:
+              type: integer
+            interviewsPerProject:
+              type: integer
+            monthlyApiCost:
+              type: integer
+          description: Usage limits for the plan
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - price
+        - interval
+        - createdAt
+        - updatedAt
+
+    ModelConfiguration:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Configuration ID
+        componentName:
+          type: string
+          enum: [interview_agent, summary_agent, strategic_partner, requirements_creator, prompt_creator]
+          description: AI component name
+        modelName:
+          type: string
+          description: OpenAI model name (e.g., gpt-4o, gpt-4o-mini)
+        description:
+          type: string
+          nullable: true
+          description: Configuration description
+        isActive:
+          type: boolean
+          default: true
+          description: Whether configuration is active
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - componentName
+        - modelName
+        - isActive
+        - createdAt
+        - updatedAt
+
+    ModelConfigurationInput:
+      type: object
+      properties:
+        componentName:
+          type: string
+          enum: [interview_agent, summary_agent, strategic_partner, requirements_creator, prompt_creator]
+        modelName:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+      required:
+        - componentName
+        - modelName
+
+    BlogPost:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Blog post ID
+        title:
+          type: string
+          description: Blog post title
+        slug:
+          type: string
+          description: URL-friendly slug
+        content:
+          type: string
+          description: Blog post content in markdown
+        excerpt:
+          type: string
+          nullable: true
+          description: Short excerpt of the post
+        category:
+          type: string
+          nullable: true
+          description: Post category
+        tags:
+          type: array
+          items:
+            type: string
+          description: Array of tags
+        featured:
+          type: boolean
+          default: false
+          description: Whether post is featured
+        published:
+          type: boolean
+          default: false
+          description: Whether post is published
+        authorId:
+          type: string
+          nullable: true
+          description: Author user ID
+        publishedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Publication date
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - slug
+        - content
+        - createdAt
+        - updatedAt
+
+    BlogPostInput:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 255
+        slug:
+          type: string
+          pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+        content:
+          type: string
+          minLength: 1
+        excerpt:
+          type: string
+        category:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        featured:
+          type: boolean
+        published:
+          type: boolean
+        authorId:
+          type: string
+        publishedAt:
+          type: string
+          format: date-time
+      required:
+        - title
+        - slug
+        - content
+
+    VisitorTracking:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Visitor tracking ID
+        sessionId:
+          type: string
+          description: Unique session identifier
+        referralSource:
+          type: string
+          nullable: true
+          description: Source of the referral
+        userAgent:
+          type: string
+          nullable: true
+          description: Browser user agent
+        ipAddress:
+          type: string
+          nullable: true
+          description: Visitor IP address
+        conversionType:
+          type: string
+          enum: [signup, subscription]
+          nullable: true
+          description: Type of conversion if any
+        userId:
+          type: string
+          nullable: true
+          description: User ID if converted
+        visitedAt:
+          type: string
+          format: date-time
+          description: Visit timestamp
+        convertedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Conversion timestamp
+      required:
+        - id
+        - sessionId
+        - visitedAt
+
+    VisitorTrackingInput:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          minLength: 1
+        referralSource:
+          type: string
+        userAgent:
+          type: string
+        ipAddress:
+          type: string
+      required:
+        - sessionId
+
+    UsageLimit:
+      type: object
+      properties:
+        action:
+          type: string
+          enum: [project, interview, summary, consolidated_summary, ai_partner, requirements, prompt]
+        allowed:
+          type: boolean
+        reason:
+          type: string
+          nullable: true
+        currentUsage:
+          type: integer
+        limit:
+          type: integer
+        subscriptionTier:
+          type: string
+          enum: [free, basic, pro]
+      required:
+        - action
+        - allowed
+        - currentUsage
+        - limit
+        - subscriptionTier
+
+    ChatMessage:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Message UUID
+        projectId:
+          type: string
+          format: uuid
+          description: Associated project UUID
+        message:
+          type: string
+          description: User message content
+        response:
+          type: string
+          description: AI partner response
+        context:
+          type: string
+          nullable: true
+          description: Additional context for the conversation
+        timestamp:
+          type: string
+          format: date-time
+          description: Message timestamp
+        userId:
+          type: string
+          description: User who sent the message
+      required:
+        - id
+        - projectId
+        - message
+        - response
+        - timestamp
+        - userId
+
+    ChatMessageInput:
+      type: object
+      properties:
+        message:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        context:
+          type: string
+          maxLength: 5000
+      required:
+        - message
+
+    TestScenario:
+      type: object
+      properties:
+        scenario:
+          type: string
+          enum: [user_wants_to_end, hard_time_limit, near_hard_limit, regular_time_limit]
+        response:
+          type: string
+          description: AI agent response for the scenario
+        interviewDuration:
+          type: integer
+          description: Interview duration in minutes
+      required:
+        - scenario
+        - response
+        - interviewDuration
+
+    FinancialSummary:
+      type: object
+      properties:
+        stripeRevenue:
+          type: number
+          description: Total Stripe revenue
+        openaiCosts:
+          type: number
+          description: Total OpenAI costs
+        profitMargin:
+          type: number
+          description: Profit margin (revenue - costs)
+        breakdown:
+          type: object
+          properties:
+            openai:
+              type: array
+              items:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  totalCost:
+                    type: number
+                  breakdown:
+                    type: array
+                    items:
+                      type: object
+            stripe:
+              type: array
+              items:
+                type: object
+                properties:
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+                  date:
+                    type: string
+                    format: date-time
+      required:
+        - stripeRevenue
+        - openaiCosts
+        - profitMargin
+
+tags:
+  - name: Authentication
+    description: User authentication and account management
+  - name: Projects
+    description: Project creation and management
+  - name: Interviews
+    description: Interview setup and management
+  - name: Voice Processing
+    description: Audio transcription, AI responses, and speech synthesis
+  - name: Documentation
+    description: AI-powered documentation generation
+  - name: Admin
+    description: Administrative functions for platform management
+  - name: Blog
+    description: Blog post management and content system
+  - name: Subscriptions
+    description: Subscription plans and usage management
+  - name: File Upload
+    description: File upload and media management
+  - name: Analytics
+    description: Visitor tracking and conversion analytics
+  - name: AI Partner
+    description: AI partner chat and strategic consultation
+  - name: Testing
+    description: Development and testing endpoints
+  - name: System
+    description: System health and monitoringpeech synthesis
+  - name: Conversations
+    description: Conversation history and management
+  - name: Transcripts
+    description: Interview transcript management and corrections
+  - name: Documentation
+    description: AI-generated technical documentation
+  - name: AI Prompts
+    description: Replit-optimized prompt generation
+  - name: Subscriptions
+    description: Subscription plans and usage limits
+  - name: File Upload
+    description: Image and file upload functionality
+  - name: AI Analysis
+    description: AI-powered image and content analysis
+  - name: Analytics
+    description: Visitor tracking and marketing analytics
+  - name: Admin
+    description: Administrative functions (Admin access required)
+  - name: System
+    description: System health and status endpoints
