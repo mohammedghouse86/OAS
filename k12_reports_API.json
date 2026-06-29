@@ -10,6 +10,119 @@
     }
   ],
   "paths": {
+    "/api/GlobalVariables/GetGlobalVariables": {
+  "get": {
+    "tags": [
+      "Global Variables"
+    ],
+    "summary": "Get Global Variables",
+    "description": "Returns global configuration and feature flags for the authenticated user.",
+    "operationId": "getGlobalVariables",
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Global variables retrieved successfully.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Contains all global configuration values, feature flags, URLs, limits, and user settings."
+                },
+                "message": {
+                  "type": "object",
+                  "properties": {
+                    "outParam": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "messages": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "userMessage": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "logType": {
+                      "type": "integer"
+                    },
+                    "exceptionMessage": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "screenId": {
+                      "type": "integer"
+                    },
+                    "apiAddress": {
+                      "type": "string",
+                      "example": "/api/GlobalVariables/GetGlobalVariables"
+                    },
+                    "dbQueries": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "EntityName": {
+                            "type": "string"
+                          },
+                          "OperationType": {
+                            "type": "string"
+                          },
+                          "ExecutionTime": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "example": {
+              "data": {
+                "permissionId": 1,
+                "corpNo": 166528,
+                "mainCorpNo": 166527,
+                "corpName": "lt_security3",
+                "isSubadmin": false,
+                "isAgent": false,
+                "isLTAEnabled": true,
+                "scanLimit": 1000,
+                "reScanLimit": 5,
+                "imageHost": "https://windowstaticbeta.onflo.us/",
+                "downloadServer": "https://downloadbeta.onflo.us/",
+                "brandName": "Onflo",
+                "isSignatureOn": true,
+                "userName": ""
+              },
+              "message": {
+                "status": true,
+                "apiAddress": "/api/GlobalVariables/GetGlobalVariables"
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized"
+      },
+      "500": {
+        "description": "Internal Server Error"
+      }
+    }
+  }
+},
     "/Reportsapi/api/AccountTimeZone/GetAccountTimeZone": {
       "get": {
         "tags": [
