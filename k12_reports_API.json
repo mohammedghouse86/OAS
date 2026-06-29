@@ -6,11 +6,11 @@
   },
   "servers": [
     {
-      "url": "https://beta.onflo.us/Lets-talk/Reportsapi"
+      "url": "https://beta.onflo.us/Lets-talk"
     }
   ],
   "paths": {
-    "/api/AccountTimeZone/GetAccountTimeZone": {
+    "/Reportsapi/api/AccountTimeZone/GetAccountTimeZone": {
       "get": {
         "tags": [
           "AccountTimeZone"
@@ -39,7 +39,7 @@
         }
       }
     },
-    "/api/AgentDetails/UpdateAgentStatusForCallRoute": {
+    "/Reportsapi/api/AgentDetails/UpdateAgentStatusForCallRoute": {
       "post": {
         "tags": [
           "AgentDetails"
@@ -70,7 +70,7 @@
         }
       }
     },
-    "/api/AgentFilters/search": {
+    "/Reportsapi/api/AgentFilters/search": {
       "post": {
         "tags": [
           "AgentFilters"
@@ -118,7 +118,7 @@
         }
       }
     },
-    "/api/AgentFilters/list": {
+    "/Reportsapi/api/AgentFilters/list": {
       "get": {
         "tags": [
           "AgentFilters"
@@ -654,7 +654,7 @@
         }
       }
     },
-    "/api/AgentInQueue/search": {
+    "/Reportsapi/api/AgentInQueue/search": {
       "post": {
         "tags": [
           "AgentInQueue"
@@ -702,7 +702,7 @@
         }
       }
     },
-    "/api/AgentInQueue/list": {
+    "/Reportsapi/api/AgentInQueue/list": {
       "get": {
         "tags": [
           "AgentInQueue"
@@ -1205,7 +1205,7 @@
         }
       }
     },
-    "/api/AgentStatus/search": {
+    "/Reportsapi/api/AgentStatus/search": {
       "post": {
         "tags": [
           "AgentStatus"
@@ -1253,7 +1253,7 @@
         }
       }
     },
-    "/api/AgentStatus/list": {
+    "/Reportsapi/api/AgentStatus/list": {
       "get": {
         "tags": [
           "AgentStatus"
@@ -1789,7 +1789,7 @@
         }
       }
     },
-    "/api/nogf/AgentStatusDashboard/GetAgentStatusList": {
+    "/Reportsapi/api/nogf/AgentStatusDashboard/GetAgentStatusList": {
       "post": {
         "tags": [
           "AgentStatusDashboard"
@@ -1837,7 +1837,7 @@
         }
       }
     },
-    "/api/AIAgentCall/AIAgentCallStatus": {
+    "/Reportsapi/api/AIAgentCall/AIAgentCallStatus": {
       "post": {
         "tags": [
           "AIAgentCall"
@@ -2129,7 +2129,7 @@
         }
       }
     },
-    "/api/AIAgentCall/AIAgentConnectionStatus": {
+    "/Reportsapi/api/AIAgentCall/AIAgentConnectionStatus": {
       "post": {
         "tags": [
           "AIAgentCall"
@@ -2406,7 +2406,7 @@
         }
       }
     },
-    "/api/AIAgentCallBack/CallToHumanAgent": {
+    "/Reportsapi/api/AIAgentCallBack/CallToHumanAgent": {
       "post": {
         "tags": [
           "AIAgentCallBack"
@@ -2453,7 +2453,7 @@
         }
       }
     },
-    "/api/AIAgentCallBack/AIAgentCallAnswered": {
+    "/Reportsapi/api/AIAgentCallBack/AIAgentCallAnswered": {
       "post": {
         "tags": [
           "AIAgentCallBack"
@@ -2482,7 +2482,7 @@
         }
       }
     },
-    "/api/AIAgentCallBack/PullCall": {
+    "/Reportsapi/api/AIAgentCallBack/PullCall": {
       "post": {
         "tags": [
           "AIAgentCallBack"
@@ -2504,7 +2504,7 @@
         }
       }
     },
-    "/api/AIAgentCallBack/RouteToVoicemail": {
+    "/Reportsapi/api/AIAgentCallBack/RouteToVoicemail": {
       "post": {
         "tags": [
           "AIAgentCallBack"
@@ -2544,7 +2544,7 @@
         }
       }
     },
-    "/api/BHQueues/insertupdate": {
+    "/Reportsapi/api/BHQueues/insertupdate": {
       "post": {
         "tags": [
           "BHQueues"
@@ -2592,7 +2592,7 @@
         }
       }
     },
-    "/api/BHQueues/delete": {
+    "/Reportsapi/api/BHQueues/delete": {
       "post": {
         "tags": [
           "BHQueues"
@@ -2640,7 +2640,7 @@
         }
       }
     },
-    "/api/BHQueues/search": {
+    "/Reportsapi/api/BHQueues/search": {
       "post": {
         "tags": [
           "BHQueues"
@@ -2688,7 +2688,7 @@
         }
       }
     },
-    "/api/BHQueues/list": {
+    "/Reportsapi/api/BHQueues/list": {
       "get": {
         "tags": [
           "BHQueues"
@@ -2913,7 +2913,7 @@
         }
       }
     },
-    "/api/BusinessHours/GetTimeInterval": {
+    "/Reportsapi/api/BusinessHours/GetTimeInterval": {
       "get": {
         "tags": [
           "BusinessHours"
@@ -2961,7 +2961,7 @@
         }
       }
     },
-    "/api/BusinessHours/insertupdate": {
+    "/Reportsapi/api/BusinessHours/insertupdate": {
       "post": {
         "tags": [
           "BusinessHours"
@@ -3009,7 +3009,7 @@
         }
       }
     },
-    "/api/BusinessHours/delete": {
+    "/Reportsapi/api/BusinessHours/delete": {
       "post": {
         "tags": [
           "BusinessHours"
@@ -3057,7 +3057,7 @@
         }
       }
     },
-    "/api/BusinessHours/search": {
+    "/Reportsapi/api/BusinessHours/search": {
       "post": {
         "tags": [
           "BusinessHours"
@@ -3105,7 +3105,7 @@
         }
       }
     },
-    "/api/BusinessHours/list": {
+    "/Reportsapi/api/BusinessHours/list": {
       "get": {
         "tags": [
           "BusinessHours"
@@ -3338,7 +3338,7 @@
         }
       }
     },
-    "/api/CallDetailDashboard/GetCallDetails": {
+    "/Reportsapi/api/CallDetailDashboard/GetCallDetails": {
       "post": {
         "tags": [
           "CallDetailDashboard"
@@ -3386,7 +3386,7 @@
         }
       }
     },
-    "/api/CallDetailDashboard/GetRecordingData": {
+    "/Reportsapi/api/CallDetailDashboard/GetRecordingData": {
       "post": {
         "tags": [
           "CallDetailDashboard"
@@ -3443,7 +3443,7 @@
         }
       }
     },
-    "/api/CallDetailFilters/search": {
+    "/Reportsapi/api/CallDetailFilters/search": {
       "post": {
         "tags": [
           "CallDetailFilters"
@@ -3491,7 +3491,7 @@
         }
       }
     },
-    "/api/CallDetailFilters/list": {
+    "/Reportsapi/api/CallDetailFilters/list": {
       "get": {
         "tags": [
           "CallDetailFilters"
@@ -4027,7 +4027,7 @@
         }
       }
     },
-    "/api/CallDuration/search": {
+    "/Reportsapi/api/CallDuration/search": {
       "post": {
         "tags": [
           "CallDuration"
@@ -4075,7 +4075,7 @@
         }
       }
     },
-    "/api/CallDuration/list": {
+    "/Reportsapi/api/CallDuration/list": {
       "get": {
         "tags": [
           "CallDuration"
@@ -4578,7 +4578,7 @@
         }
       }
     },
-    "/api/CallInQueue/search": {
+    "/Reportsapi/api/CallInQueue/search": {
       "post": {
         "tags": [
           "CallInQueue"
@@ -4626,7 +4626,7 @@
         }
       }
     },
-    "/api/CallInQueue/list": {
+    "/Reportsapi/api/CallInQueue/list": {
       "get": {
         "tags": [
           "CallInQueue"
@@ -5129,7 +5129,7 @@
         }
       }
     },
-    "/api/CallMatrics/search": {
+    "/Reportsapi/api/CallMatrics/search": {
       "post": {
         "tags": [
           "CallMatrics"
@@ -5177,7 +5177,7 @@
         }
       }
     },
-    "/api/CallMatrics/list": {
+    "/Reportsapi/api/CallMatrics/list": {
       "get": {
         "tags": [
           "CallMatrics"
@@ -5680,7 +5680,7 @@
         }
       }
     },
-    "/api/CallMetricsInbound/search": {
+    "/Reportsapi/api/CallMetricsInbound/search": {
       "post": {
         "tags": [
           "CallMetricsInbound"
@@ -5728,7 +5728,7 @@
         }
       }
     },
-    "/api/CallMetricsInbound/list": {
+    "/Reportsapi/api/CallMetricsInbound/list": {
       "get": {
         "tags": [
           "CallMetricsInbound"
@@ -6231,7 +6231,7 @@
         }
       }
     },
-    "/api/CallNotesQueues/insertupdate": {
+    "/Reportsapi/api/CallNotesQueues/insertupdate": {
       "post": {
         "tags": [
           "CallNotesQueues"
@@ -6279,7 +6279,7 @@
         }
       }
     },
-    "/api/CallNotesQueues/delete": {
+    "/Reportsapi/api/CallNotesQueues/delete": {
       "post": {
         "tags": [
           "CallNotesQueues"
@@ -6327,7 +6327,7 @@
         }
       }
     },
-    "/api/CallNotesQueues/search": {
+    "/Reportsapi/api/CallNotesQueues/search": {
       "post": {
         "tags": [
           "CallNotesQueues"
@@ -6375,7 +6375,7 @@
         }
       }
     },
-    "/api/CallNotesQueues/list": {
+    "/Reportsapi/api/CallNotesQueues/list": {
       "get": {
         "tags": [
           "CallNotesQueues"
@@ -6600,7 +6600,7 @@
         }
       }
     },
-    "/api/CallNotesTemplate/insertupdate": {
+    "/Reportsapi/api/CallNotesTemplate/insertupdate": {
       "post": {
         "tags": [
           "CallNotesTemplate"
@@ -6648,7 +6648,7 @@
         }
       }
     },
-    "/api/CallNotesTemplate/delete": {
+    "/Reportsapi/api/CallNotesTemplate/delete": {
       "post": {
         "tags": [
           "CallNotesTemplate"
@@ -6696,7 +6696,7 @@
         }
       }
     },
-    "/api/CallNotesTemplate/search": {
+    "/Reportsapi/api/CallNotesTemplate/search": {
       "post": {
         "tags": [
           "CallNotesTemplate"
@@ -6744,7 +6744,7 @@
         }
       }
     },
-    "/api/CallNotesTemplate/list": {
+    "/Reportsapi/api/CallNotesTemplate/list": {
       "get": {
         "tags": [
           "CallNotesTemplate"
@@ -7005,7 +7005,7 @@
         }
       }
     },
-    "/api/CallNotesTemplateDropdown/insertupdate": {
+    "/Reportsapi/api/CallNotesTemplateDropdown/insertupdate": {
       "post": {
         "tags": [
           "CallNotesTemplateDropdown"
@@ -7053,7 +7053,7 @@
         }
       }
     },
-    "/api/CallNotesTemplateDropdown/delete": {
+    "/Reportsapi/api/CallNotesTemplateDropdown/delete": {
       "post": {
         "tags": [
           "CallNotesTemplateDropdown"
@@ -7101,7 +7101,7 @@
         }
       }
     },
-    "/api/CallNotesTemplateDropdown/search": {
+    "/Reportsapi/api/CallNotesTemplateDropdown/search": {
       "post": {
         "tags": [
           "CallNotesTemplateDropdown"
@@ -7149,7 +7149,7 @@
         }
       }
     },
-    "/api/CallNotesTemplateDropdown/list": {
+    "/Reportsapi/api/CallNotesTemplateDropdown/list": {
       "get": {
         "tags": [
           "CallNotesTemplateDropdown"
@@ -7374,7 +7374,7 @@
         }
       }
     },
-    "/api/CallsReport/search": {
+    "/Reportsapi/api/CallsReport/search": {
       "post": {
         "tags": [
           "CallsReport"
@@ -7422,7 +7422,7 @@
         }
       }
     },
-    "/api/CallsReport/list": {
+    "/Reportsapi/api/CallsReport/list": {
       "get": {
         "tags": [
           "CallsReport"
@@ -7958,7 +7958,7 @@
         }
       }
     },
-    "/api/CallVolume/search": {
+    "/Reportsapi/api/CallVolume/search": {
       "post": {
         "tags": [
           "CallVolume"
@@ -8006,7 +8006,7 @@
         }
       }
     },
-    "/api/CallVolume/list": {
+    "/Reportsapi/api/CallVolume/list": {
       "get": {
         "tags": [
           "CallVolume"
@@ -8509,7 +8509,7 @@
         }
       }
     },
-    "/api/ClearCache/ClearTelephonyCache": {
+    "/Reportsapi/api/ClearCache/ClearTelephonyCache": {
       "post": {
         "tags": [
           "ClearCache"
@@ -8521,7 +8521,7 @@
         }
       }
     },
-    "/api/ClearCache/CacheStatus": {
+    "/Reportsapi/api/ClearCache/CacheStatus": {
       "post": {
         "tags": [
           "ClearCache"
@@ -8559,7 +8559,7 @@
         }
       }
     },
-    "/api/CsatByAgent/search": {
+    "/Reportsapi/api/CsatByAgent/search": {
       "post": {
         "tags": [
           "CsatByAgent"
@@ -8607,7 +8607,7 @@
         }
       }
     },
-    "/api/CsatByAgent/list": {
+    "/Reportsapi/api/CsatByAgent/list": {
       "get": {
         "tags": [
           "CsatByAgent"
@@ -9110,7 +9110,7 @@
         }
       }
     },
-    "/api/CsatByMonth/search": {
+    "/Reportsapi/api/CsatByMonth/search": {
       "post": {
         "tags": [
           "CsatByMonth"
@@ -9158,7 +9158,7 @@
         }
       }
     },
-    "/api/CsatByMonth/list": {
+    "/Reportsapi/api/CsatByMonth/list": {
       "get": {
         "tags": [
           "CsatByMonth"
@@ -9661,7 +9661,7 @@
         }
       }
     },
-    "/api/CsatOverview/search": {
+    "/Reportsapi/api/CsatOverview/search": {
       "post": {
         "tags": [
           "CsatOverview"
@@ -9709,7 +9709,7 @@
         }
       }
     },
-    "/api/CsatOverview/list": {
+    "/Reportsapi/api/CsatOverview/list": {
       "get": {
         "tags": [
           "CsatOverview"
@@ -10212,7 +10212,7 @@
         }
       }
     },
-    "/api/CsatSevenDays/search": {
+    "/Reportsapi/api/CsatSevenDays/search": {
       "post": {
         "tags": [
           "CsatSevenDays"
@@ -10260,7 +10260,7 @@
         }
       }
     },
-    "/api/CsatSevenDays/list": {
+    "/Reportsapi/api/CsatSevenDays/list": {
       "get": {
         "tags": [
           "CsatSevenDays"
@@ -10763,7 +10763,7 @@
         }
       }
     },
-    "/api/CustomContacts/insertupdate": {
+    "/Reportsapi/api/CustomContacts/insertupdate": {
       "post": {
         "tags": [
           "CustomContacts"
@@ -10811,7 +10811,7 @@
         }
       }
     },
-    "/api/CustomContacts/delete": {
+    "/Reportsapi/api/CustomContacts/delete": {
       "post": {
         "tags": [
           "CustomContacts"
@@ -10859,7 +10859,7 @@
         }
       }
     },
-    "/api/CustomContacts/search": {
+    "/Reportsapi/api/CustomContacts/search": {
       "post": {
         "tags": [
           "CustomContacts"
@@ -10907,7 +10907,7 @@
         }
       }
     },
-    "/api/CustomContacts/list": {
+    "/Reportsapi/api/CustomContacts/list": {
       "get": {
         "tags": [
           "CustomContacts"
@@ -11146,7 +11146,7 @@
         }
       }
     },
-    "/api/CustomerData/GetCustomerData": {
+    "/Reportsapi/api/CustomerData/GetCustomerData": {
       "get": {
         "tags": [
           "CustomerData"
@@ -11194,7 +11194,7 @@
         }
       }
     },
-    "/api/DateFilter/GetDateFilter": {
+    "/Reportsapi/api/DateFilter/GetDateFilter": {
       "get": {
         "tags": [
           "DateFilter"
@@ -11223,7 +11223,7 @@
         }
       }
     },
-    "/api/DateFilter/search": {
+    "/Reportsapi/api/DateFilter/search": {
       "post": {
         "tags": [
           "DateFilter"
@@ -11271,7 +11271,7 @@
         }
       }
     },
-    "/api/DateFilter/list": {
+    "/Reportsapi/api/DateFilter/list": {
       "get": {
         "tags": [
           "DateFilter"
@@ -11496,7 +11496,7 @@
         }
       }
     },
-    "/api/DbLog/RoundRobinLogs": {
+    "/Reportsapi/api/DbLog/RoundRobinLogs": {
       "post": {
         "tags": [
           "DbLog"
@@ -11527,7 +11527,7 @@
         }
       }
     },
-    "/api/DbLog/InsertAgentStatusLog": {
+    "/Reportsapi/api/DbLog/InsertAgentStatusLog": {
       "post": {
         "tags": [
           "DbLog"
@@ -11558,7 +11558,7 @@
         }
       }
     },
-    "/api/DepartmentMaster/insertupdate": {
+    "/Reportsapi/api/DepartmentMaster/insertupdate": {
       "post": {
         "tags": [
           "DepartmentMaster"
@@ -11606,7 +11606,7 @@
         }
       }
     },
-    "/api/DepartmentMaster/delete": {
+    "/Reportsapi/api/DepartmentMaster/delete": {
       "post": {
         "tags": [
           "DepartmentMaster"
@@ -11654,7 +11654,7 @@
         }
       }
     },
-    "/api/DepartmentMaster/search": {
+    "/Reportsapi/api/DepartmentMaster/search": {
       "post": {
         "tags": [
           "DepartmentMaster"
@@ -11702,7 +11702,7 @@
         }
       }
     },
-    "/api/DepartmentMaster/list": {
+    "/Reportsapi/api/DepartmentMaster/list": {
       "get": {
         "tags": [
           "DepartmentMaster"
@@ -11934,7 +11934,7 @@
         }
       }
     },
-    "/api/ExternalNumberRoutingWebhook/RouteCallToExternalNumberStatus": {
+    "/Reportsapi/api/ExternalNumberRoutingWebhook/RouteCallToExternalNumberStatus": {
       "post": {
         "tags": [
           "ExternalNumberRoutingWebhook"
@@ -12225,7 +12225,7 @@
         }
       }
     },
-    "/api/FileUpload/UploadFile": {
+    "/Reportsapi/api/FileUpload/UploadFile": {
       "post": {
         "tags": [
           "FileUpload"
@@ -12414,7 +12414,7 @@
         }
       }
     },
-    "/api/FileUpload/DeleteFile": {
+    "/Reportsapi/api/FileUpload/DeleteFile": {
       "post": {
         "tags": [
           "FileUpload"
@@ -12462,7 +12462,7 @@
         }
       }
     },
-    "/api/FileUpload/SaveFiles": {
+    "/Reportsapi/api/FileUpload/SaveFiles": {
       "post": {
         "tags": [
           "FileUpload"
@@ -12519,7 +12519,7 @@
         }
       }
     },
-    "/api/Filters/search": {
+    "/Reportsapi/api/Filters/search": {
       "post": {
         "tags": [
           "Filters"
@@ -12567,7 +12567,7 @@
         }
       }
     },
-    "/api/Filters/list": {
+    "/Reportsapi/api/Filters/list": {
       "get": {
         "tags": [
           "Filters"
@@ -13070,7 +13070,7 @@
         }
       }
     },
-    "/api/FormData/insertupdate": {
+    "/Reportsapi/api/FormData/insertupdate": {
       "post": {
         "tags": [
           "FormData"
@@ -13118,7 +13118,7 @@
         }
       }
     },
-    "/api/FormData/delete": {
+    "/Reportsapi/api/FormData/delete": {
       "post": {
         "tags": [
           "FormData"
@@ -13166,7 +13166,7 @@
         }
       }
     },
-    "/api/FormData/search": {
+    "/Reportsapi/api/FormData/search": {
       "post": {
         "tags": [
           "FormData"
@@ -13214,7 +13214,7 @@
         }
       }
     },
-    "/api/FormData/list": {
+    "/Reportsapi/api/FormData/list": {
       "get": {
         "tags": [
           "FormData"
@@ -13439,7 +13439,7 @@
         }
       }
     },
-    "/api/GetOrSaveCallDetailFilter/search": {
+    "/Reportsapi/api/GetOrSaveCallDetailFilter/search": {
       "post": {
         "tags": [
           "GetOrSaveCallDetailFilter"
@@ -13487,7 +13487,7 @@
         }
       }
     },
-    "/api/GetOrSaveCallDetailFilter/list": {
+    "/Reportsapi/api/GetOrSaveCallDetailFilter/list": {
       "get": {
         "tags": [
           "GetOrSaveCallDetailFilter"
@@ -14023,7 +14023,7 @@
         }
       }
     },
-    "/api/GetOrSaveReportFilter/search": {
+    "/Reportsapi/api/GetOrSaveReportFilter/search": {
       "post": {
         "tags": [
           "GetOrSaveReportFilter"
@@ -14071,7 +14071,7 @@
         }
       }
     },
-    "/api/GetOrSaveReportFilter/list": {
+    "/Reportsapi/api/GetOrSaveReportFilter/list": {
       "get": {
         "tags": [
           "GetOrSaveReportFilter"
@@ -14574,7 +14574,7 @@
         }
       }
     },
-    "/api/GreetingWebhook/GetHoldMusicUrl": {
+    "/Reportsapi/api/GreetingWebhook/GetHoldMusicUrl": {
       "post": {
         "tags": [
           "GreetingWebhook"
@@ -14628,7 +14628,7 @@
         }
       }
     },
-    "/api/HourlyCallVolume/search": {
+    "/Reportsapi/api/HourlyCallVolume/search": {
       "post": {
         "tags": [
           "HourlyCallVolume"
@@ -14676,7 +14676,7 @@
         }
       }
     },
-    "/api/HourlyCallVolume/list": {
+    "/Reportsapi/api/HourlyCallVolume/list": {
       "get": {
         "tags": [
           "HourlyCallVolume"
@@ -15179,7 +15179,7 @@
         }
       }
     },
-    "/api/IvrMenu/insertupdate": {
+    "/Reportsapi/api/IvrMenu/insertupdate": {
       "post": {
         "tags": [
           "IvrMenu"
@@ -15227,7 +15227,7 @@
         }
       }
     },
-    "/api/IvrMenu/delete": {
+    "/Reportsapi/api/IvrMenu/delete": {
       "post": {
         "tags": [
           "IvrMenu"
@@ -15275,7 +15275,7 @@
         }
       }
     },
-    "/api/IvrMenu/search": {
+    "/Reportsapi/api/IvrMenu/search": {
       "post": {
         "tags": [
           "IvrMenu"
@@ -15323,7 +15323,7 @@
         }
       }
     },
-    "/api/IvrMenu/list": {
+    "/Reportsapi/api/IvrMenu/list": {
       "get": {
         "tags": [
           "IvrMenu"
@@ -15556,7 +15556,7 @@
         }
       }
     },
-    "/api/IvrWebhook/HandleIVRResponse": {
+    "/Reportsapi/api/IvrWebhook/HandleIVRResponse": {
       "post": {
         "tags": [
           "IvrWebhook"
@@ -15841,7 +15841,7 @@
         }
       }
     },
-    "/api/Language/insertupdate": {
+    "/Reportsapi/api/Language/insertupdate": {
       "post": {
         "tags": [
           "Language"
@@ -15889,7 +15889,7 @@
         }
       }
     },
-    "/api/Language/delete": {
+    "/Reportsapi/api/Language/delete": {
       "post": {
         "tags": [
           "Language"
@@ -15937,7 +15937,7 @@
         }
       }
     },
-    "/api/Language/search": {
+    "/Reportsapi/api/Language/search": {
       "post": {
         "tags": [
           "Language"
@@ -15985,7 +15985,7 @@
         }
       }
     },
-    "/api/Language/list": {
+    "/Reportsapi/api/Language/list": {
       "get": {
         "tags": [
           "Language"
@@ -16210,7 +16210,7 @@
         }
       }
     },
-    "/api/ManageTelephonyDashboard/search": {
+    "/Reportsapi/api/ManageTelephonyDashboard/search": {
       "post": {
         "tags": [
           "ManageTelephonyDashboard"
@@ -16258,7 +16258,7 @@
         }
       }
     },
-    "/api/ManageTelephonyDashboard/list": {
+    "/Reportsapi/api/ManageTelephonyDashboard/list": {
       "get": {
         "tags": [
           "ManageTelephonyDashboard"
@@ -16761,7 +16761,7 @@
         }
       }
     },
-    "/api/NonRoundRobinCallWebHook/NonRoundRobinAgentCallAnswer": {
+    "/Reportsapi/api/NonRoundRobinCallWebHook/NonRoundRobinAgentCallAnswer": {
       "post": {
         "tags": [
           "NonRoundRobinCallWebHook"
@@ -17069,7 +17069,7 @@
         }
       }
     },
-    "/api/NonRoundRobinCallWebHook/NonRoundRobinParticipantCallStatus": {
+    "/Reportsapi/api/NonRoundRobinCallWebHook/NonRoundRobinParticipantCallStatus": {
       "post": {
         "tags": [
           "NonRoundRobinCallWebHook"
@@ -17384,7 +17384,7 @@
         }
       }
     },
-    "/api/NonRoundRobinCallWebHook/NonRoundRobinCallRouteAfterGreeting": {
+    "/Reportsapi/api/NonRoundRobinCallWebHook/NonRoundRobinCallRouteAfterGreeting": {
       "post": {
         "tags": [
           "NonRoundRobinCallWebHook"
@@ -18007,7 +18007,7 @@
         }
       }
     },
-    "/api/NumberProvisioning/ensure-account": {
+    "/Reportsapi/api/NumberProvisioning/ensure-account": {
       "post": {
         "tags": [
           "NumberProvisioning"
@@ -18036,7 +18036,7 @@
         }
       }
     },
-    "/api/NumberProvisioning/search-numbers": {
+    "/Reportsapi/api/NumberProvisioning/search-numbers": {
       "post": {
         "tags": [
           "NumberProvisioning"
@@ -18084,7 +18084,7 @@
         }
       }
     },
-    "/api/NumberProvisioning/claim-number": {
+    "/Reportsapi/api/NumberProvisioning/claim-number": {
       "post": {
         "tags": [
           "NumberProvisioning"
@@ -18132,7 +18132,7 @@
         }
       }
     },
-    "/api/NumberProvisioning/save-name": {
+    "/Reportsapi/api/NumberProvisioning/save-name": {
       "post": {
         "tags": [
           "NumberProvisioning"
@@ -18180,7 +18180,7 @@
         }
       }
     },
-    "/api/NumberSettings/insertupdate": {
+    "/Reportsapi/api/NumberSettings/insertupdate": {
       "post": {
         "tags": [
           "NumberSettings"
@@ -18228,7 +18228,7 @@
         }
       }
     },
-    "/api/NumberSettings/delete": {
+    "/Reportsapi/api/NumberSettings/delete": {
       "post": {
         "tags": [
           "NumberSettings"
@@ -18276,7 +18276,7 @@
         }
       }
     },
-    "/api/NumberSettings/search": {
+    "/Reportsapi/api/NumberSettings/search": {
       "post": {
         "tags": [
           "NumberSettings"
@@ -18324,7 +18324,7 @@
         }
       }
     },
-    "/api/NumberSettings/list": {
+    "/Reportsapi/api/NumberSettings/list": {
       "get": {
         "tags": [
           "NumberSettings"
@@ -18549,7 +18549,7 @@
         }
       }
     },
-    "/api/NumberType": {
+    "/Reportsapi/api/NumberType": {
       "get": {
         "tags": [
           "NumberType"
@@ -18595,7 +18595,7 @@
         }
       }
     },
-    "/api/OutGoingWebHook/UpdateOutGoingCallStatus": {
+    "/Reportsapi/api/OutGoingWebHook/UpdateOutGoingCallStatus": {
       "post": {
         "tags": [
           "OutGoingWebHook"
@@ -18966,7 +18966,7 @@
         }
       }
     },
-    "/api/OutGoingWebHook/OutGoingParticipantStatus": {
+    "/Reportsapi/api/OutGoingWebHook/OutGoingParticipantStatus": {
       "post": {
         "tags": [
           "OutGoingWebHook"
@@ -19093,7 +19093,7 @@
         }
       }
     },
-    "/api/OutGoingWebHook/AddParticipantAfterRecordingAnnouncement": {
+    "/Reportsapi/api/OutGoingWebHook/AddParticipantAfterRecordingAnnouncement": {
       "post": {
         "tags": [
           "OutGoingWebHook"
@@ -19681,7 +19681,7 @@
         }
       }
     },
-    "/api/Phone/CallTransferred": {
+    "/Reportsapi/api/Phone/CallTransferred": {
       "post": {
         "tags": [
           "Phone"
@@ -19712,7 +19712,7 @@
         }
       }
     },
-    "/api/PhoneCalendar/GetUnusedQueuesInCalendar": {
+    "/Reportsapi/api/PhoneCalendar/GetUnusedQueuesInCalendar": {
       "get": {
         "tags": [
           "PhoneCalendar"
@@ -19724,7 +19724,7 @@
         }
       }
     },
-    "/api/PhoneCalendar/insertupdate": {
+    "/Reportsapi/api/PhoneCalendar/insertupdate": {
       "post": {
         "tags": [
           "PhoneCalendar"
@@ -19772,7 +19772,7 @@
         }
       }
     },
-    "/api/PhoneCalendar/delete": {
+    "/Reportsapi/api/PhoneCalendar/delete": {
       "post": {
         "tags": [
           "PhoneCalendar"
@@ -19820,7 +19820,7 @@
         }
       }
     },
-    "/api/PhoneCalendar/search": {
+    "/Reportsapi/api/PhoneCalendar/search": {
       "post": {
         "tags": [
           "PhoneCalendar"
@@ -19868,7 +19868,7 @@
         }
       }
     },
-    "/api/PhoneCalendar/list": {
+    "/Reportsapi/api/PhoneCalendar/list": {
       "get": {
         "tags": [
           "PhoneCalendar"
@@ -20093,7 +20093,7 @@
         }
       }
     },
-    "/api/PhoneCalendarHoliday/GetHolidays": {
+    "/Reportsapi/api/PhoneCalendarHoliday/GetHolidays": {
       "post": {
         "tags": [
           "PhoneCalendarHoliday"
@@ -20141,7 +20141,7 @@
         }
       }
     },
-    "/api/PhoneCalendarHoliday/AddUpdateHoliday": {
+    "/Reportsapi/api/PhoneCalendarHoliday/AddUpdateHoliday": {
       "post": {
         "tags": [
           "PhoneCalendarHoliday"
@@ -20172,7 +20172,7 @@
         }
       }
     },
-    "/api/PhoneCalendarHoliday/DeleteHolidays": {
+    "/Reportsapi/api/PhoneCalendarHoliday/DeleteHolidays": {
       "post": {
         "tags": [
           "PhoneCalendarHoliday"
@@ -20203,7 +20203,7 @@
         }
       }
     },
-    "/api/PhoneCalendarHoliday/insertupdate": {
+    "/Reportsapi/api/PhoneCalendarHoliday/insertupdate": {
       "post": {
         "tags": [
           "PhoneCalendarHoliday"
@@ -20251,7 +20251,7 @@
         }
       }
     },
-    "/api/PhoneCalendarHoliday/delete": {
+    "/Reportsapi/api/PhoneCalendarHoliday/delete": {
       "post": {
         "tags": [
           "PhoneCalendarHoliday"
@@ -20299,7 +20299,7 @@
         }
       }
     },
-    "/api/PhoneCalendarHoliday/search": {
+    "/Reportsapi/api/PhoneCalendarHoliday/search": {
       "post": {
         "tags": [
           "PhoneCalendarHoliday"
@@ -20347,7 +20347,7 @@
         }
       }
     },
-    "/api/PhoneCalendarHoliday/list": {
+    "/Reportsapi/api/PhoneCalendarHoliday/list": {
       "get": {
         "tags": [
           "PhoneCalendarHoliday"
@@ -20622,7 +20622,7 @@
         }
       }
     },
-    "/api/PhoneCall/AcceptTransfer": {
+    "/Reportsapi/api/PhoneCall/AcceptTransfer": {
       "post": {
         "tags": [
           "PhoneCall"
@@ -20653,7 +20653,7 @@
         }
       }
     },
-    "/api/PhoneCall/AddTransferTimeLineEntry": {
+    "/Reportsapi/api/PhoneCall/AddTransferTimeLineEntry": {
       "post": {
         "tags": [
           "PhoneCall"
@@ -20684,7 +20684,7 @@
         }
       }
     },
-    "/api/PhoneCall/AddTimeLineEntryForInComingCall": {
+    "/Reportsapi/api/PhoneCall/AddTimeLineEntryForInComingCall": {
       "post": {
         "tags": [
           "PhoneCall"
@@ -20715,7 +20715,7 @@
         }
       }
     },
-    "/api/PhoneCall/CheckAgentAvailabilityStatus": {
+    "/Reportsapi/api/PhoneCall/CheckAgentAvailabilityStatus": {
       "post": {
         "tags": [
           "PhoneCall"
@@ -20747,7 +20747,7 @@
         }
       }
     },
-    "/api/PhoneCall/GetQueueWaitingCalls": {
+    "/Reportsapi/api/PhoneCall/GetQueueWaitingCalls": {
       "post": {
         "tags": [
           "PhoneCall"
@@ -20785,7 +20785,7 @@
         }
       }
     },
-    "/api/PhoneCallNotes/SaveCallNote": {
+    "/Reportsapi/api/PhoneCallNotes/SaveCallNote": {
       "post": {
         "tags": [
           "PhoneCallNotes"
@@ -20816,7 +20816,7 @@
         }
       }
     },
-    "/api/PhoneCallNotes/GetCallNote": {
+    "/Reportsapi/api/PhoneCallNotes/GetCallNote": {
       "post": {
         "tags": [
           "PhoneCallNotes"
@@ -20864,7 +20864,7 @@
         }
       }
     },
-    "/api/PhoneCallNotes/GetCallNoteForComment": {
+    "/Reportsapi/api/PhoneCallNotes/GetCallNoteForComment": {
       "post": {
         "tags": [
           "PhoneCallNotes"
@@ -20912,7 +20912,7 @@
         }
       }
     },
-    "/api/PhoneDetails/GetPhoneActiveUsers": {
+    "/Reportsapi/api/PhoneDetails/GetPhoneActiveUsers": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -20950,7 +20950,7 @@
         }
       }
     },
-    "/api/PhoneDetails/GetPhoneNumbers": {
+    "/Reportsapi/api/PhoneDetails/GetPhoneNumbers": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -20988,7 +20988,7 @@
         }
       }
     },
-    "/api/PhoneDetails/GetIsConferenceInProgress": {
+    "/Reportsapi/api/PhoneDetails/GetIsConferenceInProgress": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21036,7 +21036,7 @@
         }
       }
     },
-    "/api/PhoneDetails/GetPhoneAgentList": {
+    "/Reportsapi/api/PhoneDetails/GetPhoneAgentList": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21074,7 +21074,7 @@
         }
       }
     },
-    "/api/PhoneDetails/GetPhoneDialoguesByPhoneNumber": {
+    "/Reportsapi/api/PhoneDetails/GetPhoneDialoguesByPhoneNumber": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21122,7 +21122,7 @@
         }
       }
     },
-    "/api/PhoneDetails/CheckInternetConnection": {
+    "/Reportsapi/api/PhoneDetails/CheckInternetConnection": {
       "get": {
         "tags": [
           "PhoneDetails"
@@ -21134,7 +21134,7 @@
         }
       }
     },
-    "/api/PhoneDetails/UpdateConferenceSequence": {
+    "/Reportsapi/api/PhoneDetails/UpdateConferenceSequence": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21182,7 +21182,7 @@
         }
       }
     },
-    "/api/PhoneDetails/UpdateCallWrapUPDuration": {
+    "/Reportsapi/api/PhoneDetails/UpdateCallWrapUPDuration": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21213,7 +21213,7 @@
         }
       }
     },
-    "/api/PhoneDetails/UpdateAgentSequence": {
+    "/Reportsapi/api/PhoneDetails/UpdateAgentSequence": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21264,7 +21264,7 @@
         }
       }
     },
-    "/api/PhoneDetails/GetSearchCustomerData": {
+    "/Reportsapi/api/PhoneDetails/GetSearchCustomerData": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21302,7 +21302,7 @@
         }
       }
     },
-    "/api/PhoneDetails/CheckCallTransfer": {
+    "/Reportsapi/api/PhoneDetails/CheckCallTransfer": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21333,7 +21333,7 @@
         }
       }
     },
-    "/api/PhoneDetails/AddCallToDialogue": {
+    "/Reportsapi/api/PhoneDetails/AddCallToDialogue": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21364,7 +21364,7 @@
         }
       }
     },
-    "/api/PhoneDetails/GetCategoryDepartmentList": {
+    "/Reportsapi/api/PhoneDetails/GetCategoryDepartmentList": {
       "get": {
         "tags": [
           "PhoneDetails"
@@ -21405,7 +21405,7 @@
         }
       }
     },
-    "/api/PhoneDetails/GetActiveQueuesForTransferCall": {
+    "/Reportsapi/api/PhoneDetails/GetActiveQueuesForTransferCall": {
       "get": {
         "tags": [
           "PhoneDetails"
@@ -21443,7 +21443,7 @@
         }
       }
     },
-    "/api/PhoneDetails/IsPhoneAvailable": {
+    "/Reportsapi/api/PhoneDetails/IsPhoneAvailable": {
       "get": {
         "tags": [
           "PhoneDetails"
@@ -21472,7 +21472,7 @@
         }
       }
     },
-    "/api/PhoneDetails/UpdateCallStatusOnCallBackAccept": {
+    "/Reportsapi/api/PhoneDetails/UpdateCallStatusOnCallBackAccept": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21503,7 +21503,7 @@
         }
       }
     },
-    "/api/PhoneDetails/GetQueuesByUserAccess": {
+    "/Reportsapi/api/PhoneDetails/GetQueuesByUserAccess": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21541,7 +21541,7 @@
         }
       }
     },
-    "/api/PhoneDetails/CreatePhoneDialogue": {
+    "/Reportsapi/api/PhoneDetails/CreatePhoneDialogue": {
       "post": {
         "tags": [
           "PhoneDetails"
@@ -21589,7 +21589,7 @@
         }
       }
     },
-    "/api/Queue/insertupdate": {
+    "/Reportsapi/api/Queue/insertupdate": {
       "post": {
         "tags": [
           "Queue"
@@ -21637,7 +21637,7 @@
         }
       }
     },
-    "/api/Queue/delete": {
+    "/Reportsapi/api/Queue/delete": {
       "post": {
         "tags": [
           "Queue"
@@ -21685,7 +21685,7 @@
         }
       }
     },
-    "/api/Queue/search": {
+    "/Reportsapi/api/Queue/search": {
       "post": {
         "tags": [
           "Queue"
@@ -21733,7 +21733,7 @@
         }
       }
     },
-    "/api/Queue/list": {
+    "/Reportsapi/api/Queue/list": {
       "get": {
         "tags": [
           "Queue"
@@ -21966,7 +21966,7 @@
         }
       }
     },
-    "/api/QueueCallNoteTemplate/GetQueueCallNoteTemplate": {
+    "/Reportsapi/api/QueueCallNoteTemplate/GetQueueCallNoteTemplate": {
       "get": {
         "tags": [
           "QueueCallNoteTemplate"
@@ -22014,7 +22014,7 @@
         }
       }
     },
-    "/api/QueueManagement/search": {
+    "/Reportsapi/api/QueueManagement/search": {
       "post": {
         "tags": [
           "QueueManagement"
@@ -22062,7 +22062,7 @@
         }
       }
     },
-    "/api/QueueManagement/list": {
+    "/Reportsapi/api/QueueManagement/list": {
       "get": {
         "tags": [
           "QueueManagement"
@@ -22565,7 +22565,7 @@
         }
       }
     },
-    "/api/QueueOptionWebhook/GetQueueOption": {
+    "/Reportsapi/api/QueueOptionWebhook/GetQueueOption": {
       "post": {
         "tags": [
           "QueueOptionWebhook"
@@ -23224,7 +23224,7 @@
         }
       }
     },
-    "/api/RecordingMaster/insertupdate": {
+    "/Reportsapi/api/RecordingMaster/insertupdate": {
       "post": {
         "tags": [
           "RecordingMaster"
@@ -23272,7 +23272,7 @@
         }
       }
     },
-    "/api/RecordingMaster/delete": {
+    "/Reportsapi/api/RecordingMaster/delete": {
       "post": {
         "tags": [
           "RecordingMaster"
@@ -23320,7 +23320,7 @@
         }
       }
     },
-    "/api/RecordingMaster/search": {
+    "/Reportsapi/api/RecordingMaster/search": {
       "post": {
         "tags": [
           "RecordingMaster"
@@ -23368,7 +23368,7 @@
         }
       }
     },
-    "/api/RecordingMaster/list": {
+    "/Reportsapi/api/RecordingMaster/list": {
       "get": {
         "tags": [
           "RecordingMaster"
@@ -23593,7 +23593,7 @@
         }
       }
     },
-    "/api/RecordingWebHook/RecordingStatus": {
+    "/Reportsapi/api/RecordingWebHook/RecordingStatus": {
       "post": {
         "tags": [
           "RecordingWebHook"
@@ -23964,7 +23964,7 @@
         }
       }
     },
-    "/api/RecordingWebHook/CreateDialogueFromVoiceMail": {
+    "/Reportsapi/api/RecordingWebHook/CreateDialogueFromVoiceMail": {
       "post": {
         "tags": [
           "RecordingWebHook"
@@ -24310,7 +24310,7 @@
         }
       }
     },
-    "/api/RecordingWebHook/VoiceMailAction": {
+    "/Reportsapi/api/RecordingWebHook/VoiceMailAction": {
       "post": {
         "tags": [
           "RecordingWebHook"
@@ -24577,7 +24577,7 @@
         }
       }
     },
-    "/api/Response/insertupdate": {
+    "/Reportsapi/api/Response/insertupdate": {
       "post": {
         "tags": [
           "Response"
@@ -24625,7 +24625,7 @@
         }
       }
     },
-    "/api/Response/delete": {
+    "/Reportsapi/api/Response/delete": {
       "post": {
         "tags": [
           "Response"
@@ -24673,7 +24673,7 @@
         }
       }
     },
-    "/api/Response/search": {
+    "/Reportsapi/api/Response/search": {
       "post": {
         "tags": [
           "Response"
@@ -24721,7 +24721,7 @@
         }
       }
     },
-    "/api/Response/list": {
+    "/Reportsapi/api/Response/list": {
       "get": {
         "tags": [
           "Response"
@@ -24946,7 +24946,7 @@
         }
       }
     },
-    "/api/RoundRobinCallWebhook/GetConferenceCallStatus": {
+    "/Reportsapi/api/RoundRobinCallWebhook/GetConferenceCallStatus": {
       "post": {
         "tags": [
           "RoundRobinCallWebhook"
@@ -25296,7 +25296,7 @@
         }
       }
     },
-    "/api/RoundRobinCallWebhook/UpdateCallStatusAfterGreeting": {
+    "/Reportsapi/api/RoundRobinCallWebhook/UpdateCallStatusAfterGreeting": {
       "post": {
         "tags": [
           "RoundRobinCallWebhook"
@@ -25349,7 +25349,7 @@
         }
       }
     },
-    "/api/RoundRobinCallWebhook/RoundRobinAgentCallStatus": {
+    "/Reportsapi/api/RoundRobinCallWebhook/RoundRobinAgentCallStatus": {
       "post": {
         "tags": [
           "RoundRobinCallWebhook"
@@ -25664,7 +25664,7 @@
         }
       }
     },
-    "/api/RoundRobinCallWebhook/RoundRobinAgentCallAnswer": {
+    "/Reportsapi/api/RoundRobinCallWebhook/RoundRobinAgentCallAnswer": {
       "post": {
         "tags": [
           "RoundRobinCallWebhook"
@@ -26014,7 +26014,7 @@
         }
       }
     },
-    "/api/RoundRobinCallWebhook/HandleRoutingByGatherKey": {
+    "/Reportsapi/api/RoundRobinCallWebhook/HandleRoutingByGatherKey": {
       "post": {
         "tags": [
           "RoundRobinCallWebhook"
@@ -26673,7 +26673,7 @@
         }
       }
     },
-    "/api/RoundRobinCallWebhook/HandleAfterHoursGatherKey": {
+    "/Reportsapi/api/RoundRobinCallWebhook/HandleAfterHoursGatherKey": {
       "post": {
         "tags": [
           "RoundRobinCallWebhook"
@@ -27003,7 +27003,7 @@
         }
       }
     },
-    "/api/SaveFilters/search": {
+    "/Reportsapi/api/SaveFilters/search": {
       "post": {
         "tags": [
           "SaveFilters"
@@ -27051,7 +27051,7 @@
         }
       }
     },
-    "/api/SaveFilters/list": {
+    "/Reportsapi/api/SaveFilters/list": {
       "get": {
         "tags": [
           "SaveFilters"
@@ -27554,7 +27554,7 @@
         }
       }
     },
-    "/api/ScreenRequest/insertupdate": {
+    "/Reportsapi/api/ScreenRequest/insertupdate": {
       "post": {
         "tags": [
           "ScreenRequest"
@@ -27602,7 +27602,7 @@
         }
       }
     },
-    "/api/ScreenRequest/delete": {
+    "/Reportsapi/api/ScreenRequest/delete": {
       "post": {
         "tags": [
           "ScreenRequest"
@@ -27650,7 +27650,7 @@
         }
       }
     },
-    "/api/ScreenRequest/search": {
+    "/Reportsapi/api/ScreenRequest/search": {
       "post": {
         "tags": [
           "ScreenRequest"
@@ -27698,7 +27698,7 @@
         }
       }
     },
-    "/api/ScreenRequest/list": {
+    "/Reportsapi/api/ScreenRequest/list": {
       "get": {
         "tags": [
           "ScreenRequest"
@@ -27923,7 +27923,7 @@
         }
       }
     },
-    "/api/ShareDashboard/search": {
+    "/Reportsapi/api/ShareDashboard/search": {
       "post": {
         "tags": [
           "ShareDashboard"
@@ -27971,7 +27971,7 @@
         }
       }
     },
-    "/api/ShareDashboard/list": {
+    "/Reportsapi/api/ShareDashboard/list": {
       "get": {
         "tags": [
           "ShareDashboard"
@@ -28516,7 +28516,7 @@
         }
       }
     },
-    "/api/Sms/SendSMS": {
+    "/Reportsapi/api/Sms/SendSMS": {
       "post": {
         "tags": [
           "Sms"
@@ -28564,7 +28564,7 @@
         }
       }
     },
-    "/api/SmsAction/Sms": {
+    "/Reportsapi/api/SmsAction/Sms": {
       "post": {
         "tags": [
           "SmsAction"
@@ -28705,7 +28705,7 @@
         }
       }
     },
-    "/api/SmsPhoneSetting/insertupdate": {
+    "/Reportsapi/api/SmsPhoneSetting/insertupdate": {
       "post": {
         "tags": [
           "SmsPhoneSetting"
@@ -28753,7 +28753,7 @@
         }
       }
     },
-    "/api/SmsPhoneSetting/delete": {
+    "/Reportsapi/api/SmsPhoneSetting/delete": {
       "post": {
         "tags": [
           "SmsPhoneSetting"
@@ -28801,7 +28801,7 @@
         }
       }
     },
-    "/api/SmsPhoneSetting/search": {
+    "/Reportsapi/api/SmsPhoneSetting/search": {
       "post": {
         "tags": [
           "SmsPhoneSetting"
@@ -28849,7 +28849,7 @@
         }
       }
     },
-    "/api/SmsPhoneSetting/list": {
+    "/Reportsapi/api/SmsPhoneSetting/list": {
       "get": {
         "tags": [
           "SmsPhoneSetting"
@@ -29074,7 +29074,7 @@
         }
       }
     },
-    "/api/TelephoneCsatFeedback/insertupdate": {
+    "/Reportsapi/api/TelephoneCsatFeedback/insertupdate": {
       "post": {
         "tags": [
           "TelephoneCsatFeedback"
@@ -29122,7 +29122,7 @@
         }
       }
     },
-    "/api/TelephoneCsatFeedback/delete": {
+    "/Reportsapi/api/TelephoneCsatFeedback/delete": {
       "post": {
         "tags": [
           "TelephoneCsatFeedback"
@@ -29170,7 +29170,7 @@
         }
       }
     },
-    "/api/TelephoneCsatFeedback/search": {
+    "/Reportsapi/api/TelephoneCsatFeedback/search": {
       "post": {
         "tags": [
           "TelephoneCsatFeedback"
@@ -29218,7 +29218,7 @@
         }
       }
     },
-    "/api/TelephoneCsatFeedback/list": {
+    "/Reportsapi/api/TelephoneCsatFeedback/list": {
       "get": {
         "tags": [
           "TelephoneCsatFeedback"
@@ -29443,7 +29443,7 @@
         }
       }
     },
-    "/api/TelephoneDilogueClosed/insertupdate": {
+    "/Reportsapi/api/TelephoneDilogueClosed/insertupdate": {
       "post": {
         "tags": [
           "TelephoneDilogueClosed"
@@ -29491,7 +29491,7 @@
         }
       }
     },
-    "/api/TelephoneDilogueClosed/delete": {
+    "/Reportsapi/api/TelephoneDilogueClosed/delete": {
       "post": {
         "tags": [
           "TelephoneDilogueClosed"
@@ -29539,7 +29539,7 @@
         }
       }
     },
-    "/api/TelephoneDilogueClosed/search": {
+    "/Reportsapi/api/TelephoneDilogueClosed/search": {
       "post": {
         "tags": [
           "TelephoneDilogueClosed"
@@ -29587,7 +29587,7 @@
         }
       }
     },
-    "/api/TelephoneDilogueClosed/list": {
+    "/Reportsapi/api/TelephoneDilogueClosed/list": {
       "get": {
         "tags": [
           "TelephoneDilogueClosed"
@@ -29812,7 +29812,7 @@
         }
       }
     },
-    "/api/TelephoneEndCall/insertupdate": {
+    "/Reportsapi/api/TelephoneEndCall/insertupdate": {
       "post": {
         "tags": [
           "TelephoneEndCall"
@@ -29860,7 +29860,7 @@
         }
       }
     },
-    "/api/TelephoneEndCall/delete": {
+    "/Reportsapi/api/TelephoneEndCall/delete": {
       "post": {
         "tags": [
           "TelephoneEndCall"
@@ -29908,7 +29908,7 @@
         }
       }
     },
-    "/api/TelephoneEndCall/search": {
+    "/Reportsapi/api/TelephoneEndCall/search": {
       "post": {
         "tags": [
           "TelephoneEndCall"
@@ -29956,7 +29956,7 @@
         }
       }
     },
-    "/api/TelephoneEndCall/list": {
+    "/Reportsapi/api/TelephoneEndCall/list": {
       "get": {
         "tags": [
           "TelephoneEndCall"
@@ -30181,7 +30181,7 @@
         }
       }
     },
-    "/api/TelephoneInsertAndAnsweredCall/insertupdate": {
+    "/Reportsapi/api/TelephoneInsertAndAnsweredCall/insertupdate": {
       "post": {
         "tags": [
           "TelephoneInsertAndAnsweredCall"
@@ -30229,7 +30229,7 @@
         }
       }
     },
-    "/api/TelephoneInsertAndAnsweredCall/delete": {
+    "/Reportsapi/api/TelephoneInsertAndAnsweredCall/delete": {
       "post": {
         "tags": [
           "TelephoneInsertAndAnsweredCall"
@@ -30277,7 +30277,7 @@
         }
       }
     },
-    "/api/TelephoneInsertAndAnsweredCall/search": {
+    "/Reportsapi/api/TelephoneInsertAndAnsweredCall/search": {
       "post": {
         "tags": [
           "TelephoneInsertAndAnsweredCall"
@@ -30325,7 +30325,7 @@
         }
       }
     },
-    "/api/TelephoneInsertAndAnsweredCall/list": {
+    "/Reportsapi/api/TelephoneInsertAndAnsweredCall/list": {
       "get": {
         "tags": [
           "TelephoneInsertAndAnsweredCall"
@@ -30550,7 +30550,7 @@
         }
       }
     },
-    "/api/TelephoneUpdateStatus/insertupdate": {
+    "/Reportsapi/api/TelephoneUpdateStatus/insertupdate": {
       "post": {
         "tags": [
           "TelephoneUpdateStatus"
@@ -30598,7 +30598,7 @@
         }
       }
     },
-    "/api/TelephoneUpdateStatus/delete": {
+    "/Reportsapi/api/TelephoneUpdateStatus/delete": {
       "post": {
         "tags": [
           "TelephoneUpdateStatus"
@@ -30646,7 +30646,7 @@
         }
       }
     },
-    "/api/TelephoneUpdateStatus/search": {
+    "/Reportsapi/api/TelephoneUpdateStatus/search": {
       "post": {
         "tags": [
           "TelephoneUpdateStatus"
@@ -30694,7 +30694,7 @@
         }
       }
     },
-    "/api/TelephoneUpdateStatus/list": {
+    "/Reportsapi/api/TelephoneUpdateStatus/list": {
       "get": {
         "tags": [
           "TelephoneUpdateStatus"
@@ -31015,7 +31015,7 @@
         }
       }
     },
-    "/api/TelephonyDashboardEvent/SendCsatEvent": {
+    "/Reportsapi/api/TelephonyDashboardEvent/SendCsatEvent": {
       "post": {
         "tags": [
           "TelephonyDashboardEvent"
@@ -31063,7 +31063,7 @@
         }
       }
     },
-    "/api/TelephonyDashboardEvent/UpdateFcrAndSendEvent": {
+    "/Reportsapi/api/TelephonyDashboardEvent/UpdateFcrAndSendEvent": {
       "post": {
         "tags": [
           "TelephonyDashboardEvent"
@@ -31111,7 +31111,7 @@
         }
       }
     },
-    "/api/TelephonyDashboardFilter/SaveTelephonyDashboardFilters": {
+    "/Reportsapi/api/TelephonyDashboardFilter/SaveTelephonyDashboardFilters": {
       "post": {
         "tags": [
           "TelephonyDashboardFilter"
@@ -31159,7 +31159,7 @@
         }
       }
     },
-    "/api/TelephonyDashboardFilter/GetDashboardQuickFilters": {
+    "/Reportsapi/api/TelephonyDashboardFilter/GetDashboardQuickFilters": {
       "post": {
         "tags": [
           "TelephonyDashboardFilter"
@@ -31188,7 +31188,7 @@
         }
       }
     },
-    "/api/TelephonyDashboardFilter/GetAgentPerformanceFilters": {
+    "/Reportsapi/api/TelephonyDashboardFilter/GetAgentPerformanceFilters": {
       "post": {
         "tags": [
           "TelephonyDashboardFilter"
@@ -31217,7 +31217,7 @@
         }
       }
     },
-    "/api/TextSetting/insertupdate": {
+    "/Reportsapi/api/TextSetting/insertupdate": {
       "post": {
         "tags": [
           "TextSetting"
@@ -31265,7 +31265,7 @@
         }
       }
     },
-    "/api/TextSetting/delete": {
+    "/Reportsapi/api/TextSetting/delete": {
       "post": {
         "tags": [
           "TextSetting"
@@ -31313,7 +31313,7 @@
         }
       }
     },
-    "/api/TextSetting/search": {
+    "/Reportsapi/api/TextSetting/search": {
       "post": {
         "tags": [
           "TextSetting"
@@ -31361,7 +31361,7 @@
         }
       }
     },
-    "/api/TextSetting/list": {
+    "/Reportsapi/api/TextSetting/list": {
       "get": {
         "tags": [
           "TextSetting"
@@ -31586,7 +31586,7 @@
         }
       }
     },
-    "/api/TranscriptionWebhook/ProcessTranscription": {
+    "/Reportsapi/api/TranscriptionWebhook/ProcessTranscription": {
       "post": {
         "tags": [
           "TranscriptionWebhook"
@@ -31617,7 +31617,7 @@
         }
       }
     },
-    "/api/TransferWebHook/TransferedParticipantStatus": {
+    "/Reportsapi/api/TransferWebHook/TransferedParticipantStatus": {
       "post": {
         "tags": [
           "TransferWebHook"
@@ -31728,7 +31728,7 @@
         }
       }
     },
-    "/api/Tts/metadata": {
+    "/Reportsapi/api/Tts/metadata": {
       "get": {
         "tags": [
           "Tts"
@@ -31740,7 +31740,7 @@
         }
       }
     },
-    "/api/Tts/generate": {
+    "/Reportsapi/api/Tts/generate": {
       "post": {
         "tags": [
           "Tts"
@@ -31771,7 +31771,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/GetAccessTokenForIncoming": {
+    "/Reportsapi/api/TwilioInteraction/GetAccessTokenForIncoming": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -31800,55 +31800,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/AddExternalParticipantToCall": {
-      "post": {
-        "tags": [
-          "TwilioInteraction"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddParticipant"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddParticipant"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddParticipant"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/TwilioInteraction/AddInternalAgentToCall": {
+    "/Reportsapi/api/TwilioInteraction/AddExternalParticipantToCall": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -31896,7 +31848,55 @@
         }
       }
     },
-    "/api/TwilioInteraction/HoldParticipant": {
+    "/Reportsapi/api/TwilioInteraction/AddInternalAgentToCall": {
+      "post": {
+        "tags": [
+          "TwilioInteraction"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddParticipant"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddParticipant"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddParticipant"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Reportsapi/api/TwilioInteraction/HoldParticipant": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -31944,7 +31944,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/HoldUnholdParticipant": {
+    "/Reportsapi/api/TwilioInteraction/HoldUnholdParticipant": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -31975,7 +31975,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/ReloadParticipantData": {
+    "/Reportsapi/api/TwilioInteraction/ReloadParticipantData": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -32015,7 +32015,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/ChangeCurrentStatus": {
+    "/Reportsapi/api/TwilioInteraction/ChangeCurrentStatus": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -32046,7 +32046,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/DeleteParticipantFromConference": {
+    "/Reportsapi/api/TwilioInteraction/DeleteParticipantFromConference": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -32077,7 +32077,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/MergeWarmTransferedCall": {
+    "/Reportsapi/api/TwilioInteraction/MergeWarmTransferedCall": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -32108,7 +32108,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/GetConferenceParticipnats": {
+    "/Reportsapi/api/TwilioInteraction/GetConferenceParticipnats": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -32149,7 +32149,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/TransferToQueue": {
+    "/Reportsapi/api/TwilioInteraction/TransferToQueue": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -32180,7 +32180,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/UpdateAgentCurrentStatus": {
+    "/Reportsapi/api/TwilioInteraction/UpdateAgentCurrentStatus": {
       "post": {
         "tags": [
           "TwilioInteraction"
@@ -32211,7 +32211,7 @@
         }
       }
     },
-    "/api/TwilioInteraction/GetIceToken": {
+    "/Reportsapi/api/TwilioInteraction/GetIceToken": {
       "get": {
         "tags": [
           "TwilioInteraction"
@@ -32240,7 +32240,7 @@
         }
       }
     },
-    "/api/TwilioWebhook/HandleIncomingCall": {
+    "/Reportsapi/api/TwilioWebhook/HandleIncomingCall": {
       "post": {
         "tags": [
           "TwilioWebhook"
@@ -32507,7 +32507,7 @@
         }
       }
     },
-    "/api/TwilioWebhook/HandleIncomingStatus": {
+    "/Reportsapi/api/TwilioWebhook/HandleIncomingStatus": {
       "post": {
         "tags": [
           "TwilioWebhook"
@@ -32774,7 +32774,7 @@
         }
       }
     },
-    "/api/TwilioWebhook/Dial": {
+    "/Reportsapi/api/TwilioWebhook/Dial": {
       "post": {
         "tags": [
           "TwilioWebhook"
@@ -33105,7 +33105,7 @@
         }
       }
     },
-    "/api/UserGroupDashboard/GetUserGroupDashboard": {
+    "/Reportsapi/api/UserGroupDashboard/GetUserGroupDashboard": {
       "post": {
         "tags": [
           "UserGroupDashboard"
@@ -33162,7 +33162,7 @@
         }
       }
     },
-    "/api/UserGroupDashboard/GetUserGroupDashboardV2": {
+    "/Reportsapi/api/UserGroupDashboard/GetUserGroupDashboardV2": {
       "post": {
         "tags": [
           "UserGroupDashboard"
@@ -33210,7 +33210,7 @@
         }
       }
     },
-    "/api/WeeklyCallVolume/search": {
+    "/Reportsapi/api/WeeklyCallVolume/search": {
       "post": {
         "tags": [
           "WeeklyCallVolume"
@@ -33258,7 +33258,7 @@
         }
       }
     },
-    "/api/WeeklyCallVolume/list": {
+    "/Reportsapi/api/WeeklyCallVolume/list": {
       "get": {
         "tags": [
           "WeeklyCallVolume"
