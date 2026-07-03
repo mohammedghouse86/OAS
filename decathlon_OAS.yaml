@@ -1,0 +1,955 @@
+openapi: 3.0.3
+info:
+  title: Decathlon India Web API
+  description: 'Reverse-engineered OpenAPI specification for the internal Decathlon India (decathlon.in) web storefront API, generated from captured browser network traffic (HAR). Covers cart, checkout, customer, membership, wallet, wishlist, location, and payment endpoints used by the decathlon.in web app.
+
+
+    Note: response body schemas are approximated as generic JSON objects because response payloads were not captured in the source HAR (only status codes and sizes were recorded by the browser).'
+  version: 1.0.0
+servers:
+- url: https://www.decathlon.in/api
+  description: Decathlon India production API
+tags:
+- name: Cart
+  description: Shopping cart operations
+- name: Cart Items
+  description: Individual cart line item operations
+- name: Checkout
+  description: Checkout flow operations
+- name: Customer
+  description: Customer profile and address operations
+- name: Membership
+  description: Loyalty/membership program operations
+- name: Wallet
+  description: Wallet balance operations (e.g. Sporty Rewards)
+- name: Employee Discount
+  description: Employee discount operations
+- name: Wishlist
+  description: Wishlist operations
+- name: Location
+  description: Pincode/geocoding lookup operations
+- name: Payment
+  description: Payment creation and eligibility operations
+paths:
+  /cart/count:
+    post:
+      summary: Get cart item count
+      tags:
+      - Cart
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              example: {}
+            example: {}
+  /membership/get-loyalty-details:
+    post:
+      summary: Get customer loyalty/membership details
+      tags:
+      - Membership
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              example: {}
+            example: {}
+  /wallet/balance:
+    post:
+      summary: Get wallet balance (e.g. Sporty Rewards wallet)
+      tags:
+      - Wallet
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletName:
+                  type: string
+                  example: sportyrewards
+              example:
+                walletName: sportyrewards
+            example:
+              walletName: sportyrewards
+  /employee-discount/employee-discount-details:
+    post:
+      summary: Get employee discount details
+      tags:
+      - Employee Discount
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              example: {}
+            example: {}
+  /customer/digitalorders:
+    post:
+      summary: Get customer's digital orders within a date range
+      tags:
+      - Customer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startDate:
+                  type: string
+                  nullable: true
+                  example: null
+                endDate:
+                  type: string
+                  nullable: true
+                  example: null
+              example:
+                startDate: null
+                endDate: null
+            example:
+              startDate: null
+              endDate: null
+  /customer/customeraddress:
+    post:
+      summary: Get saved customer addresses
+      tags:
+      - Customer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              example: {}
+            example: {}
+  /cart/updatecartpincode:
+    post:
+      summary: Update delivery pincode/location on cart
+      tags:
+      - Cart
+      parameters:
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+        example: V10
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                latitude:
+                  type: string
+                  nullable: true
+                  example: null
+                longitude:
+                  type: string
+                  nullable: true
+                  example: null
+                postalCode:
+                  type: string
+                  example: '560001'
+                isSportyRewardsEnabled:
+                  type: boolean
+                  example: true
+                isEmployeeDiscountEnabled:
+                  type: boolean
+                  example: false
+              example:
+                latitude: null
+                longitude: null
+                postalCode: '560001'
+                isSportyRewardsEnabled: true
+                isEmployeeDiscountEnabled: false
+            example:
+              latitude: null
+              longitude: null
+              postalCode: '560001'
+              isSportyRewardsEnabled: true
+              isEmployeeDiscountEnabled: false
+  /checkout/delivery-address:
+    post:
+      summary: Get delivery address details during checkout
+      tags:
+      - Checkout
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              example: {}
+            example: {}
+  /cart-items/{cartLineId}:
+    post:
+      summary: Get details of a specific cart line item
+      tags:
+      - Cart Items
+      parameters:
+      - name: cartLineId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: 0657c863-c17e-4efd-b042-4b9948911a37
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              example: {}
+            example: {}
+  /cart-items/update:
+    post:
+      summary: Update quantity/details of a cart line item
+      tags:
+      - Cart Items
+      parameters:
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+        example: V10
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cartLineId:
+                  type: string
+                  example: 0657c863-c17e-4efd-b042-4b9948911a37
+                itemCode:
+                  type: string
+                  example: '2432300'
+                lineType:
+                  type: string
+                  example: DELIVERY
+                quantity:
+                  type: integer
+                  example: 1
+                isSportyRewardsEnabled:
+                  type: boolean
+                  example: false
+              example:
+                cartLineId: 0657c863-c17e-4efd-b042-4b9948911a37
+                itemCode: '2432300'
+                lineType: DELIVERY
+                quantity: 1
+                isSportyRewardsEnabled: false
+            example:
+              cartLineId: 0657c863-c17e-4efd-b042-4b9948911a37
+              itemCode: '2432300'
+              lineType: DELIVERY
+              quantity: 1
+              isSportyRewardsEnabled: false
+  /wishlist/move:
+    post:
+      summary: Move cart items to wishlist
+      tags:
+      - Wishlist
+      parameters:
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+        example: V10
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cartLineIds:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - 0657c863-c17e-4efd-b042-4b9948911a37
+                isSportyRewardsEnabled:
+                  type: boolean
+                  example: false
+                modelIdList:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - '8506243'
+              example:
+                cartLineIds:
+                - 0657c863-c17e-4efd-b042-4b9948911a37
+                isSportyRewardsEnabled: false
+                modelIdList:
+                - '8506243'
+            example:
+              cartLineIds:
+              - 0657c863-c17e-4efd-b042-4b9948911a37
+              isSportyRewardsEnabled: false
+              modelIdList:
+              - '8506243'
+  /get-city-state:
+    post:
+      summary: Get city and state details from a pincode
+      tags:
+      - Location
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pincode:
+                  type: string
+                  example: '500022'
+              example:
+                pincode: '500022'
+            example:
+              pincode: '500022'
+  /geo-location/geo-coding:
+    get:
+      summary: Get geo-coordinates for a given address
+      tags:
+      - Location
+      parameters:
+      - name: address
+        in: query
+        required: true
+        schema:
+          type: string
+        example: 3667 Sydney Ct, Rd Number 2, , undefined, 500022
+        description: Free-text address to geocode (URL-encoded in raw traffic)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /customer/addcustomeraddress:
+    post:
+      summary: Add a new customer address
+      tags:
+      - Customer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                      example: Joel
+                    last_name:
+                      type: string
+                      example: Miller
+                    mobile:
+                      type: string
+                      example: '8328015257'
+                    address_line_1:
+                      type: string
+                      example: 3667 Sydney Ct
+                    address_line_2:
+                      type: string
+                      example: ''
+                    locality_area_street:
+                      type: string
+                      example: Rd Number 2
+                    landmark:
+                      type: string
+                      example: ''
+                    pincode:
+                      type: string
+                      example: '500022'
+                    city:
+                      type: string
+                      example: Hyderabad
+                    address_name:
+                      type: string
+                      example: Home
+                    is_default:
+                      type: boolean
+                      example: false
+                    territory:
+                      type: string
+                      example: ' TELANGANA'
+                    country:
+                      type: string
+                      example: India
+                    channel_type:
+                      type: string
+                      example: WEB
+                    app_version:
+                      type: string
+                      example: 1.0.0
+                    latitude:
+                      type: number
+                      example: 37.420741
+                    longitude:
+                      type: number
+                      example: -121.8588321
+                    is_coordinate_accurate:
+                      type: boolean
+                      example: false
+                  example:
+                    first_name: Joel
+                    last_name: Miller
+                    mobile: '8328015257'
+                    address_line_1: 3667 Sydney Ct
+                    address_line_2: ''
+                    locality_area_street: Rd Number 2
+                    landmark: ''
+                    pincode: '500022'
+                    city: Hyderabad
+                    address_name: Home
+                    is_default: false
+                    territory: ' TELANGANA'
+                    country: India
+                    channel_type: WEB
+                    app_version: 1.0.0
+                    latitude: 37.420741
+                    longitude: -121.8588321
+                    is_coordinate_accurate: false
+              example:
+                payload:
+                  first_name: Joel
+                  last_name: Miller
+                  mobile: '8328015257'
+                  address_line_1: 3667 Sydney Ct
+                  address_line_2: ''
+                  locality_area_street: Rd Number 2
+                  landmark: ''
+                  pincode: '500022'
+                  city: Hyderabad
+                  address_name: Home
+                  is_default: false
+                  territory: ' TELANGANA'
+                  country: India
+                  channel_type: WEB
+                  app_version: 1.0.0
+                  latitude: 37.420741
+                  longitude: -121.8588321
+                  is_coordinate_accurate: false
+            example:
+              payload:
+                first_name: Joel
+                last_name: Miller
+                mobile: '8328015257'
+                address_line_1: 3667 Sydney Ct
+                address_line_2: ''
+                locality_area_street: Rd Number 2
+                landmark: ''
+                pincode: '500022'
+                city: Hyderabad
+                address_name: Home
+                is_default: false
+                territory: ' TELANGANA'
+                country: India
+                channel_type: WEB
+                app_version: 1.0.0
+                latitude: 37.420741
+                longitude: -121.8588321
+                is_coordinate_accurate: false
+  /cart/updatecartaddress:
+    post:
+      summary: Update billing/shipping address on the cart
+      tags:
+      - Cart
+      parameters:
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+        example: V10
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addressRequests:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      addressType:
+                        type: string
+                        example: BILLING
+                      id:
+                        type: string
+                        example: 84cae658-2edd-452b-a66a-d6849a607ea9
+                  example:
+                  - addressType: BILLING
+                    id: 84cae658-2edd-452b-a66a-d6849a607ea9
+                  - addressType: SHIPPING
+                    id: 84cae658-2edd-452b-a66a-d6849a607ea9
+                isDeliveryPage:
+                  type: boolean
+                  example: false
+              example:
+                addressRequests:
+                - addressType: BILLING
+                  id: 84cae658-2edd-452b-a66a-d6849a607ea9
+                - addressType: SHIPPING
+                  id: 84cae658-2edd-452b-a66a-d6849a607ea9
+                isDeliveryPage: false
+            example:
+              addressRequests:
+              - addressType: BILLING
+                id: 84cae658-2edd-452b-a66a-d6849a607ea9
+              - addressType: SHIPPING
+                id: 84cae658-2edd-452b-a66a-d6849a607ea9
+              isDeliveryPage: false
+  /cart/editupdatecart:
+    post:
+      summary: Update cart delivery type/options
+      tags:
+      - Cart
+      parameters:
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+        example: V10
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deliveryType:
+                  type: string
+                  example: HOME_DELIVERY
+                homeDeliveryType:
+                  type: string
+                  example: STANDARD
+                isSportyRewardsEnabled:
+                  type: boolean
+                  example: true
+                latitude:
+                  type: string
+                  nullable: true
+                  example: null
+                longitude:
+                  type: string
+                  nullable: true
+                  example: null
+              example:
+                deliveryType: HOME_DELIVERY
+                homeDeliveryType: STANDARD
+                isSportyRewardsEnabled: true
+                latitude: null
+                longitude: null
+            example:
+              deliveryType: HOME_DELIVERY
+              homeDeliveryType: STANDARD
+              isSportyRewardsEnabled: true
+              latitude: null
+              longitude: null
+  /payment/create:
+    post:
+      summary: Create a payment for the cart
+      tags:
+      - Payment
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                method:
+                  type: string
+                  nullable: true
+                  example: null
+                psp:
+                  type: string
+                  nullable: true
+                  example: null
+                isBnpl:
+                  type: boolean
+                  example: false
+                gid:
+                  type: string
+                  nullable: true
+                  example: null
+                isDecathlon:
+                  type: string
+                  example: 'true'
+                sellerId:
+                  type: string
+                  example: Decathlon
+                cartType:
+                  type: string
+                  example: HOME_DELIVERY
+                totalAmount:
+                  type: integer
+                  example: 4599
+              example:
+                method: null
+                psp: null
+                isBnpl: false
+                gid: null
+                isDecathlon: 'true'
+                sellerId: Decathlon
+                cartType: HOME_DELIVERY
+                totalAmount: 4599
+            example:
+              method: null
+              psp: null
+              isBnpl: false
+              gid: null
+              isDecathlon: 'true'
+              sellerId: Decathlon
+              cartType: HOME_DELIVERY
+              totalAmount: 4599
+  /payment/cart:
+    post:
+      summary: Get payment-related cart summary
+      tags:
+      - Payment
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cartType:
+                  type: string
+                  example: HOME_DELIVERY
+              example:
+                cartType: HOME_DELIVERY
+            example:
+              cartType: HOME_DELIVERY
+  /cart/getLoyaltyPoints:
+    post:
+      summary: Get loyalty points applicable to the cart
+      tags:
+      - Cart
+      responses:
+        '400':
+          description: Error response (observed in captured traffic)
+          content:
+            application/json:
+              schema:
+                type: object
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cartType:
+                  type: string
+                  example: HOME_DELIVERY
+                cartId:
+                  type: string
+                  example: 54fc5ee8-35ce-41ee-bc98-ed7f1b55b3f0
+              example:
+                cartType: HOME_DELIVERY
+                cartId: 54fc5ee8-35ce-41ee-bc98-ed7f1b55b3f0
+            example:
+              cartType: HOME_DELIVERY
+              cartId: 54fc5ee8-35ce-41ee-bc98-ed7f1b55b3f0
+  /payment/customer:
+    post:
+      summary: Get customer details for payment
+      tags:
+      - Payment
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sellerId:
+                  type: string
+                  example: Decathlon
+              example:
+                sellerId: Decathlon
+            example:
+              sellerId: Decathlon
+  /payment/seller:
+    post:
+      summary: Get seller details for payment
+      tags:
+      - Payment
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sellerId:
+                  type: string
+                  example: Decathlon
+              example:
+                sellerId: Decathlon
+            example:
+              sellerId: Decathlon
+  /payment/downtime:
+    post:
+      summary: Check payment gateway downtime status
+      tags:
+      - Payment
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              example: {}
+            example: {}
+  /payment/paylater-eligibility:
+    post:
+      summary: Check pay-later eligibility for customer/cart total
+      tags:
+      - Payment
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cartTotal:
+                  type: integer
+                  example: 4599
+                customerId:
+                  type: string
+                  example: cust_T8wdqTlTJGYuZW
+              example:
+                cartTotal: 4599
+                customerId: cust_T8wdqTlTJGYuZW
+            example:
+              cartTotal: 4599
+              customerId: cust_T8wdqTlTJGYuZW
+  /cart-items/delete:
+    post:
+      summary: Delete one or more items from the cart
+      tags:
+      - Cart Items
+      parameters:
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+        example: V10
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cartLineIds:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - 58ea239e-ae7b-4883-9f94-e1c8a9e0fa7d
+                isSportyRewardsEnabled:
+                  type: boolean
+                  example: false
+              example:
+                cartLineIds:
+                - 58ea239e-ae7b-4883-9f94-e1c8a9e0fa7d
+                isSportyRewardsEnabled: false
+            example:
+              cartLineIds:
+              - 58ea239e-ae7b-4883-9f94-e1c8a9e0fa7d
+              isSportyRewardsEnabled: false
