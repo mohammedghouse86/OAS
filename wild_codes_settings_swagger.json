@@ -1,0 +1,278 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "wild_codes_settings",
+    "version": "1.0.0",
+    "description": "OpenAPI specification generated from HAR capture (wild_codes_settings)."
+  },
+  "servers": [
+    {
+      "url": "https://jprsuhlbpawrjsvavttp.supabase.co"
+    }
+  ],
+  "paths": {
+    "/rest/v1/users": {
+      "get": {
+        "summary": "GET /rest/v1/users",
+        "parameters": [
+          {
+            "name": "select",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "*"
+          },
+          {
+            "name": "uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eq.06ee4235-467f-42a8-8529-2c15430ac2ad"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      },
+      "patch": {
+        "summary": "PATCH /rest/v1/users",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eq.06ee4235-467f-42a8-8529-2c15430ac2ad"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              },
+              "example": {
+                "first_name": "joel1",
+                "last_name": "miller",
+                "title": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/developers_list": {
+      "get": {
+        "summary": "GET /rest/v1/developers_list",
+        "parameters": [
+          {
+            "name": "select",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "experience_years%2Cclient_developer_rate"
+          },
+          {
+            "name": "client_developer_rate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lte.150"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "signup_date.desc.nullslast"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "24"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      },
+      "head": {
+        "summary": "HEAD /rest/v1/developers_list",
+        "parameters": [
+          {
+            "name": "select",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "*"
+          },
+          {
+            "name": "client_developer_rate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lte.150"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    },
+    "/rest/v1/user_jobs": {
+      "get": {
+        "summary": "GET /rest/v1/user_jobs",
+        "parameters": [
+          {
+            "name": "select",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "id%2Cjob_id%2Ccreated_at%2Cjob%3Ajobs%28*%29"
+          },
+          {
+            "name": "user_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "eq.06ee4235-467f-42a8-8529-2c15430ac2ad"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "created_at.desc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/get_developers_by_job": {
+      "post": {
+        "summary": "POST /rest/v1/rpc/get_developers_by_job",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "p_job_id": {
+                    "type": "string"
+                  },
+                  "p_limit": {
+                    "type": "integer"
+                  },
+                  "p_offset": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "example": {
+                "p_job_id": "f1d155a4-ba27-497c-ba8f-fa4c8ed03ae5",
+                "p_limit": 24,
+                "p_offset": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/v1/rpc/get_interview_answers": {
+      "post": {
+        "summary": "POST /rest/v1/rpc/get_interview_answers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "p_developer_id": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "example": {
+                "p_developer_id": 875
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

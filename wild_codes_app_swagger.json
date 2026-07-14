@@ -1,0 +1,464 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "wild_codes_app",
+    "version": "1.0.0",
+    "description": "OpenAPI specification generated from HAR capture (wild_codes_app)."
+  },
+  "servers": [
+    {
+      "url": "https://app.wild.codes"
+    }
+  ],
+  "paths": {
+    "/api/tawk/hash": {
+      "get": {
+        "summary": "GET /api/tawk/hash",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    },
+    "/api/trace-id": {
+      "head": {
+        "summary": "HEAD /api/trace-id",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    },
+    "/api/locations": {
+      "get": {
+        "summary": "GET /api/locations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    },
+    "/api/skills": {
+      "get": {
+        "summary": "GET /api/skills",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    },
+    "/api/roles": {
+      "get": {
+        "summary": "GET /api/roles",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    },
+    "/api/timezones": {
+      "get": {
+        "summary": "GET /api/timezones",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    },
+    "/api/my-team": {
+      "get": {
+        "summary": "GET /api/my-team",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    },
+    "/api/jobs": {
+      "post": {
+        "summary": "POST /api/jobs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "developerType": {
+                    "type": "string"
+                  },
+                  "mustHaveSkills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "niceToHaveSkills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "duration": {
+                    "type": "string"
+                  },
+                  "availability": {
+                    "type": "string"
+                  },
+                  "startDate": {
+                    "type": "string"
+                  },
+                  "minExperience": {
+                    "type": "string"
+                  },
+                  "rateMin": {
+                    "type": "integer"
+                  },
+                  "rateMax": {
+                    "type": "integer"
+                  },
+                  "ratePeriod": {
+                    "type": "string"
+                  },
+                  "isNotTimezoneSensitive": {
+                    "type": "boolean"
+                  },
+                  "preferredTimezone": {
+                    "type": "string"
+                  },
+                  "workingRange": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "developerType": "Backend Developer",
+                "mustHaveSkills": [
+                  "\u2022\tNode.js"
+                ],
+                "niceToHaveSkills": [
+                  "2D Animation"
+                ],
+                "duration": "",
+                "availability": "",
+                "startDate": "",
+                "minExperience": "",
+                "rateMin": 22,
+                "rateMax": 50,
+                "ratePeriod": "monthly",
+                "isNotTimezoneSensitive": true,
+                "preferredTimezone": "",
+                "workingRange": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/telegram-notify": {
+      "post": {
+        "summary": "POST /api/telegram-notify",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "developerType": {
+                    "type": "string"
+                  },
+                  "mustHaveSkills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "niceToHaveSkills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "duration": {
+                    "type": "string"
+                  },
+                  "availability": {
+                    "type": "string"
+                  },
+                  "startDate": {
+                    "type": "string"
+                  },
+                  "minExperience": {
+                    "type": "string"
+                  },
+                  "rateMin": {
+                    "type": "integer"
+                  },
+                  "rateMax": {
+                    "type": "integer"
+                  },
+                  "ratePeriod": {
+                    "type": "string"
+                  },
+                  "isNotTimezoneSensitive": {
+                    "type": "boolean"
+                  },
+                  "preferredTimezone": {
+                    "type": "string"
+                  },
+                  "workingRange": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "source": "new_role",
+                "first_name": "joel",
+                "last_name": "miller",
+                "email": "joelmiller890321@gmail.com",
+                "developerType": "Backend Developer",
+                "mustHaveSkills": [
+                  "\u2022\tNode.js"
+                ],
+                "niceToHaveSkills": [
+                  "2D Animation"
+                ],
+                "duration": "",
+                "availability": "",
+                "startDate": "",
+                "minExperience": "",
+                "rateMin": 22,
+                "rateMax": 50,
+                "ratePeriod": "monthly",
+                "isNotTimezoneSensitive": true,
+                "preferredTimezone": "",
+                "workingRange": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/crm/breakcold-upsert": {
+      "post": {
+        "summary": "POST /api/crm/breakcold-upsert",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "developerType": {
+                    "type": "string"
+                  },
+                  "mustHaveSkills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "niceToHaveSkills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "duration": {
+                    "type": "string"
+                  },
+                  "availability": {
+                    "type": "string"
+                  },
+                  "startDate": {
+                    "type": "string"
+                  },
+                  "minExperience": {
+                    "type": "string"
+                  },
+                  "rateMin": {
+                    "type": "integer"
+                  },
+                  "rateMax": {
+                    "type": "integer"
+                  },
+                  "ratePeriod": {
+                    "type": "string"
+                  },
+                  "isNotTimezoneSensitive": {
+                    "type": "boolean"
+                  },
+                  "preferredTimezone": {
+                    "type": "string"
+                  },
+                  "workingRange": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "kind": "role",
+                "email": "joelmiller890321@gmail.com",
+                "first_name": "joel",
+                "last_name": "miller",
+                "developerType": "Backend Developer",
+                "mustHaveSkills": [
+                  "\u2022\tNode.js"
+                ],
+                "niceToHaveSkills": [
+                  "2D Animation"
+                ],
+                "duration": "",
+                "availability": "",
+                "startDate": "",
+                "minExperience": "",
+                "rateMin": 22,
+                "rateMax": 50,
+                "ratePeriod": "monthly",
+                "isNotTimezoneSensitive": true,
+                "preferredTimezone": "",
+                "workingRange": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs/{id}/progress": {
+      "get": {
+        "summary": "GET /api/jobs/{id}/progress",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    },
+    "/api/get-developer-details": {
+      "post": {
+        "summary": "POST /api/get-developer-details",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "developer_id": {
+                    "type": "integer"
+                  },
+                  "forAdmin": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "example": {
+                "developer_id": 875,
+                "forAdmin": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/billing/invoices": {
+      "get": {
+        "summary": "GET /api/billing/invoices",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1"
+          },
+          {
+            "name": "refresh",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response"
+          }
+        }
+      }
+    }
+  }
+}
