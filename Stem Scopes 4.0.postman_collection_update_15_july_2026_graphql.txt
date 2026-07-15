@@ -1,0 +1,1276 @@
+scalar Iterable
+scalar JSON
+
+enum ClassFilterStatusEnum {
+  Active
+}
+
+enum DeliveryEnum {
+  UNKNOWN
+}
+
+enum GradeLevelFilterEnum {
+  UNKNOWN
+}
+
+enum GradingTypeEnum {
+  UNKNOWN
+}
+
+enum LevelEnumType {
+  UNKNOWN
+}
+
+enum QuestionBankEnum {
+  UNKNOWN
+}
+
+enum UserPurposeEnum {
+  regular
+}
+
+enum UserTypeEnum {
+  staff
+  student
+}
+
+input ActivityInputLiveReport {
+  id: String
+  name: String
+}
+
+input AssessmentPoolInput {
+  stemscopesInput: AssessmentPoolStemscopesInputInput
+}
+
+input AssessmentPoolStemscopesInputInput {
+  libraries: [String]
+  isArchived: Boolean
+  schoolIds: [String]
+  page: Int
+  itemsPerPage: Int
+}
+
+input AssignmentDateFilterInput {
+  startDate: String
+  endDate: String
+}
+
+input ClassFilter {
+  teachersId: String
+  archived: Boolean
+  schoolId: String
+  excludeExternalSystem: [String]
+  status: ClassFilterStatusEnum
+  hasLmsId: Boolean
+  studentsId: String
+  id_list: [String]
+}
+
+input CreateClassClassTeachersInput {
+  _id: String
+  accesses: [String]
+  mainTeacher: Boolean
+  orderListStudents: String
+}
+
+input CreateQrcodeTemplateInput {
+  users: [CreateQrcodeTemplateUsersInput]
+  type: String
+  className: String
+}
+
+input CreateQrcodeTemplateUsersInput {
+  teacher: String
+  firstName: String
+  lastName: String
+  qrcode: String
+}
+
+input CreateTeamInput {
+  name: String
+  members: [String]
+  context: String
+}
+
+input FilterIconInput {
+  type: String
+}
+
+input FilterTeamInput {
+  membersActive: Boolean
+  archived: Boolean
+}
+
+input PurposeEnumInput {
+  purpose: String
+  questionBanks: [String]
+  state: String
+  grades: [String]
+  editions: [String]
+}
+
+input PutAssignmentInput {
+  putTeacherAssignmentInput: PutAssignmentPutTeacherAssignmentInputInput
+}
+
+input PutAssignmentPutTeacherAssignmentAssignmentSourceAssessmentInput {
+  assessmentId: String
+}
+
+input PutAssignmentPutTeacherAssignmentAssignmentSourceInput {
+  assessment: PutAssignmentPutTeacherAssignmentAssignmentSourceAssessmentInput
+}
+
+input PutAssignmentPutTeacherAssignmentCalculatorInput {
+  basic: Boolean
+}
+
+input PutAssignmentPutTeacherAssignmentClassesInput {
+  id: String
+}
+
+input PutAssignmentPutTeacherAssignmentInputInput {
+  startDate: String
+  endDate: String
+  learnosityReferenceId: String
+  classes: [PutAssignmentPutTeacherAssignmentClassesInput]
+  labels: [String]
+  notes: String
+  lateTurnIn: Boolean
+  calculator: PutAssignmentPutTeacherAssignmentCalculatorInput
+  allowPerryBot: Boolean
+  allowTextToSpeech: Boolean
+  immediatelyShareResults: String
+  releaseFeedback: Boolean
+  randomizeQuestionsOrder: Boolean
+  assignmentSource: PutAssignmentPutTeacherAssignmentAssignmentSourceInput
+  name: String
+  schoolId: String
+}
+
+input PutStudentAssignmentsAssigneesInput {
+  studentIds: [String]
+}
+
+input PutStudentAssignmentsInput {
+  assignmentId: String
+  assignees: PutStudentAssignmentsAssigneesInput
+}
+
+input SignRequestInput {
+  itemSignedRequestInput: SignRequestItemSignedRequestInputInput
+}
+
+input SignRequestItemSignedRequestInputInput {
+  referenceId: String
+  renderingType: String
+  type: String
+  state: String
+}
+
+input SsStandardsItemFilter {
+  teacherIds: [String]
+  assignmentId: String
+}
+
+input SsStandardsSort {
+  _: String
+}
+
+input StemscopesAssignmentPageInfoInput {
+  pageNumber: Int
+  pageSize: Int
+}
+
+input StemscopesCreateAssessmentInput {
+  title: String
+  library: String
+  deliveries: [String]
+  teams: [String]
+  items: [String]
+}
+
+input StemscopesShareAssessmentInput {
+  id: String
+  isViewOnly: Boolean
+  userIds: [String]
+  currentSchoolId: String
+  shareType: String
+}
+
+input StemscopesUpdateAssessmentInput {
+  id: String
+  isArchived: Boolean
+  items: [String]
+  title: String
+  deliveries: [String]
+  library: String
+  teams: [String]
+}
+
+input StudentAssignmentsFilter {
+  studentId: String
+}
+
+input StudentFilter_order {
+  fullName: String
+}
+
+input TeacherStudentFilter {
+  schoolId: String
+  teachersId: String
+  studentHasArchivedClasses: Boolean
+  active: Boolean
+  classIds: [String]
+}
+
+input UpdateClassSubgroupsInput {
+  name: String
+  teacherIds: [String]
+}
+
+input UpdateTeamInput {
+  id: String
+  name: String
+  archived: Boolean
+  members: [String]
+}
+
+input UserFilter {
+  rolesId: String
+  active: Boolean
+  schoolsIds: [String]
+  purpose: UserPurposeEnum
+}
+
+input UserFilter_exclude {
+  _: String
+}
+
+input UserFilter_order {
+  _: String
+}
+
+input UserInputLiveReport {
+  id: String
+  name: String
+}
+
+input addStudentsToClassInput {
+  classId: String
+  studentIds: [String]
+}
+
+input addStudentsToStudentSubgroupInput {
+  subgroupId: String
+  studentIds: [String]
+}
+
+input createClassInput {
+  name: String
+  curriculumArea: String
+  gradeOrCourse: String
+  language: String
+  classTeachers: [CreateClassClassTeachersInput]
+  schoolId: String
+}
+
+input createEntryInput {
+  type: String
+  name: String
+  startDate: String
+  endDate: String
+  calendarId: String
+  notes: String
+  schoolIds: [String]
+  userRoleCode: String
+  userTeamIds: [String]
+}
+
+input createImpersonationInput {
+  userId: String
+}
+
+input removeStudentsFromStudentSubgroupInput {
+  subgroupId: String
+  studentIds: [String]
+}
+
+input updateClassInput {
+  id: String
+  subgroups: [UpdateClassSubgroupsInput]
+}
+
+type ApplicationModule {
+  name: String
+  operations: [Operations]
+  modules: [Modules]
+}
+
+type AssignmentId {
+  assignmentId: ID
+}
+
+type DistrictAssignmentType {
+  daId: ID
+}
+
+type ItemSignedRequest {
+  signedRequest: String
+}
+
+type ReportSignedRequest {
+  signedRequest: String
+}
+
+type StemscopesAssignment {
+  learnosityReferenceId: ID
+}
+
+type AclApplications {
+  name: String
+  modules: [ApplicationModule]
+  schools: [Schools]
+}
+
+type AddStudentsToClass {
+  class: StudentRow
+}
+
+type AddStudentsToStudentSubgroup {
+  studentSubgroup: StudentRow
+}
+
+type ApplicationSettings {
+  value: String
+  id: ID
+}
+
+type AssessmentPool {
+  stemscopesPayload: StemscopesPayload
+}
+
+type Assignment {
+  assignmentId: ID
+  endDate: String
+  startDate: String
+  name: String
+  learnosityReferenceId: ID
+  classId: ID
+  archived: Boolean
+  immediatelyShareResults: String
+  lateTurnIn: String
+  notes: String
+  subgroupIds: ID
+  quantileId: ID
+  ownerId: ID
+  studentAssignments: [StudentAssignments]
+  assignmentSource: AssignmentSource2
+}
+
+type AssignmentSource {
+  element: Element2
+}
+
+type AssignmentSource2 {
+  element: Element
+}
+
+type Assignments {
+  ownerId: ID
+  classId: ID
+  assignmentListId: ID
+  assignmentId: ID
+  learnosityReferenceId: ID
+  name: String
+  releaseFeedback: String
+  startDate: String
+  endDate: String
+  status: String
+  subgroupIds: ID
+  studentIds: ID
+  labels: String
+  notes: String
+}
+
+type CalendarEntries {
+  collection: [CalendarEntryRow]
+}
+
+type CalendarEntryRow {
+  id: ID
+  _id: ID
+  eventId: ID
+  eventTemplateId: ID
+  name: String
+  type: String
+  startDate: String
+  endDate: String
+  notes: String
+  editable: String
+  version: String
+  elements: String
+}
+
+type CalendarRow {
+  _id: ID
+  pk: String
+  name: String
+  isDefault: Boolean
+  calendarTemplateId: ID
+  version: String
+  editable: String
+  calendarType: String
+  calendarColor: String
+  userId: ID
+  calendarEntries: CalendarEntries
+}
+
+type Calendars {
+  collection: [CalendarRow]
+}
+
+type Class {
+  _id: ID
+  id: ID
+  name: String
+  classStudents(page: Int, itemsPerPage: Int, active: Boolean): ClassStudents
+  subgroups: Subgroups2
+  classTeachers(active: Boolean): ClassTeachers2
+  language: String
+  curriculumArea: String
+  gradeOrCourse: String
+  archived: Boolean
+  externalId: ID
+}
+
+type Class2 {
+  _id: ID
+}
+
+type Class3 {
+  subgroups: Subgroups4
+}
+
+type ClassStudentRow {
+  student: Student
+  subgroups: Subgroups
+  manual: String
+  _id: ID
+  id: ID
+  studentId: ID
+}
+
+type ClassStudentRow2 {
+  student: Teacher2
+  _id: ID
+}
+
+type ClassStudents {
+  collection: [ClassStudentRow]
+  paginationInfo: PaginationInfo
+}
+
+type ClassStudents2 {
+  collection: [ClassStudentRow2]
+}
+
+type ClassTeacherRow {
+  teacherId: ID
+  mainTeacher: String
+  subgroups: Subgroups3
+  teacher: Teacher2
+  _id: ID
+  accesses: String
+  orderListStudents: String
+}
+
+type ClassTeacherRow2 {
+  _id: ID
+  mainTeacher: String
+  teacher: Teacher
+  teacherId: ID
+}
+
+type ClassTeacherRow3 {
+  teacherId: ID
+  mainTeacher: String
+}
+
+type ClassTeachers {
+  collection: [ClassTeacherRow2]
+}
+
+type ClassTeachers2 {
+  collection: [ClassTeacherRow]
+}
+
+type ClassTeachers3 {
+  collection: [ClassTeacherRow3]
+}
+
+type ClasseRow {
+  _id: ID
+  id: ID
+  name: String
+  curriculumArea: String
+  gradeOrCourse: String
+  schoolId: ID
+  archived: Boolean
+  studentCount: Int
+  externalId: ID
+  classTeachers(active: Boolean): ClassTeachers
+  classStudents(active: Boolean, itemsPerPage: Int, page: Int): ClassStudents2
+}
+
+type ClasseRow2 {
+  name: String
+  schoolId: ID
+  archived: Boolean
+  classTeachers: ClassTeachers3
+}
+
+type Classes {
+  collection: [ClasseRow]
+  paginationInfo: PaginationInfo3
+}
+
+type Classes2 {
+  collection: [ClasseRow2]
+}
+
+type CreateAssessment {
+  stemscopesPayload: StemscopesPayload2
+}
+
+type CreateClass {
+  class: Class2
+}
+
+type CreateEntry {
+  entry: Class2
+}
+
+type CreateImpersonation {
+  impersonation: Impersonation
+}
+
+type CreateQrcodeTemplate {
+  content: String
+}
+
+type CreateTeam {
+  team: Team
+}
+
+type CreatedBy {
+  lastName: String
+  firstName: String
+}
+
+type Element {
+  elementId: ID
+  scopeId: ID
+  projectId: ID
+  sectionId: ID
+  resourceId: ID
+  elementName: String
+  scopeName: String
+  sectionName: String
+  viewId: ID
+}
+
+type Element2 {
+  scopeName: String
+  elementName: String
+}
+
+type GetLiveProgressReport {
+  id: ID
+  signedRequest: String
+}
+
+type IconRow {
+  filePath: String
+  languageFilePath: LanguageFilePath
+}
+
+type Icons {
+  collection: [IconRow]
+}
+
+type ImpStemscopesPayload {
+  collection: [ImpStemscopesPayloadRow]
+  paginationInfo: PaginationInfo
+}
+
+type ImpStemscopesPayloadRow {
+  id: ID
+  grading: String
+  standards: String
+  questionTypes: String
+  grades: String
+  curriculumAreas: String
+  scopes: String
+  editions: String
+}
+
+type Impersonation {
+  user: User2
+}
+
+type LanguageFilePath {
+  languageCode: String
+  filePath: String
+}
+
+type Members {
+  id: ID
+  firstName: String
+  lastName: String
+}
+
+type Modules {
+  name: String
+  operations: [Operations]
+  modules: [Modules2]
+}
+
+type Modules2 {
+  name: String
+  operations: [Operations]
+  modules: [Modules3]
+}
+
+type Modules3 {
+  name: String
+  operations: [Operations]
+}
+
+type Operations {
+  name: String
+  behaviour: String
+  scopes: String
+}
+
+type OwnerAssignments {
+  assignments: [Assignments]
+  studentAssignments: [StudentAssignments2]
+  pageInfo: PageInfo
+}
+
+type PacingGuideRow {
+  id: ID
+  _id: ID
+  name: String
+  pacingGuideId: ID
+  pacingGuideType: String
+  curriculumArea: String
+  grade: String
+  editable: String
+  isSelected: Boolean
+  creator: String
+  schoolIds: ID
+  userId: ID
+  scopeEditable: String
+  scopes: Scopes
+  version: String
+}
+
+type PacingGuides {
+  collection: [PacingGuideRow]
+}
+
+type PageInfo {
+  itemsPerPage: Int
+  totalCount: Int
+}
+
+type PaginationInfo {
+  itemsPerPage: Int
+  totalCount: Int
+  lastPage: Int
+}
+
+type PaginationInfo2 {
+  totalCount: Int
+  lastPage: Int
+}
+
+type PaginationInfo3 {
+  totalCount: Int
+}
+
+type Parents {
+  _id: ID
+  id: ID
+  email: String
+  inviteCount: Int
+  inviteStatus: String
+  invitedAt: String
+}
+
+type PoolEnums {
+  standards: String
+  scopes: String
+  questionTypes: String
+  keywords: String
+  grades: String
+  editions: String
+  curriculumAreas: String
+}
+
+type PutStudentAssignments {
+  assignmentId: ID
+}
+
+type QuestionPool {
+  impStemscopesPayload: ImpStemscopesPayload
+}
+
+type ReadContainer {
+  visibilityPayload: VisibilityPayload
+}
+
+type RecentlyViewed {
+  displayedNames: String
+  objectIds: ID
+  projectIds: ID
+}
+
+type RemoveStudentsFromStudentSubgroup {
+  studentSubgroup: StudentRow
+}
+
+type Role {
+  id: ID
+  _id: ID
+  code: String
+}
+
+type RoleRow {
+  id: ID
+  name: String
+  code: String
+}
+
+type Roles {
+  collection: [RoleRow]
+}
+
+type SchoolRow {
+  globalName: String
+  id: ID
+  _id: ID
+  name: String
+}
+
+type Schools {
+  schoolIds: ID
+  modules: [ApplicationModule]
+}
+
+type Schools2 {
+  globalName: String
+}
+
+type Schools3 {
+  collection: [SchoolRow]
+}
+
+type ScopePlanRow {
+  _id: ID
+  id: ID
+  name: String
+  grade: String
+  curriculumArea: String
+  editable: String
+  isSelected: Boolean
+  version: String
+  scopePlanType: String
+  approachType: String
+  pacingGuideId: ID
+}
+
+type ScopePlans {
+  collection: [ScopePlanRow]
+}
+
+type ScopeRow {
+  _id: ID
+  id: ID
+  scopeId: ID
+  name: String
+  instructionalDays: String
+  version: String
+}
+
+type Scopes {
+  collection: [ScopeRow]
+}
+
+type ShareAssessment {
+  statusPayload: StatusPayload
+}
+
+type SsStandards {
+  _id: ID
+  id: ID
+  resultSetJson: String
+  nextToken: String
+}
+
+type SsStandardsItems {
+  standard: String
+}
+
+type StandardsByName {
+  description: String
+  standard: String
+}
+
+type StatusPayload {
+  success: String
+}
+
+type StemscopesPayload {
+  list: [StemscopesPayloadList]
+  paginationInfo: PaginationInfo
+}
+
+type StemscopesPayload2 {
+  item: StemscopesPayloadItem2
+}
+
+type StemscopesPayload3 {
+  item: StemscopesPayloadItem
+}
+
+type StemscopesPayloadItem {
+  id: ID
+  title: String
+  items: String
+  isArchived: Boolean
+  isShared: Boolean
+  usersViewOnlyIds: ID
+  library: String
+  deliveries: String
+  activityType: String
+  teams: String
+  standards: String
+}
+
+type StemscopesPayloadItem2 {
+  id: ID
+  title: String
+  items: String
+  isArchived: Boolean
+  isShared: Boolean
+  usersViewOnlyIds: ID
+  library: String
+  deliveries: String
+}
+
+type StemscopesPayloadList {
+  id: ID
+  title: String
+  items: String
+  resourceItems: String
+  createdAt: String
+  isArchived: Boolean
+  isShared: Boolean
+  usersViewOnlyIds: ID
+  library: String
+  deliveries: String
+  standards: String
+  teams: String
+  createdBy: CreatedBy
+  activityType: String
+  grade: String
+  curriculumArea: String
+  hiddenForSchool: String
+}
+
+type StreamingGrades {
+  grades: String
+}
+
+type Student {
+  id: ID
+  _id: ID
+  sisId: ID
+  firstName: String
+  lastName: String
+  plainPassword: String
+  username: String
+  gradeLevel: Int
+  authenticationToken: String
+}
+
+type StudentAssignments {
+  id: ID
+  learnosityReferenceId: ID
+  studentId: ID
+  assignmentId: ID
+  status: String
+  grade: String
+  completedAt: String
+  submittedAt: String
+  endDate: String
+  startedAt: String
+  answers: String
+  lateTurnIn: String
+  shareResults: String
+  returnedAt: String
+  resetted: String
+  studentNotes: String
+  archived: Boolean
+  assessmentId: ID
+  sessionId: ID
+  allowPerryBot: String
+  quantileScore: String
+  classId: ID
+}
+
+type StudentAssignments2 {
+  classId: ID
+  assignmentId: ID
+  studentId: ID
+  name: String
+  id: ID
+  grade: String
+  startedAt: String
+  submittedAt: String
+  completedAt: String
+  returnedAt: String
+  status: String
+  releaseFeedback: String
+  lateTurnIn: String
+  answers: String
+  learnosityReferenceId: ID
+  assignmentSource: AssignmentSource
+}
+
+type StudentRow {
+  id: ID
+}
+
+type StudentSubgroup {
+  _id: ID
+  id: ID
+  name: String
+  students(itemsPerPage: Int, active: Boolean): Students2
+}
+
+type Students {
+  collection: [StudentRow]
+}
+
+type Students2 {
+  collection: [Class2]
+}
+
+type SubgroupRow {
+  name: String
+  id: ID
+  _id: ID
+  students: Students
+  teachers: Teachers
+}
+
+type SubgroupRow2 {
+  _id: ID
+  id: ID
+  name: String
+  teachers: Teachers2
+}
+
+type SubgroupRow3 {
+  _id: ID
+  id: ID
+  name: String
+}
+
+type SubgroupRow4 {
+  _id: ID
+  name: String
+}
+
+type Subgroups {
+  collection: [SubgroupRow4]
+}
+
+type Subgroups2 {
+  collection: [SubgroupRow]
+}
+
+type Subgroups3 {
+  collection: [SubgroupRow3]
+}
+
+type Subgroups4 {
+  collection: [SubgroupRow2]
+}
+
+type SystemAdmins {
+  collection: [CreatedBy]
+}
+
+type Teacher {
+  id: ID
+  _id: ID
+  firstName: String
+  lastName: String
+}
+
+type Teacher2 {
+  _id: ID
+  firstName: String
+  lastName: String
+}
+
+type TeacherResource {
+  displayName: String
+  id: ID
+  positionNumber: String
+  projectType: String
+  projectId: ID
+  sectionTitles: String
+  metadata: String
+  sections: String
+}
+
+type TeacherRow {
+  _id: ID
+  id: ID
+}
+
+type TeacherStudentAssignmentRow {
+  id: ID
+  answers: String
+  assignmentId: ID
+  studentId: ID
+  name: String
+  completedAt: String
+  grade: String
+  startedAt: String
+  status: String
+  submittedAt: String
+  endDate: String
+  startDate: String
+  lateTurnIn: String
+  shareResults: String
+  returnedAt: String
+  resetted: String
+  studentNotes: String
+  archived: Boolean
+  classId: ID
+  sessionId: ID
+}
+
+type TeacherStudentAssignments {
+  collection: [TeacherStudentAssignmentRow]
+}
+
+type TeacherStudentRow {
+  _id: ID
+  firstName: String
+  lastName: String
+  username: String
+  id: ID
+  sisId: ID
+  gradeLevel: Int
+  authenticationToken: String
+  plainPassword: String
+  classes(filter: [ClassFilter]): Classes2
+}
+
+type TeacherStudents {
+  collection: [TeacherStudentRow]
+  paginationInfo: PaginationInfo2
+}
+
+type Teachers {
+  collection: [TeacherRow]
+}
+
+type Teachers2 {
+  collection: [TeacherRow]
+}
+
+type Team {
+  name: String
+}
+
+type TeamRow {
+  id: ID
+  name: String
+  archived: Boolean
+  members: [Members]
+}
+
+type Teams {
+  collection: [TeamRow]
+}
+
+type UpdateAssessment {
+  stemscopesPayload: StemscopesPayload3
+}
+
+type UpdateClass {
+  class: Class3
+}
+
+type UpdateTeam {
+  team: Team
+}
+
+type User {
+  id: ID
+  _id: ID
+  sisId: ID
+  stateId: ID
+  username: String
+  lastName: String
+  firstName: String
+  middleName: String
+  plainPassword: String
+  email: String
+  gradeLevel: Int
+  language: String
+}
+
+type User2 {
+  gradeLevel: Int
+  email: String
+  firstName: String
+  lastName: String
+  _id: ID
+}
+
+type UserCalendarRow {
+  _id: ID
+  name: String
+  calendarId: ID
+  calendarType: String
+  calendarColor: String
+  isDefault: Boolean
+  isSelected: Boolean
+  editable: String
+  userId: ID
+  creator: String
+  userSelection: UserSelection2
+}
+
+type UserCalendars {
+  collection: [UserCalendarRow]
+}
+
+type UserRoleRow {
+  role: Role
+  schools: [Schools2]
+}
+
+type UserRoles {
+  collection: [UserRoleRow]
+}
+
+type UserRow {
+  _id: ID
+  firstName: String
+  lastName: String
+  username: String
+  gradeLevel: Int
+  sisId: ID
+  id: ID
+  middleName: String
+  staffId: ID
+  plainPassword: String
+  curriculumAreas: String
+  userRoles: UserRoles
+}
+
+type UserSelection {
+  id: ID
+  _id: ID
+  notificationCalendar: String
+  notificationPacingGuide: String
+  version: String
+}
+
+type UserSelection2 {
+  calendarSettingsPopup: String
+  selectedCalendar: String
+  viewMode: String
+}
+
+type Users {
+  collection: [UserRow]
+  paginationInfo: PaginationInfo
+}
+
+type VisibilityPayload {
+  isVisible: Boolean
+}
+
+union PutAssignmentResult = AssignmentId | DistrictAssignmentType | StemscopesAssignment
+
+union SignRequestResult = ItemSignedRequest | ReportSignedRequest
+
+type Query {
+  aclApplications: [AclApplications]
+  applicationSettings: [ApplicationSettings]
+  assessmentPool(input: AssessmentPoolInput): AssessmentPool
+  assignment(id: String, schoolId: String, lti: Boolean, ltiSessionId: String): Assignment
+  calendars(calendarId: [String], startDate: String, endDate: String, schoolIds: [String], userRoleCode: String, userTeamIds: [String]): Calendars
+  class(id: ID): Class
+  classes(filter: [ClassFilter], page: Int, itemsPerPage: Int): Classes
+  getLiveProgressReport(containerId: String, activity: ActivityInputLiveReport, type: String, users: [UserInputLiveReport], userId: String): GetLiveProgressReport
+  getReport(containerId: String, activityId: String, activities: Iterable, users: Iterable, userId: String, type: String, limit: Int, displayUser: Boolean, sessionId: String, itemOrders: Iterable, sessionIds: [String], languageCode: String): GetLiveProgressReport
+  icons(itemsPerPage: Int, page: Int, filter: FilterIconInput): Icons
+  ownerAssignments(schoolId: String, assignmentDateFilter: AssignmentDateFilterInput, archived: Boolean, paginationInfo: StemscopesAssignmentPageInfoInput, classIds: [String], studentIds: [String], classId: String): [OwnerAssignments]
+  pacingGuides(schoolIds: [String], userRoleCode: String, userTeamIds: [String]): PacingGuides
+  parents(studentId: String): [Parents]
+  poolEnums(input: PurposeEnumInput): [PoolEnums]
+  questionPool(input: JSON): QuestionPool
+  readContainer: ReadContainer
+  recentlyViewed(schoolId: String): RecentlyViewed
+  roles(page: Int, itemsPerPage: Int): Roles
+  schools(id_list: [String], itemsPerPage: Int, districtId: String): Schools3
+  scopePlans(schoolIds: [String], userRoleCode: String, userTeamIds: [String]): ScopePlans
+  ssStandards(classId: String, districtId: String, nextToken: String, order: SsStandardsSort, itemsPerPage: Int, schoolId: String, standards: String, teacherId: String, assignmentId: String, level: LevelEnumType): [SsStandards]
+  ssStandardsItems(filter: SsStandardsItemFilter): [SsStandardsItems]
+  standardsByName(standardNames: [String], currentSchoolId: String): StandardsByName
+  streamingGrades(schoolId: String, schoolIds: [String]): [StreamingGrades]
+  studentSubgroup(id: ID): StudentSubgroup
+  systemAdmins(districtUuid: String, itemsPerPage: Int, page: Int): SystemAdmins
+  teacher(id: ID): CreatedBy
+  teacherResource(id: String, schoolId: String, schoolIds: [String]): TeacherResource
+  teacherStudentAssignments(filter: StudentAssignmentsFilter, schoolId: String): TeacherStudentAssignments
+  teacherStudents(itemsPerPage: Int, page: Int, order: [StudentFilter_order], filter: [TeacherStudentFilter]): TeacherStudents
+  teams(itemsPerPage: Int, page: Int, filter: FilterTeamInput): Teams
+  user(id: ID): User
+  userCalendars(schoolIds: [String], userRoleCode: String, userTeamIds: [String]): UserCalendars
+  userSelection(id: ID): UserSelection
+  users(page: Int, itemsPerPage: Int, type: UserTypeEnum, schoolsId: String, fullName: String, id_list: [String], active: Boolean, excludeCurrent: Boolean, filter: [UserFilter], schoolsIds: [ID], id: String, order: [UserFilter_order], username: String, gradeLevel: GradeLevelFilterEnum, exclude: [UserFilter_exclude]): Users
+}
+
+type Mutation {
+  addStudentsToClass(input: addStudentsToClassInput): AddStudentsToClass
+  addStudentsToStudentSubgroup(input: addStudentsToStudentSubgroupInput): AddStudentsToStudentSubgroup
+  createAssessment(input: JSON): CreateAssessment
+  createClass(input: createClassInput): CreateClass
+  createEntry(input: createEntryInput): CreateEntry
+  createImpersonation(input: createImpersonationInput): CreateImpersonation
+  createQrcodeTemplate(input: CreateQrcodeTemplateInput): CreateQrcodeTemplate
+  createTeam(createTeamInput: CreateTeamInput): CreateTeam
+  putAssignment(assignmentParams: PutAssignmentInput): PutAssignmentResult
+  putStudentAssignments(params: PutStudentAssignmentsInput): [PutStudentAssignments]
+  removeStudentsFromStudentSubgroup(input: removeStudentsFromStudentSubgroupInput): RemoveStudentsFromStudentSubgroup
+  shareAssessment(input: JSON): ShareAssessment
+  signRequest(params: SignRequestInput): SignRequestResult
+  updateAssessment(input: JSON): UpdateAssessment
+  updateClass(input: updateClassInput): UpdateClass
+  updateTeam(updateTeamInput: UpdateTeamInput): UpdateTeam
+}
