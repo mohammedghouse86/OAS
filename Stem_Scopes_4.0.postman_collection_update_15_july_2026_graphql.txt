@@ -34,6 +34,7 @@ enum UserTypeEnum {
   student
 }
 
+# --- Existing input types ---
 input ActivityInputLiveReport {
   id: String
   name: String
@@ -302,6 +303,58 @@ input updateClassInput {
   subgroups: [UpdateClassSubgroupsInput]
 }
 
+# --- Newly added input types ---
+input AddStudentsToAssignmentInput {
+  assignmentId: String
+  studentIds: [String]
+}
+
+input AssessmentEnumsInput {
+  schoolId: String
+  library: String
+}
+
+input ClassAssignmentsPageInput {
+  pageNumber: Int
+  pageSize: Int
+}
+
+input ClassSubgroupsFilter {
+  classId: String
+  teacherId: String
+}
+
+input GetUsersForCampusLeaderFilter {
+  rolesId: String
+  active: Boolean
+  schoolsIds: [String]
+}
+
+input ManageStudentsFilter {
+  schoolId: String
+  classId: String
+  active: Boolean
+}
+
+input SignRequestForStudentInput {
+  referenceId: String
+  renderingType: String
+  type: String
+  state: String
+}
+
+input SignRequestForStudentAssignmentInput {
+  itemSignedRequestInput: SignRequestForStudentInput
+}
+
+input UsersToShareFilter {
+  rolesId: String
+  schoolsIds: [String]
+  active: Boolean
+  excludeIds: [String]
+}
+
+# --- Existing object types ---
 type ApplicationModule {
   name: String
   operations: [Operations]
@@ -1214,11 +1267,113 @@ type VisibilityPayload {
   isVisible: Boolean
 }
 
+# --- Newly added object types ---
+type AssessmentEnums {
+  deliveries: [String]
+  gradingTypes: [String]
+  questionBanks: [String]
+}
+
+type AssessmentQuestionRow {
+  id: ID
+  title: String
+  type: String
+  standards: String
+  grades: String
+  curriculumAreas: String
+}
+
+type AssessmentQuestions {
+  collection: [AssessmentQuestionRow]
+  paginationInfo: PaginationInfo
+}
+
+type AssessmentRow {
+  id: ID
+  title: String
+  items: String
+  isArchived: Boolean
+  isShared: Boolean
+  library: String
+  deliveries: String
+  teams: String
+  standards: String
+  createdBy: CreatedBy
+  activityType: String
+  grade: String
+  curriculumArea: String
+}
+
+type Assessments {
+  collection: [AssessmentRow]
+  paginationInfo: PaginationInfo
+}
+
+type ClassAssignmentRow {
+  assignmentId: ID
+  name: String
+  startDate: String
+  endDate: String
+  status: String
+  learnosityReferenceId: ID
+  classId: ID
+}
+
+type ClassAssignments {
+  collection: [ClassAssignmentRow]
+  paginationInfo: PaginationInfo
+}
+
+type ClassCount {
+  count: Int
+}
+
+type ExtraQuestionSetting {
+  value: String
+  key: String
+}
+
+type TemplateNotification {
+  id: ID
+  message: String
+  updatedAt: String
+}
+
+type UsersForCampusLeaderRow {
+  _id: ID
+  id: ID
+  firstName: String
+  lastName: String
+  username: String
+  staffId: ID
+  plainPassword: String
+  curriculumAreas: [String]
+}
+
+type UsersForCampusLeader {
+  collection: [UsersForCampusLeaderRow]
+  paginationInfo: PaginationInfo
+}
+
+type UsersToShareRow {
+  _id: ID
+  id: ID
+  firstName: String
+  lastName: String
+  username: String
+}
+
+type UsersToShare {
+  collection: [UsersToShareRow]
+  paginationInfo: PaginationInfo
+}
+
 union PutAssignmentResult = AssignmentId | DistrictAssignmentType | StemscopesAssignment
 
 union SignRequestResult = ItemSignedRequest | ReportSignedRequest
 
 type Query {
+  # --- Existing queries ---
   aclApplications: [AclApplications]
   applicationSettings: [ApplicationSettings]
   assessmentPool(input: AssessmentPoolInput): AssessmentPool
@@ -1254,9 +1409,53 @@ type Query {
   userCalendars(schoolIds: [String], userRoleCode: String, userTeamIds: [String]): UserCalendars
   userSelection(id: ID): UserSelection
   users(page: Int, itemsPerPage: Int, type: UserTypeEnum, schoolsId: String, fullName: String, id_list: [String], active: Boolean, excludeCurrent: Boolean, filter: [UserFilter], schoolsIds: [ID], id: String, order: [UserFilter_order], username: String, gradeLevel: GradeLevelFilterEnum, exclude: [UserFilter_exclude]): Users
+
+  # --- Newly added queries (undocumented in original schema) ---
+  getAllAssessments(page: Int, itemsPerPage: Int, schoolId: String, library: String): Assessments @deprecated(reason: "operationName alias — use assessmentPool")
+  getAssessmentEnums(input: AssessmentEnumsInput): AssessmentEnums
+  getAssessmentQuestions(assessmentId: String, page: Int, itemsPerPage: Int): AssessmentQuestions
+  getAssignment(id: String, schoolId: String): Assignment @deprecated(reason: "operationName alias — use assignment")
+  getAssignmentClass(assignmentId: String, classId: String): Assignment
+  getAssignmentClasses(assignmentId: String): [Assignment]
+  getClassAndSubgroup(classId: ID): Class
+  getClassAssignmentsWithPagination(classId: String, schoolId: String, paginationInfo: ClassAssignmentsPageInput): ClassAssignments
+  getClassCount(filter: [ClassFilter]): ClassCount
+  getClassForClassForm(id: ID): Class @deprecated(reason: "operationName alias — use class")
+  getClassStudents(classId: ID, page: Int, itemsPerPage: Int, active: Boolean): ClassStudents
+  getClassStudentsForAssignmentForm(classId: ID, active: Boolean): ClassStudents
+  getClassStudentsForManage(classId: ID, active: Boolean): ClassStudents
+  getClassSubgroups(classId: ID, filter: ClassSubgroupsFilter): Subgroups2
+  getClassesAndStudents(filter: [ClassFilter]): Classes
+  getClassesForClassList(filter: [ClassFilter], page: Int, itemsPerPage: Int): Classes @deprecated(reason: "operationName alias — use classes")
+  getClassesForSelectInput(filter: [ClassFilter]): Classes
+  getClassesForTeacherStudents(filter: [ClassFilter]): Classes
+  getExtraQuestionSetting(key: String): ExtraQuestionSetting
+  getIcon(type: String): IconRow @deprecated(reason: "operationName alias — use icons")
+  getManageStudentsUsers(page: Int, itemsPerPage: Int, filter: ManageStudentsFilter): Users
+  getRecentlyViewed(schoolId: String): RecentlyViewed @deprecated(reason: "operationName alias — use recentlyViewed")
+  getSchools(id_list: [String], itemsPerPage: Int, districtId: String): Schools3 @deprecated(reason: "operationName alias — use schools")
+  getSsStandards(classId: String, districtId: String, nextToken: String, order: SsStandardsSort, itemsPerPage: Int, schoolId: String): [SsStandards] @deprecated(reason: "operationName alias — use ssStandards")
+  getStandardsByName(standardNames: [String], currentSchoolId: String): StandardsByName @deprecated(reason: "operationName alias — use standardsByName")
+  getStandardsItems(filter: SsStandardsItemFilter): [SsStandardsItems] @deprecated(reason: "operationName alias — use ssStandardsItems")
+  getStreamingGrades(schoolId: String, schoolIds: [String]): [StreamingGrades] @deprecated(reason: "operationName alias — use streamingGrades")
+  getStudentParents(studentId: String): [Parents]
+  getTeacher(id: ID): CreatedBy @deprecated(reason: "operationName alias — use teacher")
+  getTeacherResource(id: String, schoolId: String): TeacherResource @deprecated(reason: "operationName alias — use teacherResource")
+  getTeacherStudentAssignments(filter: StudentAssignmentsFilter, schoolId: String): TeacherStudentAssignments @deprecated(reason: "operationName alias — use teacherStudentAssignments")
+  getTeacherStudents3(itemsPerPage: Int, page: Int, filter: [TeacherStudentFilter]): TeacherStudents
+  getTemplateUpdatedNotifications: [TemplateNotification]
+  getUserForUpdate(id: ID): User
+  getUserRoles(userId: ID): UserRoles
+  getUsers(page: Int, itemsPerPage: Int, type: UserTypeEnum, filter: [UserFilter], order: [UserFilter_order]): Users @deprecated(reason: "operationName alias — use users")
+  getUsersForCampusLeader(page: Int, itemsPerPage: Int, schoolsIds: [ID], type: UserTypeEnum, filter: GetUsersForCampusLeaderFilter, id: String, order: [UserFilter_order]): UsersForCampusLeader
+  getUsersForClasses(page: Int, itemsPerPage: Int, schoolsId: String, filter: [UserFilter]): Users @deprecated(reason: "operationName alias — use users")
+  getUsersToShare(page: Int, itemsPerPage: Int, filter: UsersToShareFilter): UsersToShare
+  getteams(itemsPerPage: Int, page: Int, filter: FilterTeamInput): Teams @deprecated(reason: "operationName alias — use teams")
+  plannerTeams(itemsPerPage: Int, page: Int, filter: FilterTeamInput): Teams
 }
 
 type Mutation {
+  # --- Existing mutations ---
   addStudentsToClass(input: addStudentsToClassInput): AddStudentsToClass
   addStudentsToStudentSubgroup(input: addStudentsToStudentSubgroupInput): AddStudentsToStudentSubgroup
   createAssessment(input: JSON): CreateAssessment
@@ -1273,4 +1472,9 @@ type Mutation {
   updateAssessment(input: JSON): UpdateAssessment
   updateClass(input: updateClassInput): UpdateClass
   updateTeam(updateTeamInput: UpdateTeamInput): UpdateTeam
+
+  # --- Newly added mutations (undocumented in original schema) ---
+  addStudentsToAssignment(input: AddStudentsToAssignmentInput): AssignmentId
+  createStemscopesAssessment(input: StemscopesCreateAssessmentInput): CreateAssessment
+  signRequestForStudentAssignment(params: SignRequestForStudentAssignmentInput): SignRequestResult
 }
