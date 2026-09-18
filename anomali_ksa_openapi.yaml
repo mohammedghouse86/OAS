@@ -9059,21 +9059,6 @@ paths:
             application/json:
               example:
                 success: true
-  /api/v1/user/logout/:
-    post:
-      operationId: post_api_v1_user_logout
-      summary: POST /api/v1/user/logout/
-      description: 'Captured 1 time(s) from: logout. Roles observed: user.'
-      tags:
-      - user
-      responses:
-        '200':
-          description: Observed 1 time(s).
-          content:
-            application/json:
-              example:
-                message: You were successfully logged out of the system
-                success: true
   /api/v1/user/permissions/:
     get:
       operationId: get_api_v1_user_permissions
